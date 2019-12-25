@@ -1,1 +1,0 @@
-# lgystoic.github.io
