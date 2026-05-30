@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Garry 的学习站</title>
+    <meta name="description" content="个人课程笔记、论文阅读和概念地图。" />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%231f252b'/%3E%3Ctext x='32' y='39' text-anchor='middle' font-size='18' font-family='Arial' font-weight='700' fill='white'%3EG%3C/text%3E%3C/svg%3E" />
+    <link rel="stylesheet" href="./site.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="./" aria-label="回到首页">
+        <span class="brand-mark">G</span>
+        <span>Garry 的学习站</span>
+      </a>
+      <nav aria-label="主导航">
+        <a href="#notes">笔记</a>
+        <a href="#deploy">部署</a>
+        <a href="https://github.com/lgyStoic" rel="noreferrer">GitHub</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div>
+          <p class="eyebrow">Personal Knowledge Site</p>
+          <h1>把课程、PDF 和论文整理成可长期复用的中文知识库。</h1>
+          <p class="lead">
+            这个站点现在是纯静态结构，可以直接用 GitHub Pages 托管。后续每整理一份资料，就新增一个
+            <code>notes/xxx/</code> 页面，并在首页加一张卡片。
+          </p>
+        </div>
+        <div class="hero-panel" aria-label="站点结构示意">
+          <span>index.html</span>
+          <i></i>
+          <span>notes/</span>
+          <i></i>
+          <span>GitHub Pages</span>
+        </div>
+      </section>
+
+      <section class="section" id="notes">
+        <div class="section-head">
+          <p class="eyebrow">Notes</p>
+          <h2>已整理内容</h2>
+        </div>
+        <div class="note-grid">
+          <article class="note-card">
+            <div class="note-meta">
+              <span>MIT 6.S184</span>
+              <span>Flow / Diffusion / SDE</span>
+            </div>
+            <h3>从噪声到数据：Flow Matching 与扩散模型中文地图</h3>
+            <p>
+              基于 MIT 6.S184 讲义整理，覆盖生成即采样、ODE/SDE、Flow Matching、Score Matching、
+              Classifier-Free Guidance、潜空间生成器和离散扩散语言模型。
+            </p>
+            <a class="button" href="./notes/mit-6s184-flow-diffusion/">打开笔记</a>
+          </article>
+
+          <article class="note-card ghost">
+            <div class="note-meta">
+              <span>Next</span>
+              <span>Template</span>
+            </div>
+            <h3>下一份资料可以放这里</h3>
+            <p>
+              复制一个已有 notes 目录，替换内容和首页卡片，就能继续扩展成自己的课程索引。
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section split" id="deploy">
+        <div>
+          <p class="eyebrow">Deploy</p>
+          <h2>GitHub Pages 发布方式</h2>
+        </div>
+        <div class="steps">
+          <article>
+            <b>1. 新建仓库</b>
+            <p>最像个人网站的方式是仓库名用 <code>lgyStoic.github.io</code>，GitHub Pages 会发布到根域名。</p>
+          </article>
+          <article>
+            <b>2. 推送当前目录</b>
+            <p>这个目录已经是可托管的静态站点，不需要 npm、Vite 或构建步骤。</p>
+          </article>
+          <article>
+            <b>3. Settings → Pages</b>
+            <p>选择从 <code>main</code> 分支、根目录 <code>/</code> 发布。几分钟后就能访问。</p>
+          </article>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

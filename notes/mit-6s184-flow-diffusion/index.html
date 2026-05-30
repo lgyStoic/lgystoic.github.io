@@ -1,0 +1,501 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>MIT 6.S184 中文学习页：Flow Matching 与 Diffusion Models</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%231f252b'/%3E%3Ctext x='32' y='38' text-anchor='middle' font-size='18' font-family='Arial' font-weight='700' fill='white'%3E6S%3C/text%3E%3C/svg%3E" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="../../" aria-label="回到学习站首页">
+        <span class="brand-mark">6.S184</span>
+        <span>Flow Matching 与 Diffusion Models</span>
+      </a>
+      <div class="toolbar">
+        <a class="home-pill" href="../../">首页</a>
+        <label class="search" for="conceptSearch">
+          <span aria-hidden="true">⌕</span>
+          <input id="conceptSearch" type="search" placeholder="搜索概念 / 英文术语 / 公式" />
+        </label>
+        <button class="icon-button" id="themeToggle" type="button" aria-label="切换深浅色" title="切换深浅色">
+          ◐
+        </button>
+      </div>
+    </header>
+
+    <div class="page-shell" id="top">
+      <aside class="side-nav" aria-label="章节导航">
+        <nav>
+          <a href="#overview">总览</a>
+          <a href="#sampling">生成即采样</a>
+          <a href="#flow-diffusion">ODE / SDE</a>
+          <a href="#flow-matching">Flow Matching</a>
+          <a href="#score">Score Matching</a>
+          <a href="#guidance">Guidance / CFG</a>
+          <a href="#large-scale">大模型工程</a>
+          <a href="#discrete">离散扩散</a>
+          <a href="#reference">速查</a>
+          <a href="#glossary">术语表</a>
+        </nav>
+        <div class="progress-card">
+          <span>阅读进度</span>
+          <div class="progress-track"><div id="progressBar"></div></div>
+        </div>
+      </aside>
+
+      <main>
+        <section class="hero panel" data-keywords="overview 总览 主线 noise data probability path flow diffusion score CTMC">
+          <div class="hero-copy">
+            <p class="eyebrow">基于 lecture_notes.pdf 整理</p>
+            <h1>从噪声到数据：一张中文地图读懂 Flow Matching 与扩散模型</h1>
+            <p class="lead">
+              这份笔记的主线很干净：把图像、视频、分子或文本看成随机对象；先设计一条从简单噪声到真实数据的概率路径；
+              再学习让样本沿这条路径移动的动力学。连续数据用 ODE/SDE，离散文本用 CTMC。
+            </p>
+            <p class="source-line">
+              来源：<a href="https://diffusion.csail.mit.edu/" rel="noreferrer">MIT 6.S184 course website</a>，
+              本页为个人中文学习整理。
+            </p>
+          </div>
+          <div class="hero-visual" aria-label="噪声到数据的学习主线">
+            <div class="flow-strip">
+              <span>p<sub>init</sub></span>
+              <i></i>
+              <span>p<sub>t</sub></span>
+              <i></i>
+              <span>p<sub>data</sub></span>
+            </div>
+            <div class="mini-particles" aria-hidden="true">
+              <b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b>
+            </div>
+            <p>训练目标不是直接记住图片，而是学会“该往哪里走”。</p>
+          </div>
+        </section>
+
+        <section class="section" id="overview" data-keywords="overview roadmap learning path 概率路径 条件 边缘 向量场 分数函数 速览">
+          <div class="section-head">
+            <p class="eyebrow">Roadmap</p>
+            <h2>全书骨架</h2>
+          </div>
+          <div class="map-grid">
+            <article class="map-card">
+              <span class="num">01</span>
+              <h3>对象变成向量</h3>
+              <p>图像、视频、分子结构通常可表示为 <span class="math">z ∈ R<sup>d</sup></span>。文本是例外，后面用离散状态空间处理。</p>
+            </article>
+            <article class="map-card">
+              <span class="num">02</span>
+              <h3>生成变成采样</h3>
+              <p>“生成一张狗的图”变成从未知数据分布 <span class="math">p<sub>data</sub></span> 采样。</p>
+            </article>
+            <article class="map-card">
+              <span class="num">03</span>
+              <h3>设计概率路径</h3>
+              <p><span class="math">p<sub>0</sub> = p<sub>init</sub></span>，<span class="math">p<sub>1</sub> = p<sub>data</sub></span>，中间如何过渡由我们选择。</p>
+            </article>
+            <article class="map-card">
+              <span class="num">04</span>
+              <h3>学习动力学</h3>
+              <p>Flow 学向量场 <span class="math">u<sub>t</sub></span>，Diffusion 学 score <span class="math">∇ log p<sub>t</sub></span> 或等价重参数化。</p>
+            </article>
+            <article class="map-card">
+              <span class="num">05</span>
+              <h3>从噪声模拟到数据</h3>
+              <p>训练后从高斯噪声出发，沿 ODE/SDE/CTMC 模拟，最后得到样本。</p>
+            </article>
+          </div>
+          <div class="triad">
+            <div>
+              <h3>Flow</h3>
+              <p>确定性轨迹：只有初始噪声随机。核心是 ODE 和向量场。</p>
+            </div>
+            <div>
+              <h3>Diffusion</h3>
+              <p>随机轨迹：每一步都注入 Brownian 噪声。核心是 SDE 和 score。</p>
+            </div>
+            <div>
+              <h3>Discrete Diffusion</h3>
+              <p>离散 token 无法“微分移动”，改用连续时间马尔可夫链的跳转率矩阵。</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="sampling" data-keywords="generation sampling pdata dataset conditional guided 生成 采样 数据分布 条件生成">
+          <div class="section-head">
+            <p class="eyebrow">Section 1</p>
+            <h2>生成建模 = 从数据分布采样</h2>
+          </div>
+          <div class="two-col">
+            <article class="explain">
+              <h3>核心转译</h3>
+              <p>
+                生成模型不是寻找唯一“正确答案”，而是在所有可能对象上定义一个分布。
+                好样本在 <span class="math">p<sub>data</sub>(z)</span> 下概率高，坏样本概率低。
+              </p>
+              <div class="formula-card">
+                <b>无条件生成</b>
+                <code>z ~ p_data</code>
+              </div>
+              <div class="formula-card">
+                <b>有条件生成</b>
+                <code>z ~ p_data(. | y)</code>
+              </div>
+              <p>
+                数据集 <span class="math">z<sub>1</sub>, …, z<sub>N</sub> ~ p<sub>data</sub></span>
+                只是对真实数据分布的有限观测。模型真正要学的是分布，而不是复制训练样本。
+              </p>
+            </article>
+            <article class="note-card">
+              <h3>理解锚点</h3>
+              <ul>
+                <li><b>图像</b>：<span class="math">H × W × 3</span> 的像素张量。</li>
+                <li><b>视频</b>：<span class="math">T × H × W × 3</span> 的帧序列。</li>
+                <li><b>分子</b>：每个原子一个三维坐标，整体可看成矩阵。</li>
+                <li><b>文本</b>：自然是离散 token，不能直接用欧氏空间那套处理。</li>
+              </ul>
+            </article>
+          </div>
+        </section>
+
+        <section class="section" id="flow-diffusion" data-keywords="ODE SDE Brownian Euler Euler-Maruyama flow model diffusion model OU vector field 向量场">
+          <div class="section-head">
+            <p class="eyebrow">Section 2</p>
+            <h2>用微分方程造生成器</h2>
+          </div>
+          <div class="image-row">
+            <figure>
+              <img src="./assets/p08_01_Im1.png" alt="向量场驱动空间形变的 flow 图示" />
+              <figcaption>Flow：向量场规定每个位置的速度，ODE 解把空间连续扭到新分布。</figcaption>
+            </figure>
+            <figure>
+              <img src="./assets/p11_01_Im5.png" alt="Ornstein-Uhlenbeck 过程示意" />
+              <figcaption>SDE：漂移项负责方向，扩散项持续加入随机扰动。</figcaption>
+            </figure>
+          </div>
+          <div class="compare-table" role="table" aria-label="Flow 与 Diffusion 对比">
+            <div class="row head" role="row">
+              <span role="columnheader">问题</span>
+              <span role="columnheader">Flow Model</span>
+              <span role="columnheader">Diffusion Model</span>
+            </div>
+            <div class="row" role="row">
+              <span role="cell">动力学</span>
+              <span role="cell"><code>dX_t / dt = u^θ_t(X_t)</code></span>
+              <span role="cell"><code>dX_t = u^θ_t(X_t)dt + σ_t dW_t</code></span>
+            </div>
+            <div class="row" role="row">
+              <span role="cell">随机性来源</span>
+              <span role="cell">只来自初始点 <code>X_0 ~ p_init</code></span>
+              <span role="cell">初始点 + 每一步 Brownian 噪声</span>
+            </div>
+            <div class="row" role="row">
+              <span role="cell">模拟方法</span>
+              <span role="cell">Euler：<code>X_{t+h}=X_t+h u_t(X_t)</code></span>
+              <span role="cell">Euler-Maruyama：<code>+ σ_t √h ε</code></span>
+            </div>
+            <div class="row" role="row">
+              <span role="cell">特殊关系</span>
+              <span role="cell">确定性 SDE</span>
+              <span role="cell"><code>σ_t = 0</code> 时退化成 Flow</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="flow-matching" data-keywords="flow matching probability path conditional marginal vector field CondOT continuity equation regression simulation-free">
+          <div class="section-head">
+            <p class="eyebrow">Section 3</p>
+            <h2>Flow Matching：把训练变成回归</h2>
+          </div>
+          <figure class="wide-figure">
+            <img src="./assets/p15_01_Im7.png" alt="条件概率路径和边缘概率路径图示" />
+            <figcaption>条件路径把噪声推向单个数据点；边缘路径把噪声分布推向整个数据分布。</figcaption>
+          </figure>
+          <div class="concept-stack">
+            <article>
+              <h3>1. 条件概率路径</h3>
+              <p>先固定一个训练样本 <span class="math">z</span>，设计一族分布 <span class="math">p<sub>t</sub>(x | z)</span>：</p>
+              <code>p_0(. | z) = p_init,  p_1(. | z) = δ_z</code>
+            </article>
+            <article>
+              <h3>2. 边缘概率路径</h3>
+              <p>再对所有可能的 <span class="math">z ~ p<sub>data</sub></span> 混合：</p>
+              <code>p_t(x) = ∫ p_t(x | z) p_data(z) dz</code>
+            </article>
+            <article>
+              <h3>3. 高斯路径</h3>
+              <p>最常用路径把干净数据和噪声线性混合：</p>
+              <code>x = α_t z + β_t ε,  ε ~ N(0, I)</code>
+            </article>
+          </div>
+          <div class="two-col">
+            <article class="explain">
+              <h3>边缘化技巧</h3>
+              <p>
+                条件向量场 <span class="math">u<sup>target</sup><sub>t</sub>(x | z)</span> 通常可解析写出，
+                但它只会把样本推向一个固定训练点。真正需要的是边缘向量场
+                <span class="math">u<sup>target</sup><sub>t</sub>(x)</span>，它等于对所有可能终点的后验加权平均。
+              </p>
+              <div class="formula-card">
+                <b>直觉</b>
+                <p>当前噪声样本 <span class="math">x</span> 可能来自很多干净样本 <span class="math">z</span>。模型要走的方向，是“所有可能去向”的可信度加权平均。</p>
+              </div>
+            </article>
+            <article class="explain accent">
+              <h3>训练目标为什么简单</h3>
+              <p>
+                虽然边缘向量场不可直接算，但定理表明：回归到条件向量场的损失，与回归到边缘向量场的损失只差一个与参数无关的常数。
+              </p>
+              <code>L_CFM = E || u^θ_t(x) - u^target_t(x | z) ||²</code>
+              <p>这就是 Flow Matching 的漂亮之处：训练时不用模拟 ODE，只做监督式回归。</p>
+            </article>
+          </div>
+          <figure class="wide-figure">
+            <img src="./assets/p23_01_Im10.png" alt="Flow Matching 训练后路径与真实概率路径对齐图示" />
+            <figcaption>训练后的 flow 样本分布会跟随设计好的边缘概率路径。</figcaption>
+          </figure>
+          <div class="algorithm-card">
+            <h3>CondOT 路径下的一行记忆</h3>
+            <p><span class="math">α<sub>t</sub> = t</span>，<span class="math">β<sub>t</sub> = 1 - t</span> 时：</p>
+            <code>x = t z + (1 - t) ε</code>
+            <code>target velocity = z - ε</code>
+            <p>所以训练就是让网络看到中间点 <span class="math">x</span> 和时间 <span class="math">t</span> 后，预测“从噪声 ε 指向数据 z 的速度”。</p>
+          </div>
+        </section>
+
+        <section class="section" id="score" data-keywords="score matching score function denoising diffusion Fokker-Planck Langevin SDE extension noise prediction">
+          <div class="section-head">
+            <p class="eyebrow">Section 4</p>
+            <h2>Score Matching：学习密度上升方向</h2>
+          </div>
+          <div class="image-row score-images">
+            <figure>
+              <img src="./assets/p25_01_Im1.png" alt="概率密度示意图" />
+              <figcaption>左：概率密度。</figcaption>
+            </figure>
+            <figure>
+              <img src="./assets/p25_02_Im2.png" alt="score function 指向高密度方向" />
+              <figcaption>右：score 指向 log-likelihood 增长最快的方向。</figcaption>
+            </figure>
+          </div>
+          <div class="two-col">
+            <article class="explain">
+              <h3>Score 是什么</h3>
+              <p>
+                对任意分布 <span class="math">q(x)</span>，score 定义为
+                <span class="math">∇ log q(x)</span>。它不告诉你概率是多少，而告诉你往哪里移动会更像数据。
+              </p>
+              <div class="formula-card">
+                <b>高斯路径的条件 score</b>
+                <code>∇ log p_t(x | z) = -(x - α_t z) / β_t²</code>
+              </div>
+            </article>
+            <article class="explain">
+              <h3>与 Flow 的关系</h3>
+              <p>
+                在高斯概率路径下，向量场和 score 可相互转换。
+                因此很多模型可以选择预测速度、预测 score、预测噪声或预测 denoiser，本质上是在选更稳定的参数化。
+              </p>
+              <div class="formula-card">
+                <b>扩散采样核心</b>
+                <code>dX_t = [u_t(X_t) + σ_t²/2 ∇log p_t(X_t)]dt + σ_t dW_t</code>
+              </div>
+            </article>
+          </div>
+          <div class="callout">
+            <h3>Denoising Diffusion 的训练直觉</h3>
+            <p>
+              给干净样本 <span class="math">z</span> 加噪得到 <span class="math">x = α<sub>t</sub>z + β<sub>t</sub>ε</span>。
+              网络学习从带噪输入里恢复“噪声方向”或“干净数据的后验信息”。这就是为什么很多扩散模型看起来像是在做去噪。
+            </p>
+          </div>
+        </section>
+
+        <section class="section" id="guidance" data-keywords="guidance classifier-free guidance CFG prompt conditional label drop w scale 提示词 条件">
+          <div class="section-head">
+            <p class="eyebrow">Section 5</p>
+            <h2>Guidance：让模型更听提示词</h2>
+          </div>
+          <figure class="wide-figure">
+            <img src="./assets/p39_01_Im17.png" alt="不同 CFG guidance scale 下的生成结果差异" />
+            <figcaption>CFG scale 越大，通常越贴合条件，但多样性和自然度可能下降。</figcaption>
+          </figure>
+          <div class="two-col">
+            <article class="explain">
+              <h3>Vanilla Guidance</h3>
+              <p>
+                直接把提示词或标签 <span class="math">y</span> 输入网络，训练
+                <span class="math">u<sub>t</sub>(x | y)</span>。理论上可行，但实际中条件对齐可能不够强。
+              </p>
+            </article>
+            <article class="explain accent">
+              <h3>Classifier-Free Guidance</h3>
+              <p>同一个模型同时学“有条件”和“无条件”：训练时以概率 <span class="math">η</span> 把标签替换为 <span class="math">∅</span>。</p>
+              <code>ũ_t(x | y) = (1 - w) u_t(x | ∅) + w u_t(x | y)</code>
+              <p><span class="math">w &gt; 1</span> 会放大“提示词带来的方向差”。这是一种经验上极有效的启发式。</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="section" id="large-scale" data-keywords="DiT diffusion transformer U-Net VAE latent space Stable Diffusion 3 Movie Gen CLIP T5 autoencoder">
+          <div class="section-head">
+            <p class="eyebrow">Section 6</p>
+            <h2>大规模图像/视频生成器如何落地</h2>
+          </div>
+          <div class="concept-stack">
+            <article>
+              <h3>输入嵌入</h3>
+              <p>时间 <span class="math">t</span> 常用 Fourier features；类别标签可学 embedding；文本提示常用 CLIP、T5、UL2、ByT5 等预训练编码器。</p>
+            </article>
+            <article>
+              <h3>主干网络</h3>
+              <p>DiT 把图像切成 patch token，用 self-attention/cross-attention 处理；U-Net 用编码器-解码器和跳连保持局部细节。</p>
+            </article>
+            <article>
+              <h3>潜空间</h3>
+              <p>VAE/Autoencoder 先把高分辨率图像压缩到低维 latent，再在 latent 里训练 flow/diffusion，最后解码回像素空间。</p>
+            </article>
+          </div>
+          <div class="gallery-grid">
+            <figure>
+              <img src="./assets/p43_01_Im18.png" alt="Diffusion Transformer 架构图" />
+              <figcaption>DiT：patchify 图像，再用 Transformer 处理 token。</figcaption>
+            </figure>
+            <figure>
+              <img src="./assets/p46_01_Im20.png" alt="U-Net 架构图" />
+              <figcaption>U-Net：下采样理解全局，上采样恢复空间细节。</figcaption>
+            </figure>
+            <figure>
+              <img src="./assets/p53_01_Im21.png" alt="MM-DiT 多模态架构图" />
+              <figcaption>MM-DiT：图像 patch 与文本 token 共同参与注意力。</figcaption>
+            </figure>
+            <figure>
+              <img src="./assets/p82_01_Im27.png" alt="VAE 压缩质量与生成质量权衡" />
+              <figcaption>潜空间压缩存在重建质量与生成难度的权衡。</figcaption>
+            </figure>
+          </div>
+          <div class="case-grid">
+            <article class="case-card">
+              <h3>Stable Diffusion 3</h3>
+              <p>笔记中强调它采用 conditional flow matching、classifier-free guidance、预训练 autoencoder latent space，以及多种文本 embedding；最大模型约 8B 参数，采样约 50 步。</p>
+            </article>
+            <article class="case-card">
+              <h3>Meta Movie Gen Video</h3>
+              <p>视频多了时间维 <span class="math">T</span>，因此需要 temporal autoencoder 和时空 patchification；笔记中最大模型约 30B 参数。</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="section" id="discrete" data-keywords="discrete diffusion CTMC rate matrix language model masked diffusion tokens Markov chain generator matching">
+          <div class="section-head">
+            <p class="eyebrow">Section 7</p>
+            <h2>离散扩散：用 CTMC 生成 token</h2>
+          </div>
+          <figure class="wide-figure">
+            <img src="./assets/p54_01_Im22.png" alt="连续时间马尔可夫链轨迹图示" />
+            <figcaption>离散状态不能沿向量方向移动，只能在状态之间跳转。</figcaption>
+          </figure>
+          <div class="two-col">
+            <article class="explain">
+              <h3>Rate Matrix 取代向量场</h3>
+              <p>
+                在状态空间 <span class="math">S = V<sup>d</sup></span> 中，CTMC 用
+                <span class="math">Q<sub>t</sub>(y | x)</span> 表示从状态 <span class="math">x</span> 跳到
+                <span class="math">y</span> 的速率。它就是离散版的“动力学”。
+              </p>
+              <code>Q_t(y | x) ≥ 0 for y ≠ x</code>
+              <code>Q_t(x | x) = -Σ_{y≠x} Q_t(y | x)</code>
+            </article>
+            <article class="explain accent">
+              <h3>训练又变简单了</h3>
+              <p>
+                对 factorized mixture path，边缘 rate matrix 等价于每个 token 位置的后验分类概率
+                <span class="math">p<sub>1|t</sub>(z<sub>j</sub> = v | x)</span>。
+              </p>
+              <code>L_DFM = E Σ_j -log p^θ_{1|t}(z_j | x)</code>
+              <p>连续 Flow Matching 变成回归；离散 Flow Matching 变成逐 token 分类。</p>
+            </article>
+          </div>
+          <div class="mask-demo" aria-label="Masked Diffusion Language Model 示例">
+            <div><span>t=0</span><b>[MASK]</b><b>[MASK]</b><b>[MASK]</b><b>[MASK]</b><b>[MASK]</b></div>
+            <div><span>t=.25</span><b>[MASK]</b><b>cat</b><b>[MASK]</b><b>[MASK]</b><b>.</b></div>
+            <div><span>t=.75</span><b>The</b><b>cat</b><b>[MASK]</b><b>mat</b><b>.</b></div>
+            <div><span>t=1</span><b>The</b><b>cat</b><b>sat</b><b>mat</b><b>.</b></div>
+          </div>
+        </section>
+
+        <section class="section" id="reference" data-keywords="formula algorithm cheat sheet 公式 算法 速查">
+          <div class="section-head">
+            <p class="eyebrow">Cheat Sheet</p>
+            <h2>公式与算法速查</h2>
+          </div>
+          <div class="cheatsheet">
+            <article>
+              <h3>生成任务</h3>
+              <code>z ~ p_data</code>
+              <code>z ~ p_data(. | y)</code>
+            </article>
+            <article>
+              <h3>Flow 采样</h3>
+              <code>X_0 ~ p_init</code>
+              <code>X_{t+h} = X_t + h u^θ_t(X_t)</code>
+            </article>
+            <article>
+              <h3>Diffusion 采样</h3>
+              <code>X_{t+h}=X_t+h u^θ_t(X_t)+σ_t√h ε</code>
+            </article>
+            <article>
+              <h3>高斯路径</h3>
+              <code>x = α_t z + β_t ε</code>
+              <code>p_t(. | z)=N(α_t z, β_t² I)</code>
+            </article>
+            <article>
+              <h3>Flow Matching</h3>
+              <code>L_CFM = E ||u^θ_t(x)-u^target_t(x|z)||²</code>
+            </article>
+            <article>
+              <h3>Score Matching</h3>
+              <code>L_CSM = E ||s^θ_t(x)-∇log p_t(x|z)||²</code>
+            </article>
+            <article>
+              <h3>CFG</h3>
+              <code>ũ=(1-w)u(x|∅)+w u(x|y)</code>
+            </article>
+            <article>
+              <h3>离散扩散</h3>
+              <code>L_DFM = E Σ_j -log p^θ(z_j | x,t)</code>
+            </article>
+          </div>
+        </section>
+
+        <section class="section" id="glossary" data-keywords="glossary terminology 术语 中英对照">
+          <div class="section-head">
+            <p class="eyebrow">Glossary</p>
+            <h2>中英术语表</h2>
+          </div>
+          <div class="glossary-grid">
+            <article><b>data distribution</b><span>数据分布，真实样本来自的未知分布。</span></article>
+            <article><b>probability path</b><span>概率路径，从噪声到数据的一族中间分布。</span></article>
+            <article><b>conditional path</b><span>固定终点样本 z 后的路径。</span></article>
+            <article><b>marginal path</b><span>对所有 z 混合后的整体路径。</span></article>
+            <article><b>vector field</b><span>向量场，告诉样本在当前位置该往哪里走。</span></article>
+            <article><b>flow</b><span>ODE 的解映射，把初始点推到时间 t 的位置。</span></article>
+            <article><b>score function</b><span><span class="math">∇log p(x)</span>，密度上升最快方向。</span></article>
+            <article><b>denoiser</b><span>给定 noisy x 后对 clean z 的后验估计。</span></article>
+            <article><b>Brownian motion</b><span>连续随机游走，SDE 随机性的来源。</span></article>
+            <article><b>Fokker-Planck</b><span>描述 SDE 下概率密度如何随时间演化。</span></article>
+            <article><b>CFG</b><span>Classifier-Free Guidance，无需单独分类器的提示词增强。</span></article>
+            <article><b>CTMC</b><span>Continuous-Time Markov Chain，离散状态的连续时间跳转过程。</span></article>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <div id="emptyState" class="empty-state" hidden>
+      没找到匹配内容。换个关键词试试，比如 “score”、“VAE”、“CFG” 或 “概率路径”。
+    </div>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
