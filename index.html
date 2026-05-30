@@ -8,14 +8,14 @@
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%231f252b'/%3E%3Ctext x='32' y='39' text-anchor='middle' font-size='18' font-family='Arial' font-weight='700' fill='white'%3EG%3C/text%3E%3C/svg%3E" />
     <link rel="stylesheet" href="./site.css" />
   </head>
-  <body>
+  <body data-notes-source="./notes/notes.json" data-notes-base="root">
     <header class="site-header">
       <a class="brand" href="./" aria-label="回到首页">
         <span class="brand-mark">G</span>
         <span>Garry 的学习站</span>
       </a>
       <nav aria-label="主导航">
-        <a href="#notes">笔记</a>
+        <a href="./notes/">笔记</a>
         <a href="#deploy">部署</a>
         <a href="https://github.com/lgyStoic" rel="noreferrer">GitHub</a>
       </nav>
@@ -28,7 +28,7 @@
           <h1>把课程、PDF 和论文整理成可长期复用的中文知识库。</h1>
           <p class="lead">
             这个站点现在是纯静态结构，可以直接用 GitHub Pages 托管。后续每整理一份资料，就新增一个
-            <code>notes/xxx/</code> 页面，并在首页加一张卡片。
+            <code>notes/xxx/</code> 页面，再往 <code>notes/notes.json</code> 加一条记录。
           </p>
         </div>
         <div class="hero-panel" aria-label="站点结构示意">
@@ -45,31 +45,7 @@
           <p class="eyebrow">Notes</p>
           <h2>已整理内容</h2>
         </div>
-        <div class="note-grid">
-          <article class="note-card">
-            <div class="note-meta">
-              <span>MIT 6.S184</span>
-              <span>Flow / Diffusion / SDE</span>
-            </div>
-            <h3>从噪声到数据：Flow Matching 与扩散模型中文地图</h3>
-            <p>
-              基于 MIT 6.S184 讲义整理，覆盖生成即采样、ODE/SDE、Flow Matching、Score Matching、
-              Classifier-Free Guidance、潜空间生成器和离散扩散语言模型。
-            </p>
-            <a class="button" href="./notes/mit-6s184-flow-diffusion/">打开笔记</a>
-          </article>
-
-          <article class="note-card ghost">
-            <div class="note-meta">
-              <span>Next</span>
-              <span>Template</span>
-            </div>
-            <h3>下一份资料可以放这里</h3>
-            <p>
-              复制一个已有 notes 目录，替换内容和首页卡片，就能继续扩展成自己的课程索引。
-            </p>
-          </article>
-        </div>
+        <div class="note-grid" data-notes-list="featured"></div>
       </section>
 
       <section class="section split" id="deploy">
@@ -93,5 +69,6 @@
         </div>
       </section>
     </main>
+    <script src="./site.js"></script>
   </body>
 </html>

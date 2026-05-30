@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>所有笔记 | Garry 的学习站</title>
+    <meta name="description" content="Garry 的课程、论文和 PDF 整理索引。" />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%231f252b'/%3E%3Ctext x='32' y='39' text-anchor='middle' font-size='18' font-family='Arial' font-weight='700' fill='white'%3EG%3C/text%3E%3C/svg%3E" />
+    <link rel="stylesheet" href="../site.css" />
+  </head>
+  <body data-notes-source="./notes.json" data-notes-base="absolute">
+    <header class="site-header">
+      <a class="brand" href="../" aria-label="回到首页">
+        <span class="brand-mark">G</span>
+        <span>Garry 的学习站</span>
+      </a>
+      <nav aria-label="主导航">
+        <a href="../">首页</a>
+        <a href="./">笔记</a>
+        <a href="https://github.com/lgyStoic/lgystoic.github.io" rel="noreferrer">GitHub</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div>
+          <p class="eyebrow">All Notes</p>
+          <h1>所有整理过的课程、论文和 PDF。</h1>
+          <p class="lead">
+            这个页面由 <code>notes/notes.json</code> 渲染。以后新增内容，只需要新增一个笔记目录，再把元数据写进 JSON。
+          </p>
+        </div>
+        <div class="hero-panel" aria-label="新增笔记流程">
+          <span>notes/new-topic/</span>
+          <i></i>
+          <span>notes/notes.json</span>
+          <i></i>
+          <span>自动出现在索引</span>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <p class="eyebrow">Library</p>
+          <h2>笔记库</h2>
+        </div>
+        <div class="note-grid" data-notes-list="all"></div>
+      </section>
+    </main>
+    <script src="../site.js"></script>
+  </body>
+</html>

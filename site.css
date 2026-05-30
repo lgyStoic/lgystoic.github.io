@@ -219,6 +219,18 @@ h3 {
   color: var(--muted);
 }
 
+.note-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+
+.note-actions span {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
 .note-meta {
   display: flex;
   flex-wrap: wrap;
@@ -245,6 +257,12 @@ h3 {
   background: var(--ink);
   color: var(--paper);
   font-weight: 760;
+}
+
+.button.secondary {
+  border: 1px solid var(--line);
+  background: var(--paper);
+  color: var(--ink);
 }
 
 .ghost {

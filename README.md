@@ -3,6 +3,8 @@
 一个纯静态个人知识站，适合放课程笔记、PDF 整理、论文阅读和概念地图。当前内容：
 
 - `notes/mit-6s184-flow-diffusion/`：MIT 6.S184 Flow Matching 与 Diffusion Models 中文学习页
+- `notes/notes.json`：所有笔记的索引数据，首页和 `/notes/` 会读取它渲染卡片
+- `templates/note/`：新增笔记时可复制的起步模板
 
 ## 本地预览
 
@@ -34,9 +36,45 @@ https://lgystoic.github.io/
 
 ## 添加新笔记
 
-1. 在 `notes/` 下新增一个目录，例如 `notes/my-new-note/`。
-2. 放入该笔记的 `index.html`、`styles.css`、资源文件等。
-3. 在根目录 `index.html` 的「已整理内容」区域新增一张卡片。
+1. 复制模板：
+
+```bash
+cp -R templates/note notes/my-new-note
+```
+
+2. 修改新目录里的页面内容：
+
+```text
+notes/my-new-note/index.html
+notes/my-new-note/styles.css
+```
+
+3. 在 `notes/notes.json` 中追加一条元数据：
+
+```json
+{
+  "title": "新笔记标题",
+  "slug": "my-new-note",
+  "url": "./notes/my-new-note/",
+  "absoluteUrl": "/notes/my-new-note/",
+  "source": "课程或论文来源",
+  "tags": ["tag-1", "tag-2"],
+  "summary": "一句话说明这篇笔记讲什么。",
+  "status": "已发布",
+  "featured": false,
+  "updated": "2026-05-30"
+}
+```
+
+4. 提交并推送：
+
+```bash
+git add .
+git commit -m "Add my new note"
+git push origin master
+```
+
+如果想让某篇笔记出现在首页，把该条记录的 `featured` 改成 `true`。
 
 ## 来源与版权提醒
 
