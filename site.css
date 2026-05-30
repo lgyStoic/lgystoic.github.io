@@ -96,13 +96,14 @@ code {
 
 main {
   display: grid;
-  gap: 24px;
-  width: min(1180px, 100%);
+  gap: 18px;
+  width: min(980px, 100%);
   margin: 0 auto;
-  padding: 28px clamp(16px, 4vw, 44px) 72px;
+  padding: 26px clamp(16px, 4vw, 44px) 72px;
 }
 
 .hero,
+.home-intro,
 .section {
   border: 1px solid var(--line);
   border-radius: 8px;
@@ -117,6 +118,16 @@ main {
   min-height: 430px;
   padding: clamp(28px, 5vw, 56px);
   align-items: center;
+}
+
+.home-intro {
+  padding: 32px;
+}
+
+.home-intro p {
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 1.04rem;
 }
 
 .eyebrow {
@@ -137,8 +148,8 @@ p {
 
 h1 {
   max-width: 780px;
-  font-size: 3.7rem;
-  line-height: 1.1;
+  font-size: 2.7rem;
+  line-height: 1.14;
   letter-spacing: 0;
 }
 
@@ -191,6 +202,10 @@ h3 {
 }
 
 .section-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
   margin-bottom: 20px;
 }
 
@@ -207,6 +222,11 @@ h3 {
   border: 1px solid var(--line);
   border-radius: 8px;
   background: var(--paper);
+}
+
+.text-link {
+  color: var(--teal);
+  font-weight: 760;
 }
 
 .note-card {

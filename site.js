@@ -30,20 +30,6 @@ function renderNoteCard(note) {
   `;
 }
 
-function renderEmptyCard() {
-  return `
-    <article class="note-card ghost">
-      <div class="note-meta">
-        <span>Next</span>
-        <span>Template</span>
-      </div>
-      <h3>下一份资料可以从模板开始</h3>
-      <p>复制 <code>templates/note/</code> 到 <code>notes/your-slug/</code>，再把新条目写进 <code>notes/notes.json</code>。</p>
-      <a class="button secondary" href="https://github.com/lgyStoic/lgystoic.github.io/tree/master/templates/note" rel="noreferrer">查看模板</a>
-    </article>
-  `;
-}
-
 async function hydrateNotes() {
   const targets = [...document.querySelectorAll("[data-notes-list]")];
   if (!targets.length) return;
@@ -53,7 +39,7 @@ async function hydrateNotes() {
     targets.forEach((target) => {
       const mode = target.dataset.notesList;
       const visibleNotes = mode === "featured" ? notes.filter((note) => note.featured) : notes;
-      target.innerHTML = visibleNotes.map(renderNoteCard).join("") + (mode === "featured" ? renderEmptyCard() : "");
+      target.innerHTML = visibleNotes.map(renderNoteCard).join("");
     });
   } catch (error) {
     console.warn(error);
