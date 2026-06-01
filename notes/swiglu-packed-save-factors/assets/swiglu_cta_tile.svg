@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="620" viewBox="0 0 1280 620" role="img" aria-labelledby="title desc">
+  <title id="title">CTA tile view for packed SwiGLU wide GEMM</title>
+  <desc id="desc">A CTA owns one M by N hidden output tile, loads A and a contiguous packed B tile, computes a wide accumulator, then splits left and gate.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#475569"/>
+    </marker>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="7" stdDeviation="8" flood-color="#0f172a" flood-opacity="0.14"/>
+    </filter>
+    <style>
+      .bg { fill: #f8fafc; }
+      .title { font: 700 28px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #0f172a; }
+      .subtitle { font: 500 15px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #475569; }
+      .panel { fill: #ffffff; stroke: #cbd5e1; stroke-width: 1.5; rx: 18; filter: url(#shadow); }
+      .a { fill: #e0f2fe; stroke: #0284c7; stroke-width: 1.5; }
+      .left { fill: #dbeafe; stroke: #2563eb; stroke-width: 1.5; }
+      .gate { fill: #ffedd5; stroke: #ea580c; stroke-width: 1.5; }
+      .acc { fill: #ecfdf5; stroke: #059669; stroke-width: 1.5; }
+      .label { font: 700 17px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #0f172a; }
+      .mono { font: 700 14px ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; fill: #0f172a; }
+      .small { font: 500 13px ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; fill: #334155; }
+      .note { font: 600 13px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #64748b; }
+      .arrow { fill: none; stroke: #475569; stroke-width: 2.5; marker-end: url(#arrow); }
+    </style>
+  </defs>
+
+  <rect class="bg" width="1280" height="620"/>
+  <text class="title" x="52" y="54">One CTA / Triton Program Tile</text>
+  <text class="subtitle" x="52" y="82">CTA = CUDA thread block. In Triton this is one program_id tile over (pid_m, pid_n).</text>
+
+  <rect class="panel" x="58" y="125" width="315" height="365"/>
+  <text class="label" x="88" y="162">A tile from x</text>
+  <rect class="a" x="118" y="205" width="190" height="210" rx="10"/>
+  <text class="mono" x="168" y="303">[BM, BK]</text>
+  <text class="small" x="156" y="332">128 x 64</text>
+  <text class="note" x="88" y="452">Loaded once for both left and gate.</text>
+
+  <rect class="panel" x="432" y="125" width="385" height="365"/>
+  <text class="label" x="462" y="162">Packed B tile from W1</text>
+  <g transform="translate(492,210)">
+    <rect class="left" x="0" y="0" width="140" height="200" rx="10"/>
+    <rect class="gate" x="140" y="0" width="140" height="200" rx="10"/>
+    <text class="mono" x="32" y="90">left</text>
+    <text class="mono" x="24" y="118">[BK, BN]</text>
+    <text class="small" x="40" y="146">64 x 128</text>
+    <text class="mono" x="176" y="90">gate</text>
+    <text class="mono" x="164" y="118">[BK, BN]</text>
+    <text class="small" x="180" y="146">64 x 128</text>
+  </g>
+  <text class="note" x="462" y="452">Contiguous [BK, 2BN] tile after pack.</text>
+
+  <rect class="panel" x="878" y="125" width="345" height="365"/>
+  <text class="label" x="908" y="162">Wide accumulator</text>
+  <g transform="translate(935,210)">
+    <rect class="acc" x="0" y="0" width="235" height="200" rx="10"/>
+    <line x1="117.5" y1="0" x2="117.5" y2="200" stroke="#059669" stroke-width="2" stroke-dasharray="7 6"/>
+    <text class="mono" x="42" y="82">left</text>
+    <text class="mono" x="151" y="82">gate</text>
+    <text class="mono" x="42" y="124">[BM, BN]</text>
+    <text class="mono" x="151" y="124">[BM, BN]</text>
+    <text class="small" x="74" y="158">split</text>
+  </g>
+  <text class="note" x="908" y="452">Then apply silu and save factors on-chip.</text>
+
+  <path class="arrow" d="M 373 310 C 400 310 408 310 432 310"/>
+  <path class="arrow" d="M 817 310 C 844 310 852 310 878 310"/>
+
+  <text class="label" x="430" y="545">tl.dot(A, packed_B) -> accumulator [BM, 2BN]</text>
+  <text class="small" x="430" y="572">Without pack, left and gate chunks are separated, so the CTA cannot naturally issue this contiguous wide tile.</text>
+</svg>

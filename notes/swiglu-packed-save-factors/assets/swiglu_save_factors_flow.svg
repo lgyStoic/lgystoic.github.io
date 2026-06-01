@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="660" viewBox="0 0 1280 660" role="img" aria-labelledby="title desc">
+  <title id="title">Packed SwiGLU save-factors forward and backward dataflow</title>
+  <desc id="desc">Dataflow from x and packed W1 through the fused forward kernel, saved factors, in-place grad_de creation, and cuBLAS backward GEMMs.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#475569"/>
+    </marker>
+    <linearGradient id="kernelGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#2563eb"/>
+      <stop offset="100%" stop-color="#0f766e"/>
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="8" stdDeviation="8" flood-color="#0f172a" flood-opacity="0.14"/>
+    </filter>
+    <style>
+      .bg { fill: #f8fafc; }
+      .title { font: 700 28px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #0f172a; }
+      .subtitle { font: 500 15px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #475569; }
+      .box { fill: #ffffff; stroke: #cbd5e1; stroke-width: 1.5; rx: 14; filter: url(#shadow); }
+      .box-soft { fill: #eff6ff; stroke: #bfdbfe; stroke-width: 1.5; rx: 14; }
+      .box-save { fill: #ecfdf5; stroke: #a7f3d0; stroke-width: 1.5; rx: 14; filter: url(#shadow); }
+      .box-grad { fill: #fff7ed; stroke: #fed7aa; stroke-width: 1.5; rx: 14; filter: url(#shadow); }
+      .kernel { fill: url(#kernelGrad); stroke: #0f766e; stroke-width: 1.5; rx: 18; filter: url(#shadow); }
+      .label { font: 700 17px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #0f172a; }
+      .label-white { font: 700 19px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #ffffff; }
+      .small { font: 500 13px ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; fill: #334155; }
+      .small-white { font: 500 13px ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; fill: #dbeafe; }
+      .note { font: 600 13px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #64748b; }
+      .arrow { fill: none; stroke: #475569; stroke-width: 2.4; marker-end: url(#arrow); }
+      .arrow-soft { fill: none; stroke: #94a3b8; stroke-width: 2; stroke-dasharray: 5 5; marker-end: url(#arrow); }
+    </style>
+  </defs>
+
+  <rect class="bg" width="1280" height="660"/>
+  <text class="title" x="52" y="54">Packed SwiGLU Save-Factors Path</text>
+  <text class="subtitle" x="52" y="82">Forward fuses W1 GEMM + SwiGLU epilogue; backward reuses saved factors as grad_de.</text>
+
+  <rect class="box" x="58" y="140" width="180" height="92"/>
+  <text class="label" x="88" y="174">x</text>
+  <text class="small" x="88" y="200">[M, K]</text>
+
+  <rect class="box" x="58" y="290" width="180" height="110"/>
+  <text class="label" x="88" y="324">packed W1</text>
+  <text class="small" x="88" y="350">[K, 2N]</text>
+  <text class="small" x="88" y="374">left | gate chunks</text>
+
+  <rect class="kernel" x="320" y="185" width="305" height="170"/>
+  <text class="label-white" x="350" y="226">Triton fused forward</text>
+  <text class="small-white" x="350" y="256">A tile: [BM, BK]</text>
+  <text class="small-white" x="350" y="280">B tile: [BK, 2BN]</text>
+  <text class="small-white" x="350" y="304">acc:    [BM, 2BN]</text>
+  <text class="small-white" x="350" y="328">split -> left, gate</text>
+
+  <rect class="box-soft" x="720" y="116" width="205" height="92"/>
+  <text class="label" x="752" y="150">out</text>
+  <text class="small" x="752" y="176">left * silu(gate)</text>
+  <text class="small" x="752" y="198">[M, N]</text>
+
+  <rect class="box-save" x="720" y="262" width="260" height="122"/>
+  <text class="label" x="752" y="296">saved factors</text>
+  <text class="small" x="752" y="322">factor_left = silu(gate)</text>
+  <text class="small" x="752" y="346">factor_gate = left * silu'(gate)</text>
+  <text class="small" x="752" y="370">[M, 2N], packed order</text>
+
+  <rect class="box" x="720" y="455" width="180" height="88"/>
+  <text class="label" x="752" y="488">dy</text>
+  <text class="small" x="752" y="514">grad_out [M, N]</text>
+
+  <rect class="box-grad" x="1030" y="292" width="205" height="120"/>
+  <text class="label" x="1060" y="326">in-place grad_de</text>
+  <text class="small" x="1060" y="354">dleft = dy * factor_left</text>
+  <text class="small" x="1060" y="378">dgate = dy * factor_gate</text>
+  <text class="small" x="1060" y="402">same allocation</text>
+
+  <rect class="box" x="1030" y="478" width="205" height="100"/>
+  <text class="label" x="1060" y="512">cuBLAS GEMMs</text>
+  <text class="small" x="1060" y="538">grad_x = grad_de @ W.T</text>
+  <text class="small" x="1060" y="562">grad_W = x.T @ grad_de</text>
+
+  <path class="arrow" d="M 238 186 C 270 186 282 230 320 245"/>
+  <path class="arrow" d="M 238 346 C 274 346 284 310 320 294"/>
+  <path class="arrow" d="M 625 250 C 665 220 683 175 720 164"/>
+  <path class="arrow" d="M 625 306 C 662 316 681 322 720 323"/>
+  <path class="arrow" d="M 980 323 C 1000 323 1008 330 1030 338"/>
+  <path class="arrow" d="M 900 499 C 972 499 970 390 1030 374"/>
+  <path class="arrow" d="M 1132 412 C 1132 440 1132 452 1132 478"/>
+  <path class="arrow-soft" d="M 148 400 C 210 555 808 590 1030 548"/>
+  <path class="arrow-soft" d="M 148 400 C 355 600 900 640 1110 578"/>
+
+  <text class="note" x="347" y="385">No preact [M, 2N] HBM write</text>
+  <text class="note" x="725" y="418">factors becomes grad_de in backward</text>
+</svg>

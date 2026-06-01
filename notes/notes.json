@@ -10,5 +10,17 @@
     "status": "已发布",
     "featured": true,
     "updated": "2026-05-30"
+  },
+  {
+    "title": "Fused SwiGLU Wide Packed Save-Factors",
+    "slug": "swiglu-packed-save-factors",
+    "url": "./notes/swiglu-packed-save-factors/",
+    "absoluteUrl": "/notes/swiglu-packed-save-factors/",
+    "source": "meshy-research perf note",
+    "tags": ["Triton", "SwiGLU", "Blackwell", "CUDA"],
+    "summary": "B200 上 packed W1 + save-factors SwiGLU 融合实现笔记，覆盖 pack layout、CTA tile、forward/backward 数据流和显存收益。",
+    "status": "已发布",
+    "featured": false,
+    "updated": "2026-06-01"
   }
 ]

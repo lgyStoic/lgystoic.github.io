@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1320" height="610" viewBox="0 0 1320 610" role="img" aria-labelledby="title desc">
+  <title id="title">SwiGLU W1 packed layout</title>
+  <desc id="desc">Example showing how ordinary transposed W1 columns left_all and gate_all are chunk-interleaved into packed layout.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#475569"/>
+    </marker>
+    <filter id="shadow" x="-8%" y="-12%" width="116%" height="132%">
+      <feDropShadow dx="0" dy="6" stdDeviation="7" flood-color="#0f172a" flood-opacity="0.13"/>
+    </filter>
+    <style>
+      .bg { fill: #f8fafc; }
+      .title { font: 700 28px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #0f172a; }
+      .subtitle { font: 500 15px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #475569; }
+      .panel { fill: #ffffff; stroke: #cbd5e1; stroke-width: 1.5; rx: 18; filter: url(#shadow); }
+      .left { fill: #dbeafe; stroke: #60a5fa; stroke-width: 1.2; }
+      .gate { fill: #ffedd5; stroke: #fb923c; stroke-width: 1.2; }
+      .left2 { fill: #bfdbfe; stroke: #2563eb; stroke-width: 1.4; }
+      .gate2 { fill: #fed7aa; stroke: #ea580c; stroke-width: 1.4; }
+      .label { font: 700 17px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #0f172a; }
+      .mono { font: 700 14px ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; fill: #0f172a; }
+      .small { font: 500 13px ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; fill: #334155; }
+      .note { font: 600 13px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #64748b; }
+      .arrow { fill: none; stroke: #475569; stroke-width: 2.5; marker-end: url(#arrow); }
+      .brace { fill: none; stroke: #64748b; stroke-width: 2; }
+    </style>
+  </defs>
+
+  <rect class="bg" width="1320" height="610"/>
+  <text class="title" x="52" y="54">W1 Packing: Column Permutation, Not New Math</text>
+  <text class="subtitle" x="52" y="82">Example with N = 8 and chunk size B = 4. Each L/G cell is one weight column of shape [K].</text>
+
+  <rect class="panel" x="50" y="118" width="1220" height="170"/>
+  <text class="label" x="82" y="154">Before pack: weight_t = linear.weight.T, shape [K, 2N]</text>
+  <text class="note" x="82" y="180">left_all and gate_all are far apart for the same hidden chunk.</text>
+
+  <g transform="translate(82,205)">
+    <rect class="left" x="0" y="0" width="66" height="48"/><text class="mono" x="21" y="30">L0</text>
+    <rect class="left" x="66" y="0" width="66" height="48"/><text class="mono" x="87" y="30">L1</text>
+    <rect class="left" x="132" y="0" width="66" height="48"/><text class="mono" x="153" y="30">L2</text>
+    <rect class="left" x="198" y="0" width="66" height="48"/><text class="mono" x="219" y="30">L3</text>
+    <rect class="left2" x="264" y="0" width="66" height="48"/><text class="mono" x="285" y="30">L4</text>
+    <rect class="left2" x="330" y="0" width="66" height="48"/><text class="mono" x="351" y="30">L5</text>
+    <rect class="left2" x="396" y="0" width="66" height="48"/><text class="mono" x="417" y="30">L6</text>
+    <rect class="left2" x="462" y="0" width="66" height="48"/><text class="mono" x="483" y="30">L7</text>
+    <rect class="gate" x="528" y="0" width="66" height="48"/><text class="mono" x="548" y="30">G0</text>
+    <rect class="gate" x="594" y="0" width="66" height="48"/><text class="mono" x="614" y="30">G1</text>
+    <rect class="gate" x="660" y="0" width="66" height="48"/><text class="mono" x="680" y="30">G2</text>
+    <rect class="gate" x="726" y="0" width="66" height="48"/><text class="mono" x="746" y="30">G3</text>
+    <rect class="gate2" x="792" y="0" width="66" height="48"/><text class="mono" x="812" y="30">G4</text>
+    <rect class="gate2" x="858" y="0" width="66" height="48"/><text class="mono" x="878" y="30">G5</text>
+    <rect class="gate2" x="924" y="0" width="66" height="48"/><text class="mono" x="944" y="30">G6</text>
+    <rect class="gate2" x="990" y="0" width="66" height="48"/><text class="mono" x="1010" y="30">G7</text>
+
+    <path class="brace" d="M0 67 L0 58 L528 58 L528 67"/>
+    <path class="brace" d="M528 67 L528 58 L1056 58 L1056 67"/>
+    <text class="small" x="214" y="86">left_all</text>
+    <text class="small" x="742" y="86">gate_all</text>
+  </g>
+
+  <path class="arrow" d="M 660 310 C 660 345 660 358 660 392"/>
+  <text class="label" x="720" y="356">chunk-interleave columns</text>
+  <text class="small" x="720" y="380">[left_all | gate_all] -> [left_chunk0 | gate_chunk0 | ...]</text>
+
+  <rect class="panel" x="50" y="420" width="1220" height="145"/>
+  <text class="label" x="82" y="456">After pack: packed_weight, shape [K, 2N]</text>
+  <text class="note" x="82" y="482">For any CTA hidden chunk, left and gate columns are contiguous.</text>
+
+  <g transform="translate(82,505)">
+    <rect class="left" x="0" y="0" width="66" height="48"/><text class="mono" x="21" y="30">L0</text>
+    <rect class="left" x="66" y="0" width="66" height="48"/><text class="mono" x="87" y="30">L1</text>
+    <rect class="left" x="132" y="0" width="66" height="48"/><text class="mono" x="153" y="30">L2</text>
+    <rect class="left" x="198" y="0" width="66" height="48"/><text class="mono" x="219" y="30">L3</text>
+    <rect class="gate" x="264" y="0" width="66" height="48"/><text class="mono" x="284" y="30">G0</text>
+    <rect class="gate" x="330" y="0" width="66" height="48"/><text class="mono" x="350" y="30">G1</text>
+    <rect class="gate" x="396" y="0" width="66" height="48"/><text class="mono" x="416" y="30">G2</text>
+    <rect class="gate" x="462" y="0" width="66" height="48"/><text class="mono" x="482" y="30">G3</text>
+    <rect class="left2" x="528" y="0" width="66" height="48"/><text class="mono" x="549" y="30">L4</text>
+    <rect class="left2" x="594" y="0" width="66" height="48"/><text class="mono" x="615" y="30">L5</text>
+    <rect class="left2" x="660" y="0" width="66" height="48"/><text class="mono" x="681" y="30">L6</text>
+    <rect class="left2" x="726" y="0" width="66" height="48"/><text class="mono" x="747" y="30">L7</text>
+    <rect class="gate2" x="792" y="0" width="66" height="48"/><text class="mono" x="812" y="30">G4</text>
+    <rect class="gate2" x="858" y="0" width="66" height="48"/><text class="mono" x="878" y="30">G5</text>
+    <rect class="gate2" x="924" y="0" width="66" height="48"/><text class="mono" x="944" y="30">G6</text>
+    <rect class="gate2" x="990" y="0" width="66" height="48"/><text class="mono" x="1010" y="30">G7</text>
+  </g>
+</svg>

@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fused SwiGLU Wide Packed Save-Factors</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230f172a'/%3E%3Ctext x='32' y='39' text-anchor='middle' font-size='18' font-family='Arial' font-weight='700' fill='white'%3ESG%3C/text%3E%3C/svg%3E">
+  <style>
+    :root { color-scheme: light; }
+    *, *::before, *::after { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: #f8fafc;
+      color: #0f172a;
+      font: 16px/1.68 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    main { width: 100%; max-width: 1120px; margin: 0 auto; padding: 44px 32px 72px; }
+    h1 { font-size: 34px; line-height: 1.2; margin: 0 0 22px; }
+    h2 { margin: 44px 0 14px; padding-top: 8px; font-size: 25px; line-height: 1.25; }
+    h3 { margin: 30px 0 12px; font-size: 20px; }
+    p { margin: 12px 0; }
+    .bullet { padding-left: 12px; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; background: #e2e8f0; padding: 0.12em 0.35em; border-radius: 5px; }
+    pre { background: #0f172a; color: #e2e8f0; padding: 18px 20px; border-radius: 10px; overflow: auto; line-height: 1.48; }
+    pre code { background: transparent; padding: 0; color: inherit; }
+    figure { max-width: 100%; margin: 24px 0 30px; padding: 14px; background: white; border: 1px solid #dbe3ee; border-radius: 14px; box-shadow: 0 10px 24px rgba(15,23,42,0.08); overflow-x: auto; }
+    figure img { display: block; width: 100%; min-width: min(920px, 100%); height: auto; border-radius: 8px; object-fit: contain; object-position: center top; }
+    figcaption { margin-top: 10px; color: #64748b; font-size: 13px; font-weight: 600; text-align: center; }
+    @media (max-width: 640px) {
+      main { padding: 32px 18px 56px; }
+      code { overflow-wrap: anywhere; }
+      pre { white-space: pre-wrap; word-break: break-word; }
+      pre code { white-space: inherit; }
+    }
+  </style>
+</head>
+<body>
+<main>
+<h1>Fused SwiGLU Wide Packed Save-Factors 实现说明</h1>
+<p>这份文档只描述当前保留下来的最快训练路径：</p>
+<pre><code>packed_save_factors_inplace</code></pre>
+<p>对应实现位于 <code>workspace/perf/fused_swiglu_wide_packed.py</code>。核心思路是：</p>
+<pre><code>forward:
+  用一个 Triton persistent/TMA wide GEMM kernel 同时算 left/gate、SwiGLU 输出，
+  并保存 backward 需要的 factors。
+
+backward:
+  原地把 saved factors 覆盖成 grad_de，然后把后面两个大 GEMM 交给 cuBLAS。</code></pre>
+<p>这个版本不是完全不保存 activation；它保存的是 backward factor，而不是 forward preactivation。这样可以同时得到比较好的速度和比较低的显存峰值。</p>
+<h2>对应代码</h2>
+<p>主要入口：</p>
+<pre><code>fused_swiglu_wide_packed_save_factors_autograd(x, packed_weight)</code></pre>
+<p>相关函数：</p>
+<pre><code>_fused_linear_swiglu_packed_save_factors        # torch.library custom op
+_fused_swiglu_wide_packed_save_factors_kernel
+fused_swiglu_wide_packed_save_factors
+_swiglu_packed_grad_de_from_factors_ptr_kernel
+swiglu_packed_grad_de_from_factors_inplace
+apply_fused_linear_swiglu_packed_save_factors</code></pre>
+<p>当前文件只保留这条训练路径。之前的 backward 重算版本已经从主实现和 benchmark 里移除。</p>
+<p>实现结构对齐 <code>MeshyLearning.nn.triton.mlp_swiglu</code>：</p>
+<pre><code>torch.library.custom_op 注册 forward op
+torch.library.register_fake 注册 fake/meta 输出
+torch.library.register_autograd 绑定 backward
+apply_fused_linear_swiglu_packed_save_factors(...) 作为外部包装</code></pre>
+<h2>Shape 和符号</h2>
+<p>假设第一层 SwiGLU projection 是：</p>
+<pre><code>x:             [M, K]
+linear weight: [2N, K]      # 普通 PyTorch Linear 权重布局
+packed_weight: [K, 2N]      # 内部 packed 布局
+left:          [M, N]
+gate:          [M, N]
+out:           [M, N]
+factors:       [M, 2N]
+grad_out/dy:   [M, N]
+grad_de:       [M, 2N]</code></pre>
+<p>SwiGLU forward：</p>
+<pre><code>out = left * silu(gate)</code></pre>
+<p>这里的 <code>grad_de</code> 可以理解为：</p>
+<pre><code>grad_de = dL / d[left, gate]
+        = [dleft, dgate]</code></pre>
+<p>它是后面两个 GEMM 的公共输入：</p>
+<pre><code>grad_x = grad_de @ packed_weight.T
+grad_weight = x.T @ grad_de</code></pre>
+<h2>整体数据流图</h2>
+<figure><img src="./assets/swiglu_save_factors_flow.svg" alt="Packed SwiGLU save-factors dataflow"><figcaption>Packed SwiGLU save-factors dataflow</figcaption></figure>
+<p>最重要的点是：forward 不写出 <code>preact=[left|gate]</code>，只写 <code>out</code> 和 <code>factors</code>；backward 又把 <code>factors</code> 原地覆盖成 <code>grad_de</code>。</p>
+<h2>Packed Weight Layout</h2>
+<p><code>packed_weight</code> 不是简单的 <code>linear.weight.T</code>。</p>
+<p>普通转置后的布局是：</p>
+<pre><code>[left_all | gate_all]</code></pre>
+<p>当前 packed 布局是按 <code>BLOCK_SIZE_N_HALF=128</code> 做 chunk interleave：</p>
+<pre><code>[left_chunk0 | gate_chunk0 | left_chunk1 | gate_chunk1 | ...]</code></pre>
+<figure><img src="./assets/swiglu_pack_layout.svg" alt="Packed W1 layout"><figcaption>Packed W1 layout</figcaption></figure>
+<p>也就是内部 <code>[K, 2N]</code> 的列方向被组织成：</p>
+<pre><code>chunk 0: left[0:128],     gate[0:128]
+chunk 1: left[128:256],   gate[128:256]
+chunk 2: left[256:384],   gate[256:384]
+...</code></pre>
+<p>用一个小例子看更直观。假设：</p>
+<pre><code>N = 8
+BLOCK_SIZE_N_HALF = 4
+chunks = N / BLOCK_SIZE_N_HALF = 2</code></pre>
+<p>普通 Linear 权重是 <code>[2N, K]</code>，行方向先放 left 再放 gate：</p>
+<pre><code>linear.weight rows:
+
+left rows:  L0 L1 L2 L3 L4 L5 L6 L7
+gate rows:  G0 G1 G2 G3 G4 G5 G6 G7</code></pre>
+<p>转置成内部 GEMM 需要的 <code>[K, 2N]</code> 后，列方向还是：</p>
+<pre><code>weight_t columns:
+
+| L0 | L1 | L2 | L3 | L4 | L5 | L6 | L7 | G0 | G1 | G2 | G3 | G4 | G5 | G6 | G7 |
+  &lt;----------- left_all -----------&gt;   &lt;----------- gate_all -----------&gt;</code></pre>
+<p>pack 之后，列方向变成 chunk interleave：</p>
+<pre><code>packed_weight columns:
+
+| L0 | L1 | L2 | L3 | G0 | G1 | G2 | G3 | L4 | L5 | L6 | L7 | G4 | G5 | G6 | G7 |
+  &lt;--- left chunk 0 ---&gt; &lt;--- gate chunk 0 ---&gt; &lt;--- left chunk 1 ---&gt; &lt;--- gate chunk 1 ---&gt;</code></pre>
+<p>也就是把：</p>
+<pre><code>[left_all | gate_all]</code></pre>
+<p>变成：</p>
+<pre><code>[left_chunk0 | gate_chunk0 | left_chunk1 | gate_chunk1 | ...]</code></pre>
+<p>对应的 Python 逻辑可以看成：</p>
+<pre><code>weight_t = linear_weight.t().contiguous()  # [K, 2N]
+
+left = weight_t[:, :N].view(K, chunks, BLOCK_SIZE_N_HALF)
+gate = weight_t[:, N:].view(K, chunks, BLOCK_SIZE_N_HALF)
+
+packed = torch.stack((left, gate), dim=2).reshape(K, 2 * N)</code></pre>
+<p>Triton pack kernel 做的是同一件事，只是按 <code>(K block, N chunk)</code> 并行拷贝：</p>
+<pre><code>for each k row and each chunk c:
+  dst_base = c * 2 * BLOCK_SIZE_N_HALF
+
+  left source: weight_t[k, c*B + i]
+  gate source: weight_t[k, N + c*B + i]
+
+  left dest:   packed[k, dst_base + i]
+  gate dest:   packed[k, dst_base + B + i]</code></pre>
+<p>其中 <code>B = BLOCK_SIZE_N_HALF</code>。还是用上面的 <code>N=8, B=4</code>，映射关系是：</p>
+<pre><code>source weight_t columns:
+  0  1  2  3  4  5  6  7   8  9 10 11 12 13 14 15
+  L0 L1 L2 L3 L4 L5 L6 L7  G0 G1 G2 G3 G4 G5 G6 G7
+
+dest packed_weight columns:
+  0  1  2  3  4  5  6  7   8  9 10 11 12 13 14 15
+  L0 L1 L2 L3 G0 G1 G2 G3  L4 L5 L6 L7 G4 G5 G6 G7</code></pre>
+<p>实际热路径初始化/加载权重时会用 <code>pack_swiglu_linear_weight(...)</code>；如果是 GPU tensor， 也可以用 <code>_pack_swiglu_weight_chunked_kernel</code> 做同样的拷贝。</p>
+<p>这样每个 CTA 负责一个 hidden tile <code>pid_n</code> 时，可以连续 load：</p>
+<pre><code>B tile = packed_weight[:, pid_n * 2BN : pid_n * 2BN + 2BN]
+       = [left_chunk | gate_chunk]</code></pre>
+<p>然后用一个 wide dot 同时算出 left 和 gate：</p>
+<pre><code>acc = tl.zeros((BM, 2 * BN), dtype=tl.float32)
+acc = tl.dot(a_tile, b_tile, acc)</code></pre>
+<p>这是这个版本性能的关键。之前试过不 pack 的 dual-dot、plain cat、packed dual-dot，结果都不如 packed single-wide。</p>
+<h2>Forward Kernel</h2>
+<figure><img src="./assets/swiglu_cta_tile.svg" alt="CTA tile for packed wide GEMM"><figcaption>CTA tile for packed wide GEMM</figcaption></figure>
+<p>当前 tile 参数：</p>
+<pre><code>BLOCK_SIZE_M = 128
+BLOCK_SIZE_N_HALF = 128
+BLOCK_SIZE_K = 64
+GROUP_SIZE_M = 32
+NUM_WARPS = 8
+SAVE_NUM_STAGES = 4
+WARP_SPECIALIZE = True</code></pre>
+<p>forward kernel 使用 tensor descriptor/TMA：</p>
+<pre><code>a_desc:       x             [M, K],   block [BM, BK]
+bp_desc:      packed_weight [K, 2N],  block [BK, 2BN]
+c_desc:       out           [M, N],   block [BM, BN]
+factors_desc: factors       [M, 2N],  block [BM, BN]</code></pre>
+<p>主循环是 persistent 形式：</p>
+<pre><code>for tile_id in tl.range(start_pid, num_tiles, NUM_SMS, ...):
+    pid_m, pid_n = _compute_pid(...)
+
+    acc = zeros([BM, 2BN], fp32)
+    for ki in K tiles:
+        a = a_desc.load([offs_m, offs_k])
+        b = bp_desc.load([offs_k, offs_n2])
+        acc = tl.dot(a, b, acc)
+
+    left, gate = split(acc)
+    out = left * silu(gate)
+    store out
+    store factors</code></pre>
+<p>split 方式：</p>
+<pre><code>acc3 = tl.reshape(acc, (BM, 2, BN))
+acc3 = tl.permute(acc3, (0, 2, 1))
+left, gate = tl.split(acc3)</code></pre>
+<p>保存的 factors 是：</p>
+<pre><code>factor_left = silu(gate)
+factor_gate = left * silu&#x27;(gate)</code></pre>
+<p>因此 forward 实际 store：</p>
+<pre><code>out     = left * silu(gate)
+factors = [factor_left | factor_gate]</code></pre>
+<p>这里没有 materialize 原始 preactivation：</p>
+<pre><code>preact = [left | gate]</code></pre>
+<h2>Backward 公式</h2>
+<p>从：</p>
+<pre><code>out = left * silu(gate)</code></pre>
+<p>可得：</p>
+<pre><code>dleft = dy * silu(gate)
+dgate = dy * left * silu&#x27;(gate)</code></pre>
+<p>forward 已经保存：</p>
+<pre><code>factor_left = silu(gate)
+factor_gate = left * silu&#x27;(gate)</code></pre>
+<p>所以 backward activation 部分只需要：</p>
+<pre><code>dleft = dy * factor_left
+dgate = dy * factor_gate</code></pre>
+<p>这就是 <code>swiglu_packed_grad_de_from_factors_inplace</code> 做的事情。</p>
+<p>注意它是 in-place：</p>
+<pre><code>grad_de = swiglu_packed_grad_de_from_factors_inplace(factors, grad_out)</code></pre>
+<p>调用之后，同一块 allocation 从：</p>
+<pre><code>factors = [factor_left | factor_gate]</code></pre>
+<p>变成：</p>
+<pre><code>grad_de = [dleft | dgate]</code></pre>
+<p>然后继续跑两个常规 GEMM：</p>
+<pre><code>grad_x = grad_de @ packed_weight.t()
+grad_weight = x.t() @ grad_de</code></pre>
+<p>这两个 GEMM 当前保留 cuBLAS/PyTorch matmul，因为实测自写 Triton reduction GEMM 没有超过 cuBLAS。</p>
+<h2>为什么这个版本省显存</h2>
+<p>baseline 逻辑大致是：</p>
+<pre><code>preact = F.linear(x, W)      # [M, 2N]
+out = triton_swiglu(preact)  # [M, N]</code></pre>
+<p>为了 backward，autograd 需要保留 <code>preact</code>。backward 时还会生成：</p>
+<pre><code>grad_de [M, 2N]</code></pre>
+<p>所以峰值里会同时出现：</p>
+<pre><code>preact [M, 2N] + grad_de [M, 2N]</code></pre>
+<p>save-factors 路径只保留一张 <code>[M, 2N]</code>：</p>
+<pre><code>forward: factors [M, 2N]
+backward: factors 原地覆盖成 grad_de [M, 2N]</code></pre>
+<p>也就是说它不是完全不存，而是把“保存 preact + 另分配 grad_de”变成 “保存 factors，然后原地变成 grad_de”。</p>
+<p>在 B200、shape <code>[M, K, N] = [11136, 3584, 14336]</code> 上最近一次测到：</p>
+<pre><code>baseline_F_linear:
+  fwd   1.554 ms
+  bwd   3.325 ms
+  full  5.532 ms
+  peak  +1524.5 MiB
+
+packed_save_factors_inplace:
+  fwd   1.514 ms
+  bwd   3.135 ms
+  full  5.134 ms
+  peak  +1186.6 MiB</code></pre>
+<p>显存峰值少约 <code>338 MiB</code>。这个数字不会等于一个理论 tensor 大小，因为 CUDA allocator、cuBLAS workspace、gradient buffer、reserved memory 都会影响观测值。</p>
+<h2>为什么它也能快一点</h2>
+<p>速度收益主要来自三点：</p>
+<p class="bullet">1. forward 把第一层 GEMM、SwiGLU epilogue、factor save 放进一个 Triton kernel。</p>
+<p>baseline 是 <code>F.linear</code> 生成 <code>[M, 2N]</code>，再由 Triton SwiGLU kernel 读它、算 activation、写 <code>[M, N]</code>。</p>
+<p class="bullet">2. backward activation 不再重算 sigmoid 和 <code>silu&#x27;</code>。</p>
+<p>baseline backward 需要从 saved preact 里读 <code>left/gate</code> 并计算 sigmoid、 <code>silu</code>、<code>silu&#x27;</code>。save-factors 已经把两个 factor 存好了，backward activation kernel 只做两个 multiply。</p>
+<p class="bullet">3. factors 原地覆盖成 grad_de，减少 backward 峰值和 allocator 压力。</p>
+<p>后面的 <code>grad_x</code>、<code>grad_weight</code> 还是两个大 GEMM，继续用 cuBLAS。</p>
+<p>这个版本并没有把 backward 两个 GEMM 合成一个 kernel。之前讨论过，<code>grad_x</code> 和 <code>grad_weight</code> 的 reduction 方向不同，强行合并很容易牺牲 GEMM 性能；当前 最快实测路径是 activation 部分融合/原地化，GEMM 保持 cuBLAS。</p>
+<h2>使用方式</h2>
+<p>直接用 autograd 函数：</p>
+<pre><code>packed = pack_swiglu_linear_weight(linear.weight)
+y = fused_swiglu_wide_packed_save_factors_autograd(x, packed)</code></pre>
+<p>也可以用对齐 <code>mlp_swiglu</code> 风格的 apply 包装：</p>
+<pre><code>y = apply_fused_linear_swiglu_packed_save_factors(x, packed)</code></pre>
+<p><code>apply_fused_linear_swiglu_packed_save_factors(x, linear)</code> 也能接普通 <code>nn.Linear</code>，但这会在 forward 里用可反传的 torch op 临时 pack 权重，只适合作为 API 兼容/正确性路径。性能热路径应该传 packed parameter。</p>
+<h2>正确性口径</h2>
+<p>这个路径保存的是 BF16 factors，不是原始 preactivation。因此它和 baseline 不是 bitwise identical。小 shape 上常见误差量级：</p>
+<pre><code>out_rel          ~0.006
+grad_x_rel       ~0.006
+grad_weight_rel  ~0.003</code></pre>
+<p>这是 BF16 factor-save 语义下的误差，不能按 FP32 bitwise 标准判断。</p>
+<p>建议 correctness 命令：</p>
+<pre><code>workspace/mvecset/.pixi/envs/default/bin/python \
+  workspace/perf/accurate_swiglu_fwd_bwd_bench.py \
+  --m 512 --k 256 --n 1024 \
+  --iters 2 --warmup 1 --reps 1 --check</code></pre>
+<p>目标 shape benchmark：</p>
+<pre><code>workspace/mvecset/.pixi/envs/default/bin/python \
+  workspace/perf/accurate_swiglu_fwd_bwd_bench.py \
+  --m 11136 --k 3584 --n 14336 \
+  --iters 8 --warmup 5 --reps 5 --memory</code></pre>
+<p>Slurm B200：</p>
+<pre><code>srun -p dedicated --gres=gpu:nvidia_b200:1 --cpus-per-task=8 --time=00:15:00 \
+  workspace/mvecset/.pixi/envs/default/bin/python \
+  workspace/perf/accurate_swiglu_fwd_bwd_bench.py \
+  --m 11136 --k 3584 --n 14336 \
+  --iters 8 --warmup 5 --reps 5 --memory</code></pre>
+<h2>注意事项</h2>
+<p class="bullet">1. <code>factors</code> 会在 backward 中被原地修改。</p>
+<p>这个路径适合普通训练：一个 graph backward 一次。不要依赖 backward 之后的 saved factors，也不要把它当成支持 <code>retain_graph=True</code> 重复 backward 的 可复用 graph。</p>
+<p class="bullet">2. benchmark backward 时不要把 correctness 和 retain_graph 混在一起。</p>
+<p>为了计时，某些 benchmark 可能对同一个 graph 用 <code>retain_graph=True</code> 重复跑 backward。这可以测 kernel 序列时间，但不代表这个 graph 可以数值复用。 correctness 应该每次 fresh graph，只 backward 一次。</p>
+<p class="bullet">3. <code>grad_weight</code> 是 packed layout。</p>
+<p>如果热路径直接训练 packed parameter，optimizer 看到的是 packed layout。 如果别的模块要普通 Linear 权重，必须调用：</p>
+<p>``<code>python unpack_swiglu_linear_weight(packed_weight) </code>``</p>
+<p class="bullet">4. pack layout 和 <code>BLOCK_SIZE_N_HALF</code> 绑定。</p>
+<p>如果修改 <code>BLOCK_SIZE_N_HALF</code>，之前 pack 好的权重全部需要重新 pack，相关 pack/unpack/correctness benchmark 也要重跑。</p>
+<p class="bullet">5. 当前快路径假设 CUDA BF16 contiguous tensor。</p>
+<p>wrapper 会对 <code>x</code>、<code>packed_weight</code>、<code>grad_out</code> 做必要的 <code>.contiguous()</code>，但如果 上游频繁传非 contiguous tensor，隐式 copy 会污染性能结果。</p>
+<p class="bullet">6. shape 最好按 tile 对齐。</p>
+<p>当前主要验证的是训练大 shape，尤其是 <code>N % 128 == 0</code>。代码里有部分 <code>tl.load</code> 没有给所有任意边界 shape 做完整 mask，因此要上生产前必须补 arbitrary-shape boundary test，或者明确只支持 block-aligned shape。</p>
+<p class="bullet">7. TMA allocator 必须设置。</p>
+<p>tensor descriptor kernel 前需要：</p>
+<p>``<code>python triton.set_allocator(_tma_alloc) </code>``</p>
+<p>当前 wrapper 通过 <code>_ensure_allocator()</code> 处理了。直接调用底层 kernel 时不要漏掉。</p>
+<p class="bullet">8. baseline 已经是 Triton SwiGLU，不是 naive PyTorch activation。</p>
+<p>所以这里的收益不是“把 PyTorch activation 换成 Triton”，而是：</p>
+<p>``<code>text cuBLAS/F.linear preact + Triton SwiGLU -&gt; Triton wide GEMM + fused SwiGLU epilogue + saved factors </code>``</p>
+<p class="bullet">9. 不要默认启用之前的 probe 路线。</p>
+<p>已经测过的慢路径包括：</p>
+<p>``<code>text activation 不保存、backward 重算 first GEMM plain no-pack dual-dot plain no-pack cat-then-wide-dot packed dual-dot Triton direct factors-&gt;grad_x global atomic B2B </code>``</p>
+<p>它们可以保留在实验记录里，但不应该再进入默认训练路径。</p>
+<p class="bullet">10. 这个版本只 pack W1。</p>
+<p>当前实现针对第一层 <code>x @ W1 -&gt; SwiGLU</code>。W2 不在这个文件里处理。只有当要做 streaming fused MLP，也就是把 <code>SwiGLU(x @ W1)</code> 直接喂进 <code>W2</code> 而不 materialize hidden 时，W2 layout 才会变成下一阶段的核心问题。</p>
+<p class="bullet">11. pack 不应该发生在每个 forward 热路径里。</p>
+<p><code>apply_fused_linear_swiglu_packed_save_factors(x, linear)</code> 会临时 pack 普通 Linear 权重，只用于 API 对齐/正确性。真正训练计时路径应该提前维护 packed parameter，并调用 <code>apply_fused_linear_swiglu_packed_save_factors(x, packed_weight)</code>。</p>
+<h2>当前结论</h2>
+<p>在已测 B200 目标 shape 上，推荐默认保留：</p>
+<pre><code>apply_fused_linear_swiglu_packed_save_factors(x, packed_weight)</code></pre>
+<p>原因：</p>
+<pre><code>full time 比 baseline 快
+peak memory 比 baseline 低
+backward 不重算第一层 GEMM
+后两个大 GEMM 继续用 cuBLAS，避免自写 GEMM 退化</code></pre>
+<p>后续如果继续优化，优先方向不是再换掉两个 cuBLAS GEMM，而是做真正高性能的 producer-consumer GEMM fusion，避免 <code>grad_de</code> 写回/读回 HBM。但这已经超出当前 Triton save-factors 版本，需要 CUTLASS/CuTe 级别的专门实现。</p>
+</main>
+</body>
+</html>
