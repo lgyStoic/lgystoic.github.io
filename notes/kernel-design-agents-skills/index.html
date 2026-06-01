@@ -1,0 +1,349 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Kernel Design Agents：KernelWiki 与 ncu-report-skill 拆解</title>
+    <meta
+      name="description"
+      content="拆解 mit-han-lab/kernel-design-agents 中 KernelWiki 与 ncu-report-skill 的内容结构、检索方式、profiling 工作流和使用建议。"
+    />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%2322282f'/%3E%3Ctext x='32' y='39' text-anchor='middle' font-size='17' font-family='Arial' font-weight='700' fill='white'%3EKD%3C/text%3E%3C/svg%3E"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="../../" aria-label="回到学习站首页">
+        <span class="brand-mark">KD</span>
+        <span>Kernel Design Agents</span>
+      </a>
+      <nav aria-label="页面导航">
+        <a href="../">笔记</a>
+        <a href="https://github.com/mit-han-lab/kernel-design-agents" rel="noreferrer">Repo</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <p class="eyebrow">Agentic Kernel Engineering</p>
+        <h1>KernelWiki 负责找路，ncu-report-skill 负责验路。</h1>
+        <p class="lead">
+          <a href="https://github.com/mit-han-lab/kernel-design-agents" rel="noreferrer">Kernel Design Agents</a>
+          的顶层仓库很小，真正有信息密度的是两个 submodule：一个把 Blackwell/Hopper kernel
+          优化经验整理成可检索知识库，一个把 Nsight Compute profiling 固化成证据链。
+        </p>
+        <div class="hero-facts" aria-label="仓库速览">
+          <span>顶层：流程与 prompt</span>
+          <span>KernelWiki：结构化知识库</span>
+          <span>ncu-report-skill：profiling 工作流</span>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>先看顶层仓库</h2>
+        <p>
+          顶层的 <code>kernel-design-agents</code> 更像一本操作手册，而不是 kernel 源码库。它只保留通用流程：
+          task contract、starter prompt、agent flow、以及安装两个 skills 的方式。真正实现任务时，要另建
+          task workspace，把代码、数据、benchmark、profiling artifact 和 candidate 记录放在那里。
+        </p>
+        <div class="process">
+          <div>
+            <strong>Task contract</strong>
+            <span>目标、正确性、约束、验证命令、评估命令、promotion criteria</span>
+          </div>
+          <i></i>
+          <div>
+            <strong>docs/draft.md</strong>
+            <span>让 agent 先写 plan draft，再转成可执行 plan</span>
+          </div>
+          <i></i>
+          <div>
+            <strong>Candidate loop</strong>
+            <span>小步实现、验证、benchmark/profile、记录证据</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <p class="eyebrow">Skill 1</p>
+          <h2>KernelWiki 里面有什么</h2>
+        </div>
+        <p>
+          <code>KernelWiki</code> 是 Blackwell-first 的 GPU kernel 优化知识库，打包成 Claude Code skill。它的知识截止日期是
+          2026-04-27，覆盖 SM100/B200 和一部分带 Blackwell 迁移价值的 SM90/Hopper 内容。
+        </p>
+
+        <div class="stat-grid">
+          <article>
+            <b>2265</b>
+            <span>总 markdown 页面</span>
+          </article>
+          <article>
+            <b>2179</b>
+            <span>合并 PR reference</span>
+          </article>
+          <article>
+            <b>48</b>
+            <span>wiki synthesis 页面</span>
+          </article>
+          <article>
+            <b>89</b>
+            <span>代码、diff、blog code artifact bundles</span>
+          </article>
+        </div>
+
+        <div class="layer-diagram" aria-label="KernelWiki 三层结构">
+          <div class="layer">
+            <span>Layer 1</span>
+            <strong>sources/</strong>
+            <p>PR、官方文档、blog、competition 页面，保留原始来源摘要。</p>
+          </div>
+          <div class="arrow">→</div>
+          <div class="layer">
+            <span>Layer 2</span>
+            <strong>wiki/</strong>
+            <p>硬件、技术、kernel case、问题模式、语言、迁移指南。</p>
+          </div>
+          <div class="arrow">→</div>
+          <div class="layer">
+            <span>Layer 3</span>
+            <strong>queries/</strong>
+            <p>按 problem、technique、hardware、repo、kernel type、language 自动生成索引。</p>
+          </div>
+        </div>
+
+        <h3>主目录怎么读</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>目录</th>
+              <th>作用</th>
+              <th>典型内容</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>wiki/hardware/</code></td>
+              <td>SM100 硬件特性入口</td>
+              <td>tcgen05、TMEM、TMA、CLC、2-SM cooperative、NVFP4、mbarrier</td>
+            </tr>
+            <tr>
+              <td><code>wiki/techniques/</code></td>
+              <td>优化手法</td>
+              <td>warp specialization、persistent kernels、swizzling、epilogue fusion、pipeline stages</td>
+            </tr>
+            <tr>
+              <td><code>wiki/kernels/</code></td>
+              <td>kernel case study</td>
+              <td>FlashAttention-4、DeepGEMM、FlashMLA、NVFP4 GEMM/GEMV、Fused MoE、Gated Delta Net</td>
+            </tr>
+            <tr>
+              <td><code>wiki/patterns/</code></td>
+              <td>从症状到方案</td>
+              <td>low SM utilization、memory-bound、register pressure、tail effect、pipeline stalls</td>
+            </tr>
+            <tr>
+              <td><code>wiki/languages/</code></td>
+              <td>语言和 DSL 指南</td>
+              <td>CuTe DSL、CUDA C++、PTX SM100、Triton Blackwell</td>
+            </tr>
+            <tr>
+              <td><code>artifacts/</code></td>
+              <td>可追溯代码材料</td>
+              <td>PR diff、关键 kernel 文件、derived teaching skeleton，带 PROVENANCE.yaml</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>它真正有用的点</h3>
+        <div class="cards">
+          <article>
+            <h4>把问题归类</h4>
+            <p>看到 “tail effect” 或 “memory-bound”，先去 <code>queries/by-problem.md</code>，再跳到 pattern 页面和候选技术。</p>
+          </article>
+          <article>
+            <h4>把方案追到证据</h4>
+            <p>wiki 页有 <code>sources:</code> 字段，可追到具体 PR、doc、blog。回答时要看 confidence：verified、source-reported、inferred、experimental。</p>
+          </article>
+          <article>
+            <h4>把硬件名词落到代码</h4>
+            <p>例如 <code>hw-tcgen05-mma</code> 会说明 tcgen05 和 wgmma 的差异，<code>hw-tmem</code> 会讲 TMEM 分配、读写和 fence。</p>
+          </article>
+          <article>
+            <h4>把 case study 当路线图</h4>
+            <p>FlashAttention-4、NVFP4 GEMV、CuTe DSL tutorial 这类页面给出了 technique 组合和性能 claim。</p>
+          </article>
+        </div>
+
+        <h3>常用查询命令</h3>
+        <pre><code>python3 scripts/query.py "flash attention blackwell" --compact --limit 5
+python3 scripts/query.py --tag nvfp4 --type kernel --compact
+python3 scripts/get_page.py kernel-flash-attention-4 --follow-sources
+python3 scripts/get_page.py hw-tcgen05-mma --body-only
+python3 scripts/grep_wiki.py "tcgen05\\.mma" --only sources</code></pre>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <p class="eyebrow">Skill 2</p>
+          <h2>ncu-report-skill 里面有什么</h2>
+        </div>
+        <p>
+          <code>ncu-report-skill</code> 是一套 B200/sm_100 优先的 Nsight Compute 工作流。它不直接给你“猜优化方向”，而是强迫 agent
+          先建 harness、跑 profile、抽 metric、按六个维度诊断，最后写一个可复现的 <code>REPORT.md</code>。
+        </p>
+
+        <div class="ncu-flow" aria-label="ncu-report-skill profiling pipeline">
+          <div><b>profile/&lt;run&gt;/</b><span>每次 profiling 新建 run 目录</span></div>
+          <div><b>harness/</b><span>独立 CUDA harness，必须带 -lineinfo</span></div>
+          <div><b>reports/</b><span>full + source 两类 .ncu-rep</span></div>
+          <div><b>analysis/</b><span>metric、stall hotspot、PM timeline</span></div>
+          <div><b>REPORT.md</b><span>证据化诊断和优化优先级</span></div>
+        </div>
+
+        <h3>核心参考文档</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>文件</th>
+              <th>重点</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>reference/00-directory-layout.md</code></td>
+              <td>规定 profiling artifact 的目录结构：一个 run 一个目录，避免混结果。</td>
+            </tr>
+            <tr>
+              <td><code>reference/03-collection.md</code></td>
+              <td>标准 ncu 命令：<code>--set full</code> 加 PM sampling，以及 <code>--set source</code> 加 SourceCounters。</td>
+            </tr>
+            <tr>
+              <td><code>reference/04-python-api.md</code></td>
+              <td>用 <code>ncu_report</code> Python API 读 report，不靠肉眼读 CLI 表格。</td>
+            </tr>
+            <tr>
+              <td><code>reference/05-analysis-dimensions.md</code></td>
+              <td>六个诊断维度：occupancy、tail effect、stall、tensor core、timeline、memory pattern。</td>
+            </tr>
+            <tr>
+              <td><code>reference/06-diagnosis-playbook.md</code></td>
+              <td>把 NCU signal 映射到 cause 和 fix：small grid、tail、uncoalesced、long scoreboard、register spill 等。</td>
+            </tr>
+            <tr>
+              <td><code>reference/08-b200-metric-names.md</code></td>
+              <td>B200 上实际可用 metric 名称。很多旧 GPU 名称在 sm_100 上会失效。</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>helper 脚本</h3>
+        <div class="cards compact">
+          <article>
+            <h4><code>harness_template.cu</code></h4>
+            <p>独立 profiling harness 模板，用来隔离 kernel 并编译 <code>-lineinfo</code>。</p>
+          </article>
+          <article>
+            <h4><code>analyze_reports.py</code></h4>
+            <p>抽取 B200 key metrics，保存 full JSON 和可读 txt，多 report 时生成对比表。</p>
+          </article>
+          <article>
+            <h4><code>extract_stall_hotspots.py</code></h4>
+            <p>把 source-level per-PC stall sample 聚合到源文件行号，定位最热 stall 行。</p>
+          </article>
+          <article>
+            <h4><code>plot_timeline.py</code></h4>
+            <p>把 PM sampling 时间序列画成 ASCII 图，直接看 tail effect 和 pipeline bubbles。</p>
+          </article>
+          <article>
+            <h4><code>list_flashinfer_workloads.py</code></h4>
+            <p>浏览 flashinfer-trace workload，选真实 shape，而不是凭空造输入。</p>
+          </article>
+          <article>
+            <h4><code>safetensors_loader.h</code></h4>
+            <p>header-only safetensors reader，方便 harness 直接读真实 tensor。</p>
+          </article>
+        </div>
+
+        <h3>标准采集命令</h3>
+        <pre><code>export PROFILE_RUN_DIR=profile/my_kernel_v1_baseline
+mkdir -p "$PROFILE_RUN_DIR"/{harness,reports,analysis}
+
+ncu --set full \
+  --section PmSampling \
+  --section PmSampling_WarpStates \
+  -k "regex:KERNEL_REGEX" -c 1 \
+  -o "$PROFILE_RUN_DIR/reports/full_main" \
+  "$PROFILE_RUN_DIR/harness/my_harness" [args]
+
+ncu --set source --section SourceCounters \
+  -k "regex:KERNEL_REGEX" -c 1 \
+  -o "$PROFILE_RUN_DIR/reports/source_main" \
+  "$PROFILE_RUN_DIR/harness/my_harness" [args]</code></pre>
+      </section>
+
+      <section class="section">
+        <h2>两者怎么配合 KDA</h2>
+        <div class="use-loop">
+          <article>
+            <span>1</span>
+            <h3>定 contract</h3>
+            <p>把目标、正确性、评测命令、promotion criteria 写清楚。没有这个，agent 很容易乱优化。</p>
+          </article>
+          <article>
+            <span>2</span>
+            <h3>用 KernelWiki 找候选方向</h3>
+            <p>根据症状或 kernel 类型找 hardware feature、technique、case study，再追 sources 看可信度。</p>
+          </article>
+          <article>
+            <span>3</span>
+            <h3>实现一个 candidate</h3>
+            <p>每次只改一个有明确机制的方向，例如 tile scheduling、vectorized loads、epilogue fusion 或 CLC。</p>
+          </article>
+          <article>
+            <span>4</span>
+            <h3>用 ncu-report-skill 验证</h3>
+            <p>跑 full/source profiles，抽 key metrics、stall hotspots、timeline，写入 <code>REPORT.md</code>。</p>
+          </article>
+          <article>
+            <span>5</span>
+            <h3>promote 或 reject</h3>
+            <p>只有 correctness 通过且 metric 有证据支持时才保留；失败也记录原因，避免重复踩坑。</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>我的使用建议</h2>
+        <div class="takeaways">
+          <p>
+            <strong>把 KernelWiki 当“设计检索器”，不要当权威答案。</strong>
+            它的优势是索引、source chain 和术语归一化；遇到 performance claim，要看 <code>source_id</code>、shape、dtype、GPU 和 confidence。
+          </p>
+          <p>
+            <strong>把 ncu-report-skill 当“证据纪律”。</strong>
+            优化前先确认瓶颈，不要看到 Blackwell 就直接上 tcgen05、TMEM 或 CLC。NCU 的 rule engine、stall hotspot 和 PM timeline 往往能先告诉你该不该改。
+          </p>
+          <p>
+            <strong>两者之间缺的那一层，是 candidate ledger。</strong>
+            KDA 顶层已经建议记录 <code>benchmark.csv</code> 和 <code>candidates.jsonl</code>。实际做任务时，建议每个 candidate 写清 parent、改动机制、验证结果、profiling 证据和最终状态。
+          </p>
+        </div>
+      </section>
+
+      <section class="section source-section">
+        <h2>来源</h2>
+        <ul>
+          <li><a href="https://github.com/mit-han-lab/kernel-design-agents" rel="noreferrer">mit-han-lab/kernel-design-agents</a></li>
+          <li><a href="https://github.com/DongyunZou/KernelWiki" rel="noreferrer">DongyunZou/KernelWiki</a></li>
+          <li><a href="https://github.com/DongyunZou/ncu-report-skill" rel="noreferrer">DongyunZou/ncu-report-skill</a></li>
+          <li>本页整理时间：2026-06-01。KernelWiki 自身标注的知识截止日期：2026-04-27。</li>
+        </ul>
+      </section>
+    </main>
+  </body>
+</html>
