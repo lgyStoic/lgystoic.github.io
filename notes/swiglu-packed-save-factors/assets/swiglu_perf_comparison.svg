@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="590" viewBox="0 0 1280 590" role="img" aria-labelledby="title desc">
+  <title id="title">SwiGLU performance comparison</title>
+  <desc id="desc">Bar chart comparing baseline and optimized forward, backward, full fwd+bwd time, and peak memory.</desc>
+  <defs>
+    <filter id="shadow" x="-8%" y="-12%" width="116%" height="132%">
+      <feDropShadow dx="0" dy="8" stdDeviation="8" flood-color="#0f172a" flood-opacity="0.12"/>
+    </filter>
+    <style>
+      .bg { fill: #f8fafc; }
+      .title { font: 700 28px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #0f172a; }
+      .subtitle { font: 500 15px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #475569; }
+      .panel { fill: #ffffff; stroke: #dbe3ee; stroke-width: 1.5; rx: 18; filter: url(#shadow); }
+      .axis { stroke: #cbd5e1; stroke-width: 1.5; }
+      .grid { stroke: #e2e8f0; stroke-width: 1; }
+      .base { fill: #94a3b8; }
+      .opt { fill: #10b981; }
+      .label { font: 650 14px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #0f172a; }
+      .small { font: 500 12px ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; fill: #475569; }
+      .value { font: 700 13px ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; fill: #0f172a; }
+      .win { font: 700 14px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #047857; }
+    </style>
+  </defs>
+
+  <rect class="bg" width="1280" height="590"/>
+  <text class="title" x="52" y="54">Measured Speed and Memory</text>
+  <text class="subtitle" x="52" y="82">B200 shape [M, K, N] = [11136, 3584, 14336]. Lower is better.</text>
+
+  <rect class="panel" x="58" y="118" width="735" height="390"/>
+  <text class="label" x="92" y="158">Latency (ms)</text>
+  <line class="grid" x1="110" y1="435" x2="745" y2="435"/>
+  <line class="grid" x1="110" y1="365" x2="745" y2="365"/>
+  <line class="grid" x1="110" y1="295" x2="745" y2="295"/>
+  <line class="grid" x1="110" y1="225" x2="745" y2="225"/>
+  <line class="axis" x1="110" y1="435" x2="745" y2="435"/>
+
+  <text class="small" x="78" y="439">0</text>
+  <text class="small" x="72" y="369">2</text>
+  <text class="small" x="72" y="299">4</text>
+  <text class="small" x="72" y="229">6</text>
+
+  <rect class="base" x="165" y="380.6" width="46" height="54.4" rx="6"/>
+  <rect class="opt" x="218" y="382.0" width="46" height="53.0" rx="6"/>
+  <text class="value" x="161" y="370">1.554</text>
+  <text class="value" x="214" y="372">1.514</text>
+  <text class="label" x="165" y="466">Forward</text>
+
+  <rect class="base" x="354" y="318.6" width="46" height="116.4" rx="6"/>
+  <rect class="opt" x="407" y="325.3" width="46" height="109.7" rx="6"/>
+  <text class="value" x="350" y="308">3.325</text>
+  <text class="value" x="403" y="315">3.135</text>
+  <text class="label" x="358" y="466">Backward</text>
+
+  <rect class="base" x="553" y="241.4" width="46" height="193.6" rx="6"/>
+  <rect class="opt" x="606" y="255.3" width="46" height="179.7" rx="6"/>
+  <text class="value" x="549" y="231">5.532</text>
+  <text class="value" x="602" y="245">5.134</text>
+  <text class="label" x="550" y="466">Full fwd+bwd</text>
+
+  <rect class="base" x="610" y="144" width="22" height="14" rx="3"/>
+  <text class="small" x="640" y="156">Baseline</text>
+  <rect class="opt" x="610" y="170" width="22" height="14" rx="3"/>
+  <text class="small" x="640" y="182">Optimized</text>
+
+  <rect class="panel" x="845" y="118" width="377" height="390"/>
+  <text class="label" x="880" y="158">Peak memory (MiB)</text>
+  <line class="grid" x1="900" y1="435" x2="1180" y2="435"/>
+  <line class="grid" x1="900" y1="355" x2="1180" y2="355"/>
+  <line class="grid" x1="900" y1="275" x2="1180" y2="275"/>
+  <line class="grid" x1="900" y1="195" x2="1180" y2="195"/>
+  <line class="axis" x1="900" y1="435" x2="1180" y2="435"/>
+
+  <rect class="base" x="976" y="176.9" width="52" height="258.1" rx="7"/>
+  <rect class="opt" x="1067" y="234.0" width="52" height="201.0" rx="7"/>
+  <text class="value" x="968" y="164">1524.5</text>
+  <text class="value" x="1059" y="221">1186.6</text>
+  <text class="label" x="964" y="466">Baseline</text>
+  <text class="label" x="1054" y="466">Optimized</text>
+  <text class="win" x="932" y="540">Full latency: 1.08x faster</text>
+  <text class="win" x="932" y="564">Peak memory: 337.9 MiB lower (-22.2%)</text>
+</svg>
