@@ -1,0 +1,707 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PyTorch Autograd 学习笔记 | Garry 的学习站</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23172033'/%3E%3Ctext x='32' y='39' text-anchor='middle' font-size='18' font-family='Arial' font-weight='700' fill='white'%3EPT%3C/text%3E%3C/svg%3E">
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #172033;
+      --muted: #667085;
+      --line: #d7dee8;
+      --paper: #ffffff;
+      --soft: #f5f7fb;
+      --blue: #1f63d3;
+      --green: #1b7f4b;
+      --orange: #b75b18;
+      --red: #bd2d2d;
+      --purple: #6d45a9;
+      --shadow: 0 18px 55px rgba(29, 41, 57, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background:
+        linear-gradient(180deg, rgba(245, 247, 251, 0.9), rgba(255, 255, 255, 0.94) 420px),
+        radial-gradient(circle at 20% 10%, rgba(31, 99, 211, 0.08), transparent 320px),
+        radial-gradient(circle at 88% 8%, rgba(27, 127, 75, 0.08), transparent 300px),
+        var(--paper);
+      line-height: 1.75;
+    }
+
+    a {
+      color: var(--blue);
+      text-decoration-thickness: 1px;
+      text-underline-offset: 3px;
+    }
+
+    header {
+      padding: 56px 24px 28px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    main {
+      padding-bottom: 72px;
+    }
+
+    .wrap {
+      width: min(1120px, calc(100% - 48px));
+      margin: 0 auto;
+    }
+
+    .eyebrow {
+      margin: 0 0 10px;
+      color: var(--blue);
+      font-weight: 700;
+      letter-spacing: 0;
+    }
+
+    h1 {
+      margin: 0;
+      max-width: 900px;
+      font-size: 42px;
+      line-height: 1.12;
+      letter-spacing: 0;
+    }
+
+    .lead {
+      max-width: 820px;
+      margin: 18px 0 0;
+      color: var(--muted);
+      font-size: 18px;
+    }
+
+    .toc {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 28px;
+    }
+
+    .toc a {
+      display: inline-flex;
+      align-items: center;
+      min-height: 36px;
+      padding: 6px 12px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.72);
+      color: var(--ink);
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .site-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 28px;
+    }
+
+    .site-nav a {
+      display: inline-flex;
+      align-items: center;
+      min-height: 34px;
+      padding: 5px 11px;
+      border-radius: 8px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.76);
+      color: var(--muted);
+      font-size: 14px;
+      text-decoration: none;
+    }
+
+    section {
+      padding: 52px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    section:nth-of-type(2n) {
+      background: rgba(245, 247, 251, 0.58);
+    }
+
+    h2 {
+      margin: 0 0 12px;
+      font-size: 28px;
+      line-height: 1.24;
+      letter-spacing: 0;
+    }
+
+    h3 {
+      margin: 28px 0 8px;
+      font-size: 19px;
+      line-height: 1.3;
+      letter-spacing: 0;
+    }
+
+    p {
+      margin: 0 0 14px;
+    }
+
+    .summary {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 24px;
+    }
+
+    .note {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 16px;
+      background: var(--paper);
+    }
+
+    .note strong {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--ink);
+    }
+
+    .note p {
+      color: var(--muted);
+      margin: 0;
+      font-size: 15px;
+    }
+
+    .figure {
+      margin: 24px 0 22px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--paper);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .figure img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .caption {
+      padding: 10px 14px 12px;
+      color: var(--muted);
+      font-size: 14px;
+      border-top: 1px solid var(--line);
+      background: #fbfcff;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      align-items: start;
+    }
+
+    .grid-2 > *,
+    .summary > * {
+      min-width: 0;
+    }
+
+    .callout {
+      border-left: 4px solid var(--blue);
+      padding: 14px 16px;
+      background: #eef5ff;
+      border-radius: 0 8px 8px 0;
+      margin: 18px 0;
+    }
+
+    .callout.green {
+      border-left-color: var(--green);
+      background: #edf8f2;
+    }
+
+    .callout.orange {
+      border-left-color: var(--orange);
+      background: #fff4e8;
+    }
+
+    .callout.red {
+      border-left-color: var(--red);
+      background: #fff0f0;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 18px 0;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    th,
+    td {
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      background: #eef2f7;
+      font-size: 14px;
+      color: #344054;
+    }
+
+    tr:last-child td {
+      border-bottom: 0;
+    }
+
+    code,
+    pre {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+    }
+
+    h1,
+    h2,
+    h3,
+    p,
+    th,
+    td,
+    .lead {
+      overflow-wrap: anywhere;
+    }
+
+    code {
+      padding: 1px 5px;
+      border-radius: 5px;
+      background: #eef2f7;
+      color: #102a56;
+      font-size: 0.94em;
+    }
+
+    pre {
+      overflow: auto;
+      margin: 16px 0;
+      padding: 16px;
+      border-radius: 8px;
+      border: 1px solid #26364f;
+      background: #111827;
+      color: #f8fafc;
+      line-height: 1.55;
+    }
+
+    pre code {
+      display: block;
+      min-width: max-content;
+      padding: 0;
+      background: transparent;
+      color: inherit;
+      font-size: 14px;
+    }
+
+    .formula {
+      display: inline-block;
+      margin: 8px 0;
+      padding: 10px 12px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #ffffff;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      min-height: 26px;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: #eef2f7;
+      color: #344054;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .review-list {
+      display: grid;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .review-item {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 14px 16px;
+      background: var(--paper);
+    }
+
+    .review-item strong {
+      color: var(--green);
+    }
+
+    footer {
+      padding: 32px 24px 48px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    @media (max-width: 860px) {
+      .wrap {
+        width: min(100% - 28px, 1120px);
+      }
+
+      header {
+        padding-top: 36px;
+      }
+
+      h1 {
+        font-size: 32px;
+      }
+
+      .lead {
+        font-size: 16px;
+      }
+
+      .summary,
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+
+      table {
+        display: block;
+        max-width: 100%;
+        overflow-x: auto;
+      }
+
+      th,
+      td {
+        min-width: 118px;
+      }
+
+      .formula {
+        max-width: 100%;
+        overflow-x: auto;
+        white-space: nowrap;
+      }
+
+      section {
+        padding: 38px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <nav class="site-nav" aria-label="站点导航">
+        <a href="../../">首页</a>
+        <a href="../">所有笔记</a>
+      </nav>
+      <p class="eyebrow">PyTorch Autograd Notes</p>
+      <h1>从 Tensor 到 grad_fn：把 autograd 的几个核心概念串起来</h1>
+      <p class="lead">这份笔记整理了本次 session 里讨论过的 PyTorch autograd：Tensor 底层结构、leaf tensor、grad_fn、saved tensors、version counter、no_grad、inference_mode、eval/train，以及自定义 autograd.Function。</p>
+      <nav class="toc" aria-label="目录">
+        <a href="#map">总览</a>
+        <a href="#tensor">Tensor 底层</a>
+        <a href="#graph">计算图与 VJP</a>
+        <a href="#concepts">核心概念</a>
+        <a href="#saved">Saved Tensors</a>
+        <a href="#modes">模式开关</a>
+        <a href="#custom">自定义 Function</a>
+        <a href="#review">Review</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section id="map">
+      <div class="wrap">
+        <h2>一张总图</h2>
+        <p>最短的 mental model 是：forward 时动态建图，backward 时从 loss 的 <code>grad_fn</code> 出发，沿着 backward node 倒着做 VJP，把梯度累积到 leaf tensor 的 <code>.grad</code>。</p>
+        <div class="figure">
+          <img src="assets/autograd-graph.png" alt="PyTorch autograd 动态图和 VJP 引擎示意图">
+          <div class="caption">Autograd 不需要显式构造完整 Jacobian；实际反传通常是一层层计算 <code>J^T v</code>。</div>
+        </div>
+        <div class="summary">
+          <div class="note">
+            <strong>Tensor</strong>
+            <p>数据不是只在 Python 对象里；Tensor 主要由 metadata、Storage 指针和可选 autograd 信息组成。</p>
+          </div>
+          <div class="note">
+            <strong>Graph</strong>
+            <p>只要 grad mode 开启，且至少一个输入 <code>requires_grad=True</code>，相关 op 就会被记录进反向图。</p>
+          </div>
+          <div class="note">
+            <strong>Backward</strong>
+            <p>非 leaf tensor 负责传梯度，leaf tensor 负责默认接收并累积 <code>.grad</code>。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="tensor">
+      <div class="wrap">
+        <h2>Tensor 底层：metadata + storage + autograd 信息</h2>
+        <p><code>Tensor</code> 更像一个带解释方式的句柄。真正的内存通常在 <code>Storage</code> 里；<code>sizes</code>、<code>strides</code>、<code>storage_offset</code> 决定如何解释同一块内存。</p>
+        <div class="figure">
+          <img src="assets/tensor-internals.png" alt="PyTorch Tensor 底层结构：wrapper、metadata、storage 和 AutogradMeta">
+          <div class="caption">view/slice 常常共享同一块 Storage，只改变 metadata；这也是为什么连续性和 stride 很重要。</div>
+        </div>
+        <div class="callout green">
+          <p><strong>关键点：</strong><code>view()</code>、<code>slice()</code>、<code>transpose()</code> 等操作经常不复制数据。它们可能创建新的 Tensor wrapper / metadata，但仍然指向同一块底层 storage。</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="graph">
+      <div class="wrap">
+        <h2>Autograd 算的是 VJP，不是完整 Jacobian</h2>
+        <p>如果 <code>y = f(x)</code>，其中 <code>x</code> 是 n 维、<code>y</code> 是 m 维，那么数学上的 Jacobian 是一个 <code>m x n</code> 矩阵。但训练时我们更关心的是标量 loss 对参数的梯度。</p>
+        <p class="formula">d loss / d x = J^T @ v, 其中 v = d loss / d y</p>
+        <p><code>v</code> 不是 loss 本身，而是从后面传回来的 upstream gradient。对标量 loss 调用 <code>loss.backward()</code> 时，起点就是 <code>d loss / d loss = 1</code>。</p>
+        <pre><code class="language-python">x = torch.tensor([2., 3.], requires_grad=True)
+y = x ** 2
+
+# 等价于 loss = 0.1 * y[0] + 2.0 * y[1]
+y.backward(torch.tensor([0.1, 2.0]))
+
+print(x.grad)  # tensor([0.4, 12.0])</code></pre>
+      </div>
+    </section>
+
+    <section id="concepts">
+      <div class="wrap">
+        <h2>requires_grad、leaf、grad_fn、.grad</h2>
+        <div class="grid-2">
+          <div>
+            <h3><span class="tag">requires_grad</span></h3>
+            <p>这是 Tensor 上的梯度开关。forward 时，只有在 grad mode 开启并且至少一个输入需要梯度时，op 才会被记录进 backward graph。</p>
+            <pre><code class="language-python">x = torch.randn(3, requires_grad=True)
+w = torch.randn(3, requires_grad=False)
+y = x * w
+
+print(y.requires_grad)  # True
+print(y.grad_fn)        # MulBackward0</code></pre>
+          </div>
+          <div>
+            <h3><span class="tag">leaf tensor</span></h3>
+            <p>leaf tensor 通常是用户直接创建的 Tensor 或 <code>nn.Parameter</code>。它没有 <code>grad_fn</code>，backward 后默认把梯度累积到 <code>.grad</code>。</p>
+            <pre><code class="language-python">x = torch.randn(3, requires_grad=True)
+
+print(x.is_leaf)  # True
+print(x.grad_fn)  # None</code></pre>
+          </div>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>概念</th>
+              <th>在哪里</th>
+              <th>作用</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>grad_fn</code></td>
+              <td>非 leaf tensor 上</td>
+              <td>指向产生这个 tensor 的 backward node，例如 <code>MulBackward0</code>、<code>ReluBackward0</code>。</td>
+            </tr>
+            <tr>
+              <td><code>.grad</code></td>
+              <td>默认只保存在 leaf tensor 上</td>
+              <td>保存 <code>d loss / d tensor</code>，并且会累积，所以训练循环需要 <code>zero_grad()</code>。</td>
+            </tr>
+            <tr>
+              <td><code>retain_grad()</code></td>
+              <td>non-leaf tensor 上可调用</td>
+              <td>让中间 tensor 也把梯度保存在 <code>.grad</code>，主要用于调试。</td>
+            </tr>
+          </tbody>
+        </table>
+        <pre><code class="language-python">x = torch.tensor(2.0, requires_grad=True)
+a = x * 3
+b = a.relu()
+loss = b.sum()
+
+print(a.grad_fn)     # MulBackward0
+print(b.grad_fn)     # ReluBackward0
+print(loss.grad_fn)  # SumBackward0
+
+loss.backward()
+print(x.grad)        # leaf tensor 默认保存梯度</code></pre>
+      </div>
+    </section>
+
+    <section id="saved">
+      <div class="wrap">
+        <h2>Saved tensors 与 version counter</h2>
+        <p>某些 backward 公式需要 forward 时的值。例如 <code>y = x.pow(2)</code> 的梯度是 <code>2x</code>，所以 <code>PowBackward0</code> 要保存 forward 时的 <code>x</code>。</p>
+        <div class="figure">
+          <img src="assets/saved-tensors-version.png" alt="Saved tensors 和 version counter 如何保护 backward 正确性">
+          <div class="caption">version counter 是对 saved tensor 的安全检查：如果 backward 需要的 forward 现场被 in-place 改掉，就报错防止错误梯度。</div>
+        </div>
+        <div class="grid-2">
+          <div>
+            <h3><code>_saved_self</code> / <code>_saved_result</code> 在哪</h3>
+            <p>它们是 <code>grad_fn</code> 指向的 backward node 内部暴露出来的调试属性，不是 Tensor 的普通字段，也不在 Storage 里。</p>
+            <pre><code class="language-python">x = torch.randn(5, requires_grad=True)
+y = x.pow(2)
+
+print(y.grad_fn)              # PowBackward0
+print(y.grad_fn._saved_self)  # backward 需要的 x</code></pre>
+          </div>
+          <div>
+            <h3>为什么和 correctness 有关</h3>
+            <p>如果 forward 保存的是 <code>x = 2</code>，但 backward 前被 in-place 改成 <code>12</code>，那么 <code>2x</code> 会算出错误梯度。version counter 负责发现这种破坏。</p>
+            <pre><code class="language-python">x = torch.tensor(2.0, requires_grad=True)
+y = x ** 2
+
+with torch.no_grad():
+    x.add_(10)
+
+y.backward()  # 可能报 in-place modification error</code></pre>
+          </div>
+        </div>
+        <div class="callout orange">
+          <p><strong>注意：</strong><code>_saved_*</code> 适合学习和调试，但不是业务代码应该依赖的稳定 API。不同 PyTorch 版本和不同 op 的内部保存策略可能变化。</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="modes">
+      <div class="wrap">
+        <h2>no_grad、inference_mode、eval/train 是两套开关</h2>
+        <p><code>torch.no_grad()</code> 和 <code>torch.inference_mode()</code> 控制是否记录 autograd graph；<code>model.train()</code> / <code>model.eval()</code> 控制模块行为，例如 Dropout 和 BatchNorm。</p>
+        <div class="figure">
+          <img src="assets/grad-modes-eval-train.png" alt="PyTorch grad modes 与 module train/eval modes 对照">
+          <div class="caption">验证或纯推理常用 <code>model.eval()</code> 加 <code>torch.inference_mode()</code>：一个管模块行为，一个管是否建图。</div>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>模式</th>
+              <th>作用</th>
+              <th>典型用途</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>torch.no_grad()</code></td>
+              <td>临时不记录 op 到 backward graph，但不修改输入 tensor 的 <code>requires_grad</code>。</td>
+              <td>优化器参数更新、初始化、某段不想建图但结果之后可能作为常量进入 grad mode 的计算。</td>
+            </tr>
+            <tr>
+              <td><code>torch.inference_mode()</code></td>
+              <td>也不建图，并跳过更多 autograd 开销；更快，但产出的 inference tensor 后续复用限制更严格。</td>
+              <td>纯推理、验证、测试。</td>
+            </tr>
+            <tr>
+              <td><code>model.eval()</code></td>
+              <td>Dropout 变 identity；BatchNorm 使用 running stats，不更新 running_mean/running_var。</td>
+              <td>验证和推理时避免随机 drop 和验证集污染 BatchNorm 统计量。</td>
+            </tr>
+          </tbody>
+        </table>
+        <pre><code class="language-python">model.eval()
+with torch.inference_mode():
+    logits = model(x_val)
+
+model.train()  # 如果后面继续训练，记得切回来</code></pre>
+      </div>
+    </section>
+
+    <section id="custom">
+      <div class="wrap">
+        <h2>自定义 autograd.Function 与 save_for_backward</h2>
+        <p>自定义 <code>Function</code> 会被 autograd 当成一个原子 op。<code>forward()</code> 里的普通 PyTorch 操作默认不会继续展开成内部计算图，所以你必须自己实现 <code>backward()</code>。</p>
+        <pre><code class="language-python">class Square(torch.autograd.Function):
+    @staticmethod
+    def forward(ctx, x):
+        ctx.save_for_backward(x)
+        return x * x
+
+    @staticmethod
+    def backward(ctx, grad_out):
+        (x,) = ctx.saved_tensors
+        return grad_out * 2 * x</code></pre>
+        <div class="callout green">
+          <p><strong>规则：</strong>Tensor 用 <code>ctx.save_for_backward()</code> 保存；非 Tensor，比如 int、bool、string、shape 信息，可以直接挂在 <code>ctx</code> 上。</p>
+        </div>
+        <p><code>save_for_backward()</code> 让 autograd 接管 saved tensors 的生命周期、version counter 检查、引用环规避，并支持 <code>saved_tensors_hooks</code>、activation checkpointing、offloading 等机制。直接写 <code>ctx.x = x</code> 会绕开这些管理，通常不推荐。</p>
+      </div>
+    </section>
+
+    <section id="review">
+      <div class="wrap">
+        <h2>Review：容易混淆的点</h2>
+        <div class="review-list">
+          <div class="review-item">
+            <strong>v 不是 loss。</strong>
+            <p><code>v</code> 是 <code>d loss / d y</code>，也就是当前节点收到的上游梯度。标量 loss 的 backward 起点才是 1。</p>
+          </div>
+          <div class="review-item">
+            <strong>eval 不等于 no_grad。</strong>
+            <p><code>model.eval()</code> 不会关闭 autograd；它只改变 Dropout、BatchNorm 这类模块的运行行为。</p>
+          </div>
+          <div class="review-item">
+            <strong>no_grad 不会永久改 requires_grad。</strong>
+            <p><code>no_grad</code> 是 thread-local 的临时模式开关；出了 context，原来的 tensor 仍然可以参与建图。</p>
+          </div>
+          <div class="review-item">
+            <strong>saved tensors 不是普通字段。</strong>
+            <p><code>grad_fn._saved_self</code>、<code>grad_fn._saved_result</code> 是 backward node 暴露出来的内部保存槽位，适合调试，不适合业务依赖。</p>
+          </div>
+          <div class="review-item">
+            <strong>in-place 修改和正确性有关。</strong>
+            <p>如果 backward 需要某个 saved tensor，而它在 backward 前被 in-place 改了，version counter 会触发错误，防止错误梯度被静默使用。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="refs">
+      <div class="wrap">
+        <h2>官方资料</h2>
+        <p>后续可以顺着这些入口继续看官方解释和实现细节：</p>
+        <table>
+          <thead>
+            <tr>
+              <th>主题</th>
+              <th>链接</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>入门教程</td>
+              <td><a href="https://docs.pytorch.org/tutorials/beginner/blitz/autograd_tutorial.html">A Gentle Introduction to torch.autograd</a></td>
+            </tr>
+            <tr>
+              <td>机制说明</td>
+              <td><a href="https://docs.pytorch.org/docs/stable/notes/autograd.html">Autograd mechanics</a></td>
+            </tr>
+            <tr>
+              <td>自定义 Function</td>
+              <td><a href="https://docs.pytorch.org/docs/stable/notes/extending.html">Extending PyTorch</a></td>
+            </tr>
+            <tr>
+              <td>API 参考</td>
+              <td><a href="https://docs.pytorch.org/docs/stable/autograd.html">torch.autograd reference</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      整理日期：2026-06-03。图片由 gpt-image 生成，正文内容根据本次 autograd 学习 session 和 PyTorch 官方文档整理。
+    </div>
+  </footer>
+</body>
+</html>
