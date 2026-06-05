@@ -1,0 +1,776 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SwiGLU MLP Drop-H Optimization Report</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #142033;
+      --muted: #5b6677;
+      --subtle: #eef3f8;
+      --line: #d7e0ea;
+      --panel: #ffffff;
+      --blue: #2563eb;
+      --blue-soft: #dbeafe;
+      --green: #16a34a;
+      --green-soft: #dcfce7;
+      --amber: #b7791f;
+      --amber-soft: #fef3c7;
+      --red: #dc2626;
+      --red-soft: #fee2e2;
+      --violet: #7c3aed;
+      --violet-soft: #ede9fe;
+      --shadow: 0 14px 36px rgba(18, 32, 51, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: #f7fafc;
+      color: var(--ink);
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 16px;
+      line-height: 1.68;
+      letter-spacing: 0;
+    }
+
+    a {
+      color: var(--blue);
+      text-decoration-thickness: 1px;
+      text-underline-offset: 3px;
+    }
+
+    main {
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 36px 0 76px;
+    }
+
+    .hero {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+      padding: 36px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 18px;
+      padding: 6px 10px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--muted);
+      background: #f9fbfd;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    h1,
+    h2,
+    h3 {
+      margin: 0;
+      line-height: 1.22;
+      letter-spacing: 0;
+    }
+
+    h1 {
+      max-width: 900px;
+      font-size: 38px;
+    }
+
+    h2 {
+      margin-top: 54px;
+      padding-top: 10px;
+      font-size: 28px;
+    }
+
+    h3 {
+      margin-top: 32px;
+      font-size: 20px;
+    }
+
+    p {
+      margin: 12px 0;
+    }
+
+    .lead {
+      max-width: 920px;
+      color: #354154;
+      font-size: 18px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(320px, 420px);
+      gap: 28px;
+      align-items: start;
+      margin-top: 28px;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 18px;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      min-height: 30px;
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: var(--subtle);
+      color: #405066;
+      font-size: 13px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .chip.good {
+      background: var(--green-soft);
+      color: #166534;
+    }
+
+    .chip.warn {
+      background: var(--amber-soft);
+      color: #7c4a08;
+    }
+
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .kpi {
+      min-height: 110px;
+      padding: 14px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fbfdff;
+    }
+
+    .kpi-label {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .kpi-value {
+      margin-top: 8px;
+      font-size: 25px;
+      line-height: 1.1;
+      font-weight: 850;
+    }
+
+    .kpi-note {
+      margin-top: 7px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.35;
+    }
+
+    .toc {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 22px 0 0;
+    }
+
+    .toc a {
+      padding: 7px 10px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      color: #334155;
+      font-size: 13px;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    section {
+      margin-top: 22px;
+    }
+
+    .section-intro {
+      max-width: 900px;
+      color: var(--muted);
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 18px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .panel {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      box-shadow: 0 8px 24px rgba(18, 32, 51, 0.05);
+      padding: 18px;
+    }
+
+    .panel h3 {
+      margin-top: 0;
+      font-size: 18px;
+    }
+
+    .callout {
+      margin-top: 18px;
+      padding: 16px 18px;
+      border: 1px solid #bbf7d0;
+      border-radius: 8px;
+      background: #f0fdf4;
+      color: #14532d;
+      font-weight: 650;
+    }
+
+    .warning {
+      border-color: #fde68a;
+      background: #fffbeb;
+      color: #7c4a08;
+    }
+
+    code,
+    pre {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+    }
+
+    code {
+      padding: 0.13em 0.36em;
+      border-radius: 5px;
+      background: #e9eef5;
+      color: #172033;
+      font-size: 0.92em;
+    }
+
+    pre {
+      margin: 14px 0 0;
+      padding: 16px;
+      overflow: auto;
+      border-radius: 8px;
+      background: #111827;
+      color: #e5edf8;
+      line-height: 1.48;
+      white-space: pre;
+    }
+
+    pre code {
+      padding: 0;
+      background: transparent;
+      color: inherit;
+      font-size: 13px;
+    }
+
+    table {
+      width: 100%;
+      margin: 18px 0 0;
+      border-collapse: collapse;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+    }
+
+    th,
+    td {
+      padding: 12px 13px;
+      border-bottom: 1px solid #e6edf4;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      background: #eef4fb;
+      color: #425169;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .number {
+      text-align: right;
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+
+    .best {
+      color: #166534;
+      font-weight: 800;
+    }
+
+    .warn {
+      color: #9a3412;
+      font-weight: 800;
+    }
+
+    .figure-wrap {
+      margin-top: 18px;
+      padding: 16px;
+      overflow-x: auto;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      box-shadow: 0 8px 24px rgba(18, 32, 51, 0.05);
+    }
+
+    .figure-image {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 6px;
+    }
+
+    .caption {
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 650;
+      text-align: center;
+    }
+
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .dot {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      margin-right: 5px;
+      border-radius: 50%;
+      vertical-align: -1px;
+    }
+
+    .quote {
+      margin-top: 18px;
+      padding: 18px;
+      border-left: 4px solid var(--blue);
+      background: #f8fbff;
+      color: #334155;
+      font-weight: 650;
+    }
+
+    .footer {
+      margin-top: 58px;
+      padding-top: 26px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    @media (max-width: 900px) {
+      main {
+        width: min(100% - 28px, 1180px);
+        padding-top: 24px;
+      }
+
+      .hero {
+        padding: 24px;
+      }
+
+      h1 {
+        font-size: 31px;
+      }
+
+      h2 {
+        font-size: 24px;
+      }
+
+      .hero-grid,
+      .grid-2,
+      .grid-3 {
+        grid-template-columns: 1fr;
+      }
+
+      .kpi-grid {
+        grid-template-columns: 1fr;
+      }
+
+      pre {
+        white-space: pre-wrap;
+        word-break: break-word;
+      }
+    }
+  </style>
+</head>
+<body>
+<main>
+  <article class="hero">
+    <div class="eyebrow">B200 / BF16 / MLPBlock / final implementation</div>
+    <h1>SwiGLU MLP Drop-H 技术报告</h1>
+    <p class="lead">
+      最终方案很朴素：大 GEMM 继续交给 cuBLAS；forward 保存 <code>preact</code>，不保存 hidden activation <code>h</code>；SwiGLU forward 使用 autotuned tiled Triton kernel；backward 用 non-inplace Triton kernel 同时重算 <code>h</code> 和生成 <code>grad_preact</code>，并允许 autotune 搜索 tile。target-shape paired A/B 重测后，速度和 baseline 按 tie 处理，forward activation 显存结论是确定收益。
+    </p>
+    <div class="chips">
+      <span class="chip good">keep cuBLAS GEMM</span>
+      <span class="chip">no weight pack</span>
+      <span class="chip">cuBLAS linear1/linear2</span>
+      <span class="chip good">drop saved h</span>
+      <span class="chip good">autotuned tiled SwiGLU forward</span>
+      <span class="chip good">non-inplace autotuned bwd</span>
+      <span class="chip">bwd peak not targeted</span>
+    </div>
+
+    <div class="hero-grid">
+      <div>
+        <p>
+          目标不是改变 SwiGLU 数学，而是改变 autograd 保存哪些中间量。普通路径在 forward 后保存 <code>preact</code> 和 <code>h</code>；最终路径只保存 <code>preact</code>，让 <code>h</code> 在 linear2 之后释放。backward 需要 <code>h</code> 时，从 <code>preact</code> 重算，并额外分配 <code>h</code> 和 <code>grad_preact</code>，这样 Triton autotune 的每个候选都看到同一份原始输入。
+        </p>
+        <div class="toc">
+          <a href="#math">公式</a>
+          <a href="#forward">Forward</a>
+          <a href="#backward">Backward</a>
+          <a href="#charts">性能图表</a>
+          <a href="#decision">取舍结论</a>
+        </div>
+      </div>
+      <div class="kpi-grid" aria-label="key performance indicators">
+        <div class="kpi">
+          <div class="kpi-label">after-forward memory</div>
+          <div class="kpi-value">686.1 MiB</div>
+          <div class="kpi-note">baseline 990.6 MiB，节省 304.5 MiB</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-label">peak memory</div>
+          <div class="kpi-value">1905.1 MiB</div>
+          <div class="kpi-note">non-inplace backward 为速度让路；bwd peak 不作为目标</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-label">full fwd+bwd</div>
+          <div class="kpi-value">tie</div>
+          <div class="kpi-note">paired median delta -1.84%，低于 3% 判定阈值</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-label">correctness</div>
+          <div class="kpi-value">exact</div>
+          <div class="kpi-note">final drop_h 的 out / grad_x / grad_w1 / grad_w2 max relative error 都为 0.0</div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <section id="math">
+    <h2>SwiGLU MLP 的原始数学</h2>
+    <p class="section-intro">
+      MLPBlock 可以拆成三段：第一层 linear 得到两倍 hidden 宽度的 preactivation，SwiGLU 把它压回 hidden，第二层 linear 回到输出维度。
+    </p>
+
+    <div class="grid-2">
+      <div class="panel">
+        <h3>Forward 公式</h3>
+        <pre><code>preact = x @ W1.T
+left, gate = split(preact, dim=-1)
+h = left * SiLU(gate)
+y = h @ W2.T</code></pre>
+      </div>
+      <div class="panel">
+        <h3>Backward 公式</h3>
+        <pre><code>grad_h = grad_y @ W2
+
+dleft = grad_h * SiLU(gate)
+dgate = grad_h * left * SiLU'(gate)
+grad_preact = concat(dleft, dgate)
+
+grad_x  = grad_preact @ W1
+grad_W1 = grad_preact.T @ x
+grad_W2 = grad_y.T @ h</code></pre>
+      </div>
+    </div>
+
+    <div class="figure-wrap" aria-label="SwiGLU MLP math diagram">
+      <img class="figure-image" src="assets/swiglu-standard-flow.png" alt="SwiGLU MLP math diagram">
+      <div class="caption">普通 MLPBlock：<code>h</code> 是 linear2 的输入，baseline 会把它留给 backward。</div>
+    </div>
+  </section>
+
+  <section id="forward">
+    <h2>Forward：保存 preact，不保存 h</h2>
+    <p class="section-intro">
+      forward 仍然用 PyTorch/cuBLAS 做两个大 GEMM，避免自写 GEMM 损失吞吐。SwiGLU activation 默认走 autotuned tiled Triton kernel，<code>BM/BN/num_warps</code> 由 Triton autotune 选择。custom autograd 保存 <code>x, W1, W2, preact</code>，但不保存 <code>h</code>；<code>h</code> 仍然会临时写回 HBM，作为 linear2 的输入，用完即可释放。
+    </p>
+
+    <div class="figure-wrap" aria-label="final forward drop h diagram">
+      <img class="figure-image" src="assets/forward-drop-h.png" alt="final forward drop h diagram">
+      <div class="caption">forward 的 memory win 来自 saved tensor set；tiled SwiGLU 只优化 activation kernel，不替换大 GEMM。</div>
+    </div>
+
+    <div class="grid-2">
+      <div class="panel">
+        <h3>实现骨架</h3>
+        <pre><code>def forward(ctx, x, w1, w2):
+    x2 = x.reshape(-1, x.shape[-1])
+
+    preact = F.linear(x2, w1)  # cuBLAS
+    h = tiled_swiglu(preact)   # temporary; not saved
+    y = F.linear(h, w2)        # cuBLAS
+
+    ctx.save_for_backward(x2, w1, w2, preact)
+    return y.reshape(*x.shape[:-1], y.shape[-1])</code></pre>
+      </div>
+      <div class="panel">
+        <h3>张量生命周期</h3>
+        <table>
+          <thead>
+            <tr><th>tensor</th><th>normal baseline</th><th>final drop_h</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>x</code></td><td>saved</td><td>saved</td></tr>
+            <tr><td><code>W1</code></td><td>saved</td><td>saved</td></tr>
+            <tr><td><code>W2</code></td><td>saved</td><td>saved</td></tr>
+            <tr><td><code>preact [M,2H]</code></td><td>saved</td><td>saved</td></tr>
+            <tr><td><code>h [M,H]</code></td><td>saved</td><td class="best">freed</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section id="backward">
+    <h2>Backward：融合 h 重算和 grad_preact</h2>
+    <p class="section-intro">
+      backward 的关键路径是：先用 cuBLAS 算 <code>grad_h = grad_y @ W2</code>；然后 Triton kernel 一次性从 <code>preact</code> 和 <code>grad_h</code> 生成 <code>h</code> 与 <code>grad_preact</code>。最终版保持 non-inplace 语义：不覆盖 saved tensor，也不覆盖 <code>grad_h</code>，因此会额外分配 <code>h</code> 和 <code>grad_preact</code>。
+    </p>
+
+    <div class="grid-2">
+      <div class="panel">
+        <h3>Backward 实现骨架</h3>
+        <pre><code>def backward(ctx, grad_y):
+    x, w1, w2, preact = ctx.saved_tensors
+    grad_y = grad_y.reshape(-1, grad_y.shape[-1])
+
+    grad_h = grad_y @ w2
+    h, grad_preact = fused_h_and_grad_preact(
+        preact,
+        grad_h,
+    )
+
+    grad_w2 = grad_y.T @ h
+    grad_x  = grad_preact @ w1
+    grad_w1 = grad_preact.T @ x
+    return grad_x, grad_w1, grad_w2</code></pre>
+      </div>
+      <div class="panel">
+        <h3>Fused kernel 伪代码</h3>
+        <pre><code>for tile in tiles(M, H):
+    gh = load(grad_h)
+    left = load(preact_left)
+    gate = load(preact_gate)
+
+    sig = sigmoid(gate)
+    silu = gate * sig
+    silu_prime = sig + silu * (1 - sig)
+
+    h = bf16(left) * bf16(silu)
+    dleft = gh * silu
+    dgate = gh * left * silu_prime
+
+    store(h_out, h)
+    store(grad_preact_left, dleft)
+    store(grad_preact_gate, dgate)</code></pre>
+      </div>
+    </div>
+
+    <div class="warning callout">
+      语义注意：当前最终版不原地覆盖 saved <code>preact</code>，也不原地覆盖 <code>grad_h</code>。这样代码语义更干净，也让 autotune 安全；代价是 backward peak memory 更高。
+    </div>
+  </section>
+
+  <section id="charts">
+    <h2>性能和显存对比</h2>
+    <p class="section-intro">
+      数据来自 B200 目标 shape <code>[M,D,H,Dout] = [11136,3584,14336,3584]</code>。重测使用同一张 B200、同一进程，A/B 随机交错运行，每个指标 40 个 paired samples。速度用 median 和 paired delta 判断；低于 3% 一律判为 tie。
+    </p>
+    <div class="callout">
+      <strong>最终判断：</strong>最终路径固定使用 non-inplace autotuned backward。它保留 forward 不保存 <code>h</code> 的显存收益，速度和 baseline 按 tie 处理；backward peak memory 会升高，但当前优化目标不再把 bwd peak 作为硬约束。
+    </div>
+
+    <h3>单个 MLP 目标 shape</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>path</th>
+          <th>correctness</th>
+          <th class="number">fwd ms</th>
+          <th class="number">bwd ms</th>
+          <th class="number">full ms</th>
+          <th>paired verdict</th>
+          <th class="number">after-fwd MiB</th>
+          <th class="number">peak MiB</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>normal baseline</td>
+          <td>reference</td>
+          <td class="number">2.2742</td>
+          <td class="number">5.0725</td>
+          <td class="number">7.4740</td>
+          <td>reference</td>
+          <td class="number">990.6</td>
+          <td class="number">1698.6</td>
+        </tr>
+        <tr>
+          <td><strong>final drop_h + autotuned fwd/bwd</strong></td>
+          <td class="best">exact</td>
+          <td class="number best">2.2332</td>
+          <td class="number best">5.0033</td>
+          <td class="number best">7.3664</td>
+          <td>vs normal tie: fwd -2.02%, bwd -1.30%, full -1.84%</td>
+          <td class="number best">686.1</td>
+          <td class="number warn">1905.1</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>最终 paired A/B</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>comparison</th>
+          <th class="number">paired delta</th>
+          <th>结论</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>final drop_h vs normal baseline</td>
+          <td class="number">fwd -2.02%, bwd -1.30%, full -1.84%</td>
+          <td>低于 3% 阈值，端到端仍按 tie；peak memory 约 <code>1905.1 MiB</code>。</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>4-layer ParMLP stack memory</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>path</th>
+          <th class="number">fwd ms</th>
+          <th class="number">bwd ms</th>
+          <th class="number">full ms</th>
+          <th class="number">after-fwd MiB</th>
+          <th class="number">peak MiB</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>normal baseline</td>
+          <td class="number">9.7416</td>
+          <td class="number best">21.4946</td>
+          <td class="number">32.4014</td>
+          <td class="number">3962.5</td>
+          <td class="number">4670.5</td>
+        </tr>
+        <tr>
+          <td><strong>final drop_h</strong></td>
+          <td class="number best">9.7090</td>
+          <td class="number">21.5666</td>
+          <td class="number best">32.0910</td>
+          <td class="number best">2744.5</td>
+          <td class="number best">3963.5</td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="section-intro">
+      这张 stack 表用于看显存缩放，不作为速度胜负判据；速度胜负以单个 MLP paired A/B 表为准。
+    </p>
+
+    <div class="callout">
+      <strong>Exact 的口径：</strong>这里不是说数学上证明所有输入都 bitwise 恒等，而是 target-shape correctness 对比 baseline 时，final path 的 <code>out</code>、<code>grad_x</code>、<code>grad_w1</code>、<code>grad_w2</code> 最大相对误差都观测为 <code>0.0</code>。
+    </div>
+
+  </section>
+
+  <section id="decision">
+    <h2>取舍结论</h2>
+    <p class="section-intro">
+      这轮优化最后留下来的规律很清晰：大 GEMM 不要替换，小 activation/recompute kernel 可以自己写；省显存的核心是改变 saved tensor 生命周期，而不是把所有中间张量都消灭掉。
+    </p>
+
+    <div class="grid-2">
+      <div class="panel">
+        <h3>要保留</h3>
+        <table>
+          <thead>
+            <tr><th>项目</th><th>原因</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>cuBLAS GEMM</td><td>linear1、linear2、grad_x、grad_W1、grad_W2 都是主耗时，cuBLAS 吞吐最稳。</td></tr>
+            <tr><td>保存 <code>preact</code></td><td>backward 精确需要 <code>left/gate</code>；不保存就要重算一次大 <code>x @ W1.T</code>。</td></tr>
+            <tr><td>不保存 <code>h</code></td><td>省掉 forward 后长期持有的 <code>[M,H]</code> activation，目标 shape 约 304.5 MiB。</td></tr>
+            <tr><td>autotuned tiled SwiGLU forward</td><td>现在作为唯一最终路径；<code>BM/BN/num_warps</code> 由 autotune 选择，forward 单项在 target shape 上约快 2.02%。</td></tr>
+            <tr><td>fused activation backward</td><td>一次 kernel 同时重算 <code>h</code> 并生成 <code>grad_preact</code>，减少 activation backward 的 kernel 数和中间调度开销。</td></tr>
+            <tr><td>non-inplace autotuned backward</td><td>现在作为唯一最终路径；不覆盖 saved tensor，允许 autotune 安全搜索 tile。</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="panel">
+        <h3>不要作为默认</h3>
+        <table>
+          <thead>
+            <tr><th>项目</th><th>原因</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>packed weight</td><td>会改变参数 layout 和集成 contract；当前 no-pack 已经拿到主要显存收益。</td></tr>
+            <tr><td>no-save 重算 linear1</td><td>省掉 <code>preact</code> 但多一次大 GEMM，backward 速度不划算。</td></tr>
+            <tr><td>替换大 GEMM 的 fusion</td><td>linear1/linear2 或 backward GEMM 一旦离开 cuBLAS，吞吐损失会吃掉 activation fusion 的收益。</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>最终推荐</h2>
+    <div class="grid-2">
+      <div class="panel">
+        <h3>生产默认</h3>
+        <p>使用 final drop_h：forward 省掉 saved <code>h</code>，SwiGLU forward 走 autotuned tiled Triton，backward 走 non-inplace autotuned fused <code>h + grad_preact</code>。速度对 baseline 按 tie 处理，forward activation 显存是主要收益。</p>
+      </div>
+      <div class="panel">
+        <h3>回退路径</h3>
+        <p>fallback 走普通 MLPBlock：继续保存 <code>h</code>，速度和数值语义最保守，只是不拿 forward activation 显存收益。</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="footer">
+    SwiGLU MLP drop-h optimization report.
+  </div>
+</main>
+</body>
+</html>
