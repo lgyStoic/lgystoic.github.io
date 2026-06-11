@@ -1,0 +1,620 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SwiGLU MLP 反向原理与优化拆解</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --bg: #f6f8fb;
+        --panel: #ffffff;
+        --text: #18202a;
+        --muted: #5d6b7a;
+        --line: #dbe3ec;
+        --blue: #1f6feb;
+        --green: #12805c;
+        --red: #d1242f;
+        --amber: #a15c00;
+        --ink-soft: #eef3f8;
+        --shadow: 0 18px 55px rgba(30, 45, 70, 0.12);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        font-family:
+          Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+          "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei",
+          sans-serif;
+        color: var(--text);
+        background:
+          linear-gradient(180deg, #eef4fa 0, var(--bg) 340px),
+          var(--bg);
+        line-height: 1.65;
+      }
+
+      a {
+        color: inherit;
+      }
+
+      .page {
+        max-width: 1160px;
+        margin: 0 auto;
+        padding: 40px 22px 72px;
+      }
+
+      .hero {
+        padding: 34px 0 28px;
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 16px;
+        padding: 5px 10px;
+        border: 1px solid #c9d8e8;
+        border-radius: 999px;
+        color: #31506f;
+        background: rgba(255, 255, 255, 0.7);
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0;
+      }
+
+      h1 {
+        max-width: 980px;
+        margin: 0;
+        font-size: clamp(36px, 6vw, 70px);
+        line-height: 1.03;
+        letter-spacing: 0;
+      }
+
+      .lead {
+        max-width: 900px;
+        margin: 22px 0 0;
+        color: #334253;
+        font-size: clamp(18px, 2.1vw, 22px);
+      }
+
+      .quick-facts {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 12px;
+        margin-top: 28px;
+      }
+
+      .fact {
+        min-height: 112px;
+        padding: 16px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.82);
+      }
+
+      .fact strong {
+        display: block;
+        margin-bottom: 8px;
+        font-size: 24px;
+        line-height: 1.1;
+      }
+
+      .fact span {
+        color: var(--muted);
+        font-size: 14px;
+      }
+
+      .toc {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        display: flex;
+        gap: 8px;
+        overflow-x: auto;
+        margin: 26px -22px 36px;
+        padding: 10px 22px;
+        border-block: 1px solid rgba(201, 216, 232, 0.76);
+        background: rgba(246, 248, 251, 0.9);
+        backdrop-filter: blur(12px);
+      }
+
+      .toc a {
+        flex: 0 0 auto;
+        padding: 7px 11px;
+        border: 1px solid #cedae7;
+        border-radius: 999px;
+        color: #364a60;
+        background: #fff;
+        font-size: 14px;
+        font-weight: 700;
+        text-decoration: none;
+      }
+
+      section {
+        margin-top: 46px;
+        padding-top: 18px;
+      }
+
+      .section-heading {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        align-items: start;
+        gap: 16px;
+        margin-bottom: 18px;
+      }
+
+      .num {
+        display: grid;
+        place-items: center;
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        color: #fff;
+        background: #192634;
+        font-weight: 800;
+      }
+
+      h2 {
+        margin: 0;
+        font-size: clamp(26px, 3vw, 40px);
+        line-height: 1.16;
+        letter-spacing: 0;
+      }
+
+      .section-kicker {
+        margin: 8px 0 0;
+        color: var(--muted);
+        font-size: 17px;
+      }
+
+      .panel {
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--panel);
+        box-shadow: var(--shadow);
+      }
+
+      .explain {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+        margin: 18px 0;
+      }
+
+      .note {
+        padding: 18px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: #fff;
+      }
+
+      .note h3 {
+        margin: 0 0 8px;
+        font-size: 18px;
+      }
+
+      .note p {
+        margin: 0;
+        color: var(--muted);
+      }
+
+      .visual {
+        overflow: hidden;
+        margin: 18px 0 0;
+      }
+
+      figure {
+        margin: 0;
+      }
+
+      figure img {
+        display: block;
+        width: 100%;
+        height: auto;
+        background: #fff;
+      }
+
+      figcaption {
+        padding: 12px 16px;
+        border-top: 1px solid var(--line);
+        color: var(--muted);
+        font-size: 14px;
+        background: #fbfcfe;
+      }
+
+      code,
+      .mono {
+        font-family:
+          "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+      }
+
+      pre {
+        overflow-x: auto;
+        margin: 16px 0 0;
+        padding: 16px;
+        border: 1px solid #d6e2ef;
+        border-radius: 8px;
+        color: #172331;
+        background: #f8fbff;
+        line-height: 1.55;
+      }
+
+      .formula-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 12px;
+        margin-top: 18px;
+      }
+
+      .formula-card {
+        padding: 16px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: #fff;
+      }
+
+      .formula-card b {
+        display: block;
+        margin-bottom: 9px;
+      }
+
+      .formula-card p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 15px;
+      }
+
+      .badge-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 18px;
+      }
+
+      .badge {
+        padding: 6px 10px;
+        border-radius: 999px;
+        font-size: 14px;
+        font-weight: 800;
+      }
+
+      .blue {
+        color: #164d9a;
+        background: #e8f1ff;
+      }
+
+      .green {
+        color: #0b674a;
+        background: #e6f7ef;
+      }
+
+      .red {
+        color: #9f1f28;
+        background: #ffedef;
+      }
+
+      .amber {
+        color: #835100;
+        background: #fff4d7;
+      }
+
+      .timeline {
+        display: grid;
+        gap: 12px;
+        margin-top: 18px;
+      }
+
+      .step {
+        display: grid;
+        grid-template-columns: 128px 1fr;
+        gap: 16px;
+        padding: 16px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: #fff;
+      }
+
+      .step .label {
+        color: var(--blue);
+        font-weight: 900;
+      }
+
+      .step p {
+        margin: 0;
+      }
+
+      .summary {
+        margin-top: 44px;
+        padding: 24px;
+        border: 1px solid #bad7cc;
+        border-radius: 8px;
+        background: #f0faf5;
+      }
+
+      .summary h2 {
+        font-size: 28px;
+      }
+
+      .summary p {
+        margin: 12px 0 0;
+        color: #274a3b;
+        font-size: 18px;
+      }
+
+      @media (max-width: 820px) {
+        .page {
+          padding-inline: 16px;
+        }
+
+        .quick-facts,
+        .explain,
+        .formula-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .toc {
+          margin-inline: -16px;
+          padding-inline: 16px;
+        }
+
+        .section-heading {
+          grid-template-columns: 1fr;
+        }
+
+        .step {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <header class="hero">
+        <div class="eyebrow">B200 · SwiGLU MLP · backward fusion</div>
+        <h1>SwiGLU MLP 的前向原理、反向链条与优化思路</h1>
+        <p class="lead">
+          这份说明从前向公式开始，把 shape、反向矩阵微分、实现账本和真正的优化点串起来。
+          核心结论很朴素：反向是
+          <strong>4 个 GEMM + 1 组逐元素</strong>；唯一结构性改动是把
+          <code>dout</code> GEMM 和 SwiGLU 反向逐元素融合，让 <code>dout</code> 从不落 HBM。
+        </p>
+
+        <div class="quick-facts">
+          <div class="fact">
+            <strong>de=[left | gate]</strong>
+            <span>第一层 projection 输出，训练反向必须保存。</span>
+          </div>
+          <div class="fact">
+            <strong>4 个 GEMM</strong>
+            <span><code>dout</code>、<code>dW_down</code>、<code>dx</code>、<code>dW</code>。</span>
+          </div>
+          <div class="fact">
+            <strong>696 GF</strong>
+            <span>反向 GEMM 总 FLOPs，等于前向 348 GF 的 2 倍。</span>
+          </div>
+          <div class="fact">
+            <strong>194 → 175.5μs</strong>
+            <span>融合段替代 baseline 的 <code>dout</code> GEMM + 逐元素 kernel。</span>
+          </div>
+        </div>
+      </header>
+
+      <nav class="toc" aria-label="页面目录">
+        <a href="#forward">1. 前向</a>
+        <a href="#backward">2. 反向推导</a>
+        <a href="#implementation">3. 实现账本</a>
+        <a href="#optimization">4. 优化机制</a>
+        <a href="#takeaway">5. 总结</a>
+      </nav>
+
+      <section id="forward">
+        <div class="section-heading">
+          <div class="num">1</div>
+          <div>
+            <h2>前向：先把计算图和 shape 固定住</h2>
+            <p class="section-kicker">
+              所有反向优化都依赖一个前提：哪些前向值必须在 backward 用，哪些可以现场重算。
+            </p>
+          </div>
+        </div>
+
+        <pre><code>de  = x @ W          x:[M,K]  W:[K,2I]   → de:[M,2I], de=[left | gate]
+out = left ⊙ silu(gate)                  → out:[M,I]
+y   = out @ W_down  W_down:[I,K]         → y:[M,K]</code></pre>
+
+        <div class="explain">
+          <div class="note">
+            <h3>为什么保存 <code>de</code></h3>
+            <p>
+              SwiGLU 反向要用 <code>left</code> 和 <code>gate</code> 计算
+              <code>dleft</code>、<code>dgate</code>。所以训练前向里，
+              <code>de=[left | gate]</code> 是必须落盘的预激活。
+            </p>
+          </div>
+          <div class="note">
+            <h3>为什么不保存 <code>σ/silu</code></h3>
+            <p>
+              <code>σ(gate)</code> 和 <code>silu(gate)</code> 是标量函数值。
+              相比 HBM 保存和回读，它们在 epilogue 里用 MUFU 现场重算更便宜。
+            </p>
+          </div>
+        </div>
+
+        <figure class="panel visual">
+          <img src="assets/01-forward-shapes.png" alt="前向三步计算与 shape 图" />
+          <figcaption>图 1：前向三步、张量 shape，以及 backward 需要保存的前向值。</figcaption>
+        </figure>
+      </section>
+
+      <section id="backward">
+        <div class="section-heading">
+          <div class="num">2</div>
+          <div>
+            <h2>反向：沿链条从后往前推</h2>
+            <p class="section-kicker">
+              反向分三段：down projection、SwiGLU 逐元素、第一层 projection。
+              数清楚这三段，才不会把逐元素误算成张量积。
+            </p>
+          </div>
+        </div>
+
+        <div class="formula-grid">
+          <div class="formula-card">
+            <b>① down projection</b>
+            <p>
+              <code>dout = dy @ W_downᵀ</code><br />
+              <code>dW_down = outᵀ @ dy</code>
+            </p>
+          </div>
+          <div class="formula-card">
+            <b>② SwiGLU</b>
+            <p>
+              <code>dleft = dout ⊙ silu(gate)</code><br />
+              <code>dgate = dout ⊙ left ⊙ silu′(gate)</code>
+            </p>
+          </div>
+          <div class="formula-card">
+            <b>③ first projection</b>
+            <p>
+              <code>dx = grad_de @ Wᵀ</code><br />
+              <code>dW = xᵀ @ grad_de</code>
+            </p>
+          </div>
+        </div>
+
+        <pre><code>silu′(g) = σ(g) + g·σ(g)·(1−σ(g))
+         = σ(g)·(1 + g·(1−σ(g)))
+         = σ(g) + silu(g)·(1−σ(g))</code></pre>
+
+        <div class="badge-row">
+          <span class="badge blue">4 个张量积 / GEMM</span>
+          <span class="badge green">1 组逐元素</span>
+          <span class="badge amber">逐元素 FLOPs 近乎免费</span>
+          <span class="badge red">计数口径已按合并布局修正</span>
+        </div>
+
+        <figure class="panel visual">
+          <img src="assets/02-backward-derivation.png" alt="反向三段推导图，正确计数为 4 个 GEMM 加 1 组逐元素" />
+          <figcaption>图 2：反向推导。正确计数是 4 个张量积 / GEMM + 1 组逐元素。</figcaption>
+        </figure>
+      </section>
+
+      <section id="implementation">
+        <div class="section-heading">
+          <div class="num">3</div>
+          <div>
+            <h2>实现账本：哪些融合，哪些交给 cuBLAS</h2>
+            <p class="section-kicker">
+              不是所有 kernel 都值得手写。这里真正被替换的是
+              <code>dout = dy @ W_downᵀ</code> 和后面的 SwiGLU 逐元素，其他大 GEMM 继续用 cuBLAS。
+            </p>
+          </div>
+        </div>
+
+        <div class="timeline">
+          <div class="step">
+            <div class="label">融合段</div>
+            <p>
+              <code>dout</code> GEMM 算出的 tile 留在 TMEM / registers，
+              epilogue 直接读保存的 <code>[left|gate]</code> 现算
+              <code>dleft/dgate</code>，然后写 <code>grad_de</code>。
+              这一段实测 <strong>175.5μs</strong>。
+            </p>
+          </div>
+          <div class="step">
+            <div class="label">cuBLAS 段</div>
+            <p>
+              <code>dx</code>、<code>dW</code>、<code>dW_down</code> 都是标准 GEMM。
+              其中 <code>dW</code> 是合并布局 GEMM
+              <code>[K,M]@[M,2I]</code>，不拆成两个半宽 GEMM 计数。
+            </p>
+          </div>
+          <div class="step">
+            <div class="label">FLOPs 账</div>
+            <p>
+              <code>116 + 116 + 232 + 232 = 696 GF</code>。
+              这个数刚好是 forward <code>348 GF</code> 的 2 倍，因为每个前向 GEMM
+              在反向会产生 activation gradient 和 weight gradient 两个同量级 GEMM。
+            </p>
+          </div>
+        </div>
+
+        <figure class="panel visual">
+          <img src="assets/03-backward-implementation.png" alt="反向实现汇总表，4 个张量积加 1 组逐元素" />
+          <figcaption>图 3：实现汇总表。注意 <code>dleft/dgate</code> 是逐元素，<code>dW</code> 是一个合并布局 GEMM。</figcaption>
+        </figure>
+      </section>
+
+      <section id="optimization">
+        <div class="section-heading">
+          <div class="num">4</div>
+          <div>
+            <h2>优化机制：让 dout 从不落 HBM</h2>
+            <p class="section-kicker">
+              baseline 的浪费不是数学本身，而是把 <code>dout</code> 当中间张量写到 HBM，
+              再由独立 elementwise kernel 读回来。
+            </p>
+          </div>
+        </div>
+
+        <div class="explain">
+          <div class="note">
+            <h3>Baseline 的浪费点</h3>
+            <p>
+              cuBLAS 先算 <code>dout</code> 并写出 144MB，随后逐元素 kernel 读回
+              <code>dout</code>、读保存的 <code>de=[left|gate]</code>、写
+              <code>grad_de</code>。这一段约 <strong>194μs</strong>，其中
+              <code>dout</code> 的 HBM 往返是可消除项。
+            </p>
+          </div>
+          <div class="note">
+            <h3>融合 kernel 的做法</h3>
+            <p>
+              CuTe DSL kernel 在主循环里用持久化 tcgen05 GEMM 计算 <code>dout</code>，
+              让 <code>dout</code> tile 留在片上。专职 load warp 用 TMA 预取
+              <code>de</code> 的 left/gate 子块，epilogue 直接写 <code>grad_de</code>。
+            </p>
+          </div>
+        </div>
+
+        <pre><code>baseline:
+  dout GEMM 写 dout 144MB
+  elementwise 再读 dout 144MB + de 288MB，写 grad_de 288MB
+
+fused:
+  dout tile 留在 TMEM / registers
+  epilogue 读 de，现场重算 σ/silu，直接写 grad_de</code></pre>
+
+        <div class="badge-row">
+          <span class="badge green">194μs → 175.5μs</span>
+          <span class="badge red">消灭 dout 288MB 往返</span>
+          <span class="badge blue">TMA pipeline 预取 de</span>
+          <span class="badge amber">σ/silu 现场重算</span>
+        </div>
+
+        <figure class="panel visual">
+          <img src="assets/04-optimization-mechanism.png" alt="dout 不落 HBM 与激活保存策略图" />
+          <figcaption>图 4：真正省掉的是 <code>dout</code> 的 HBM 往返；<code>de</code>、<code>out</code>、<code>x</code> 是反向必需保存值。</figcaption>
+        </figure>
+      </section>
+
+      <section id="takeaway" class="summary">
+        <h2>一句话总结</h2>
+        <p>
+          这套优化的本质不是改变反向数学，而是改变中间结果的生命周期：
+          <code>dout</code> 只在片上活一小段，立刻被 epilogue 消费成
+          <code>grad_de</code>；贵的是 HBM 保存和回读，所以只保存必须保存的
+          <code>de/out/x</code>，便宜的 <code>σ/silu</code> 在 kernel 里现场重算。
+        </p>
+      </section>
+    </main>
+  </body>
+</html>

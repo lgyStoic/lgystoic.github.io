@@ -58,5 +58,17 @@
     "status": "已发布",
     "featured": false,
     "updated": "2026-06-01"
+  },
+  {
+    "title": "SwiGLU MLP 的前向原理、反向链条与优化思路",
+    "slug": "swiglu-mlp-forward-backward-optimization",
+    "url": "./notes/swiglu-mlp-forward-backward-optimization/",
+    "absoluteUrl": "/notes/swiglu-mlp-forward-backward-optimization/",
+    "source": "B200 SwiGLU MLP backward fusion note",
+    "tags": ["SwiGLU", "MLP", "CUDA", "B200", "CuTe"],
+    "summary": "从前向 shape 到反向 4 个 GEMM + 1 组逐元素，解释 dout 不落 HBM 的 CuTe 融合优化。",
+    "status": "已发布",
+    "featured": false,
+    "updated": "2026-06-11"
   }
 ]
