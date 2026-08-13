@@ -1,0 +1,1016 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ring Collectives | Garry's Learning Site</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%23141A21'/%3E%3Ctext x='32' y='39' text-anchor='middle' font-size='18' font-family='Arial' font-weight='700' fill='white'%3ERC%3C/text%3E%3C/svg%3E">
+  <style>
+  :root {
+    --bg: #EDF0F4;
+    --surface: #FFFFFF;
+    --surface-2: #E3E8EE;
+    --ink: #141A21;
+    --ink-2: #47525F;
+    --muted: #78838F;
+    --rule: #D3DAE2;
+    --accent: #B4501B;
+    --accent-soft: #F6E3D6;
+    --cell: #F7F9FB;
+    --cell-empty: #E6EAEF;
+
+    --r0: #2F7D6E;
+    --r1: #4257B8;
+    --r2: #A97213;
+    --r3: #9E3F74;
+
+    --f-mono: ui-monospace, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+    --f-body: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial,
+              "PingFang SC", "Microsoft YaHei", sans-serif;
+
+    --measure: 66ch;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0F1319;
+      --surface: #161C23;
+      --surface-2: #1D242D;
+      --ink: #E4E9EF;
+      --ink-2: #B0BAC5;
+      --muted: #7E8894;
+      --rule: #29313A;
+      --accent: #E4884F;
+      --accent-soft: #33231A;
+      --cell: #1B222A;
+      --cell-empty: #141A20;
+
+      --r0: #4FBFAA;
+      --r1: #7E92E8;
+      --r2: #D9A64B;
+      --r3: #DC7BB0;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --bg: #0F1319;
+    --surface: #161C23;
+    --surface-2: #1D242D;
+    --ink: #E4E9EF;
+    --ink-2: #B0BAC5;
+    --muted: #7E8894;
+    --rule: #29313A;
+    --accent: #E4884F;
+    --accent-soft: #33231A;
+    --cell: #1B222A;
+    --cell-empty: #141A20;
+
+    --r0: #4FBFAA;
+    --r1: #7E92E8;
+    --r2: #D9A64B;
+    --r3: #DC7BB0;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--f-body);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    max-width: 58rem;
+    margin: 0 auto;
+    padding: 3rem 1.25rem 5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+
+  .masthead { display: flex; flex-direction: column; gap: 0.75rem; }
+
+  .site-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-bottom: -0.8rem;
+  }
+
+  .site-nav a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2rem;
+    padding: 0.25rem 0.7rem;
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+    background: var(--surface);
+    color: var(--ink-2);
+    font-size: 0.82rem;
+    text-decoration: none;
+  }
+
+  .site-nav a:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  .eyebrow {
+    font-family: var(--f-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  h1 {
+    font-family: var(--f-mono);
+    font-size: 2.4rem;
+    line-height: 1.1;
+    font-weight: 600;
+    letter-spacing: 0;
+    text-wrap: balance;
+  }
+
+  .standfirst { color: var(--ink-2); max-width: var(--measure); }
+
+  h2 {
+    font-family: var(--f-mono);
+    font-size: 1.05rem;
+    font-weight: 600;
+    letter-spacing: 0;
+  }
+
+  p { color: var(--ink-2); max-width: var(--measure); }
+
+  /* ---------- op tabs ---------- */
+
+  .ops { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+
+  .op {
+    font-family: var(--f-mono);
+    font-size: 0.8rem;
+    padding: 0.4rem 0.75rem;
+    background: var(--surface);
+    color: var(--ink-2);
+    border: 1px solid var(--rule);
+    cursor: pointer;
+    line-height: 1.4;
+  }
+  .op:hover { border-color: var(--accent); color: var(--ink); }
+  .op[aria-pressed="true"] {
+    background: var(--accent-soft);
+    border-color: var(--accent);
+    color: var(--accent);
+    font-weight: 600;
+  }
+  .op:focus-visible, .btn:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  /* ---------- stage ---------- */
+
+  .stage {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+  }
+
+  .grid-scroll { overflow-x: auto; }
+
+  .lattice {
+    position: relative;
+    min-width: 34rem;
+    display: grid;
+    grid-template-columns: 5rem repeat(4, 1fr);
+    gap: 0.5rem;
+  }
+
+  .head, .rowlabel {
+    font-family: var(--f-mono);
+    font-size: 0.74rem;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+  }
+  .head { justify-content: center; padding-bottom: 0.15rem; }
+  .rowlabel { justify-content: flex-end; padding-right: 0.4rem; text-align: right; }
+
+  .cell {
+    background: var(--cell);
+    border: 1px solid var(--rule);
+    height: 4.1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.15rem;
+    position: relative;
+    transition: border-color 160ms ease, background 160ms ease;
+  }
+  .cell.empty { background: var(--cell-empty); border-style: dashed; }
+  .cell.complete { border-color: var(--accent); background: var(--accent-soft); }
+
+  .val {
+    font-family: var(--f-mono);
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--ink);
+    font-variant-numeric: tabular-nums;
+    line-height: 1;
+  }
+  .cell.complete .val { color: var(--accent); }
+
+  .expr {
+    font-family: var(--f-mono);
+    font-size: 0.66rem;
+    color: var(--muted);
+    line-height: 1.2;
+    white-space: nowrap;
+  }
+
+  .dots { display: flex; gap: 0.16rem; height: 0.34rem; }
+  .dots i { width: 0.34rem; height: 0.34rem; display: block; border-radius: 50%; }
+  .dots i[data-r="0"] { background: var(--r0); }
+  .dots i[data-r="1"] { background: var(--r1); }
+  .dots i[data-r="2"] { background: var(--r2); }
+  .dots i[data-r="3"] { background: var(--r3); }
+
+  /* flying chunk */
+
+  .flight-layer { position: absolute; inset: 0; pointer-events: none; }
+  .flier {
+    position: absolute;
+    background: var(--surface);
+    border: 1px solid var(--accent);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.15rem;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.28);
+    will-change: transform;
+  }
+
+  /* ---------- legend ---------- */
+
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem 1.1rem;
+    font-family: var(--f-mono);
+    font-size: 0.72rem;
+    color: var(--muted);
+  }
+  .key { display: flex; align-items: center; gap: 0.35rem; }
+  .key b { color: var(--ink); font-weight: 600; }
+  .key i { width: 0.55rem; height: 0.55rem; display: inline-block; border-radius: 50%; }
+  .key i[data-r="0"] { background: var(--r0); }
+  .key i[data-r="1"] { background: var(--r1); }
+  .key i[data-r="2"] { background: var(--r2); }
+  .key i[data-r="3"] { background: var(--r3); }
+
+  .caveat { font-size: 0.82rem; color: var(--muted); margin: 0; max-width: var(--measure); }
+  .caveat em { color: var(--ink-2); font-style: italic; }
+
+  /* ---------- transport ---------- */
+
+  .transport {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    border-top: 1px solid var(--rule);
+    padding-top: 1rem;
+  }
+
+  .btn {
+    font-family: var(--f-mono);
+    font-size: 0.78rem;
+    padding: 0.35rem 0.7rem;
+    background: var(--surface-2);
+    color: var(--ink);
+    border: 1px solid var(--rule);
+    cursor: pointer;
+  }
+  .btn:hover:not(:disabled) { border-color: var(--accent); color: var(--accent); }
+  .btn:disabled { opacity: 0.4; cursor: default; }
+  .btn.primary { background: var(--accent); border-color: var(--accent); color: var(--surface); }
+  .btn.primary:hover { opacity: 0.9; color: var(--surface); }
+
+  .speed { margin-left: auto; display: flex; align-items: center; gap: 0.45rem; }
+  .speed label { font-family: var(--f-mono); font-size: 0.72rem; color: var(--muted); }
+  .speed input { accent-color: var(--accent); }
+
+  .stepline {
+    font-family: var(--f-mono);
+    font-size: 0.8rem;
+    color: var(--ink-2);
+    min-height: 2.6em;
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+  }
+  .stepline b { color: var(--accent); font-weight: 600; }
+
+  /* ---------- ledger ---------- */
+
+  .ledger {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+    gap: 1rem;
+  }
+
+  .panel {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    padding: 1rem 1.1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .panel h3 {
+    font-family: var(--f-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 500;
+  }
+
+  .meter { display: flex; flex-direction: column; gap: 0.4rem; }
+  .meter-row { display: flex; align-items: center; gap: 0.5rem; }
+  .meter-row span {
+    font-family: var(--f-mono);
+    font-size: 0.72rem;
+    color: var(--muted);
+    width: 3.2rem;
+  }
+  .track { flex: 1 1 auto; height: 0.5rem; background: var(--surface-2); }
+  .fill { height: 100%; width: 0; transition: width 260ms ease; }
+  .fill[data-r="0"] { background: var(--r0); }
+  .fill[data-r="1"] { background: var(--r1); }
+  .fill[data-r="2"] { background: var(--r2); }
+  .fill[data-r="3"] { background: var(--r3); }
+  .meter-row em {
+    font-family: var(--f-mono);
+    font-size: 0.72rem;
+    font-style: normal;
+    color: var(--ink-2);
+    width: 3.4rem;
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .formula { font-family: var(--f-mono); font-size: 0.82rem; color: var(--ink); line-height: 1.9; }
+  .formula .dim { color: var(--muted); }
+  .formula .hit { color: var(--accent); font-weight: 600; }
+
+  /* ---------- notes ---------- */
+
+  .notes { display: flex; flex-direction: column; gap: 1.1rem; }
+
+  .note {
+    display: grid;
+    grid-template-columns: 9.5rem 1fr;
+    gap: 0.9rem;
+    border-top: 1px solid var(--rule);
+    padding-top: 0.9rem;
+  }
+  @media (max-width: 36rem) { .note { grid-template-columns: 1fr; gap: 0.3rem; } }
+
+  .note dt { font-family: var(--f-mono); font-size: 0.8rem; color: var(--accent); }
+  .note dd { margin: 0; color: var(--ink-2); }
+  .note dd code, p code, li code {
+    font-family: var(--f-mono);
+    font-size: 0.86em;
+    background: var(--surface-2);
+    padding: 0.05rem 0.28rem;
+  }
+
+  ul { display: flex; flex-direction: column; gap: 0.35rem; padding-left: 1.1rem; }
+  li { color: var(--ink-2); max-width: var(--measure); }
+  li::marker { color: var(--muted); }
+
+  table { border-collapse: collapse; width: 100%; font-size: 0.84rem; }
+  .table-wrap { overflow-x: auto; border: 1px solid var(--rule); background: var(--surface); }
+  th, td {
+    text-align: left;
+    padding: 0.45rem 0.8rem;
+    border-bottom: 1px solid var(--rule);
+    font-variant-numeric: tabular-nums;
+  }
+  th {
+    font-family: var(--f-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  td { color: var(--ink-2); }
+  tbody tr:last-child td { border-bottom: 0; }
+  td.k { font-family: var(--f-mono); color: var(--ink); }
+
+  footer {
+    border-top: 1px solid var(--rule);
+    padding-top: 0.9rem;
+    font-family: var(--f-mono);
+    font-size: 0.72rem;
+    color: var(--muted);
+  }
+
+  @media (max-width: 36rem) {
+    h1 { font-size: 1.9rem; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .fill, .cell { transition: none; }
+  }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <nav class="site-nav" aria-label="Site navigation">
+    <a href="../../">Home</a>
+    <a href="../">All notes</a>
+  </nav>
+
+  <header class="masthead">
+    <div class="eyebrow">NCCL · 4 ranks · buffer split into 4 chunks</div>
+    <h1>Ring Collectives</h1>
+    <p class="standfirst">
+      Each box holds one chunk, and the number inside is its value. Ranks pass chunks to their
+      right-hand neighbour, N&minus;1 times. Watch the numbers: in a reduction they add up, in a
+      gather they only change hands — and the box never changes size either way.
+    </p>
+  </header>
+
+  <section class="stage">
+    <div class="ops" role="group" aria-label="Collective operation">
+      <button class="op" type="button" data-op="all_reduce" aria-pressed="true">all_reduce</button>
+      <button class="op" type="button" data-op="reduce_scatter" aria-pressed="false">reduce_scatter</button>
+      <button class="op" type="button" data-op="all_gather" aria-pressed="false">all_gather</button>
+      <button class="op" type="button" data-op="all_to_all" aria-pressed="false">all_to_all</button>
+    </div>
+
+    <div class="grid-scroll">
+      <div class="lattice" id="lattice"></div>
+    </div>
+
+    <div class="legend">
+      <div class="key"><i data-r="0"></i>value from rank 0 <b>(10-13)</b></div>
+      <div class="key"><i data-r="1"></i>rank 1 <b>(20-23)</b></div>
+      <div class="key"><i data-r="2"></i>rank 2 <b>(30-33)</b></div>
+      <div class="key"><i data-r="3"></i>rank 3 <b>(40-43)</b></div>
+    </div>
+    <p class="caveat">
+      The dots say <em>whose numbers have been added in</em> — four dots means the chunk is fully
+      reduced. They are not a size: <code>10 + 20 + 30 + 40 = 100</code> is still one number
+      occupying one box.
+    </p>
+
+    <div class="stepline" id="stepline"></div>
+
+    <div class="transport">
+      <button class="btn primary" type="button" id="play">Play</button>
+      <button class="btn" type="button" id="prev">Back</button>
+      <button class="btn" type="button" id="next">Step</button>
+      <button class="btn" type="button" id="reset">Reset</button>
+      <div class="speed">
+        <label for="speed">speed</label>
+        <input type="range" id="speed" min="0.5" max="3" step="0.5" value="1">
+      </div>
+    </div>
+  </section>
+
+  <section class="ledger">
+    <div class="panel">
+      <h3>Chunks each rank has sent</h3>
+      <div class="meter" id="meter"></div>
+      <p style="font-size: 0.8rem; margin: 0;">
+        Counted in multiples of the whole buffer. One hop moves one chunk = 1/N of the buffer.
+      </p>
+    </div>
+
+    <div class="panel">
+      <h3>Where the factor comes from</h3>
+      <div class="formula" id="formula"></div>
+    </div>
+  </section>
+
+  <section class="notes">
+    <h2>Reading the grid</h2>
+    <ul>
+      <li><b>Column</b> = which rank is holding it right now.</li>
+      <li><b>Row</b> = which quarter of the buffer it is. A chunk never moves rows — chunk 2 stays chunk 2.</li>
+      <li><b>Number</b> = the value stored there. Starting values are chosen so you can read off the sum: rank 0 contributes 10-13, rank 1 contributes 20-23, and so on, so a finished chunk 0 reads 100.</li>
+      <li><b>Dots</b> = whose contributions are inside that number.</li>
+    </ul>
+
+    <h2>What each one leaves behind</h2>
+    <dl class="notes">
+      <div class="note">
+        <dt>all_reduce</dt>
+        <dd>
+          Reduce-scatter, then all-gather. Every rank ends holding every summed chunk — the grid
+          fills with 100, 104, 108, 112. Two passes of N&minus;1 hops, hence
+          <code>2(N&minus;1)/N</code>. This is the DDP gradient sync.
+        </dd>
+      </div>
+      <div class="note">
+        <dt>reduce_scatter</dt>
+        <dd>
+          Only the first pass. Each summed chunk lands on exactly one rank, so the output is
+          <code>1/N</code> the size of the input. FSDP and ZeRO use this: a rank owns one shard of
+          the parameters, so it only needs the summed gradient for that shard.
+        </dd>
+      </div>
+      <div class="note">
+        <dt>all_gather</dt>
+        <dd>
+          The second pass alone, and the exact inverse of reduce-scatter. Every rank starts holding
+          only its own chunk (the other boxes are empty) and ends holding all four. Nothing is
+          added — the numbers you see are the ones that started elsewhere.
+        </dd>
+      </div>
+      <div class="note">
+        <dt>all_to_all</dt>
+        <dd>
+          A transpose, not a reduction. Rank <em>i</em> hands its chunk <em>j</em> to rank <em>j</em>,
+          which files it in slot <em>i</em>. No arithmetic at all; what changes is who holds what.
+          This is MoE expert routing, and resharding a tensor from one split axis to another.
+        </dd>
+      </div>
+    </dl>
+
+    <h2>Why the factor exists</h2>
+    <p>
+      <code>alg_bw = size / time</code> answers "how fast did my call finish", but it can't be
+      compared across collectives — the same buffer puts different amounts of traffic on the wire.
+      Multiplying by the factor gives <code>bus_bw</code>, the traffic the link actually carried,
+      which is comparable both between collectives and against the hardware's rated bandwidth.
+    </p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Collective</th><th>Hops per rank</th><th>Factor</th><th>At N = 32</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="k">all_reduce</td><td>2(N&minus;1)</td><td>2(N&minus;1)/N</td><td>1.9375&times;</td></tr>
+          <tr><td class="k">reduce_scatter</td><td>N&minus;1</td><td>(N&minus;1)/N</td><td>0.9688&times;</td></tr>
+          <tr><td class="k">all_gather</td><td>N&minus;1</td><td>(N&minus;1)/N</td><td>0.9688&times;</td></tr>
+          <tr><td class="k">all_to_all</td><td>N&minus;1</td><td>(N&minus;1)/N</td><td>0.9688&times;</td></tr>
+          <tr><td class="k">broadcast</td><td>&mdash;</td><td>1</td><td>1.0000&times;</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>
+      Measured on 4&times;8 fpt-h200 with <code>MeshyLearning.utils.nccl_bench</code>, 32 MiB
+      all-reduce: 365&nbsp;µs mean &rarr; <code>alg_bw</code> 91.8&nbsp;GB/s &rarr;
+      <code>bus_bw</code> 91.8 &times; 1.9375 = 177.9&nbsp;GB/s. The same run pinned to
+      <code>NCCL_ALGO=Ring</code> instead of the auto-selected NVLS_TREE: 113.0&nbsp;GB/s.
+    </p>
+  </section>
+
+  <footer>N = 4 in the animation for legibility; the training jobs run N = 32. Source: Claude artifact shared by Garry, published as a static note on August 13, 2026.</footer>
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  var N = 4;
+  var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  var lattice = document.getElementById("lattice");
+  var stepline = document.getElementById("stepline");
+  var meter = document.getElementById("meter");
+  var formula = document.getElementById("formula");
+  var playBtn = document.getElementById("play");
+  var nextBtn = document.getElementById("next");
+  var prevBtn = document.getElementById("prev");
+  var resetBtn = document.getElementById("reset");
+  var speedInput = document.getElementById("speed");
+
+  var op = "all_reduce";
+  var cursor = 0;
+  var playing = false;
+  var timer = null;
+  var flightLayer = null;
+  var cells = [];
+
+  function startValue(rank, chunk) { return (rank + 1) * 10 + chunk; }
+
+  // ---- plans -------------------------------------------------------------
+
+  function ringPhase(kind, offset) {
+    var steps = [];
+    for (var k = 0; k < N - 1; k++) {
+      var moves = [];
+      for (var r = 0; r < N; r++) {
+        var chunk = (((r - k + offset) % N) + N) % N;
+        moves.push({ from: r, to: (r + 1) % N, chunk: chunk });
+      }
+      steps.push({
+        moves: moves,
+        kind: kind,
+        caption: (kind === "reduce" ? "Reduce-scatter" : "All-gather") +
+                 " hop " + (k + 1) + " of " + (N - 1),
+        detail: kind === "reduce"
+          ? "each rank passes one chunk right; the receiver adds it into the chunk it already has"
+          : "each rank passes one finished chunk right; the receiver just stores it, no addition"
+      });
+    }
+    return steps;
+  }
+
+  function buildPlan(which) {
+    if (which === "reduce_scatter") return ringPhase("reduce", 0);
+    if (which === "all_gather") return ringPhase("gather", 0);
+    if (which === "all_reduce") return ringPhase("reduce", 0).concat(ringPhase("gather", 1));
+    var moves = [];
+    for (var r = 0; r < N; r++) {
+      for (var c = 0; c < N; c++) {
+        if (r !== c) moves.push({ from: r, to: c, chunk: c, slot: r });
+      }
+    }
+    return [{
+      moves: moves,
+      kind: "shuffle",
+      caption: "Exchange (single step)",
+      detail: "rank i hands its chunk j to rank j, which files it in slot i — the grid transposes"
+    }];
+  }
+
+  // ---- state -------------------------------------------------------------
+  // state[chunk][rank] = { v: number|null, owners: [rank, ...] }
+
+  function initialState(which) {
+    var st = [];
+    for (var c = 0; c < N; c++) {
+      st.push([]);
+      for (var r = 0; r < N; r++) {
+        var present = which === "all_gather" ? (c === r) : true;
+        st[c].push(present
+          ? { v: startValue(r, c), owners: [r] }
+          : { v: null, owners: [] });
+      }
+    }
+    return st;
+  }
+
+  function copyState(st) {
+    return st.map(function (row) {
+      return row.map(function (cell) {
+        return { v: cell.v, owners: cell.owners.slice() };
+      });
+    });
+  }
+
+  function applyStep(state, step) {
+    var next = copyState(state);
+    step.moves.forEach(function (m) {
+      var src = state[m.chunk][m.from];
+      var dstSlot = m.slot === undefined ? m.chunk : m.slot;
+      if (src.v === null) return;
+      if (step.kind === "reduce") {
+        var target = next[dstSlot][m.to];
+        var merged = target.owners.slice();
+        src.owners.forEach(function (o) { if (merged.indexOf(o) === -1) merged.push(o); });
+        merged.sort(function (a, b) { return a - b; });
+        next[dstSlot][m.to] = { v: (target.v === null ? 0 : target.v) + src.v, owners: merged };
+      } else {
+        next[dstSlot][m.to] = { v: src.v, owners: src.owners.slice() };
+      }
+    });
+    if (step.kind === "shuffle") {
+      for (var r = 0; r < N; r++) next[r][r] = { v: state[r][r].v, owners: state[r][r].owners.slice() };
+    }
+    return next;
+  }
+
+  function stateAt(which, upto) {
+    var plan = buildPlan(which);
+    var st = initialState(which);
+    for (var i = 0; i < upto && i < plan.length; i++) st = applyStep(st, plan[i]);
+    return st;
+  }
+
+  // ---- rendering ---------------------------------------------------------
+
+  function buildLattice() {
+    lattice.textContent = "";
+    cells = [];
+
+    lattice.appendChild(Object.assign(document.createElement("div"), { className: "head" }));
+    for (var r = 0; r < N; r++) {
+      var h = document.createElement("div");
+      h.className = "head";
+      h.textContent = "rank " + r;
+      lattice.appendChild(h);
+    }
+
+    for (var c = 0; c < N; c++) {
+      var lab = document.createElement("div");
+      lab.className = "rowlabel";
+      lab.textContent = "chunk " + c;
+      lattice.appendChild(lab);
+      cells.push([]);
+      for (var rr = 0; rr < N; rr++) {
+        var cell = document.createElement("div");
+        cell.className = "cell";
+        lattice.appendChild(cell);
+        cells[c].push(cell);
+      }
+    }
+
+    flightLayer = document.createElement("div");
+    flightLayer.className = "flight-layer";
+    lattice.appendChild(flightLayer);
+  }
+
+  function fillCell(node, data, chunk) {
+    node.textContent = "";
+    node.classList.toggle("empty", data.v === null);
+    node.classList.toggle("complete", data.owners.length === N);
+    if (data.v === null) return;
+
+    var val = document.createElement("div");
+    val.className = "val";
+    val.textContent = String(data.v);
+    node.appendChild(val);
+
+    if (data.owners.length > 1) {
+      var expr = document.createElement("div");
+      expr.className = "expr";
+      expr.textContent = data.owners.map(function (o) { return startValue(o, chunk); }).join("+");
+      node.appendChild(expr);
+    }
+
+    var dots = document.createElement("div");
+    dots.className = "dots";
+    data.owners.forEach(function (o) {
+      var d = document.createElement("i");
+      d.setAttribute("data-r", String(o));
+      dots.appendChild(d);
+    });
+    node.appendChild(dots);
+  }
+
+  function paint(state) {
+    for (var c = 0; c < N; c++) {
+      for (var r = 0; r < N; r++) fillCell(cells[c][r], state[c][r], c);
+    }
+  }
+
+  function fly(step, state, done) {
+    if (reduced) { done(); return; }
+    var lr = lattice.getBoundingClientRect();
+    var duration = 640 / Number(speedInput.value);
+    var pending = 0;
+    var finished = false;
+
+    function settle() {
+      if (!finished && pending <= 0) { finished = true; done(); }
+    }
+
+    step.moves.forEach(function (m) {
+      var srcSlot = m.chunk;
+      var dstSlot = m.slot === undefined ? m.chunk : m.slot;
+      var src = state[srcSlot][m.from];
+      if (src.v === null) return;
+
+      var a = cells[srcSlot][m.from].getBoundingClientRect();
+      var b = cells[dstSlot][m.to].getBoundingClientRect();
+
+      var f = document.createElement("div");
+      f.className = "flier";
+      f.style.left = (a.left - lr.left) + "px";
+      f.style.top = (a.top - lr.top) + "px";
+      f.style.width = a.width + "px";
+      f.style.height = a.height + "px";
+
+      var val = document.createElement("div");
+      val.className = "val";
+      val.textContent = String(src.v);
+      f.appendChild(val);
+
+      var dots = document.createElement("div");
+      dots.className = "dots";
+      src.owners.forEach(function (o) {
+        var d = document.createElement("i");
+        d.setAttribute("data-r", String(o));
+        dots.appendChild(d);
+      });
+      f.appendChild(dots);
+
+      flightLayer.appendChild(f);
+      pending += 1;
+
+      requestAnimationFrame(function () {
+        f.style.transition = "transform " + duration + "ms cubic-bezier(0.4, 0.05, 0.2, 1)";
+        f.style.transform = "translate(" + (b.left - a.left) + "px," + (b.top - a.top) + "px)";
+      });
+
+      window.setTimeout(function () {
+        f.remove();
+        pending -= 1;
+        settle();
+      }, duration + 40);
+    });
+
+    settle();
+  }
+
+  // ---- ledger ------------------------------------------------------------
+
+  function buildMeter() {
+    meter.textContent = "";
+    for (var r = 0; r < N; r++) {
+      var row = document.createElement("div");
+      row.className = "meter-row";
+      var name = document.createElement("span");
+      name.textContent = "rank " + r;
+      var track = document.createElement("div");
+      track.className = "track";
+      var fill = document.createElement("div");
+      fill.className = "fill";
+      fill.setAttribute("data-r", String(r));
+      track.appendChild(fill);
+      var val = document.createElement("em");
+      val.textContent = "0×";
+      row.appendChild(name);
+      row.appendChild(track);
+      row.appendChild(val);
+      meter.appendChild(row);
+    }
+  }
+
+  function trim(x) { return String(Math.round(x * 100) / 100); }
+
+  function sentByRank(which, upto) {
+    var plan = buildPlan(which);
+    var sent = [0, 0, 0, 0];
+    for (var i = 0; i < upto && i < plan.length; i++) {
+      plan[i].moves.forEach(function (m) { sent[m.from] += 1; });
+    }
+    return sent;
+  }
+
+  function updateLedger() {
+    var plan = buildPlan(op);
+    var maxHops = plan.reduce(function (acc, s) {
+      var per = [0, 0, 0, 0];
+      s.moves.forEach(function (m) { per[m.from] += 1; });
+      return acc + Math.max.apply(null, per);
+    }, 0);
+
+    var sent = sentByRank(op, cursor);
+    var rows = meter.querySelectorAll(".meter-row");
+    for (var r = 0; r < N; r++) {
+      rows[r].querySelector(".fill").style.width =
+        (maxHops ? (sent[r] / maxHops) * 100 : 0) + "%";
+      rows[r].querySelector("em").textContent = trim(sent[r] / N) + "×";
+    }
+
+    var hopsDone = Math.max.apply(null, sent);
+    var lines = [];
+    if (op === "all_reduce") {
+      lines.push('<span class="dim">reduce-scatter</span> (N−1)/N = 0.75');
+      lines.push('<span class="dim">all-gather    </span> (N−1)/N = 0.75');
+      lines.push('<span class="hit">total         </span> 2(N−1)/N = 1.5×');
+    } else if (op === "all_to_all") {
+      lines.push('<span class="dim">each rank sends N−1 chunks</span>');
+      lines.push('<span class="hit">total         </span> (N−1)/N = 0.75×');
+    } else {
+      lines.push('<span class="dim">' + (N - 1) + ' hops × 1/N each</span>');
+      lines.push('<span class="hit">total         </span> (N−1)/N = 0.75×');
+    }
+    lines.push('<span class="dim">so far        </span> ' + hopsDone + '/' + maxHops +
+               ' hops = ' + trim(hopsDone / N) + '×');
+    formula.innerHTML = lines.join("<br>");
+  }
+
+  function describe() {
+    var plan = buildPlan(op);
+    var out;
+    if (cursor === 0) {
+      out = op === "all_gather"
+        ? "<b>Start.</b> Each rank holds only its own chunk; the dashed boxes are empty."
+        : "<b>Start.</b> Each rank holds all four chunks of its own buffer.";
+    } else if (cursor >= plan.length) {
+      var endings = {
+        all_reduce: "Done. Every rank holds every summed chunk: 100, 104, 108, 112.",
+        reduce_scatter: "Done. Each summed chunk sits on exactly one rank — output is 1/N of the input.",
+        all_gather: "Done. Every rank holds all four chunks; no number ever changed.",
+        all_to_all: "Done. The grid is transposed — rank i now holds what everyone had in slot i."
+      };
+      out = "<b>" + endings[op] + "</b>";
+    } else {
+      var s = plan[cursor - 1];
+      out = "<b>" + s.caption + ".</b> " + s.detail;
+    }
+    stepline.innerHTML = out;
+  }
+
+  // ---- driving -----------------------------------------------------------
+
+  function render() {
+    paint(stateAt(op, cursor));
+    describe();
+    updateLedger();
+    var plan = buildPlan(op);
+    prevBtn.disabled = cursor === 0;
+    nextBtn.disabled = cursor >= plan.length;
+    playBtn.textContent = playing ? "Pause" : (cursor >= plan.length ? "Replay" : "Play");
+  }
+
+  function advance(afterwards) {
+    var plan = buildPlan(op);
+    if (cursor >= plan.length) { if (afterwards) afterwards(); return; }
+    var step = plan[cursor];
+    var before = stateAt(op, cursor);
+    nextBtn.disabled = true;
+    prevBtn.disabled = true;
+    fly(step, before, function () {
+      cursor += 1;
+      render();
+      if (afterwards) afterwards();
+    });
+  }
+
+  function tick() {
+    if (!playing) return;
+    var plan = buildPlan(op);
+    if (cursor >= plan.length) { playing = false; render(); return; }
+    advance(function () {
+      if (!playing) return;
+      timer = window.setTimeout(tick, 460 / Number(speedInput.value));
+    });
+  }
+
+  playBtn.addEventListener("click", function () {
+    var plan = buildPlan(op);
+    if (playing) {
+      playing = false;
+      window.clearTimeout(timer);
+      render();
+      return;
+    }
+    if (cursor >= plan.length) cursor = 0;
+    playing = true;
+    render();
+    tick();
+  });
+
+  nextBtn.addEventListener("click", function () {
+    playing = false;
+    window.clearTimeout(timer);
+    advance(null);
+  });
+
+  prevBtn.addEventListener("click", function () {
+    playing = false;
+    window.clearTimeout(timer);
+    if (cursor > 0) cursor -= 1;
+    render();
+  });
+
+  resetBtn.addEventListener("click", function () {
+    playing = false;
+    window.clearTimeout(timer);
+    cursor = 0;
+    render();
+  });
+
+  Array.prototype.forEach.call(document.querySelectorAll(".op"), function (btn) {
+    btn.addEventListener("click", function () {
+      playing = false;
+      window.clearTimeout(timer);
+      op = btn.getAttribute("data-op");
+      cursor = 0;
+      Array.prototype.forEach.call(document.querySelectorAll(".op"), function (b) {
+        b.setAttribute("aria-pressed", String(b === btn));
+      });
+      render();
+    });
+  });
+
+  buildLattice();
+  buildMeter();
+  render();
+})();
+</script>
+</body>
+</html>
