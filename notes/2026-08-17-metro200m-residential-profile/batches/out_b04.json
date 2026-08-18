@@ -1,0 +1,584 @@
+{
+ "batch": "b04",
+ "items": [
+  {
+   "id": 100,
+   "name": "海典居",
+   "type": "住宅小区",
+   "built_year": "1999",
+   "units_total": "306-527",
+   "buildings": "4",
+   "layout_main": "2-3房为主；在售另有135-208㎡的4-5房大户",
+   "large_unit": "部分",
+   "resettlement": "无",
+   "confidence": "确认",
+   "note": "南油集团开发，南海大道2287号（南山中心区/9号线南山书城站）。建成年份三源一致=1999。户数口径不一：乐有家/百度百科记306户，贝壳记527户，note中两者都保留。乐有家在售户型集中在135-208㎡四五房，故判\"部分\"大户。",
+   "sources": [
+    "https://shenzhen.leyoujia.com/xq/detail/568.html",
+    "https://sz.lianjia.com/xiaoqu/2411049605684/",
+    "https://api.ershoufangdata.com/api/community/list?community=%E6%B5%B7%E5%85%B8%E5%B1%85&city=sz"
+   ]
+  },
+  {
+   "id": 101,
+   "name": "龙泰轩",
+   "type": "住宅小区",
+   "built_year": "2002",
+   "units_total": "187-190",
+   "buildings": "3",
+   "layout_main": "一房约48-50㎡ / 两房70-80㎡ / 三房86-105㎡（最大到113㎡四房）",
+   "large_unit": "否",
+   "resettlement": "无",
+   "confidence": "确认",
+   "note": "南光商业街48号，3栋11层小高层，深圳市闽泰房地产开发。房网备案：2001-12-22开盘、2002-07-28交房、总房源187、建面14300㎡；贝壳记190户、2002年建成。最大户型113㎡四房，非大户型盘。",
+   "sources": [
+    "https://bol.szhome.com/housedetail/0167.html",
+    "https://shenzhen.leyoujia.com/xq/detail/1115.html",
+    "https://sz.lianjia.com/xiaoqu/2411063585256/"
+   ]
+  },
+  {
+   "id": 102,
+   "name": "海昌阁",
+   "type": "住宅小区",
+   "built_year": "1993",
+   "units_total": "82-177",
+   "buildings": "1",
+   "layout_main": "未知（在售为2-3房，单栋8层老楼，以出租为主）",
+   "large_unit": "否",
+   "resettlement": "无",
+   "confidence": "单一来源",
+   "note": "南光路21号（海王大厦后），单栋8层开放式老楼，建面约3900㎡。乐有家：华西公司集体产权32户+个人产权50户=82户、1993-12-15建成、物业费0.8元；贝壳记177户；房天下记1996年建成。户数口径严重冲突，均保留。OSM标为\"地块\"但面积仅2031㎡，实为单体楼。",
+   "sources": [
+    "https://shenzhen.leyoujia.com/xq/detail/3957.html",
+    "https://sz.lianjia.com/xiaoqu/2411049501009/",
+    "https://m.anjuke.com/sz/community/1018451/"
+   ]
+  },
+  {
+   "id": 103,
+   "name": "公园道大厦",
+   "type": "商务公寓",
+   "built_year": "2012",
+   "units_total": "364-575",
+   "buildings": "2",
+   "layout_main": "全部按\"一房/二房\"登记，36.08㎡-111.78㎡（44.79㎡×72套、62.79㎡×36套为主力）",
+   "large_unit": "否",
+   "resettlement": "无",
+   "confidence": "确认",
+   "note": "关键结论：不是70年产权住宅。备案名\"公园道大厦\"、推广名\"公园道\"，是凯德置地深圳来福士综合体一期，官方定义为\"由写字楼、商务公寓和零售商铺组成\"，房网物业类型登记为\"商业住宅\"，项目特色标签含\"精品公寓/商住两用\"。房网备案：2012-11-21开盘、总房源448、建面41300㎡、占地8175.07㎡；贝壳记575户、乐有家记364户。所有户型均为一房/二房，最大111.78㎡，无四房、无120㎡+。",
+   "sources": [
+    "https://bol.szhome.com/housedetail/3919.html",
+    "https://bol.szhome.com/hx/3919.html",
+    "https://shenzhen.leyoujia.com/xq/detail/11862.html",
+    "https://sz.lianjia.com/xiaoqu/248512235908850/"
+   ]
+  },
+  {
+   "id": 104,
+   "name": "金晖大厦",
+   "type": "混合",
+   "built_year": "2000-2003",
+   "units_total": "1090-1197",
+   "buildings": "5",
+   "layout_main": "以1-2房小户为主（在售74-95㎡两三房居多）；套均建面约44-49㎡",
+   "large_unit": "否",
+   "resettlement": "无",
+   "confidence": "单一来源",
+   "note": "南海大道2087/2093号，9号线南油站零距离。房网项目介绍明确为\"集商住、办公、大型综合商城于一体\"的商住综合楼，物业类型登记\"住宅、商铺\"，容积率8.54；贝壳/乐有家/房天下均把它当住宅小区收录，二手房挂牌标\"普通住宅\"。建成年份三源不一：贝壳2000、房天下2002、乐有家2003。户数：贝壳1197户/5栋，乐有家1090户、总建面53000㎡ → 套均仅约45㎡，明确不是大户型盘。",
+   "sources": [
+    "https://sz.lianjia.com/xiaoqu/2411049590020/",
+    "https://shenzhen.leyoujia.com/xq/detail/esf/668/",
+    "https://bol.szhome.com/housedetail/0094.html"
+   ]
+  },
+  {
+   "id": 105,
+   "name": "百富大厦",
+   "type": "住宅小区",
+   "built_year": "2004",
+   "units_total": "384-398",
+   "buildings": "2",
+   "layout_main": "一房/二房/三房，约65-98㎡（在售以65-77㎡两房最多）",
+   "large_unit": "否",
+   "resettlement": "无",
+   "confidence": "确认",
+   "note": "南海大道2127号（南油大道以西、登良路以南），深圳南油房地产开发，深圳南油物业。房网备案：总房源384、建面25728㎡、占地3591.30㎡、容积率6.5；贝壳记398户/2栋/2004年；安居客明示\"商品房产权70年\"。套均约65㎡，非大户型。",
+   "sources": [
+    "https://bol.szhome.com/housedetail/0600.html",
+    "https://sz.lianjia.com/xiaoqu/2411099840612/",
+    "https://shenzhen.leyoujia.com/xq/detail/1404.html"
+   ]
+  },
+  {
+   "id": 106,
+   "name": "四达大厦",
+   "type": "住宅小区",
+   "built_year": "2002",
+   "units_total": "282-288",
+   "buildings": "1",
+   "layout_main": "一房一厅47.32㎡ / 二房二厅68.19-72.06㎡ / 三房二厅89.23-98.75㎡",
+   "large_unit": "否",
+   "resettlement": "无",
+   "confidence": "确认",
+   "note": "推广名\"都市本色\"，备案名\"四达大厦\"，南油大道西、粤海路北（南海大道2109号）。房网备案原文：\"一栋二座，楼高20层，共282户\"，2001-08-13开盘、2002-06-01交房、建面24561.66㎡、占地3124.70㎡、使用年限70年；贝壳记288户/2栋。最大户型98.75㎡，无大户。",
+   "sources": [
+    "https://bol.szhome.com/housedetail/0085.html",
+    "https://sz.lianjia.com/xiaoqu/2411049608725/",
+    "https://m.anjuke.com/sz/community/122340/"
+   ]
+  },
+  {
+   "id": 107,
+   "name": "福庭苑",
+   "type": "住宅小区",
+   "built_year": "1996-2000",
+   "units_total": "334-412",
+   "buildings": "9",
+   "layout_main": "72.72-168㎡，含复式6房；容积率约1.3，低密度多层",
+   "large_unit": "部分",
+   "resettlement": "无",
+   "confidence": "单一来源",
+   "note": "招商地产开发，东滨路（南油西/9号线南油西站）。建成年份三源分歧大：贝壳1996、乐有家1998-07-20、房天下2000。户数：乐有家334户、贝壳412户/9栋。乐有家载总建面19000㎡、容积率1.3、绿化率50%，与OSM占地20827㎡吻合（低密度）；在售有\"复式6房、前后花园\"及168㎡户型，故大户型判\"部分\"。注意：房网另有\"滨福庭园\"(高新南环路)为不同项目，勿混。",
+   "sources": [
+    "https://shenzhen.leyoujia.com/xq/detail/1771.html",
+    "https://sz.lianjia.com/xiaoqu/2411100073679/",
+    "https://api.ershoufangdata.com/api/community/list?community=%E7%A6%8F%E5%BA%AD%E8%8B%91&city=sz"
+   ]
+  },
+  {
+   "id": 108,
+   "name": "中熙·君南山",
+   "type": "住宅小区",
+   "built_year": "2015-2017",
+   "units_total": "475-550",
+   "buildings": "4-5",
+   "layout_main": "83-89㎡三房 / 136-160㎡四房及复式（房网：主力83-160㎡平层及复式）",
+   "large_unit": "部分",
+   "resettlement": "无",
+   "confidence": "确认",
+   "note": "东滨路与南光路交界处西北侧（荔林路8号），中熙地产，纯住宅性质用地、容积率4、建面56550㎡、占地14128.61㎡、33层高层5栋。房网备案总房源475、2015-07-31开盘；贝壳记4栋550户；乐有家记5栋537户、2017年交楼。另有单一来源称\"商品房477户+公租房146户\"（数字自相矛盾，未采信），是否配建保障房待核。",
+   "sources": [
+    "https://bol.szhome.com/housedetail/5131.html",
+    "https://sz.lianjia.com/xiaoqu/2411062963264/",
+    "https://shenzhen.leyoujia.com/xq/detail/48830.html"
+   ]
+  },
+  {
+   "id": 109,
+   "name": "前海湾花园一期",
+   "type": "住宅小区",
+   "built_year": "2010",
+   "units_total": "700",
+   "buildings": "未知",
+   "layout_main": "未知（房网户型库只登记\"一房×1、四房及以上×2\"三个户型，无面积；一期套均建面约83㎡）",
+   "large_unit": "未知",
+   "resettlement": "无",
+   "confidence": "单一来源",
+   "note": "招商前海湾置业开发，港城路61-62号/前海湾汽车物流园区，5号线南延妈湾站旁。房网备案：一期建面58419.2㎡、总房源700、2010-07-13开盘、计划竣工2010-12-31、容积率2.5、已售罄。OSM把同一小区拆成四个地块（id109-112），官方资料只分一、二期（一期58419.2㎡、二期46339.88㎡，合计104759.08㎡）；贝壳口径为整体12栋1918户。一期套均83㎡，暂无据判定大户型。",
+   "sources": [
+    "https://bol.szhome.com/housedetail/2535.html",
+    "https://shenzhen.leyoujia.com/xq/detail/11302.html",
+    "https://sz.lianjia.com/xiaoqu/2411049965673/"
+   ]
+  },
+  {
+   "id": 110,
+   "name": "前海湾花园二期",
+   "type": "住宅小区",
+   "built_year": "2010",
+   "units_total": "未知",
+   "buildings": "未知",
+   "layout_main": "未知",
+   "large_unit": "未知",
+   "resettlement": "无",
+   "confidence": "推测",
+   "note": "同id109为一个小区（招商前海湾花园）被OSM拆分。官方仅记二期建面46339.88㎡，未见二期独立户数/栋数/户型；整体口径为12栋1918户、总建面104759.08㎡（套均约55㎡，偏小户，但1918户是否含三、四期未证实）。二期数据全部标未知，不做推断。注意：搜索时极易与\"前海花园\"（桃园路288号，1995年，15栋1200户）张冠李戴，两者不同。",
+   "sources": [
+    "https://bol.szhome.com/housedetail/2535.html",
+    "https://sz.lianjia.com/xiaoqu/2411049965673/"
+   ]
+  },
+  {
+   "id": 111,
+   "name": "前海湾花园四期",
+   "type": "住宅小区",
+   "built_year": "未知",
+   "units_total": "未知",
+   "buildings": "未知",
+   "layout_main": "未知",
+   "large_unit": "未知",
+   "resettlement": "未知",
+   "confidence": "推测",
+   "note": "安居客有\"前海湾花园(四期)\"独立小区页（港城路62号），但抓不到详情，且房网/贝壳均无\"四期\"备案记录——官方只承认一、二期开发。判定依据仅为\"属招商前海湾花园同一大盘、5号线妈湾站旁的住宅地块\"。所有数值字段留未知。",
+   "sources": [
+    "https://shenzhen.anjuke.com/community/view/907285",
+    "https://bol.szhome.com/housedetail/2535.html"
+   ]
+  },
+  {
+   "id": 112,
+   "name": "前海湾花园三期",
+   "type": "住宅小区",
+   "built_year": "未知",
+   "units_total": "未知",
+   "buildings": "未知",
+   "layout_main": "未知",
+   "large_unit": "未知",
+   "resettlement": "未知",
+   "confidence": "推测",
+   "note": "同上：安居客有\"前海湾花园(三期)\"页（港城路62号），无可靠详情。特别提示错误过滤：网上流传的\"前海湾花园三期：1995年建成、15栋、1200户、占地49250㎡\"实为罗湖/南山另一小区\"前海花园（三期）\"的数据，已剔除，不采用。",
+   "sources": [
+    "https://m.anjuke.com/sz/community/907283/",
+    "https://bol.szhome.com/housedetail/2535.html"
+   ]
+  },
+  {
+   "id": 113,
+   "name": "城市山林",
+   "type": "住宅小区",
+   "built_year": "2006-2008",
+   "units_total": "1717-1746",
+   "buildings": "22",
+   "layout_main": "68.89-150.94㎡；在售主力91-106㎡三房与约112㎡四房；二期\"上园\"以大户为主",
+   "large_unit": "部分",
+   "resettlement": "无",
+   "confidence": "确认",
+   "note": "全称\"华联城市山林花园\"，南山大道与东滨路交汇处（东滨路4343号，9号线荔林站），华联置业开发。房网：一期2006-06-11开盘、901套；二期\"城市山林上园\"2008-09-29开盘、814套（介绍称6栋10单元816户\"纯粹大户空间\"）；整体占地83534㎡、建面115143㎡（乐有家记总建面217354㎡、1717户、22栋，房网口径疑只含计容部分）。贝壳记22栋1746户、2007年。套均约126㎡。注意：另有说法\"1996年建成\"，与两处备案开盘时间矛盾，未采信。",
+   "sources": [
+    "https://bol.szhome.com/housedetail/1151.html",
+    "https://bol.szhome.com/housedetail/1545.html",
+    "https://shenzhen.leyoujia.com/xq/detail/140.html",
+    "https://sz.lianjia.com/xiaoqu/2411049771968/"
+   ]
+  },
+  {
+   "id": 114,
+   "name": "荔庭园",
+   "type": "住宅小区",
+   "built_year": "1997",
+   "units_total": "267",
+   "buildings": "6",
+   "layout_main": "未知（在售以2-3房为主）",
+   "large_unit": "未知",
+   "resettlement": "无",
+   "confidence": "单一来源",
+   "note": "东滨路4345号（紧邻城市山林，9号线荔林站），深圳市南商房地产开发、招商物业，物业费仅1.25元/㎡·月。贝壳：1997年建成、6栋267户；房天下记1999年。另存在独立小区\"荔庭园二期\"（1999年、2栋160户、荔园地产），OSM此18299㎡地块按面积/位置判为一期主体。无户型面积数据，未推断大户型。",
+   "sources": [
+    "https://sz.lianjia.com/xiaoqu/247330971266761/",
+    "https://api.ershoufangdata.com/api/community/list?community=%E8%8D%94%E5%BA%AD%E5%9B%AD&city=sz"
+   ]
+  },
+  {
+   "id": 115,
+   "name": "南荔苑",
+   "type": "住宅小区",
+   "built_year": "2007",
+   "units_total": "423-425",
+   "buildings": "3",
+   "layout_main": "35-36㎡单身公寓 / 48-50㎡一房 / 70-75㎡两房",
+   "large_unit": "否",
+   "resettlement": "无",
+   "confidence": "确认",
+   "note": "推广名\"悠山美地\"，备案名\"南荔苑\"，内环路以北、南山大道以西（9号线荔林站），深圳市文广房地产开发、莲花物业。房网：2007-12-28开盘、总房源423、建面23020㎡、占地6829.90㎡、容积率3.37，项目介绍原文\"35-36平米的单身公寓、48-50平米的一房和70-75平米两房\"；贝壳记3栋425户。产权登记为商品住宅（非商务公寓），但产品全为小户，明确不是大户型盘。",
+   "sources": [
+    "https://bol.szhome.com/housedetail/1600.html",
+    "https://sz.lianjia.com/xiaoqu/2411049600823/"
+   ]
+  },
+  {
+   "id": 116,
+   "name": "南山花园",
+   "type": "住宅小区",
+   "built_year": "1992-1997",
+   "units_total": "232-248",
+   "buildings": "23",
+   "layout_main": "主力168-206㎡；含独栋/联排/双拼/叠拼别墅与低层板楼",
+   "large_unit": "是",
+   "resettlement": "无",
+   "confidence": "单一来源",
+   "note": "南油集团开发，荔湾路137号（5号线荔湾站），乐有家标注建筑结构含板楼+独栋/联排/双拼/叠拼别墅，成交户型区间168-206㎡；贝壳记23栋248户、1992年建成、板楼，乐有家记232户、1997年建成——年份分歧保留。OSM占地53800㎡ ÷ 约240户 ≈ 224㎡/户，与低密度别墅区吻合，故大户型判\"是\"。防同名：深圳/惠州多处有\"南山花园\"，此条以南山区前海南片区+荔湾路+南油集团三重交叉确认。",
+   "sources": [
+    "https://shenzhen.leyoujia.com/xq/detail/8428.html",
+    "https://sz.lianjia.com/xiaoqu/2411062607615/"
+   ]
+  },
+  {
+   "id": 117,
+   "name": "泛海·拉菲花园",
+   "type": "住宅小区",
+   "built_year": "2009",
+   "units_total": "481-551",
+   "buildings": "8",
+   "layout_main": "50.62-275.12㎡，房网主力户型统计为\"四房及以上×8\"，叠院+小高层",
+   "large_unit": "是",
+   "resettlement": "无",
+   "confidence": "确认",
+   "note": "深圳市光彩置业（泛海系）开发，月亮湾大道以东、荔湾路以西（前海路0189号，5号线荔湾站）。房网：2009-02-27开盘、总房源481、占地32106.36㎡、建面48160㎡、容积率1.5，介绍称\"叠院和小高层组合\"、\"中高档泛豪宅项目\"；贝壳记8栋551户、2009年。户型上限275㎡、主力四房以上 → 大户型为主。",
+   "sources": [
+    "https://bol.szhome.com/housedetail/1621.html",
+    "https://sz.lianjia.com/xiaoqu/2411049945282/"
+   ]
+  },
+  {
+   "id": 118,
+   "name": "泛海·拉菲花园二期",
+   "type": "住宅小区",
+   "built_year": "2012",
+   "units_total": "652-684",
+   "buildings": "8",
+   "layout_main": "85-176㎡ Park House，房网主力\"三房×7、四房及以上×2\"",
+   "large_unit": "部分",
+   "resettlement": "无",
+   "confidence": "确认",
+   "note": "同为光彩置业开发，前海路青青世界南侧大南山脚下。房网：2011-07-12开盘、2012-06-30交房、总房源684、占地24251.84㎡、建面60630㎡、容积率2.5、绿化率30%，介绍称\"3栋9座高层、15-16层\"、\"户型面积85-176㎡\"；贝壳记8栋652户、2010年建成，房天下记2012年。三房为主力、含176㎡四房，故\"部分\"。",
+   "sources": [
+    "https://bol.szhome.com/housedetail/2753.html",
+    "https://sz.lianjia.com/xiaoqu/2411049946600/"
+   ]
+  },
+  {
+   "id": 119,
+   "name": "前海港湾花园",
+   "type": "住宅小区",
+   "built_year": "2015-2018",
+   "units_total": "692-728",
+   "buildings": "5",
+   "layout_main": "76㎡两房 + 81-125㎡三房",
+   "large_unit": "部分",
+   "resettlement": "无",
+   "confidence": "确认",
+   "note": "全称\"深物业前海港湾花园\"，深圳市物业发展（集团）开发，兴海大道与月亮湾大道交汇处/月亮湾大道2007号（5号线荔湾站）。房网原文\"整体规划共5栋，总户数692套，76平米两房，81-125平米3房\"，占地19894.11㎡（与OSM 19216㎡吻合）、建面63325.01㎡、2018-08-10开盘、车位710；贝壳记5栋728户、2015年建成，房天下记2017年。防混淆：蛇口另有\"港湾花园\"（蛇口新街22号、1997年、9栋415户）及\"港湾生活小区\"，非同一小区。",
+   "sources": [
+    "http://bol.szhome.com/housedetail/2678.html",
+    "https://sz.lianjia.com/xiaoqu/2411064079166/"
+   ]
+  },
+  {
+   "id": 120,
+   "name": "观峰阁",
+   "type": "住宅小区",
+   "built_year": "1998",
+   "units_total": "140",
+   "buildings": "7",
+   "layout_main": "未知（在售挂牌多为3房2厅）",
+   "large_unit": "未知",
+   "resettlement": "无",
+   "confidence": "单一来源",
+   "note": "港前路25号（5号线荔湾站旁，紧邻泛海拉菲花园二期），南油开发有限公司，物业费1-1.8元/㎡·月。贝壳：1998年建成、7栋140户、塔板结合；房天下同记1999年、南山-前海。7栋仅140户＋OSM占地5608㎡，属小体量多层；无户型面积数据，大户型留未知。",
+   "sources": [
+    "https://sz.lianjia.com/xiaoqu/2411049948745/",
+    "https://api.ershoufangdata.com/api/community/list?community=%E8%A7%82%E5%B3%B0%E9%98%81&city=sz"
+   ]
+  },
+  {
+   "id": 121,
+   "name": "招商领玺家园",
+   "type": "住宅小区",
+   "built_year": "2019-2021",
+   "units_total": "456",
+   "buildings": "未知",
+   "layout_main": "未知（一期户型未查到明确面积；计容套均约142㎡，参考均价10.8万/㎡；同项目二期主力120-170㎡三至四房）",
+   "large_unit": "是",
+   "resettlement": "无",
+   "confidence": "单一来源",
+   "note": "备案名\"招商·领玺家园\"、推广名\"招商·领玺\"，开发商深圳市前海蛇口启迪实业（招商蛇口平台公司），前海妈湾兴海大道与临海大道交汇处，物业费6.5元/㎡·月。房网：2019-11-28开盘、总房源456、占地13767.14㎡（与OSM 13627㎡吻合）、建面91860.57㎡、容积率4.72 → 计容套均约142㎡。市住建局城建档案2021年7月接收\"招商领玺家园\"（建设单位同）。同项目二期备案名\"嵘玺家园\"（255套、占地9311㎡、主力120-170㎡3-4房）。\"家园\"二字在深圳常见于人才房/安居房命名，但本项目房网物业类型登记为\"商品住宅\"、均价10.8万，未见保障房配售公告，故按商品住宅计；如需确认建议查前海管理局配售公告。",
+   "sources": [
+    "https://bol.szhome.com/housedetail/6008.html",
+    "https://bol.szhome.com/housedetail/11547.html",
+    "https://zjj.sz.gov.cn/xxgk/ztzl/cjdafw/jsgs/content/post_9035937.html"
+   ]
+  },
+  {
+   "id": 122,
+   "name": "前海颐湾府",
+   "type": "住宅小区",
+   "built_year": "2020-2021",
+   "units_total": "367-610",
+   "buildings": "4",
+   "layout_main": "120㎡与190㎡两种户型（房网原文）",
+   "large_unit": "是",
+   "resettlement": "无",
+   "confidence": "确认",
+   "note": "备案名\"颐城栖湾里\"、推广名\"颐湾府\"，深国际前海置业＋深业置地，港城路与妈湾一路交汇处（前海19单元06地块，5号线铁路公园/妈湾站）。房网：占地12490.61㎡（与OSM 12410㎡吻合）、建面78313.04㎡、容积率4.35、总房源367、物业费6.5，介绍原文\"4栋点式塔楼，两栋高约140米、两栋高约100米，设计了120㎡和190㎡两种户型\"；贝壳记4栋610户、2020年建成，房天下记2021年。户数两源差异大（367 vs 610），均保留；户型全为120㎡+，大户型判\"是\"。",
+   "sources": [
+    "https://bol.szhome.com/housedetail/9474.html",
+    "https://sz.lianjia.com/xiaoqu/2420041949473913/"
+   ]
+  },
+  {
+   "id": 123,
+   "name": "招商前海·领尚公馆",
+   "type": "商务公寓",
+   "built_year": "2020",
+   "units_total": "741-758",
+   "buildings": "2",
+   "layout_main": "41-92㎡ 一房/二房（房网主力：一房×2、二房×1）",
+   "large_unit": "否",
+   "resettlement": "无",
+   "confidence": "确认",
+   "note": "关键结论：非70年产权普通住宅。开发商深圳市前海蛇口启迪实业，前海深港合作区十九单元01街坊（5号线铁路公园站）。房网物业类型登记为\"商业住宅、商业、写字楼\"，2020-05-31开盘、总房源741、建面38693.27㎡、物业费7.5元/㎡·月，全部户型41-92㎡一二房；贝壳记2栋758户、2020年建成、塔楼。\"公馆\"＋商办登记＋高物业费＋小户型，判为商务公寓/商办混合，不带学位。",
+   "sources": [
+    "https://bol.szhome.com/housedetail/5174.html",
+    "https://sz.lianjia.com/xiaoqu/24000000004160/"
+   ]
+  },
+  {
+   "id": 124,
+   "name": "龙海家园",
+   "type": "安居房人才房",
+   "built_year": "2015",
+   "units_total": "未知",
+   "buildings": "未知",
+   "layout_main": "单身公寓约35㎡ / 一房一厅约42㎡ / 二房约53㎡（市住房保障署配租通告原文）",
+   "large_unit": "否",
+   "resettlement": "无",
+   "confidence": "确认",
+   "note": "官方定性：深圳市公共租赁住房（公租房），不是商品房。市住建局2015-01-30《关于龙海家园公共租赁住房终审合格家庭名单公示及选房签约等有关事项的通告》：2015-03选房、2015-05-16起入住；市住建局另称其为\"我市最大规模保障房项目\"；2025年官方\"和美社区\"专题写明\"坐落于南山区南山街道桂湾社区的龙海家园，是地铁前海车辆段上盖保障性住房\"。2021年残疾人定向配租通告给出地址\"南山区桂湾三路与十一号路交叉路口东侧\"及户型面积（35/42/53㎡）。因不可上市交易，贝壳、房天下、乐有家、深圳房网均无小区收录，总套数与栋数官方未披露 → 留未知，不编造。2024年10月市城建档案馆另接收\"龙海家园项目（第二批次）\"，建设单位深圳市地铁集团，说明有后续批次。",
+   "sources": [
+    "https://zjj.sz.gov.cn/gkmlpt/content/5/5612/post_5612416.html",
+    "http://zjj.sz.gov.cn/gkmlpt/content/9/9099/post_9099912.html",
+    "https://zjj.sz.gov.cn/gkmlpt/content/12/12330/post_12330920.html",
+    "https://zjj.sz.gov.cn/xxgk/ztzl/cjdafw/jsgs/content/post_11702204.html"
+   ]
+  },
+  {
+   "id": 125,
+   "name": "四海小区",
+   "type": "住宅小区",
+   "built_year": "1984",
+   "units_total": "2362",
+   "buildings": "42",
+   "layout_main": "未知（在售多为3房；80年代多层为主）",
+   "large_unit": "未知",
+   "resettlement": "无",
+   "confidence": "单一来源",
+   "note": "蛇口工业八路与四海路交汇处（12号线四海站），开发主体招商局地产（招商局蛇口工业区早期建设），物业费仅1.2元/㎡·月。贝壳：1984年建成、42栋2362户；房天下记1998年建成（疑为部分楼栋改造或口径不同，两者都保留）。性质上属招商局蛇口工业区早期单位福利房，现已商品化、可正常二手交易，故归\"住宅小区\"而非\"宿舍单位房\"，但购房前应核实产权类型。无户型面积数据，大户型留未知。",
+   "sources": [
+    "https://sz.lianjia.com/xiaoqu/2411049739934/",
+    "https://api.ershoufangdata.com/api/community/list?community=%E5%9B%9B%E6%B5%B7%E5%B0%8F%E5%8C%BA&city=sz"
+   ]
+  },
+  {
+   "id": 126,
+   "name": "花园城三期",
+   "type": "混合",
+   "built_year": "2004-2005",
+   "units_total": "1254-1396",
+   "buildings": "20",
+   "layout_main": "98-120㎡三房二厅 + 140-170㎡四房二厅，另配50-70㎡公寓产品",
+   "large_unit": "部分",
+   "resettlement": "无",
+   "confidence": "确认",
+   "note": "招商房地产开发（蛇口花园城三期），工业大道与工业八路交汇处（12号线四海站）。房网：2004-05-17开盘、总房源1254、占地35340㎡、建面39323㎡、容积率2.5，物业类型登记\"商品住宅、商业\"，介绍原文\"以98—120平方米的三房二厅和140-170平方米的四房二厅为主，并配以50-70平方米的公寓产品\"；贝壳记20栋1396户、2004年，房天下记2005年。因同一小区内住宅＋公寓混合，type记\"混合\"（主体仍是住宅）。含140-170㎡四房，故大户型\"部分\"。",
+   "sources": [
+    "https://bol.szhome.com/housedetail/0673.html",
+    "https://sz.lianjia.com/xiaoqu/2411049773494/"
+   ]
+  },
+  {
+   "id": 127,
+   "name": "翠竹园",
+   "type": "住宅小区",
+   "built_year": "1993",
+   "units_total": "266",
+   "buildings": "11",
+   "layout_main": "未知（在售多为3-4房；11栋266户的低密度板楼）",
+   "large_unit": "未知",
+   "resettlement": "无",
+   "confidence": "单一来源",
+   "note": "蛇口荔园路25号（12号线四海站），深圳招商地产开发，板楼。贝壳：1993年建成、11栋266户；房天下记1998年。OSM占地35388㎡÷266户≈133㎡/户土地，属低密度老小区，可能含大面积单位但无户型数据支撑，大户型留未知。防同名：罗湖区翠竹街道亦有多个含\"翠竹\"小区，此条以南山蛇口商圈+荔园路+招商地产交叉确认。",
+   "sources": [
+    "https://sz.lianjia.com/xiaoqu/2411049944775/",
+    "https://api.ershoufangdata.com/api/community/list?community=%E7%BF%A0%E7%AB%B9%E5%9B%AD&city=sz"
+   ]
+  },
+  {
+   "id": 128,
+   "name": "晗山悦海",
+   "type": "混合",
+   "built_year": "2019-2022",
+   "units_total": "1144",
+   "buildings": "未知",
+   "layout_main": "未知（房网户型库为空）",
+   "large_unit": "未知",
+   "resettlement": "无",
+   "confidence": "单一来源",
+   "note": "备案名\"晗山悦海城\"，开发商深圳市华园房地产，南海大道与工业八路交汇处西北侧（12号线四海站，负一层规划公交首末站接驳9号线四海站）。房网物业类型登记为\"其他、商品住宅、商业、写字楼\"，项目特色含\"精品公寓、综合体\"，占地19341.92㎡、总建面232595.52㎡、容积率7.39、总房源1144、车位992 → 明确是住宅＋公寓＋商业＋写字楼的高容积率综合体，购买时需按栋/按房号区分产权性质。房天下记2019年建成；市住建局城建档案2022年12月与2023年2月分别接收本项目及\"晗山悦海幼儿园\"，故建成年份记2019-2022区间。贝壳无收录（可能因公寓/新盘）。",
+   "sources": [
+    "https://bol.szhome.com/housedetail/5153.html",
+    "https://zjj.sz.gov.cn/xxgk/ztzl/cjdafw/jsgs/content/post_10465370.html",
+    "https://zjj.sz.gov.cn/xxgk/ztzl/cjdafw/jsgs/content/post_10375159.html"
+   ]
+  },
+  {
+   "id": 129,
+   "name": "花园城一期",
+   "type": "住宅小区",
+   "built_year": "2000",
+   "units_total": "701",
+   "buildings": "15",
+   "layout_main": "未知（在售以1-3房为主）",
+   "large_unit": "未知",
+   "resettlement": "无",
+   "confidence": "单一来源",
+   "note": "招商地产开发，南海大道与东滨路交汇处（12号线四海站），物业费2.8元/㎡·月。贝壳：2000年建成、15栋701户；房天下同记2000年。房网无一期独立备案页（只有三期/五期），故户型面积未知。按招商花园城系列一期定位，套型应偏中小，但无数据支撑，大户型留未知。",
+   "sources": [
+    "https://sz.lianjia.com/xiaoqu/2411100778370/",
+    "https://api.ershoufangdata.com/api/community/list?community=%E8%8A%B1%E5%9B%AD%E5%9F%8E%E4%B8%80%E6%9C%9F&city=sz"
+   ]
+  },
+  {
+   "id": 130,
+   "name": "招商四海臻邸二期",
+   "type": "住宅小区",
+   "built_year": "2024-2025",
+   "units_total": "208",
+   "buildings": "4",
+   "layout_main": "约104-120㎡三至四房（房网备案介绍原文）",
+   "large_unit": "部分",
+   "resettlement": "无",
+   "confidence": "确认",
+   "note": "备案名\"四海名邸\"、推广名\"四海臻邸二期\"，深圳招商房地产开发，南海大道东侧、工业九路南侧（蛇口花园城旁，宗地号K501-0002，12号线四海站）。房网原文：用地面积9849.92㎡（与OSM 10289㎡吻合）、总建面约44277.4㎡、规划共4栋（1栋约1500㎡文化室、1栋幼儿园、2栋高层住宅）、计容建面约27580㎡、共208户、户型约104-120㎡三至四房，为深圳建筑新规后首批入市产品。市城建档案馆2024年12月接收\"四海臻邸\"（建设单位深圳招商房地产），房天下记2025年建成。含120㎡四房，大户型判\"部分\"。",
+   "sources": [
+    "https://bol.szhome.com/housedetail/12192.html",
+    "https://zjj.sz.gov.cn/xxgk/ztzl/cjdafw/jsgs/content/post_11950783.html",
+    "https://bol.szhome.com/housedetail/11813.html"
+   ]
+  },
+  {
+   "id": 131,
+   "name": "豪方悠然居",
+   "type": "住宅小区",
+   "built_year": "2004",
+   "units_total": "374-394",
+   "buildings": "4",
+   "layout_main": "房网主力户型\"二房×1、三房×1、四房及以上×2\"；套均建面约133-140㎡",
+   "large_unit": "是",
+   "resettlement": "无",
+   "confidence": "单一来源",
+   "note": "深圳市新豪方房地产开发、新豪方物业。房网备案名\"悠然居\"（蛇口工业大道西、工业八路南）：2003-08-16开盘、2004-03-18交房、占地8003.35㎡、建面52295㎡、容积率3.2、总房源374 → 套均约140㎡；贝壳/房天下作\"豪方悠然居\"（南海大道1081号）、4栋394户、2004年建成、蛇口。二者开发商与片区一致、占地与OSM 8972㎡接近，判为同一项目（存在地址表述差异，标记为同一项目的推断）。主力户型含四房及以上、套均>130㎡，大户型判\"是\"。",
+   "sources": [
+    "https://bol.szhome.com/housedetail/0468.html",
+    "https://sz.lianjia.com/xiaoqu/2411100117093/"
+   ]
+  },
+  {
+   "id": 132,
+   "name": "花园城五期",
+   "type": "住宅小区",
+   "built_year": "2010",
+   "units_total": "315-326",
+   "buildings": "2",
+   "layout_main": "68-138㎡ 一房两厅一院/二房两厅一院/三房两厅一院（几乎每户赠送空中庭院）",
+   "large_unit": "部分",
+   "resettlement": "无",
+   "confidence": "确认",
+   "note": "招商房地产开发，蛇口沿山路东、南海大道西、工业八路南（12号线四海站）。房网：2010-01-05开盘、总房源326、占地9754.81㎡、建面27090㎡（介绍称27703.83㎡）、\"由两栋住宅组成，分别为19层及32层，总户数324套，主力户型为68-138平方米\"；贝壳记2栋315户、2010年。因赠送空中庭院可改造，二手挂牌常见4房2厅（贝壳历史挂牌中4室2厅占比最高），实际使用面积偏大，大户型判\"部分\"。",
+   "sources": [
+    "https://bol.szhome.com/housedetail/2514.html",
+    "https://sz.lianjia.com/xiaoqu/2411100117522/"
+   ]
+  }
+ ]
+}

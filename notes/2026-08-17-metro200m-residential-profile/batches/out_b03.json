@@ -1,0 +1,567 @@
+{
+ "batch": "b03",
+ "items": [
+  {
+   "id": 67,
+   "name": "桃花园",
+   "type": "住宅小区",
+   "built_year": "1988",
+   "units_total": "680",
+   "buildings": "未知",
+   "layout_main": "2-3房 84-106㎡（84/88㎡两房，86/106㎡三房）",
+   "large_unit": "否",
+   "resettlement": "未知",
+   "confidence": "单一来源",
+   "note": "乐有家单一来源：南山-南头、前海路西侧、南头中学对面、桃园地铁站B出口，与OSM位置一致。注意同名混淆——罗湖笋岗另有一个「桃花园」（1988年建成、517-712户、特发特力物业），本条不是它。乐有家给的建筑面积105867㎡/容积率2.1与OSM地块16269㎡口径不一致，疑OSM多边形仅覆盖小区一部分；总栋数、是否含福利房均未查到。",
+   "sources": [
+    "https://shenzhen.leyoujia.com/xq/detail/44622.html",
+    "https://fangjia.gotohui.com/info-1187926.html",
+    "https://shenzhen.leyoujia.com/xq/detail/3184.html"
+   ]
+  },
+  {
+   "id": 68,
+   "name": "桃苑小区",
+   "type": "住宅小区",
+   "built_year": "2003",
+   "units_total": "1040",
+   "buildings": "8",
+   "layout_main": "未知（按容积率6.86×OSM占地/户数估户均约80㎡）",
+   "large_unit": "否",
+   "resettlement": "未知",
+   "confidence": "单一来源",
+   "note": "聚汇数据：2003年、住宅、70年产权、1040户/8栋、容积率6.86、南山-南头、深圳南油房地产开发+南油物业、180个车位。同片区另有「桃苑公寓」（1993年、3栋、约800户、58-66㎡两房，乐有家），是不同小区，勿混。户型表未查到，large_unit 系按户均建面推断。",
+   "sources": [
+    "https://fangjia.gotohui.com/info-373694.html",
+    "https://shenzhen.leyoujia.com/xq/detail/1573.html"
+   ]
+  },
+  {
+   "id": 69,
+   "name": "常丰花园",
+   "type": "住宅小区",
+   "built_year": "2000",
+   "units_total": "118",
+   "buildings": "2",
+   "layout_main": "未知",
+   "large_unit": "未知",
+   "resettlement": "未知",
+   "confidence": "单一来源",
+   "note": "聚汇数据：2000年、住宅、70年产权、118户/2栋、容积率2.90、南山-南头。乐有家页面独立确认地址「南山区南头 桃园路与常兴路交界」，与OSM位置吻合（张冠李戴风险已排除）。但118户/2栋与OSM地块8149㎡不匹配，疑OSM多边形把相邻楼栋一起圈进来了；户型未查到。",
+   "sources": [
+    "https://fangjia.gotohui.com/info-1513175.html",
+    "https://zhongshan.leyoujia.com/xq/detail/esf/9506"
+   ]
+  },
+  {
+   "id": 70,
+   "name": "时代骄子",
+   "type": "混合",
+   "built_year": "2003",
+   "units_total": "668（另有920/994口径）",
+   "buildings": "2",
+   "layout_main": "单间/一房/二房/三房 36-93㎡",
+   "large_unit": "否",
+   "resettlement": "无",
+   "confidence": "确认",
+   "note": "全名「时代骄子大厦」，学府路北、南山大道东（南山大道2028/2032号）。咚咚楼盘库：物业类型商品住宅+商业，2003-02-14开盘、2003-10-15最早交房，占地6269.2㎡（≈OSM 7353㎡）、建面52543㎡、总房源668、容积率8.38。乐有家：A/B两栋32层，1-3层为赛格电子商场、5-32层住宅，户型36-93㎡。住宅部分70年产权（聚汇），故判为住宅+商业混合楼而非商务公寓。户数三口径不一（668咚咚/乐有家、920聚汇、994吉屋）。",
+   "sources": [
+    "https://bol.szhome.com/housedetail/438.html",
+    "https://shenzhen.leyoujia.com/xq/detail/332.html",
+    "https://fangjia.gotohui.com/info-112636.html",
+    "https://sz.jiwu.com/detail/602811.html"
+   ]
+  },
+  {
+   "id": 71,
+   "name": "如意家园",
+   "type": "住宅小区",
+   "built_year": "2003",
+   "units_total": "408（另有385备案/414口径）",
+   "buildings": "5（1栋综合楼+4栋18层住宅）",
+   "layout_main": "2-3房为主，二房约73㎡、三房约106-114㎡",
+   "large_unit": "否",
+   "resettlement": "无",
+   "confidence": "确认",
+   "note": "常兴路与桃园路交汇处，距12号线桃园站约280m。咚咚：2002-04-19开盘、2003-04-30最早交房，占地13115.5㎡、建面42000㎡、容积率3.2、217车位，项目介绍明确「1栋综合楼+4栋18层住宅，共408户」；户型库为二房2种/三房4种/四房1种，二房72.77-72.88㎡。乐有家：2003年、408户、4栋小高层、2-3房106-114㎡。聚汇记2004年/414户。四房仅1种户型，故large_unit判否。注意OSM占地5810㎡远小于备案13115.5㎡。",
+   "sources": [
+    "https://bol.szhome.com/housedetail/238.html",
+    "https://bol.szhome.com/hx/238.html",
+    "https://shenzhen.leyoujia.com/xq/detail/1128.html",
+    "https://fangjia.gotohui.com/info-374730.html"
+   ]
+  },
+  {
+   "id": 72,
+   "name": "民政公寓",
+   "type": "不确定",
+   "built_year": "1992",
+   "units_total": "未知",
+   "buildings": "未知",
+   "layout_main": "未知",
+   "large_unit": "未知",
+   "resettlement": "未知",
+   "confidence": "单一来源",
+   "note": "只查到聚汇数据一条：1992年、普通住宅、70年产权、容积率4.6，无户数/栋数/地址/户型。咚咚楼盘库无此项目（自动补全返回空），乐有家/贝壳未检到独立小区页。名称「民政公寓」+1992年+南头桃园站片区，疑为民政系统单位自建/福利房，但无任何直接证据，故type写不确定、不臆断为宿舍单位房。此条是本批信息最薄弱的一条。",
+   "sources": [
+    "https://fangjia.gotohui.com/info-1609991.html"
+   ]
+  },
+  {
+   "id": 73,
+   "name": "南侨花园",
+   "type": "住宅小区",
+   "built_year": "1998-1999",
+   "units_total": "112-115",
+   "buildings": "8",
+   "layout_main": "3房2厅 89㎡ / 约110-120㎡",
+   "large_unit": "部分",
+   "resettlement": "未知",
+   "confidence": "确认",
+   "note": "南山大道20号/2046号（桂庙片区），距12号线桃园站约300m，与OSM一致。乐有家：1998年、112户、住宅商品房、89㎡与约120㎡三房、建面35468㎡、容积率1.2、56车位、深圳一冶南方实业开发。聚汇：1999年、115户/8栋、70年产权、南山物业。★张冠李戴警示：搜索摘要常把「南侨花园」与白石洲沙河东路的「侨洲花园」（1995年、2-3栋、128-370户）混为一谈，两者不是同一小区。",
+   "sources": [
+    "https://shenzhen.leyoujia.com/xq/detail/41797.html",
+    "https://fangjia.gotohui.com/info-374777.html"
+   ]
+  },
+  {
+   "id": 74,
+   "name": "前海润峯府",
+   "type": "住宅小区",
+   "built_year": "未知（2021-12-13开盘备案，交房年份未查到）",
+   "units_total": "743（商品住宅备案套数）",
+   "buildings": "7（6栋商品住宅+1栋人才住房，另配商业与公交首末站）",
+   "layout_main": "建面约109-151㎡（三/四房），A-F座",
+   "large_unit": "部分",
+   "resettlement": "有（规划配建1栋人才住房；非旧改回迁）",
+   "confidence": "确认",
+   "note": "华润置地+金地+电建地产南国置业+前海控股联合开发，前湾四路与听海大道交汇处，物业类型商品住宅+商业，占地26800㎡（OSM 30365㎡）、建面13万㎡、容积率4.85、1300车位、物业费9.9元/㎡、华润物业。项目介绍：6栋住宅+1栋人才住房+7000㎡商业+4000㎡公交首末站。2021-12-14备案743套住宅（A/B/C/D/E/F座），建面约109-151㎡，均价约11.2万/㎡，总价1099-2052万/套，743套当日售罄。因主力段跨109-151㎡，大户型只算「部分」。交房年份查无公示，按铁律写未知。",
+   "sources": [
+    "https://bol.szhome.com/housedetail/11286.html",
+    "https://bol.szhome.com/news/11286.html"
+   ]
+  },
+  {
+   "id": 75,
+   "name": "前海天境",
+   "type": "住宅小区",
+   "built_year": "未知（2021-01开盘售罄，交房年份未查到）",
+   "units_total": "1003（1/2/3/5栋备案；全盘总户数未公示）",
+   "buildings": "未知（备案涉1/2/3/5栋，至少4栋住宅）",
+   "layout_main": "建面约107-146㎡（三/四房），另有商业28-135㎡",
+   "large_unit": "部分",
+   "resettlement": "未知",
+   "confidence": "确认",
+   "note": "全名「前海天境花园」，开发商深圳市龙光房地产（业内称「龙光前海天境」），项目地址「南山区前湾公园地铁站西南侧」，与OSM（距5号线前湾公园站出入口46m）高度一致。2021-01-19备案1/2/3/5栋住宅1003套，建面约107-146㎡、均价约11.2万/㎡；商业建面28-135㎡、均价16.9万/㎡。2021-01-25摇号2852批选1003套，01-28全部选完。咚咚详情页占地/建面/交房均「待定」，故这几项写未知。",
+   "sources": [
+    "https://bol.szhome.com/housedetail/10876.html",
+    "https://bol.szhome.com/news/10876.html"
+   ]
+  },
+  {
+   "id": 76,
+   "name": "南园枫叶公寓",
+   "type": "商务公寓",
+   "built_year": "2014（2012-12-25开盘）",
+   "units_total": "1120",
+   "buildings": "2（A、B座各31层）",
+   "layout_main": "2-3房 41-70㎡",
+   "large_unit": "否",
+   "resettlement": "无",
+   "confidence": "确认",
+   "note": "属「南园枫叶国际广场」一期（南山大道与创业路交汇处，南油片区）。咚咚楼盘库该项目物业类型标为写字楼，项目介绍明确：一期=1栋国标写字楼（枫叶大厦）+2栋高端商务公寓（枫叶公寓）+商业；枫叶公寓建面约7.8万㎡，A/B两座31层，总户数1120套，主力户型41-70㎡的2-3房，「不限购不限贷」——典型深圳商务公寓，不带70年住宅产权/学位。全项目总套数1328（公寓1120+写字楼208）。★口径冲突：聚汇数据把「南园枫叶公寓A座」标为普通住宅、70年产权，与上述开发商口径矛盾，此处采信咚咚+不限购特征。OSM地块19866㎡大于一期占地6825㎡，可能连写字楼与商业一起圈了。",
+   "sources": [
+    "https://bol.szhome.com/housedetail/3865.html",
+    "https://fangjia.gotohui.com/info-373659.html",
+    "https://fangjia.gotohui.com/info-1610925.html"
+   ]
+  },
+  {
+   "id": 77,
+   "name": "南海城中心",
+   "type": "住宅小区",
+   "built_year": "1997",
+   "units_total": "752",
+   "buildings": "9",
+   "layout_main": "未知（按容积率3.5×OSM占地/户数估户均约70㎡）",
+   "large_unit": "否",
+   "resettlement": "未知",
+   "confidence": "单一来源",
+   "note": "聚汇数据：1997年、住宅、70年产权、752户/9栋、容积率3.50、南山-南山中心区、深圳南油物业管理。同平台另有「南海城」一条（不同记录、同片区），注意二者可能是同一大盘的不同分区。咚咚楼盘库无此项目，未取得第二独立来源；户型表未查到，large_unit系按户均建面推断。",
+   "sources": [
+    "https://fangjia.gotohui.com/info-996093.html",
+    "https://fangjia.gotohui.com/info-374015.html"
+   ]
+  },
+  {
+   "id": 78,
+   "name": "现代城华庭",
+   "type": "混合",
+   "built_year": "2004",
+   "units_total": "1468-1873（口径不一）",
+   "buildings": "6",
+   "layout_main": "一房约53㎡、二房约64-87㎡、三房约105-131㎡、四房约237-260㎡；主力二/三房",
+   "large_unit": "部分",
+   "resettlement": "无",
+   "confidence": "确认",
+   "note": "咚咚楼盘库项目名为「TIME现代城」，创业路与南光路交汇处，2003-10-18开盘、2004-09-30最早交房，占地17213.4㎡（OSM 14922㎡）、建面180800㎡（介绍199460㎡）、总房源1873、容积率10.5、500车位、物业费8.0元/㎡；6座高层围合，户型「一房一厅到五房二厅近20种」。聚汇：2004年、住宅、70年产权、1468户/6栋、容积率10.05。★判混合的理由：容积率10+、物业费8元/㎡属商办水平，且咚咚物业类型为商品住宅+商业，疑部分楼栋/裙楼为商业或商务公寓（未逐栋核实）。★咚咚户型库里105/64-70/79㎡等面积与相邻「万象新园」完全重合，疑有串档，户型面积仅供参考。",
+   "sources": [
+    "https://bol.szhome.com/housedetail/561.html",
+    "https://bol.szhome.com/hx/561.html",
+    "https://fangjia.gotohui.com/info-109754.html"
+   ]
+  },
+  {
+   "id": 79,
+   "name": "南光城市花园",
+   "type": "住宅小区",
+   "built_year": "2009（计划竣工2009-04-10；实际交付年份未确认）",
+   "units_total": "1278",
+   "buildings": "未知",
+   "layout_main": "二房为主（户型11种：一房2/二房6/三房2/四房及以上1）",
+   "large_unit": "否",
+   "resettlement": "未知",
+   "confidence": "单一来源",
+   "note": "咚咚楼盘库：深圳市阳光华艺房地产+南岗实业开发，南山大道以东、海德二道以南、创业路以北，占地22843.83㎡、建面104550㎡（招标107478㎡）、总房源1278、容积率4.50、800车位、物业费2.98元/㎡、新一代物业；计划开工2007-11-16、计划竣工2009-04-10。★勿与聚汇数据的「南光花园」混淆——那是1994年建成、468户/10栋的另一个小区。OSM地块13625㎡小于备案占地22844㎡，疑仅覆盖一部分。只有咚咚一个来源，故单一来源。",
+   "sources": [
+    "https://bol.szhome.com/housedetail/1674.html",
+    "https://fangjia.gotohui.com/info-374088.html"
+   ]
+  },
+  {
+   "id": 80,
+   "name": "东方海雅居",
+   "type": "住宅小区",
+   "built_year": "2002（2001-12-28开盘，2002-12-31最早交房）",
+   "units_total": "306-322",
+   "buildings": "2",
+   "layout_main": "二房2种 + 三房2种（具体面积未查到）",
+   "large_unit": "否",
+   "resettlement": "无",
+   "confidence": "确认",
+   "note": "咚咚：深圳市东方中居实业开发，创业路南、南光路西，占地4487.7㎡（≈OSM 4832㎡）、总房源306、容积率3.10、345车位、物业费2.90、东方物业；主力户型二房2种/三房2种。聚汇：2001年、住宅、70年产权、322户/2栋、容积率7.29。两源容积率冲突（3.10 vs 7.29），户数306/322小差；仅二三房、无四房，故large_unit判否。",
+   "sources": [
+    "https://bol.szhome.com/housedetail/187.html",
+    "https://bol.szhome.com/hx/187.html",
+    "https://fangjia.gotohui.com/info-374467.html"
+   ]
+  },
+  {
+   "id": 81,
+   "name": "怡海广场",
+   "type": "住宅小区",
+   "built_year": "1996",
+   "units_total": "464",
+   "buildings": "2",
+   "layout_main": "未知（按容积率9.65×OSM占地/户数估户均约92㎡）",
+   "large_unit": "未知",
+   "resettlement": "未知",
+   "confidence": "单一来源",
+   "note": "名字带「广场」，但聚汇数据记物业类型=住宅、产权=70年、塔楼、464户/2栋、容积率9.65、南山-南山中心区，1996年。咚咚楼盘库自动补全无此项目，未取得第二来源，产权性质建议二次核实（这是本批最需要复核的「名称易误判」项之一）。户型表未查到。",
+   "sources": [
+    "https://fangjia.gotohui.com/info-1512757.html"
+   ]
+  },
+  {
+   "id": 82,
+   "name": "荔苑小区",
+   "type": "住宅小区",
+   "built_year": "1996",
+   "units_total": "1018",
+   "buildings": "27",
+   "layout_main": "未知（容积率1.70、27栋多层板楼，按OSM占地估户均约84㎡）",
+   "large_unit": "否",
+   "resettlement": "未知",
+   "confidence": "单一来源",
+   "note": "聚汇数据：1996年、住宅、70年产权、1018户/27栋、板楼、容积率1.70、南山-南头、深圳市常安物业、物业费1元/㎡。同平台另有「荔苑小区北区」「荔苑小区南区」两条（均1996年，无户数），说明小区分南北区，OSM单地块50357㎡与27栋多层规模相符。户型面积未查到，large_unit按容积率1.7的90年代多层板楼推断为否。",
+   "sources": [
+    "https://fangjia.gotohui.com/info-374902.html",
+    "https://fangjia.gotohui.com/info-1611262.html",
+    "https://fangjia.gotohui.com/info-1610343.html"
+   ]
+  },
+  {
+   "id": 83,
+   "name": "万象新园",
+   "type": "住宅小区",
+   "built_year": "2000-2002（一期2000-2001交房，二期2002）",
+   "units_total": "1240（主体，另二期1476；咚咚备案377套）",
+   "buildings": "4（二期另4栋）",
+   "layout_main": "一/二/三房 35-97㎡；一房45.34㎡、二房63.76-70.22㎡、三房104.96-105.78㎡",
+   "large_unit": "否",
+   "resettlement": "无",
+   "confidence": "确认",
+   "note": "深圳南油开发建设有限公司开发，桂庙路北、南光路西，咚咚：2000-10-20开盘、2001-12-28最早交房、占地15810.3㎡（≈OSM 17832㎡）、建面110000㎡、容积率6.53、300车位、南油物业；项目介绍明确「全部为中小户型，35-97㎡的一房、二房、三房」——large_unit可硬判为否。聚汇：2000年、1240户/4栋、70年产权；同平台「万象新园二期」2002年、1476户/4栋（南油）。户数三口径差异大（377备案/1240/二期1476），OSM单地块疑仅覆盖一期。",
+   "sources": [
+    "https://bol.szhome.com/housedetail/219.html",
+    "https://bol.szhome.com/hx/219.html",
+    "https://fangjia.gotohui.com/info-109743.html",
+    "https://fangjia.gotohui.com/info-374556.html"
+   ]
+  },
+  {
+   "id": 84,
+   "name": "学府花园",
+   "type": "住宅小区",
+   "built_year": "1999",
+   "units_total": "556",
+   "buildings": "5",
+   "layout_main": "未知（按容积率3.20×OSM占地/户数估户均约100㎡）",
+   "large_unit": "未知",
+   "resettlement": "未知",
+   "confidence": "单一来源",
+   "note": "聚汇数据：1999年、住宅、产权描述「商品房产权70年」、556户/5栋、板楼、容积率3.20、南山-南头、深圳市万厦物业。★同名警示：深圳罗湖、龙岗等地亦有「学府花园」，本条以「南山-南头」+万厦物业+南山站片区定位；咚咚楼盘库无此项目，未取得第二独立来源。户型未查到，故large_unit写未知。",
+   "sources": [
+    "https://fangjia.gotohui.com/info-116490.html"
+   ]
+  },
+  {
+   "id": 85,
+   "name": "康乐大厦",
+   "type": "住宅小区",
+   "built_year": "1996",
+   "units_total": "608",
+   "buildings": "3",
+   "layout_main": "未知",
+   "large_unit": "未知",
+   "resettlement": "未知",
+   "confidence": "单一来源",
+   "note": "名字带「大厦」但聚汇数据记物业类型=住宅、产权=70年、塔楼、608户/3栋、容积率7.42、南山-南头、深圳市康乐物业管理。深圳福田/罗湖亦有同名「康乐大厦」，本条按南山-南头+康乐物业定位。咚咚楼盘库无此项目，仅单一来源；户型未查到。",
+   "sources": [
+    "https://fangjia.gotohui.com/info-113891.html"
+   ]
+  },
+  {
+   "id": 86,
+   "name": "中兴之家",
+   "type": "住宅小区",
+   "built_year": "1989",
+   "units_total": "854",
+   "buildings": "10",
+   "layout_main": "未知（按容积率4.03×OSM占地/户数估户均约48㎡，属小户型）",
+   "large_unit": "否",
+   "resettlement": "未知",
+   "confidence": "单一来源",
+   "note": "聚汇数据：1989年、住宅、70年产权、854户/10栋、容积率4.03、南山-南油、深圳市中城物业。1989年建成+南油片区+户均估算仅约48㎡，疑为南油集团时期的单位/福利房片区，但无直接证据，故resettlement写未知、不臆断为宿舍单位房。咚咚楼盘库无此项目。注意与中兴通讯的员工住房无已证实关系（名称巧合，未核实）。",
+   "sources": [
+    "https://fangjia.gotohui.com/info-374350.html"
+   ]
+  },
+  {
+   "id": 87,
+   "name": "金田花园",
+   "type": "住宅小区",
+   "built_year": "1996",
+   "units_total": "357",
+   "buildings": "10",
+   "layout_main": "未知（按容积率4.00×OSM占地/户数估户均约99㎡）",
+   "large_unit": "未知",
+   "resettlement": "未知",
+   "confidence": "单一来源",
+   "note": "对应聚汇数据「金田花园(南山)」：1996年、住宅、70年产权、357户/10栋、塔楼、容积率4.00、南山-南山中心区、深圳市金田物业。★同名警示：深圳福田、宝安、龙岗均有「金田花园」，咚咚楼盘库里「金田花园花域/二期花域」是另外的在售新盘，与本条无关。仅单一来源，户型未查到。",
+   "sources": [
+    "https://fangjia.gotohui.com/info-903932.html",
+    "https://fangjia.gotohui.com/info-374272.html"
+   ]
+  },
+  {
+   "id": 88,
+   "name": "光大邨",
+   "type": "住宅小区",
+   "built_year": "1998",
+   "units_total": "243",
+   "buildings": "4",
+   "layout_main": "未知",
+   "large_unit": "未知",
+   "resettlement": "未知",
+   "confidence": "单一来源",
+   "note": "OSM名「光大邨」＝聚汇数据「光大村」（邨为村的异体字）：1998年、住宅、70年产权、243户/4栋、板楼、南山-南头。咚咚楼盘库自动补全的「光大」系项目均为其他城市/片区楼盘，与本条无关。仅单一来源；容积率、户型均未查到。",
+   "sources": [
+    "https://fangjia.gotohui.com/info-1513142.html"
+   ]
+  },
+  {
+   "id": 89,
+   "name": "顺天大厦",
+   "type": "住宅小区",
+   "built_year": "2004（2003-11-05开盘）",
+   "units_total": "81-126（口径不一）",
+   "buildings": "1",
+   "layout_main": "三房（4种户型，面积未查到）",
+   "large_unit": "未知",
+   "resettlement": "未知",
+   "confidence": "确认",
+   "note": "咚咚：开发商=深圳市南山区南山实业公司，桂庙路与常兴路交汇处，2003-11-05开盘，占地7074.3㎡（≈OSM 7118㎡），总房源81，物业费2.20，物业公司=南山街道办社区中心物业部，主力户型三房4种。聚汇：2004年、住宅、126户/1栋、容积率2.27、顺天物业。★开发商为区属实业公司、物业由街道办社区中心承担，疑有单位/村股份公司背景（可能含安置或福利房成分），但无直接证据，resettlement写未知。户数81与126口径不一。",
+   "sources": [
+    "https://bol.szhome.com/housedetail/570.html",
+    "https://bol.szhome.com/hx/570.html",
+    "https://fangjia.gotohui.com/info-1512851.html"
+   ]
+  },
+  {
+   "id": 90,
+   "name": "光彩新世纪",
+   "type": "住宅小区",
+   "built_year": "2004",
+   "units_total": "511-517",
+   "buildings": "3",
+   "layout_main": "一房49㎡二厅 ~ 三房两厅90㎡；二房为主（户型：一房2/二房5/三房1）；二房79.29-86.62㎡",
+   "large_unit": "否",
+   "resettlement": "无",
+   "confidence": "确认",
+   "note": "全名「光彩新世纪家园」，泛海建设集团开发，南山大道与桂庙路交汇处。咚咚：2004-02-15开盘、2004-12-31最早交房，占地7474.3㎡（OSM 5766㎡）、建面43350㎡（介绍57586㎡）、总房源517、容积率5.80、248车位、物业费2.50、光彩物业；介绍明确「三层商业裙楼连接的三栋高层住宅，户型由49㎡一房二厅到90㎡三房两厅」，故large_unit硬判否。聚汇：2004年、住宅、70年产权、511户/3栋。底商为裙楼，住宅部分70年产权，仍归住宅小区。",
+   "sources": [
+    "https://bol.szhome.com/housedetail/609.html",
+    "https://bol.szhome.com/hx/609.html",
+    "https://fangjia.gotohui.com/info-110085.html"
+   ]
+  },
+  {
+   "id": 91,
+   "name": "怡苑阁",
+   "type": "住宅小区",
+   "built_year": "1993",
+   "units_total": "126",
+   "buildings": "2",
+   "layout_main": "未知（按容积率1.80×OSM占地/户数估户均约76㎡）",
+   "large_unit": "否",
+   "resettlement": "未知",
+   "confidence": "单一来源",
+   "note": "聚汇数据：1993年、住宅、70年产权、126户/2栋、容积率1.80、南山-南山中心区、深圳市顺天物业。咚咚楼盘库无此项目，仅单一来源；户型未查到，large_unit按容积率1.8的90年代初小体量项目推断为否。",
+   "sources": [
+    "https://fangjia.gotohui.com/info-1512720.html"
+   ]
+  },
+  {
+   "id": 92,
+   "name": "荔园大厦",
+   "type": "商务公寓",
+   "built_year": "1996",
+   "units_total": "368",
+   "buildings": "2",
+   "layout_main": "未知（按容积率2.81×OSM占地/户数估户均约35㎡，属单间/小户型）",
+   "large_unit": "否",
+   "resettlement": "无",
+   "confidence": "单一来源",
+   "note": "★本批唯一查到非70年产权的老楼：聚汇数据明确记「产权描述=50年产权」，1996年、368户/2栋、塔楼、容积率2.81、南山-南油、深圳市晨晖置业发展。50年产权+户均估算约35㎡→判为商办性质公寓（深圳所谓商务公寓，无学位）。但仅单一来源，且深圳罗湖亦有同名「荔园大厦」，产权年限务必二次核实——这是本批最需要复核的一条。",
+   "sources": [
+    "https://fangjia.gotohui.com/info-15810.html"
+   ]
+  },
+  {
+   "id": 93,
+   "name": "天源大厦",
+   "type": "住宅小区",
+   "built_year": "1999",
+   "units_total": "320",
+   "buildings": "2",
+   "layout_main": "未知（按容积率5.00×OSM占地/户数估户均约58㎡）",
+   "large_unit": "否",
+   "resettlement": "未知",
+   "confidence": "单一来源",
+   "note": "聚汇数据：1999年、住宅、70年产权、320户/2栋、塔楼、容积率5.00、南山-南油、深圳金阳成物业。名字带「大厦」但产权记为70年，故归住宅小区（与id 92荔园大厦的50年产权形成对照，说明不能只凭名字判断）。咚咚楼盘库无此项目，仅单一来源；户型未查到。",
+   "sources": [
+    "https://fangjia.gotohui.com/info-110457.html"
+   ]
+  },
+  {
+   "id": 94,
+   "name": "跃华园",
+   "type": "住宅小区",
+   "built_year": "1999",
+   "units_total": "128",
+   "buildings": "1",
+   "layout_main": "未知（按容积率2.40×OSM占地/户数估户均约60㎡）",
+   "large_unit": "否",
+   "resettlement": "未知",
+   "confidence": "单一来源",
+   "note": "聚汇数据：1999年、住宅、70年产权、128户/1栋、塔楼、容积率2.40、南山-南头、深圳市鑫森磊物业。src=地块但仅1栋、OSM占地3174㎡，属单体住宅楼性质。咚咚楼盘库无此项目，仅单一来源；户型未查到。",
+   "sources": [
+    "https://fangjia.gotohui.com/info-1512740.html"
+   ]
+  },
+  {
+   "id": 95,
+   "name": "鸿瑞花园",
+   "type": "住宅小区",
+   "built_year": "1999-2003（一期1999、二期2002、三期2003）",
+   "units_total": "约1472（一期291+二期408+三期773）",
+   "buildings": "约31（12+11+8）",
+   "layout_main": "未知",
+   "large_unit": "未知",
+   "resettlement": "未知",
+   "confidence": "单一来源",
+   "note": "聚汇数据主条（鸿瑞花园）：1999年、住宅、70年产权、291户/12栋、容积率2.60、南山-南山中心区、半岛房地产物业；同平台「鸿瑞花园二期」2002年408户/11栋、「鸿瑞花园三期」2003年773户/8栋（一期条目无数据）。★口径提醒：OSM单地块43909㎡明显覆盖多期，若按主条291户会严重低估，故此处给合计值。所有分期数据均来自聚汇数据同一平台，未获第二独立来源；户型未查到。",
+   "sources": [
+    "https://fangjia.gotohui.com/info-116075.html",
+    "https://fangjia.gotohui.com/info-374349.html",
+    "https://fangjia.gotohui.com/info-374696.html"
+   ]
+  },
+  {
+   "id": 96,
+   "name": "康乐园",
+   "type": "住宅小区",
+   "built_year": "1991",
+   "units_total": "301",
+   "buildings": "13",
+   "layout_main": "未知（容积率1.16、13栋多层，按OSM占地估户均约70㎡）",
+   "large_unit": "否",
+   "resettlement": "未知",
+   "confidence": "单一来源",
+   "note": "聚汇数据：1991年、住宅、70年产权、301户/13栋、板楼、容积率1.16、南山-南山中心区、深圳市南油物业。容积率1.16+13栋多层+南油物业，疑为南油集团早期职工/福利房片区，但无直接证据，resettlement写未知。★同名警示：深圳多区（罗湖、宝安）均有「康乐园」，本条按南山中心区+南油物业定位。咚咚楼盘库无此项目。",
+   "sources": [
+    "https://fangjia.gotohui.com/info-1513021.html"
+   ]
+  },
+  {
+   "id": 97,
+   "name": "缤纷假日豪园",
+   "type": "住宅小区",
+   "built_year": "2001",
+   "units_total": "587",
+   "buildings": "6",
+   "layout_main": "未知（按容积率5.68×OSM占地/户数估户均约117㎡）",
+   "large_unit": "部分",
+   "resettlement": "未知",
+   "confidence": "单一来源",
+   "note": "聚汇数据：2001年、住宅、70年产权、587户/6栋、板楼+板塔结合、容积率5.68、南山-南山中心区、深圳金阳成物业。large_unit=部分 是推测：名称含「豪园」且按容积率×OSM占地/户数估户均约117㎡，疑三房大户为主，但没查到户型表，不能确认。同平台另有「缤纷假日」一条（无数据），疑同一项目不同分期/别名。咚咚楼盘库无此项目。",
+   "sources": [
+    "https://fangjia.gotohui.com/info-114440.html",
+    "https://fangjia.gotohui.com/info-1610619.html"
+   ]
+  },
+  {
+   "id": 98,
+   "name": "龙城新苑",
+   "type": "住宅小区",
+   "built_year": "1993",
+   "units_total": "203",
+   "buildings": "12",
+   "layout_main": "未知（按容积率2.61×OSM占地/户数估户均约106㎡）",
+   "large_unit": "未知",
+   "resettlement": "未知",
+   "confidence": "单一来源",
+   "note": "聚汇数据：1993年、住宅、70年产权、203户/12栋、容积率2.61、南山-南山中心区、深圳南油钜建物业。★同名/易混警示：深圳龙岗有「龙城」系大量小区（龙城花园等），本条是南山区南山中心区、南油钜建物业管理的1993年老小区，勿与龙岗龙城片区混淆。咚咚楼盘库无此项目，仅单一来源；户型未查到。",
+   "sources": [
+    "https://fangjia.gotohui.com/info-374442.html"
+   ]
+  },
+  {
+   "id": 99,
+   "name": "山东大厦",
+   "type": "混合",
+   "built_year": "1997",
+   "units_total": "262",
+   "buildings": "3",
+   "layout_main": "未知",
+   "large_unit": "未知",
+   "resettlement": "未知",
+   "confidence": "单一来源",
+   "note": "聚汇数据：1997年、物业类型记住宅、70年产权、262户/3栋、板楼+塔楼、容积率8.17、南山-南山中心区。★判混合的理由：容积率8.17×OSM占地6159㎡≈5万㎡建面，除以262户得约192㎡/户，远超住宅合理值，说明总建面中含大量非住宅（写字楼/酒店/商业）面积；名称「山东大厦」也符合驻深单位综合楼特征。但住宅与非住宅的分栋、是否含单位宿舍均未查到，故户型/大户型/回迁均写未知。咚咚楼盘库无此项目，仅单一来源，建议二次核实。",
+   "sources": [
+    "https://fangjia.gotohui.com/info-1512881.html"
+   ]
+  }
+ ]
+}
