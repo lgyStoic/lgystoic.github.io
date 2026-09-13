@@ -11,7 +11,9 @@ notes/index.html  归档页：按年分组 + 关键词搜索 + 标签筛选
 notes/notes.json  唯一的内容索引（所有列表都由它生成）
 notes/<slug>/     每篇笔记，自带样式，互不影响
 site.css site.js  站点样式与交互（深浅色、搜索、筛选）
-tools/build.py    从 notes.json 生成列表 HTML、feed.xml、sitemap.xml
+tools/build.py    从 notes.json 与 radar/data 生成列表 HTML、feed.xml、sitemap.xml
+tools/radar.py    AI 信息雷达：抓 RSS → 去重 → 打分 → （可选）Claude 摘要
+radar/            雷达页、信息源配置（sources.json）、每日数据（data/）、每期永久链接
 templates/note/   新笔记的起步模板
 ```
 
@@ -65,6 +67,25 @@ git add . && git commit -m "Add my new note" && git push origin master
 > 脚本只改写页面里 `<!-- build:xxx -->` 到 `<!-- /build:xxx -->` 之间的内容，
 > 标记之外的排版随便改，重跑不会被覆盖。`featured` 字段目前不影响首页，
 > 首页展示的是最近更新的 6 篇。
+
+## AI 信息雷达
+
+`/radar/` 是每天自动生成的信息简报。流程全部跑在 GitHub Actions 里
+（`.github/workflows/radar.yml`，北京时间每天 08:00，也可在 Actions 页手动触发）：
+
+```text
+radar/sources.json  →  tools/radar.py  →  radar/data/<date>.json  →  tools/build.py  →  radar/<date>/
+   信息源 + 规则         抓取/去重/打分          当天数据                 渲染页面 + RSS
+```
+
+- **信息源**：`radar/sources.json` 的 `sources`。每个源有 `category`、`weight`（0-3，越高越容易进「必看」），
+  噪音大的源加 `"require_topic": true`，只保留命中 `topic_keywords` 的条目。
+- **规则**：`high_keywords` 命中标题 +2 分，`topic_keywords` 每命中一个 +1（最多 +2），`mute_keywords` −3。
+  ≥4 必看，2-3 值得看，其余折叠。
+- **去重**：`radar/data/seen.json` 记录 120 天内出现过的链接，跨天不重复。
+- **AI 摘要**：仓库 Secrets 里配置 `ANTHROPIC_API_KEY` 后自动启用，Claude 负责优先级判断、
+  中文一句话摘要和「为什么值得看」。没有 key 时退回关键词规则，摘要取原文前 160 字。
+- **本地试跑**：`python3 tools/radar.py --dry-run` 只打印不落盘；`python3 tools/radar.py && python3 tools/build.py` 生成完整页面。
 
 ## 发布
 

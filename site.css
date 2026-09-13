@@ -627,3 +627,170 @@ main.wrap {
     display: none;
   }
 }
+
+/* ---------- 雷达 ---------- */
+
+.radar-intro h1 {
+  font-size: clamp(1.5rem, 1.1rem + 1.6vw, 2rem);
+}
+
+.radar-pager {
+  display: flex;
+  gap: 10px;
+  margin-top: 14px;
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+}
+
+.radar-pager a:hover {
+  color: var(--accent);
+}
+
+.radar-stats {
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  line-height: 1.6;
+}
+
+.radar-failed {
+  margin-top: 6px;
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+.radar-failed summary {
+  cursor: pointer;
+  width: fit-content;
+}
+
+.radar-failed p {
+  margin-top: 4px;
+}
+
+.radar-heading {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-top: 30px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--line);
+  font-size: 1.05rem;
+}
+
+.radar-heading b {
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  font-weight: 500;
+}
+
+.radar-heading.prio-high {
+  border-bottom-color: var(--accent);
+}
+
+.radar-low > summary {
+  cursor: pointer;
+  list-style: none;
+}
+
+.radar-low > summary::-webkit-details-marker {
+  display: none;
+}
+
+.radar-low > summary .radar-heading::after {
+  content: "展开 ▾";
+  margin-left: auto;
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 0.74rem;
+  font-weight: 500;
+}
+
+.radar-low[open] > summary .radar-heading::after {
+  content: "收起 ▴";
+}
+
+.radar-list {
+  padding: 0;
+  list-style: none;
+}
+
+.radar-item {
+  padding: 16px 0;
+  border-bottom: 1px solid var(--line-soft);
+}
+
+.radar-item:last-child {
+  border-bottom: 0;
+}
+
+.radar-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 0.74rem;
+}
+
+.badge {
+  padding: 2px 7px;
+  border-radius: 5px;
+  background: var(--bg-tint);
+  color: var(--ink-soft);
+  font-weight: 600;
+}
+
+.prio-high .badge {
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.radar-title {
+  margin-top: 6px;
+  font-size: 1.05rem;
+  font-weight: 620;
+  letter-spacing: -0.012em;
+  line-height: 1.4;
+}
+
+.radar-title a:hover {
+  color: var(--accent);
+}
+
+.radar-summary {
+  margin-top: 5px;
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+  line-height: 1.65;
+}
+
+.radar-why {
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+
+.radar-why::before {
+  content: "→ ";
+  color: var(--accent);
+}
+
+.radar-item .post-tags {
+  margin-top: 8px;
+}
+
+.muted-date {
+  margin-left: 6px;
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  font-weight: 500;
+}
+
+.radar-pick .post-date {
+  text-transform: none;
+}

@@ -1,0 +1,52 @@
+name: AI 信息雷达
+
+on:
+  schedule:
+    # 每天北京时间 08:00（UTC 00:00）
+    - cron: "0 0 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: radar
+  cancel-in-progress: false
+
+jobs:
+  radar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: master
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: 安装 anthropic SDK（仅在配置了 key 时使用）
+        run: pip install --quiet anthropic
+
+      - name: 抓取并打分
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: python3 tools/radar.py
+
+      - name: 渲染页面
+        run: python3 tools/build.py
+
+      - name: 提交并推送
+        run: |
+          git config user.name "radar-bot"
+          git config user.email "radar-bot@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "没有变化，跳过提交"
+            exit 0
+          fi
+          DATE=$(TZ=Asia/Shanghai date +%F)
+          git commit -m "radar: ${DATE}"
+          git pull --rebase origin master
+          git push origin HEAD:master
