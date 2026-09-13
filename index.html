@@ -3,39 +3,180 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Garry 的学习站</title>
-    <meta name="description" content="个人课程笔记、论文阅读和概念地图。" />
-    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%231f252b'/%3E%3Ctext x='32' y='39' text-anchor='middle' font-size='18' font-family='Arial' font-weight='700' fill='white'%3EG%3C/text%3E%3C/svg%3E" />
+    <title>Garry 的学习站 — GPU kernel、训练性能与生成模型笔记</title>
+    <meta
+      name="description"
+      content="Garry（lgyStoic）的中文笔记存档：GPU kernel 与训练性能优化、PyTorch 内部机制、Flow Matching 与扩散模型，以及城市住房数据研究。"
+    />
+    <link rel="canonical" href="https://lgystoic.github.io/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Garry 的学习站" />
+    <meta property="og:title" content="Garry 的学习站" />
+    <meta
+      property="og:description"
+      content="GPU kernel、训练性能、生成模型和城市数据的中文笔记存档。"
+    />
+    <meta property="og:url" content="https://lgystoic.github.io/" />
+    <meta property="og:locale" content="zh_CN" />
+    <meta name="twitter:card" content="summary" />
+    <link rel="alternate" type="application/rss+xml" title="Garry 的学习站" href="./feed.xml" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231b1b1a'/%3E%3Ctext x='32' y='43' text-anchor='middle' font-size='32' font-family='Helvetica,Arial' font-weight='700' fill='%23fbfaf8'%3EG%3C/text%3E%3C/svg%3E"
+    />
     <link rel="stylesheet" href="./site.css" />
+    <script>
+      // 在首屏绘制前定好主题，避免暗色模式闪白。
+      try {
+        var t = localStorage.getItem("theme");
+        if (t === "dark" || t === "light") document.documentElement.dataset.theme = t;
+      } catch (e) {}
+    </script>
   </head>
-  <body data-notes-source="./notes/notes.json" data-notes-base="root">
+  <body>
     <header class="site-header">
-      <a class="brand" href="./" aria-label="回到首页">
-        <span class="brand-mark">G</span>
-        <span>Garry 的学习站</span>
-      </a>
-      <nav aria-label="主导航">
-        <a href="./notes/">笔记</a>
-        <a href="https://github.com/lgyStoic" rel="noreferrer">GitHub</a>
-      </nav>
+      <div class="wrap">
+        <a class="brand" href="./" aria-label="回到首页">
+          <span class="brand-mark">G</span>
+          <span>Garry</span>
+        </a>
+        <nav class="site-nav" aria-label="主导航">
+          <a href="./notes/">笔记</a>
+          <a href="https://github.com/lgyStoic" rel="me noreferrer">GitHub</a>
+          <a href="./feed.xml">RSS</a>
+          <button class="theme-toggle" type="button" data-theme-toggle aria-label="切换深浅色">
+            <span data-theme-icon>◑</span>
+          </button>
+        </nav>
+      </div>
     </header>
 
-    <main>
-      <section class="home-intro">
-        <div>
-          <h1>Garry 的学习笔记</h1>
-          <p>课程、论文和 PDF 的中文整理。</p>
-        </div>
+    <main class="wrap">
+      <section class="intro">
+        <p class="kicker">Garry · lgyStoic</p>
+        <h1>把踩过的坑，写成半年后还能重读的笔记。</h1>
+        <p class="bio">
+          日常在做 GPU kernel 与训练性能优化（CUDA / Triton / Blackwell），也持续整理生成模型、PyTorch
+          内部机制，偶尔用公开数据做一些城市与住房方向的研究。
+        </p>
+        <p class="bio">
+          这里是这些笔记的原始版本——写给以后的自己看，所以推导、数字和失败的尝试都尽量留着。
+        </p>
+        <ul class="links">
+          <li><a href="https://github.com/lgyStoic" rel="me noreferrer">GitHub</a></li>
+          <li><a href="./notes/">全部笔记</a></li>
+          <li><a href="./feed.xml">RSS 订阅</a></li>
+        </ul>
+        <!-- build:stats -->
+    <p class="meta-line">9 篇笔记 · 最近更新 2026-08-18</p>
+    <!-- /build:stats -->
       </section>
 
-      <section class="section" id="notes">
+      <section class="section">
         <div class="section-head">
-          <h2>笔记</h2>
-          <a class="text-link" href="./notes/">查看全部</a>
+          <h2>最新笔记</h2>
+          <a class="text-link" href="./notes/">全部 →</a>
         </div>
-        <div class="note-grid" data-notes-list="featured"></div>
+        <!-- build:latest -->
+    <ul class="post-list">
+      <li data-tags="深圳|买房|地铁|住宅画像|教育" data-search="深圳地铁 200 米内住宅画像：南山 / 宝安 / 光明 对南山、宝安、光明三区地铁 200 米内 461 个地块做住宅粗筛，并深挖 120 个候选盘的户数、车位、户型、回迁房与学位风险。 dalily_research / metro 200m residential profile 深圳 买房 地铁 住宅画像 教育">
+        <a class="post" href="./notes/2026-08-17-metro200m-residential-profile/">
+          <p class="post-date">2026-08-18</p>
+          <h3 class="post-title">深圳地铁 200 米内住宅画像：南山 / 宝安 / 光明</h3>
+          <p class="post-summary">对南山、宝安、光明三区地铁 200 米内 461 个地块做住宅粗筛，并深挖 120 个候选盘的户数、车位、户型、回迁房与学位风险。</p>
+          <div class="post-tags"><span>深圳</span><span>买房</span><span>地铁</span><span>住宅画像</span><span>教育</span></div>
+        </a>
+      </li>
+      <li data-tags="NCCL|Distributed Training|GPU|Collectives" data-search="ring collectives interactive visual explanation of ring all-reduce, reduce-scatter, all-gather, all-to-all, and nccl bus bandwidth factors. claude artifact / nccl ring collectives explainer nccl distributed training gpu collectives">
+        <a class="post" href="./notes/ring-collectives/">
+          <p class="post-date">2026-08-13</p>
+          <h3 class="post-title">Ring Collectives</h3>
+          <p class="post-summary">Interactive visual explanation of ring all-reduce, reduce-scatter, all-gather, all-to-all, and NCCL bus bandwidth factors.</p>
+          <div class="post-tags"><span>NCCL</span><span>Distributed Training</span><span>GPU</span><span>Collectives</span></div>
+        </a>
+      </li>
+      <li data-tags="深圳|地铁|住房|OpenStreetMap" data-search="深圳离地铁站直线 200 米内的小区全清单 用 osm 数据穷举深圳地铁出入口 200 米内的小区清单，覆盖 1150 个地块、261 个站点，并提供分区 csv/json 下载。 dalily_research / osm metro 200m scan 深圳 地铁 住房 openstreetmap">
+        <a class="post" href="./notes/2026-08-10-shenzhen-metro-200m/">
+          <p class="post-date">2026-08-10</p>
+          <h3 class="post-title">深圳离地铁站直线 200 米内的小区全清单</h3>
+          <p class="post-summary">用 OSM 数据穷举深圳地铁出入口 200 米内的小区清单，覆盖 1150 个地块、261 个站点，并提供分区 CSV/JSON 下载。</p>
+          <div class="post-tags"><span>深圳</span><span>地铁</span><span>住房</span><span>OpenStreetMap</span></div>
+        </a>
+      </li>
+      <li data-tags="SwiGLU|MLP|CUDA|B200|CuTe" data-search="swiglu mlp 的前向原理、反向链条与优化思路 从前向 shape 到反向 4 个 gemm + 1 组逐元素，解释 dout 不落 hbm 的 cute 融合优化。 b200 swiglu mlp backward fusion note swiglu mlp cuda b200 cute">
+        <a class="post" href="./notes/swiglu-mlp-forward-backward-optimization/">
+          <p class="post-date">2026-06-11</p>
+          <h3 class="post-title">SwiGLU MLP 的前向原理、反向链条与优化思路</h3>
+          <p class="post-summary">从前向 shape 到反向 4 个 GEMM + 1 组逐元素，解释 dout 不落 HBM 的 CuTe 融合优化。</p>
+          <div class="post-tags"><span>SwiGLU</span><span>MLP</span><span>CUDA</span><span>B200</span><span>CuTe</span></div>
+        </a>
+      </li>
+      <li data-tags="GPU|Triton|SwiGLU|MLP|B200" data-search="swiglu mlp drop-h 技术报告 b200 上 swiglu mlp drop-h 方案的公式、实现、性能与显存取舍。 meshy-research / b200 swiglu mlp optimization gpu triton swiglu mlp b200">
+        <a class="post" href="./notes/swiglu-mlp-drop-h/">
+          <p class="post-date">2026-06-05</p>
+          <h3 class="post-title">SwiGLU MLP Drop-H 技术报告</h3>
+          <p class="post-summary">B200 上 SwiGLU MLP drop-h 方案的公式、实现、性能与显存取舍。</p>
+          <div class="post-tags"><span>GPU</span><span>Triton</span><span>SwiGLU</span><span>MLP</span><span>B200</span></div>
+        </a>
+      </li>
+      <li data-tags="PyTorch|Autograd|Deep Learning|Notes" data-search="pytorch autograd 学习笔记 从 tensor 底层结构到 grad_fn、saved tensors、version counter、no_grad、inference_mode 和自定义 function 的 autograd 知识地图。 pytorch 官方文档与本地学习整理 pytorch autograd deep learning notes">
+        <a class="post" href="./notes/pytorch-autograd-notes/">
+          <p class="post-date">2026-06-03</p>
+          <h3 class="post-title">PyTorch Autograd 学习笔记</h3>
+          <p class="post-summary">从 Tensor 底层结构到 grad_fn、saved tensors、version counter、no_grad、inference_mode 和自定义 Function 的 autograd 知识地图。</p>
+          <div class="post-tags"><span>PyTorch</span><span>Autograd</span><span>Deep Learning</span><span>Notes</span></div>
+        </a>
+      </li>
+    </ul>
+    <!-- /build:latest -->
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <h2>主题</h2>
+        </div>
+        <!-- build:topics -->
+    <ul class="tag-cloud">
+      <li><a class="tag-chip" href="./notes/?tag=CUDA">CUDA <b>3</b></a></li>
+      <li><a class="tag-chip" href="./notes/?tag=SwiGLU">SwiGLU <b>3</b></a></li>
+      <li><a class="tag-chip" href="./notes/?tag=B200">B200 <b>2</b></a></li>
+      <li><a class="tag-chip" href="./notes/?tag=Blackwell">Blackwell <b>2</b></a></li>
+      <li><a class="tag-chip" href="./notes/?tag=GPU">GPU <b>2</b></a></li>
+      <li><a class="tag-chip" href="./notes/?tag=MLP">MLP <b>2</b></a></li>
+      <li><a class="tag-chip" href="./notes/?tag=Triton">Triton <b>2</b></a></li>
+      <li><a class="tag-chip" href="./notes/?tag=地铁">地铁 <b>2</b></a></li>
+      <li><a class="tag-chip" href="./notes/?tag=深圳">深圳 <b>2</b></a></li>
+      <li><a class="tag-chip" href="./notes/?tag=Autograd">Autograd <b>1</b></a></li>
+      <li><a class="tag-chip" href="./notes/?tag=CFG">CFG <b>1</b></a></li>
+      <li><a class="tag-chip" href="./notes/?tag=Collectives">Collectives <b>1</b></a></li>
+      <li><a class="tag-chip" href="./notes/?tag=CuTe">CuTe <b>1</b></a></li>
+      <li><a class="tag-chip" href="./notes/?tag=Deep Learning">Deep Learning <b>1</b></a></li>
+    </ul>
+    <!-- /build:topics -->
       </section>
     </main>
-    <script src="./site.js"></script>
+
+    <footer class="site-footer">
+      <div class="wrap">
+        <span>© 2026 Garry · 内容为个人学习整理</span>
+        <span
+          ><a href="https://github.com/lgyStoic/lgystoic.github.io" rel="noreferrer">源码</a> ·
+          <a href="./feed.xml">RSS</a></span
+        >
+      </div>
+    </footer>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Garry",
+        "alternateName": "lgyStoic",
+        "url": "https://lgystoic.github.io/",
+        "sameAs": ["https://github.com/lgyStoic"],
+        "knowsAbout": ["GPU kernel optimization", "CUDA", "Triton", "PyTorch", "Diffusion models"]
+      }
+    </script>
+    <script src="./site.js" defer></script>
   </body>
 </html>

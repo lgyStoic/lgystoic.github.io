@@ -4,17 +4,42 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>页面不存在 | Garry 的学习站</title>
-    <link rel="stylesheet" href="./site.css" />
+    <meta name="robots" content="noindex" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231b1b1a'/%3E%3Ctext x='32' y='43' text-anchor='middle' font-size='32' font-family='Helvetica,Arial' font-weight='700' fill='%23fbfaf8'%3EG%3C/text%3E%3C/svg%3E"
+    />
+    <link rel="stylesheet" href="/site.css" />
+    <script>
+      try {
+        var t = localStorage.getItem("theme");
+        if (t === "dark" || t === "light") document.documentElement.dataset.theme = t;
+      } catch (e) {}
+    </script>
   </head>
   <body>
-    <main>
-      <section class="hero">
-        <div>
-          <p class="eyebrow">404</p>
-          <h1>这个页面还没有整理出来。</h1>
-          <p class="lead">回到首页，从现有笔记继续读。</p>
-          <p class="lead"><a class="button" href="./">回到首页</a></p>
-        </div>
+    <header class="site-header">
+      <div class="wrap">
+        <a class="brand" href="/" aria-label="回到首页">
+          <span class="brand-mark">G</span>
+          <span>Garry</span>
+        </a>
+        <nav class="site-nav" aria-label="主导航">
+          <a href="/notes/">笔记</a>
+          <a href="https://github.com/lgyStoic" rel="me noreferrer">GitHub</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="wrap">
+      <section class="notfound">
+        <p class="kicker">404</p>
+        <h1>这个页面还没有整理出来。</h1>
+        <p>链接可能过期了，或者笔记还在草稿里。</p>
+        <ul class="links">
+          <li><a href="/">回到首页</a></li>
+          <li><a href="/notes/">笔记归档</a></li>
+        </ul>
       </section>
     </main>
   </body>

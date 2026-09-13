@@ -3,50 +3,198 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>所有笔记 | Garry 的学习站</title>
-    <meta name="description" content="Garry 的课程、论文和 PDF 整理索引。" />
-    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%231f252b'/%3E%3Ctext x='32' y='39' text-anchor='middle' font-size='18' font-family='Arial' font-weight='700' fill='white'%3EG%3C/text%3E%3C/svg%3E" />
+    <title>笔记归档 | Garry 的学习站</title>
+    <meta name="description" content="Garry 的全部笔记归档，支持关键词搜索与主题筛选。" />
+    <link rel="canonical" href="https://lgystoic.github.io/notes/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="笔记归档 | Garry 的学习站" />
+    <meta property="og:description" content="Garry 的全部笔记归档，支持关键词搜索与主题筛选。" />
+    <meta property="og:url" content="https://lgystoic.github.io/notes/" />
+    <meta name="twitter:card" content="summary" />
+    <link rel="alternate" type="application/rss+xml" title="Garry 的学习站" href="../feed.xml" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231b1b1a'/%3E%3Ctext x='32' y='43' text-anchor='middle' font-size='32' font-family='Helvetica,Arial' font-weight='700' fill='%23fbfaf8'%3EG%3C/text%3E%3C/svg%3E"
+    />
     <link rel="stylesheet" href="../site.css" />
+    <script>
+      try {
+        var t = localStorage.getItem("theme");
+        if (t === "dark" || t === "light") document.documentElement.dataset.theme = t;
+      } catch (e) {}
+    </script>
   </head>
-  <body data-notes-source="./notes.json" data-notes-base="absolute">
+  <body>
     <header class="site-header">
-      <a class="brand" href="../" aria-label="回到首页">
-        <span class="brand-mark">G</span>
-        <span>Garry 的学习站</span>
-      </a>
-      <nav aria-label="主导航">
-        <a href="../">首页</a>
-        <a href="./">笔记</a>
-        <a href="https://github.com/lgyStoic/lgystoic.github.io" rel="noreferrer">GitHub</a>
-      </nav>
+      <div class="wrap">
+        <a class="brand" href="../" aria-label="回到首页">
+          <span class="brand-mark">G</span>
+          <span>Garry</span>
+        </a>
+        <nav class="site-nav" aria-label="主导航">
+          <a href="./" aria-current="page">笔记</a>
+          <a href="https://github.com/lgyStoic" rel="me noreferrer">GitHub</a>
+          <a href="../feed.xml">RSS</a>
+          <button class="theme-toggle" type="button" data-theme-toggle aria-label="切换深浅色">
+            <span data-theme-icon>◑</span>
+          </button>
+        </nav>
+      </div>
     </header>
 
-    <main>
-      <section class="hero">
-        <div>
-          <p class="eyebrow">All Notes</p>
-          <h1>所有整理过的课程、论文和 PDF。</h1>
-          <p class="lead">
-            这个页面由 <code>notes/notes.json</code> 渲染。以后新增内容，只需要新增一个笔记目录，再把元数据写进 JSON。
-          </p>
-        </div>
-        <div class="hero-panel" aria-label="新增笔记流程">
-          <span>notes/new-topic/</span>
-          <i></i>
-          <span>notes/notes.json</span>
-          <i></i>
-          <span>自动出现在索引</span>
+    <main class="wrap">
+      <section class="intro">
+        <p class="kicker">Archive</p>
+        <h1>笔记归档</h1>
+        <p class="bio">课程、论文、性能实验和数据研究，按时间倒序。可以直接搜关键词或按主题筛。</p>
+
+        <div class="filters">
+          <label class="search-box">
+            <span class="sr-only" hidden>搜索笔记</span>
+            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <circle cx="9" cy="9" r="6" />
+              <path d="m14 14 4 4" stroke-linecap="round" />
+            </svg>
+            <input type="search" placeholder="搜索标题、摘要或标签…" data-search-input autocomplete="off" />
+          </label>
+          <!-- build:tags -->
+    <ul class="tag-cloud">
+      <li><button class="tag-chip" type="button" data-tag="" aria-pressed="true">全部</button></li>
+      <li><button class="tag-chip" type="button" data-tag="CUDA" aria-pressed="false">CUDA <b>3</b></button></li>
+      <li><button class="tag-chip" type="button" data-tag="SwiGLU" aria-pressed="false">SwiGLU <b>3</b></button></li>
+      <li><button class="tag-chip" type="button" data-tag="B200" aria-pressed="false">B200 <b>2</b></button></li>
+      <li><button class="tag-chip" type="button" data-tag="Blackwell" aria-pressed="false">Blackwell <b>2</b></button></li>
+      <li><button class="tag-chip" type="button" data-tag="GPU" aria-pressed="false">GPU <b>2</b></button></li>
+      <li><button class="tag-chip" type="button" data-tag="MLP" aria-pressed="false">MLP <b>2</b></button></li>
+      <li><button class="tag-chip" type="button" data-tag="Triton" aria-pressed="false">Triton <b>2</b></button></li>
+      <li><button class="tag-chip" type="button" data-tag="地铁" aria-pressed="false">地铁 <b>2</b></button></li>
+      <li><button class="tag-chip" type="button" data-tag="深圳" aria-pressed="false">深圳 <b>2</b></button></li>
+      <li><button class="tag-chip" type="button" data-tag="Autograd" aria-pressed="false">Autograd <b>1</b></button></li>
+    </ul>
+    <details class="more-tags">
+      <summary>其余 18 个标签</summary>
+      <ul class="tag-cloud">
+      <li><button class="tag-chip" type="button" data-tag="CFG" aria-pressed="false">CFG <b>1</b></button></li>
+      <li><button class="tag-chip" type="button" data-tag="Collectives" aria-pressed="false">Collectives <b>1</b></button></li>
+      <li><button class="tag-chip" type="button" data-tag="CuTe" aria-pressed="false">CuTe <b>1</b></button></li>
+      <li><button class="tag-chip" type="button" data-tag="Deep Learning" aria-pressed="false">Deep Learning <b>1</b></button></li>
+      <li><button class="tag-chip" type="button" data-tag="Diffusion" aria-pressed="false">Diffusion <b>1</b></button></li>
+      <li><button class="tag-chip" type="button" data-tag="Distributed Training" aria-pressed="false">Distributed Training <b>1</b></button></li>
+      <li><button class="tag-chip" type="button" data-tag="Flow Matching" aria-pressed="false">Flow Matching <b>1</b></button></li>
+      <li><button class="tag-chip" type="button" data-tag="KernelWiki" aria-pressed="false">KernelWiki <b>1</b></button></li>
+      <li><button class="tag-chip" type="button" data-tag="NCCL" aria-pressed="false">NCCL <b>1</b></button></li>
+      <li><button class="tag-chip" type="button" data-tag="Notes" aria-pressed="false">Notes <b>1</b></button></li>
+      <li><button class="tag-chip" type="button" data-tag="Nsight Compute" aria-pressed="false">Nsight Compute <b>1</b></button></li>
+      <li><button class="tag-chip" type="button" data-tag="OpenStreetMap" aria-pressed="false">OpenStreetMap <b>1</b></button></li>
+      <li><button class="tag-chip" type="button" data-tag="PyTorch" aria-pressed="false">PyTorch <b>1</b></button></li>
+      <li><button class="tag-chip" type="button" data-tag="SDE" aria-pressed="false">SDE <b>1</b></button></li>
+      <li><button class="tag-chip" type="button" data-tag="买房" aria-pressed="false">买房 <b>1</b></button></li>
+      <li><button class="tag-chip" type="button" data-tag="住宅画像" aria-pressed="false">住宅画像 <b>1</b></button></li>
+      <li><button class="tag-chip" type="button" data-tag="住房" aria-pressed="false">住房 <b>1</b></button></li>
+      <li><button class="tag-chip" type="button" data-tag="教育" aria-pressed="false">教育 <b>1</b></button></li>
+      </ul>
+    </details>
+    <!-- /build:tags -->
+          <!-- build:count -->
+    <p class="result-count" data-result-count>9 篇</p>
+    <!-- /build:count -->
         </div>
       </section>
 
-      <section class="section">
-        <div class="section-head">
-          <p class="eyebrow">Library</p>
-          <h2>笔记库</h2>
-        </div>
-        <div class="note-grid" data-notes-list="all"></div>
-      </section>
+      <div data-archive>
+        <!-- build:archive -->
+    <section class="year-group" data-year="2026">
+      <p class="year-label">2026</p>
+      <ul class="post-list">
+      <li data-tags="深圳|买房|地铁|住宅画像|教育" data-search="深圳地铁 200 米内住宅画像：南山 / 宝安 / 光明 对南山、宝安、光明三区地铁 200 米内 461 个地块做住宅粗筛，并深挖 120 个候选盘的户数、车位、户型、回迁房与学位风险。 dalily_research / metro 200m residential profile 深圳 买房 地铁 住宅画像 教育">
+        <a class="post" href="/notes/2026-08-17-metro200m-residential-profile/">
+          <p class="post-date">2026-08-18</p>
+          <h3 class="post-title">深圳地铁 200 米内住宅画像：南山 / 宝安 / 光明</h3>
+          <p class="post-summary">对南山、宝安、光明三区地铁 200 米内 461 个地块做住宅粗筛，并深挖 120 个候选盘的户数、车位、户型、回迁房与学位风险。</p>
+          <div class="post-tags"><span>深圳</span><span>买房</span><span>地铁</span><span>住宅画像</span><span>教育</span></div>
+        </a>
+      </li>
+      <li data-tags="NCCL|Distributed Training|GPU|Collectives" data-search="ring collectives interactive visual explanation of ring all-reduce, reduce-scatter, all-gather, all-to-all, and nccl bus bandwidth factors. claude artifact / nccl ring collectives explainer nccl distributed training gpu collectives">
+        <a class="post" href="/notes/ring-collectives/">
+          <p class="post-date">2026-08-13</p>
+          <h3 class="post-title">Ring Collectives</h3>
+          <p class="post-summary">Interactive visual explanation of ring all-reduce, reduce-scatter, all-gather, all-to-all, and NCCL bus bandwidth factors.</p>
+          <div class="post-tags"><span>NCCL</span><span>Distributed Training</span><span>GPU</span><span>Collectives</span></div>
+        </a>
+      </li>
+      <li data-tags="深圳|地铁|住房|OpenStreetMap" data-search="深圳离地铁站直线 200 米内的小区全清单 用 osm 数据穷举深圳地铁出入口 200 米内的小区清单，覆盖 1150 个地块、261 个站点，并提供分区 csv/json 下载。 dalily_research / osm metro 200m scan 深圳 地铁 住房 openstreetmap">
+        <a class="post" href="/notes/2026-08-10-shenzhen-metro-200m/">
+          <p class="post-date">2026-08-10</p>
+          <h3 class="post-title">深圳离地铁站直线 200 米内的小区全清单</h3>
+          <p class="post-summary">用 OSM 数据穷举深圳地铁出入口 200 米内的小区清单，覆盖 1150 个地块、261 个站点，并提供分区 CSV/JSON 下载。</p>
+          <div class="post-tags"><span>深圳</span><span>地铁</span><span>住房</span><span>OpenStreetMap</span></div>
+        </a>
+      </li>
+      <li data-tags="SwiGLU|MLP|CUDA|B200|CuTe" data-search="swiglu mlp 的前向原理、反向链条与优化思路 从前向 shape 到反向 4 个 gemm + 1 组逐元素，解释 dout 不落 hbm 的 cute 融合优化。 b200 swiglu mlp backward fusion note swiglu mlp cuda b200 cute">
+        <a class="post" href="/notes/swiglu-mlp-forward-backward-optimization/">
+          <p class="post-date">2026-06-11</p>
+          <h3 class="post-title">SwiGLU MLP 的前向原理、反向链条与优化思路</h3>
+          <p class="post-summary">从前向 shape 到反向 4 个 GEMM + 1 组逐元素，解释 dout 不落 HBM 的 CuTe 融合优化。</p>
+          <div class="post-tags"><span>SwiGLU</span><span>MLP</span><span>CUDA</span><span>B200</span><span>CuTe</span></div>
+        </a>
+      </li>
+      <li data-tags="GPU|Triton|SwiGLU|MLP|B200" data-search="swiglu mlp drop-h 技术报告 b200 上 swiglu mlp drop-h 方案的公式、实现、性能与显存取舍。 meshy-research / b200 swiglu mlp optimization gpu triton swiglu mlp b200">
+        <a class="post" href="/notes/swiglu-mlp-drop-h/">
+          <p class="post-date">2026-06-05</p>
+          <h3 class="post-title">SwiGLU MLP Drop-H 技术报告</h3>
+          <p class="post-summary">B200 上 SwiGLU MLP drop-h 方案的公式、实现、性能与显存取舍。</p>
+          <div class="post-tags"><span>GPU</span><span>Triton</span><span>SwiGLU</span><span>MLP</span><span>B200</span></div>
+        </a>
+      </li>
+      <li data-tags="PyTorch|Autograd|Deep Learning|Notes" data-search="pytorch autograd 学习笔记 从 tensor 底层结构到 grad_fn、saved tensors、version counter、no_grad、inference_mode 和自定义 function 的 autograd 知识地图。 pytorch 官方文档与本地学习整理 pytorch autograd deep learning notes">
+        <a class="post" href="/notes/pytorch-autograd-notes/">
+          <p class="post-date">2026-06-03</p>
+          <h3 class="post-title">PyTorch Autograd 学习笔记</h3>
+          <p class="post-summary">从 Tensor 底层结构到 grad_fn、saved tensors、version counter、no_grad、inference_mode 和自定义 Function 的 autograd 知识地图。</p>
+          <div class="post-tags"><span>PyTorch</span><span>Autograd</span><span>Deep Learning</span><span>Notes</span></div>
+        </a>
+      </li>
+      <li data-tags="CUDA|Blackwell|KernelWiki|Nsight Compute" data-search="kernel design agents：kernelwiki 与 ncu-report-skill 拆解 拆解 kda 仓库中 kernelwiki 知识库和 ncu-report-skill profiling 工作流，整理它们如何服务 agentic kernel 优化循环。 mit-han-lab/kernel-design-agents cuda blackwell kernelwiki nsight compute">
+        <a class="post" href="/notes/kernel-design-agents-skills/">
+          <p class="post-date">2026-06-01</p>
+          <h3 class="post-title">Kernel Design Agents：KernelWiki 与 ncu-report-skill 拆解</h3>
+          <p class="post-summary">拆解 KDA 仓库中 KernelWiki 知识库和 ncu-report-skill profiling 工作流，整理它们如何服务 agentic kernel 优化循环。</p>
+          <div class="post-tags"><span>CUDA</span><span>Blackwell</span><span>KernelWiki</span><span>Nsight Compute</span></div>
+        </a>
+      </li>
+      <li data-tags="Triton|SwiGLU|Blackwell|CUDA" data-search="fused swiglu wide packed save-factors b200 上 packed w1 + save-factors swiglu 融合实现笔记，覆盖 pack layout、cta tile、forward/backward 数据流和显存收益。 meshy-research perf note triton swiglu blackwell cuda">
+        <a class="post" href="/notes/swiglu-packed-save-factors/">
+          <p class="post-date">2026-06-01</p>
+          <h3 class="post-title">Fused SwiGLU Wide Packed Save-Factors</h3>
+          <p class="post-summary">B200 上 packed W1 + save-factors SwiGLU 融合实现笔记，覆盖 pack layout、CTA tile、forward/backward 数据流和显存收益。</p>
+          <div class="post-tags"><span>Triton</span><span>SwiGLU</span><span>Blackwell</span><span>CUDA</span></div>
+        </a>
+      </li>
+      <li data-tags="Flow Matching|Diffusion|SDE|CFG" data-search="从噪声到数据：flow matching 与扩散模型中文地图 基于 mit 6.s184 讲义整理，覆盖生成即采样、ode/sde、flow matching、score matching、classifier-free guidance、潜空间生成器和离散扩散语言模型。 mit 6.s184 flow matching diffusion sde cfg">
+        <a class="post" href="/notes/mit-6s184-flow-diffusion/">
+          <p class="post-date">2026-05-30</p>
+          <h3 class="post-title">从噪声到数据：Flow Matching 与扩散模型中文地图</h3>
+          <p class="post-summary">基于 MIT 6.S184 讲义整理，覆盖生成即采样、ODE/SDE、Flow Matching、Score Matching、Classifier-Free Guidance、潜空间生成器和离散扩散语言模型。</p>
+          <div class="post-tags"><span>Flow Matching</span><span>Diffusion</span><span>SDE</span><span>CFG</span></div>
+        </a>
+      </li>
+      </ul>
+    </section>
+    <!-- /build:archive -->
+      </div>
+      <p class="empty-state" data-empty hidden>没有匹配的笔记，换个关键词试试。</p>
     </main>
-    <script src="../site.js"></script>
+
+    <footer class="site-footer">
+      <div class="wrap">
+        <span>© 2026 Garry · 内容为个人学习整理</span>
+        <span
+          ><a href="https://github.com/lgyStoic/lgystoic.github.io" rel="noreferrer">源码</a> ·
+          <a href="../feed.xml">RSS</a></span
+        >
+      </div>
+    </footer>
+
+    <script src="../site.js" defer></script>
   </body>
 </html>
