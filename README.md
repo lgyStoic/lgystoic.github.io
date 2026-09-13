@@ -85,6 +85,7 @@ radar/sources.json  →  tools/radar.py  →  radar/data/<date>.json  →  tools
 - **去重**：`radar/data/seen.json` 记录 120 天内出现过的链接，跨天不重复。
 - **AI 摘要**：仓库 Secrets 里配置 `ANTHROPIC_API_KEY` 后自动启用，Claude 负责优先级判断、
   中文一句话摘要和「为什么值得看」。没有 key 时退回关键词规则，摘要取原文前 160 字。
+- **补漏 / 冷启动**：Actions 页手动触发时填 `window_hours`（如 168）可抓过去一周；同一天多次运行会合并进当天文件，不会重复。
 - **本地试跑**：`python3 tools/radar.py --dry-run` 只打印不落盘；`python3 tools/radar.py && python3 tools/build.py` 生成完整页面。
 
 ## 发布

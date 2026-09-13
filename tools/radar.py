@@ -9,6 +9,7 @@
 环境变量：
     ANTHROPIC_API_KEY   有则调用 Claude 做优先级判断和中文摘要；没有则退回关键词规则，
                         每条摘要取原文描述的前 160 字。
+    RADAR_WINDOW_HOURS  覆盖 sources.json 里的 window_hours，首次运行或补漏时可以放大到 168。
 
 之后运行 tools/build.py 把数据渲染成页面。
 只依赖标准库；anthropic SDK 仅在有 key 时按需导入。
@@ -326,7 +327,9 @@ def load_json(path: Path, default):
 
 def collect(config: dict, now_utc: datetime, seen: dict[str, str]) -> tuple[list[dict], list[dict]]:
     rules = config["rules"]
-    window = timedelta(hours=config["site"].get("window_hours", 36))
+    window_hours = int(os.environ.get("RADAR_WINDOW_HOURS") or config["site"].get("window_hours", 36))
+    window = timedelta(hours=window_hours)
+    log(f"[radar] 时间窗口 {window_hours} 小时")
     items: dict[str, dict] = {}
     status: list[dict] = []
 
