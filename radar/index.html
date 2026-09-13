@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AI 信息雷达 | Garry 的学习站</title>
+    <meta name="description" content="每天早上 8 点自动汇总模型发布、研究论文、性能工程与行业动态，去重、打分、摘要后按优先级排列。" />
+    <link rel="canonical" href="https://lgystoic.github.io/radar/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="AI 信息雷达 | Garry 的学习站" />
+    <meta property="og:description" content="每天早上 8 点自动汇总模型发布、研究论文、性能工程与行业动态。" />
+    <meta property="og:url" content="https://lgystoic.github.io/radar/" />
+    <meta name="twitter:card" content="summary" />
+    <link rel="alternate" type="application/rss+xml" title="AI 信息雷达" href="./feed.xml" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231b1b1a'/%3E%3Ctext x='32' y='43' text-anchor='middle' font-size='32' font-family='Helvetica,Arial' font-weight='700' fill='%23fbfaf8'%3EG%3C/text%3E%3C/svg%3E"
+    />
+    <link rel="stylesheet" href="../site.css" />
+    <script>
+      try {
+        var t = localStorage.getItem("theme");
+        if (t === "dark" || t === "light") document.documentElement.dataset.theme = t;
+      } catch (e) {}
+    </script>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="wrap">
+        <a class="brand" href="../" aria-label="回到首页">
+          <span class="brand-mark">G</span>
+          <span>Garry</span>
+        </a>
+        <nav class="site-nav" aria-label="主导航">
+          <a href="../notes/">笔记</a>
+          <a href="./" aria-current="page">雷达</a>
+          <a href="https://github.com/lgyStoic" rel="me noreferrer">GitHub</a>
+          <button class="theme-toggle" type="button" data-theme-toggle aria-label="切换深浅色">
+            <span data-theme-icon>◑</span>
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <main class="wrap">
+      <section class="intro">
+        <p class="kicker">Radar</p>
+        <h1>AI 信息雷达</h1>
+        <p class="bio">
+          每天早上 8 点自动抓取模型公司、研究者博客、arXiv 和性能工程相关信息源，去重后按「必看 / 值得看 / 其余」排列。
+          摘要只用于快速筛选，请以原文为准。
+        </p>
+        <ul class="links">
+          <li><a href="./feed.xml">RSS 订阅</a></li>
+          <li><a href="https://github.com/lgyStoic/lgystoic.github.io/blob/master/radar/sources.json" rel="noreferrer">信息源清单</a></li>
+        </ul>
+      </section>
+
+      <section class="section radar-day">
+        <!-- build:radar-latest -->
+    <p class="empty-state">第一期还没有生成——每天早上 8 点（北京时间）自动更新。</p>
+    <!-- /build:radar-latest -->
+      </section>
+
+      <section class="section">
+        <!-- build:radar-days -->
+
+    <!-- /build:radar-days -->
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap">
+        <span>© 2026 Garry · 自动汇总，摘要仅供快速筛选，请以原文为准</span>
+        <span><a href="https://github.com/lgyStoic/lgystoic.github.io" rel="noreferrer">源码</a> · <a href="./feed.xml">RSS</a></span>
+      </div>
+    </footer>
+    <script src="../site.js" defer></script>
+  </body>
+</html>

@@ -1,0 +1,165 @@
+{
+  "site": {
+    "title": "AI 信息雷达",
+    "description": "每天早上 8 点自动汇总模型发布、研究论文、性能工程与行业动态，去重、打分、摘要后按优先级排列。",
+    "timezone": "Asia/Shanghai",
+    "window_hours": 36,
+    "max_high": 10,
+    "max_medium": 20
+  },
+  "categories": {
+    "release": "模型发布",
+    "research": "研究论文",
+    "infra": "性能与基础设施",
+    "people": "行业人物",
+    "industry": "产品与行业"
+  },
+  "rules": {
+    "high_keywords": [
+      "introducing", "announcing", "release", "released", "launch", "launching",
+      "open-source", "open source", "open weights", "we're releasing", "now available",
+      "new model", "state of the art", "state-of-the-art", "sota", "benchmark",
+      "发布", "开源", "上线", "推出", "新模型"
+    ],
+    "topic_keywords": [
+      "diffusion", "flow matching", "rectified flow", "consistency model", "video generation",
+      "3d generation", "text-to-3d", "image generation", "vae", "latent",
+      "cuda", "triton", "kernel", "gpu", "blackwell", "b200", "h100", "hopper", "tensor core",
+      "flashattention", "flash attention", "fp8", "fp4", "quantization", "distributed training",
+      "nccl", "fsdp", "tensor parallel", "pipeline parallel", "moe", "mixture of experts",
+      "attention", "transformer", "llm", "language model", "inference", "throughput", "latency",
+      "pytorch", "torch.compile", "cutlass", "cute", "autograd", "compiler",
+      "reinforcement learning", "rlhf", "reasoning", "agent", "agentic", "scaling law"
+    ],
+    "mute_keywords": [
+      "webinar", "hiring", "we're hiring", "job", "career", "podcast", "sponsor", "giveaway",
+      "survey results", "certification", "招聘"
+    ]
+  },
+  "sources": [
+    {
+      "id": "openai",
+      "name": "OpenAI",
+      "url": "https://openai.com/news/rss.xml",
+      "category": "release",
+      "weight": 3
+    },
+    {
+      "id": "deepmind",
+      "name": "Google DeepMind",
+      "url": "https://deepmind.google/blog/rss.xml",
+      "category": "release",
+      "weight": 3
+    },
+    {
+      "id": "google-ai",
+      "name": "Google AI Blog",
+      "url": "https://blog.google/technology/ai/rss/",
+      "category": "release",
+      "weight": 2
+    },
+    {
+      "id": "meta-ai",
+      "name": "Meta AI",
+      "url": "https://ai.meta.com/blog/rss/",
+      "category": "release",
+      "weight": 2
+    },
+    {
+      "id": "qwen",
+      "name": "Qwen",
+      "url": "https://qwenlm.github.io/blog/index.xml",
+      "category": "release",
+      "weight": 3
+    },
+    {
+      "id": "hf-blog",
+      "name": "Hugging Face Blog",
+      "url": "https://huggingface.co/blog/feed.xml",
+      "category": "release",
+      "weight": 2
+    },
+    {
+      "id": "nvidia-dev",
+      "name": "NVIDIA Technical Blog",
+      "url": "https://developer.nvidia.com/blog/feed",
+      "category": "infra",
+      "weight": 1,
+      "require_topic": true
+    },
+    {
+      "id": "pytorch",
+      "name": "PyTorch Blog",
+      "url": "https://pytorch.org/blog/feed.xml",
+      "category": "infra",
+      "weight": 2
+    },
+    {
+      "id": "simonw",
+      "name": "Simon Willison",
+      "url": "https://simonwillison.net/atom/everything/",
+      "category": "people",
+      "weight": 1,
+      "require_topic": true
+    },
+    {
+      "id": "lilianweng",
+      "name": "Lil'Log",
+      "url": "https://lilianweng.github.io/index.xml",
+      "category": "people",
+      "weight": 3
+    },
+    {
+      "id": "interconnects",
+      "name": "Interconnects",
+      "url": "https://www.interconnects.ai/feed",
+      "category": "people",
+      "weight": 2
+    },
+    {
+      "id": "raschka",
+      "name": "Sebastian Raschka",
+      "url": "https://magazine.sebastianraschka.com/feed",
+      "category": "people",
+      "weight": 2
+    },
+    {
+      "id": "chiphuyen",
+      "name": "Chip Huyen",
+      "url": "https://huyenchip.com/feed.xml",
+      "category": "people",
+      "weight": 2
+    },
+    {
+      "id": "arxiv-cs-lg",
+      "name": "arXiv cs.LG",
+      "url": "https://rss.arxiv.org/rss/cs.LG",
+      "category": "research",
+      "weight": 0,
+      "require_topic": true
+    },
+    {
+      "id": "arxiv-cs-cv",
+      "name": "arXiv cs.CV",
+      "url": "https://rss.arxiv.org/rss/cs.CV",
+      "category": "research",
+      "weight": 0,
+      "require_topic": true
+    },
+    {
+      "id": "arxiv-cs-dc",
+      "name": "arXiv cs.DC",
+      "url": "https://rss.arxiv.org/rss/cs.DC",
+      "category": "research",
+      "weight": 0,
+      "require_topic": true
+    },
+    {
+      "id": "hn-llm",
+      "name": "Hacker News (LLM, 100+ 分)",
+      "url": "https://hnrss.org/newest?q=LLM+OR+GPU+OR+diffusion&points=100",
+      "category": "industry",
+      "weight": 1
+    }
+  ]
+}
