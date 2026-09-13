@@ -12,7 +12,8 @@ notes/notes.json  唯一的内容索引（所有列表都由它生成）
 notes/<slug>/     每篇笔记，自带样式，互不影响
 site.css site.js  站点样式与交互（深浅色、搜索、筛选）
 tools/build.py    从 notes.json 与 radar/data 生成列表 HTML、feed.xml、sitemap.xml
-tools/radar.py    AI 信息雷达：抓 RSS → 去重 → 打分 → （可选）Claude 摘要
+tools/radar.py    AI 信息雷达：抓 RSS → 去重 → 打分 → （可选）AI 摘要
+tools/inbox.py    私有收件箱：读取私有仓库 Issue 里手动投递的链接，整理成每日摘要
 radar/            雷达页、信息源配置（sources.json）、每日数据（data/）、每期永久链接
 templates/note/   新笔记的起步模板
 ```
@@ -83,10 +84,30 @@ radar/sources.json  →  tools/radar.py  →  radar/data/<date>.json  →  tools
 - **规则**：`high_keywords` 命中标题 +2 分，`topic_keywords` 每命中一个 +1（最多 +2），`mute_keywords` −3。
   ≥4 必看，2-3 值得看，其余折叠。
 - **去重**：`radar/data/seen.json` 记录 120 天内出现过的链接，跨天不重复。
-- **AI 摘要**：仓库 Secrets 里配置 `ANTHROPIC_API_KEY` 后自动启用，Claude 负责优先级判断、
-  中文一句话摘要和「为什么值得看」。没有 key 时退回关键词规则，摘要取原文前 160 字。
+- **AI 摘要**：仓库 Secrets 里配置 `ANTHROPIC_API_KEY`（Claude，优先）或 `GEMINI_API_KEY`（Gemini 2.5 Flash）后自动启用，
+  负责优先级判断、中文一句话摘要和「为什么值得看」。都没有时退回关键词规则，摘要取原文前 160 字。
+  AI 环节任何失败都退回规则，不会让整次运行挂掉。
 - **补漏 / 冷启动**：Actions 页手动触发时填 `window_hours`（如 168）可抓过去一周；同一天多次运行会合并进当天文件，不会重复。
 - **本地试跑**：`python3 tools/radar.py --dry-run` 只打印不落盘；`python3 tools/radar.py && python3 tools/build.py` 生成完整页面。
+
+## 私有收件箱（小红书 / 微信 / 任意没有 RSS 的链接）
+
+小红书这类平台没有可靠的抓取通道，改用「看到就投递」：手机分享 → iOS 快捷指令 → 私有仓库 Issue 评论。
+每天的雷达运行顺手整理，**数据只存在私有仓库**，不会出现在这个公开站点上。
+
+一次性配置：
+
+1. 在 GitHub 新建一个**私有**仓库 `radar-inbox`（空仓库即可，勾上 README 也行）。
+2. 建一个 fine-grained personal access token：Repository access 只选 `radar-inbox`，
+   权限给 **Issues: Read and write** 与 **Contents: Read and write**。
+3. 把 token 存到本仓库 Settings → Secrets → Actions → `INBOX_TOKEN`
+   （仓库名不是 `lgyStoic/radar-inbox` 的话再加一个 Variable `INBOX_REPO`）。
+4. 在 Actions 页手动跑一次「AI 信息雷达」：脚本会自动在私有仓库里创建「📥 雷达收件箱」Issue、
+   README（含快捷指令配置步骤）和 `state.json`。
+5. 按私有仓库 README 里的说明配好 iOS 快捷指令（同一个 token）。
+
+之后每天 08:00：新评论 → 取页面标题/描述（小红书通常取不到，就用你写的备注）→ AI 摘要 →
+写入私有仓库 `digest/<日期>.md`，README 维护最近 30 条索引，处理过的评论点 👍。
 
 ## 发布
 

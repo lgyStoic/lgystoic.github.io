@@ -7,8 +7,9 @@
     RADAR_FIXTURE_DIR=./fixtures python3 tools/radar.py   # 用本地 XML 代替网络请求（测试用）
 
 环境变量：
-    ANTHROPIC_API_KEY   有则调用 Claude 做优先级判断和中文摘要；没有则退回关键词规则，
-                        每条摘要取原文描述的前 160 字。
+    ANTHROPIC_API_KEY   有则调用 Claude 做优先级判断和中文摘要（优先）。
+    GEMINI_API_KEY      没有 Anthropic key 时改用 Gemini（默认 gemini-2.5-flash，可用 GEMINI_MODEL 覆盖）。
+                        两个都没有则退回关键词规则，每条摘要取原文描述的前 160 字。
     RADAR_WINDOW_HOURS  覆盖 sources.json 里的 window_hours，首次运行或补漏时可以放大到 168。
 
 之后运行 tools/build.py 把数据渲染成页面。
@@ -43,6 +44,8 @@ FETCH_TIMEOUT = 20
 SEEN_RETENTION_DAYS = 120
 SUMMARY_FALLBACK_CHARS = 160
 CLAUDE_MODEL = "claude-opus-5"
+GEMINI_MODEL = os.environ.get("GEMINI_MODEL", "gemini-2.5-flash")
+LAST_MODEL_USED = ""  # 本次运行实际用到的模型，写进当天数据文件
 
 PRIORITY_ORDER = {"high": 0, "medium": 1, "low": 2}
 
@@ -250,18 +253,141 @@ ENRICH_SYSTEM = """你在为一位做 GPU kernel / 训练性能优化、同时�
 不要编造输入里没有的信息。"""
 
 
-def enrich_with_claude(items: list[dict]) -> dict[str, dict] | None:
-    """返回 {id: {priority, category, summary, why, tags}}；失败返回 None 让调用方退回规则。"""
+def call_llm_json(system: str, user_msg: str, schema: dict, *, label: str = "llm") -> dict | None:
+    """统一入口：有 Anthropic key 用 Claude，否则有 Gemini key 用 Gemini，都没有返回 None。"""
+    global LAST_MODEL_USED
+    if os.environ.get("ANTHROPIC_API_KEY", "").strip():
+        data = call_claude_json(system, user_msg, schema, label=label)
+        if data is not None:
+            LAST_MODEL_USED = CLAUDE_MODEL
+            return data
+    if os.environ.get("GEMINI_API_KEY", "").strip():
+        data = call_gemini_json(system, user_msg, schema, label=label)
+        if data is not None:
+            LAST_MODEL_USED = GEMINI_MODEL
+            return data
+    return None
+
+
+def _gemini_schema(schema):
+    """Gemini 的 responseSchema 是 OpenAPI 子集，不认 additionalProperties。"""
+    if isinstance(schema, dict):
+        return {k: _gemini_schema(v) for k, v in schema.items() if k != "additionalProperties"}
+    if isinstance(schema, list):
+        return [_gemini_schema(x) for x in schema]
+    return schema
+
+
+def call_gemini_json(system: str, user_msg: str, schema: dict, *, label: str = "llm") -> dict | None:
+    api_key = os.environ.get("GEMINI_API_KEY", "").strip()
+    if not api_key:
+        return None
+    body = {
+        "systemInstruction": {"parts": [{"text": system}]},
+        "contents": [{"role": "user", "parts": [{"text": user_msg}]}],
+        "generationConfig": {
+            "responseMimeType": "application/json",
+            "responseSchema": _gemini_schema(schema),
+            "temperature": 0.2,
+            "maxOutputTokens": 16384,
+        },
+    }
+    req = urllib.request.Request(
+        f"https://generativelanguage.googleapis.com/v1beta/models/{GEMINI_MODEL}:generateContent",
+        data=json.dumps(body, ensure_ascii=False).encode("utf-8"),
+        headers={"Content-Type": "application/json", "x-goog-api-key": api_key},
+        method="POST",
+    )
+    try:
+        with urllib.request.urlopen(req, timeout=120) as resp:
+            data = json.load(resp)
+    except urllib.error.HTTPError as e:
+        detail = e.read().decode("utf-8", "replace")[:200]
+        log(f"[{label}] Gemini HTTP {e.code}：{detail}，退回规则模式")
+        return None
+    except (urllib.error.URLError, TimeoutError, OSError) as e:
+        log(f"[{label}] Gemini 网络错误：{e}，退回规则模式")
+        return None
+
+    try:
+        cand = data["candidates"][0]
+        finish = cand.get("finishReason", "")
+        text = "".join(part.get("text", "") for part in cand["content"]["parts"])
+        parsed = json.loads(text)
+    except (KeyError, IndexError, json.JSONDecodeError) as e:
+        log(f"[{label}] Gemini 返回无法解析（{e}；{str(data)[:160]}），退回规则模式")
+        return None
+    if finish not in ("STOP", ""):
+        log(f"[{label}] Gemini finishReason={finish}，输出可能被截断，退回规则模式")
+        return None
+    usage = data.get("usageMetadata", {})
+    log(f"[{label}] Gemini 完成：prompt={usage.get('promptTokenCount')} output={usage.get('candidatesTokenCount')}")
+    return parsed
+
+
+def call_claude_json(system: str, user_msg: str, schema: dict, *, label: str = "claude") -> dict | None:
+    """Claude 结构化输出调用。任何失败都返回 None，让调用方退回规则；绝不让整次运行挂掉。"""
     api_key = os.environ.get("ANTHROPIC_API_KEY", "").strip()
     if not api_key:
         return None
     try:
         import anthropic
     except ImportError:
-        log("[radar] 检测到 ANTHROPIC_API_KEY 但未安装 anthropic SDK（pip install anthropic），退回规则模式")
+        log(f"[{label}] 检测到 ANTHROPIC_API_KEY 但未安装 anthropic SDK（pip install anthropic），退回规则模式")
         return None
 
     client = anthropic.Anthropic()
+    request = dict(
+        model=CLAUDE_MODEL,
+        max_tokens=16000,
+        system=system,
+        messages=[{"role": "user", "content": user_msg}],
+        output_config={"effort": "low", "format": {"type": "json_schema", "schema": schema}},
+    )
+    try:
+        try:
+            # 首选：带服务端 refusal fallback 的 beta 端点
+            response = client.beta.messages.create(
+                betas=["server-side-fallback-2026-07-01"], fallbacks="default", **request
+            )
+        except anthropic.BadRequestError as e:
+            log(f"[{label}] beta 端点被拒（{e.message}），改用标准端点重试")
+            response = client.messages.create(**request)
+    except anthropic.AuthenticationError:
+        log(f"[{label}] ANTHROPIC_API_KEY 无效，退回规则模式")
+        return None
+    except anthropic.RateLimitError as e:
+        log(f"[{label}] 触发限流：{e.message}，退回规则模式")
+        return None
+    except anthropic.APIStatusError as e:
+        log(f"[{label}] API 错误 {e.status_code}：{e.message}，退回规则模式")
+        return None
+    except anthropic.APIConnectionError as e:
+        log(f"[{label}] 网络错误：{e}，退回规则模式")
+        return None
+
+    if response.stop_reason == "refusal":
+        detail = getattr(response, "stop_details", None)
+        log(f"[{label}] 模型拒绝了请求（{getattr(detail, 'category', None)}），退回规则模式")
+        return None
+
+    text = next((b.text for b in response.content if b.type == "text"), "")
+    try:
+        data = json.loads(text)
+    except json.JSONDecodeError:
+        log(f"[{label}] 模型返回的不是合法 JSON，退回规则模式")
+        return None
+
+    usage = getattr(response, "usage", None)
+    if usage:
+        log(f"[{label}] Claude 完成：input={usage.input_tokens} output={usage.output_tokens}")
+    return data
+
+
+def enrich_with_ai(items: list[dict]) -> dict[str, dict] | None:
+    """返回 {id: {priority, category, summary, why, tags}}；失败返回 None 让调用方退回规则。"""
+    if not (os.environ.get("ANTHROPIC_API_KEY", "").strip() or os.environ.get("GEMINI_API_KEY", "").strip()):
+        return None
     payload = [
         {
             "id": it["id"],
@@ -274,52 +400,9 @@ def enrich_with_claude(items: list[dict]) -> dict[str, dict] | None:
         for it in items
     ]
     user_msg = "以下是过去一天抓到的条目（JSON）。请按系统说明逐条给出 priority / category / summary / why / tags：\n\n" + json.dumps(payload, ensure_ascii=False)
-
-    request = dict(
-        model=CLAUDE_MODEL,
-        max_tokens=16000,
-        system=ENRICH_SYSTEM,
-        messages=[{"role": "user", "content": user_msg}],
-        output_config={"effort": "low", "format": {"type": "json_schema", "schema": ENRICH_SCHEMA}},
-    )
-
-    try:
-        try:
-            # 首选：带服务端 refusal fallback 的 beta 端点
-            response = client.beta.messages.create(
-                betas=["server-side-fallback-2026-07-01"], fallbacks="default", **request
-            )
-        except anthropic.BadRequestError as e:
-            log(f"[radar] beta 端点被拒（{e.message}），改用标准端点重试")
-            response = client.messages.create(**request)
-    except anthropic.AuthenticationError:
-        log("[radar] ANTHROPIC_API_KEY 无效，退回规则模式")
+    data = call_llm_json(ENRICH_SYSTEM, user_msg, ENRICH_SCHEMA, label="radar")
+    if not data:
         return None
-    except anthropic.RateLimitError as e:
-        log(f"[radar] 触发限流：{e.message}，退回规则模式")
-        return None
-    except anthropic.APIStatusError as e:
-        log(f"[radar] API 错误 {e.status_code}：{e.message}，退回规则模式")
-        return None
-    except anthropic.APIConnectionError as e:
-        log(f"[radar] 网络错误：{e}，退回规则模式")
-        return None
-
-    if response.stop_reason == "refusal":
-        detail = getattr(response, "stop_details", None)
-        log(f"[radar] 模型拒绝了请求（{getattr(detail, 'category', None)}），退回规则模式")
-        return None
-
-    text = next((b.text for b in response.content if b.type == "text"), "")
-    try:
-        data = json.loads(text)
-    except json.JSONDecodeError:
-        log("[radar] 模型返回的不是合法 JSON，退回规则模式")
-        return None
-
-    usage = getattr(response, "usage", None)
-    if usage:
-        log(f"[radar] Claude 完成：{len(data.get('items', []))} 条，input={usage.input_tokens} output={usage.output_tokens}")
     return {row["id"]: row for row in data.get("items", []) if "id" in row}
 
 
@@ -468,7 +551,7 @@ def main() -> None:
     items, status = collect(config, now_utc, seen)
     log(f"[radar] 共 {len(items)} 条新内容，来自 {sum(1 for s in status if s['ok'])}/{len(status)} 个源")
 
-    enrichment = enrich_with_claude(items) if items else None
+    enrichment = enrich_with_ai(items) if items else None
     rows = finalize(items, enrichment)
 
     if existing:
@@ -480,7 +563,7 @@ def main() -> None:
         "date": today,
         "generated_at": now_utc.isoformat(timespec="seconds"),
         "ai": bool(enrichment),
-        "model": CLAUDE_MODEL if enrichment else "",
+        "model": LAST_MODEL_USED if enrichment else "",
         "sources": status,
         "counts": {p: sum(1 for r in rows if r["priority"] == p) for p in ("high", "medium", "low")},
         "items": rows,

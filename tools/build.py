@@ -187,7 +187,7 @@ def render_radar_day_body(day: dict, config: dict, *, collapse_low: bool = True)
     ok = sum(1 for s in day.get("sources", []) if s.get("ok"))
     total = len(day.get("sources", []))
     failed = [s["name"] for s in day.get("sources", []) if not s.get("ok")]
-    mode = f"Claude 摘要（{esc(day.get('model', ''))}）" if day.get("ai") else "关键词规则（未配置 API key）"
+    mode = f"AI 摘要（{esc(day.get('model', ''))}）" if day.get("ai") else "关键词规则（未配置 API key）"
     failed_html = f'<details class="radar-failed"><summary>{len(failed)} 个源抓取失败</summary><p>{esc("、".join(failed))}</p></details>' if failed else ""
     stats = (
         f'<p class="radar-stats">{len(day.get("items", []))} 条 · 来自 {ok}/{total} 个源 · '
