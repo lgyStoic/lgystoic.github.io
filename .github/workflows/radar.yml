@@ -5,6 +5,11 @@ on:
     # 每天北京时间 08:00（UTC 00:00）
     - cron: "0 0 * * *"
   workflow_dispatch:
+    inputs:
+      window_hours:
+        description: "抓取时间窗口（小时）。留空用 sources.json 的默认值；首次或补漏可填 168"
+        required: false
+        default: ""
 
 permissions:
   contents: write
@@ -32,6 +37,7 @@ jobs:
       - name: 抓取并打分
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          RADAR_WINDOW_HOURS: ${{ inputs.window_hours }}
         run: python3 tools/radar.py
 
       - name: 渲染页面
