@@ -134,7 +134,7 @@ def parse_yaml_list(blob: bytes) -> list[dict]:
     return entries
 
 
-ANCHOR_RE = re.compile(r"<a\b[^>]*?href=[\"']([^\"'#]+)[\"'][^>]*>(.*?)</a>", re.I | re.S)
+ANCHOR_RE = re.compile(r"<a\b[^>]*?href=[\"']([^\"']+)[\"'][^>]*>(.*?)</a>", re.I | re.S)
 
 
 def parse_page(blob: bytes, source: dict) -> list[dict]:
