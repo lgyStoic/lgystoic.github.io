@@ -400,9 +400,13 @@ def call_claude_json(system: str, user_msg: str, schema: dict, *, label: str = "
     return data
 
 
+def ai_available() -> bool:
+    return bool(os.environ.get("ANTHROPIC_API_KEY", "").strip() or os.environ.get("GEMINI_API_KEY", "").strip())
+
+
 def enrich_with_ai(items: list[dict]) -> dict[str, dict] | None:
     """返回 {id: {priority, category, summary, why, tags}}；失败返回 None 让调用方退回规则。"""
-    if not (os.environ.get("ANTHROPIC_API_KEY", "").strip() or os.environ.get("GEMINI_API_KEY", "").strip()):
+    if not ai_available():
         return None
     payload = [
         {
@@ -566,6 +570,30 @@ def main() -> None:
 
     items, status = collect(config, now_utc, seen)
     log(f"[radar] 共 {len(items)} 条新内容，来自 {sum(1 for s in status if s['ok'])}/{len(status)} 个源")
+
+    # 当天文件是规则模式生成的、而这次有 AI 可用：把旧条目一起重新过一遍，整期升级成 AI 版
+    if existing and not existing.get("ai") and ai_available() and existing.get("items"):
+        known = {it["id"] for it in items}
+        for row in existing["items"]:
+            if row["id"] in known:
+                continue
+            items.append(
+                {
+                    "id": row["id"],
+                    "title": row["title"],
+                    "link": row["link"],
+                    "source": row["source"],
+                    "source_id": row.get("source_id", ""),
+                    "category": row.get("category", "industry"),
+                    "published": row.get("published", ""),
+                    "description": row.get("summary", ""),
+                    "score": 0,
+                    "priority": row.get("priority", "low"),
+                    "tags": row.get("tags", []),
+                }
+            )
+        log(f"[radar] 当天已有 {len(existing['items'])} 条规则版条目，本次连同新内容一起交给 AI 重排")
+        existing = None
 
     enrichment = enrich_with_ai(items) if items else None
     rows = finalize(items, enrichment)
