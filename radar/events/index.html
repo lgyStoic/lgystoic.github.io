@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>活动清单 | Garry 的学习站</title>
+    <meta name="description" content="深圳 / 广州 / 香港及线上的 AI 活动：聚会、黑客松、比赛、讲座、大会与学术截止，按日期排列，每天自动更新。" />
+    <link rel="canonical" href="https://lgystoic.github.io/radar/events/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="活动清单 | Garry 的学习站" />
+    <meta property="og:description" content="深圳 / 广州 / 香港及线上的 AI 活动，按日期排列，每天自动更新。" />
+    <meta property="og:url" content="https://lgystoic.github.io/radar/events/" />
+    <meta name="twitter:card" content="summary" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231b1b1a'/%3E%3Ctext x='32' y='43' text-anchor='middle' font-size='32' font-family='Helvetica,Arial' font-weight='700' fill='%23fbfaf8'%3EG%3C/text%3E%3C/svg%3E"
+    />
+    <link rel="stylesheet" href="../../site.css" />
+    <script>
+      try {
+        var t = localStorage.getItem("theme");
+        if (t === "dark" || t === "light") document.documentElement.dataset.theme = t;
+      } catch (e) {}
+    </script>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="wrap">
+        <a class="brand" href="../../" aria-label="回到首页">
+          <span class="brand-mark">G</span>
+          <span>Garry</span>
+        </a>
+        <nav class="site-nav" aria-label="主导航">
+          <a href="../../notes/">笔记</a>
+          <a href="../">雷达</a>
+          <a href="./" aria-current="page">活动</a>
+          <a href="https://github.com/lgyStoic" rel="me noreferrer">GitHub</a>
+          <button class="theme-toggle" type="button" data-theme-toggle aria-label="切换深浅色">
+            <span data-theme-icon>◑</span>
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <main class="wrap">
+      <section class="intro">
+        <p class="kicker">Events</p>
+        <h1>活动清单</h1>
+        <p class="bio">
+          深圳、广州、香港及线上可以报名参加的 AI 活动：聚会、黑客松、比赛、讲座、大会，以及学术会议投稿截止。按活动日期排，★ 是和我方向高度相关的。信息由脚本抽取，报名前请以原文为准。
+        </p>
+        <div class="filters">
+          <label class="search-box">
+            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <circle cx="9" cy="9" r="6" />
+              <path d="m14 14 4 4" stroke-linecap="round" />
+            </svg>
+            <input type="search" placeholder="搜活动、主办方、城市…" data-search-input autocomplete="off" />
+          </label>
+          <!-- build:events-filters -->
+
+    <!-- /build:events-filters -->
+          <!-- build:events-stats -->
+    <p class="empty-state">活动清单还没有生成——每天早上 8 点自动更新。</p>
+    <!-- /build:events-stats -->
+        </div>
+      </section>
+
+      <div data-archive>
+        <!-- build:events-list -->
+
+    <!-- /build:events-list -->
+      </div>
+      <p class="empty-state" data-empty hidden>没有匹配的活动。</p>
+
+      <section class="section">
+        <!-- build:events-past -->
+
+    <!-- /build:events-past -->
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap">
+        <span>© 2026 Garry · 自动汇总，报名信息请以原文为准</span>
+        <span><a href="https://github.com/lgyStoic/lgystoic.github.io/blob/master/radar/event_sources.json" rel="noreferrer">活动源清单</a> · <a href="../">雷达</a></span>
+      </div>
+    </footer>
+    <script src="../../site.js" defer></script>
+  </body>
+</html>

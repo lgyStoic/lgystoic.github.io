@@ -14,6 +14,7 @@ site.css site.js  站点样式与交互（深浅色、搜索、筛选）
 tools/build.py    从 notes.json 与 radar/data 生成列表 HTML、feed.xml、sitemap.xml
 tools/radar.py    AI 信息雷达：抓 RSS → 去重 → 打分 → （可选）AI 摘要
 tools/inbox.py    私有收件箱：读取私有仓库 Issue 里手动投递的链接，整理成每日摘要
+tools/events.py   活动雷达：从活动源找可报名参加的活动，抽日期/地点/费用/截止，维护 /radar/events/
 radar/            雷达页、信息源配置（sources.json）、每日数据（data/）、每期永久链接
 templates/note/   新笔记的起步模板
 ```
@@ -90,6 +91,18 @@ radar/sources.json  →  tools/radar.py  →  radar/data/<date>.json  →  tools
   AI 环节任何失败都退回规则，不会让整次运行挂掉。
 - **补漏 / 冷启动**：Actions 页手动触发时填 `window_hours`（如 168）可抓过去一周；同一天多次运行会合并进当天文件，不会重复。
 - **本地试跑**：`python3 tools/radar.py --dry-run` 只打印不落盘；`python3 tools/radar.py && python3 tools/build.py` 生成完整页面。
+
+## 活动清单（/radar/events/）
+
+`radar/event_sources.json` 里的源专门找**可以报名参加的活动**：lu.ma 城市页、活动行、Eventbrite、Devpost、
+天池、讯飞、ai-deadlines 会议截止，以及 Google 新闻的活动关键词搜索。每天和雷达一起跑（`tools/events.py`）：
+
+- 源类型除 `rss` / `json` 外新增 `ics`（iCal 日历）、`page`（列表页按 `link_pattern` 抽链接，再抓详情页的 OG 与 schema.org Event）、
+  `yaml`（ai-deadlines 的扁平列表）。
+- 有 API key 时由模型判断「是不是活动」并抽 日期 / 截止 / 城市 / 线上 / 费用 / 主办方 / 相关度；没有则用源的默认值。
+- 结果存 `radar/data/events.json`，按活动日期分月渲染到 `/radar/events/`，可按城市 / 线上 / 类型筛，★ 为高相关，
+  结束超过 14 天自动清掉。每期简报里有「新发现的活动」栏，首页有「近期活动」区块。
+- 加一个 lu.ma 日历：`{"kind": "ics", "url": "https://api.lu.ma/ics/get?entity=calendar&id=cal-xxxx", ...}`。
 
 ## 私有收件箱（小红书 / 微信 / 任意没有 RSS 的链接）
 

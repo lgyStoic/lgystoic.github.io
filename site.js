@@ -76,7 +76,7 @@
         if (box) box.open = true;
       }
     });
-    if (counter) counter.textContent = `${visible} 篇${tag ? ` · #${tag}` : ""}`;
+    if (counter) counter.textContent = `${visible} ${counter.dataset.unit || "篇"}${tag ? ` · #${tag}` : ""}`;
     if (empty) empty.hidden = visible !== 0;
   }
 
