@@ -104,9 +104,12 @@ def parse_date(raw: str | None) -> datetime | None:
 # ---------------------------------------------------------------- 抓取与解析
 
 def fetch(url: str, source_id: str) -> bytes:
+    """抓取原始字节；RADAR_FIXTURE_DIR 存在时改读本地 <source_id>.xml / .json。"""
     fixture_dir = os.environ.get("RADAR_FIXTURE_DIR")
     if fixture_dir:
         path = Path(fixture_dir) / f"{source_id}.xml"
+        if not path.exists():
+            path = Path(fixture_dir) / f"{source_id}.json"
         if not path.exists():
             raise FileNotFoundError(f"fixture 缺失：{path}")
         return path.read_bytes()
@@ -167,6 +170,52 @@ def parse_feed(blob: bytes) -> list[dict]:
                 "link": link,
                 "description": _child_text(it, "description", "encoded"),
                 "published": _child_text(it, "pubDate", "date"),
+            }
+        )
+    return entries
+
+
+def _dig(obj, path: str):
+    """按点分路径取值：'paper.title'。缺失返回 ''。"""
+    cur = obj
+    for key in path.split("."):
+        if isinstance(cur, dict):
+            cur = cur.get(key)
+        elif isinstance(cur, list) and key.isdigit():
+            cur = cur[int(key)] if int(key) < len(cur) else None
+        else:
+            return ""
+        if cur is None:
+            return ""
+    return cur
+
+
+def parse_json_feed(blob: bytes, source: dict) -> list[dict]:
+    """通用 JSON 列表源。source["json"] 里配置字段路径：
+    items（可空，表示根就是列表）、title、link（支持 {字段} 模板）、description、published、
+    以及可选的 min_number: {"field": "paper.upvotes", "value": 5} 门槛。"""
+    spec = source.get("json", {})
+    data = json.loads(blob)
+    rows = _dig(data, spec["items"]) if spec.get("items") else data
+    if not isinstance(rows, list):
+        return []
+    gate = spec.get("min_number")
+    entries = []
+    for row in rows:
+        if gate:
+            try:
+                if float(_dig(row, gate["field"]) or 0) < float(gate["value"]):
+                    continue
+            except (TypeError, ValueError):
+                continue
+        link_tpl = spec.get("link", "")
+        link = re.sub(r"\{([^}]+)\}", lambda m: str(_dig(row, m.group(1))), link_tpl) if "{" in link_tpl else str(_dig(row, link_tpl))
+        entries.append(
+            {
+                "title": str(_dig(row, spec.get("title", "title"))),
+                "link": link,
+                "description": str(_dig(row, spec.get("description", "description"))),
+                "published": str(_dig(row, spec.get("published", "published"))),
             }
         )
     return entries
@@ -447,8 +496,8 @@ def collect(config: dict, now_utc: datetime, seen: dict[str, str]) -> tuple[list
         sid = source["id"]
         try:
             blob = fetch(source["url"], sid)
-            raw_entries = parse_feed(blob)
-        except (urllib.error.URLError, urllib.error.HTTPError, TimeoutError, ET.ParseError, FileNotFoundError, OSError) as e:
+            raw_entries = parse_json_feed(blob, source) if source.get("kind") == "json" else parse_feed(blob)
+        except (urllib.error.URLError, urllib.error.HTTPError, TimeoutError, ET.ParseError, FileNotFoundError, OSError, json.JSONDecodeError, KeyError, TypeError) as e:
             status.append({"id": sid, "name": source["name"], "ok": False, "count": 0, "error": str(e)[:160]})
             log(f"[radar] ✗ {source['name']}: {e}")
             continue

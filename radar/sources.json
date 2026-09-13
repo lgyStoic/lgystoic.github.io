@@ -149,6 +149,24 @@
       "require_topic": true
     },
     {
+      "id": "hf-papers",
+      "name": "HF Papers 日榜",
+      "url": "https://huggingface.co/api/daily_papers?limit=50",
+      "kind": "json",
+      "category": "research",
+      "weight": 2,
+      "json": {
+        "title": "paper.title",
+        "link": "https://huggingface.co/papers/{paper.id}",
+        "description": "paper.summary",
+        "published": "publishedAt",
+        "min_number": {
+          "field": "paper.upvotes",
+          "value": 5
+        }
+      }
+    },
+    {
       "id": "pytorch",
       "name": "PyTorch Blog",
       "url": "https://pytorch.org/blog/feed.xml",
