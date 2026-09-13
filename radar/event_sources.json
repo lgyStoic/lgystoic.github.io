@@ -1,0 +1,146 @@
+{
+  "site": {
+    "cities": [
+      "深圳",
+      "广州",
+      "香港"
+    ],
+    "keep_past_days": 14,
+    "max_candidates_per_source": 40,
+    "max_new_per_run": 120,
+    "max_detail_fetch": 40
+  },
+  "types": {
+    "meetup": "线下聚会",
+    "hackathon": "黑客松",
+    "competition": "比赛",
+    "talk": "讲座 / 沙龙",
+    "conference": "大会",
+    "deadline": "学术截止",
+    "other": "其他"
+  },
+  "sources": [
+    {
+      "id": "luma-shenzhen",
+      "name": "lu.ma · 深圳",
+      "kind": "page",
+      "url": "https://lu.ma/shenzhen",
+      "link_pattern": "^https://lu\\.ma/[a-z0-9][a-z0-9-]{3,40}$",
+      "base": "https://lu.ma",
+      "default_type": "meetup",
+      "default_city": "深圳",
+      "exclude_pattern": "^https://lu\\.ma/(discover|signin|sign-in|signup|sign-up|explore|pricing|terms|privacy|home|calendar|calendars|user|create|about|blog|help|careers|contact|p|u|api|embed|shenzhen|guangzhou|hongkong)(/|$)"
+    },
+    {
+      "id": "luma-guangzhou",
+      "name": "lu.ma · 广州",
+      "kind": "page",
+      "url": "https://lu.ma/guangzhou",
+      "link_pattern": "^https://lu\\.ma/[a-z0-9][a-z0-9-]{3,40}$",
+      "base": "https://lu.ma",
+      "default_type": "meetup",
+      "default_city": "广州",
+      "exclude_pattern": "^https://lu\\.ma/(discover|signin|sign-in|signup|sign-up|explore|pricing|terms|privacy|home|calendar|calendars|user|create|about|blog|help|careers|contact|p|u|api|embed|shenzhen|guangzhou|hongkong)(/|$)"
+    },
+    {
+      "id": "luma-hongkong",
+      "name": "lu.ma · 香港",
+      "kind": "page",
+      "url": "https://lu.ma/hongkong",
+      "link_pattern": "^https://lu\\.ma/[a-z0-9][a-z0-9-]{3,40}$",
+      "base": "https://lu.ma",
+      "default_type": "meetup",
+      "default_city": "香港",
+      "exclude_pattern": "^https://lu\\.ma/(discover|signin|sign-in|signup|sign-up|explore|pricing|terms|privacy|home|calendar|calendars|user|create|about|blog|help|careers|contact|p|u|api|embed|shenzhen|guangzhou|hongkong)(/|$)"
+    },
+    {
+      "id": "huodongxing-shenzhen",
+      "name": "活动行 · 深圳 AI",
+      "kind": "page",
+      "url": "https://www.huodongxing.com/search?qs=AI&city=%E6%B7%B1%E5%9C%B3",
+      "link_pattern": "^https?://(www\\.)?huodongxing\\.com/event/\\d+",
+      "base": "https://www.huodongxing.com",
+      "default_type": "meetup",
+      "default_city": "深圳"
+    },
+    {
+      "id": "huodongxing-guangzhou",
+      "name": "活动行 · 广州 AI",
+      "kind": "page",
+      "url": "https://www.huodongxing.com/search?qs=AI&city=%E5%B9%BF%E5%B7%9E",
+      "link_pattern": "^https?://(www\\.)?huodongxing\\.com/event/\\d+",
+      "base": "https://www.huodongxing.com",
+      "default_type": "meetup",
+      "default_city": "广州"
+    },
+    {
+      "id": "eventbrite-hk",
+      "name": "Eventbrite · 香港 AI",
+      "kind": "page",
+      "url": "https://www.eventbrite.hk/d/hong-kong/ai/",
+      "link_pattern": "^https://www\\.eventbrite\\.hk/e/[^?#]+",
+      "base": "https://www.eventbrite.hk",
+      "default_type": "meetup",
+      "default_city": "香港"
+    },
+    {
+      "id": "devpost",
+      "name": "Devpost 黑客松",
+      "kind": "json",
+      "url": "https://devpost.com/api/hackathons?status[]=upcoming&status[]=open&order_by=recently-added&per_page=40",
+      "json": {
+        "items": "hackathons",
+        "title": "title",
+        "link": "url",
+        "description": "submission_period_dates",
+        "published": ""
+      },
+      "default_type": "hackathon",
+      "default_city": "线上"
+    },
+    {
+      "id": "ai-deadlines",
+      "name": "AI 会议截止日期",
+      "kind": "yaml",
+      "url": "https://raw.githubusercontent.com/paperswithcode/ai-deadlines/gh-pages/_data/conferences.yml",
+      "default_type": "deadline",
+      "default_city": "线上"
+    },
+    {
+      "id": "xfyun",
+      "name": "讯飞开放平台 · 算法赛",
+      "kind": "page",
+      "url": "https://challenge.xfyun.cn/",
+      "link_pattern": "^https://challenge\\.xfyun\\.cn/topic/info\\?type=[A-Za-z0-9_-]+",
+      "base": "https://challenge.xfyun.cn",
+      "default_type": "competition",
+      "default_city": "线上"
+    },
+    {
+      "id": "tianchi",
+      "name": "天池 · 进行中比赛",
+      "kind": "page",
+      "url": "https://tianchi.aliyun.com/competition/activeList",
+      "link_pattern": "^https://tianchi\\.aliyun\\.com/competition/entrance/\\d+",
+      "base": "https://tianchi.aliyun.com",
+      "default_type": "competition",
+      "default_city": "线上"
+    },
+    {
+      "id": "gnews-shenzhen",
+      "name": "Google 新闻 · 深圳 AI 活动",
+      "kind": "rss",
+      "url": "https://news.google.com/rss/search?q=%E6%B7%B1%E5%9C%B3+AI+(%E6%B4%BB%E5%8A%A8+OR+%E9%BB%91%E5%AE%A2%E6%9D%BE+OR+%E6%B2%99%E9%BE%99+OR+%E5%B3%B0%E4%BC%9A+OR+%E5%A4%A7%E4%BC%9A)+when:7d&hl=zh-CN&gl=CN&ceid=CN:zh-Hans",
+      "default_type": "other",
+      "default_city": "深圳"
+    },
+    {
+      "id": "gnews-hackathon",
+      "name": "Google 新闻 · 黑客松 / 比赛",
+      "kind": "rss",
+      "url": "https://news.google.com/rss/search?q=(AI+OR+%E5%A4%A7%E6%A8%A1%E5%9E%8B)+(%E9%BB%91%E5%AE%A2%E6%9D%BE+OR+hackathon+OR+%E7%AE%97%E6%B3%95%E5%A4%A7%E8%B5%9B+OR+%E6%8C%91%E6%88%98%E8%B5%9B)+%E6%8A%A5%E5%90%8D+when:7d&hl=zh-CN&gl=CN&ceid=CN:zh-Hans",
+      "default_type": "competition",
+      "default_city": "线上"
+    }
+  ]
+}

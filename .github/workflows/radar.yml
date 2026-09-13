@@ -41,6 +41,12 @@ jobs:
           RADAR_WINDOW_HOURS: ${{ inputs.window_hours }}
         run: python3 tools/radar.py
 
+      - name: 找活动
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: python3 tools/events.py
+
       - name: 渲染页面
         run: python3 tools/build.py
 

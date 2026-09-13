@@ -22,7 +22,7 @@ from __future__ import annotations
 import html
 import json
 import re
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from email.utils import format_datetime
 from pathlib import Path
 from zoneinfo import ZoneInfo
@@ -34,6 +34,8 @@ NOTES_JSON = ROOT / "notes" / "notes.json"
 RADAR_DIR = ROOT / "radar"
 RADAR_DATA = RADAR_DIR / "data"
 RADAR_CONFIG = RADAR_DIR / "sources.json"
+EVENTS_DATA = RADAR_DATA / "events.json"
+EVENTS_CONFIG = RADAR_DIR / "event_sources.json"
 SITE_URL = "https://lgystoic.github.io"
 SITE_TITLE = "Garry 的学习站"
 SITE_DESC = "GPU kernel、训练性能、生成模型和城市数据的中文笔记存档。"
@@ -176,7 +178,7 @@ def render_radar_item(row: dict, categories: dict) -> str:
         </li>"""
 
 
-def render_radar_day_body(day: dict, config: dict, *, collapse_low: bool = True) -> str:
+def render_radar_day_body(day: dict, config: dict, *, collapse_low: bool = True, events_html: str = "") -> str:
     """一期日报的正文：三个优先级分组，low 默认折叠。"""
     site = config.get("site", {})
     categories = config.get("categories", {})
@@ -195,6 +197,8 @@ def render_radar_day_body(day: dict, config: dict, *, collapse_low: bool = True)
     )
 
     parts = [stats, failed_html]
+    if events_html:
+        parts.append(events_html)
     if not day.get("items"):
         parts.append('<p class="empty-state">这一天没有抓到新内容。</p>')
 
@@ -249,6 +253,7 @@ RADAR_DAY_TEMPLATE = """<!doctype html>
         <nav class="site-nav" aria-label="主导航">
           <a href="../../notes/">笔记</a>
           <a href="../" aria-current="page">雷达</a>
+          <a href="../events/">活动</a>
           <a href="https://github.com/lgyStoic" rel="me noreferrer">GitHub</a>
           <button class="theme-toggle" type="button" data-theme-toggle aria-label="切换深浅色">
             <span data-theme-icon>◑</span>
@@ -298,7 +303,7 @@ def radar_description(day: dict) -> str:
     return esc(f"{len(day.get('items', []))} 条 AI 动态，自动汇总。")
 
 
-def write_radar_days(days: list[dict], config: dict) -> None:
+def write_radar_days(days: list[dict], config: dict, events_data: dict | None = None, event_types: dict | None = None) -> None:
     for i, day in enumerate(days):
         newer = days[i - 1]["date"] if i > 0 else None
         older = days[i + 1]["date"] if i + 1 < len(days) else None
@@ -316,14 +321,14 @@ def write_radar_days(days: list[dict], config: dict) -> None:
             site_url=SITE_URL,
             favicon=FAVICON,
             pager=" · ".join(pager),
-            body=render_radar_day_body(day, config),
+            body=render_radar_day_body(day, config, events_html=render_day_events(day["date"], events_data, event_types or {})),
         )
         out_dir = RADAR_DIR / day["date"]
         out_dir.mkdir(parents=True, exist_ok=True)
         (out_dir / "index.html").write_text(html_text, encoding="utf-8")
 
 
-def render_radar_latest(days: list[dict], config: dict) -> str:
+def render_radar_latest(days: list[dict], config: dict, events_data: dict | None = None, event_types: dict | None = None) -> str:
     if not days:
         return '    <p class="empty-state">第一期还没有生成——每天早上 8 点（北京时间）自动更新。</p>'
     day = days[0]
@@ -331,7 +336,8 @@ def render_radar_latest(days: list[dict], config: dict) -> str:
         f'    <div class="section-head"><h2>{esc(human_date(day["date"]))}</h2>'
         f'<a class="text-link" href="./{esc(day["date"])}/">永久链接 →</a></div>'
     )
-    return head + "\n" + render_radar_day_body(day, config)
+    ev_html = render_day_events(day["date"], events_data, event_types or {}).replace('href="../events/"', 'href="./events/"')
+    return head + "\n" + render_radar_day_body(day, config, events_html=ev_html)
 
 
 def render_radar_days_list(days: list[dict]) -> str:
@@ -417,6 +423,178 @@ def write_radar_feed(days: list[dict], config: dict) -> None:
     (RADAR_DIR / "feed.xml").write_text(feed, encoding="utf-8")
 
 
+
+# ---------------------------------------------------------------- 活动清单
+
+WEEKDAYS = "一二三四五六日"
+
+
+def load_events() -> tuple[dict, dict | None]:
+    config = json.loads(EVENTS_CONFIG.read_text(encoding="utf-8")) if EVENTS_CONFIG.exists() else {"types": {}}
+    data = json.loads(EVENTS_DATA.read_text(encoding="utf-8")) if EVENTS_DATA.exists() else None
+    return config, data
+
+
+def ev_anchor_date(ev: dict) -> str:
+    """排序与分组用的锚点日期：学术截止类用截止日；其余活动开始 > 截止 > 空。"""
+    if ev.get("event_type") == "deadline" and ev.get("deadline"):
+        return ev["deadline"]
+    return ev.get("start") or ev.get("deadline") or ""
+
+
+def fmt_day(date: str) -> tuple[str, str]:
+    try:
+        dt = datetime.strptime(date, "%Y-%m-%d")
+    except ValueError:
+        return ("待定", "")
+    return (f"{dt.month}/{dt.day}", f"周{WEEKDAYS[dt.weekday()]}")
+
+
+def render_event_row(ev: dict, types: dict, today: str) -> str:
+    anchor = ev_anchor_date(ev)
+    day, wd = fmt_day(anchor)
+    label = "投稿截止" if ev.get("event_type") == "deadline" else ("报名截止" if (not ev.get("start") and ev.get("deadline")) else "")
+    span = ""
+    if ev.get("event_type") != "deadline" and ev.get("start") and ev.get("end") and ev["end"] != ev["start"]:
+        span = f'<span class="event-span">→ {esc(ev["end"][5:].replace("-", "/"))}</span>'
+
+    meta = []
+    if ev.get("city"):
+        meta.append(esc(ev["city"]))
+    if ev.get("online") and ev.get("city") != "线上":
+        meta.append("可线上")
+    meta.append(esc(types.get(ev.get("event_type", ""), ev.get("event_type", ""))))
+    if ev.get("fee"):
+        meta.append(esc(ev["fee"]))
+    if ev.get("organizer"):
+        meta.append(esc(ev["organizer"]))
+    if ev.get("deadline") and ev.get("start") and ev.get("event_type") != "deadline":
+        soon = " soon" if ev["deadline"] <= (datetime.strptime(today, "%Y-%m-%d") + timedelta(days=7)).strftime("%Y-%m-%d") else ""
+        meta.append(f'<b class="ddl{soon}">报名截止 {esc(ev["deadline"][5:].replace("-", "/"))}</b>')
+    if ev.get("event_type") == "deadline" and ev.get("start") and ev.get("start") != anchor:
+        meta.append(f'会议 {esc(ev["start"][5:].replace("-", "/"))}')
+    meta.append(f'<span class="event-src">{esc(ev.get("source", ""))}</span>')
+
+    tags = [ev.get("city", ""), ev.get("event_type", "")]
+    if ev.get("online"):
+        tags.append("线上")
+    if ev.get("relevance") == "high":
+        tags.append("推荐")
+    haystack = " ".join([ev.get("title", ""), ev.get("summary", ""), ev.get("city", ""), ev.get("organizer", ""), ev.get("source", "")]).lower()
+    star = '<span class="star" title="和你的方向高度相关">★</span>' if ev.get("relevance") == "high" else ""
+    new = '<span class="new-badge">新</span>' if ev.get("found") == today else ""
+
+    return f"""        <li class="event-row rel-{esc(ev.get('relevance', 'medium'))}" data-tags="{esc('|'.join(t for t in tags if t))}" data-search="{esc(haystack)}">
+          <div class="event-date"><b>{esc(day)}</b><span>{esc(label or wd)}</span></div>
+          <div class="event-body">
+            <h3 class="event-title">{star}<a href="{esc(ev['link'])}" rel="noopener noreferrer">{esc(ev['title'])}</a>{span}{new}</h3>
+            <p class="event-meta">{" · ".join(m for m in meta if m)}</p>
+            <p class="event-summary">{esc(ev.get('summary', ''))}</p>
+          </div>
+        </li>"""
+
+
+def render_events_page(config: dict, data: dict | None) -> dict[str, str]:
+    types = config.get("types", {})
+    if not data or not data.get("events"):
+        return {
+            "events-filters": "",
+            "events-stats": '    <p class="empty-state">活动清单还没有生成——每天早上 8 点自动更新。</p>',
+            "events-list": "",
+            "events-past": "",
+        }
+    today = data.get("today") or datetime.now(SHANGHAI).strftime("%Y-%m-%d")
+    events = data["events"]
+    upcoming = [e for e in events if (e.get("end") or e.get("start") or e.get("deadline") or today) >= today]
+    past = [e for e in events if e not in upcoming]
+
+    # 筛选器：城市 → 线上 → 类型，只列出实际出现过的
+    counts: dict[str, int] = {}
+    for e in upcoming:
+        for t in {e.get("city", ""), e.get("event_type", ""), "线上" if e.get("online") else "", "推荐" if e.get("relevance") == "high" else ""}:
+            if t:
+                counts[t] = counts.get(t, 0) + 1
+    order = ["推荐", *config.get("site", {}).get("cities", []), "线上", *types.keys()]
+    chips = ['      <li><button class="tag-chip" type="button" data-tag="" aria-pressed="true">全部</button></li>']
+    listed = set()
+    for key in order + sorted(k for k in counts if k not in order):
+        if key in counts and key not in listed:
+            listed.add(key)
+            chips.append(f'      <li><button class="tag-chip" type="button" data-tag="{esc(key)}" aria-pressed="false">{esc(types.get(key, key))} <b>{counts[key]}</b></button></li>')
+    filters = '    <ul class="tag-cloud">\n' + "\n".join(chips) + "\n    </ul>"
+
+    ok = sum(1 for s in data.get("sources", []) if s.get("ok"))
+    total = len(data.get("sources", []))
+    mode = f"AI 抽取（{esc(data['model'])}）" if data.get("model") else "规则默认值（未配置 API key）"
+    stats = f'    <p class="radar-stats" data-result-count data-unit="个活动">{len(upcoming)} 个即将发生 · 来自 {ok}/{total} 个源 · 更新 {esc(today)} · {mode}</p>'
+
+    groups: dict[str, list[dict]] = {}
+    for e in upcoming:
+        anchor = ev_anchor_date(e)
+        key = anchor[:7] if anchor else "9999-99"
+        groups.setdefault(key, []).append(e)
+    blocks = []
+    for key in sorted(groups):
+        if key == "9999-99":
+            label = "日期待定"
+        else:
+            y, m = key.split("-")
+            label = f"{y} 年 {int(m)} 月"
+        rows = "\n".join(render_event_row(e, types, today) for e in groups[key])
+        blocks.append(
+            f'    <section class="year-group">\n      <p class="year-label">{esc(label)}</p>\n      <ul class="event-list">\n{rows}\n      </ul>\n    </section>'
+        )
+    listing = "\n".join(blocks)
+
+    past_html = ""
+    if past:
+        rows = "\n".join(render_event_row(e, types, today) for e in sorted(past, key=ev_anchor_date, reverse=True))
+        past_html = f'    <details class="radar-low"><summary><h2 class="radar-heading">已结束 <b>{len(past)}</b></h2></summary>\n      <ul class="event-list">\n{rows}\n      </ul>\n    </details>'
+    return {"events-filters": filters, "events-stats": stats, "events-list": listing, "events-past": past_html}
+
+
+def render_home_events(data: dict | None, types: dict) -> str:
+    if not data or not data.get("events"):
+        return ""
+    today = data.get("today") or datetime.now(SHANGHAI).strftime("%Y-%m-%d")
+    picks = [
+        e for e in data["events"]
+        if (e.get("end") or e.get("start") or e.get("deadline") or today) >= today and e.get("relevance") != "low"
+    ][:4]
+    if not picks:
+        return ""
+    rows = []
+    for e in picks:
+        day, wd = fmt_day(ev_anchor_date(e))
+        meta = " · ".join(x for x in [e.get("city", ""), types.get(e.get("event_type", ""), ""), e.get("fee", "")] if x)
+        rows.append(
+            f'        <li><a class="post radar-pick" href="{esc(e["link"])}" rel="noopener noreferrer">'
+            f'<p class="post-date">{esc(day)} {esc(wd)} · {esc(meta)}</p>'
+            f'<h3 class="post-title">{esc(e["title"])}</h3>'
+            f'<p class="post-summary">{esc(e.get("summary", ""))}</p></a></li>'
+        )
+    return (
+        '    <section class="section">\n'
+        '      <div class="section-head"><h2>近期活动</h2><a class="text-link" href="./radar/events/">全部 →</a></div>\n'
+        f'      <ul class="post-list">\n' + "\n".join(rows) + "\n      </ul>\n    </section>"
+    )
+
+
+def render_day_events(date: str, data: dict | None, types: dict) -> str:
+    """某一期简报里「新发现的活动」栏目。"""
+    if not data:
+        return ""
+    found = [e for e in data.get("events", []) if e.get("found") == date]
+    if not found:
+        return ""
+    found.sort(key=ev_anchor_date)
+    rows = "\n".join(render_event_row(e, types, date) for e in found)
+    return (
+        f'<h2 class="radar-heading prio-events">新发现的活动 <b>{len(found)}</b> <a class="text-link" href="../events/">全部活动 →</a></h2>\n'
+        f'      <ul class="event-list">\n{rows}\n      </ul>'
+    )
+
+
 def inject(path: Path, blocks: dict[str, str]) -> None:
     text = path.read_text(encoding="utf-8")
     for name, content in blocks.items():
@@ -474,6 +652,7 @@ def write_sitemap(notes: list[dict], days: list[dict]) -> None:
     urls += [(SITE_URL + note_href(n, from_root=False), n.get("updated")) for n in notes]
     if days:
         urls.append((f"{SITE_URL}/radar/", days[0]["date"]))
+        urls.append((f"{SITE_URL}/radar/events/", days[0]["date"]))
         urls += [(f"{SITE_URL}/radar/{d['date']}/", d["date"]) for d in days]
     body = "\n".join(
         f"  <url>\n    <loc>{esc(loc)}</loc>\n"
@@ -493,6 +672,8 @@ def main() -> None:
     notes = load_notes()
     latest = notes[0].get("updated", "") if notes else ""
     radar_config, days = load_radar()
+    events_config, events_data = load_events()
+    event_types = events_config.get("types", {})
 
     inject(
         ROOT / "index.html",
@@ -501,17 +682,20 @@ def main() -> None:
             "topics": render_topic_links(notes),
             "stats": f'    <p class="meta-line">{len(notes)} 篇笔记 · 最近更新 {esc(latest)}</p>',
             "radar": render_home_radar(days),
+            "events": render_home_events(events_data, event_types),
         },
     )
+    if (RADAR_DIR / "events" / "index.html").exists():
+        inject(RADAR_DIR / "events" / "index.html", render_events_page(events_config, events_data))
     if (RADAR_DIR / "index.html").exists():
         inject(
             RADAR_DIR / "index.html",
             {
-                "radar-latest": render_radar_latest(days, radar_config),
+                "radar-latest": render_radar_latest(days, radar_config, events_data, event_types),
                 "radar-days": render_radar_days_list(days),
             },
         )
-        write_radar_days(days, radar_config)
+        write_radar_days(days, radar_config, events_data, event_types)
         write_radar_feed(days, radar_config)
     inject(
         ROOT / "notes" / "index.html",

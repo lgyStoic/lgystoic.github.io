@@ -794,3 +794,119 @@ main.wrap {
 .radar-pick .post-date {
   text-transform: none;
 }
+
+/* ---------- 活动清单 ---------- */
+
+.event-list {
+  padding: 0;
+  list-style: none;
+}
+
+.event-row {
+  display: grid;
+  grid-template-columns: 64px minmax(0, 1fr);
+  gap: 14px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line-soft);
+}
+
+.event-row:last-child {
+  border-bottom: 0;
+}
+
+.event-date {
+  display: flex;
+  flex-direction: column;
+  padding-top: 2px;
+  color: var(--ink);
+  font-family: var(--mono);
+  line-height: 1.2;
+}
+
+.event-date b {
+  font-size: 1.05rem;
+  font-weight: 650;
+}
+
+.event-date span {
+  margin-top: 3px;
+  color: var(--muted);
+  font-size: 0.72rem;
+}
+
+.event-title {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px;
+  font-size: 1.02rem;
+  font-weight: 620;
+  letter-spacing: -0.01em;
+  line-height: 1.4;
+}
+
+.event-title a:hover {
+  color: var(--accent);
+}
+
+.event-span,
+.event-src {
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 0.74rem;
+  font-weight: 500;
+}
+
+.star {
+  color: var(--accent);
+  font-size: 0.85rem;
+}
+
+.new-badge {
+  padding: 1px 6px;
+  border-radius: 5px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  font-weight: 600;
+}
+
+.event-meta {
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.event-meta .ddl {
+  color: var(--ink-soft);
+  font-weight: 600;
+}
+
+.event-meta .ddl.soon {
+  color: var(--accent);
+}
+
+.event-summary {
+  margin-top: 4px;
+  color: var(--ink-soft);
+  font-size: 0.93rem;
+  line-height: 1.6;
+}
+
+.rel-low .event-title,
+.rel-low .event-summary {
+  color: var(--muted);
+}
+
+.radar-heading .text-link {
+  margin-left: auto;
+  font-size: 0.82rem;
+}
+
+@media (max-width: 560px) {
+  .event-row {
+    grid-template-columns: 52px minmax(0, 1fr);
+    gap: 10px;
+  }
+}
