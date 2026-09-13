@@ -88,7 +88,16 @@
       "reasoning",
       "agent",
       "agentic",
-      "scaling law"
+      "scaling law",
+      "扩散",
+      "生成模型",
+      "算子",
+      "推理加速",
+      "显存",
+      "大模型",
+      "多模态",
+      "视频生成",
+      "3D"
     ],
     "mute_keywords": [
       "webinar",
@@ -211,35 +220,176 @@
       "weight": 2
     },
     {
-      "id": "arxiv-cs-lg",
-      "name": "arXiv cs.LG",
-      "url": "https://rss.arxiv.org/rss/cs.LG",
-      "category": "research",
-      "weight": 0,
-      "require_topic": true
-    },
-    {
-      "id": "arxiv-cs-cv",
-      "name": "arXiv cs.CV",
-      "url": "https://rss.arxiv.org/rss/cs.CV",
-      "category": "research",
-      "weight": 0,
-      "require_topic": true
-    },
-    {
-      "id": "arxiv-cs-dc",
-      "name": "arXiv cs.DC",
-      "url": "https://rss.arxiv.org/rss/cs.DC",
-      "category": "research",
-      "weight": 0,
-      "require_topic": true
-    },
-    {
       "id": "hn-llm",
       "name": "Hacker News (LLM, 100+ 分)",
       "url": "https://hnrss.org/newest?q=LLM+OR+GPU+OR+diffusion&points=100",
       "category": "industry",
       "weight": 1
+    },
+    {
+      "id": "arxiv-gen",
+      "name": "arXiv · 生成模型",
+      "url": "https://export.arxiv.org/api/query?search_query=all%3A%22flow%20matching%22%20OR%20all%3A%22rectified%20flow%22%20OR%20all%3A%22diffusion%20transformer%22%20OR%20all%3A%22video%20generation%22%20OR%20all%3A%223D%20generation%22%20OR%20all%3A%22consistency%20model%22&sortBy=submittedDate&sortOrder=descending&max_results=40",
+      "category": "research",
+      "weight": 1,
+      "window_hours": 72
+    },
+    {
+      "id": "arxiv-kernel",
+      "name": "arXiv · GPU / 系统",
+      "url": "https://export.arxiv.org/api/query?search_query=all%3Atriton%20OR%20all%3A%22CUDA%20kernel%22%20OR%20all%3A%22FlashAttention%22%20OR%20all%3A%22tensor%20core%22%20OR%20all%3A%22GPU%20kernel%22%20OR%20all%3A%22FP8%22%20OR%20all%3A%22mixture%20of%20experts%22%20AND%20all%3Ainference&sortBy=submittedDate&sortOrder=descending&max_results=40",
+      "category": "research",
+      "weight": 1,
+      "window_hours": 72
+    },
+    {
+      "id": "arxiv-train",
+      "name": "arXiv · 训练系统",
+      "url": "https://export.arxiv.org/api/query?search_query=all%3A%22distributed%20training%22%20OR%20all%3A%22pipeline%20parallel%22%20OR%20all%3A%22tensor%20parallel%22%20OR%20all%3A%22FSDP%22%20OR%20all%3A%22collective%20communication%22%20OR%20all%3A%22training%20efficiency%22&sortBy=submittedDate&sortOrder=descending&max_results=40",
+      "category": "research",
+      "weight": 1,
+      "window_hours": 72
+    },
+    {
+      "id": "rel-pytorch",
+      "name": "Release · PyTorch",
+      "url": "https://github.com/pytorch/pytorch/releases.atom",
+      "category": "infra",
+      "weight": 2,
+      "window_hours": 72
+    },
+    {
+      "id": "rel-triton",
+      "name": "Release · Triton",
+      "url": "https://github.com/triton-lang/triton/releases.atom",
+      "category": "infra",
+      "weight": 2,
+      "window_hours": 72
+    },
+    {
+      "id": "rel-cutlass",
+      "name": "Release · CUTLASS",
+      "url": "https://github.com/NVIDIA/cutlass/releases.atom",
+      "category": "infra",
+      "weight": 2,
+      "window_hours": 72
+    },
+    {
+      "id": "rel-flash-attention",
+      "name": "Release · FlashAttention",
+      "url": "https://github.com/Dao-AILab/flash-attention/releases.atom",
+      "category": "infra",
+      "weight": 2,
+      "window_hours": 72
+    },
+    {
+      "id": "rel-vllm",
+      "name": "Release · vLLM",
+      "url": "https://github.com/vllm-project/vllm/releases.atom",
+      "category": "infra",
+      "weight": 2,
+      "window_hours": 72
+    },
+    {
+      "id": "rel-sglang",
+      "name": "Release · SGLang",
+      "url": "https://github.com/sgl-project/sglang/releases.atom",
+      "category": "infra",
+      "weight": 2,
+      "window_hours": 72
+    },
+    {
+      "id": "rel-tensorrt-llm",
+      "name": "Release · TensorRT-LLM",
+      "url": "https://github.com/NVIDIA/TensorRT-LLM/releases.atom",
+      "category": "infra",
+      "weight": 2,
+      "window_hours": 72
+    },
+    {
+      "id": "rel-diffusers",
+      "name": "Release · Diffusers",
+      "url": "https://github.com/huggingface/diffusers/releases.atom",
+      "category": "infra",
+      "weight": 2,
+      "window_hours": 72
+    },
+    {
+      "id": "rel-cuda-python",
+      "name": "Release · cuda-python",
+      "url": "https://github.com/NVIDIA/cuda-python/releases.atom",
+      "category": "infra",
+      "weight": 2,
+      "window_hours": 72
+    },
+    {
+      "id": "gnews-labs-en",
+      "name": "新闻 · Anthropic / Mistral / xAI",
+      "url": "https://news.google.com/rss/search?q=Anthropic%20OR%20Mistral%20OR%20xAI%20%28model%20OR%20release%20OR%20launch%29%20when%3A2d&hl=en-US&gl=US&ceid=US:en",
+      "category": "release",
+      "weight": 1,
+      "require_topic": true
+    },
+    {
+      "id": "gnews-labs-cn",
+      "name": "新闻 · 国内模型公司",
+      "url": "https://news.google.com/rss/search?q=%28DeepSeek%20OR%20%E6%9C%88%E4%B9%8B%E6%9A%97%E9%9D%A2%20OR%20Kimi%20OR%20%E6%99%BA%E8%B0%B1%20OR%20MiniMax%20OR%20%E9%98%B6%E8%B7%83%E6%98%9F%E8%BE%B0%20OR%20%E9%80%9A%E4%B9%89%29%20%28%E5%8F%91%E5%B8%83%20OR%20%E5%BC%80%E6%BA%90%20OR%20%E6%A8%A1%E5%9E%8B%29%20when%3A2d&hl=zh-CN&gl=CN&ceid=CN:zh-Hans",
+      "category": "release",
+      "weight": 1,
+      "require_topic": true
+    },
+    {
+      "id": "jiqizhixin",
+      "name": "机器之心",
+      "url": "https://www.jiqizhixin.com/rss",
+      "category": "industry",
+      "weight": 1,
+      "require_topic": true
+    },
+    {
+      "id": "qbitai",
+      "name": "量子位",
+      "url": "https://www.qbitai.com/feed",
+      "category": "industry",
+      "weight": 1,
+      "require_topic": true
+    },
+    {
+      "id": "infoq-cn",
+      "name": "InfoQ 中文",
+      "url": "https://www.infoq.cn/feed",
+      "category": "industry",
+      "weight": 1,
+      "require_topic": true
+    },
+    {
+      "id": "anthropic-eng",
+      "name": "Anthropic Engineering",
+      "url": "https://www.anthropic.com/rss.xml",
+      "category": "release",
+      "weight": 3
+    },
+    {
+      "id": "lmarena",
+      "name": "LMArena Blog",
+      "url": "https://blog.lmarena.ai/rss.xml",
+      "category": "release",
+      "weight": 2
+    },
+    {
+      "id": "modal-blog",
+      "name": "Modal Blog",
+      "url": "https://modal.com/blog/feed.xml",
+      "category": "infra",
+      "weight": 1,
+      "require_topic": true
+    },
+    {
+      "id": "thonking",
+      "name": "Horace He (thonking)",
+      "url": "https://www.thonking.ai/feed",
+      "category": "people",
+      "weight": 3
     }
   ]
 }

@@ -18,6 +18,7 @@
 from __future__ import annotations
 
 import argparse
+import html as html_mod
 import json
 import os
 import re
@@ -133,7 +134,7 @@ def parse_yaml_list(blob: bytes) -> list[dict]:
     return entries
 
 
-ANCHOR_RE = re.compile(r"<a\b[^>]*?href=[\"']([^\"'#]+)[\"'][^>]*>(.*?)</a>", re.I | re.S)
+ANCHOR_RE = re.compile(r"<a\b[^>]*?href=[\"']([^\"']+)[\"'][^>]*>(.*?)</a>", re.I | re.S)
 
 
 def parse_page(blob: bytes, source: dict) -> list[dict]:
@@ -143,7 +144,9 @@ def parse_page(blob: bytes, source: dict) -> list[dict]:
     base = source.get("base") or source["url"]
     seen, entries = set(), []
     for href, inner in ANCHOR_RE.findall(html):
-        url = normalize_link(urljoin(base, href.strip()))
+        # href 里常见 &amp; 转义和跟踪参数；列表页链接的 query 一律不要
+        url = urljoin(base, html_mod.unescape(href.strip()))
+        url = normalize_link(url.split("#", 1)[0].split("?", 1)[0])
         if not pattern.search(url) or url in seen or (exclude and exclude.search(url)):
             continue
         seen.add(url)
@@ -426,10 +429,22 @@ def main() -> None:
             if c["detail"].get("description"):
                 c["description"] = c["detail"]["description"]
 
+    # 同一个源里 3 条以上共用同一个标题，多半是前端渲染页的占位标题（如「算法大赛-天池大赛」），没有信息量
+    from collections import Counter
+    dup = Counter((c["source_id"], c["title"]) for c in cands if c["title"])
+    before = len(cands)
+    cands = [c for c in cands if dup[(c["source_id"], c["title"])] < 3]
+    if len(cands) != before:
+        log(f"[events] 丢弃 {before - len(cands)} 条占位标题候选")
+
     ai = enrich_events(cands, today) if cands and radar.ai_available() else {}
     model = radar.LAST_MODEL_USED if ai else ""
 
-    events = {e["id"]: e for e in data.get("events", [])}
+    # 源从配置里移除后，它留下的旧条目一起清掉（例如被证实是前端渲染占位页的源）
+    live_sources = {s["id"] for s in config["sources"]} | {"inbox"}
+    events = {e["id"]: e for e in data.get("events", []) if e.get("source_id") in live_sources}
+    if len(events) != len(data.get("events", [])):
+        log(f"[events] 清掉 {len(data.get('events', [])) - len(events)} 条已移除源的旧条目")
     added, dropped = 0, 0
     for c in cands:
         ev = to_event(c, ai.get(c["id"]) if ai else None, today)
