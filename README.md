@@ -84,7 +84,7 @@ radar/sources.json  →  tools/radar.py  →  radar/data/<date>.json  →  tools
 - **规则**：`high_keywords` 命中标题 +2 分，`topic_keywords` 每命中一个 +1（最多 +2），`mute_keywords` −3。
   ≥4 必看，2-3 值得看，其余折叠。
 - **去重**：`radar/data/seen.json` 记录 120 天内出现过的链接，跨天不重复。
-- **AI 摘要**：仓库 Secrets 里配置 `ANTHROPIC_API_KEY`（Claude，优先）或 `GEMINI_API_KEY`（Gemini 2.5 Flash）后自动启用，
+- **AI 摘要**：仓库 Secrets 里配置 `ANTHROPIC_API_KEY`（Claude，优先）或 `GEMINI_API_KEY`（Gemini，默认 `gemini-pro-latest`，配额不足时自动降级 `gemini-flash-latest`）后自动启用，
   负责优先级判断、中文一句话摘要和「为什么值得看」。都没有时退回关键词规则，摘要取原文前 160 字。
   AI 环节任何失败都退回规则，不会让整次运行挂掉。
 - **补漏 / 冷启动**：Actions 页手动触发时填 `window_hours`（如 168）可抓过去一周；同一天多次运行会合并进当天文件，不会重复。

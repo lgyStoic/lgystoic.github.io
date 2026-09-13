@@ -8,7 +8,9 @@
 
 环境变量：
     ANTHROPIC_API_KEY   有则调用 Claude 做优先级判断和中文摘要（优先）。
-    GEMINI_API_KEY      没有 Anthropic key 时改用 Gemini（默认 gemini-2.5-flash，可用 GEMINI_MODEL 覆盖）。
+    GEMINI_API_KEY      没有 Anthropic key 时改用 Gemini。默认 gemini-pro-latest（最强的 Pro 线），
+                        遇到配额或服务错误自动降级到 gemini-flash-latest；可用 GEMINI_MODEL /
+                        GEMINI_FALLBACK_MODEL 覆盖。
                         两个都没有则退回关键词规则，每条摘要取原文描述的前 160 字。
     RADAR_WINDOW_HOURS  覆盖 sources.json 里的 window_hours，首次运行或补漏时可以放大到 168。
 
@@ -44,7 +46,8 @@ FETCH_TIMEOUT = 20
 SEEN_RETENTION_DAYS = 120
 SUMMARY_FALLBACK_CHARS = 160
 CLAUDE_MODEL = "claude-opus-5"
-GEMINI_MODEL = os.environ.get("GEMINI_MODEL", "gemini-2.5-flash")
+GEMINI_MODEL = os.environ.get("GEMINI_MODEL", "gemini-pro-latest")
+GEMINI_FALLBACK_MODEL = os.environ.get("GEMINI_FALLBACK_MODEL", "gemini-flash-latest")
 LAST_MODEL_USED = ""  # 本次运行实际用到的模型，写进当天数据文件
 
 PRIORITY_ORDER = {"high": 0, "medium": 1, "low": 2}
@@ -262,9 +265,9 @@ def call_llm_json(system: str, user_msg: str, schema: dict, *, label: str = "llm
             LAST_MODEL_USED = CLAUDE_MODEL
             return data
     if os.environ.get("GEMINI_API_KEY", "").strip():
-        data = call_gemini_json(system, user_msg, schema, label=label)
-        if data is not None:
-            LAST_MODEL_USED = GEMINI_MODEL
+        result = call_gemini_json(system, user_msg, schema, label=label)
+        if result is not None:
+            data, LAST_MODEL_USED = result
             return data
     return None
 
@@ -278,10 +281,22 @@ def _gemini_schema(schema):
     return schema
 
 
-def call_gemini_json(system: str, user_msg: str, schema: dict, *, label: str = "llm") -> dict | None:
+def call_gemini_json(system: str, user_msg: str, schema: dict, *, label: str = "llm") -> tuple[dict, str] | None:
+    """先用 GEMINI_MODEL，配额/服务错误时降级到 GEMINI_FALLBACK_MODEL。返回 (数据, 实际模型版本)。"""
     api_key = os.environ.get("GEMINI_API_KEY", "").strip()
     if not api_key:
         return None
+    models = [GEMINI_MODEL] + ([GEMINI_FALLBACK_MODEL] if GEMINI_FALLBACK_MODEL and GEMINI_FALLBACK_MODEL != GEMINI_MODEL else [])
+    for i, model in enumerate(models):
+        result = _gemini_once(model, api_key, system, user_msg, schema, label=label)
+        if result is not None:
+            return result
+        if i + 1 < len(models):
+            log(f"[{label}] 降级到 {models[i + 1]}")
+    return None
+
+
+def _gemini_once(model: str, api_key: str, system: str, user_msg: str, schema: dict, *, label: str) -> tuple[dict, str] | None:
     body = {
         "systemInstruction": {"parts": [{"text": system}]},
         "contents": [{"role": "user", "parts": [{"text": user_msg}]}],
@@ -293,20 +308,20 @@ def call_gemini_json(system: str, user_msg: str, schema: dict, *, label: str = "
         },
     }
     req = urllib.request.Request(
-        f"https://generativelanguage.googleapis.com/v1beta/models/{GEMINI_MODEL}:generateContent",
+        f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent",
         data=json.dumps(body, ensure_ascii=False).encode("utf-8"),
         headers={"Content-Type": "application/json", "x-goog-api-key": api_key},
         method="POST",
     )
     try:
-        with urllib.request.urlopen(req, timeout=120) as resp:
+        with urllib.request.urlopen(req, timeout=180) as resp:
             data = json.load(resp)
     except urllib.error.HTTPError as e:
         detail = e.read().decode("utf-8", "replace")[:200]
-        log(f"[{label}] Gemini HTTP {e.code}：{detail}，退回规则模式")
+        log(f"[{label}] Gemini {model} HTTP {e.code}：{detail}")
         return None
     except (urllib.error.URLError, TimeoutError, OSError) as e:
-        log(f"[{label}] Gemini 网络错误：{e}，退回规则模式")
+        log(f"[{label}] Gemini {model} 网络错误：{e}")
         return None
 
     try:
@@ -315,14 +330,15 @@ def call_gemini_json(system: str, user_msg: str, schema: dict, *, label: str = "
         text = "".join(part.get("text", "") for part in cand["content"]["parts"])
         parsed = json.loads(text)
     except (KeyError, IndexError, json.JSONDecodeError) as e:
-        log(f"[{label}] Gemini 返回无法解析（{e}；{str(data)[:160]}），退回规则模式")
+        log(f"[{label}] Gemini {model} 返回无法解析（{e}；{str(data)[:160]}）")
         return None
     if finish not in ("STOP", ""):
-        log(f"[{label}] Gemini finishReason={finish}，输出可能被截断，退回规则模式")
+        log(f"[{label}] Gemini {model} finishReason={finish}，输出可能被截断")
         return None
+    version = data.get("modelVersion") or model
     usage = data.get("usageMetadata", {})
-    log(f"[{label}] Gemini 完成：prompt={usage.get('promptTokenCount')} output={usage.get('candidatesTokenCount')}")
-    return parsed
+    log(f"[{label}] Gemini 完成（{version}）：prompt={usage.get('promptTokenCount')} output={usage.get('candidatesTokenCount')} thoughts={usage.get('thoughtsTokenCount')}")
+    return parsed, version
 
 
 def call_claude_json(system: str, user_msg: str, schema: dict, *, label: str = "claude") -> dict | None:
