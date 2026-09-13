@@ -1,6 +1,6 @@
 {
   "date": "2026-09-14",
-  "generated_at": "2026-09-13T23:36:35+00:00",
+  "generated_at": "2026-09-13T23:49:02+00:00",
   "ai": true,
   "model": "gemini-3.1-pro-preview",
   "sources": [
@@ -50,7 +50,7 @@
       "id": "hf-papers",
       "name": "HF Papers 日榜",
       "ok": true,
-      "count": 0,
+      "count": 13,
       "error": ""
     },
     {
@@ -125,9 +125,9 @@
     }
   ],
   "counts": {
-    "high": 8,
-    "medium": 14,
-    "low": 33
+    "high": 11,
+    "medium": 20,
+    "low": 37
   },
   "items": [
     {
@@ -199,6 +199,57 @@
       ]
     },
     {
+      "id": "d089b3b20144fd24",
+      "title": "Recursive Code World Models: Building Complex Worlds through Recursive Scene Programs",
+      "link": "https://huggingface.co/papers/2609.11499",
+      "source": "HF Papers 日榜",
+      "source_id": "hf-papers",
+      "published": "2026-09-09T20:00:00+00:00",
+      "category": "research",
+      "priority": "high",
+      "summary": "提出递归代码世界模型，通过递归场景程序和求解器，从单张参考图像在代码中重建复杂 3D 世界。",
+      "why": "涉及 3D 生成和世界模型，与关注 3D/视频生成的工程师方向高度契合。",
+      "tags": [
+        "3D Generation",
+        "World Models",
+        "Scene Programs"
+      ]
+    },
+    {
+      "id": "f779c7312a5685b3",
+      "title": "World in World: Explore the World with World Models",
+      "link": "https://huggingface.co/papers/2609.11548",
+      "source": "HF Papers 日榜",
+      "source_id": "hf-papers",
+      "published": "2026-09-09T20:00:00+00:00",
+      "category": "research",
+      "priority": "high",
+      "summary": "提出免训练推理时接口，使自回归视频世界模型能够在新视角下灵活控制和探索源视频。",
+      "why": "视频生成和世界模型的前沿探索，直接命中视频生成方向。",
+      "tags": [
+        "Video Generation",
+        "World Models",
+        "Autoregressive"
+      ]
+    },
+    {
+      "id": "488db19c955d1398",
+      "title": "SenseNova-U1.5: Towards Native Unified Visual Intelligence",
+      "link": "https://huggingface.co/papers/2609.11929",
+      "source": "HF Papers 日榜",
+      "source_id": "hf-papers",
+      "published": "2026-09-09T20:00:00+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "商汤发布 8B-MoT 原生统一多模态模型 SenseNova-U1.5，采用无 VAE 架构支持 4K 视觉生成。",
+      "why": "无 VAE 架构的视觉生成大模型发布，对生成模型架构和训练有重要参考价值。",
+      "tags": [
+        "Multimodal",
+        "Visual Generation",
+        "MoT"
+      ]
+    },
+    {
       "id": "44084287147f6737",
       "title": "GPT-6 Astra, Looped Transformers, and Hidden Reasoning",
       "link": "https://magazine.sebastianraschka.com/p/gpt-6-astra-looped-transformers-and",
@@ -264,6 +315,23 @@
         "Math",
         "Reasoning",
         "Lean"
+      ]
+    },
+    {
+      "id": "12e9dd6851803557",
+      "title": "Perplexity trusts GPT-6 Astra with end-to-end systems",
+      "link": "https://openai.com/index/perplexity-improving-accuracy-with-astra",
+      "source": "OpenAI",
+      "source_id": "openai",
+      "published": "2026-09-14T00:00:00+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "Perplexity 使用 Astra 模型端到端地编写通信、修改软件和监控生产系统。",
+      "why": "了解头部 AI 公司的最新模型应用进展，但与底层优化无直接关系。",
+      "tags": [
+        "Perplexity",
+        "GPT-6 Astra",
+        "AI Agent"
       ]
     },
     {
@@ -402,6 +470,91 @@
       ]
     },
     {
+      "id": "f4fc88624a356041",
+      "title": "Negative Self-Distillation: Learning to Reason by Avoiding Flaws",
+      "link": "https://huggingface.co/papers/2609.11699",
+      "source": "HF Papers 日榜",
+      "source_id": "hf-papers",
+      "published": "2026-09-09T20:00:00+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "提出负向自蒸馏框架，解决同策略自蒸馏导致 LLM 在复杂推理任务中性能下降的问题。",
+      "why": "LLM 训练和蒸馏的新方法，对训练优化有一定参考价值。",
+      "tags": [
+        "LLM",
+        "Self-Distillation",
+        "Reasoning"
+      ]
+    },
+    {
+      "id": "a3062cee180f2b98",
+      "title": "FreeFlow: A Bias-free Hierarchical Transformer for Optical Flow Estimation",
+      "link": "https://huggingface.co/papers/2609.11486",
+      "source": "HF Papers 日榜",
+      "source_id": "hf-papers",
+      "published": "2026-09-09T20:00:00+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "提出 FreeFlow，一种无特定任务归纳偏置的层级 Transformer，用于光流估计。",
+      "why": "视觉 Transformer 架构的改进，可能对视频生成中的运动建模有启发。",
+      "tags": [
+        "Optical Flow",
+        "Transformer",
+        "Vision"
+      ]
+    },
+    {
+      "id": "1a7922f76a891677",
+      "title": "Mi-Ripple: Restoring Images Degraded by Iterative AI Editing",
+      "link": "https://huggingface.co/papers/2609.11317",
+      "source": "HF Papers 日榜",
+      "source_id": "hf-papers",
+      "published": "2026-09-09T20:00:00+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "提出 Mi-Ripple 诊断引导恢复工作流，用于消除迭代 AI 图像编辑中产生的网格和颗粒状数字波纹。",
+      "why": "解决 AI 图像生成与编辑中的伪影问题，与生成模型方向直接相关。",
+      "tags": [
+        "Image Editing",
+        "Artifact Removal",
+        "Generative Models"
+      ]
+    },
+    {
+      "id": "1f1a32eceddb887b",
+      "title": "X-AuT: Progressive Audio-Encoder Compression for Speech LLMs with Cross-Scale Distillation",
+      "link": "https://huggingface.co/papers/2609.11412",
+      "source": "HF Papers 日榜",
+      "source_id": "hf-papers",
+      "published": "2026-09-09T20:00:00+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "提出渐进式框架 X-AuT，通过跨尺度蒸馏和 LoRA 微调等方法压缩语音 LLM 的音频编码器以降低推理成本。",
+      "why": "涉及模型压缩和推理成本优化，对关注性能优化的工程师有参考价值。",
+      "tags": [
+        "Model Compression",
+        "Speech LLM",
+        "Distillation"
+      ]
+    },
+    {
+      "id": "a5f8c3f96e59e32e",
+      "title": "T1: Terminal Agent Reinforcement Learning for Long-Horizon Tasks",
+      "link": "https://huggingface.co/papers/2609.11042",
+      "source": "HF Papers 日榜",
+      "source_id": "hf-papers",
+      "published": "2026-09-09T20:00:00+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "提出 122B MoE 模型 T1，通过强化学习在云沙盒中执行长程终端任务，支持高达 300+ 工具调用轮次。",
+      "why": "涉及大规模 MoE 模型的 RL 训练系统设计，对训练优化有一定参考意义。",
+      "tags": [
+        "Agent",
+        "Reinforcement Learning",
+        "MoE"
+      ]
+    },
+    {
       "id": "e8608e40b7228951",
       "title": "IBM releases SOTA Granite Time Series PatchTST-FM-r2 model with commercial-friendly license",
       "link": "https://huggingface.co/blog/ibm-research/ibm-releases-sota-granite-time-series",
@@ -500,23 +653,6 @@
         "OpenAI",
         "RSI",
         "AGI"
-      ]
-    },
-    {
-      "id": "12e9dd6851803557",
-      "title": "Perplexity trusts GPT-6 Astra with end-to-end systems",
-      "link": "https://openai.com/index/perplexity-improving-accuracy-with-astra",
-      "source": "OpenAI",
-      "source_id": "openai",
-      "published": "2026-09-14T00:00:00+00:00",
-      "category": "industry",
-      "priority": "low",
-      "summary": "Perplexity 使用 GPT-6 Astra 编写通信、修改软件并监控生产系统，人工干预大幅减少。",
-      "why": "属于应用层的商业案例，与底层系统优化或生成模型研究无关。",
-      "tags": [
-        "GPT-6 Astra",
-        "Perplexity",
-        "Agent"
       ]
     },
     {
@@ -709,6 +845,90 @@
       "tags": [
         "Tool",
         "Blender"
+      ]
+    },
+    {
+      "id": "a1014fccf82a5aa1",
+      "title": "Beyond Solver Verdicts: Generative Reward Models for Autoformalization",
+      "link": "https://huggingface.co/papers/2609.11085",
+      "source": "HF Papers 日榜",
+      "source_id": "hf-papers",
+      "published": "2026-09-09T20:00:00+00:00",
+      "category": "research",
+      "priority": "low",
+      "summary": "提出生成式验证方法 GenV，解决神经符号系统中求解器无法识别翻译是否保持严格等价性的问题。",
+      "why": "偏向形式化验证和神经符号系统，与 GPU 优化或生成模型方向无关。",
+      "tags": [
+        "Autoformalization",
+        "Reward Model",
+        "Neurosymbolic"
+      ]
+    },
+    {
+      "id": "9771708ac7ba7d08",
+      "title": "Memory as Plans: World-Action Modeling with Memory-Grounded Planning",
+      "link": "https://huggingface.co/papers/2609.11561",
+      "source": "HF Papers 日榜",
+      "source_id": "hf-papers",
+      "published": "2026-09-09T20:00:00+00:00",
+      "category": "research",
+      "priority": "low",
+      "summary": "提出 MaP-WAM 框架，将依赖记忆的世界动作建模分解为基于记忆的规划和条件执行，用于机器人操作。",
+      "why": "机器人控制和强化学习方向，与底层系统或生成模型关系不大。",
+      "tags": [
+        "Robotics",
+        "World Model",
+        "Planning"
+      ]
+    },
+    {
+      "id": "55db15a893975f0c",
+      "title": "DRG-MAPPO: Hierarchical Dynamic Role-Graph Multi-Agent Reinforcement Learning for Cooperative Air Combat",
+      "link": "https://huggingface.co/papers/2609.11155",
+      "source": "HF Papers 日榜",
+      "source_id": "hf-papers",
+      "published": "2026-09-09T20:00:00+00:00",
+      "category": "research",
+      "priority": "low",
+      "summary": "提出 DRG-MAPPO 框架，利用层级动态角色图解决多智能体强化学习在协同空战中的战术协调问题。",
+      "why": "多智能体强化学习在特定领域的应用，与目标工程师方向无关。",
+      "tags": [
+        "MARL",
+        "Air Combat",
+        "Reinforcement Learning"
+      ]
+    },
+    {
+      "id": "7be1cc75bbd03e2d",
+      "title": "UniH^3: Unifying Hierarchical Homogeneity and Heterogeneity for All-in-One Medical Image Restoration",
+      "link": "https://huggingface.co/papers/2609.11156",
+      "source": "HF Papers 日榜",
+      "source_id": "hf-papers",
+      "published": "2026-09-09T20:00:00+00:00",
+      "category": "research",
+      "priority": "low",
+      "summary": "提出 UniH3 框架，统一层级同质性和异质性，用于多模态和多退化类型的医疗图像一体化恢复。",
+      "why": "医学图像处理特定研究，与底层优化或主流生成模型无关。",
+      "tags": [
+        "Medical Imaging",
+        "Image Restoration"
+      ]
+    },
+    {
+      "id": "91463530ba37bdf8",
+      "title": "Generative Late-Interaction Embeddings For Visual Document Retrieval",
+      "link": "https://huggingface.co/papers/2609.11808",
+      "source": "HF Papers 日榜",
+      "source_id": "hf-papers",
+      "published": "2026-09-09T20:00:00+00:00",
+      "category": "research",
+      "priority": "low",
+      "summary": "研究视觉文档检索中后期交互嵌入在极端存储预算下的退化问题，并提出基于几何特性的改进见解。",
+      "why": "文档检索和嵌入压缩，与生成模型或 GPU 优化无关。",
+      "tags": [
+        "Document Retrieval",
+        "Embeddings",
+        "Compression"
       ]
     },
     {
