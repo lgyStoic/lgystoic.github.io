@@ -435,11 +435,20 @@ def load_events() -> tuple[dict, dict | None]:
     return config, data
 
 
-def ev_anchor_date(ev: dict) -> str:
-    """排序与分组用的锚点日期：学术截止类用截止日；其余活动开始 > 截止 > 空。"""
-    if ev.get("event_type") == "deadline" and ev.get("deadline"):
-        return ev["deadline"]
-    return ev.get("start") or ev.get("deadline") or ""
+def ev_anchor_date(ev: dict, today: str = "") -> str:
+    """排序与分组用的锚点日期——下一步要行动的那天：
+    学术截止类用截止日；已经开始（或没有开始日）但还能报名/提交的用截止日；否则用开始日。"""
+    start, deadline = ev.get("start") or "", ev.get("deadline") or ""
+    if ev.get("event_type") == "deadline" and deadline:
+        return deadline
+    if deadline and (not start or (today and start < today <= deadline)):
+        return deadline
+    return start or deadline
+
+
+def ev_last_date(ev: dict) -> str:
+    """活动彻底过去的日期：结束 / 截止 / 开始里最晚的一个。"""
+    return max(ev.get("end") or "", ev.get("deadline") or "", ev.get("start") or "")
 
 
 def fmt_day(date: str) -> tuple[str, str]:
@@ -451,9 +460,14 @@ def fmt_day(date: str) -> tuple[str, str]:
 
 
 def render_event_row(ev: dict, types: dict, today: str) -> str:
-    anchor = ev_anchor_date(ev)
+    anchor = ev_anchor_date(ev, today)
     day, wd = fmt_day(anchor)
-    label = "投稿截止" if ev.get("event_type") == "deadline" else ("报名截止" if (not ev.get("start") and ev.get("deadline")) else "")
+    if ev.get("event_type") == "deadline":
+        label = "投稿截止"
+    elif anchor and anchor == ev.get("deadline") and anchor != ev.get("start"):
+        label = "提交截止" if ev.get("event_type") in ("hackathon", "competition") else "报名截止"
+    else:
+        label = ""
     span = ""
     if ev.get("event_type") != "deadline" and ev.get("start") and ev.get("end") and ev["end"] != ev["start"]:
         span = f'<span class="event-span">→ {esc(ev["end"][5:].replace("-", "/"))}</span>'
@@ -468,11 +482,12 @@ def render_event_row(ev: dict, types: dict, today: str) -> str:
         meta.append(esc(ev["fee"]))
     if ev.get("organizer"):
         meta.append(esc(ev["organizer"]))
-    if ev.get("deadline") and ev.get("start") and ev.get("event_type") != "deadline":
+    if ev.get("deadline") and ev.get("event_type") != "deadline" and anchor != ev["deadline"]:
         soon = " soon" if ev["deadline"] <= (datetime.strptime(today, "%Y-%m-%d") + timedelta(days=7)).strftime("%Y-%m-%d") else ""
         meta.append(f'<b class="ddl{soon}">报名截止 {esc(ev["deadline"][5:].replace("-", "/"))}</b>')
-    if ev.get("event_type") == "deadline" and ev.get("start") and ev.get("start") != anchor:
-        meta.append(f'会议 {esc(ev["start"][5:].replace("-", "/"))}')
+    if anchor == ev.get("deadline") and ev.get("start") and ev.get("start") != anchor:
+        verb = "会议" if ev.get("event_type") == "deadline" else ("已开始" if ev["start"] < today else "开始")
+        meta.append(f'{verb} {esc(ev["start"][5:].replace("-", "/"))}')
     meta.append(f'<span class="event-src">{esc(ev.get("source", ""))}</span>')
 
     tags = [ev.get("city", ""), ev.get("event_type", "")]
@@ -505,8 +520,11 @@ def render_events_page(config: dict, data: dict | None) -> dict[str, str]:
         }
     today = data.get("today") or datetime.now(SHANGHAI).strftime("%Y-%m-%d")
     events = data["events"]
-    upcoming = [e for e in events if (e.get("end") or e.get("start") or e.get("deadline") or today) >= today]
-    past = [e for e in events if e not in upcoming]
+    alive = [e for e in events if (ev_last_date(e) or today) >= today]
+    past = [e for e in events if e not in alive]
+    lowrel = [e for e in alive if e.get("relevance") == "low"]
+    upcoming = [e for e in alive if e.get("relevance") != "low"]
+    upcoming.sort(key=lambda e: (ev_anchor_date(e, today) or "9999", e.get("title", "")))
 
     # 筛选器：城市 → 线上 → 类型，只列出实际出现过的
     counts: dict[str, int] = {}
@@ -526,11 +544,11 @@ def render_events_page(config: dict, data: dict | None) -> dict[str, str]:
     ok = sum(1 for s in data.get("sources", []) if s.get("ok"))
     total = len(data.get("sources", []))
     mode = f"AI 抽取（{esc(data['model'])}）" if data.get("model") else "规则默认值（未配置 API key）"
-    stats = f'    <p class="radar-stats" data-result-count data-unit="个活动">{len(upcoming)} 个即将发生 · 来自 {ok}/{total} 个源 · 更新 {esc(today)} · {mode}</p>'
+    stats = f'    <p class="radar-stats" data-result-count data-unit="个活动">{len(upcoming)} 个即将发生（另 {len(lowrel)} 个低相关已折叠） · 来自 {ok}/{total} 个源 · 更新 {esc(today)} · {mode}</p>'
 
     groups: dict[str, list[dict]] = {}
     for e in upcoming:
-        anchor = ev_anchor_date(e)
+        anchor = ev_anchor_date(e, today)
         key = anchor[:7] if anchor else "9999-99"
         groups.setdefault(key, []).append(e)
     blocks = []
@@ -546,26 +564,30 @@ def render_events_page(config: dict, data: dict | None) -> dict[str, str]:
         )
     listing = "\n".join(blocks)
 
-    past_html = ""
+    tail = []
+    if lowrel:
+        lowrel.sort(key=lambda e: ev_anchor_date(e, today) or "9999")
+        rows = "\n".join(render_event_row(e, types, today) for e in lowrel)
+        tail.append(f'    <details class="radar-low"><summary><h2 class="radar-heading">可能不相关 <b>{len(lowrel)}</b></h2></summary>\n      <ul class="event-list">\n{rows}\n      </ul>\n    </details>')
     if past:
-        rows = "\n".join(render_event_row(e, types, today) for e in sorted(past, key=ev_anchor_date, reverse=True))
-        past_html = f'    <details class="radar-low"><summary><h2 class="radar-heading">已结束 <b>{len(past)}</b></h2></summary>\n      <ul class="event-list">\n{rows}\n      </ul>\n    </details>'
-    return {"events-filters": filters, "events-stats": stats, "events-list": listing, "events-past": past_html}
+        rows = "\n".join(render_event_row(e, types, today) for e in sorted(past, key=ev_last_date, reverse=True))
+        tail.append(f'    <details class="radar-low"><summary><h2 class="radar-heading">已结束 <b>{len(past)}</b></h2></summary>\n      <ul class="event-list">\n{rows}\n      </ul>\n    </details>')
+    return {"events-filters": filters, "events-stats": stats, "events-list": listing, "events-past": "\n".join(tail)}
 
 
 def render_home_events(data: dict | None, types: dict) -> str:
     if not data or not data.get("events"):
         return ""
     today = data.get("today") or datetime.now(SHANGHAI).strftime("%Y-%m-%d")
-    picks = [
-        e for e in data["events"]
-        if (e.get("end") or e.get("start") or e.get("deadline") or today) >= today and e.get("relevance") != "low"
-    ][:4]
+    picks = sorted(
+        [e for e in data["events"] if (ev_last_date(e) or today) >= today and e.get("relevance") != "low"],
+        key=lambda e: ev_anchor_date(e, today) or "9999",
+    )[:4]
     if not picks:
         return ""
     rows = []
     for e in picks:
-        day, wd = fmt_day(ev_anchor_date(e))
+        day, wd = fmt_day(ev_anchor_date(e, today))
         meta = " · ".join(x for x in [e.get("city", ""), types.get(e.get("event_type", ""), ""), e.get("fee", "")] if x)
         rows.append(
             f'        <li><a class="post radar-pick" href="{esc(e["link"])}" rel="noopener noreferrer">'
@@ -584,10 +606,10 @@ def render_day_events(date: str, data: dict | None, types: dict) -> str:
     """某一期简报里「新发现的活动」栏目。"""
     if not data:
         return ""
-    found = [e for e in data.get("events", []) if e.get("found") == date]
+    found = [e for e in data.get("events", []) if e.get("found") == date and e.get("relevance") != "low"]
     if not found:
         return ""
-    found.sort(key=ev_anchor_date)
+    found.sort(key=lambda e: ev_anchor_date(e, date) or "9999")
     rows = "\n".join(render_event_row(e, types, date) for e in found)
     return (
         f'<h2 class="radar-heading prio-events">新发现的活动 <b>{len(found)}</b> <a class="text-link" href="../events/">全部活动 →</a></h2>\n'
