@@ -67,6 +67,13 @@ def normalize_link(link: str) -> str:
     return link.rstrip("/")
 
 
+def title_key(title: str) -> str:
+    """跨源同题去重用：小写、去标点和空白、去掉常见前缀。"""
+    t = title.lower()
+    t = re.sub(r"^((introducing|announcing|quoting|re:)\s+)+", "", t)
+    return re.sub(r"[^0-9a-z\u4e00-\u9fff]+", "", t)
+
+
 def item_id(link: str, title: str) -> str:
     key = normalize_link(link).lower() or title.strip().lower()
     return hashlib.sha1(key.encode("utf-8")).hexdigest()[:16]
@@ -378,7 +385,25 @@ def collect(config: dict, now_utc: datetime, seen: dict[str, str]) -> tuple[list
         status.append({"id": sid, "name": source["name"], "ok": True, "count": kept, "error": ""})
         log(f"[radar] ✓ {source['name']}: {kept} 条新内容（共 {len(raw_entries)} 条）")
 
-    return list(items.values()), status
+    return dedupe_titles(list(items.values()), config), status
+
+
+def dedupe_titles(items: list[dict], config: dict) -> list[dict]:
+    """同一标题被多个源转载时只保留权重最高的一条（同权重取更早发布的）。"""
+    weight = {s["id"]: int(s.get("weight", 1)) for s in config["sources"]}
+    best: dict[str, dict] = {}
+    for it in items:
+        key = title_key(it["title"])
+        if len(key) < 8:  # 标题太短没法判定同题，直接保留
+            key = it["id"]
+        cur = best.get(key)
+        if cur is None or (weight.get(it["source_id"], 1), it["published"] or "9") > (weight.get(cur["source_id"], 1), cur["published"] or "9"):
+            if cur is not None:
+                log(f"[radar] 同题去重：保留 {it['source']}，丢弃 {cur['source']} ← {it['title'][:50]}")
+            best[key] = it
+        else:
+            log(f"[radar] 同题去重：保留 {cur['source']}，丢弃 {it['source']} ← {it['title'][:50]}")
+    return list(best.values())
 
 
 def finalize(items: list[dict], enrichment: dict[str, dict] | None) -> list[dict]:
