@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Garry 的学习站</title>
+    <link>https://lgystoic.github.io/</link>
+    <description>GPU kernel、训练性能、生成模型和城市数据的中文笔记存档。</description>
+    <language>zh-CN</language>
+    <atom:link href="https://lgystoic.github.io/feed.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 18 Aug 2026 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>深圳地铁 200 米内住宅画像：南山 / 宝安 / 光明</title>
+      <link>https://lgystoic.github.io/notes/2026-08-17-metro200m-residential-profile/</link>
+      <guid isPermaLink="true">https://lgystoic.github.io/notes/2026-08-17-metro200m-residential-profile/</guid>
+      <pubDate>Tue, 18 Aug 2026 00:00:00 +0000</pubDate>
+      <description>对南山、宝安、光明三区地铁 200 米内 461 个地块做住宅粗筛，并深挖 120 个候选盘的户数、车位、户型、回迁房与学位风险。</description>
+      <category>深圳</category>
+      <category>买房</category>
+      <category>地铁</category>
+      <category>住宅画像</category>
+      <category>教育</category>
+    </item>
+    <item>
+      <title>Ring Collectives</title>
+      <link>https://lgystoic.github.io/notes/ring-collectives/</link>
+      <guid isPermaLink="true">https://lgystoic.github.io/notes/ring-collectives/</guid>
+      <pubDate>Thu, 13 Aug 2026 00:00:00 +0000</pubDate>
+      <description>Interactive visual explanation of ring all-reduce, reduce-scatter, all-gather, all-to-all, and NCCL bus bandwidth factors.</description>
+      <category>NCCL</category>
+      <category>Distributed Training</category>
+      <category>GPU</category>
+      <category>Collectives</category>
+    </item>
+    <item>
+      <title>深圳离地铁站直线 200 米内的小区全清单</title>
+      <link>https://lgystoic.github.io/notes/2026-08-10-shenzhen-metro-200m/</link>
+      <guid isPermaLink="true">https://lgystoic.github.io/notes/2026-08-10-shenzhen-metro-200m/</guid>
+      <pubDate>Mon, 10 Aug 2026 00:00:00 +0000</pubDate>
+      <description>用 OSM 数据穷举深圳地铁出入口 200 米内的小区清单，覆盖 1150 个地块、261 个站点，并提供分区 CSV/JSON 下载。</description>
+      <category>深圳</category>
+      <category>地铁</category>
+      <category>住房</category>
+      <category>OpenStreetMap</category>
+    </item>
+    <item>
+      <title>SwiGLU MLP 的前向原理、反向链条与优化思路</title>
+      <link>https://lgystoic.github.io/notes/swiglu-mlp-forward-backward-optimization/</link>
+      <guid isPermaLink="true">https://lgystoic.github.io/notes/swiglu-mlp-forward-backward-optimization/</guid>
+      <pubDate>Thu, 11 Jun 2026 00:00:00 +0000</pubDate>
+      <description>从前向 shape 到反向 4 个 GEMM + 1 组逐元素，解释 dout 不落 HBM 的 CuTe 融合优化。</description>
+      <category>SwiGLU</category>
+      <category>MLP</category>
+      <category>CUDA</category>
+      <category>B200</category>
+      <category>CuTe</category>
+    </item>
+    <item>
+      <title>SwiGLU MLP Drop-H 技术报告</title>
+      <link>https://lgystoic.github.io/notes/swiglu-mlp-drop-h/</link>
+      <guid isPermaLink="true">https://lgystoic.github.io/notes/swiglu-mlp-drop-h/</guid>
+      <pubDate>Fri, 05 Jun 2026 00:00:00 +0000</pubDate>
+      <description>B200 上 SwiGLU MLP drop-h 方案的公式、实现、性能与显存取舍。</description>
+      <category>GPU</category>
+      <category>Triton</category>
+      <category>SwiGLU</category>
+      <category>MLP</category>
+      <category>B200</category>
+    </item>
+    <item>
+      <title>PyTorch Autograd 学习笔记</title>
+      <link>https://lgystoic.github.io/notes/pytorch-autograd-notes/</link>
+      <guid isPermaLink="true">https://lgystoic.github.io/notes/pytorch-autograd-notes/</guid>
+      <pubDate>Wed, 03 Jun 2026 00:00:00 +0000</pubDate>
+      <description>从 Tensor 底层结构到 grad_fn、saved tensors、version counter、no_grad、inference_mode 和自定义 Function 的 autograd 知识地图。</description>
+      <category>PyTorch</category>
+      <category>Autograd</category>
+      <category>Deep Learning</category>
+      <category>Notes</category>
+    </item>
+    <item>
+      <title>Kernel Design Agents：KernelWiki 与 ncu-report-skill 拆解</title>
+      <link>https://lgystoic.github.io/notes/kernel-design-agents-skills/</link>
+      <guid isPermaLink="true">https://lgystoic.github.io/notes/kernel-design-agents-skills/</guid>
+      <pubDate>Mon, 01 Jun 2026 00:00:00 +0000</pubDate>
+      <description>拆解 KDA 仓库中 KernelWiki 知识库和 ncu-report-skill profiling 工作流，整理它们如何服务 agentic kernel 优化循环。</description>
+      <category>CUDA</category>
+      <category>Blackwell</category>
+      <category>KernelWiki</category>
+      <category>Nsight Compute</category>
+    </item>
+    <item>
+      <title>Fused SwiGLU Wide Packed Save-Factors</title>
+      <link>https://lgystoic.github.io/notes/swiglu-packed-save-factors/</link>
+      <guid isPermaLink="true">https://lgystoic.github.io/notes/swiglu-packed-save-factors/</guid>
+      <pubDate>Mon, 01 Jun 2026 00:00:00 +0000</pubDate>
+      <description>B200 上 packed W1 + save-factors SwiGLU 融合实现笔记，覆盖 pack layout、CTA tile、forward/backward 数据流和显存收益。</description>
+      <category>Triton</category>
+      <category>SwiGLU</category>
+      <category>Blackwell</category>
+      <category>CUDA</category>
+    </item>
+    <item>
+      <title>从噪声到数据：Flow Matching 与扩散模型中文地图</title>
+      <link>https://lgystoic.github.io/notes/mit-6s184-flow-diffusion/</link>
+      <guid isPermaLink="true">https://lgystoic.github.io/notes/mit-6s184-flow-diffusion/</guid>
+      <pubDate>Sat, 30 May 2026 00:00:00 +0000</pubDate>
+      <description>基于 MIT 6.S184 讲义整理，覆盖生成即采样、ODE/SDE、Flow Matching、Score Matching、Classifier-Free Guidance、潜空间生成器和离散扩散语言模型。</description>
+      <category>Flow Matching</category>
+      <category>Diffusion</category>
+      <category>SDE</category>
+      <category>CFG</category>
+    </item>
+  </channel>
+</rss>
