@@ -27,6 +27,7 @@ import json
 import os
 import re
 import sys
+import time
 import urllib.error
 import urllib.request
 import xml.etree.ElementTree as ET
@@ -114,9 +115,19 @@ def fetch(url: str, source_id: str) -> bytes:
             raise FileNotFoundError(f"fixture 缺失：{path}")
         return path.read_bytes()
 
-    req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT, "Accept": "application/rss+xml, application/atom+xml, application/xml, text/xml, */*"})
-    with urllib.request.urlopen(req, timeout=FETCH_TIMEOUT) as resp:
-        return resp.read()
+    req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT, "Accept": "application/rss+xml, application/atom+xml, application/json, application/xml, text/xml, */*"})
+    for attempt in (1, 2):
+        try:
+            with urllib.request.urlopen(req, timeout=FETCH_TIMEOUT) as resp:
+                return resp.read()
+        except urllib.error.HTTPError as e:
+            # 5xx 多为临时故障，隔几秒再试一次；4xx 直接放弃
+            if e.code >= 500 and attempt == 1:
+                log(f"[radar] {source_id} HTTP {e.code}，3 秒后重试")
+                time.sleep(3)
+                continue
+            raise
+    raise RuntimeError("unreachable")
 
 
 def _local(tag: str) -> str:
@@ -512,7 +523,8 @@ def collect(config: dict, now_utc: datetime, seen: dict[str, str]) -> tuple[list
             if iid in seen or iid in items:
                 continue
             published = parse_date(raw["published"])
-            if published and now_utc - published > window:
+            src_window = timedelta(hours=source["window_hours"]) if source.get("window_hours") else window
+            if published and now_utc - published > src_window:
                 continue
 
             item = {
