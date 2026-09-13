@@ -80,7 +80,8 @@ radar/sources.json  →  tools/radar.py  →  radar/data/<date>.json  →  tools
 ```
 
 - **信息源**：`radar/sources.json` 的 `sources`。每个源有 `category`、`weight`（0-3，越高越容易进「必看」），
-  噪音大的源加 `"require_topic": true`，只保留命中 `topic_keywords` 的条目。
+  噪音大的源加 `"require_topic": true`，只保留命中 `topic_keywords` 的条目；发布时间滞后的源（如 HF 日榜）可用 `"window_hours"` 单独放宽窗口。
+  `"kind": "json"` 支持任意 JSON 列表接口（字段路径见 `hf-papers` 的例子）。
 - **规则**：`high_keywords` 命中标题 +2 分，`topic_keywords` 每命中一个 +1（最多 +2），`mute_keywords` −3。
   ≥4 必看，2-3 值得看，其余折叠。
 - **去重**：`radar/data/seen.json` 记录 120 天内出现过的链接，跨天不重复。
