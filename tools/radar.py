@@ -70,7 +70,7 @@ def normalize_link(link: str) -> str:
 def title_key(title: str) -> str:
     """跨源同题去重用：小写、去标点和空白、去掉常见前缀。"""
     t = title.lower()
-    t = re.sub(r"^(introducing|announcing|quoting)\s+", "", t)
+    t = re.sub(r"^((introducing|announcing|quoting|re:)\s+)+", "", t)
     return re.sub(r"[^0-9a-z\u4e00-\u9fff]+", "", t)
 
 
