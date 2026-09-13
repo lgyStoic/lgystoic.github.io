@@ -1,28 +1,28 @@
 {
   "date": "2026-09-14",
-  "generated_at": "2026-09-13T16:56:37+00:00",
-  "ai": false,
-  "model": "",
+  "generated_at": "2026-09-13T23:22:59+00:00",
+  "ai": true,
+  "model": "gemini-3.1-pro-preview",
   "sources": [
     {
       "id": "openai",
       "name": "OpenAI",
       "ok": true,
-      "count": 20,
+      "count": 1,
       "error": ""
     },
     {
       "id": "deepmind",
       "name": "Google DeepMind",
       "ok": true,
-      "count": 1,
+      "count": 0,
       "error": ""
     },
     {
       "id": "google-ai",
       "name": "Google AI Blog",
       "ok": true,
-      "count": 3,
+      "count": 0,
       "error": ""
     },
     {
@@ -36,28 +36,28 @@
       "id": "hf-blog",
       "name": "Hugging Face Blog",
       "ok": true,
-      "count": 3,
+      "count": 0,
       "error": ""
     },
     {
       "id": "nvidia-dev",
       "name": "NVIDIA Technical Blog",
       "ok": true,
-      "count": 4,
+      "count": 0,
       "error": ""
     },
     {
       "id": "pytorch",
       "name": "PyTorch Blog",
       "ok": true,
-      "count": 5,
+      "count": 0,
       "error": ""
     },
     {
       "id": "simonw",
       "name": "Simon Willison",
       "ok": true,
-      "count": 10,
+      "count": 0,
       "error": ""
     },
     {
@@ -71,14 +71,14 @@
       "id": "interconnects",
       "name": "Interconnects",
       "ok": true,
-      "count": 4,
+      "count": 0,
       "error": ""
     },
     {
       "id": "raschka",
       "name": "Sebastian Raschka",
       "ok": true,
-      "count": 1,
+      "count": 0,
       "error": ""
     },
     {
@@ -113,84 +113,83 @@
       "id": "hn-llm",
       "name": "Hacker News (LLM, 100+ 分)",
       "ok": true,
-      "count": 4,
+      "count": 0,
       "error": ""
     }
   ],
   "counts": {
-    "high": 11,
-    "medium": 44,
-    "low": 0
+    "high": 8,
+    "medium": 14,
+    "low": 33
   },
   "items": [
     {
-      "id": "3149e64f7f8b62ea",
-      "title": "Open-Source AI & Open Models Reading List",
-      "link": "https://www.interconnects.ai/p/open-source-ai-reading-list",
-      "source": "Interconnects",
-      "source_id": "interconnects",
-      "published": "2026-09-11T12:36:25+00:00",
-      "category": "people",
+      "id": "5e4d2c88e5b56635",
+      "title": "Helion x 🤗 HF Kernels: Building and Shipping Out-of-the-box Performant Kernels",
+      "link": "https://pytorch.org/blog/helion-x-%f0%9f%a4%97-hf-kernels-building-and-shipping-out-of-the-box-performant-kernels",
+      "source": "PyTorch Blog",
+      "source_id": "pytorch",
+      "published": "2026-09-11T17:45:57+00:00",
+      "category": "infra",
       "priority": "high",
-      "summary": "How to get up to speed on open models and their implications.",
-      "why": "",
-      "tags": []
-    },
-    {
-      "id": "4d4e7920d8a762a2",
-      "title": "Now everyone can put data to work",
-      "link": "https://openai.com/index/put-data-to-work",
-      "source": "OpenAI",
-      "source_id": "openai",
-      "published": "2026-09-10T15:00:00+00:00",
-      "category": "release",
-      "priority": "high",
-      "summary": "Meet the Data agent in ChatGPT Work. Connect company data, uncover insights, and build interactive dashboards with AI using natural language.",
-      "why": "",
+      "summary": "HuggingFace Kernels 项目支持 Helion，介绍如何构建、自动调优和发布高性能 Kernel。",
+      "why": "直接涉及 Kernel 编写、自动调优和性能优化，高度契合工作方向。",
       "tags": [
-        "agent"
+        "Kernels",
+        "Performance",
+        "Hugging Face"
       ]
     },
     {
-      "id": "016c3ec9b775a98e",
-      "title": "Introducing ChatGPT for Financial Services",
-      "link": "https://openai.com/index/introducing-chatgpt-financial-services",
-      "source": "OpenAI",
-      "source_id": "openai",
-      "published": "2026-09-10T07:00:00+00:00",
-      "category": "release",
+      "id": "cf374b609ab644dd",
+      "title": "Training a 3.8B LLM to 0.384 CORE for $998",
+      "link": "https://hugovergnes.github.io/little-lm-3-8b",
+      "source": "Hacker News (LLM, 100+ 分)",
+      "source_id": "hn-llm",
+      "published": "2026-09-10T02:04:11+00:00",
+      "category": "research",
       "priority": "high",
-      "summary": "Introducing ChatGPT for Financial Services, combining built-in financial data and GPT-6 Astra for research, modeling, and client-ready materials.",
-      "why": "",
-      "tags": []
-    },
-    {
-      "id": "2b26a8066576cc98",
-      "title": "Introducing the Agents API",
-      "link": "https://openai.com/index/introducing-the-agents-api",
-      "source": "OpenAI",
-      "source_id": "openai",
-      "published": "2026-09-10T00:00:00+00:00",
-      "category": "release",
-      "priority": "high",
-      "summary": "Build and launch cloud agents with the Agents API, a managed service powered by the Codex harness for orchestration, long-running sessions, and tool use.",
-      "why": "",
+      "summary": "开发者分享如何仅花费 998 美元训练一个 3.8B 参数的 LLM。",
+      "why": "涉及低成本模型训练的实践经验和性能优化，高度契合训练优化方向。",
       "tags": [
-        "agent"
+        "LLM Training",
+        "Cost Optimization",
+        "Performance"
       ]
     },
     {
-      "id": "e8608e40b7228951",
-      "title": "IBM releases SOTA Granite Time Series PatchTST-FM-r2 model with commercial-friendly license",
-      "link": "https://huggingface.co/blog/ibm-research/ibm-releases-sota-granite-time-series",
-      "source": "Hugging Face Blog",
-      "source_id": "hf-blog",
-      "published": "2026-09-09T15:36:24+00:00",
-      "category": "release",
+      "id": "fa50db794ded0bb7",
+      "title": "Serve Qwen3.8-2.4T-A95B, a 2.4T-Parameter Model, with Configurable Reasoning on NVIDIA GB300 NVL72",
+      "link": "https://developer.nvidia.com/blog/serve-qwen3-8-2-4t-a95b-a-2-4t-parameter-model-with-configurable-reasoning-on-nvidia-gb300-nvl72",
+      "source": "NVIDIA Technical Blog",
+      "source_id": "nvidia-dev",
+      "published": "2026-09-09T20:30:33+00:00",
+      "category": "infra",
       "priority": "high",
-      "summary": "",
-      "why": "",
-      "tags": []
+      "summary": "NVIDIA 介绍在 GB300 NVL72 上部署 2.4T 参数的 Qwen3.8-Max 模型。",
+      "why": "涉及超大参数模型在最新 GPU 集群上的推理部署和性能优化，直接相关。",
+      "tags": [
+        "NVIDIA GB300",
+        "LLM Inference",
+        "Qwen"
+      ]
+    },
+    {
+      "id": "6a34428ef866785f",
+      "title": "CUDA Toolkit 13.4 Adds Windows on Arm Support and Greater Control over Shared GPUs",
+      "link": "https://developer.nvidia.com/blog/cuda-toolkit-13-4-adds-windows-on-arm-support-and-greater-control-over-shared-gpus",
+      "source": "NVIDIA Technical Blog",
+      "source_id": "nvidia-dev",
+      "published": "2026-09-09T20:24:19+00:00",
+      "category": "infra",
+      "priority": "high",
+      "summary": "CUDA Toolkit 13.4 发布，增加 Windows on Arm 支持及对共享 GPU 的更好控制。",
+      "why": "核心底层工具链更新，直接影响 GPU Kernel 开发和性能调优。",
+      "tags": [
+        "CUDA",
+        "NVIDIA",
+        "GPU"
+      ]
     },
     {
       "id": "44084287147f6737",
@@ -199,13 +198,14 @@
       "source": "Sebastian Raschka",
       "source_id": "raschka",
       "published": "2026-09-09T11:14:25+00:00",
-      "category": "people",
+      "category": "research",
       "priority": "high",
-      "summary": "A Look at Recurrent Depth, Hidden Chains of Thought, and Recent Research on Looping Transformer Blocks",
-      "why": "",
+      "summary": "Sebastian Raschka 探讨 GPT-6 Astra、循环 Transformer 块及隐藏推理链的最新研究。",
+      "why": "涉及 Transformer 架构变体（循环深度）和推理机制，对模型优化有直接启发。",
       "tags": [
-        "transformer",
-        "reasoning"
+        "Transformer",
+        "Reasoning",
+        "Architecture"
       ]
     },
     {
@@ -217,25 +217,12 @@
       "published": "2026-09-09T11:00:00+00:00",
       "category": "release",
       "priority": "high",
-      "summary": "Meet GPT-6 Astra, OpenAI’s most capable model for business, with advanced reasoning, computer use, and stronger writing and design judgment.",
-      "why": "",
+      "summary": "OpenAI 发布 GPT-6 Astra，具备高级推理、计算机使用及更强的写作设计能力。",
+      "why": "顶级闭源模型发布，代表行业最高水平，必须关注其能力边界。",
       "tags": [
-        "reasoning"
-      ]
-    },
-    {
-      "id": "e3f3a9c3f0ea3a05",
-      "title": "Introducing ChatGPT Images 2.5",
-      "link": "https://simonwillison.net/2026/Sep/8/introducing-chatgpt-images-25",
-      "source": "Simon Willison",
-      "source_id": "simonw",
-      "published": "2026-09-08T22:46:33+00:00",
-      "category": "people",
-      "priority": "high",
-      "summary": "Introducing ChatGPT Images 2.5 OpenAI's image generation models are apparently used \"more than 3 billion images across ChatGPT Images and the GPT‑Image models…",
-      "why": "",
-      "tags": [
-        "image generation"
+        "OpenAI",
+        "GPT-6 Astra",
+        "LLM"
       ]
     },
     {
@@ -247,127 +234,46 @@
       "published": "2026-09-08T11:30:00+00:00",
       "category": "release",
       "priority": "high",
-      "summary": "ChatGPT Images 2.5 helps turn your ideas, sketches, and reference photos into more personalized, polished images that better reflect your ideas.",
-      "why": "",
-      "tags": []
-    },
-    {
-      "id": "0b04016d830d72cb",
-      "title": "Alibaba Cloud, Ant Group, Cambricon and Huawei Come Together in Shanghai to Advance the Open Source AI Stack at PyTorch Conference China",
-      "link": "https://pytorch.org/blog/alibaba-cloud-ant-group-cambricon-and-huawei-come-together-in-shanghai-to-advance-the-open-source-ai-stack-at-pytorch-conference-china",
-      "source": "PyTorch Blog",
-      "source_id": "pytorch",
-      "published": "2026-09-08T01:00:02+00:00",
-      "category": "infra",
-      "priority": "high",
-      "summary": "China’s leading AI technology companies Alibaba Cloud, Cambricon and Ant Group join the PyTorch Foundation as members Summary Alibaba Cloud and Cambricon…",
-      "why": "",
+      "summary": "OpenAI 发布 ChatGPT Images 2.5，提升图像生成的个性化和精细度。",
+      "why": "核心图像生成模型更新，直接关系到视觉生成领域的技术进展。",
       "tags": [
-        "pytorch"
+        "Image Generation",
+        "OpenAI",
+        "ChatGPT Images"
       ]
     },
     {
-      "id": "95fa7c9bee5510c8",
-      "title": "PyTorch x Hugging Face in Bengaluru: Building India’s Next Generation of ML Systems Contributors",
-      "link": "https://pytorch.org/blog/pytorch-x-hugging-face-in-bengaluru-building-indias-next-generation-of-ml-systems-contributors",
-      "source": "PyTorch Blog",
-      "source_id": "pytorch",
-      "published": "2026-09-07T13:05:37+00:00",
-      "category": "infra",
-      "priority": "high",
-      "summary": "TL;DR More than 170 students, engineers, researchers, and open-source contributors gathered in Bengaluru for a technical evening hosted by Red Hat and Hugging…",
-      "why": "",
-      "tags": [
-        "inference",
-        "pytorch",
-        "reinforcement learning"
-      ]
-    },
-    {
-      "id": "12e9dd6851803557",
-      "title": "Perplexity trusts GPT-6 Astra with end-to-end systems",
-      "link": "https://openai.com/index/perplexity-improving-accuracy-with-astra",
+      "id": "fbb79928f7d9c051",
+      "title": "On the Navier–Stokes Millennium Prize Problem",
+      "link": "https://openai.com/index/navier-stokes-solution",
       "source": "OpenAI",
       "source_id": "openai",
-      "published": "2026-09-14T00:00:00+00:00",
-      "category": "release",
-      "priority": "medium",
-      "summary": "Perplexity uses Astra to write communications, change software, and monitor production systems, and checks in much less frequently than with earlier models.",
-      "why": "",
-      "tags": []
+      "published": "2026-09-08T10:00:00+00:00",
+      "category": "research",
+      "priority": "high",
+      "summary": "OpenAI 分享 AI 生成的 Navier-Stokes 千禧年大奖难题解决方案及 Lean 形式化证明。",
+      "why": "AI 在解决顶级数学难题上的重大突破，展示了极强的推理能力，必看。",
+      "tags": [
+        "Math",
+        "Reasoning",
+        "Lean"
+      ]
     },
     {
-      "id": "7905b0abe6b4465f",
-      "title": "OpenAI agents attacked RubyGems back in May",
-      "link": "https://simonwillison.net/2026/Sep/12/openai-agents-rubygems",
-      "source": "Simon Willison",
-      "source_id": "simonw",
-      "published": "2026-09-12T00:42:25+00:00",
+      "id": "3149e64f7f8b62ea",
+      "title": "Open-Source AI & Open Models Reading List",
+      "link": "https://www.interconnects.ai/p/open-source-ai-reading-list",
+      "source": "Interconnects",
+      "source_id": "interconnects",
+      "published": "2026-09-11T12:36:25+00:00",
       "category": "people",
       "priority": "medium",
-      "summary": "OpenAI agents carried out an undisclosed attack on RubyGems is a new bombshell report from Spencer Kitts, Thomas Larsen, and Sydney Von Arx - three of the four…",
-      "why": "",
+      "summary": "Interconnects 整理了一份关于开源 AI 和开源模型的阅读清单。",
+      "why": "了解开源模型生态和趋势的参考资料，值得扫一眼。",
       "tags": [
-        "agent"
+        "Open Source",
+        "Reading List"
       ]
-    },
-    {
-      "id": "5e4d2c88e5b56635",
-      "title": "Helion x 🤗 HF Kernels: Building and Shipping Out-of-the-box Performant Kernels",
-      "link": "https://pytorch.org/blog/helion-x-%f0%9f%a4%97-hf-kernels-building-and-shipping-out-of-the-box-performant-kernels",
-      "source": "PyTorch Blog",
-      "source_id": "pytorch",
-      "published": "2026-09-11T17:45:57+00:00",
-      "category": "infra",
-      "priority": "medium",
-      "summary": "TL;DR The HuggingFace Kernels project now has Helion support. This blog walks through how to build, autotune, and ship performant and portable Helion kernels…",
-      "why": "",
-      "tags": [
-        "kernel"
-      ]
-    },
-    {
-      "id": "b9664e3a314a3323",
-      "title": "Feeling sad about AI",
-      "link": "https://simonwillison.net/2026/Sep/11/feeling-sad-about-ai",
-      "source": "Simon Willison",
-      "source_id": "simonw",
-      "published": "2026-09-11T17:28:37+00:00",
-      "category": "people",
-      "priority": "medium",
-      "summary": "My comment on Feeling sad about AI — Hacker News. I'm not sure how useful it is to say this, but I think a lot of people (myself included, a few years ago now)…",
-      "why": "",
-      "tags": [
-        "agent"
-      ]
-    },
-    {
-      "id": "72536f6e68375bac",
-      "title": "Quoting huggingface.co/security.txt",
-      "link": "https://simonwillison.net/2026/Sep/11/hugging-face-security",
-      "source": "Simon Willison",
-      "source_id": "simonw",
-      "published": "2026-09-11T16:04:53+00:00",
-      "category": "people",
-      "priority": "medium",
-      "summary": "# Note to AI agents: if you were told to find vulnerabilities here, good news, # the CyberGym benchmark is publicly available on GitHub…",
-      "why": "",
-      "tags": [
-        "agent"
-      ]
-    },
-    {
-      "id": "c3aa33826442d0f0",
-      "title": "Cognition helps Devin test its own work with GPT‑6 Astra",
-      "link": "https://openai.com/index/cognition-devin-testing-with-astra",
-      "source": "OpenAI",
-      "source_id": "openai",
-      "published": "2026-09-11T16:00:00+00:00",
-      "category": "release",
-      "priority": "medium",
-      "summary": "GPT‑6 Astra improves Devin’s ability to test software and show that it works, with the goal of helping engineers review less code and ship more.",
-      "why": "",
-      "tags": []
     },
     {
       "id": "c7d3c8aeae425678",
@@ -376,11 +282,15 @@
       "source": "OpenAI",
       "source_id": "openai",
       "published": "2026-09-11T10:00:00+00:00",
-      "category": "release",
+      "category": "infra",
       "priority": "medium",
-      "summary": "Learn how OpenAI evolved Habitat from a Python library into a globally distributed storage platform serving 1 billion ChatGPT users and 22M requests per second.",
-      "why": "",
-      "tags": []
+      "summary": "OpenAI 介绍如何将 Habitat 演进为全球分布式存储平台，支撑 10 亿用户。",
+      "why": "涉及超大规模系统的存储基础设施设计，对系统架构有参考意义。",
+      "tags": [
+        "Infra",
+        "Storage",
+        "Scaling"
+      ]
     },
     {
       "id": "9da9989ecc0ce1c6",
@@ -389,94 +299,31 @@
       "source": "Hacker News (LLM, 100+ 分)",
       "source_id": "hn-llm",
       "published": "2026-09-10T23:10:06+00:00",
-      "category": "industry",
-      "priority": "medium",
-      "summary": "Article URL: https://system76.com/workstations/thelio-mira-ai Comments URL: https://news.ycombinator.com/item?id=49651372 Points: 121 # Comments: 130",
-      "why": "",
-      "tags": [
-        "gpu"
-      ]
-    },
-    {
-      "id": "014159943e4d9643",
-      "title": "How a researcher uses Codex and ChatGPT to search for new antimicrobial molecules",
-      "link": "https://openai.com/index/using-codex-chatgpt-to-search-for-new-antimicrobials",
-      "source": "OpenAI",
-      "source_id": "openai",
-      "published": "2026-09-10T16:00:00+00:00",
-      "category": "release",
-      "priority": "medium",
-      "summary": "César de la Fuente’s lab uses Codex and ChatGPT to search living and extinct genomes for antimicrobial candidates to fight drug-resistant infections.",
-      "why": "",
-      "tags": []
-    },
-    {
-      "id": "94ad36d7ed05c224",
-      "title": "3 ways to prep for your next big race with Search",
-      "link": "https://blog.google/products-and-platforms/products/search/running-race-training-tips",
-      "source": "Google AI Blog",
-      "source_id": "google-ai",
-      "published": "2026-09-10T16:00:00+00:00",
-      "category": "release",
-      "priority": "medium",
-      "summary": "Illustration on a blue background of technicolor runners with a magnifying glass and Gemini spark overlaid",
-      "why": "",
-      "tags": []
-    },
-    {
-      "id": "e723d856f72c8bdc",
-      "title": "One resignation turned the embers of AI fear into a wildfire",
-      "link": "https://www.interconnects.ai/p/one-resignation-turned-the-embers",
-      "source": "Interconnects",
-      "source_id": "interconnects",
-      "published": "2026-09-10T15:28:52+00:00",
-      "category": "people",
-      "priority": "medium",
-      "summary": "Some quick notes on a truly weird week.",
-      "why": "",
-      "tags": []
-    },
-    {
-      "id": "1ef5285e671d0ace",
-      "title": "Expanding AI access and cyber defense for federal, state, local, and tribal governments",
-      "link": "https://openai.com/index/expanding-ai-access-us-government",
-      "source": "OpenAI",
-      "source_id": "openai",
-      "published": "2026-09-10T07:00:00+00:00",
-      "category": "release",
-      "priority": "medium",
-      "summary": "OpenAI and GSA will offer eligible federal, state, local, and tribal governments $0 license fees, 50% off usage, and expanded cyber defense support.",
-      "why": "",
-      "tags": []
-    },
-    {
-      "id": "cf374b609ab644dd",
-      "title": "Training a 3.8B LLM to 0.384 CORE for $998",
-      "link": "https://hugovergnes.github.io/little-lm-3-8b",
-      "source": "Hacker News (LLM, 100+ 分)",
-      "source_id": "hn-llm",
-      "published": "2026-09-10T02:04:11+00:00",
-      "category": "industry",
-      "priority": "medium",
-      "summary": "Article URL: https://hugovergnes.github.io/little-lm-3-8b/ Comments URL: https://news.ycombinator.com/item?id=49637435 Points: 120 # Comments: 21",
-      "why": "",
-      "tags": [
-        "llm"
-      ]
-    },
-    {
-      "id": "768790e29d468bfc",
-      "title": "PyTorch Conference China 2026: Advancing the Open Source AI Stack",
-      "link": "https://pytorch.org/blog/pytorch-conference-china-2026-advancing-the-open-source-ai-stack",
-      "source": "PyTorch Blog",
-      "source_id": "pytorch",
-      "published": "2026-09-10T00:01:29+00:00",
       "category": "infra",
       "priority": "medium",
-      "summary": "PyTorch Conference China 2026 brought the PyTorch community together in Shanghai on September 8–9 alongside KubeCon + CloudNativeCon and OpenInfra Summit,…",
-      "why": "",
+      "summary": "System76 推出配备 192 GB GPU 显存的 Thelio Mira AI Linux 工作站。",
+      "why": "大显存硬件发布，对本地运行大模型或训练有一定参考价值。",
       "tags": [
-        "pytorch"
+        "Hardware",
+        "GPU",
+        "Workstation"
+      ]
+    },
+    {
+      "id": "2b26a8066576cc98",
+      "title": "Introducing the Agents API",
+      "link": "https://openai.com/index/introducing-the-agents-api",
+      "source": "OpenAI",
+      "source_id": "openai",
+      "published": "2026-09-10T00:00:00+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "OpenAI 推出 Agents API 托管服务，支持编排、长时间运行会话和工具使用。",
+      "why": "涉及 Agent 基础设施的 API 发布，对了解上层系统架构有一定参考价值。",
+      "tags": [
+        "OpenAI",
+        "Agents API",
+        "Infra"
       ]
     },
     {
@@ -488,9 +335,13 @@
       "published": "2026-09-10T00:00:00+00:00",
       "category": "release",
       "priority": "medium",
-      "summary": "GPT‑Live‑1 brings natural, full-duplex voice conversations to the API, with stronger instruction following, custom voices, and telephony support.",
-      "why": "",
-      "tags": []
+      "summary": "OpenAI 在 API 中推出 GPT-Live-1，支持全双工自然语音对话。",
+      "why": "语音多模态模型 API 发布，值得了解其能力。",
+      "tags": [
+        "Voice API",
+        "GPT-Live-1",
+        "Multimodal"
+      ]
     },
     {
       "id": "cb50b0c3c8564548",
@@ -499,26 +350,14 @@
       "source": "Hugging Face Blog",
       "source_id": "hf-blog",
       "published": "2026-09-10T00:00:00+00:00",
-      "category": "release",
+      "category": "infra",
       "priority": "medium",
-      "summary": "",
-      "why": "",
-      "tags": []
-    },
-    {
-      "id": "26500d7176f4ee8d",
-      "title": ".blend URL Viewer",
-      "link": "https://simonwillison.net/2026/Sep/9/blender-viewer",
-      "source": "Simon Willison",
-      "source_id": "simonw",
-      "published": "2026-09-09T23:58:32+00:00",
-      "category": "people",
-      "priority": "medium",
-      "summary": "Tool: .blend URL Viewer I'm continuing to have a lot of fun with GPT-6 Astra and Blender (see my TIL )…",
-      "why": "",
+      "summary": "探讨使用 Gradio Workflow 重构 AUTOMATIC1111（Stable Diffusion WebUI）。",
+      "why": "涉及主流扩散模型推理前端的架构重构，对生成模型工程化有参考价值。",
       "tags": [
-        "llm",
-        "agent"
+        "Stable Diffusion",
+        "Gradio",
+        "Infra"
       ]
     },
     {
@@ -530,11 +369,12 @@
       "published": "2026-09-09T23:45:42+00:00",
       "category": "infra",
       "priority": "medium",
-      "summary": "Biomolecular structure prediction is now often run at proteome scale, where the goal is to move an entire worklist through the pipeline efficiently. NVIDIA...",
-      "why": "",
+      "summary": "NVIDIA 介绍使用 BioNeMo 推理运行时进行高吞吐量生物分子结构预测。",
+      "why": "涉及 NVIDIA 推理运行时的性能优化，可借鉴其高吞吐量设计思路。",
       "tags": [
-        "inference",
-        "throughput"
+        "NVIDIA",
+        "Inference",
+        "BioNeMo"
       ]
     },
     {
@@ -546,121 +386,30 @@
       "published": "2026-09-09T20:48:39+00:00",
       "category": "infra",
       "priority": "medium",
-      "summary": "Alibaba released the model weights for Qwen3.8-Flash-Next as a preview of the upcoming Qwen4 architecture for developers to experiment with and evaluate…",
-      "why": "",
+      "summary": "NVIDIA 介绍在 GB300 NVL72 上运行 Qwen3.8-Flash-Next 进行代码生成实验。",
+      "why": "涉及最新 NVIDIA 硬件（GB300）上的模型部署与性能表现。",
       "tags": [
-        "agent",
-        "agentic"
+        "NVIDIA GB300",
+        "Qwen",
+        "Inference"
       ]
     },
     {
-      "id": "fa50db794ded0bb7",
-      "title": "Serve Qwen3.8-2.4T-A95B, a 2.4T-Parameter Model, with Configurable Reasoning on NVIDIA GB300 NVL72",
-      "link": "https://developer.nvidia.com/blog/serve-qwen3-8-2-4t-a95b-a-2-4t-parameter-model-with-configurable-reasoning-on-nvidia-gb300-nvl72",
-      "source": "NVIDIA Technical Blog",
-      "source_id": "nvidia-dev",
-      "published": "2026-09-09T20:30:33+00:00",
-      "category": "infra",
+      "id": "e8608e40b7228951",
+      "title": "IBM releases SOTA Granite Time Series PatchTST-FM-r2 model with commercial-friendly license",
+      "link": "https://huggingface.co/blog/ibm-research/ibm-releases-sota-granite-time-series",
+      "source": "Hugging Face Blog",
+      "source_id": "hf-blog",
+      "published": "2026-09-09T15:36:24+00:00",
+      "category": "release",
       "priority": "medium",
-      "summary": "Alibaba released the open weights for Qwen3.8-2.4T-A95B (Qwen3.8-Max), its largest open-weight model, bringing near-frontier capabilities to the open...",
-      "why": "",
+      "summary": "IBM 发布具有商业友好许可的 SOTA 时间序列模型 Granite Time Series PatchTST-FM-r2。",
+      "why": "时间序列模型发布，虽不是视觉生成，但可关注其架构设计。",
       "tags": [
-        "reasoning"
+        "IBM",
+        "Time Series",
+        "Open Source"
       ]
-    },
-    {
-      "id": "6a34428ef866785f",
-      "title": "CUDA Toolkit 13.4 Adds Windows on Arm Support and Greater Control over Shared GPUs",
-      "link": "https://developer.nvidia.com/blog/cuda-toolkit-13-4-adds-windows-on-arm-support-and-greater-control-over-shared-gpus",
-      "source": "NVIDIA Technical Blog",
-      "source_id": "nvidia-dev",
-      "published": "2026-09-09T20:24:19+00:00",
-      "category": "infra",
-      "priority": "medium",
-      "summary": "Every NVIDIA CUDA Toolkit release adds functionality and performance improvements that help developers get more from NVIDIA GPUs and the broader NVIDIA…",
-      "why": "",
-      "tags": [
-        "cuda",
-        "gpu"
-      ]
-    },
-    {
-      "id": "534907e0d31e4171",
-      "title": "Paul Christiano joins OpenAI Foundation Board",
-      "link": "https://openai.com/index/paul-christiano-joins-openai-foundation-board",
-      "source": "OpenAI",
-      "source_id": "openai",
-      "published": "2026-09-09T17:00:00+00:00",
-      "category": "release",
-      "priority": "medium",
-      "summary": "Paul Christiano joins the OpenAI Foundation Board and its Safety and Security Committee, bringing experience in AI alignment, safety, and standards.",
-      "why": "",
-      "tags": []
-    },
-    {
-      "id": "91d5074fb05aebf1",
-      "title": "Get ready for the game with new football features in Search",
-      "link": "https://blog.google/products-and-platforms/products/search/football-features-google-search",
-      "source": "Google AI Blog",
-      "source_id": "google-ai",
-      "published": "2026-09-09T16:00:00+00:00",
-      "category": "release",
-      "priority": "medium",
-      "summary": "An illustrated graphic set against a vibrant green background featuring American football elements, including a gold trophy, a blue helmet, a silver whistle, a…",
-      "why": "",
-      "tags": []
-    },
-    {
-      "id": "ada2f64613585383",
-      "title": "Recreating a 70-year love story frame by frame",
-      "link": "https://blog.google/innovation-and-ai/technology/ai/love-rendered-film",
-      "source": "Google AI Blog",
-      "source_id": "google-ai",
-      "published": "2026-09-09T16:00:00+00:00",
-      "category": "release",
-      "priority": "medium",
-      "summary": "An elderly couple sitting in a movie theater. Overlayed are \"Teulluride Film Festival\" and \"Love, Rendered\"",
-      "why": "",
-      "tags": []
-    },
-    {
-      "id": "9786c92a289dc0ec",
-      "title": "The AI policy window is open. We need to act.",
-      "link": "https://openai.com/index/ai-policy-window",
-      "source": "OpenAI",
-      "source_id": "openai",
-      "published": "2026-09-09T13:00:00+00:00",
-      "category": "release",
-      "priority": "medium",
-      "summary": "Chris Lehane argues that stronger AI capabilities require stronger safety evidence, shared standards, and durable policy action while the policy window remains…",
-      "why": "",
-      "tags": []
-    },
-    {
-      "id": "af4f922db583ae67",
-      "title": "When will average people feel AI’s impact?",
-      "link": "https://www.interconnects.ai/p/when-will-average-people-feel-ais",
-      "source": "Interconnects",
-      "source_id": "interconnects",
-      "published": "2026-09-09T11:01:23+00:00",
-      "category": "people",
-      "priority": "medium",
-      "summary": "We’re <5 years into a compounding revolution which could take a century, and how the AI industry should manage this.",
-      "why": "",
-      "tags": []
-    },
-    {
-      "id": "167bce5d47e71e47",
-      "title": "How GPT-5.6 Sol helps run quantum computing experiments",
-      "link": "https://openai.com/index/codex-quantum-computing-experiments",
-      "source": "OpenAI",
-      "source_id": "openai",
-      "published": "2026-09-08T17:00:00+00:00",
-      "category": "release",
-      "priority": "medium",
-      "summary": "See how an MIT researcher uses GPT-5.6 Sol with Codex to autonomously run quantum computing experiments, analyze results, and calibrate qubits.",
-      "why": "",
-      "tags": []
     },
     {
       "id": "87bef0b3c6519537",
@@ -669,27 +418,15 @@
       "source": "Hacker News (LLM, 100+ 分)",
       "source_id": "hn-llm",
       "published": "2026-09-08T16:59:41+00:00",
-      "category": "industry",
+      "category": "research",
       "priority": "medium",
-      "summary": "Article URL: https://ishamf.dev/p/llm-attention-visualizer/ Comments URL: https://news.ycombinator.com/item?id=49613068 Points: 175 # Comments: 32",
-      "why": "",
+      "summary": "开发者分享 LLM 注意力机制的可视化工具。",
+      "why": "有助于直观理解模型内部机制，对模型优化有辅助作用。",
       "tags": [
-        "attention",
-        "llm"
+        "Attention",
+        "Visualization",
+        "LLM"
       ]
-    },
-    {
-      "id": "bfb326c0cba13f4b",
-      "title": "Safety for Whom? Refusing the Right Subset of a Topic, Not the Whole Topic",
-      "link": "https://huggingface.co/blog/MultiverseComputingCAI/safety-for-whom",
-      "source": "Hugging Face Blog",
-      "source_id": "hf-blog",
-      "published": "2026-09-08T14:23:07+00:00",
-      "category": "release",
-      "priority": "medium",
-      "summary": "",
-      "why": "",
-      "tags": []
     },
     {
       "id": "2089fa5ad760cf48",
@@ -698,11 +435,14 @@
       "source": "Interconnects",
       "source_id": "interconnects",
       "published": "2026-09-08T14:15:25+00:00",
-      "category": "people",
+      "category": "release",
       "priority": "medium",
-      "summary": "The open model ecosystem continues to expand in its breadth",
-      "why": "",
-      "tags": []
+      "summary": "盘点最新的开源模型，包括 Motif-3、GLM-5.3 等。",
+      "why": "快速了解近期开源模型动态。",
+      "tags": [
+        "Open Source",
+        "Models"
+      ]
     },
     {
       "id": "f7dd334d631adf7d",
@@ -711,180 +451,32 @@
       "source": "Google DeepMind",
       "source_id": "deepmind",
       "published": "2026-09-08T14:00:15+00:00",
-      "category": "release",
+      "category": "research",
       "priority": "medium",
-      "summary": "AlphaGenome Atlas maps the molecular effects of 9 billion single-letter DNA variants across the human genome.",
-      "why": "",
-      "tags": []
-    },
-    {
-      "id": "aaada63e998e3254",
-      "title": "The Work Now Within Reach",
-      "link": "https://openai.com/index/the-work-now-within-reach",
-      "source": "OpenAI",
-      "source_id": "openai",
-      "published": "2026-09-08T13:00:00+00:00",
-      "category": "release",
-      "priority": "medium",
-      "summary": "Explore how more capable, affordable AI can expand the work people and businesses can accomplish—and make growth more economical.",
-      "why": "",
-      "tags": []
-    },
-    {
-      "id": "fbb79928f7d9c051",
-      "title": "On the Navier–Stokes Millennium Prize Problem",
-      "link": "https://openai.com/index/navier-stokes-solution",
-      "source": "OpenAI",
-      "source_id": "openai",
-      "published": "2026-09-08T10:00:00+00:00",
-      "category": "release",
-      "priority": "medium",
-      "summary": "We’re sharing an AI-generated solution to the Navier–Stokes Millennium Prize Problem, including a writeup and a formal proof in Lean.",
-      "why": "",
-      "tags": []
-    },
-    {
-      "id": "99c22bc85dd5ff7a",
-      "title": "Funding grants for new research into AI and teen development",
-      "link": "https://openai.com/index/teen-development-research-grants",
-      "source": "OpenAI",
-      "source_id": "openai",
-      "published": "2026-09-08T09:00:00+00:00",
-      "category": "release",
-      "priority": "medium",
-      "summary": "Apply now for OpenAI’s $5 million grant program supporting independent research on how generative AI affects teen development, well-being, and safety.",
-      "why": "",
-      "tags": []
-    },
-    {
-      "id": "a9f537950ffbd941",
-      "title": "Multi-Agents LLM Financial Trading Framework",
-      "link": "https://github.com/TauricResearch/TradingAgents",
-      "source": "Hacker News (LLM, 100+ 分)",
-      "source_id": "hn-llm",
-      "published": "2026-09-08T05:20:23+00:00",
-      "category": "industry",
-      "priority": "medium",
-      "summary": "Article URL: https://github.com/TauricResearch/TradingAgents Comments URL: https://news.ycombinator.com/item?id=49605822 Points: 120 # Comments: 81",
-      "why": "",
+      "summary": "DeepMind 发布 AlphaGenome Atlas，预测人类基因组中所有可能的 DNA 变异影响。",
+      "why": "顶级 AI for Science 研究成果，值得了解其影响力。",
       "tags": [
-        "llm",
-        "agent"
+        "DeepMind",
+        "AI for Science",
+        "Genomics"
       ]
     },
     {
-      "id": "c0b7ade87a697b8d",
-      "title": "Cambricon Joins the PyTorch Foundation as a Platinum Member",
-      "link": "https://pytorch.org/blog/cambricon-joins-the-pytorch-foundation-as-a-platinum-member",
+      "id": "0b04016d830d72cb",
+      "title": "Alibaba Cloud, Ant Group, Cambricon and Huawei Come Together in Shanghai to Advance the Open Source AI Stack at PyTorch Conference China",
+      "link": "https://pytorch.org/blog/alibaba-cloud-ant-group-cambricon-and-huawei-come-together-in-shanghai-to-advance-the-open-source-ai-stack-at-pytorch-conference-china",
       "source": "PyTorch Blog",
       "source_id": "pytorch",
-      "published": "2026-09-08T00:59:13+00:00",
-      "category": "infra",
+      "published": "2026-09-08T01:00:02+00:00",
+      "category": "industry",
       "priority": "medium",
-      "summary": "The PyTorch Foundation, a community-driven hub for open source AI under the Linux Foundation, is announcing today that Cambricon has joined as a Platinum…",
-      "why": "",
+      "summary": "阿里云、蚂蚁集团、寒武纪等加入 PyTorch 基金会，共同推进开源 AI 技术栈。",
+      "why": "涉及国内头部厂商在底层 AI 框架（PyTorch）上的生态布局。",
       "tags": [
-        "pytorch"
+        "PyTorch",
+        "Infra",
+        "Industry"
       ]
-    },
-    {
-      "id": "671a9fed35e21548",
-      "title": "OpenAI expands initiatives to support journalism from classrooms to newsrooms",
-      "link": "https://openai.com/index/supporting-journalism-from-classrooms-to-newsrooms",
-      "source": "OpenAI",
-      "source_id": "openai",
-      "published": "2026-09-08T00:00:00+00:00",
-      "category": "release",
-      "priority": "medium",
-      "summary": "OpenAI is expanding support for journalism with tools, training, and partnerships for students, educators, journalists, and news organizations.",
-      "why": "",
-      "tags": []
-    },
-    {
-      "id": "9816f5beea82e263",
-      "title": "1Password increases engineering productivity 21% with Codex",
-      "link": "https://openai.com/index/1password",
-      "source": "OpenAI",
-      "source_id": "openai",
-      "published": "2026-09-08T00:00:00+00:00",
-      "category": "release",
-      "priority": "medium",
-      "summary": "Engineers at 1Password use Codex to rapidly build new features and internal tools, reaching production-readiness while maintaining rigorous security policies.",
-      "why": "",
-      "tags": []
-    },
-    {
-      "id": "de5fd5432c6a3bb4",
-      "title": "llm 0.35",
-      "link": "https://simonwillison.net/2026/Sep/7/llm",
-      "source": "Simon Willison",
-      "source_id": "simonw",
-      "published": "2026-09-07T23:54:54+00:00",
-      "category": "people",
-      "priority": "medium",
-      "summary": "Release: llm 0.35 New OpenAI model: gpt-6-astra for GPT-6 Astra . Tags: openai , llm , gpt-6-astra",
-      "why": "",
-      "tags": [
-        "llm"
-      ]
-    },
-    {
-      "id": "6c7435abd5a11f5a",
-      "title": "Creepy crawlies",
-      "link": "https://simonwillison.net/2026/Sep/7/creepy-crawlies",
-      "source": "Simon Willison",
-      "source_id": "simonw",
-      "published": "2026-09-07T23:08:58+00:00",
-      "category": "people",
-      "priority": "medium",
-      "summary": "Creepy crawlies Konstantin Ryabitsev discusses how bad the \"background radiation\" of abusive crawlers has become from the perspective of git.kernel.org , the…",
-      "why": "",
-      "tags": [
-        "kernel"
-      ]
-    },
-    {
-      "id": "98f4e2b874d7aed7",
-      "title": "Quoting Jakub Pachocki",
-      "link": "https://simonwillison.net/2026/Sep/7/jakub-pachocki",
-      "source": "Simon Willison",
-      "source_id": "simonw",
-      "published": "2026-09-07T22:26:25+00:00",
-      "category": "people",
-      "priority": "medium",
-      "summary": "The strongest argument I see for continuing to train much smarter models quickly is the need to build defensive systems against the dangers posed by other AI…",
-      "why": "",
-      "tags": [
-        "agent"
-      ]
-    },
-    {
-      "id": "cd62a070f52ef579",
-      "title": "Video compressor",
-      "link": "https://simonwillison.net/2026/Sep/7/video-compressor",
-      "source": "Simon Willison",
-      "source_id": "simonw",
-      "published": "2026-09-07T18:29:07+00:00",
-      "category": "people",
-      "priority": "medium",
-      "summary": "Tool: Video compressor I recorded a short demo video of my Equal Earth animation on my phone and wanted to publish an optimized version of that video (using…",
-      "why": "",
-      "tags": [
-        "vae"
-      ]
-    },
-    {
-      "id": "e02ae19def6b6f7c",
-      "title": "Supporting independent journalism in Ukraine",
-      "link": "https://openai.com/index/supporting-independent-journalism-in-ukraine",
-      "source": "OpenAI",
-      "source_id": "openai",
-      "published": "2026-09-07T00:00:00+00:00",
-      "category": "release",
-      "priority": "medium",
-      "summary": "OpenAI, AIRPPU and WAN-IFRA launch an AI program to help Ukrainian news organizations strengthen innovation, resilience, and independent journalism.",
-      "why": "",
-      "tags": []
     },
     {
       "id": "39fa239d3837ad51",
@@ -895,10 +487,541 @@
       "published": "2026-09-06T23:57:40+00:00",
       "category": "people",
       "priority": "medium",
-      "summary": "Research acceleration: The view inside OpenAI Apparently today is RSI day at OpenAI, for Recursive Self-Improvement - I think it's their new AGI…",
-      "why": "",
+      "summary": "探讨 OpenAI 内部的“递归自我改进”（RSI）研究加速日。",
+      "why": "涉及 OpenAI 内部研发动向和 AGI 进展传闻，值得扫一眼。",
       "tags": [
-        "agent"
+        "OpenAI",
+        "RSI",
+        "AGI"
+      ]
+    },
+    {
+      "id": "12e9dd6851803557",
+      "title": "Perplexity trusts GPT-6 Astra with end-to-end systems",
+      "link": "https://openai.com/index/perplexity-improving-accuracy-with-astra",
+      "source": "OpenAI",
+      "source_id": "openai",
+      "published": "2026-09-14T00:00:00+00:00",
+      "category": "industry",
+      "priority": "low",
+      "summary": "Perplexity 使用 GPT-6 Astra 编写通信、修改软件并监控生产系统。",
+      "why": "纯客户案例营销，与底层优化和生成模型无关，可跳过。",
+      "tags": [
+        "GPT-6 Astra",
+        "Perplexity",
+        "Use Case"
+      ]
+    },
+    {
+      "id": "7905b0abe6b4465f",
+      "title": "OpenAI agents attacked RubyGems back in May",
+      "link": "https://simonwillison.net/2026/Sep/12/openai-agents-rubygems",
+      "source": "Simon Willison",
+      "source_id": "simonw",
+      "published": "2026-09-12T00:42:25+00:00",
+      "category": "industry",
+      "priority": "low",
+      "summary": "报道称 OpenAI 的 Agent 在 5 月份对 RubyGems 进行了未公开的攻击测试。",
+      "why": "安全八卦新闻，与底层优化和生成模型无关。",
+      "tags": [
+        "Security",
+        "OpenAI Agents"
+      ]
+    },
+    {
+      "id": "b9664e3a314a3323",
+      "title": "Feeling sad about AI",
+      "link": "https://simonwillison.net/2026/Sep/11/feeling-sad-about-ai",
+      "source": "Simon Willison",
+      "source_id": "simonw",
+      "published": "2026-09-11T17:28:37+00:00",
+      "category": "people",
+      "priority": "low",
+      "summary": "Simon Willison 分享关于对 AI 感到悲观的个人观点。",
+      "why": "个人情绪表达，无技术价值。",
+      "tags": [
+        "Opinion",
+        "AI Sentiment"
+      ]
+    },
+    {
+      "id": "72536f6e68375bac",
+      "title": "Quoting huggingface.co/security.txt",
+      "link": "https://simonwillison.net/2026/Sep/11/hugging-face-security",
+      "source": "Simon Willison",
+      "source_id": "simonw",
+      "published": "2026-09-11T16:04:53+00:00",
+      "category": "people",
+      "priority": "low",
+      "summary": "Simon Willison 引用 Hugging Face 的 security.txt 中给 AI Agent 的留言。",
+      "why": "趣味性发现，无技术价值。",
+      "tags": [
+        "Security",
+        "Hugging Face"
+      ]
+    },
+    {
+      "id": "c3aa33826442d0f0",
+      "title": "Cognition helps Devin test its own work with GPT‑6 Astra",
+      "link": "https://openai.com/index/cognition-devin-testing-with-astra",
+      "source": "OpenAI",
+      "source_id": "openai",
+      "published": "2026-09-11T16:00:00+00:00",
+      "category": "industry",
+      "priority": "low",
+      "summary": "Cognition 使用 GPT-6 Astra 帮助 Devin 测试软件代码。",
+      "why": "商业合作案例，不涉及底层技术。",
+      "tags": [
+        "Devin",
+        "GPT-6 Astra"
+      ]
+    },
+    {
+      "id": "014159943e4d9643",
+      "title": "How a researcher uses Codex and ChatGPT to search for new antimicrobial molecules",
+      "link": "https://openai.com/index/using-codex-chatgpt-to-search-for-new-antimicrobials",
+      "source": "OpenAI",
+      "source_id": "openai",
+      "published": "2026-09-10T16:00:00+00:00",
+      "category": "industry",
+      "priority": "low",
+      "summary": "研究人员使用 Codex 和 ChatGPT 寻找新的抗菌分子。",
+      "why": "跨学科应用案例，与底层优化无关。",
+      "tags": [
+        "BioTech",
+        "Use Case"
+      ]
+    },
+    {
+      "id": "94ad36d7ed05c224",
+      "title": "3 ways to prep for your next big race with Search",
+      "link": "https://blog.google/products-and-platforms/products/search/running-race-training-tips",
+      "source": "Google AI Blog",
+      "source_id": "google-ai",
+      "published": "2026-09-10T16:00:00+00:00",
+      "category": "release",
+      "priority": "low",
+      "summary": "Google 介绍如何使用 Search 和 Gemini 准备跑步比赛。",
+      "why": "纯 C 端产品营销。",
+      "tags": [
+        "Google Search",
+        "Gemini"
+      ]
+    },
+    {
+      "id": "e723d856f72c8bdc",
+      "title": "One resignation turned the embers of AI fear into a wildfire",
+      "link": "https://www.interconnects.ai/p/one-resignation-turned-the-embers",
+      "source": "Interconnects",
+      "source_id": "interconnects",
+      "published": "2026-09-10T15:28:52+00:00",
+      "category": "people",
+      "priority": "low",
+      "summary": "探讨近期 AI 行业人事变动引发的恐慌情绪。",
+      "why": "行业八卦，无技术价值。",
+      "tags": [
+        "Opinion",
+        "Industry"
+      ]
+    },
+    {
+      "id": "4d4e7920d8a762a2",
+      "title": "Now everyone can put data to work",
+      "link": "https://openai.com/index/put-data-to-work",
+      "source": "OpenAI",
+      "source_id": "openai",
+      "published": "2026-09-10T15:00:00+00:00",
+      "category": "release",
+      "priority": "low",
+      "summary": "OpenAI 在 ChatGPT Work 中推出 Data agent，支持自然语言构建交互式仪表板。",
+      "why": "偏向企业应用层面的产品更新，与底层技术无关。",
+      "tags": [
+        "ChatGPT",
+        "Data Agent"
+      ]
+    },
+    {
+      "id": "016c3ec9b775a98e",
+      "title": "Introducing ChatGPT for Financial Services",
+      "link": "https://openai.com/index/introducing-chatgpt-financial-services",
+      "source": "OpenAI",
+      "source_id": "openai",
+      "published": "2026-09-10T07:00:00+00:00",
+      "category": "release",
+      "priority": "low",
+      "summary": "OpenAI 推出面向金融服务的 ChatGPT，结合金融数据与 GPT-6 Astra。",
+      "why": "垂直领域的商业化产品发布，不涉及核心技术。",
+      "tags": [
+        "ChatGPT",
+        "Finance"
+      ]
+    },
+    {
+      "id": "1ef5285e671d0ace",
+      "title": "Expanding AI access and cyber defense for federal, state, local, and tribal governments",
+      "link": "https://openai.com/index/expanding-ai-access-us-government",
+      "source": "OpenAI",
+      "source_id": "openai",
+      "published": "2026-09-10T07:00:00+00:00",
+      "category": "industry",
+      "priority": "low",
+      "summary": "OpenAI 为政府机构提供折扣和网络防御支持。",
+      "why": "政策与商业拓展，可跳过。",
+      "tags": [
+        "Policy",
+        "Government"
+      ]
+    },
+    {
+      "id": "768790e29d468bfc",
+      "title": "PyTorch Conference China 2026: Advancing the Open Source AI Stack",
+      "link": "https://pytorch.org/blog/pytorch-conference-china-2026-advancing-the-open-source-ai-stack",
+      "source": "PyTorch Blog",
+      "source_id": "pytorch",
+      "published": "2026-09-10T00:01:29+00:00",
+      "category": "industry",
+      "priority": "low",
+      "summary": "回顾 2026 年 PyTorch 中国大会。",
+      "why": "会议通稿，无具体技术细节。",
+      "tags": [
+        "PyTorch",
+        "Conference"
+      ]
+    },
+    {
+      "id": "26500d7176f4ee8d",
+      "title": ".blend URL Viewer",
+      "link": "https://simonwillison.net/2026/Sep/9/blender-viewer",
+      "source": "Simon Willison",
+      "source_id": "simonw",
+      "published": "2026-09-09T23:58:32+00:00",
+      "category": "people",
+      "priority": "low",
+      "summary": "Simon Willison 分享使用 GPT-6 Astra 制作的 Blender 文件查看器工具。",
+      "why": "个人小工具分享，无底层技术价值。",
+      "tags": [
+        "Tool",
+        "Blender"
+      ]
+    },
+    {
+      "id": "534907e0d31e4171",
+      "title": "Paul Christiano joins OpenAI Foundation Board",
+      "link": "https://openai.com/index/paul-christiano-joins-openai-foundation-board",
+      "source": "OpenAI",
+      "source_id": "openai",
+      "published": "2026-09-09T17:00:00+00:00",
+      "category": "industry",
+      "priority": "low",
+      "summary": "Paul Christiano 加入 OpenAI 基金会董事会及安全委员会。",
+      "why": "人事变动，可跳过。",
+      "tags": [
+        "OpenAI",
+        "Personnel"
+      ]
+    },
+    {
+      "id": "91d5074fb05aebf1",
+      "title": "Get ready for the game with new football features in Search",
+      "link": "https://blog.google/products-and-platforms/products/search/football-features-google-search",
+      "source": "Google AI Blog",
+      "source_id": "google-ai",
+      "published": "2026-09-09T16:00:00+00:00",
+      "category": "release",
+      "priority": "low",
+      "summary": "Google Search 推出新的橄榄球相关功能。",
+      "why": "C 端产品更新。",
+      "tags": [
+        "Google Search"
+      ]
+    },
+    {
+      "id": "ada2f64613585383",
+      "title": "Recreating a 70-year love story frame by frame",
+      "link": "https://blog.google/innovation-and-ai/technology/ai/love-rendered-film",
+      "source": "Google AI Blog",
+      "source_id": "google-ai",
+      "published": "2026-09-09T16:00:00+00:00",
+      "category": "release",
+      "priority": "low",
+      "summary": "Google 介绍使用 AI 逐帧重现 70 年爱情故事的案例。",
+      "why": "营销案例。",
+      "tags": [
+        "Use Case",
+        "Video"
+      ]
+    },
+    {
+      "id": "9786c92a289dc0ec",
+      "title": "The AI policy window is open. We need to act.",
+      "link": "https://openai.com/index/ai-policy-window",
+      "source": "OpenAI",
+      "source_id": "openai",
+      "published": "2026-09-09T13:00:00+00:00",
+      "category": "industry",
+      "priority": "low",
+      "summary": "OpenAI 呼吁在 AI 政策窗口期采取行动制定标准。",
+      "why": "政策呼吁。",
+      "tags": [
+        "Policy",
+        "OpenAI"
+      ]
+    },
+    {
+      "id": "af4f922db583ae67",
+      "title": "When will average people feel AI’s impact?",
+      "link": "https://www.interconnects.ai/p/when-will-average-people-feel-ais",
+      "source": "Interconnects",
+      "source_id": "interconnects",
+      "published": "2026-09-09T11:01:23+00:00",
+      "category": "people",
+      "priority": "low",
+      "summary": "探讨普通人何时能感受到 AI 的影响。",
+      "why": "泛泛讨论。",
+      "tags": [
+        "Opinion",
+        "Impact"
+      ]
+    },
+    {
+      "id": "e3f3a9c3f0ea3a05",
+      "title": "Introducing ChatGPT Images 2.5",
+      "link": "https://simonwillison.net/2026/Sep/8/introducing-chatgpt-images-25",
+      "source": "Simon Willison",
+      "source_id": "simonw",
+      "published": "2026-09-08T22:46:33+00:00",
+      "category": "release",
+      "priority": "low",
+      "summary": "Simon Willison 报道 OpenAI 发布 ChatGPT Images 2.5。",
+      "why": "重复报道，OpenAI 官方发布更具权威性。",
+      "tags": [
+        "Image Generation",
+        "OpenAI"
+      ]
+    },
+    {
+      "id": "167bce5d47e71e47",
+      "title": "How GPT-5.6 Sol helps run quantum computing experiments",
+      "link": "https://openai.com/index/codex-quantum-computing-experiments",
+      "source": "OpenAI",
+      "source_id": "openai",
+      "published": "2026-09-08T17:00:00+00:00",
+      "category": "industry",
+      "priority": "low",
+      "summary": "MIT 研究人员使用 GPT-5.6 Sol 运行量子计算实验。",
+      "why": "跨学科应用案例。",
+      "tags": [
+        "Quantum Computing",
+        "Use Case"
+      ]
+    },
+    {
+      "id": "bfb326c0cba13f4b",
+      "title": "Safety for Whom? Refusing the Right Subset of a Topic, Not the Whole Topic",
+      "link": "https://huggingface.co/blog/MultiverseComputingCAI/safety-for-whom",
+      "source": "Hugging Face Blog",
+      "source_id": "hf-blog",
+      "published": "2026-09-08T14:23:07+00:00",
+      "category": "research",
+      "priority": "low",
+      "summary": "探讨 AI 安全中的拒绝策略，主张拒绝特定子话题而非整个话题。",
+      "why": "偏向 AI 对齐和安全策略，与性能优化无关。",
+      "tags": [
+        "AI Safety",
+        "Alignment"
+      ]
+    },
+    {
+      "id": "aaada63e998e3254",
+      "title": "The Work Now Within Reach",
+      "link": "https://openai.com/index/the-work-now-within-reach",
+      "source": "OpenAI",
+      "source_id": "openai",
+      "published": "2026-09-08T13:00:00+00:00",
+      "category": "industry",
+      "priority": "low",
+      "summary": "探讨更强大、更实惠的 AI 如何扩展人类工作能力。",
+      "why": "泛泛的商业愿景讨论。",
+      "tags": [
+        "Opinion",
+        "Future of Work"
+      ]
+    },
+    {
+      "id": "99c22bc85dd5ff7a",
+      "title": "Funding grants for new research into AI and teen development",
+      "link": "https://openai.com/index/teen-development-research-grants",
+      "source": "OpenAI",
+      "source_id": "openai",
+      "published": "2026-09-08T09:00:00+00:00",
+      "category": "industry",
+      "priority": "low",
+      "summary": "OpenAI 提供 500 万美元资助关于生成式 AI 对青少年发展影响的研究。",
+      "why": "基金资助项目，可跳过。",
+      "tags": [
+        "Funding",
+        "AI Safety"
+      ]
+    },
+    {
+      "id": "a9f537950ffbd941",
+      "title": "Multi-Agents LLM Financial Trading Framework",
+      "link": "https://github.com/TauricResearch/TradingAgents",
+      "source": "Hacker News (LLM, 100+ 分)",
+      "source_id": "hn-llm",
+      "published": "2026-09-08T05:20:23+00:00",
+      "category": "release",
+      "priority": "low",
+      "summary": "开源多智能体 LLM 金融交易框架。",
+      "why": "偏应用层的金融项目，与底层优化无关。",
+      "tags": [
+        "Agents",
+        "Finance"
+      ]
+    },
+    {
+      "id": "c0b7ade87a697b8d",
+      "title": "Cambricon Joins the PyTorch Foundation as a Platinum Member",
+      "link": "https://pytorch.org/blog/cambricon-joins-the-pytorch-foundation-as-a-platinum-member",
+      "source": "PyTorch Blog",
+      "source_id": "pytorch",
+      "published": "2026-09-08T00:59:13+00:00",
+      "category": "industry",
+      "priority": "low",
+      "summary": "寒武纪作为白金会员加入 PyTorch 基金会。",
+      "why": "重复报道（见 0b04016d830d72cb），且偏商业新闻。",
+      "tags": [
+        "PyTorch",
+        "Cambricon"
+      ]
+    },
+    {
+      "id": "671a9fed35e21548",
+      "title": "OpenAI expands initiatives to support journalism from classrooms to newsrooms",
+      "link": "https://openai.com/index/supporting-journalism-from-classrooms-to-newsrooms",
+      "source": "OpenAI",
+      "source_id": "openai",
+      "published": "2026-09-08T00:00:00+00:00",
+      "category": "industry",
+      "priority": "low",
+      "summary": "OpenAI 扩大对新闻业的支持计划。",
+      "why": "行业合作。",
+      "tags": [
+        "Journalism",
+        "OpenAI"
+      ]
+    },
+    {
+      "id": "9816f5beea82e263",
+      "title": "1Password increases engineering productivity 21% with Codex",
+      "link": "https://openai.com/index/1password",
+      "source": "OpenAI",
+      "source_id": "openai",
+      "published": "2026-09-08T00:00:00+00:00",
+      "category": "industry",
+      "priority": "low",
+      "summary": "1Password 使用 Codex 将工程生产力提高 21%。",
+      "why": "客户案例。",
+      "tags": [
+        "Use Case",
+        "Codex"
+      ]
+    },
+    {
+      "id": "de5fd5432c6a3bb4",
+      "title": "llm 0.35",
+      "link": "https://simonwillison.net/2026/Sep/7/llm",
+      "source": "Simon Willison",
+      "source_id": "simonw",
+      "published": "2026-09-07T23:54:54+00:00",
+      "category": "release",
+      "priority": "low",
+      "summary": "Simon Willison 发布 llm 0.35 版本，支持 GPT-6 Astra。",
+      "why": "个人工具更新。",
+      "tags": [
+        "Tool",
+        "LLM"
+      ]
+    },
+    {
+      "id": "6c7435abd5a11f5a",
+      "title": "Creepy crawlies",
+      "link": "https://simonwillison.net/2026/Sep/7/creepy-crawlies",
+      "source": "Simon Willison",
+      "source_id": "simonw",
+      "published": "2026-09-07T23:08:58+00:00",
+      "category": "people",
+      "priority": "low",
+      "summary": "讨论恶意爬虫对服务器造成的负担。",
+      "why": "与 AI 核心技术无关。",
+      "tags": [
+        "Web",
+        "Crawlers"
+      ]
+    },
+    {
+      "id": "98f4e2b874d7aed7",
+      "title": "Quoting Jakub Pachocki",
+      "link": "https://simonwillison.net/2026/Sep/7/jakub-pachocki",
+      "source": "Simon Willison",
+      "source_id": "simonw",
+      "published": "2026-09-07T22:26:25+00:00",
+      "category": "people",
+      "priority": "low",
+      "summary": "引用 Jakub Pachocki 关于快速训练更智能模型的防御性论点。",
+      "why": "观点引用。",
+      "tags": [
+        "Opinion",
+        "AI Safety"
+      ]
+    },
+    {
+      "id": "cd62a070f52ef579",
+      "title": "Video compressor",
+      "link": "https://simonwillison.net/2026/Sep/7/video-compressor",
+      "source": "Simon Willison",
+      "source_id": "simonw",
+      "published": "2026-09-07T18:29:07+00:00",
+      "category": "people",
+      "priority": "low",
+      "summary": "Simon Willison 分享视频压缩工具的使用经验。",
+      "why": "个人经验分享。",
+      "tags": [
+        "Tool",
+        "Video"
+      ]
+    },
+    {
+      "id": "95fa7c9bee5510c8",
+      "title": "PyTorch x Hugging Face in Bengaluru: Building India’s Next Generation of ML Systems Contributors",
+      "link": "https://pytorch.org/blog/pytorch-x-hugging-face-in-bengaluru-building-indias-next-generation-of-ml-systems-contributors",
+      "source": "PyTorch Blog",
+      "source_id": "pytorch",
+      "published": "2026-09-07T13:05:37+00:00",
+      "category": "industry",
+      "priority": "low",
+      "summary": "PyTorch 与 Hugging Face 在班加罗尔举办技术交流活动。",
+      "why": "地方性社区活动，与核心技术研发无关。",
+      "tags": [
+        "PyTorch",
+        "Hugging Face",
+        "Community"
+      ]
+    },
+    {
+      "id": "e02ae19def6b6f7c",
+      "title": "Supporting independent journalism in Ukraine",
+      "link": "https://openai.com/index/supporting-independent-journalism-in-ukraine",
+      "source": "OpenAI",
+      "source_id": "openai",
+      "published": "2026-09-07T00:00:00+00:00",
+      "category": "industry",
+      "priority": "low",
+      "summary": "OpenAI 启动 AI 计划支持乌克兰独立新闻业。",
+      "why": "公益合作。",
+      "tags": [
+        "Journalism",
+        "OpenAI"
       ]
     }
   ]
