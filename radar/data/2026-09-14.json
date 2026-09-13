@@ -1,6 +1,6 @@
 {
   "date": "2026-09-14",
-  "generated_at": "2026-09-13T23:22:59+00:00",
+  "generated_at": "2026-09-13T23:36:35+00:00",
   "ai": true,
   "model": "gemini-3.1-pro-preview",
   "sources": [
@@ -42,6 +42,13 @@
     {
       "id": "nvidia-dev",
       "name": "NVIDIA Technical Blog",
+      "ok": true,
+      "count": 0,
+      "error": ""
+    },
+    {
+      "id": "hf-papers",
+      "name": "HF Papers 日榜",
       "ok": true,
       "count": 0,
       "error": ""
@@ -112,9 +119,9 @@
     {
       "id": "hn-llm",
       "name": "Hacker News (LLM, 100+ 分)",
-      "ok": true,
+      "ok": false,
       "count": 0,
-      "error": ""
+      "error": "HTTP Error 502: Bad Gateway"
     }
   ],
   "counts": {
@@ -504,12 +511,12 @@
       "published": "2026-09-14T00:00:00+00:00",
       "category": "industry",
       "priority": "low",
-      "summary": "Perplexity 使用 GPT-6 Astra 编写通信、修改软件并监控生产系统。",
-      "why": "纯客户案例营销，与底层优化和生成模型无关，可跳过。",
+      "summary": "Perplexity 使用 GPT-6 Astra 编写通信、修改软件并监控生产系统，人工干预大幅减少。",
+      "why": "属于应用层的商业案例，与底层系统优化或生成模型研究无关。",
       "tags": [
         "GPT-6 Astra",
         "Perplexity",
-        "Use Case"
+        "Agent"
       ]
     },
     {
