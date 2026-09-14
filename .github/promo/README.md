@@ -19,11 +19,12 @@
 | 1 | Bing 站长工具 | 「站点地图」提交 sitemap；「URL 提交」三页 | — | 无 | 5 分钟 |
 | 2 | Google Search Console | 提交 sitemap；三页「请求编入索引」 | — | 无 | 5 分钟 |
 | 3 | LinuxDo（linux.do） | 发一帖介绍整个站，代理 / ChatGPT 话题在那里是日常 | `linuxdo.md` | 低 | 10 分钟 |
-| 4 | 小红书 | **只发第 1 篇**（租电脑过渡），链接放评论区置顶 | `xiaohongshu.md` 笔记 1 | 低 | 15 分钟 |
+| 4 | 微博 | 发一条带链接的图文（正文允许网址） | `weibo.md` | 低 | 10 分钟 |
 | 5 | V2EX | 「分享创造」发一帖 | `v2ex.md` | 低 | 10 分钟 |
 | 6 | GitHub | 仓库 About 填站点地址，加 topics | — | 无 | 2 分钟 |
 | 7 | 微信 | 转到 2–3 个求职群、AI 学习群 | — | 低 | 随手 |
-| — | 知乎两条回答、小红书第 2/3 篇 | **先不发**。等前面的渠道跑一个月再看 | `zhihu.md` | 高 | — |
+| — | 知乎两条回答 | **先不发**。等前面的渠道跑一个月再看 | `zhihu.md` | 高 | — |
+| ✕ | 小红书 | **不可用**。2026-09-14 第 1 篇即被判「引导站外」：提平台名、写「链接在评论区」都算违规，改措辞绕不过去 | `xiaohongshu.md` 仅存档 | 判罚 | — |
 
 ## 追踪
 每个平台用自己的 `?utm_source=` 参数，Search Console 和 Bing 里能分开看来源：
@@ -31,7 +32,7 @@
 | 平台 | 链接 |
 |---|---|
 | 知乎 | https://lgystoic.github.io/guides/?utm_source=zhihu |
-| 小红书 | https://lgystoic.github.io/guides/?utm_source=xhs |
+| 微博 | https://lgystoic.github.io/guides/?utm_source=weibo |
 | V2EX | https://lgystoic.github.io/guides/?utm_source=v2ex |
 | 掘金 | https://lgystoic.github.io/guides/?utm_source=juejin |
 | 微信群 | https://lgystoic.github.io/guides/?utm_source=wechat |
