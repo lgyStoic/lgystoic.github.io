@@ -238,7 +238,8 @@ RADAR_DAY_TEMPLATE = """<!doctype html>
     <meta property="og:title" content="AI 信息雷达 {date}" />
     <meta property="og:description" content="{description}" />
     <meta property="og:url" content="{site_url}/radar/{date}/" />
-    <meta name="twitter:card" content="summary" />
+    <meta property="og:image" content="{site_url}/assets/og/radar.png" />
+    <meta name="twitter:card" content="summary_large_image" />
     <link rel="alternate" type="application/rss+xml" title="AI 信息雷达" href="../feed.xml" />
     <link rel="icon" href="{favicon}" />
     <link rel="stylesheet" href="../../site.css" />
