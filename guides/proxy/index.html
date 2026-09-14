@@ -51,12 +51,12 @@
       <section class="intro">
         <p class="kicker"><a href="../">上手指南</a> · 第 2 步</p>
         <h1>代理软件的购买与使用</h1>
-        <p class="bio">目标：让这台电脑能正常访问海外服务（ChatGPT、GitHub、Google 等）。方案是「一个服务商的订阅 + Clash Verge Rev 客户端」，全程十分钟。</p>
+        <p class="bio">目标：让电脑和手机都能正常访问海外服务（ChatGPT、GitHub、Google 等）。方案是「一个服务商的订阅 + 各平台一个客户端」，同一条订阅链接到处能用，电脑上全程十分钟。</p>
         <div class="tldr">
-          <p><b>30 秒结论</b></p>
+          <p>30 秒结论</p>
           <ul>
             <li>买 <b>Lite 年付</b>套餐（19.95 USD / 年，2 台设备，每月 100GB+），个人够用</li>
-            <li>客户端用 <b>Clash Verge Rev</b>（免费开源），Windows / macOS 都有</li>
+            <li>电脑用 <b>Clash Verge Rev</b>（免费开源），Android 用 Clash Meta for Android，iOS 要海外区 Apple ID 买 Shadowrocket</li>
             <li>流程：客户中心拿订阅链接 → 导入客户端 → 选节点 → 开系统代理</li>
           </ul>
         </div>
@@ -107,7 +107,7 @@
       </section>
 
       <section class="section">
-        <h2>三、五步开通</h2>
+        <h2>三、电脑上五步开通</h2>
         <ol class="steps">
           <li>
             <h3>下载客户端</h3>
@@ -138,7 +138,18 @@
       </section>
 
       <section class="section">
-        <h2>四、不通时先查这四项</h2>
+        <h2>四、手机上怎么用</h2>
+        <p class="lead-p">订阅链接是通用的，手机装一个支持 Clash 配置的客户端，导入同一条链接即可。Lite 套餐允许 2 台设备同时在线，一台电脑加一部手机正好。</p>
+        <table class="kv">
+          <tr><td>Android</td><td>装 <a href="https://github.com/MetaCubeX/ClashMetaForAndroid/releases" rel="noreferrer">Clash Meta for Android</a>（GitHub Releases 里的 apk，选 <code>arm64-v8a</code>）。打开 → 配置 → 新建 → URL → 粘贴订阅链接 → 保存，回到首页点启动，首次会请求 VPN 权限，允许即可。</td></tr>
+          <tr><td>iOS</td><td>国区 App Store 没有这类 App。需要一个海外区 Apple ID（做法见<a href="../chatgpt/">第 3 步</a>里 iPhone 那段），用它买 <b>Shadowrocket</b>（约 2.99 美元，礼品卡付款）。打开 → 右上角 + → 类型选 Subscribe → 粘贴订阅链接，回到首页打开开关。</td></tr>
+          <tr><td>鸿蒙 / 其他</td><td>能装 apk 的按 Android 走；不能的先用电脑，手机可以连电脑开的局域网代理（Clash Verge Rev 设置里打开「局域网连接」，手机 Wi-Fi 手动代理填电脑 IP 和端口 <code>7897</code>）。</td></tr>
+        </table>
+        <p class="tip">手机上不需要「系统代理」这个概念，客户端会以 VPN 方式接管流量；同样选「规则模式」，国内 App 不受影响。</p>
+      </section>
+
+      <section class="section">
+        <h2>五、不通时先查这四项</h2>
         <table class="kv">
           <tr><td>浏览器不走代理</td><td>检查「系统代理」是否开启；手动配代理的软件或浏览器扩展，端口填 <code>7897</code></td></tr>
           <tr><td>订阅无法导入</td><td>到客户中心下载配置文件，拖进「订阅」页</td></tr>
