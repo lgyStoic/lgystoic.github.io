@@ -1503,3 +1503,72 @@ main.wrap {
     white-space: normal;
   }
 }
+
+.card-mock {
+  margin: 16px 0 0;
+}
+
+.card-face {
+  position: relative;
+  width: min(100%, 22rem);
+  aspect-ratio: 1.586;
+  padding: 1.1rem 1.25rem;
+  border-radius: 14px;
+  background: radial-gradient(120% 90% at 80% 10%, #3a3428 0%, #15140f 55%, #0b0b09 100%);
+  color: #f3efe6;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  display: grid;
+  grid-template-rows: auto 1fr auto auto;
+}
+
+.card-bank {
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+}
+
+.card-bank span {
+  margin-left: 6px;
+  color: #cbb98a;
+  font-weight: 400;
+  font-size: 0.72rem;
+}
+
+.card-chip {
+  align-self: center;
+  width: 2.2rem;
+  height: 1.6rem;
+  border-radius: 5px;
+  background: linear-gradient(135deg, #d9c9a2, #9c8a5c);
+}
+
+.card-no {
+  font-family: var(--mono);
+  font-size: 1.05rem;
+  letter-spacing: 0.12em;
+  color: #e6e0d2;
+}
+
+.card-brand {
+  justify-self: end;
+  font-style: italic;
+  font-weight: 800;
+  font-size: 1.3rem;
+  letter-spacing: -0.02em;
+}
+
+.card-brand span {
+  display: block;
+  margin-top: -4px;
+  text-align: right;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 0.62rem;
+  color: #cbb98a;
+}
+
+.card-mock figcaption {
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 0.82rem;
+}
