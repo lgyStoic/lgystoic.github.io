@@ -910,3 +910,70 @@ main.wrap {
     gap: 10px;
   }
 }
+
+/* ---------- 状态页 ---------- */
+
+.check-list {
+  padding: 0;
+  list-style: none;
+}
+
+.check {
+  padding: 14px 0 14px 14px;
+  border-left: 3px solid var(--line);
+  border-bottom: 1px solid var(--line-soft);
+}
+
+.check.has-issue {
+  border-left-color: var(--accent);
+}
+
+.check h3 {
+  font-size: 0.98rem;
+}
+
+.check ul {
+  margin-top: 6px;
+  padding: 0;
+  list-style: none;
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+  line-height: 1.65;
+}
+
+.table-wrap {
+  overflow-x: auto;
+  margin-top: 10px;
+}
+
+.src-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.86rem;
+}
+
+.src-table th,
+.src-table td {
+  padding: 7px 10px 7px 0;
+  border-bottom: 1px solid var(--line-soft);
+  text-align: left;
+  vertical-align: top;
+}
+
+.src-table th {
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+}
+
+.src-table td.err {
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 0.74rem;
+}
+
+.src-ok b { color: var(--muted); font-weight: 500; }
+.src-warn b { color: var(--ink-soft); }
+.src-bad b { color: var(--accent); }

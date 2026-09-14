@@ -123,6 +123,12 @@ radar/sources.json  →  tools/radar.py  →  radar/data/<date>.json  →  tools
 之后每天 08:00：新评论 → 取页面标题/描述（小红书通常取不到，就用你写的备注）→ AI 摘要 →
 写入私有仓库 `digest/<日期>.md`，README 维护最近 30 条索引，处理过的评论点 👍。
 
+## 每日巡检
+
+`.github/agents/daily-check.md` 是给自动唤醒的 agent（Claude Routine）用的操作手册：每天雷达跑完后检查日志、
+修可自主修的小问题、在 Issue「🩺 巡检日志」下留一条 ≤ 8 行的报告。`tests/fixtures/` 是本地回归用的最小样例：
+`RADAR_FIXTURE_DIR=tests/fixtures python3 tools/radar.py --dry-run --date 2030-01-01`。
+
 ## 发布
 
 GitHub Pages：Deploy from a branch，`master` 分支，`/ (root)` 目录，

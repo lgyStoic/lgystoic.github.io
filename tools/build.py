@@ -36,6 +36,8 @@ RADAR_DATA = RADAR_DIR / "data"
 RADAR_CONFIG = RADAR_DIR / "sources.json"
 EVENTS_DATA = RADAR_DATA / "events.json"
 EVENTS_CONFIG = RADAR_DIR / "event_sources.json"
+CHECKS_DIR = RADAR_DIR / "checks"
+LAST_RUN = RADAR_DATA / "last-run.json"
 SITE_URL = "https://lgystoic.github.io"
 SITE_TITLE = "Garry 的学习站"
 SITE_DESC = "GPU kernel、训练性能、生成模型和城市数据的中文笔记存档。"
@@ -617,6 +619,70 @@ def render_day_events(date: str, data: dict | None, types: dict) -> str:
     )
 
 
+
+# ---------------------------------------------------------------- 状态页
+
+
+def render_status(days: list[dict], events_data: dict | None) -> dict[str, str]:
+    # 最近一次运行
+    run = json.loads(LAST_RUN.read_text(encoding="utf-8")) if LAST_RUN.exists() else None
+    if run:
+        started = fmt_time(run.get("started_at", "")) or run.get("started_at", "")
+        ev = {"schedule": "定时", "workflow_dispatch": "手动", "push": "触发文件"}.get(run.get("event", ""), run.get("event", ""))
+        run_html = (
+            f'    <p class="radar-stats">最近一次运行：#{esc(str(run.get("run_number", "")))} · {esc(ev)} · {esc(started)}（北京时间） · '
+            f'<a href="{esc(run.get("url", "#"))}" rel="noreferrer">Actions 日志</a></p>'
+        )
+    else:
+        run_html = '    <p class="radar-stats">还没有运行记录。</p>'
+
+    # 巡检报告（最近 14 天）
+    reports = sorted(CHECKS_DIR.glob("????-??-??.md"), reverse=True)[:14] if CHECKS_DIR.exists() else []
+    blocks = []
+    for path in reports:
+        lines = [l.rstrip() for l in path.read_text(encoding="utf-8").splitlines() if l.strip()]
+        if not lines:
+            continue
+        head, body = lines[0], lines[1:]
+        warn = any(l.startswith("问题：") and not l.startswith("问题：无") for l in body)
+        cls = " has-issue" if warn else ""
+        items = "".join(f"<li>{esc(l)}</li>" for l in body)
+        blocks.append(f'      <li class="check{cls}"><h3>{esc(head)}</h3><ul>{items}</ul></li>')
+    checks_html = ('    <ul class="check-list">\n' + "\n".join(blocks) + "\n    </ul>") if blocks else '    <p class="empty-state">还没有巡检报告。</p>'
+
+    # 源健康表：简报 + 活动
+    rows = []
+    def add_rows(kind: str, sources: list[dict]):
+        for s in sources:
+            state = "ok" if s.get("ok") and s.get("count", 0) else ("warn" if s.get("ok") else "bad")
+            label = {"ok": "正常", "warn": "0 条", "bad": "失败"}[state]
+            err = esc(s.get("error", "")[:90])
+            rows.append(f'        <tr class="src-{state}"><td>{esc(kind)}</td><td>{esc(s["name"])}</td><td><b>{label}</b></td><td>{s.get("count", 0)}</td><td class="err">{err}</td></tr>')
+    if days:
+        add_rows("简报", days[0].get("sources", []))
+    if events_data:
+        add_rows("活动", events_data.get("sources", []))
+    if rows:
+        ok_n = sum(1 for r in rows if "src-ok" in r); bad_n = sum(1 for r in rows if "src-bad" in r)
+        table = (
+            f'    <p class="radar-stats">{len(rows)} 个源 · 正常 {ok_n} · 失败 {bad_n} · 其余抓到但当次无新内容</p>\n'
+            '    <div class="table-wrap"><table class="src-table">\n'
+            '      <thead><tr><th>栏目</th><th>源</th><th>状态</th><th>新条目</th><th>错误</th></tr></thead>\n      <tbody>\n'
+            + "\n".join(rows) + "\n      </tbody>\n    </table></div>"
+        )
+    else:
+        table = '    <p class="empty-state">还没有源的运行记录。</p>'
+
+    ai_line = ""
+    if days:
+        d = days[0]
+        ai_line = f'    <p class="radar-stats">今日简报：{len(d.get("items", []))} 条 · ' + (f'AI 摘要（{esc(d.get("model", ""))}）' if d.get("ai") else "关键词规则") + "</p>"
+    if events_data:
+        ai_line += f'\n    <p class="radar-stats">活动清单：{len(events_data.get("events", []))} 条 · ' + (f'AI 抽取（{esc(events_data.get("model", ""))}）' if events_data.get("model") else "规则默认值") + "</p>"
+
+    return {"status-run": run_html + ("\n" + ai_line if ai_line else ""), "status-checks": checks_html, "status-sources": table}
+
+
 def inject(path: Path, blocks: dict[str, str]) -> None:
     text = path.read_text(encoding="utf-8")
     for name, content in blocks.items():
@@ -709,6 +775,8 @@ def main() -> None:
     )
     if (RADAR_DIR / "events" / "index.html").exists():
         inject(RADAR_DIR / "events" / "index.html", render_events_page(events_config, events_data))
+    if (ROOT / "status" / "index.html").exists():
+        inject(ROOT / "status" / "index.html", render_status(days, events_data))
     if (RADAR_DIR / "index.html").exists():
         inject(
             RADAR_DIR / "index.html",
