@@ -116,15 +116,18 @@ def fetch(url: str, source_id: str) -> bytes:
         return path.read_bytes()
 
     req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT, "Accept": "application/rss+xml, application/atom+xml, application/json, application/xml, text/xml, */*"})
-    for attempt in (1, 2):
+    if "arxiv.org" in url:
+        time.sleep(3.5)  # arXiv API 要求请求间隔 ≥ 3 秒，否则 429
+    for attempt in (1, 2, 3):
         try:
             with urllib.request.urlopen(req, timeout=FETCH_TIMEOUT) as resp:
                 return resp.read()
         except urllib.error.HTTPError as e:
-            # 5xx 多为临时故障，隔几秒再试一次；4xx 直接放弃
-            if e.code >= 500 and attempt == 1:
-                log(f"[radar] {source_id} HTTP {e.code}，3 秒后重试")
-                time.sleep(3)
+            # 5xx / 429 多为临时故障，退避后再试；其他 4xx 直接放弃
+            if (e.code >= 500 or e.code == 429) and attempt < 3:
+                wait = 3 * attempt if e.code >= 500 else 6 * attempt
+                log(f"[radar] {source_id} HTTP {e.code}，{wait} 秒后重试")
+                time.sleep(wait)
                 continue
             raise
     raise RuntimeError("unreachable")
@@ -145,9 +148,20 @@ def _child_text(el: ET.Element, *names: str) -> str:
     return ""
 
 
+def _lenient_xml(blob: bytes) -> ET.Element:
+    """先严格解析；失败则去掉非法控制字符、把裸 & 转义后再试一次（机器之心等站的 feed 常有这种问题）。"""
+    try:
+        return ET.fromstring(blob)
+    except ET.ParseError:
+        text = blob.decode("utf-8", "replace")
+        text = re.sub(r"[\x00-\x08\x0b\x0c\x0e-\x1f\ufffe\uffff]", "", text)
+        text = re.sub(r"&(?!(?:amp|lt|gt|quot|apos|#\d+|#x[0-9a-fA-F]+);)", "&amp;", text)
+        return ET.fromstring(text.encode("utf-8"))
+
+
 def parse_feed(blob: bytes) -> list[dict]:
     """同时支持 RSS 2.0 / RDF(arXiv) / Atom，返回统一的原始条目。"""
-    root = ET.fromstring(blob)
+    root = _lenient_xml(blob)
     entries: list[dict] = []
 
     if _local(root.tag) == "feed":  # Atom
@@ -479,11 +493,16 @@ def enrich_with_ai(items: list[dict]) -> dict[str, dict] | None:
         }
         for it in items
     ]
-    user_msg = "以下是过去一天抓到的条目（JSON）。请按系统说明逐条给出 priority / category / summary / why / tags：\n\n" + json.dumps(payload, ensure_ascii=False)
-    data = call_llm_json(ENRICH_SYSTEM, user_msg, ENRICH_SCHEMA, label="radar")
-    if not data:
-        return None
-    return {row["id"]: row for row in data.get("items", []) if "id" in row}
+    out: dict[str, dict] = {}
+    for i in range(0, len(payload), 30):
+        batch = payload[i : i + 30]
+        user_msg = "以下是过去一天抓到的条目（JSON）。请按系统说明逐条给出 priority / category / summary / why / tags：\n\n" + json.dumps(batch, ensure_ascii=False)
+        data = call_llm_json(ENRICH_SYSTEM, user_msg, ENRICH_SCHEMA, label="radar")
+        if not data:
+            log(f"[radar] 第 {i // 30 + 1} 批 AI 失败，这批退回规则")
+            continue
+        out.update({row["id"]: row for row in data.get("items", []) if "id" in row})
+    return out or None
 
 
 # ---------------------------------------------------------------- 主流程
