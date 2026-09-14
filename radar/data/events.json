@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-14T09:30:58+00:00",
+  "updated": "2026-09-14T09:37:13+00:00",
   "today": "2026-09-14",
   "model": "gemini-3.1-pro-preview",
   "sources": [
@@ -35,21 +35,21 @@
       "id": "devpost",
       "name": "Devpost 黑客松",
       "ok": true,
-      "count": 1,
+      "count": 0,
       "error": ""
     },
     {
       "id": "gnews-shenzhen",
       "name": "Google 新闻 · 深圳 AI 活动",
       "ok": true,
-      "count": 7,
+      "count": 0,
       "error": ""
     },
     {
       "id": "gnews-hackathon",
       "name": "Google 新闻 · 黑客松 / 比赛",
       "ok": true,
-      "count": 1,
+      "count": 0,
       "error": ""
     },
     {
@@ -133,35 +133,35 @@
       "id": "gnews-gz-hk",
       "name": "Google 新闻 · 广州 / 香港 AI 活动",
       "ok": true,
-      "count": 6,
+      "count": 1,
       "error": ""
     },
     {
       "id": "gnews-conf-cn",
       "name": "Google 新闻 · AI 大会 报名",
       "ok": true,
-      "count": 4,
+      "count": 1,
       "error": ""
     },
     {
       "id": "gnews-orgs",
       "name": "Google 新闻 · 点名主办方",
       "ok": true,
-      "count": 16,
+      "count": 0,
       "error": ""
     },
     {
       "id": "gnews-sz-hack",
       "name": "Google 新闻 · 深圳黑客松报名",
       "ok": true,
-      "count": 9,
+      "count": 0,
       "error": ""
     },
     {
       "id": "gnews-physical-ai",
       "name": "Google 新闻 · 具身/硬件 AI 活动",
       "ok": true,
-      "count": 26,
+      "count": 0,
       "error": ""
     },
     {
@@ -219,6 +219,111 @@
       "ok": false,
       "count": 0,
       "error": "<urlopen error [SSL: SSLV3_ALERT_HANDSHAKE_FAILURE] sslv3 alert handshake failure (_ssl.c:1010)>"
+    },
+    {
+      "id": "bagevent-shenzhen",
+      "name": "百格活动 · 深圳",
+      "ok": true,
+      "count": 0,
+      "error": ""
+    },
+    {
+      "id": "hdb-guangzhou",
+      "name": "互动吧 · 广州 AI",
+      "ok": true,
+      "count": 0,
+      "error": ""
+    },
+    {
+      "id": "huaweicloud-activity",
+      "name": "华为云开发者 · 活动",
+      "ok": false,
+      "count": 0,
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "id": "infoq-conferences",
+      "name": "InfoQ / 极客邦 · 大会",
+      "ok": true,
+      "count": 0,
+      "error": ""
+    },
+    {
+      "id": "csdn-huodong",
+      "name": "CSDN · 活动",
+      "ok": false,
+      "count": 0,
+      "error": "<urlopen error [Errno -2] Name or service not known>"
+    },
+    {
+      "id": "jiqizhixin-events",
+      "name": "机器之心 · 活动",
+      "ok": true,
+      "count": 0,
+      "error": ""
+    },
+    {
+      "id": "adventurex",
+      "name": "AdventureX 黑客松",
+      "ok": true,
+      "count": 0,
+      "error": ""
+    },
+    {
+      "id": "aistudio-competitions",
+      "name": "百度 AI Studio · 比赛",
+      "ok": true,
+      "count": 0,
+      "error": ""
+    },
+    {
+      "id": "szu-lectures",
+      "name": "深大 · 学术讲座",
+      "ok": false,
+      "count": 0,
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "id": "hitsz-lectures",
+      "name": "哈工深 · 讲座",
+      "ok": false,
+      "count": 0,
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "id": "pcl-news",
+      "name": "鹏城实验室 · 动态",
+      "ok": false,
+      "count": 0,
+      "error": "HTTP Error 508: "
+    },
+    {
+      "id": "idea-news",
+      "name": "IDEA 研究院 · 动态",
+      "ok": false,
+      "count": 0,
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "id": "sogou-wechat-sz",
+      "name": "搜狗微信 · 深圳 AI 活动",
+      "ok": true,
+      "count": 1,
+      "error": ""
+    },
+    {
+      "id": "sogou-wechat-hack",
+      "name": "搜狗微信 · 黑客松",
+      "ok": true,
+      "count": 0,
+      "error": ""
+    },
+    {
+      "id": "gnews-univ",
+      "name": "Google 新闻 · 深圳高校 AI 讲座",
+      "ok": true,
+      "count": 12,
+      "error": ""
     }
   ],
   "events": [
@@ -1481,6 +1586,25 @@
       "ai": true
     },
     {
+      "id": "03488b85b66f62aa",
+      "title": "2026算力网发展大会",
+      "link": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE9NNXlWc2laZkV0MUVBMXFmNzZRRHhKQml6SE9ManN1QTZRdHJkaUg0REljMXVpZWR6N1QwMmNFcTJLUW1XM1RWYmpjVGJNa0tSd1FVVFlnRzc?oc=5",
+      "source": "Google 新闻 · 深圳高校 AI 讲座",
+      "source_id": "gnews-univ",
+      "found": "2026-09-14",
+      "event_type": "conference",
+      "start": "",
+      "end": "",
+      "deadline": "",
+      "city": "深圳",
+      "online": false,
+      "fee": "",
+      "organizer": "",
+      "summary": "2026算力网发展大会即将开幕，探讨算力网发展亮点。",
+      "relevance": "high",
+      "ai": true
+    },
+    {
       "id": "096d2a6cdcfc682a",
       "title": "AI建站实战-Cursor AI驱动Shopify建站",
       "link": "https://www.huodongxing.com/event/3878380403900",
@@ -1515,9 +1639,10 @@
       "online": false,
       "fee": "",
       "organizer": "",
-      "summary": "CIIS2026落地深圳，探讨产学研协同激活AI实体经济新动能。",
+      "summary": "CIIS2026大会。",
       "relevance": "high",
-      "ai": true
+      "ai": true,
+      "refreshed": true
     },
     {
       "id": "43c64d0da815677a",
@@ -1534,9 +1659,10 @@
       "online": false,
       "fee": "",
       "organizer": "",
-      "summary": "CPHI数智化论坛公布最新议程，探讨AI+制药新场景。",
-      "relevance": "medium",
-      "ai": true
+      "summary": "CPHI数智化论坛。",
+      "relevance": "low",
+      "ai": true,
+      "refreshed": true
     },
     {
       "id": "625f4bda7a54142b",
@@ -1553,9 +1679,10 @@
       "online": false,
       "fee": "",
       "organizer": "",
-      "summary": "11月在武汉举办的人工智能应用大会，探讨AI赋能供应链与降本增效。",
+      "summary": "商贸物流与供应链企业家经贸交流活动暨人工智能应用大会。",
       "relevance": "low",
-      "ai": true
+      "ai": true,
+      "refreshed": true
     },
     {
       "id": "e15dce455cec13c4",
@@ -1611,10 +1738,11 @@
       "city": "深圳",
       "online": false,
       "fee": "",
-      "organizer": "携程",
-      "summary": "携程宣布“锦绣科技中华嘉年华”落地深圳，现征集全球方案。",
+      "organizer": "",
+      "summary": "锦绣科技中华嘉年华方案征集活动。",
       "relevance": "low",
-      "ai": true
+      "ai": true,
+      "refreshed": true
     },
     {
       "id": "bc1b18a314a7db34",
@@ -1631,9 +1759,10 @@
       "online": false,
       "fee": "",
       "organizer": "",
-      "summary": "首届香港具身智能峰会暨智元APC2026即将在香港召开。",
+      "summary": "首届香港具身智能峰会暨智元APC2026。",
       "relevance": "high",
-      "ai": true
+      "ai": true,
+      "refreshed": true
     }
   ],
   "seen": {
@@ -2036,6 +2165,21 @@
     "712bbfcbb25d3261": "2026-09-14",
     "4edaca4b4fb1fa30": "2026-09-14",
     "a899d0b6c9038e23": "2026-09-14",
-    "582d99ae39f9b593": "2026-09-14"
+    "582d99ae39f9b593": "2026-09-14",
+    "63a4a17164775dca": "2026-09-14",
+    "031674865f4eed3a": "2026-09-14",
+    "8a4d67bdeb34eefa": "2026-09-14",
+    "ff51bb589873ecc1": "2026-09-14",
+    "3c8d382ecb1bc9e3": "2026-09-14",
+    "95142a6670eb087a": "2026-09-14",
+    "3614e4f78b37072a": "2026-09-14",
+    "147d2ee103bd1c9b": "2026-09-14",
+    "dc5d5ef313e5c578": "2026-09-14",
+    "2d05e226f30c224a": "2026-09-14",
+    "e0c5f30d16bbdc8a": "2026-09-14",
+    "03488b85b66f62aa": "2026-09-14",
+    "9327e2e7fefdb3dd": "2026-09-14",
+    "b1da6a43e52317df": "2026-09-14",
+    "2fa5f4c5c5460771": "2026-09-14"
   }
 }
