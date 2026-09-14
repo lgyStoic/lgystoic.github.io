@@ -39,7 +39,7 @@ EVENTS_CONFIG = RADAR_DIR / "event_sources.json"
 CHECKS_DIR = RADAR_DIR / "checks"
 LAST_RUN = RADAR_DATA / "last-run.json"
 SITE_URL = "https://lgystoic.github.io"
-SITE_TITLE = "Garry"
+SITE_TITLE = "Anaxagore"
 SITE_JSON = ROOT / "site.json"
 SITE_DESC = "GPU kernel、训练性能、生成模型和城市数据的中文笔记存档。"
 LATEST_ON_HOME = 4
@@ -231,7 +231,7 @@ RADAR_DAY_TEMPLATE = """<!doctype html>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>AI 信息雷达 {date} | Garry</title>
+    <title>AI 信息雷达 {date} | Anaxagore</title>
     <meta name="description" content="{description}" />
     <link rel="canonical" href="{site_url}/radar/{date}/" />
     <meta property="og:type" content="article" />
@@ -253,8 +253,8 @@ RADAR_DAY_TEMPLATE = """<!doctype html>
     <header class="site-header">
       <div class="wrap">
         <a class="brand" href="../../" aria-label="回到首页">
-          <span class="brand-mark">G</span>
-          <span>Garry</span>
+          <span class="brand-mark">A</span>
+          <span>Anaxagore</span>
         </a>
         <nav class="site-nav" aria-label="主导航">
           <a href="../../notes/">笔记</a>
@@ -282,7 +282,7 @@ RADAR_DAY_TEMPLATE = """<!doctype html>
 
     <footer class="site-footer">
       <div class="wrap">
-        <span>© 2026 Garry · 自动汇总，摘要仅供快速筛选，请以原文为准</span>
+        <span>© 2026 Anaxagore · 自动汇总，摘要仅供快速筛选，请以原文为准</span>
         <span><a href="../">全部往期</a> · <a href="../feed.xml">RSS</a></span>
       </div>
     </footer>
@@ -291,7 +291,7 @@ RADAR_DAY_TEMPLATE = """<!doctype html>
 </html>
 """
 
-FAVICON = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231b1b1a'/%3E%3Ctext x='32' y='43' text-anchor='middle' font-size='32' font-family='Helvetica,Arial' font-weight='700' fill='%23fbfaf8'%3EG%3C/text%3E%3C/svg%3E"
+FAVICON = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231b1b1a'/%3E%3Ctext x='32' y='43' text-anchor='middle' font-size='32' font-family='Helvetica,Arial' font-weight='700' fill='%23fbfaf8'%3EA%3C/text%3E%3C/svg%3E"
 
 
 def human_date(date: str) -> str:
@@ -419,7 +419,7 @@ def write_radar_feed(days: list[dict], config: dict) -> None:
         '<?xml version="1.0" encoding="UTF-8"?>\n'
         '<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">\n'
         "  <channel>\n"
-        f"    <title>{esc(site.get('title', 'AI 信息雷达'))} | Garry</title>\n"
+        f"    <title>{esc(site.get('title', 'AI 信息雷达'))} | Anaxagore</title>\n"
         f"    <link>{SITE_URL}/radar/</link>\n"
         f"    <description>{esc(site.get('description', ''))}</description>\n"
         "    <language>zh-CN</language>\n"

@@ -43,7 +43,7 @@ DATA = RADAR / "data"
 CONFIG = RADAR / "sources.json"
 SEEN = DATA / "seen.json"
 
-USER_AGENT = "GarryRadar/1.0 (+https://lgystoic.github.io/radar/)"
+USER_AGENT = "AnaxagoreRadar/1.0 (+https://lgystoic.github.io/radar/)"
 FETCH_TIMEOUT = 20
 SEEN_RETENTION_DAYS = 120
 SUMMARY_FALLBACK_CHARS = 160

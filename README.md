@@ -1,4 +1,4 @@
-# Garry（lgystoic.github.io）
+# Anaxagore（lgystoic.github.io）
 
 一个跑在 GitHub 上的个人平台：记（笔记）、看（每日雷达、活动清单）、做（收件箱、巡检）。
 纯静态、没有框架、没有构建依赖，GitHub Pages 直接托管仓库根目录；后台任务全在 Actions。

@@ -8,7 +8,7 @@
   3. 写当天的巡检报告 radar/checks/<日期>.md（≤ 8 行），/status/ 页渲染。
 
 需要模型判断的事（解析格式变了、活动抽取明显错、要不要加源）只写进「待人决定」，
-由 Claude 会话（定时或按需）或 Garry 本人处理。
+由 Claude 会话（定时或按需）或 Anaxagore 本人处理。
 """
 
 from __future__ import annotations
