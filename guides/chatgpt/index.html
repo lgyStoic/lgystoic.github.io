@@ -4,7 +4,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>注册并订阅 ChatGPT | Garry</title>
-    <meta name="robots" content="noindex" />
+    <meta name="description" content="办一张 Visa 信用卡，把 Google Play 账号设到海外区，在商店里内购订阅 ChatGPT Plus。" />
+    <link rel="canonical" href="https://lgystoic.github.io/guides/chatgpt/" />
     <link
       rel="icon"
       href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231b1b1a'/%3E%3Ctext x='32' y='43' text-anchor='middle' font-size='32' font-family='Helvetica,Arial' font-weight='700' fill='%23fbfaf8'%3EG%3C/text%3E%3C/svg%3E"
@@ -37,50 +38,106 @@
     </header>
 
     <main class="wrap guide">
-      <p class="draft-banner">草稿 · 内容整理中，尚未发布</p>
       <section class="intro">
         <p class="kicker"><a href="../">上手指南</a> · 第 3 步</p>
         <h1>注册并订阅 ChatGPT</h1>
+        <p class="bio">目标：拿到一个能付费的 ChatGPT Plus 账号。思路只有一条：<b>不在 ChatGPT 网页里付钱，而是在 Google Play 商店里内购</b>。商店对国内银行发的 Visa 卡宽松得多，也不需要海外手机号。</p>
         <div class="tldr">
-          <p><b>30 秒结论</b></p>
-          <ul>
-            <li>注册免费；订阅 Plus 20 美元 / 月</li>
-            <li>卡人的只有两步：手机号验证、海外支付</li>
-            <li>节点选美国 / 日本 / 新加坡（← 上一页）</li>
-          </ul>
+          <p>30 秒结论</p>
+          <ol>
+            <li>办一张 <b>Visa 信用卡</b>，跟业务员说要「全币种」或「双币」，免年费，上门办</li>
+            <li>Android 上把 <b>Google Play 账号地区</b>设到海外（日本），和代理出口一致</li>
+            <li>用 Google 账号登录 ChatGPT，在 App 里订阅 Plus，绑这张卡付款</li>
+          </ol>
         </div>
-        <p class="prereq">前置条件：电脑已能访问海外服务。没有的话先看 <a href="../proxy/">第 2 步</a>。</p>
-      </section>
-
-      <section class="section prose">
-        <h2>一、注册</h2>
-        <!-- TODO(Garry)：邮箱 → 验证 → 地区，每步一张图 -->
-        <p>（整理中）</p>
+        <p class="prereq">前置条件：手机和电脑都已能访问海外服务。没有的话先看 <a href="../proxy/">第 2 步</a>。</p>
       </section>
 
       <section class="section">
-        <h2>二、手机号验证</h2>
-        <!-- TODO(Garry)：海外接码平台 or 实体海外卡 -->
-        <div class="offer" data-aff="sms_activate" hidden><p class="offer-tag">推广</p><p class="offer-body"><b>海外接码平台</b></p><a class="button" data-aff-link href="#" rel="sponsored noopener noreferrer">前往 →</a></div>
+        <h2>一、办一张能境外付款的 Visa 卡</h2>
+        <p class="lead-p">国内银行的信用卡按结算货币分三种，办卡时要说清楚，不然默认给你的是只能刷人民币的那种：</p>
+        <table class="kv">
+          <tr><td>单币卡</td><td>只有人民币账户，银联通道。海外网站基本刷不了。<b>不要办这种。</b></td></tr>
+          <tr><td>双币卡</td><td>人民币 + 美元两个账户，卡面有 Visa 或 Mastercard 标。外币消费记美元账，还款时可以购汇还，也可以设自动购汇。</td></tr>
+          <tr><td>全币种卡</td><td>只有一个人民币账户，但任何外币消费都自动按当天汇率折成人民币入账，免货币转换费。<b>最省心，首选。</b></td></tr>
+        </table>
+        <p class="lead-p">选免年费的卡。线上提交申请后，银行业务员会上门核身、拍照，当场办好。<b>见到业务员时直接说：「我要 Visa 的全币种卡，或者双币卡」</b>，让他帮你选对应的卡种。卡到手后在手机银行里把「境外无卡支付」和「小额免密」打开。</p>
+        <div class="offer" data-aff="cmb_card">
+          <p class="offer-tag">推广</p>
+          <p class="offer-body"><b>招商银行信用卡</b> — 我自己办的这家。从这个链接申请，之后业务员联系你时，记得说要 <b>Visa 全币种</b>或<b>双币</b>卡。</p>
+          <a class="button" data-aff-link href="https://res.cc.cmbimg.com/itafront/TrafficFront/index.html#/mgmpageinit/xbdmgmcs1?webAddress=9WD_ICON_RM&amp;where=zs9_jd2&amp;pageName=MRecContract&amp;activityTitle=MGMXSDS202509JD2&amp;appChn=05&amp;dsid=&amp;dscontr=&amp;pretrackno=8d41ce581dcd4e6699b330b118c4e611&amp;pretrack=10403788&amp;mgmSm2Flag=1&amp;mgmSource=share&amp;m1TraceId=8d41ce581dcd4e6699b330b118c4e611" rel="sponsored noopener noreferrer">申请办卡 →</a>
+        </div>
+        <p class="tip">借记卡（储蓄卡）多半会被 Google Play 拒掉；Mastercard 也可以，但 Visa 最少踩坑。用家人的卡也行，付款人和账号不必是同一个人。</p>
       </section>
 
       <section class="section">
-        <h2>三、支付</h2>
-        <!-- TODO(Garry)：虚拟信用卡 / App Store 礼品卡 / Team 拼车及其风险 -->
-        <div class="offer" data-aff="wildcard" hidden><p class="offer-tag">推广</p><p class="offer-body"><b>虚拟信用卡</b></p><a class="button" data-aff-link href="#" rel="sponsored noopener noreferrer">开卡 →</a></div>
+        <h2>二、把 Google Play 设到海外区</h2>
+        <p class="lead-p">Play 商店的「国家/地区」决定了能装哪些 App、用哪种货币付款。国内手机默认没有这个设置，要自己走一遍。</p>
+        <ol class="steps">
+          <li>
+            <h3>更新 Play 商店，注册 Google 账号</h3>
+            <p>Android 手机先开代理（第 2 步的客户端），把 Google Play 商店更新到最新版。没有 Google 账号的在商店里直接新建一个，国内手机号可以收验证码。这个账号后面也用来登录 ChatGPT，所以<b>不需要海外手机号</b>。</p>
+          </li>
+          <li>
+            <h3>选地区：日本，或者跟代理出口一致</h3>
+            <p>Play 商店 → 头像 → 设置 → 常规 → 账号和设备偏好设置 → 国家和个人资料。新账号第一次进商店时按当前 IP 判断地区，所以<b>先把代理节点切到目标地区再打开商店</b>。推荐日本：ChatGPT 在日区可订阅，日元结算，国内 Visa 卡通过率高。选美国也行，但要多填税务州。</p>
+            <p class="tip">地区一年只能改一次，选定后别频繁切地区。日常用什么节点无所谓，只在付款时切回同一地区。</p>
+          </li>
+          <li>
+            <h3>填地址</h3>
+            <p>切换地区时 Google 会要一个当地地址，作为账号所在地和账单地址。日本地址的表单是：郵便番号（7 位邮编）、都道府県、市区町村、番地/建物、姓名、电话，邮编要和市区对得上。填一个你实际能用的地址：在当地的亲友、你住过的酒店、或者转运公司给你的地址都行，不会有东西寄到那里。</p>
+            <p class="warn">Google 会综合 IP、付款方式和地址判断账号地区。地区和代理出口长期不一致，可能被要求补充验证；付款时把节点切到同一地区就能避开大部分问题。</p>
+          </li>
+          <li>
+            <h3>绑卡</h3>
+            <p>Play 商店 → 付款和订阅 → 付款方式 → 添加信用卡。填卡号、有效期、CVC，账单地址用上一步同一组。添加成功会有一笔小额预授权，几天内自动退回。</p>
+          </li>
+        </ol>
+        <p class="tip">iPhone 用户思路一样：注册一个海外区 Apple ID（同样要地址），在 App Store 里装 ChatGPT，App 内订阅、Apple ID 绑 Visa 卡付款。</p>
       </section>
 
-      <section class="section prose">
-        <h2>四、Plus / Team / 免费版怎么选</h2>
-        <p>（整理中）</p>
-        <h2>五、常见报错</h2>
-        <p>（整理中：unsupported country · payment declined · too many signups）</p>
+      <section class="section">
+        <h2>三、登录 ChatGPT 并订阅 Plus</h2>
+        <ol class="steps">
+          <li>
+            <h3>装 App，用 Google 账号登录</h3>
+            <p>Play 商店搜「ChatGPT」，认准 OpenAI 出品的那个。打开后选「使用 Google 账号继续」，全程不会要手机号。电脑上访问 <a href="https://chatgpt.com" rel="noreferrer">chatgpt.com</a> 同样用 Google 账号登录，账号是同一个。</p>
+          </li>
+          <li>
+            <h3>在 App 里订阅</h3>
+            <p>App 内菜单 → 你的名字 → 升级到 Plus。弹出的是 Google Play 的付款窗口（不是 OpenAI 的网页），选刚绑的卡确认。日区按日元结算，约 3,000 日元 / 月，折合 20 美元左右。</p>
+          </li>
+          <li>
+            <h3>回到电脑用</h3>
+            <p>订阅状态跟账号走，电脑端刷新就是 Plus。以后取消或换卡都在 Play 商店的「订阅」里操作，不用进 ChatGPT。</p>
+          </li>
+        </ol>
+      </section>
+
+      <section class="section">
+        <h2>四、Plus 值不值、以及替代</h2>
+        <table class="kv">
+          <tr><td>免费版</td><td>先用两周。日常问答、写点东西够了；限额到了就等。</td></tr>
+          <tr><td>Plus</td><td>最新模型、更高限额、联网和文件分析。每天用一小时以上就值。</td></tr>
+          <tr><td>Team 拼车</td><td>群里拼一个 Team 账号便宜一半，但管理员能看你的对话，随时可能散伙。不推荐放重要内容。</td></tr>
+        </table>
+      </section>
+
+      <section class="section">
+        <h2>五、不通时先查这四项</h2>
+        <table class="kv">
+          <tr><td>ChatGPT 提示 unsupported country</td><td>节点没生效或落在不支持的地区，换到日本 / 美国 / 新加坡节点再刷新</td></tr>
+          <tr><td>Play 绑卡被拒</td><td>看手机银行里「境外无卡支付」是否开启；确认是 Visa 信用卡不是借记卡；商店地区和代理出口要一致</td></tr>
+          <tr><td>商店里搜不到 ChatGPT</td><td>地区还是国内，或地区切换未生效（退出商店重开）</td></tr>
+          <tr><td>付款时报 OR-CCSEH 类错误</td><td>Google 风控，等 24 小时再试，期间别频繁换节点地区</td></tr>
+        </table>
       </section>
 
       <section class="section next">
-        <h2>下一步</h2>
-        <p>装好了，回到<a href="../../notes/">笔记</a>看怎么用，或看<a href="../../radar/">每日雷达</a>跟进新模型。</p>
+        <h2>三步走完</h2>
+        <p>电脑、网络、账号都有了。接下来看<a href="../../notes/">笔记</a>里怎么用，或跟着<a href="../../radar/">每日雷达</a>盯新模型。回到 <a href="../">上手指南</a>。</p>
         <p class="disclosure" data-disclosure>本页部分链接为推广链接：通过它们购买，站长会获得佣金，你的价格不变。推荐与否只看我自己用得怎么样。</p>
+        <p class="updated">更新于 2026-09-14</p>
       </section>
     </main>
 
