@@ -783,8 +783,8 @@ def render_guides_path(guides: list[dict]) -> str:
     for g in guides:
         published = g.get("status") == "published"
         title = esc(g["title"])
-        head = f'<a href="{esc(guide_href(g, from_root=False))}">{title}</a>' if published else f"<span>{title}</span>"
-        meta = f'更新于 {esc(g["updated"])}' if published and g.get("updated") else "整理中"
+        head = f'<a href="{esc(guide_href(g, from_root=False))}">{title}</a>'
+        meta = f'更新于 {esc(g["updated"])}' if published and g.get("updated") else "草稿 · 整理中，可先看"
         cls = "guide-step" + ("" if published else " is-draft")
         rows.append(
             f'      <li class="{cls}"><span class="guide-num">{g.get("step", "")}</span>'
