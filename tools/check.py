@@ -28,6 +28,7 @@ SOURCES = ROOT / "radar" / "sources.json"
 EVENT_SOURCES = ROOT / "radar" / "event_sources.json"
 TZ = ZoneInfo("Asia/Shanghai")
 DISABLE_AFTER = 3  # 连续失败天数
+DISABLE_ZERO_AFTER = 5  # 连续解析 0 条的天数（前端渲染 / 反爬页）
 
 
 def load(path: Path, default):
@@ -82,6 +83,11 @@ def main() -> None:
                 src["disabled_reason"] = f"{today} 自动停用：连续 {h['fail']} 天失败（{(s.get('error') or '')[:60]}）"
                 changed = True
                 fixed.append(f"自动停用 {s['name']}（连续 {h['fail']} 天失败）")
+            elif h["zero"] >= DISABLE_ZERO_AFTER and src is not None and not src.get("disabled"):
+                src["disabled"] = True
+                src["disabled_reason"] = f"{today} 自动停用：连续 {h['zero']} 天解析出 0 条（前端渲染或反爬）"
+                changed = True
+                fixed.append(f"自动停用 {s['name']}（连续 {h['zero']} 天解析 0 条）")
             elif not s.get("ok"):
                 problems.append(f"{s['name']} 失败 ×{h['fail']}：{(s.get('error') or '')[:50]}")
             elif h["zero"] >= 3:
