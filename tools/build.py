@@ -775,7 +775,7 @@ def load_guides() -> tuple[list[dict], dict]:
 
 
 def guide_href(g: dict, *, from_root: bool) -> str:
-    return ("." + g["path"]) if from_root else ("../" + g["path"].split("/guides/", 1)[1])
+    return ("." + g["path"]) if from_root else ("./" + g["path"].split("/guides/", 1)[1])
 
 
 def render_guides_path(guides: list[dict]) -> str:
