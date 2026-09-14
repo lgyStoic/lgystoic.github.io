@@ -157,6 +157,42 @@ def parse_page(blob: bytes, source: dict) -> list[dict]:
     return entries
 
 
+WECHAT_URL_RE = re.compile(r"https?://[^\s\"'<>|,]+")
+
+
+def parse_wechat_list(source: dict) -> list[dict]:
+    """公众号 → RSS 的第三方汇总列表（feeddd / wechat2rss 这类）。
+    source["list_urls"]：一到多个列表地址（每行含 公众号名 和 feed 地址即可，格式不限）；
+    source["accounts"]：要订的公众号名。找到 feed 后逐个抓，条目的来源名写成公众号名。"""
+    wanted = source.get("accounts", [])
+    feeds: dict[str, str] = {}
+    for list_url in source.get("list_urls", []):
+        try:
+            text = fetch(list_url, source["id"] + "-list").decode("utf-8", "replace")
+        except Exception as ex:  # 某个列表挂了，试下一个
+            log(f"[events] 公众号列表取不到 {list_url[:60]}：{ex}")
+            continue
+        for line in text.splitlines():
+            for name in wanted:
+                if name in line and name not in feeds:
+                    urls = [u for u in WECHAT_URL_RE.findall(line) if "xml" in u or "rss" in u.lower() or "feed" in u.lower()]
+                    if urls and urls[0] not in feeds.values():  # 「腾讯云」会子串命中「腾讯云开发者」，同一 feed 只订一次
+                        feeds[name] = urls[0]
+    if not feeds:
+        log(f"[events] 公众号：{len(wanted)} 个账号在列表里都没找到 feed")
+        return []
+    entries: list[dict] = []
+    for name, url in list(feeds.items())[:20]:
+        try:
+            for raw in parse_feed(fetch(url, source["id"] + "-" + name))[:15]:
+                raw["source_override"] = f"公众号 · {name}"
+                entries.append(raw)
+        except Exception as ex:
+            log(f"[events] 公众号 {name} 的 feed 抓取失败：{ex}")
+    log(f"[events] 公众号：找到 {len(feeds)}/{len(wanted)} 个账号的 feed，共 {len(entries)} 篇")
+    return entries
+
+
 # ---------------------------------------------------------------- 详情页
 
 
@@ -331,7 +367,7 @@ def collect(config: dict, seen: dict) -> tuple[list[dict], list[dict]]:
         if source.get("disabled"):
             continue
         try:
-            blob = fetch(source["url"], sid)
+            blob = fetch(source["url"], sid) if kind != "wechat" else b""
             if kind == "ics":
                 entries = parse_ics(blob)
             elif kind == "page":
@@ -340,6 +376,8 @@ def collect(config: dict, seen: dict) -> tuple[list[dict], list[dict]]:
                 entries = parse_yaml_list(blob)
             elif kind == "json":
                 entries = parse_json_feed(blob, source)
+            elif kind == "wechat":
+                entries = parse_wechat_list(source)
             else:
                 entries = parse_feed(blob)
         except Exception as e:  # 任何一个源坏掉都不该拖垮整轮
@@ -356,7 +394,7 @@ def collect(config: dict, seen: dict) -> tuple[list[dict], list[dict]]:
             cid = item_id(link, title)
             if cid in seen or cid in cands:
                 continue
-            if kind == "rss":
+            if kind in ("rss", "wechat"):
                 published = parse_date(raw.get("published"))
                 if published and datetime.now(timezone.utc) - published > timedelta(days=10):
                     continue
@@ -366,7 +404,7 @@ def collect(config: dict, seen: dict) -> tuple[list[dict], list[dict]]:
                 "link": link,
                 "description": raw.get("description", ""),
                 "hints": raw.get("hints", {}) or {},
-                "source": source["name"],
+                "source": raw.get("source_override") or source["name"],
                 "source_id": sid,
                 "default_type": source.get("default_type", "other"),
                 "default_city": source.get("default_city", ""),
@@ -486,7 +524,8 @@ def main() -> None:
         if c.get("kind") == "refresh":
             old = c["_existing"]
             if ev is None:
-                events.pop(old["id"], None)  # 重看之后判定不是活动，删掉
+                old["relevance"] = "low"  # 重看后拿不准，折叠而不是删：第一次的判断也可能是对的
+                old["refreshed"] = True
                 dropped += 1
             else:
                 ev["found"] = old.get("found", today)
