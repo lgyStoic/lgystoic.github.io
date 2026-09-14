@@ -7,8 +7,8 @@
     ],
     "keep_past_days": 14,
     "max_candidates_per_source": 40,
-    "max_new_per_run": 200,
-    "max_detail_fetch": 80
+    "max_new_per_run": 260,
+    "max_detail_fetch": 120
   },
   "types": {
     "meetup": "线下聚会",
@@ -269,7 +269,23 @@
         "极客邦科技",
         "北大青年创业者协会",
         "河套深港科技创新合作区",
-        "AdventureX"
+        "AdventureX",
+        "华为云开发者联盟",
+        "CSDN",
+        "AICon",
+        "QCon",
+        "深圳市人工智能行业协会",
+        "深圳市科技创新局",
+        "百格活动",
+        "互动吧",
+        "IDEA研究院",
+        "鹏城实验室",
+        "南方科技大学",
+        "香港中文大学（深圳）",
+        "深圳大学",
+        "AI产品经理大本营",
+        "混沌学园",
+        "湾区之光"
       ],
       "default_type": "other",
       "default_city": "深圳"
@@ -344,6 +360,159 @@
       "link_pattern": "^https://www\\.cuhk\\.edu\\.cn/zh-hans/(event|events|node)/[a-z0-9-]+",
       "base": "https://www.cuhk.edu.cn",
       "exclude_pattern": "/events/?$",
+      "default_type": "talk",
+      "default_city": "深圳"
+    },
+    {
+      "id": "bagevent-shenzhen",
+      "name": "百格活动 · 深圳",
+      "kind": "page",
+      "url": "https://www.bagevent.com/eventlist?city=%E6%B7%B1%E5%9C%B3&keyword=AI",
+      "link_pattern": "^https://www\\.bagevent\\.com/event/\\d+",
+      "base": "https://www.bagevent.com",
+      "default_type": "meetup",
+      "default_city": "深圳"
+    },
+    {
+      "id": "hdb-guangzhou",
+      "name": "互动吧 · 广州 AI",
+      "kind": "page",
+      "url": "https://www.hdb.com/search/?keyword=AI&city=%E5%B9%BF%E5%B7%9E",
+      "link_pattern": "^https://www\\.hdb\\.com/party/[a-z0-9]+\\.html",
+      "base": "https://www.hdb.com",
+      "default_type": "meetup",
+      "default_city": "广州"
+    },
+    {
+      "id": "huaweicloud-activity",
+      "name": "华为云开发者 · 活动",
+      "kind": "page",
+      "url": "https://developer.huaweicloud.com/activity",
+      "link_pattern": "^https://developer\\.huaweicloud\\.com/(activity|competition|signup)/[A-Za-z0-9_-]+",
+      "base": "https://developer.huaweicloud.com",
+      "exclude_pattern": "/activity/?$",
+      "default_type": "talk",
+      "default_city": "线上"
+    },
+    {
+      "id": "infoq-conferences",
+      "name": "InfoQ / 极客邦 · 大会",
+      "kind": "page",
+      "url": "https://www.infoq.cn/conferences",
+      "link_pattern": "^https://(qcon|aicon|archsummit|www)\\.infoq\\.cn/[A-Za-z0-9/_-]+",
+      "base": "https://www.infoq.cn",
+      "exclude_pattern": "infoq\\.cn/(conferences|article|news|topic|profile|video|minibook|zones)",
+      "default_type": "conference",
+      "default_city": ""
+    },
+    {
+      "id": "csdn-huodong",
+      "name": "CSDN · 活动",
+      "kind": "page",
+      "url": "https://huodong.csdn.net/",
+      "link_pattern": "^https://(huodong|marketing)\\.csdn\\.net/[A-Za-z0-9/_-]+",
+      "base": "https://huodong.csdn.net",
+      "exclude_pattern": "csdn\\.net/?$",
+      "default_type": "talk",
+      "default_city": "线上"
+    },
+    {
+      "id": "jiqizhixin-events",
+      "name": "机器之心 · 活动",
+      "kind": "page",
+      "url": "https://www.jiqizhixin.com/events",
+      "link_pattern": "^https://www\\.jiqizhixin\\.com/(events|articles)/[A-Za-z0-9-]+",
+      "base": "https://www.jiqizhixin.com",
+      "exclude_pattern": "/events/?$",
+      "default_type": "conference",
+      "default_city": ""
+    },
+    {
+      "id": "adventurex",
+      "name": "AdventureX 黑客松",
+      "kind": "page",
+      "url": "https://adventure-x.org/",
+      "link_pattern": "^https://(www\\.)?adventure-x\\.org/[A-Za-z0-9/_-]+",
+      "base": "https://adventure-x.org",
+      "exclude_pattern": "adventure-x\\.org/?$",
+      "default_type": "hackathon",
+      "default_city": ""
+    },
+    {
+      "id": "aistudio-competitions",
+      "name": "百度 AI Studio · 比赛",
+      "kind": "page",
+      "url": "https://aistudio.baidu.com/competition",
+      "link_pattern": "^https://aistudio\\.baidu\\.com/competition/detail/\\d+",
+      "base": "https://aistudio.baidu.com",
+      "default_type": "competition",
+      "default_city": "线上"
+    },
+    {
+      "id": "szu-lectures",
+      "name": "深大 · 学术讲座",
+      "kind": "page",
+      "url": "https://www.szu.edu.cn/xsjz.htm",
+      "link_pattern": "^https://www\\.szu\\.edu\\.cn/info/\\d+/\\d+\\.htm",
+      "base": "https://www.szu.edu.cn",
+      "default_type": "talk",
+      "default_city": "深圳"
+    },
+    {
+      "id": "hitsz-lectures",
+      "name": "哈工深 · 讲座",
+      "kind": "page",
+      "url": "https://www.hitsz.edu.cn/article/id-74.html",
+      "link_pattern": "^https://www\\.hitsz\\.edu\\.cn/article/view/id-\\d+\\.html",
+      "base": "https://www.hitsz.edu.cn",
+      "default_type": "talk",
+      "default_city": "深圳"
+    },
+    {
+      "id": "pcl-news",
+      "name": "鹏城实验室 · 动态",
+      "kind": "page",
+      "url": "https://www.pcl.ac.cn/html/1004/",
+      "link_pattern": "^https://www\\.pcl\\.ac\\.cn/html/\\d+/[A-Za-z0-9_-]+\\.html",
+      "base": "https://www.pcl.ac.cn",
+      "default_type": "talk",
+      "default_city": "深圳"
+    },
+    {
+      "id": "idea-news",
+      "name": "IDEA 研究院 · 动态",
+      "kind": "page",
+      "url": "https://www.idea.edu.cn/news.html",
+      "link_pattern": "^https://www\\.idea\\.edu\\.cn/(news|event|research)/[A-Za-z0-9_-]+\\.html",
+      "base": "https://www.idea.edu.cn",
+      "default_type": "talk",
+      "default_city": "深圳"
+    },
+    {
+      "id": "sogou-wechat-sz",
+      "name": "搜狗微信 · 深圳 AI 活动",
+      "kind": "page",
+      "url": "https://weixin.sogou.com/weixin?type=2&query=%E6%B7%B1%E5%9C%B3%20AI%20%E6%B4%BB%E5%8A%A8%20%E6%8A%A5%E5%90%8D",
+      "link_pattern": "^https?://(mp\\.weixin\\.qq\\.com/s|weixin\\.sogou\\.com/link)",
+      "base": "https://weixin.sogou.com",
+      "default_type": "meetup",
+      "default_city": "深圳"
+    },
+    {
+      "id": "sogou-wechat-hack",
+      "name": "搜狗微信 · 黑客松",
+      "kind": "page",
+      "url": "https://weixin.sogou.com/weixin?type=2&query=%E9%BB%91%E5%AE%A2%E6%9D%BE%20%E6%8A%A5%E5%90%8D%20%E6%B7%B1%E5%9C%B3%20OR%20%E5%B9%BF%E5%B7%9E%20OR%20%E9%A6%99%E6%B8%AF",
+      "link_pattern": "^https?://(mp\\.weixin\\.qq\\.com/s|weixin\\.sogou\\.com/link)",
+      "base": "https://weixin.sogou.com",
+      "default_type": "hackathon",
+      "default_city": ""
+    },
+    {
+      "id": "gnews-univ",
+      "name": "Google 新闻 · 深圳高校 AI 讲座",
+      "kind": "rss",
+      "url": "https://news.google.com/rss/search?q=%28%E5%8D%97%E6%96%B9%E7%A7%91%E6%8A%80%E5%A4%A7%E5%AD%A6%20OR%20%E6%B8%AF%E4%B8%AD%E6%B7%B1%20OR%20%E6%B7%B1%E5%9C%B3%E5%A4%A7%E5%AD%A6%20OR%20%E5%93%88%E5%B7%A5%E5%A4%A7%E6%B7%B1%E5%9C%B3%20OR%20%E9%B9%8F%E5%9F%8E%E5%AE%9E%E9%AA%8C%E5%AE%A4%20OR%20IDEA%E7%A0%94%E7%A9%B6%E9%99%A2%29%20%28%E8%AE%B2%E5%BA%A7%20OR%20%E8%AE%BA%E5%9D%9B%20OR%20%E6%8A%A5%E5%91%8A%E4%BC%9A%20OR%20%E5%BC%80%E6%94%BE%E6%97%A5%29%20when%3A14d&hl=zh-CN&gl=CN&ceid=CN:zh-Hans",
       "default_type": "talk",
       "default_city": "深圳"
     }
