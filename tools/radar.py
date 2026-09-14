@@ -690,7 +690,22 @@ def main() -> None:
 
     if existing:
         known = {r["id"] for r in rows}
-        rows.extend(r for r in existing.get("items", []) if r["id"] not in known)
+        src_cfg = {s["id"]: s for s in config["sources"]}
+        kept_old = []
+        for r in existing.get("items", []):
+            if r["id"] in known:
+                continue
+            src = src_cfg.get(r.get("source_id"))
+            if src is None:
+                continue  # 源已从配置移除，旧条目一起清掉
+            pat = src.get("title_pattern")
+            if pat and not re.search(pat, r.get("title", "")):
+                continue  # 源后来加了标题过滤（如 GitHub nightly tag），旧条目按新规则清掉
+            kept_old.append(r)
+        dropped_old = len(existing.get("items", [])) - len(kept_old) - len([r for r in existing.get("items", []) if r["id"] in known])
+        if dropped_old:
+            log(f"[radar] 清掉 {dropped_old} 条已移除源 / 不符合标题规则的旧条目")
+        rows.extend(kept_old)
         rows = sort_rows(rows)
 
     day = {
