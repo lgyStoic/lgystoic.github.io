@@ -7,6 +7,7 @@
     "notes",
     "radar",
     "events",
+    "guides",
     "about"
   ],
   "modules": [
@@ -17,7 +18,8 @@
       "path": "/notes/",
       "blurb": "课程、论文、性能实验的整理，写给半年后的自己。",
       "status": "notes",
-      "script": null
+      "script": null,
+      "nav_label": "笔记"
     },
     {
       "id": "guides",
@@ -26,7 +28,8 @@
       "path": "/guides/",
       "blurb": "离职后从零开始用 AI 工具的三步：租一台电脑、装好代理、注册 ChatGPT。",
       "status": "guides",
-      "script": null
+      "script": null,
+      "nav_label": "指南"
     },
     {
       "id": "radar",
@@ -35,7 +38,8 @@
       "path": "/radar/",
       "blurb": "29 个源每天 08:00 抓一遍，去重后由模型排优先级、写一句话摘要。",
       "status": "radar",
-      "script": "tools/radar.py"
+      "script": "tools/radar.py",
+      "nav_label": "雷达"
     },
     {
       "id": "events",
@@ -44,7 +48,8 @@
       "path": "/radar/events/",
       "blurb": "深圳 / 广州 / 香港及线上可以报名的聚会、黑客松、比赛、讲座，按日期排。",
       "status": "events",
-      "script": "tools/events.py"
+      "script": "tools/events.py",
+      "nav_label": "活动"
     },
     {
       "id": "inbox",
@@ -73,7 +78,8 @@
       "blurb": "我是谁、这个站是什么、怎么搭的。",
       "status": null,
       "script": null,
-      "card": false
+      "card": false,
+      "nav_label": "关于"
     }
   ]
 }

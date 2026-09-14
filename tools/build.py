@@ -39,7 +39,7 @@ EVENTS_CONFIG = RADAR_DIR / "event_sources.json"
 CHECKS_DIR = RADAR_DIR / "checks"
 LAST_RUN = RADAR_DATA / "last-run.json"
 SITE_URL = "https://lgystoic.github.io"
-SITE_TITLE = "Anaxagore"
+SITE_TITLE = json.loads((ROOT / "site.json").read_text(encoding="utf-8")).get("name", "Anaxagore")
 SITE_JSON = ROOT / "site.json"
 SITE_DESC = "GPU kernel、训练性能、生成模型和城市数据的中文笔记存档。"
 LATEST_ON_HOME = 4
@@ -250,24 +250,7 @@ RADAR_DAY_TEMPLATE = """<!doctype html>
     </script>
   </head>
   <body>
-    <header class="site-header">
-      <div class="wrap">
-        <a class="brand" href="../../" aria-label="回到首页">
-          <span class="brand-mark">A</span>
-          <span>Anaxagore</span>
-        </a>
-        <nav class="site-nav" aria-label="主导航">
-          <a href="../../notes/">笔记</a>
-          <a href="../" aria-current="page">雷达</a>
-          <a href="../events/">活动</a>
-          <a href="../../guides/">指南</a>
-          <a href="../../about/">关于</a>
-          <button class="theme-toggle" type="button" data-theme-toggle aria-label="切换深浅色">
-            <span data-theme-icon>◑</span>
-          </button>
-        </nav>
-      </div>
-    </header>
+{header}
 
     <main class="wrap">
       <section class="intro radar-intro">
@@ -282,7 +265,7 @@ RADAR_DAY_TEMPLATE = """<!doctype html>
 
     <footer class="site-footer">
       <div class="wrap">
-        <span>© 2026 Anaxagore · 自动汇总，摘要仅供快速筛选，请以原文为准</span>
+        <span>© 2026 {site_name} · 自动汇总，摘要仅供快速筛选，请以原文为准</span>
         <span><a href="../">全部往期</a> · <a href="../feed.xml">RSS</a></span>
       </div>
     </footer>
@@ -322,6 +305,8 @@ def write_radar_days(days: list[dict], config: dict, events_data: dict | None = 
         else:
             pager.append('<span>最新一期</span>')
         html_text = RADAR_DAY_TEMPLATE.format(
+            header=render_site_header(load_site(), "../../", "radar"),
+            site_name=esc(SITE_TITLE),
             date=esc(day["date"]),
             date_human=esc(human_date(day["date"])),
             description=radar_description(day),
@@ -893,6 +878,82 @@ def build_guides() -> list[dict]:
     return guides
 
 
+# ---------------------------------------------------------------- 站点公共头部
+
+def page_prefix(rel_path: str) -> str:
+    """页面相对站点根的路径（如 'guides/pc/index.html'）→ 回到根目录的前缀。"""
+    depth = rel_path.count("/")
+    return "./" if depth == 0 else "../" * depth
+
+
+def current_module(site: dict, url_path: str) -> str | None:
+    """按最长路径前缀匹配当前页面属于哪个导航模块。"""
+    best, best_len = None, -1
+    for mod in site.get("modules", []):
+        p = mod.get("path", "")
+        if p.startswith("/") and url_path.startswith(p) and len(p) > best_len:
+            best, best_len = mod["id"], len(p)
+    return best
+
+
+def render_site_header(site: dict, prefix: str, current: str | None) -> str:
+    mods = {m["id"]: m for m in site.get("modules", [])}
+    links = []
+    for mid in site.get("nav", []):
+        m = mods.get(mid)
+        if not m:
+            continue
+        href = m["path"]
+        href = (prefix + href.lstrip("/")) if href.startswith("/") else href
+        if prefix == "/":
+            href = m["path"]
+        cur = ' aria-current="page"' if mid == current else ""
+        links.append(f'          <a href="{esc(href)}"{cur}>{esc(m.get("nav_label", m["name"]))}</a>')
+    home = "/" if prefix == "/" else prefix
+    name = esc(site.get("name", SITE_TITLE))
+    return (
+        '    <header class="site-header">\n'
+        '      <div class="wrap">\n'
+        f'        <a class="brand" href="{home}" aria-label="首页">\n'
+        f'          <span class="brand-mark">{esc(name[:1])}</span>\n'
+        f'          <span>{name}</span>\n'
+        '        </a>\n'
+        '        <nav class="site-nav" aria-label="主导航">\n'
+        + "\n".join(links) + "\n"
+        '          <button class="theme-toggle" type="button" data-theme-toggle aria-label="切换深浅色">\n'
+        '            <span data-theme-icon>◑</span>\n'
+        '          </button>\n'
+        '        </nav>\n'
+        '      </div>\n'
+        '    </header>'
+    )
+
+
+def inject_site_chrome(site: dict) -> int:
+    """给所有带 <!-- build:header --> 的页面生成头部；带 build:site-name 的位置填站名。"""
+    n = 0
+    for page in sorted(ROOT.glob("**/*.html")):
+        rel = page.relative_to(ROOT).as_posix()
+        if rel.startswith(("radar/20", "node_modules/", "templates/")):
+            continue
+        text = page.read_text(encoding="utf-8")
+        blocks = {}
+        if "<!-- build:header -->" in text:
+            if rel == "404.html":
+                prefix, current = "/", None
+            else:
+                prefix = page_prefix(rel)
+                url_path = "/" + rel[: -len("index.html")] if rel.endswith("index.html") else "/" + rel
+                current = current_module(site, url_path)
+            blocks["header"] = render_site_header(site, prefix, current)
+        if "<!-- build:site-name -->" in text:
+            blocks["site-name"] = esc(site.get("name", SITE_TITLE))
+        if blocks:
+            inject(page, blocks)
+            n += 1
+    return n
+
+
 def inject(path: Path, blocks: dict[str, str]) -> None:
     text = path.read_text(encoding="utf-8")
     for name, content in blocks.items():
@@ -978,6 +1039,7 @@ def main() -> None:
     event_types = events_config.get("types", {})
 
     site = load_site()
+    inject_site_chrome(site)
     inject(
         ROOT / "index.html",
         {
