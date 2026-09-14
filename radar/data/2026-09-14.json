@@ -1,6 +1,6 @@
 {
   "date": "2026-09-14",
-  "generated_at": "2026-09-14T10:08:36+00:00",
+  "generated_at": "2026-09-14T10:17:11+00:00",
   "ai": true,
   "model": "gemini-3.1-pro-preview",
   "sources": [
@@ -230,9 +230,9 @@
     }
   ],
   "counts": {
-    "high": 24,
-    "medium": 42,
-    "low": 100
+    "high": 20,
+    "medium": 39,
+    "low": 107
   },
   "items": [
     {
@@ -260,14 +260,14 @@
       "source": "新闻 · 国内模型公司",
       "source_id": "gnews-labs-cn",
       "published": "2026-09-14T03:44:00+00:00",
-      "category": "release",
+      "category": "industry",
       "priority": "high",
-      "summary": "中国 AI 大模型调用量领跑，DeepSeek V4.1 Flash 上线三天升至第六，智谱和 MiniMax 部分模型跌出榜单。",
-      "why": "涉及头部国产模型最新版本发布及调用量榜单显著变化，值得关注其性能表现。",
+      "summary": "中国 AI 大模型调用量持续领跑，DeepSeek V4.1 Flash 上线三天升至第六，智谱和 MiniMax 部分模型跌出榜单。",
+      "why": "涉及 DeepSeek 新模型发布及国内大模型调用量榜单变化，值得关注。",
       "tags": [
         "DeepSeek",
-        "大模型榜单",
-        "模型发布"
+        "Leaderboard",
+        "LLM"
       ]
     },
     {
@@ -279,12 +279,29 @@
       "published": "2026-09-13T23:01:32+00:00",
       "category": "release",
       "priority": "high",
-      "summary": "MiniMax 发布新一代全模态视频生成模型 MiniMax H3。",
-      "why": "涉及最新的全模态视频生成模型发布，直接契合你关注的视频生成方向。",
+      "summary": "MiniMax 在赣江新区首发新一代全模态视频生成模型“MiniMax H3”。",
+      "why": "视频生成模型的新发布，直接契合你对视频生成方向的关注。",
       "tags": [
         "MiniMax",
-        "视频生成",
-        "多模态"
+        "Video Generation",
+        "Release"
+      ]
+    },
+    {
+      "id": "02736db5cdbc78db",
+      "title": "DeepSeek下一波大模型被指即将问世：3万亿参数 性能超GPT-6 Astra - 驱动之家",
+      "link": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE1qV044SDJGeUJQWkJZd0dBVUo5ajlnZ2Jjc2ZkX3NUMXN5RGJhLS1oMHVaZExVTHVVRDNZNDRxUXNHbUhFUW1ZYV9LbExHaTVEYXkyX3A0dTk?oc=5",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-09-13T14:52:00+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "传 DeepSeek 即将发布 3 万亿参数的新一代大模型，性能或超 GPT-6 Astra。",
+      "why": "涉及顶级开源模型公司的下一代超大参数模型动向，对训练和推理基建有潜在影响。",
+      "tags": [
+        "DeepSeek",
+        "LLM",
+        "Rumor"
       ]
     },
     {
@@ -305,23 +322,6 @@
       ]
     },
     {
-      "id": "d90885473c5cddaa",
-      "title": "v0.29.1rc0",
-      "link": "https://github.com/vllm-project/vllm/releases/tag/v0.29.1rc0",
-      "source": "Release · vLLM",
-      "source_id": "rel-vllm",
-      "published": "2026-09-12T18:42:01+00:00",
-      "category": "infra",
-      "priority": "high",
-      "summary": "vLLM 发布 v0.29.1rc0，引入了用于投机解码的双键 gumbel-max 水印功能。",
-      "why": "vLLM 是核心推理系统，投机解码更新直接影响推理性能优化。",
-      "tags": [
-        "vLLM",
-        "Speculative Decoding",
-        "Watermarking"
-      ]
-    },
-    {
       "id": "5e4d2c88e5b56635",
       "title": "Helion x 🤗 HF Kernels: Building and Shipping Out-of-the-box Performant Kernels",
       "link": "https://pytorch.org/blog/helion-x-%f0%9f%a4%97-hf-kernels-building-and-shipping-out-of-the-box-performant-kernels",
@@ -339,23 +339,6 @@
       ]
     },
     {
-      "id": "1e5849ca1cca3cd8",
-      "title": "StepAudio 3 Gen Technical Report",
-      "link": "https://huggingface.co/papers/2609.12945",
-      "source": "HF Papers 日榜",
-      "source_id": "hf-papers",
-      "published": "2026-09-10T20:00:00+00:00",
-      "category": "research",
-      "priority": "high",
-      "summary": "阶跃星辰发布 StepAudio 3 Gen，一个基于离散自回归生成和 RVQ token 的通用音频生成模型。",
-      "why": "涉及音频生成模型架构，与生成模型方向相关。",
-      "tags": [
-        "Audio Generation",
-        "Autoregressive",
-        "RVQ"
-      ]
-    },
-    {
       "id": "fee6bc029aff4954",
       "title": "SAS: Simple Attention Sparsification via End-to-End Optimization of Context Ranking",
       "link": "https://huggingface.co/papers/2609.13141",
@@ -364,12 +347,13 @@
       "published": "2026-09-10T20:00:00+00:00",
       "category": "research",
       "priority": "high",
-      "summary": "论文提出 SAS，通过端到端优化上下文排序实现训练后注意力稀疏化，降低 Transformer 注意力成本。",
-      "why": "涉及 Transformer 注意力机制优化，直接影响推理性能。",
+      "summary": "SAS 提出端到端上下文排序的注意力稀疏化训练方案，直接降低 Transformer 二次方开销。",
+      "why": "直接涉及长文本注意力稀疏化与端到端计算开销优化。",
       "tags": [
-        "Attention",
-        "Sparsification",
-        "Transformer"
+        "稀疏注意力",
+        "Transformer",
+        "推理优化",
+        "系统性能"
       ]
     },
     {
@@ -442,57 +426,6 @@
       ]
     },
     {
-      "id": "a3062cee180f2b98",
-      "title": "FreeFlow: A Bias-free Hierarchical Transformer for Optical Flow Estimation",
-      "link": "https://huggingface.co/papers/2609.11486",
-      "source": "HF Papers 日榜",
-      "source_id": "hf-papers",
-      "published": "2026-09-09T20:00:00+00:00",
-      "category": "research",
-      "priority": "high",
-      "summary": "论文提出 FreeFlow，一个无特定归纳偏置的层次化 Transformer 用于光流估计，结合了三种注意力变体。",
-      "why": "涉及视觉 Transformer 架构和注意力机制，可能对视频生成有启发。",
-      "tags": [
-        "Optical Flow",
-        "Transformer",
-        "Vision"
-      ]
-    },
-    {
-      "id": "1f1a32eceddb887b",
-      "title": "X-AuT: Progressive Audio-Encoder Compression for Speech LLMs with Cross-Scale Distillation",
-      "link": "https://huggingface.co/papers/2609.11412",
-      "source": "HF Papers 日榜",
-      "source_id": "hf-papers",
-      "published": "2026-09-09T20:00:00+00:00",
-      "category": "research",
-      "priority": "high",
-      "summary": "论文提出 X-AuT 渐进式框架，通过跨尺度蒸馏和 LoRA 微调压缩语音 LLM 的音频编码器，降低推理成本。",
-      "why": "涉及模型压缩和推理性能优化，与他的工作直接相关。",
-      "tags": [
-        "Model Compression",
-        "Speech LLM",
-        "Distillation"
-      ]
-    },
-    {
-      "id": "d089b3b20144fd24",
-      "title": "Recursive Code World Models: Building Complex Worlds through Recursive Scene Programs",
-      "link": "https://huggingface.co/papers/2609.11499",
-      "source": "HF Papers 日榜",
-      "source_id": "hf-papers",
-      "published": "2026-09-09T20:00:00+00:00",
-      "category": "research",
-      "priority": "high",
-      "summary": "论文提出 Recursive Code World Models，通过递归场景程序从单张参考图像在代码中重建复杂的 3D 世界。",
-      "why": "涉及 3D 生成和世界模型，与他关注的生成模型方向高度契合。",
-      "tags": [
-        "3D Generation",
-        "World Model",
-        "Scene Program"
-      ]
-    },
-    {
       "id": "f779c7312a5685b3",
       "title": "World in World: Explore the World with World Models",
       "link": "https://huggingface.co/papers/2609.11548",
@@ -501,12 +434,13 @@
       "published": "2026-09-09T20:00:00+00:00",
       "category": "research",
       "priority": "high",
-      "summary": "论文提出 World in World，一种免训练的推理时接口，用于自回归视频世界模型中的灵活控制和长视野探索。",
-      "why": "涉及视频生成和世界模型的推理控制，与他的方向高度契合。",
+      "summary": "World in World 提出免训练推理接口，支持从新视角对自回归视频世界模型进行长时间探索。",
+      "why": "面向视频世界模型的长序列视点可控生成，直击当前核心痛点。",
       "tags": [
-        "Video Generation",
-        "World Model",
-        "Inference"
+        "视频生成",
+        "世界模型",
+        "推理优化",
+        "视点控制"
       ]
     },
     {
@@ -518,12 +452,13 @@
       "published": "2026-09-09T20:00:00+00:00",
       "category": "release",
       "priority": "high",
-      "summary": "商汤发布 SenseNova-U1.5，一个 8B-MoT 原生统一多模态模型，采用无编码器和无 VAE 架构处理视觉内容。",
-      "why": "涉及新型视觉模型架构（无 VAE/Encoder），对生成模型研究有参考价值。",
+      "summary": "商汤发布 SenseNova-U1.5，采用 8B-MoT 无 Encoder/VAE 架构，支持原生 4K 理解与生成。",
+      "why": "完全无 VAE 的统一原生多模态生成架构，对生成管线意义重大。",
       "tags": [
-        "Multimodal",
-        "SenseNova",
-        "Vision Model"
+        "多模态生成",
+        "架构演进",
+        "模型发布",
+        "SenseNova"
       ]
     },
     {
@@ -654,29 +589,29 @@
       "published": "2026-09-14T16:26:11+00:00",
       "category": "infra",
       "priority": "medium",
-      "summary": "QCon 上海分享如何构建基于 LLM-as-Judge 的自我校准评估闭环。",
-      "why": "涉及大模型自动化评估管线的设计，对构建训练与评测基础设施有一定参考价值。",
+      "summary": "QCon 上海分享如何将 LLM-as-Judge 做成具备自我校准能力的评估闭环系统。",
+      "why": "涉及大模型自动化评估系统的工程实践，对构建训练/评测 pipeline 有参考价值。",
       "tags": [
         "LLM-as-Judge",
-        "模型评估",
-        "QCon"
+        "Evaluation",
+        "Pipeline"
       ]
     },
     {
-      "id": "94fea23458fbcce9",
-      "title": "Anthropic Plans Nasdaq IPO, Set to Achieve Profitability for Two Consecutive Quarters - TradingKey",
-      "link": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxPY3BSNjBySVBUbk9LY1BiajRXeTM5SzRjOVF4NURwd3hsNVB2WEZoYzUtYl9oZnkzMzhpN2xsSFZWcXlxRHdaUzZva3RNNzB6WjlKQ2x1Tk9FaDV4bTNqS3dtMUQwU3BJTGcySWU5dlJzeGlRSzU4NUVqbV9iWVR6ek5JZjBJbm5kX2NoOFpIMWRfSENaOWVpUThWYW15LUx6WTVxY1JBVzkxbl9CMnZJOGl5YlpieGhrQ0QwNEZEZ1dCMWdkTnBXU0lEVUc0V3VSclRGNw?oc=5",
-      "source": "新闻 · Anthropic / Mistral / xAI",
-      "source_id": "gnews-labs-en",
-      "published": "2026-09-14T06:12:22+00:00",
+      "id": "29f9cd440542c758",
+      "title": "港股大模型“双雄”齐重挫，智谱跌超10%，MINIMAX跌超6% - 新浪网",
+      "link": "https://news.google.com/rss/articles/CBMigwFBVV95cUxPSzU2aFE0M1UyLUdONGlJNlQ2SnFKRHJSWGtPV2ZLek5ndG96a01xdkNCVUhIeUp6Z1Z5QTBkT1RiUUZ3dENZOUwzOGVaTi0tTllGUDdwR19iWHYtbFU0OWlGM0g1NXF1Ump2Ykp5NHQ0UUgzMWJodkVtdHY5WjhtX3VfVQ?oc=5",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-09-14T07:27:03+00:00",
       "category": "industry",
       "priority": "medium",
-      "summary": "Anthropic 计划在纳斯达克 IPO，并有望连续两个季度实现盈利。",
-      "why": "头部 AI 公司的重要商业动态。",
+      "summary": "港股大模型公司智谱和 MiniMax 股价分别大跌超 10% 和 6%。",
+      "why": "反映资本市场对国内头部大模型公司的态度变化。",
       "tags": [
-        "Anthropic",
-        "IPO",
-        "Business"
+        "Stock",
+        "Zhipu AI",
+        "MiniMax"
       ]
     },
     {
@@ -689,11 +624,11 @@
       "category": "industry",
       "priority": "medium",
       "summary": "智谱拟融资约 393.3 亿港元，重金押注大模型自训练赛道及算力基建。",
-      "why": "巨额融资用于自训练和算力基建，可能影响国内 GPU 算力市场格局。",
+      "why": "巨额融资用于自训练和算力基建，反映头部公司的基建投入趋势。",
       "tags": [
-        "智谱",
-        "融资",
-        "算力基建"
+        "Zhipu AI",
+        "Finance",
+        "Infra"
       ]
     },
     {
@@ -705,12 +640,12 @@
       "published": "2026-09-14T02:26:04+00:00",
       "category": "people",
       "priority": "medium",
-      "summary": "智谱唐杰分享国产 AI 面临的三大挑战及未来突破口。",
-      "why": "头部模型公司创始人的技术与行业洞察，值得扫一眼了解国内发展现状。",
+      "summary": "智谱 AI 唐杰分享了国产 AI 面临的三大挑战及其突破口。",
+      "why": "头部大模型公司核心人物对行业技术挑战的观点，值得扫一眼。",
       "tags": [
-        "智谱",
-        "唐杰",
-        "行业观点"
+        "Zhipu AI",
+        "Opinion",
+        "Challenges"
       ]
     },
     {
@@ -722,29 +657,12 @@
       "published": "2026-09-14T00:44:28+00:00",
       "category": "industry",
       "priority": "medium",
-      "summary": "智谱上半年营收大增但亏损扩大，Agent 应用爆发带动 Token 调用量暴涨 40 倍。",
-      "why": "Token 调用量暴涨反映了推理侧算力需求的急剧增加，对推理系统优化有参考意义。",
+      "summary": "智谱上半年营收暴增但亏损扩大，Agent 应用爆发带动 Token 调用量涨 40 倍。",
+      "why": "揭示了 Agent 应用对推理算力需求的巨大拉动作用，值得关注。",
       "tags": [
-        "智谱",
+        "Zhipu AI",
         "Agent",
-        "推理算力"
-      ]
-    },
-    {
-      "id": "12e9dd6851803557",
-      "title": "Perplexity trusts GPT-6 Astra with end-to-end systems",
-      "link": "https://openai.com/index/perplexity-improving-accuracy-with-astra",
-      "source": "OpenAI",
-      "source_id": "openai",
-      "published": "2026-09-14T00:00:00+00:00",
-      "category": "industry",
-      "priority": "medium",
-      "summary": "Perplexity 使用 GPT-6 Astra 编写通信、更改软件和监控生产系统，检查频率远低于早期模型。",
-      "why": "了解前沿模型在端到端系统中的实际应用情况。",
-      "tags": [
-        "GPT-6 Astra",
-        "Perplexity",
-        "Agent"
+        "Inference"
       ]
     },
     {
@@ -765,23 +683,6 @@
       ]
     },
     {
-      "id": "02736db5cdbc78db",
-      "title": "DeepSeek下一波大模型被指即将问世：3万亿参数 性能超GPT-6 Astra - 驱动之家",
-      "link": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE1qV044SDJGeUJQWkJZd0dBVUo5ajlnZ2Jjc2ZkX3NUMXN5RGJhLS1oMHVaZExVTHVVRDNZNDRxUXNHbUhFUW1ZYV9LbExHaTVEYXkyX3A0dTk?oc=5",
-      "source": "新闻 · 国内模型公司",
-      "source_id": "gnews-labs-cn",
-      "published": "2026-09-13T14:52:00+00:00",
-      "category": "industry",
-      "priority": "medium",
-      "summary": "传闻 DeepSeek 即将发布 3 万亿参数的新一代大模型，性能或超 GPT-6 Astra。",
-      "why": "涉及头部模型公司的下一代超大规模模型动向，值得关注其潜在的技术架构。",
-      "tags": [
-        "DeepSeek",
-        "大模型",
-        "行业传闻"
-      ]
-    },
-    {
       "id": "51ddffe2a8ed0307",
       "title": "中国气象的DeepSeek时刻来了，远景“天机”大模型首次打榜即登顶 - 新浪网",
       "link": "https://news.google.com/rss/articles/CBMicEFVX3lxTFBtSEZnMDNhUWtJT1pnTVNjU0xkYzZpVHJ1VHVvVmliZDRMcThCRmNRV1NWS0l6SmF6YnVrS1YyV0ZXcnJUaVRMUVB4WEt0ejllU3dSWWZnUm5uYjZMeElPTVpFelVMeEN1Ym04UXlKbUk?oc=5",
@@ -791,11 +692,10 @@
       "category": "release",
       "priority": "medium",
       "summary": "远景发布“天机”气象大模型，首次打榜即登顶。",
-      "why": "垂直领域（气象）大模型的进展，可简单了解其模型架构或应用场景。",
+      "why": "垂直领域（气象）大模型的进展，可作为 AI for Science 的案例了解。",
       "tags": [
-        "气象大模型",
-        "远景",
-        "垂直模型"
+        "Weather Model",
+        "AI for Science"
       ]
     },
     {
@@ -807,29 +707,29 @@
       "published": "2026-09-13T10:00:00+00:00",
       "category": "infra",
       "priority": "medium",
-      "summary": "QCon 上海分享构建全自动、可进化的“探测式”大模型评测管线。",
-      "why": "探讨大模型评测基础设施的构建，值得负责训练系统的工程师扫一眼。",
+      "summary": "QCon 上海分享重塑大模型评价体系，构建全自动、可进化的“探测式”评测管线。",
+      "why": "探讨大模型评测基础设施的构建，对模型训练后评估环节有启发。",
       "tags": [
-        "模型评测",
-        "基础设施",
-        "QCon"
+        "Evaluation",
+        "Infra",
+        "Pipeline"
       ]
     },
     {
-      "id": "dbfd4ef58b2f55af",
-      "title": "'We must pace the frontier': Anthropic CEO urges AI companies to slow model development - The Jerusalem Post",
-      "link": "https://news.google.com/rss/articles/CBMibEFVX3lxTFBoT0ZyYnBJVXVQVzZtb3dRWDBsbTdqQmU0VFlNbDJWTmRhMjM3Sl9uNWZ0WkV1cUxlMVQ4cWFNekxydmE0MGFlWV9oMENNeUE0RWhjVHZuQlZqbnZTZ0xXOGlDbTZ4c3RVTFBjQQ?oc=5",
+      "id": "f69b705129b60550",
+      "title": "Anthropic CEO urges AI firms to slow model development amid misuse fears; Altman and Musk back call - The Business Times",
+      "link": "https://news.google.com/rss/articles/CBMi9wFBVV95cUxPby1NcHNLcDRiZWJEU3NnV050dVFsdEtzMVM3dWJ5OS1sdDVuWHBxeUxnMTd5alNYVWw1WGgtVWhwd0Rja1JsS1A0T1RITkpSakFQVjlUZ1dIbnRlYU1zX21KVDZsY3VhZ3o1M05pdWx5QUNWZkZvaHZxaHRyTC0zNEltWUpjX0xiajh4amRpTlJoY3hRd2RvbHo1WmVBMDVYbHpHd3VpTEhZSEcxWDZydWIzQXEwRmlDWUw0cENIMGJnQjNrdG1kX1cxQmJzMWNXSGRqMUY0Z2pyNEs1Y20xR1E4QVl1QTg4bDczWEpsZkxwV1FrWkpj?oc=5",
       "source": "新闻 · Anthropic / Mistral / xAI",
       "source_id": "gnews-labs-en",
-      "published": "2026-09-13T09:37:14+00:00",
+      "published": "2026-09-13T01:22:00+00:00",
       "category": "industry",
       "priority": "medium",
-      "summary": "Anthropic CEO 呼吁 AI 公司放缓前沿模型开发，以控制发展节奏。",
-      "why": "行业重要人物对模型发展速度的观点，值得了解。",
+      "summary": "Anthropic CEO 呼吁放缓前沿 AI 模型开发以防滥用，Altman 和 Musk 表示支持。",
+      "why": "行业大佬对 AI 发展速度的宏观态度，可作为行业背景了解。",
       "tags": [
         "Anthropic",
         "AI Safety",
-        "Industry Trend"
+        "Industry"
       ]
     },
     {
@@ -847,6 +747,23 @@
         "Anthropic",
         "AI政策",
         "行业动态"
+      ]
+    },
+    {
+      "id": "d90885473c5cddaa",
+      "title": "v0.29.1rc0",
+      "link": "https://github.com/vllm-project/vllm/releases/tag/v0.29.1rc0",
+      "source": "Release · vLLM",
+      "source_id": "rel-vllm",
+      "published": "2026-09-12T18:42:01+00:00",
+      "category": "infra",
+      "priority": "medium",
+      "summary": "vLLM 发布 v0.29.1rc0 预发布版本，支持投机采样的双密钥 Gumbel-Max 水印功能。",
+      "why": "关注主流推理引擎更新，但该特性仅涉及水印与候选补丁。",
+      "tags": [
+        "vLLM",
+        "推理引擎",
+        "投机采样"
       ]
     },
     {
@@ -1036,20 +953,21 @@
       ]
     },
     {
-      "id": "12ac24231eafe1e3",
-      "title": "Breaking the Vision-Action Shortcut: Latent Interface Training for Generalizable Robotics Foundation Models",
-      "link": "https://huggingface.co/papers/2609.12641",
+      "id": "1e5849ca1cca3cd8",
+      "title": "StepAudio 3 Gen Technical Report",
+      "link": "https://huggingface.co/papers/2609.12945",
       "source": "HF Papers 日榜",
       "source_id": "hf-papers",
       "published": "2026-09-10T20:00:00+00:00",
       "category": "research",
       "priority": "medium",
-      "summary": "论文提出 Latent Interface Training 框架，通过建立空间接口缓解机器人基础模型的视觉-动作捷径问题。",
-      "why": "机器人基础模型研究，与生成模型或底层优化关联较弱。",
+      "summary": "阶跃星辰发布 StepAudio 3 Gen，采用离散 RVQ 自回归架构统一多类音频生成任务。",
+      "why": "探索了不同于主流 DiT 的自回归统一音频生成范式。",
       "tags": [
-        "Robotics",
-        "Foundation Models",
-        "Generalization"
+        "音频生成",
+        "自回归",
+        "RVQ",
+        "多模态"
       ]
     },
     {
@@ -1138,88 +1056,56 @@
       ]
     },
     {
-      "id": "748b3933b19e2cbf",
-      "title": "Benchmark Radar: A Living Database and Search Engine for AI Benchmarks and Evaluation",
-      "link": "https://huggingface.co/papers/2609.11115",
+      "id": "a3062cee180f2b98",
+      "title": "FreeFlow: A Bias-free Hierarchical Transformer for Optical Flow Estimation",
+      "link": "https://huggingface.co/papers/2609.11486",
       "source": "HF Papers 日榜",
       "source_id": "hf-papers",
       "published": "2026-09-09T20:00:00+00:00",
       "category": "research",
       "priority": "medium",
-      "summary": "研究人员推出 Benchmark Radar，一个用于检索和发现 AI 基准测试与评估的动态数据库和搜索引擎。",
-      "why": "方便查找模型评估基准，但非核心技术。",
+      "summary": "FreeFlow 提出无任务归纳偏置的层次化 Transformer，仅靠自注意力完成端到端光流估计。",
+      "why": "完全去除了传统几何偏置，对视频生成时序对齐有参考价值。",
       "tags": [
-        "Benchmark",
-        "Evaluation",
-        "Database"
+        "光流估计",
+        "Transformer",
+        "视频生成",
+        "计算机视觉"
       ]
     },
     {
-      "id": "c10f9a1933ce39b3",
-      "title": "COBRA-Skills: Contextual Bandit-Guided Evolution for Agent Skill Optimization",
-      "link": "https://huggingface.co/papers/2609.11682",
+      "id": "1f1a32eceddb887b",
+      "title": "X-AuT: Progressive Audio-Encoder Compression for Speech LLMs with Cross-Scale Distillation",
+      "link": "https://huggingface.co/papers/2609.11412",
       "source": "HF Papers 日榜",
       "source_id": "hf-papers",
       "published": "2026-09-09T20:00:00+00:00",
       "category": "research",
       "priority": "medium",
-      "summary": "论文提出 COBRA-Skills 框架，利用上下文 Bandit 引导和证据驱动的技能演化来高效优化 LLM Agent 技能。",
-      "why": "Agent 技能优化研究，非核心关注点。",
+      "summary": "X-AuT 提出跨尺度蒸馏与 LoRA 渐进式剪枝方案，大幅缩减语音 LLM 音频编码器层数。",
+      "why": "涉及端到端编码器压缩与推理降本，对多模态模型部署有帮助。",
       "tags": [
-        "LLM Agent",
-        "Skill Optimization",
-        "Contextual Bandit"
+        "模型压缩",
+        "蒸馏",
+        "剪枝",
+        "语音模型"
       ]
     },
     {
-      "id": "9771708ac7ba7d08",
-      "title": "Memory as Plans: World-Action Modeling with Memory-Grounded Planning",
-      "link": "https://huggingface.co/papers/2609.11561",
+      "id": "d089b3b20144fd24",
+      "title": "Recursive Code World Models: Building Complex Worlds through Recursive Scene Programs",
+      "link": "https://huggingface.co/papers/2609.11499",
       "source": "HF Papers 日榜",
       "source_id": "hf-papers",
       "published": "2026-09-09T20:00:00+00:00",
       "category": "research",
       "priority": "medium",
-      "summary": "论文提出 MaP-WAM 框架，将依赖记忆的世界-动作建模分解为基于记忆的规划和条件执行，用于长视野任务。",
-      "why": "涉及世界模型，可能对视频生成或物理模拟有启发。",
+      "summary": "RCWM 结合递归场景程序与全局局部解算器，实现从单张参考图递归生成复杂 3D 世界。",
+      "why": "将代码程序与世界模型结合生成 3D 场景，值得关注机制演进。",
       "tags": [
-        "World Model",
-        "Robotics",
-        "Planning"
-      ]
-    },
-    {
-      "id": "f4fc88624a356041",
-      "title": "Negative Self-Distillation: Learning to Reason by Avoiding Flaws",
-      "link": "https://huggingface.co/papers/2609.11699",
-      "source": "HF Papers 日榜",
-      "source_id": "hf-papers",
-      "published": "2026-09-09T20:00:00+00:00",
-      "category": "research",
-      "priority": "medium",
-      "summary": "论文提出 Negative Self-Distillation 框架，解决同策略自我蒸馏导致 LLM 在复杂推理任务中性能下降的问题。",
-      "why": "涉及模型训练和蒸馏方法，值得扫一眼。",
-      "tags": [
-        "Self-Distillation",
-        "LLM",
-        "Reasoning"
-      ]
-    },
-    {
-      "id": "1a7922f76a891677",
-      "title": "Mi-Ripple: Restoring Images Degraded by Iterative AI Editing",
-      "link": "https://huggingface.co/papers/2609.11317",
-      "source": "HF Papers 日榜",
-      "source_id": "hf-papers",
-      "published": "2026-09-09T20:00:00+00:00",
-      "category": "research",
-      "priority": "medium",
-      "summary": "论文提出 Mi-Ripple 诊断引导恢复工作流，用于抑制迭代 AI 图像编辑引入的数字波纹等伪影。",
-      "why": "涉及图像生成和编辑的后处理，值得了解。",
-      "tags": [
-        "Image Editing",
-        "Restoration",
-        "Artifacts"
+        "3D生成",
+        "世界模型",
+        "神经代码"
       ]
     },
     {
@@ -1231,12 +1117,13 @@
       "published": "2026-09-09T20:00:00+00:00",
       "category": "research",
       "priority": "medium",
-      "summary": "论文介绍 T1，一个 122B 的 MoE 模型，通过强化学习训练，用于在云沙盒中执行长视野终端任务。",
-      "why": "涉及大规模 MoE 模型的 RL 训练，值得扫一眼。",
+      "summary": "T1 开源 122B MoE 智能体及长程沙盒强化学习训练套件，提供稳定的过程奖励与优化配方。",
+      "why": "包含大规模 MoE 的 Actor-Critic 稳定训练工程配方。",
       "tags": [
-        "Agent",
-        "Reinforcement Learning",
-        "MoE"
+        "MoE",
+        "强化学习",
+        "大规模训练",
+        "Agent"
       ]
     },
     {
@@ -1366,27 +1253,10 @@
       "category": "industry",
       "priority": "low",
       "summary": "媒体报道中国首富可能即将易主。",
-      "why": "纯商业八卦，与 AI 技术和模型研发完全无关。",
+      "why": "纯商业八卦，与 AI 技术和模型优化无关。",
       "tags": [
-        "商业",
-        "八卦"
-      ]
-    },
-    {
-      "id": "29f9cd440542c758",
-      "title": "港股大模型“双雄”齐重挫，智谱跌超10%，MINIMAX跌超6% - 新浪网",
-      "link": "https://news.google.com/rss/articles/CBMigwFBVV95cUxPSzU2aFE0M1UyLUdONGlJNlQ2SnFKRHJSWGtPV2ZLek5ndG96a01xdkNCVUhIeUp6Z1Z5QTBkT1RiUUZ3dENZOUwzOGVaTi0tTllGUDdwR19iWHYtbFU0OWlGM0g1NXF1Ump2Ykp5NHQ0UUgzMWJodkVtdHY5WjhtX3VfVQ?oc=5",
-      "source": "新闻 · 国内模型公司",
-      "source_id": "gnews-labs-cn",
-      "published": "2026-09-14T07:27:03+00:00",
-      "category": "industry",
-      "priority": "low",
-      "summary": "港股大模型公司智谱和 MINIMAX 股价大幅下跌。",
-      "why": "纯股市波动新闻，与底层技术优化无关。",
-      "tags": [
-        "股市",
-        "智谱",
-        "MiniMax"
+        "Business",
+        "News"
       ]
     },
     {
@@ -1398,11 +1268,11 @@
       "published": "2026-09-14T07:27:00+00:00",
       "category": "industry",
       "priority": "low",
-      "summary": "受新融资与海外巨头减速信号影响，港股大模型双雄股价大跌。",
-      "why": "与前文股市波动新闻重复。",
+      "summary": "受新融资及海外巨头减速信号影响，港股大模型公司智谱和 MiniMax 股价大跌。",
+      "why": "与前述港股大跌新闻重复。",
       "tags": [
-        "股市",
-        "行业动态"
+        "Stock",
+        "Industry"
       ]
     },
     {
@@ -1412,13 +1282,30 @@
       "source": "新闻 · 国内模型公司",
       "source_id": "gnews-labs-cn",
       "published": "2026-09-14T07:24:49+00:00",
-      "category": "release",
+      "category": "industry",
       "priority": "low",
-      "summary": "全球 AI 大模型每周 Token 调用榜发布，DeepSeek V4.1 Flash 升至第六。",
-      "why": "与前文 DeepSeek 榜单新闻重复。",
+      "summary": "DeepSeek V4.1 Flash 上线三天升至调用榜第六，智谱和 MiniMax 部分模型跌出榜单。",
+      "why": "与前述大模型调用量榜单新闻重复。",
       "tags": [
         "DeepSeek",
-        "大模型榜单"
+        "Leaderboard"
+      ]
+    },
+    {
+      "id": "94fea23458fbcce9",
+      "title": "Anthropic Plans Nasdaq IPO, Set to Achieve Profitability for Two Consecutive Quarters - TradingKey",
+      "link": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxPY3BSNjBySVBUbk9LY1BiajRXeTM5SzRjOVF4NURwd3hsNVB2WEZoYzUtYl9oZnkzMzhpN2xsSFZWcXlxRHdaUzZva3RNNzB6WjlKQ2x1Tk9FaDV4bTNqS3dtMUQwU3BJTGcySWU5dlJzeGlRSzU4NUVqbV9iWVR6ek5JZjBJbm5kX2NoOFpIMWRfSENaOWVpUThWYW15LUx6WTVxY1JBVzkxbl9CMnZJOGl5YlpieGhrQ0QwNEZEZ1dCMWdkTnBXU0lEVUc0V3VSclRGNw?oc=5",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-09-14T06:12:22+00:00",
+      "category": "industry",
+      "priority": "low",
+      "summary": "Anthropic 传计划纳斯达克 IPO，预计将连续两个季度实现财务盈利。",
+      "why": "商业资本与 IPO 动态，跳过。",
+      "tags": [
+        "IPO",
+        "Anthropic",
+        "商业融资"
       ]
     },
     {
@@ -1430,12 +1317,12 @@
       "published": "2026-09-14T05:28:00+00:00",
       "category": "industry",
       "priority": "low",
-      "summary": "微软 CEO 和特朗普反对 Anthropic 放缓 AI 发展的呼吁。",
-      "why": "重复报道，偏政治与商业八卦。",
+      "summary": "微软 CEO 与特朗普反对 Anthropic 提出的放缓前沿 AI 研发呼吁，巨头分歧公开化。",
+      "why": "行业政策与舆论监管博弈，无技术干货。",
       "tags": [
-        "Anthropic",
-        "Microsoft",
-        "AI Policy"
+        "行业动态",
+        "AI监管",
+        "巨头博弈"
       ]
     },
     {
@@ -1447,12 +1334,12 @@
       "published": "2026-09-14T04:55:00+00:00",
       "category": "industry",
       "priority": "low",
-      "summary": "Anthropic 第二季度收入激增 14 倍，实现连续第二个季度盈利。",
-      "why": "重复报道。",
+      "summary": "Anthropic Q2 收入激增 14 倍并实现连续两季度盈利。",
+      "why": "重复，同属 Anthropic 财报营收消息。",
       "tags": [
+        "财报",
         "Anthropic",
-        "Revenue",
-        "Business"
+        "商业表现"
       ]
     },
     {
@@ -1478,13 +1365,13 @@
       "source": "新闻 · 国内模型公司",
       "source_id": "gnews-labs-cn",
       "published": "2026-09-14T04:00:00+00:00",
-      "category": "release",
+      "category": "industry",
       "priority": "low",
-      "summary": "中国 AI 大模型调用量领跑，DeepSeek V4.1 Flash 升至第六。",
-      "why": "与前文 DeepSeek 榜单新闻重复。",
+      "summary": "DeepSeek V4.1 Flash 上线三天升至调用榜第六。",
+      "why": "与前述大模型调用量榜单新闻重复。",
       "tags": [
         "DeepSeek",
-        "大模型榜单"
+        "Leaderboard"
       ]
     },
     {
@@ -1497,10 +1384,10 @@
       "category": "industry",
       "priority": "low",
       "summary": "智谱虽获 50 亿美元融资，但市值仍大幅蒸发。",
-      "why": "纯资本市场分析，与技术无关。",
+      "why": "偏向股市分析，与技术无关。",
       "tags": [
-        "智谱",
-        "股市"
+        "Zhipu AI",
+        "Stock"
       ]
     },
     {
@@ -1510,13 +1397,13 @@
       "source": "新闻 · 国内模型公司",
       "source_id": "gnews-labs-cn",
       "published": "2026-09-14T03:46:00+00:00",
-      "category": "release",
+      "category": "industry",
       "priority": "low",
-      "summary": "中国 AI 大模型调用量领跑，DeepSeek V4.1 Flash 升至第六。",
-      "why": "与前文 DeepSeek 榜单新闻重复。",
+      "summary": "DeepSeek V4.1 Flash 升至调用榜第六，智谱和 MiniMax 部分模型跌出榜单。",
+      "why": "与前述大模型调用量榜单新闻重复。",
       "tags": [
         "DeepSeek",
-        "大模型榜单"
+        "Leaderboard"
       ]
     },
     {
@@ -1528,12 +1415,11 @@
       "published": "2026-09-14T02:27:13+00:00",
       "category": "industry",
       "priority": "low",
-      "summary": "智谱近期巨额融资引发市场对其 ARR 可持续性及估值的质疑。",
-      "why": "偏向资本市场与财务分析，与技术研发无关。",
+      "summary": "智谱近期巨额融资引发争议，其 ARR 可持续性在激烈竞争下面临质疑。",
+      "why": "偏向资本市场八卦与财务分析，与技术研发关系不大。",
       "tags": [
-        "智谱",
-        "融资",
-        "商业分析"
+        "Zhipu AI",
+        "Finance"
       ]
     },
     {
@@ -1545,12 +1431,12 @@
       "published": "2026-09-14T02:04:03+00:00",
       "category": "industry",
       "priority": "low",
-      "summary": "综合早报涵盖 Anthropic 呼吁放缓 AI、智谱 50 亿美元融资及华为新机解禁。",
-      "why": "拼凑的早报新闻，具体事件已有独立报道，可跳过。",
+      "summary": "早报汇总了 Anthropic CEO 呼吁放缓 AI 开发、智谱 50 亿美元融资等新闻。",
+      "why": "包含重复的行业新闻，可直接看单条深度报道。",
       "tags": [
-        "早报",
-        "智谱",
-        "Anthropic"
+        "News",
+        "Anthropic",
+        "Zhipu AI"
       ]
     },
     {
@@ -1562,11 +1448,11 @@
       "published": "2026-09-14T01:40:48+00:00",
       "category": "industry",
       "priority": "low",
-      "summary": "港股大模型公司智谱和 MINIMAX 股价大幅下跌。",
-      "why": "与前文股市波动新闻重复。",
+      "summary": "港股大模型公司智谱和 MiniMax 股价重挫。",
+      "why": "与前述港股大跌新闻重复。",
       "tags": [
-        "股市",
-        "智谱"
+        "Stock",
+        "Industry"
       ]
     },
     {
@@ -1578,11 +1464,11 @@
       "published": "2026-09-14T01:06:11+00:00",
       "category": "industry",
       "priority": "low",
-      "summary": "智谱完成 50 亿美元融资，上半年营收超去年全年。",
-      "why": "与前文智谱融资新闻重复。",
+      "summary": "智谱完成 50 亿美元融资加码下一代模型研发，上半年营收大幅增长。",
+      "why": "与前述智谱融资新闻重复。",
       "tags": [
-        "智谱",
-        "融资"
+        "Zhipu AI",
+        "Finance"
       ]
     },
     {
@@ -1608,14 +1494,31 @@
       "source": "Simon Willison",
       "source_id": "simonw",
       "published": "2026-09-14T00:28:10+00:00",
-      "category": "release",
+      "category": "people",
       "priority": "low",
-      "summary": "Simon Willison 发布 commit-rewriter 0.1，一个用于编辑 Git 仓库提交信息的 Web 应用。",
-      "why": "个人小工具发布，与他的方向无关。",
+      "summary": "Simon Willison 开源 commit-rewriter 工具，用于快速清洗与重写 Git 提交记录。",
+      "why": "个人日常开发脚本，与 AI 技术及优化工作无关。",
       "tags": [
+        "开源工具",
         "Git",
-        "Tool",
-        "Web App"
+        "开发效率"
+      ]
+    },
+    {
+      "id": "12e9dd6851803557",
+      "title": "Perplexity trusts GPT-6 Astra with end-to-end systems",
+      "link": "https://openai.com/index/perplexity-improving-accuracy-with-astra",
+      "source": "OpenAI",
+      "source_id": "openai",
+      "published": "2026-09-14T00:00:00+00:00",
+      "category": "industry",
+      "priority": "low",
+      "summary": "OpenAI 宣传 Perplexity 在端到端生产系统与代码中深度采用 GPT-6 Astra。",
+      "why": "属于商业与产品宣传，无底层技术与优化细节。",
+      "tags": [
+        "OpenAI",
+        "Perplexity",
+        "商业应用"
       ]
     },
     {
@@ -1627,11 +1530,11 @@
       "published": "2026-09-13T20:52:00+00:00",
       "category": "industry",
       "priority": "low",
-      "summary": "智谱完成 50 亿美元融资，用于下一代 GLM 基础模型研发。",
-      "why": "与前文智谱融资新闻重复。",
+      "summary": "智谱完成 50 亿美元融资，将用于下一代 GLM 基础模型研发。",
+      "why": "与前述智谱融资新闻重复。",
       "tags": [
-        "智谱",
-        "融资"
+        "Zhipu AI",
+        "Finance"
       ]
     },
     {
@@ -1643,12 +1546,12 @@
       "published": "2026-09-13T18:47:22+00:00",
       "category": "industry",
       "priority": "low",
-      "summary": "Anthropic 拦截了 35 个生物武器提示，但也有所遗漏。",
-      "why": "安全对齐相关，与他的方向无关。",
+      "summary": "安全评估显示 Anthropic 拦截了部分生物武器提示词但仍存在漏检。",
+      "why": "属于安全红队测试报告，与计算架构或生成无关。",
       "tags": [
+        "AI安全",
         "Anthropic",
-        "AI Safety",
-        "Bioweapons"
+        "大模型风控"
       ]
     },
     {
@@ -1676,12 +1579,12 @@
       "published": "2026-09-13T17:00:00+00:00",
       "category": "industry",
       "priority": "low",
-      "summary": "Mistral 的物理隔离 Cloudera 计划存在权衡。",
-      "why": "商业部署动态，与他的方向无关。",
+      "summary": "分析指出 Mistral 与 Cloudera 合作推进物理隔离部署方案存在性能与维护权衡。",
+      "why": "企业私有化部署商业评述，不涉及模型实现细节。",
       "tags": [
         "Mistral",
-        "Cloudera",
-        "Deployment"
+        "企业部署",
+        "私有化"
       ]
     },
     {
@@ -1693,11 +1596,11 @@
       "published": "2026-09-13T16:07:15+00:00",
       "category": "industry",
       "priority": "low",
-      "summary": "投行富瑞给予阿里、腾讯及 MINIMAX 买入评级。",
-      "why": "纯股市评级，与技术无关。",
+      "summary": "投行富瑞给予阿里巴巴、腾讯及 MiniMax 买入评级。",
+      "why": "纯股市评级，无需关注。",
       "tags": [
-        "股市",
-        "评级"
+        "Stock",
+        "Rating"
       ]
     },
     {
@@ -1707,13 +1610,14 @@
       "source": "新闻 · 国内模型公司",
       "source_id": "gnews-labs-cn",
       "published": "2026-09-13T14:52:00+00:00",
-      "category": "industry",
+      "category": "release",
       "priority": "low",
-      "summary": "传闻 DeepSeek 即将发布 3 万亿参数的新一代大模型。",
-      "why": "与前文 DeepSeek 新模型传闻重复。",
+      "summary": "传 DeepSeek 即将发布 3 万亿参数的新一代大模型。",
+      "why": "与前述 DeepSeek 新模型传闻重复。",
       "tags": [
         "DeepSeek",
-        "大模型"
+        "LLM",
+        "Rumor"
       ]
     },
     {
@@ -1725,12 +1629,11 @@
       "published": "2026-09-13T14:42:06+00:00",
       "category": "industry",
       "priority": "low",
-      "summary": "Anthropic CEO 因“AI 末日”担忧呼吁放缓前沿模型开发。",
-      "why": "重复报道。",
+      "summary": "Anthropic CEO 基于对 AI 终局风险的担忧再次呼吁放慢前沿研发。",
+      "why": "重复，同属安全倡议言论报道。",
       "tags": [
-        "Anthropic",
-        "AI Safety",
-        "Doomsday"
+        "AI安全",
+        "Anthropic"
       ]
     },
     {
@@ -1742,11 +1645,12 @@
       "published": "2026-09-13T14:35:24+00:00",
       "category": "industry",
       "priority": "low",
-      "summary": "智谱 50 亿美元融资落定，加码下一代模型及算力基建。",
-      "why": "与前文智谱融资新闻重复。",
+      "summary": "智谱 50 亿美元融资落定，加码下一代 GLM 及算力基建。",
+      "why": "与前述智谱融资新闻重复。",
       "tags": [
-        "智谱",
-        "融资"
+        "Zhipu AI",
+        "Finance",
+        "Infra"
       ]
     },
     {
@@ -1758,11 +1662,11 @@
       "published": "2026-09-13T14:30:34+00:00",
       "category": "industry",
       "priority": "low",
-      "summary": "探讨 Anthropic CEO 呼吁暂停 AI 开发的原因。",
-      "why": "重复报道。",
+      "summary": "媒体撰文剖析 Anthropic CEO 呼吁暂停模型研发背后的内因与行业反应。",
+      "why": "重复，安全争论评论性文章。",
       "tags": [
-        "Anthropic",
-        "AI Policy"
+        "行业分析",
+        "AI监管"
       ]
     },
     {
@@ -1822,11 +1726,12 @@
       "published": "2026-09-13T10:37:58+00:00",
       "category": "industry",
       "priority": "low",
-      "summary": "智谱 50 亿美元融资落定，加码下一代模型及算力基建。",
-      "why": "与前文智谱融资新闻重复。",
+      "summary": "智谱 50 亿美元融资落定，加码下一代 GLM 及算力基建。",
+      "why": "与前述智谱融资新闻重复。",
       "tags": [
-        "智谱",
-        "融资"
+        "Zhipu AI",
+        "Finance",
+        "Infra"
       ]
     },
     {
@@ -1838,12 +1743,28 @@
       "published": "2026-09-13T09:45:00+00:00",
       "category": "industry",
       "priority": "low",
-      "summary": "评论文章探讨中国大模型如何改变硅谷的定价逻辑。",
-      "why": "商业定价策略讨论，不涉及底层技术优化。",
+      "summary": "探讨中国大模型如何改变硅谷的定价逻辑。",
+      "why": "泛泛的商业模式讨论，缺乏技术深度。",
       "tags": [
-        "大模型",
-        "商业化",
-        "定价"
+        "Pricing",
+        "Business"
+      ]
+    },
+    {
+      "id": "dbfd4ef58b2f55af",
+      "title": "'We must pace the frontier': Anthropic CEO urges AI companies to slow model development - The Jerusalem Post",
+      "link": "https://news.google.com/rss/articles/CBMibEFVX3lxTFBoT0ZyYnBJVXVQVzZtb3dRWDBsbTdqQmU0VFlNbDJWTmRhMjM3Sl9uNWZ0WkV1cUxlMVQ4cWFNekxydmE0MGFlWV9oMENNeUE0RWhjVHZuQlZqbnZTZ0xXOGlDbTZ4c3RVTFBjQQ?oc=5",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-09-13T09:37:14+00:00",
+      "category": "industry",
+      "priority": "low",
+      "summary": "Anthropic CEO 呼吁 AI 机构放慢前沿模型研发步伐以确保安全性。",
+      "why": "重复，与行业安全政策倡议相同。",
+      "tags": [
+        "Anthropic",
+        "行业动态",
+        "AI安全"
       ]
     },
     {
@@ -1888,10 +1809,10 @@
       "category": "industry",
       "priority": "low",
       "summary": "Kimi 等探讨智能体新商业，认为 AI 支付增量来自硅基生命。",
-      "why": "偏向应用层商业模式探讨，与底层系统和生成模型研发无关。",
+      "why": "偏向商业模式和概念炒作，与底层技术优化无关。",
       "tags": [
         "Agent",
-        "商业化"
+        "Business"
       ]
     },
     {
@@ -1911,23 +1832,6 @@
       ]
     },
     {
-      "id": "f69b705129b60550",
-      "title": "Anthropic CEO urges AI firms to slow model development amid misuse fears; Altman and Musk back call - The Business Times",
-      "link": "https://news.google.com/rss/articles/CBMi9wFBVV95cUxPby1NcHNLcDRiZWJEU3NnV050dVFsdEtzMVM3dWJ5OS1sdDVuWHBxeUxnMTd5alNYVWw1WGgtVWhwd0Rja1JsS1A0T1RITkpSakFQVjlUZ1dIbnRlYU1zX21KVDZsY3VhZ3o1M05pdWx5QUNWZkZvaHZxaHRyTC0zNEltWUpjX0xiajh4amRpTlJoY3hRd2RvbHo1WmVBMDVYbHpHd3VpTEhZSEcxWDZydWIzQXEwRmlDWUw0cENIMGJnQjNrdG1kX1cxQmJzMWNXSGRqMUY0Z2pyNEs1Y20xR1E4QVl1QTg4bDczWEpsZkxwV1FrWkpj?oc=5",
-      "source": "新闻 · Anthropic / Mistral / xAI",
-      "source_id": "gnews-labs-en",
-      "published": "2026-09-13T01:22:00+00:00",
-      "category": "industry",
-      "priority": "low",
-      "summary": "Anthropic CEO 呼吁放缓前沿 AI 模型开发，Altman 和马斯克表示支持。",
-      "why": "行业政策与监管呼吁，与底层技术和模型研发无直接关系，可跳过。",
-      "tags": [
-        "Anthropic",
-        "AI监管",
-        "行业动态"
-      ]
-    },
-    {
       "id": "41e015fbccd610d3",
       "title": "中国AI被揭蒸馏内幕 专家：AI成新的情报节点 - 亲友传真",
       "link": "https://news.google.com/rss/articles/CBMiWEFVX3lxTFBvdXEzSUgwRzQxdzRNTEZsN2FIc2FLNk9kZDdtZ2dCYlhvdy04d3FBRVBOd1oyUTFtY0FiZTVwMXkyQlpveUZXeHM0ZERVWmhtQ3dnVV9xYnk?oc=5",
@@ -1936,11 +1840,11 @@
       "published": "2026-09-13T00:17:00+00:00",
       "category": "industry",
       "priority": "low",
-      "summary": "媒体报道中国 AI 模型存在蒸馏现象，专家称 AI 成为新情报节点。",
-      "why": "偏向政治与行业争议的泛泛讨论，缺乏技术干货。",
+      "summary": "报道称中国 AI 存在模型蒸馏内幕，专家认为 AI 成为新情报节点。",
+      "why": "偏向政治与非技术性争议，无工程参考价值。",
       "tags": [
-        "模型蒸馏",
-        "行业争议"
+        "Model Distillation",
+        "Controversy"
       ]
     },
     {
@@ -1968,12 +1872,12 @@
       "published": "2026-09-12T23:31:10+00:00",
       "category": "industry",
       "priority": "low",
-      "summary": "传言谷歌即将实现 RSI，同时 Anthropic 等呼吁放缓 AI 步伐被指为监管俘获。",
-      "why": "缺乏实质性技术内容的传言和行业八卦，可跳过。",
+      "summary": "传言 Google 即将实现 RSI，同时 Anthropic 等呼吁放缓 AI 发展被指为监管俘获。",
+      "why": "包含未证实的传言及重复的放缓呼吁，技术参考价值低。",
       "tags": [
         "Google",
-        "行业八卦",
-        "AI监管"
+        "Rumor",
+        "Regulation"
       ]
     },
     {
@@ -1985,12 +1889,11 @@
       "published": "2026-09-12T22:54:00+00:00",
       "category": "industry",
       "priority": "low",
-      "summary": "Amodei、Altman、Musk 呼吁放缓 AI 模型开发。",
-      "why": "重复报道。",
+      "summary": "媒体报道科技领袖就前沿模型研发速度与安全平衡展开多方呼吁与争论。",
+      "why": "重复，放缓研发倡议的泛泛报道。",
       "tags": [
-        "Anthropic",
-        "OpenAI",
-        "AI Policy"
+        "行业动态",
+        "科技领袖"
       ]
     },
     {
@@ -2590,6 +2493,23 @@
       ]
     },
     {
+      "id": "12ac24231eafe1e3",
+      "title": "Breaking the Vision-Action Shortcut: Latent Interface Training for Generalizable Robotics Foundation Models",
+      "link": "https://huggingface.co/papers/2609.12641",
+      "source": "HF Papers 日榜",
+      "source_id": "hf-papers",
+      "published": "2026-09-10T20:00:00+00:00",
+      "category": "research",
+      "priority": "low",
+      "summary": "LIT 提出两阶段隐式接口训练，消除机器人基础模型中的视觉动作捷径以增强泛化。",
+      "why": "偏向具身控制策略泛化，脱离系统性能与生成主线。",
+      "tags": [
+        "具身智能",
+        "机器人",
+        "表征学习"
+      ]
+    },
+    {
       "id": "014159943e4d9643",
       "title": "How a researcher uses Codex and ChatGPT to search for new antimicrobial molecules",
       "link": "https://openai.com/index/using-codex-chatgpt-to-search-for-new-antimicrobials",
@@ -2687,6 +2607,40 @@
       ]
     },
     {
+      "id": "748b3933b19e2cbf",
+      "title": "Benchmark Radar: A Living Database and Search Engine for AI Benchmarks and Evaluation",
+      "link": "https://huggingface.co/papers/2609.11115",
+      "source": "HF Papers 日榜",
+      "source_id": "hf-papers",
+      "published": "2026-09-09T20:00:00+00:00",
+      "category": "research",
+      "priority": "low",
+      "summary": "研究者推出 Benchmark Radar，提供 AI 评测集与得分历史的实时数据库及检索平台。",
+      "why": "主要面向基准评测整理，与 GPU 及生成模型无关。",
+      "tags": [
+        "Benchmark",
+        "评估体系",
+        "工具"
+      ]
+    },
+    {
+      "id": "c10f9a1933ce39b3",
+      "title": "COBRA-Skills: Contextual Bandit-Guided Evolution for Agent Skill Optimization",
+      "link": "https://huggingface.co/papers/2609.11682",
+      "source": "HF Papers 日榜",
+      "source_id": "hf-papers",
+      "published": "2026-09-09T20:00:00+00:00",
+      "category": "research",
+      "priority": "low",
+      "summary": "COBRA-Skills 提出基于情境强化学习的预算优化框架，加速智能体技能进化演变。",
+      "why": "聚焦 Agent 提示词与技能检索优化，无关底层算力。",
+      "tags": [
+        "Agent",
+        "强化学习",
+        "提示工程"
+      ]
+    },
+    {
       "id": "a1014fccf82a5aa1",
       "title": "Beyond Solver Verdicts: Generative Reward Models for Autoformalization",
       "link": "https://huggingface.co/papers/2609.11085",
@@ -2695,12 +2649,63 @@
       "published": "2026-09-09T20:00:00+00:00",
       "category": "research",
       "priority": "low",
-      "summary": "论文提出 Generative Verification，通过蒸馏离线 Z3 等价预言机解决神经符号系统中的形式化验证漏洞。",
-      "why": "偏向数学定理证明和神经符号系统，与他的方向无关。",
+      "summary": "GenV 引入生成式奖励模型解决形式化验证中的假阳性漏洞，提升定理证明忠实度。",
+      "why": "针对神经符号与数学证明，与生成建模及底层性能无关。",
       "tags": [
-        "Autoformalization",
-        "Reward Model",
-        "Neurosymbolic"
+        "形式化验证",
+        "奖励模型",
+        "神经符号"
+      ]
+    },
+    {
+      "id": "9771708ac7ba7d08",
+      "title": "Memory as Plans: World-Action Modeling with Memory-Grounded Planning",
+      "link": "https://huggingface.co/papers/2609.11561",
+      "source": "HF Papers 日榜",
+      "source_id": "hf-papers",
+      "published": "2026-09-09T20:00:00+00:00",
+      "category": "research",
+      "priority": "low",
+      "summary": "MaP-WAM 提出 Memory-as-Plans 框架，将多模态情境解耦为规划与执行以增强非马尔可夫决策。",
+      "why": "侧重机器人长时程决策，非世界模型视觉生成方向。",
+      "tags": [
+        "机器人规划",
+        "长序列决策",
+        "具身智能"
+      ]
+    },
+    {
+      "id": "f4fc88624a356041",
+      "title": "Negative Self-Distillation: Learning to Reason by Avoiding Flaws",
+      "link": "https://huggingface.co/papers/2609.11699",
+      "source": "HF Papers 日榜",
+      "source_id": "hf-papers",
+      "published": "2026-09-09T20:00:00+00:00",
+      "category": "research",
+      "priority": "low",
+      "summary": "NSD 提出负向自蒸馏方法，通过避免确定性错误轨迹以恢复复杂推理探索能力。",
+      "why": "属于 LLM 推理对齐策略，与算子优化及视觉生成无关。",
+      "tags": [
+        "自蒸馏",
+        "模型推理",
+        "对齐"
+      ]
+    },
+    {
+      "id": "1a7922f76a891677",
+      "title": "Mi-Ripple: Restoring Images Degraded by Iterative AI Editing",
+      "link": "https://huggingface.co/papers/2609.11317",
+      "source": "HF Papers 日榜",
+      "source_id": "hf-papers",
+      "published": "2026-09-09T20:00:00+00:00",
+      "category": "research",
+      "priority": "low",
+      "summary": "Mi-Ripple 提出频域与结构平滑结合的工作流，用于修复迭代 AI 图像编辑产生的网格伪影。",
+      "why": "属于传统频域滤波与局部重绘工程，无新生成范式。",
+      "tags": [
+        "图像修复",
+        "伪影去除",
+        "图像编辑"
       ]
     },
     {
@@ -2712,12 +2717,12 @@
       "published": "2026-09-09T20:00:00+00:00",
       "category": "research",
       "priority": "low",
-      "summary": "论文提出 DRG-MAPPO，一种用于协同空战的分层动态角色图多智能体强化学习方法。",
-      "why": "多智能体强化学习在空战中的应用，与他的方向无关。",
+      "summary": "DRG-MAPPO 将分层动态角色图引入多智能体强化学习，用于解决空战协同任务。",
+      "why": "属于特定领域多智能体对抗博弈，可以跳过。",
       "tags": [
-        "MARL",
-        "Air Combat",
-        "Reinforcement Learning"
+        "强化学习",
+        "多智能体",
+        "博弈协同"
       ]
     },
     {
@@ -2729,11 +2734,12 @@
       "published": "2026-09-09T20:00:00+00:00",
       "category": "research",
       "priority": "low",
-      "summary": "论文提出 UniH3 框架，统一分层同质性和异质性，用于多合一医学图像恢复。",
-      "why": "医学图像处理，与他的方向无关。",
+      "summary": "UniH^3 统一跨模态同质性解剖结构与退化异质性，实现通用多合一医学图像修复。",
+      "why": "垂直医疗影像恢复任务，缺乏通用系统或模型参考价值。",
       "tags": [
-        "Medical Imaging",
-        "Image Restoration"
+        "医学影像",
+        "图像恢复",
+        "多任务学习"
       ]
     },
     {
@@ -2745,12 +2751,12 @@
       "published": "2026-09-09T20:00:00+00:00",
       "category": "research",
       "priority": "low",
-      "summary": "论文研究视觉文档检索中后期交互嵌入的压缩降级问题，并提出基于几何特性的优化见解。",
-      "why": "视觉文档检索和嵌入压缩，与他的方向无关。",
+      "summary": "研究发现视觉文档检索嵌入落在低维球面上，提出无需微调即可压缩向量存储的投影方案。",
+      "why": "属于检索向量压缩技巧，与底层性能优化及扩散模型无关。",
       "tags": [
-        "Document Retrieval",
-        "Embeddings",
-        "Compression"
+        "向量检索",
+        "嵌入压缩",
+        "文档理解"
       ]
     },
     {
