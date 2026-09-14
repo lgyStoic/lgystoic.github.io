@@ -154,6 +154,12 @@ def parse_page(blob: bytes, source: dict) -> list[dict]:
         # 列表页上链接前后的文字通常就是日期、地点、价格——详情页可能是前端渲染拿不到，这里先兜住
         context = strip_html(html[max(0, m.start() - 250) : m.end() + 450])
         entries.append({"title": strip_html(inner)[:200], "link": url, "description": context[:600], "published": "", "hints": {}})
+    total_anchors = len(ANCHOR_RE.findall(html))
+    if len(entries) <= 1:
+        head = strip_html(html[:3000])[:120]
+        log(f"[events] {source.get('name', source.get('id'))}: 页面 {len(html)} 字、{total_anchors} 个链接、匹配 {len(entries)}；正文开头「{head}」")
+    else:
+        log(f"[events] {source.get('name', source.get('id'))}: {total_anchors} 个链接，匹配 {len(entries)}，例：{entries[0]['title'][:30]!r} {entries[0]['link'][:60]}")
     return entries
 
 
@@ -172,23 +178,48 @@ def parse_wechat_list(source: dict) -> list[dict]:
         except Exception as ex:  # 某个列表挂了，试下一个
             log(f"[events] 公众号列表取不到 {list_url[:60]}：{ex}")
             continue
-        for line in text.splitlines():
+        log(f"[events] 公众号列表 {list_url[:60]}：{len(text)} 字，开头「{text[:80].strip()!r}」")
+        pairs: list[tuple[str, str]] = []  # (那一段文字, 候选 url)
+        stripped = text.lstrip()
+        if stripped.startswith("[") or stripped.startswith("{"):
+            try:  # JSON 列表：把每个对象序列化成一行来匹配名字
+                data = json.loads(stripped)
+                rows = data if isinstance(data, list) else (data.get("feeds") or data.get("data") or list(data.values()))
+                for row in rows:
+                    blob = json.dumps(row, ensure_ascii=False) if not isinstance(row, str) else row
+                    pairs.append((blob, blob))
+            except json.JSONDecodeError:
+                pairs = [(line, line) for line in text.splitlines()]
+        else:
+            pairs = [(line, line) for line in text.splitlines()]
+        for blob, _ in pairs:
             for name in wanted:
-                if name in line and name not in feeds:
-                    urls = [u for u in WECHAT_URL_RE.findall(line) if "xml" in u or "rss" in u.lower() or "feed" in u.lower()]
+                if name in blob and name not in feeds:
+                    urls = WECHAT_URL_RE.findall(blob)
+                    urls.sort(key=lambda u: (not u.endswith(".xml"), "rss" not in u.lower(), "feed" not in u.lower()))
+                    urls = [u for u in urls if u.endswith(".xml") or "rss" in u.lower() or "feed" in u.lower() or "atom" in u.lower()]
                     if urls and urls[0] not in feeds.values():  # 「腾讯云」会子串命中「腾讯云开发者」，同一 feed 只订一次
                         feeds[name] = urls[0]
     if not feeds:
         log(f"[events] 公众号：{len(wanted)} 个账号在列表里都没找到 feed")
         return []
     entries: list[dict] = []
+    shown = 0
     for name, url in list(feeds.items())[:20]:
         try:
-            for raw in parse_feed(fetch(url, source["id"] + "-" + name))[:15]:
+            blob = fetch(url, source["id"] + "-" + name)
+            for raw in parse_feed(blob)[:15]:
                 raw["source_override"] = f"公众号 · {name}"
                 entries.append(raw)
         except Exception as ex:
-            log(f"[events] 公众号 {name} 的 feed 抓取失败：{ex}")
+            snippet = ""
+            if shown < 2:  # 只打前两个的响应开头，够判断是 HTML 还是别的
+                try:
+                    snippet = "；响应开头 " + repr(blob[:120].decode("utf-8", "replace").strip())
+                except Exception:
+                    pass
+                shown += 1
+            log(f"[events] 公众号 {name} 的 feed 抓取失败（{url[:70]}）：{ex}{snippet}")
     log(f"[events] 公众号：找到 {len(feeds)}/{len(wanted)} 个账号的 feed，共 {len(entries)} 篇")
     return entries
 
