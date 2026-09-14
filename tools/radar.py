@@ -29,6 +29,7 @@ import re
 import sys
 import time
 import urllib.error
+import urllib.parse
 import urllib.request
 import xml.etree.ElementTree as ET
 from datetime import datetime, timedelta, timezone
@@ -115,6 +116,7 @@ def fetch(url: str, source_id: str) -> bytes:
             raise FileNotFoundError(f"fixture 缺失：{path}")
         return path.read_bytes()
 
+    url = urllib.parse.quote(url, safe=":/?&=%#+@!$,;'()*[]~")  # 含中文的地址先转义，否则 http.client 会抛 UnicodeEncodeError
     req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT, "Accept": "application/rss+xml, application/atom+xml, application/json, application/xml, text/xml, */*"})
     timeout = FETCH_TIMEOUT
     if "arxiv.org" in url:

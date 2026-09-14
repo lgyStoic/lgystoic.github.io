@@ -27,7 +27,7 @@ import urllib.error
 import urllib.request
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
-from urllib.parse import urljoin
+from urllib.parse import quote, urljoin
 from zoneinfo import ZoneInfo
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -156,7 +156,8 @@ def parse_page(blob: bytes, source: dict) -> list[dict]:
         seen.add(url)
         # 列表页上链接前后的文字通常就是日期、地点、价格——详情页可能是前端渲染拿不到，这里先兜住
         context = strip_html(html[max(0, m.start() - 250) : m.end() + 450])
-        entries.append({"title": strip_html(inner)[:200], "link": url, "description": context[:600], "published": "", "hints": {}})
+        title = strip_html(inner)[:200] or strip_html(html[m.end() : m.end() + 300])[:80]
+        entries.append({"title": title, "link": url, "description": context[:600], "published": "", "hints": {}})
     # 页面里的 schema.org Event（lu.ma 城市页、Eventbrite 等都嵌），时间地点直接就有
     for m in re.finditer(r'<script[^>]+type=["\']application/ld\+json["\'][^>]*>(.*?)</script>', html, re.I | re.S):
         try:
@@ -269,7 +270,7 @@ def parse_wechat_list(source: dict) -> list[dict]:
                     pass
                 shown += 1
             log(f"[events] 公众号 {name} 的 feed 抓取失败（{url[:70]}）：{ex}{snippet}")
-    log(f"[events] 公众号：找到 {len(feeds)}/{len(wanted)} 个账号的 feed，共 {len(entries)} 篇")
+    log(f"[events] 公众号：找到 {len(feeds)}/{len(wanted)} 个账号的 feed（{'、'.join(feeds)}），共 {len(entries)} 篇")
     return entries
 
 
@@ -280,12 +281,14 @@ def fetch_detail(url: str) -> dict:
     """抓活动详情页的 OG 与 schema.org Event（有的话直接拿到时间地点）。fixture 模式跳过。"""
     if os.environ.get("RADAR_FIXTURE_DIR"):
         return {}
-    req = urllib.request.Request(url, headers={"User-Agent": UA, "Accept": "text/html,*/*"})
     try:
+        # 含中文的 URL（活动行、搜狗跳转）直接发会在 http.client 里 UnicodeEncodeError，先按 RFC 3986 转义
+        safe_url = quote(url, safe=":/?&=%#+@!$,;'()*[]~")
+        req = urllib.request.Request(safe_url, headers={"User-Agent": UA, "Accept": "text/html,*/*"})
         with urllib.request.urlopen(req, timeout=15) as resp:
             html = resp.read(400_000).decode("utf-8", "replace")
-    except (urllib.error.URLError, TimeoutError, OSError, ValueError) as e:
-        log(f"[events] 详情页取不到 {url[:70]}：{e}")
+    except Exception as e:  # 详情页什么错都可能有（非 ASCII URL、RemoteDisconnected、IncompleteRead…），绝不能拖垮整轮
+        log(f"[events] 详情页取不到 {url[:70]}：{type(e).__name__}: {str(e)[:80]}")
         return {}
 
     def meta(*names: str) -> str:
@@ -307,6 +310,8 @@ def fetch_detail(url: str) -> dict:
     body = re.search(r"<body[^>]*>(.*)</body>", html, re.I | re.S)
     body_text = strip_html(re.sub(r"<(nav|header|footer|script|style)\b.*?</\1>", " ", body.group(1) if body else html, flags=re.I | re.S))
     out["text"] = body_text[:1200]
+    if len(body_text) < 200:
+        log(f"[events] 详情页几乎没有正文 {url[:70]}：{body_text[:80]!r}")
 
     for m in re.finditer(r'<script[^>]+type=["\']application/ld\+json["\'][^>]*>(.*?)</script>', html, re.I | re.S):
         try:
@@ -601,6 +606,9 @@ def main() -> None:
     for c in cands:
         ev = to_event(c, ai.get(c["id"]) if ai else None, today)
         seen[c["id"]] = today
+        if ai and c.get("kind") in ("wechat", "page") and c["id"] in ai:
+            a = ai[c["id"]]
+            log(f"[events] 判定 {c['source'][:14]} | {c['title'][:36]!r} → {'活动' if a.get('is_event') else '非活动'} {a.get('start', '')} {a.get('city', '')} {a.get('relevance', '')}")
         if c.get("kind") == "refresh":
             old = c["_existing"]
             if ev is None:

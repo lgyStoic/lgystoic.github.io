@@ -106,8 +106,16 @@ def main() -> None:
     if not ai_ok:
         problems.append(f"AI 退回规则（连续 {health['ai_fallback_streak']} 天）")
 
+    # ---- 脚本崩溃：日志里有 Traceback 就是最高优先级 ----
+    log_text = (DATA / "last-run.log").read_text(encoding="utf-8", errors="replace") if (DATA / "last-run.log").exists() else ""
+    if "Traceback (most recent call last)" in log_text:
+        crashed = sorted({m for m in __import__("re").findall(r'File "[^"]*/tools/([a-z_]+\.py)"', log_text)})
+        problems.insert(0, f"脚本崩溃：{'、'.join(crashed) or '见日志'}（该步骤数据未更新）")
+
     # ---- 待人决定 ----
     decide = []
+    if "Traceback (most recent call last)" in log_text:
+        decide.append("有脚本抛出未捕获异常，看 last-run.log 里的 Traceback")
     if health["ai_fallback_streak"] >= 2:
         decide.append("AI 连续两天退回规则，检查 GEMINI_API_KEY / 配额")
     if health["schedule_miss_streak"] >= 2:
