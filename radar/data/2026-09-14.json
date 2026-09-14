@@ -1,28 +1,28 @@
 {
   "date": "2026-09-14",
-  "generated_at": "2026-09-13T23:49:02+00:00",
-  "ai": true,
-  "model": "gemini-3.1-pro-preview",
+  "generated_at": "2026-09-14T00:00:09+00:00",
+  "ai": false,
+  "model": "",
   "sources": [
     {
       "id": "openai",
       "name": "OpenAI",
       "ok": true,
-      "count": 1,
+      "count": 19,
       "error": ""
     },
     {
       "id": "deepmind",
       "name": "Google DeepMind",
       "ok": true,
-      "count": 0,
+      "count": 1,
       "error": ""
     },
     {
       "id": "google-ai",
       "name": "Google AI Blog",
       "ok": true,
-      "count": 0,
+      "count": 3,
       "error": ""
     },
     {
@@ -36,14 +36,14 @@
       "id": "hf-blog",
       "name": "Hugging Face Blog",
       "ok": true,
-      "count": 0,
+      "count": 3,
       "error": ""
     },
     {
       "id": "nvidia-dev",
       "name": "NVIDIA Technical Blog",
       "ok": true,
-      "count": 0,
+      "count": 4,
       "error": ""
     },
     {
@@ -57,14 +57,14 @@
       "id": "pytorch",
       "name": "PyTorch Blog",
       "ok": true,
-      "count": 0,
+      "count": 5,
       "error": ""
     },
     {
       "id": "simonw",
       "name": "Simon Willison",
       "ok": true,
-      "count": 0,
+      "count": 9,
       "error": ""
     },
     {
@@ -78,14 +78,14 @@
       "id": "interconnects",
       "name": "Interconnects",
       "ok": true,
-      "count": 0,
+      "count": 4,
       "error": ""
     },
     {
       "id": "raschka",
       "name": "Sebastian Raschka",
       "ok": true,
-      "count": 0,
+      "count": 1,
       "error": ""
     },
     {
@@ -96,56 +96,317 @@
       "error": ""
     },
     {
-      "id": "arxiv-cs-lg",
-      "name": "arXiv cs.LG",
-      "ok": true,
-      "count": 0,
-      "error": ""
-    },
-    {
-      "id": "arxiv-cs-cv",
-      "name": "arXiv cs.CV",
-      "ok": true,
-      "count": 0,
-      "error": ""
-    },
-    {
-      "id": "arxiv-cs-dc",
-      "name": "arXiv cs.DC",
-      "ok": true,
-      "count": 0,
-      "error": ""
-    },
-    {
       "id": "hn-llm",
       "name": "Hacker News (LLM, 100+ 分)",
       "ok": false,
       "count": 0,
-      "error": "HTTP Error 502: Bad Gateway"
+      "error": "<urlopen error [Errno 104] Connection reset by peer>"
+    },
+    {
+      "id": "arxiv-gen",
+      "name": "arXiv · 生成模型",
+      "ok": false,
+      "count": 0,
+      "error": "HTTP Error 429: Unknown Error"
+    },
+    {
+      "id": "arxiv-kernel",
+      "name": "arXiv · GPU / 系统",
+      "ok": false,
+      "count": 0,
+      "error": "HTTP Error 429: Unknown Error"
+    },
+    {
+      "id": "arxiv-train",
+      "name": "arXiv · 训练系统",
+      "ok": false,
+      "count": 0,
+      "error": "HTTP Error 429: Unknown Error"
+    },
+    {
+      "id": "rel-pytorch",
+      "name": "Release · PyTorch",
+      "ok": true,
+      "count": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-triton",
+      "name": "Release · Triton",
+      "ok": true,
+      "count": 0,
+      "error": ""
+    },
+    {
+      "id": "rel-cutlass",
+      "name": "Release · CUTLASS",
+      "ok": true,
+      "count": 0,
+      "error": ""
+    },
+    {
+      "id": "rel-flash-attention",
+      "name": "Release · FlashAttention",
+      "ok": true,
+      "count": 0,
+      "error": ""
+    },
+    {
+      "id": "rel-vllm",
+      "name": "Release · vLLM",
+      "ok": true,
+      "count": 2,
+      "error": ""
+    },
+    {
+      "id": "rel-sglang",
+      "name": "Release · SGLang",
+      "ok": true,
+      "count": 0,
+      "error": ""
+    },
+    {
+      "id": "rel-tensorrt-llm",
+      "name": "Release · TensorRT-LLM",
+      "ok": true,
+      "count": 0,
+      "error": ""
+    },
+    {
+      "id": "rel-diffusers",
+      "name": "Release · Diffusers",
+      "ok": true,
+      "count": 0,
+      "error": ""
+    },
+    {
+      "id": "rel-cuda-python",
+      "name": "Release · cuda-python",
+      "ok": true,
+      "count": 0,
+      "error": ""
+    },
+    {
+      "id": "gnews-labs-en",
+      "name": "新闻 · Anthropic / Mistral / xAI",
+      "ok": true,
+      "count": 29,
+      "error": ""
+    },
+    {
+      "id": "gnews-labs-cn",
+      "name": "新闻 · 国内模型公司",
+      "ok": true,
+      "count": 28,
+      "error": ""
+    },
+    {
+      "id": "jiqizhixin",
+      "name": "机器之心",
+      "ok": false,
+      "count": 0,
+      "error": "not well-formed (invalid token): line 7, column 82"
+    },
+    {
+      "id": "qbitai",
+      "name": "量子位",
+      "ok": true,
+      "count": 1,
+      "error": ""
+    },
+    {
+      "id": "infoq-cn",
+      "name": "InfoQ 中文",
+      "ok": true,
+      "count": 3,
+      "error": ""
+    },
+    {
+      "id": "anthropic-eng",
+      "name": "Anthropic Engineering",
+      "ok": false,
+      "count": 0,
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "id": "lmarena",
+      "name": "LMArena Blog",
+      "ok": false,
+      "count": 0,
+      "error": "not well-formed (invalid token): line 1, column 33481"
+    },
+    {
+      "id": "modal-blog",
+      "name": "Modal Blog",
+      "ok": false,
+      "count": 0,
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "id": "thonking",
+      "name": "Horace He (thonking)",
+      "ok": true,
+      "count": 0,
+      "error": ""
     }
   ],
   "counts": {
-    "high": 11,
-    "medium": 20,
-    "low": 37
+    "high": 24,
+    "medium": 114,
+    "low": 3
   },
   "items": [
     {
-      "id": "5e4d2c88e5b56635",
-      "title": "Helion x 🤗 HF Kernels: Building and Shipping Out-of-the-box Performant Kernels",
-      "link": "https://pytorch.org/blog/helion-x-%f0%9f%a4%97-hf-kernels-building-and-shipping-out-of-the-box-performant-kernels",
-      "source": "PyTorch Blog",
-      "source_id": "pytorch",
-      "published": "2026-09-11T17:45:57+00:00",
+      "id": "035a04e58d0d7104",
+      "title": "trunk/34219e6fef8efeb62fa43d28f2b1e92a7e481f5e: [BE]: Update NVTX submodule to v3.6.0 (#196618)",
+      "link": "https://github.com/pytorch/pytorch/releases/tag/trunk%2F34219e6fef8efeb62fa43d28f2b1e92a7e481f5e",
+      "source": "Release · PyTorch",
+      "source_id": "rel-pytorch",
+      "published": "2026-09-13T20:53:35+00:00",
       "category": "infra",
       "priority": "high",
-      "summary": "HuggingFace Kernels 项目支持 Helion，介绍如何构建、自动调优和发布高性能 Kernel。",
-      "why": "直接涉及 Kernel 编写、自动调优和性能优化，高度契合工作方向。",
+      "summary": "Updates to the latest version of this header only code annotation API Pull Request resolved: #196618 Approved by: https://github.com/malfet",
+      "why": "",
       "tags": [
-        "Kernels",
-        "Performance",
-        "Hugging Face"
+        "pytorch",
+        "3D"
       ]
+    },
+    {
+      "id": "6e6bb958c4bec234",
+      "title": "trunk/58fbd573aaacbade3de7cf561b6c58bb208ebfc4: [BE] Update mimalloc submodule to 2.5.2 (#196623)",
+      "link": "https://github.com/pytorch/pytorch/releases/tag/trunk%2F58fbd573aaacbade3de7cf561b6c58bb208ebfc4",
+      "source": "Release · PyTorch",
+      "source_id": "rel-pytorch",
+      "published": "2026-09-13T20:52:18+00:00",
+      "category": "infra",
+      "priority": "high",
+      "summary": "Update mimalloc when some minor performance and compilation fixes Pull Request resolved: #196623 Approved by: https://github.com/malfet",
+      "why": "",
+      "tags": [
+        "pytorch",
+        "3D"
+      ]
+    },
+    {
+      "id": "b435e25dbdae0bb5",
+      "title": "trunk/f3d3b3722774b0f109b69d80dc989f0f81f5f97a: [MPS] Add float8_e4m3fn support to eye (#196915)",
+      "link": "https://github.com/pytorch/pytorch/releases/tag/trunk%2Ff3d3b3722774b0f109b69d80dc989f0f81f5f97a",
+      "source": "Release · PyTorch",
+      "source_id": "rel-pytorch",
+      "published": "2026-09-13T20:31:25+00:00",
+      "category": "infra",
+      "priority": "high",
+      "summary": "Add metal eye kernel instantiation for fp8 dtype for fp8_e4m3 Pull Request resolved: #196915 Approved by: https://github.com/Skylion007",
+      "why": "",
+      "tags": [
+        "kernel",
+        "fp8",
+        "pytorch",
+        "3D"
+      ]
+    },
+    {
+      "id": "2bc8d77cfdf4c669",
+      "title": "viable/strict/1789295430: [vllm hash update] update the pinned vllm hash (#196889)",
+      "link": "https://github.com/pytorch/pytorch/releases/tag/viable%2Fstrict%2F1789295430",
+      "source": "Release · PyTorch",
+      "source_id": "rel-pytorch",
+      "published": "2026-09-13T06:23:59+00:00",
+      "category": "infra",
+      "priority": "high",
+      "summary": "This PR is auto-generated nightly by this action . Update the pinned vllm hash. Pull Request resolved: #196889 Approved by: https://github.com/pytorchbot",
+      "why": "",
+      "tags": [
+        "llm",
+        "pytorch"
+      ]
+    },
+    {
+      "id": "253d4a5fe516cc61",
+      "title": "DeepSeek 开口说话了：灰度测试上线，支持四种音色- AI 人工智能 - cnBeta.COM",
+      "link": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE5ZbGh5dXo5MGFTRmxIWHFISkphaUpEQ1J5Z21jRHFaWGtwbzBCRVJqVW1OWXc4a3NKOHFfRXVwYkhBSHd0TmItaUdVMnB5azhUaUx2cHdFREpJTlB4a3dUbw?oc=5",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-09-12T13:46:00+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "DeepSeek 开口说话了：灰度测试上线，支持四种音色- AI 人工智能 cnBeta.COM",
+      "why": "",
+      "tags": [
+        "3D"
+      ]
+    },
+    {
+      "id": "539113f83b13360d",
+      "title": "Anthropic Says Chinese AI Labs Launched 190 Million Claude Distillation Attacks - Tekedia",
+      "link": "https://news.google.com/rss/articles/CBMipwFBVV95cUxQSDhIVTNKZTZld0pTZmJrQVZ3a0h4YTRXU1lEd2FJVmtYYzBUWTAxMzhnMnZxdXpHNGJzb3BFUkxfczBJTUwtT1JOX2k4QmV1blJvV3dPTVhKUWt5NEF4SkFld2dKWHpYNU5pQTVzSXhiQmMwZUU1NGo2dHN2b1c4M3NqVHB5M3lxdzFhOFFvZ0VucTdrSXh1RFNwSlc5am5rNVI2ZDNNRQ?oc=5",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-09-12T09:24:20+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "Anthropic Says Chinese AI Labs Launched 190 Million Claude Distillation Attacks Tekedia",
+      "why": "",
+      "tags": [
+        "3D"
+      ]
+    },
+    {
+      "id": "51efbbdfb4fa82b9",
+      "title": "中国科大大模型公共服务平台上线DeepSeek V4.1 Flash - 中国科大新闻网",
+      "link": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE5KczZXdjZCNXFweWZkVzhzeW9IT0FOb2IzU05pSmVzMWh5WDZudVhmOGR1NGlKZmtVSFBVTzVjallRRVhfbVR0NzU5RVExVlVkSkRPbEFR?oc=5",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-09-12T08:14:48+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "中国科大大模型公共服务平台上线DeepSeek V4.1 Flash 中国科大新闻网",
+      "why": "",
+      "tags": [
+        "大模型"
+      ]
+    },
+    {
+      "id": "3149e64f7f8b62ea",
+      "title": "Open-Source AI & Open Models Reading List",
+      "link": "https://www.interconnects.ai/p/open-source-ai-reading-list",
+      "source": "Interconnects",
+      "source_id": "interconnects",
+      "published": "2026-09-11T12:36:25+00:00",
+      "category": "people",
+      "priority": "high",
+      "summary": "How to get up to speed on open models and their implications.",
+      "why": "",
+      "tags": []
+    },
+    {
+      "id": "4d4e7920d8a762a2",
+      "title": "Now everyone can put data to work",
+      "link": "https://openai.com/index/put-data-to-work",
+      "source": "OpenAI",
+      "source_id": "openai",
+      "published": "2026-09-10T15:00:00+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "Meet the Data agent in ChatGPT Work. Connect company data, uncover insights, and build interactive dashboards with AI using natural language.",
+      "why": "",
+      "tags": [
+        "agent"
+      ]
+    },
+    {
+      "id": "016c3ec9b775a98e",
+      "title": "Introducing ChatGPT for Financial Services",
+      "link": "https://openai.com/index/introducing-chatgpt-financial-services",
+      "source": "OpenAI",
+      "source_id": "openai",
+      "published": "2026-09-10T07:00:00+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "Introducing ChatGPT for Financial Services, combining built-in financial data and GPT-6 Astra for research, modeling, and client-ready materials.",
+      "why": "",
+      "tags": []
     },
     {
       "id": "cf374b609ab644dd",
@@ -165,89 +426,131 @@
       ]
     },
     {
-      "id": "fa50db794ded0bb7",
-      "title": "Serve Qwen3.8-2.4T-A95B, a 2.4T-Parameter Model, with Configurable Reasoning on NVIDIA GB300 NVL72",
-      "link": "https://developer.nvidia.com/blog/serve-qwen3-8-2-4t-a95b-a-2-4t-parameter-model-with-configurable-reasoning-on-nvidia-gb300-nvl72",
-      "source": "NVIDIA Technical Blog",
-      "source_id": "nvidia-dev",
-      "published": "2026-09-09T20:30:33+00:00",
-      "category": "infra",
-      "priority": "high",
-      "summary": "NVIDIA 介绍在 GB300 NVL72 上部署 2.4T 参数的 Qwen3.8-Max 模型。",
-      "why": "涉及超大参数模型在最新 GPU 集群上的推理部署和性能优化，直接相关。",
-      "tags": [
-        "NVIDIA GB300",
-        "LLM Inference",
-        "Qwen"
-      ]
-    },
-    {
-      "id": "6a34428ef866785f",
-      "title": "CUDA Toolkit 13.4 Adds Windows on Arm Support and Greater Control over Shared GPUs",
-      "link": "https://developer.nvidia.com/blog/cuda-toolkit-13-4-adds-windows-on-arm-support-and-greater-control-over-shared-gpus",
-      "source": "NVIDIA Technical Blog",
-      "source_id": "nvidia-dev",
-      "published": "2026-09-09T20:24:19+00:00",
-      "category": "infra",
-      "priority": "high",
-      "summary": "CUDA Toolkit 13.4 发布，增加 Windows on Arm 支持及对共享 GPU 的更好控制。",
-      "why": "核心底层工具链更新，直接影响 GPU Kernel 开发和性能调优。",
-      "tags": [
-        "CUDA",
-        "NVIDIA",
-        "GPU"
-      ]
-    },
-    {
-      "id": "d089b3b20144fd24",
-      "title": "Recursive Code World Models: Building Complex Worlds through Recursive Scene Programs",
-      "link": "https://huggingface.co/papers/2609.11499",
-      "source": "HF Papers 日榜",
-      "source_id": "hf-papers",
-      "published": "2026-09-09T20:00:00+00:00",
-      "category": "research",
-      "priority": "high",
-      "summary": "提出递归代码世界模型，通过递归场景程序和求解器，从单张参考图像在代码中重建复杂 3D 世界。",
-      "why": "涉及 3D 生成和世界模型，与关注 3D/视频生成的工程师方向高度契合。",
-      "tags": [
-        "3D Generation",
-        "World Models",
-        "Scene Programs"
-      ]
-    },
-    {
-      "id": "f779c7312a5685b3",
-      "title": "World in World: Explore the World with World Models",
-      "link": "https://huggingface.co/papers/2609.11548",
-      "source": "HF Papers 日榜",
-      "source_id": "hf-papers",
-      "published": "2026-09-09T20:00:00+00:00",
-      "category": "research",
-      "priority": "high",
-      "summary": "提出免训练推理时接口，使自回归视频世界模型能够在新视角下灵活控制和探索源视频。",
-      "why": "视频生成和世界模型的前沿探索，直接命中视频生成方向。",
-      "tags": [
-        "Video Generation",
-        "World Models",
-        "Autoregressive"
-      ]
-    },
-    {
-      "id": "488db19c955d1398",
-      "title": "SenseNova-U1.5: Towards Native Unified Visual Intelligence",
-      "link": "https://huggingface.co/papers/2609.11929",
-      "source": "HF Papers 日榜",
-      "source_id": "hf-papers",
-      "published": "2026-09-09T20:00:00+00:00",
+      "id": "2b26a8066576cc98",
+      "title": "Introducing the Agents API",
+      "link": "https://openai.com/index/introducing-the-agents-api",
+      "source": "OpenAI",
+      "source_id": "openai",
+      "published": "2026-09-10T00:00:00+00:00",
       "category": "release",
       "priority": "high",
-      "summary": "商汤发布 8B-MoT 原生统一多模态模型 SenseNova-U1.5，采用无 VAE 架构支持 4K 视觉生成。",
-      "why": "无 VAE 架构的视觉生成大模型发布，对生成模型架构和训练有重要参考价值。",
+      "summary": "Build and launch cloud agents with the Agents API, a managed service powered by the Codex harness for orchestration, long-running sessions, and tool use.",
+      "why": "",
       "tags": [
-        "Multimodal",
-        "Visual Generation",
-        "MoT"
+        "agent"
       ]
+    },
+    {
+      "id": "a1014fccf82a5aa1",
+      "title": "Beyond Solver Verdicts: Generative Reward Models for Autoformalization",
+      "link": "https://huggingface.co/papers/2609.11085",
+      "source": "HF Papers 日榜",
+      "source_id": "hf-papers",
+      "published": "2026-09-09T20:00:00+00:00",
+      "category": "research",
+      "priority": "high",
+      "summary": "Neurosymbolic systems rely on mathematical solvers to guarantee reasoning correctness, yet solvers are fundamentally blind to whether a formal translation…",
+      "why": "",
+      "tags": [
+        "cute",
+        "reasoning"
+      ]
+    },
+    {
+      "id": "f4fc88624a356041",
+      "title": "Negative Self-Distillation: Learning to Reason by Avoiding Flaws",
+      "link": "https://huggingface.co/papers/2609.11699",
+      "source": "HF Papers 日榜",
+      "source_id": "hf-papers",
+      "published": "2026-09-09T20:00:00+00:00",
+      "category": "research",
+      "priority": "high",
+      "summary": "On-Policy Self-Distillation (OPSD) has emerged as a popular paradigm for large language model (LLM) self-improvement, allowing models to act as their own…",
+      "why": "",
+      "tags": [
+        "llm",
+        "language model",
+        "reasoning"
+      ]
+    },
+    {
+      "id": "a3062cee180f2b98",
+      "title": "FreeFlow: A Bias-free Hierarchical Transformer for Optical Flow Estimation",
+      "link": "https://huggingface.co/papers/2609.11486",
+      "source": "HF Papers 日榜",
+      "source_id": "hf-papers",
+      "published": "2026-09-09T20:00:00+00:00",
+      "category": "research",
+      "priority": "high",
+      "summary": "Optical flow methods typically rely on task-specific inductive biases, such as correlation volumes, feature warping, and iterative refinement, among others, to…",
+      "why": "",
+      "tags": [
+        "attention",
+        "transformer"
+      ]
+    },
+    {
+      "id": "55db15a893975f0c",
+      "title": "DRG-MAPPO: Hierarchical Dynamic Role-Graph Multi-Agent Reinforcement Learning for Cooperative Air Combat",
+      "link": "https://huggingface.co/papers/2609.11155",
+      "source": "HF Papers 日榜",
+      "source_id": "hf-papers",
+      "published": "2026-09-09T20:00:00+00:00",
+      "category": "research",
+      "priority": "high",
+      "summary": "Multi-Agent Reinforcement Learning (MARL) has emerged as a pivotal paradigm for complex decision-making in autonomous systems and air combat…",
+      "why": "",
+      "tags": [
+        "reinforcement learning",
+        "agent"
+      ]
+    },
+    {
+      "id": "1f1a32eceddb887b",
+      "title": "X-AuT: Progressive Audio-Encoder Compression for Speech LLMs with Cross-Scale Distillation",
+      "link": "https://huggingface.co/papers/2609.11412",
+      "source": "HF Papers 日榜",
+      "source_id": "hf-papers",
+      "published": "2026-09-09T20:00:00+00:00",
+      "category": "research",
+      "priority": "high",
+      "summary": "Reducing audio-encoder depth lowers the inference cost of speech large language models, but removing complete blocks perturbs the embeddings consumed by the…",
+      "why": "",
+      "tags": [
+        "attention",
+        "llm",
+        "language model",
+        "inference"
+      ]
+    },
+    {
+      "id": "a5f8c3f96e59e32e",
+      "title": "T1: Terminal Agent Reinforcement Learning for Long-Horizon Tasks",
+      "link": "https://huggingface.co/papers/2609.11042",
+      "source": "HF Papers 日榜",
+      "source_id": "hf-papers",
+      "published": "2026-09-09T20:00:00+00:00",
+      "category": "research",
+      "priority": "high",
+      "summary": "Agent usage is shifting toward long-horizon tasks such as coding and scientific discovery, among which terminal tasks are especially important…",
+      "why": "",
+      "tags": [
+        "reinforcement learning",
+        "agent"
+      ]
+    },
+    {
+      "id": "e8608e40b7228951",
+      "title": "IBM releases SOTA Granite Time Series PatchTST-FM-r2 model with commercial-friendly license",
+      "link": "https://huggingface.co/blog/ibm-research/ibm-releases-sota-granite-time-series",
+      "source": "Hugging Face Blog",
+      "source_id": "hf-blog",
+      "published": "2026-09-09T15:36:24+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "",
+      "why": "",
+      "tags": []
     },
     {
       "id": "44084287147f6737",
@@ -256,14 +559,13 @@
       "source": "Sebastian Raschka",
       "source_id": "raschka",
       "published": "2026-09-09T11:14:25+00:00",
-      "category": "research",
+      "category": "people",
       "priority": "high",
-      "summary": "Sebastian Raschka 探讨 GPT-6 Astra、循环 Transformer 块及隐藏推理链的最新研究。",
-      "why": "涉及 Transformer 架构变体（循环深度）和推理机制，对模型优化有直接启发。",
+      "summary": "A Look at Recurrent Depth, Hidden Chains of Thought, and Recent Research on Looping Transformer Blocks",
+      "why": "",
       "tags": [
-        "Transformer",
-        "Reasoning",
-        "Architecture"
+        "transformer",
+        "reasoning"
       ]
     },
     {
@@ -275,12 +577,10 @@
       "published": "2026-09-09T11:00:00+00:00",
       "category": "release",
       "priority": "high",
-      "summary": "OpenAI 发布 GPT-6 Astra，具备高级推理、计算机使用及更强的写作设计能力。",
-      "why": "顶级闭源模型发布，代表行业最高水平，必须关注其能力边界。",
+      "summary": "Meet GPT-6 Astra, OpenAI’s most capable model for business, with advanced reasoning, computer use, and stronger writing and design judgment.",
+      "why": "",
       "tags": [
-        "OpenAI",
-        "GPT-6 Astra",
-        "LLM"
+        "reasoning"
       ]
     },
     {
@@ -292,29 +592,40 @@
       "published": "2026-09-08T11:30:00+00:00",
       "category": "release",
       "priority": "high",
-      "summary": "OpenAI 发布 ChatGPT Images 2.5，提升图像生成的个性化和精细度。",
-      "why": "核心图像生成模型更新，直接关系到视觉生成领域的技术进展。",
+      "summary": "ChatGPT Images 2.5 helps turn your ideas, sketches, and reference photos into more personalized, polished images that better reflect your ideas.",
+      "why": "",
+      "tags": []
+    },
+    {
+      "id": "0b04016d830d72cb",
+      "title": "Alibaba Cloud, Ant Group, Cambricon and Huawei Come Together in Shanghai to Advance the Open Source AI Stack at PyTorch Conference China",
+      "link": "https://pytorch.org/blog/alibaba-cloud-ant-group-cambricon-and-huawei-come-together-in-shanghai-to-advance-the-open-source-ai-stack-at-pytorch-conference-china",
+      "source": "PyTorch Blog",
+      "source_id": "pytorch",
+      "published": "2026-09-08T01:00:02+00:00",
+      "category": "infra",
+      "priority": "high",
+      "summary": "China’s leading AI technology companies Alibaba Cloud, Cambricon and Ant Group join the PyTorch Foundation as members Summary Alibaba Cloud and Cambricon…",
+      "why": "",
       "tags": [
-        "Image Generation",
-        "OpenAI",
-        "ChatGPT Images"
+        "pytorch"
       ]
     },
     {
-      "id": "fbb79928f7d9c051",
-      "title": "On the Navier–Stokes Millennium Prize Problem",
-      "link": "https://openai.com/index/navier-stokes-solution",
-      "source": "OpenAI",
-      "source_id": "openai",
-      "published": "2026-09-08T10:00:00+00:00",
-      "category": "research",
+      "id": "95fa7c9bee5510c8",
+      "title": "PyTorch x Hugging Face in Bengaluru: Building India’s Next Generation of ML Systems Contributors",
+      "link": "https://pytorch.org/blog/pytorch-x-hugging-face-in-bengaluru-building-indias-next-generation-of-ml-systems-contributors",
+      "source": "PyTorch Blog",
+      "source_id": "pytorch",
+      "published": "2026-09-07T13:05:37+00:00",
+      "category": "infra",
       "priority": "high",
-      "summary": "OpenAI 分享 AI 生成的 Navier-Stokes 千禧年大奖难题解决方案及 Lean 形式化证明。",
-      "why": "AI 在解决顶级数学难题上的重大突破，展示了极强的推理能力，必看。",
+      "summary": "TL;DR More than 170 students, engineers, researchers, and open-source contributors gathered in Bengaluru for a technical evening hosted by Red Hat and Hugging…",
+      "why": "",
       "tags": [
-        "Math",
-        "Reasoning",
-        "Lean"
+        "inference",
+        "pytorch",
+        "reinforcement learning"
       ]
     },
     {
@@ -324,31 +635,1052 @@
       "source": "OpenAI",
       "source_id": "openai",
       "published": "2026-09-14T00:00:00+00:00",
-      "category": "industry",
+      "category": "release",
       "priority": "medium",
-      "summary": "Perplexity 使用 Astra 模型端到端地编写通信、修改软件和监控生产系统。",
-      "why": "了解头部 AI 公司的最新模型应用进展，但与底层优化无直接关系。",
+      "summary": "Perplexity uses Astra to write communications, change software, and monitor production systems, and checks in much less frequently than with earlier models.",
+      "why": "",
+      "tags": []
+    },
+    {
+      "id": "ca22234883202a90",
+      "title": "智谱募资50亿美元：多家长线基金加持 用于下一代GLM研发 - 新浪财经",
+      "link": "https://news.google.com/rss/articles/CBMijwVBVV95cUxNV1dNSXA2S2VwTF9CQTdkdTRPNEZ2VTZROXJrQjhUZ3YwU1ZPLVljcWtHQU9EdVlabnVpSko2UGZyTmY2SmpkX0FoSHlyQk9yeFI5SXBTSkludnVmTUt6QU0wQUtTbmViTkstQ3pxS1hCTVNRSVB4TmUwamdianlZSHc0djlacjBmVVlMdTNlYUVXbkRfd1FXU3dLazl0U0lud3dxWUZya0R6R2gzX0ZraEZzVFgydkNfM0VEQlZVcEFmRFNfeDlwaDZSc2VWZnFXUG15bjNyOUZoSmFwSVRMMWc2UUFndm52TWNmbjl5NFM0WUhLMGwyNklRVWp6dVV0UE53YVFqeUxteUpISGdEcVVXV0RjRmdLaHFnS0tuOU9jVmtweFRtUm92dV9vaFFMdVlOREJ1ZW9ha1Z0NWtBamppZE5fZ2F6aTRHQzhXMHdUbVcwVEdqTUxGU3hud2g3cUZkZEE1OVZIUFQ0SWRHSlA4R0NPMmJ3cDlCQzkwQjRJTTdqbkRhaWt0SzhaMF94eUM4ZUx1enNrbnV0VzNqMFhwOTRyT3NkTWYzZ3VtTlRHbGlvR0dNbENqWHQ1TEwyUGNiZC1KR3hxeUpFZWJsR1laWmhTV1NSRlBNT01aejNveG53RjR0NFFYUnRlOUFpeDlkLW1tQ0NxSVpuZHZjREVhcmNKajU2ZnFYSXpKVWNoRjNabVcyLVJVVEFPd2F2bHRfZExaUW1UTFZhZ1I2NjJ5WkFmYXROSjUtY2lTVmxpSFBjN2ZtZjJyMXQ1ZDh6ekVocHE1RFN2SlBYalduUWJacWpGTnRmVDNULXNVYUVEYVJBdVJLZnU5ZzdWdDFRQXcyN0FtdUVYTDdWN0ZV?oc=5",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-09-13T18:31:40+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "智谱募资50亿美元：多家长线基金加持 用于下一代GLM研发 新浪财经",
+      "why": "",
       "tags": [
-        "Perplexity",
-        "GPT-6 Astra",
-        "AI Agent"
+        "3D"
       ]
     },
     {
-      "id": "3149e64f7f8b62ea",
-      "title": "Open-Source AI & Open Models Reading List",
-      "link": "https://www.interconnects.ai/p/open-source-ai-reading-list",
-      "source": "Interconnects",
-      "source_id": "interconnects",
-      "published": "2026-09-11T12:36:25+00:00",
+      "id": "1c2af6d2007f8af5",
+      "title": "trunk/0ccbf972a39fc88cb17348079bca7332ef022bfc: [BE][MPS] Use `dispatch_sync_with_rethrow` (#196893)",
+      "link": "https://github.com/pytorch/pytorch/releases/tag/trunk%2F0ccbf972a39fc88cb17348079bca7332ef022bfc",
+      "source": "Release · PyTorch",
+      "source_id": "rel-pytorch",
+      "published": "2026-09-13T17:47:59+00:00",
+      "category": "infra",
+      "priority": "medium",
+      "summary": "A C++ exception thrown inside an Objective-C block passed to dispatch_sync aborts the process, as it unwinds into libdispatch's frame and ends up in…",
+      "why": "",
+      "tags": []
+    },
+    {
+      "id": "1d2002375c4fe42e",
+      "title": "Mistral’s Air-Gapped Cloudera Plan Has Tradeoffs - quasa.io",
+      "link": "https://news.google.com/rss/articles/CBMimgFBVV95cUxNT1lxcU1mdU1xUlhiVU5zSmNaNjhNSldKVG1icnlSajNGQllGQzJiS1M2NmRHbG5hSDUxT2YxVkVUS3ZPTVFwLVUwWVVyM3dqUkdZMzczSjNNU1NHRWVSN0pqeTQzT3lCaElMS0NBRHJVZl82OHJuOGxLMW05YnlRVkRGZmVmenlldWZtQUFnOElEcHF0OVpFaVd3?oc=5",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-09-13T17:00:00+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Mistral’s Air-Gapped Cloudera Plan Has Tradeoffs quasa.io",
+      "why": "",
+      "tags": [
+        "3D"
+      ]
+    },
+    {
+      "id": "1aff5e3359d4c577",
+      "title": "viable/strict/1789327312",
+      "link": "https://github.com/pytorch/pytorch/releases/tag/viable%2Fstrict%2F1789327312",
+      "source": "Release · PyTorch",
+      "source_id": "rel-pytorch",
+      "published": "2026-09-13T15:31:55+00:00",
+      "category": "infra",
+      "priority": "medium",
+      "summary": "[PERFORMANCE] [NN] Change torch._C._get_tracing_state() to `torch._…",
+      "why": "",
+      "tags": []
+    },
+    {
+      "id": "777cedbc5fb74f77",
+      "title": "trunk/36d813411f98c73ba65b56cdc4f950df6dfed2de",
+      "link": "https://github.com/pytorch/pytorch/releases/tag/trunk%2F36d813411f98c73ba65b56cdc4f950df6dfed2de",
+      "source": "Release · PyTorch",
+      "source_id": "rel-pytorch",
+      "published": "2026-09-13T15:31:55+00:00",
+      "category": "infra",
+      "priority": "medium",
+      "summary": "[PERFORMANCE] [NN] Change torch._C._get_tracing_state() to `torch._…",
+      "why": "",
+      "tags": []
+    },
+    {
+      "id": "02736db5cdbc78db",
+      "title": "DeepSeek下一波大模型被指即将问世：3万亿参数 性能超GPT-6 Astra - 驱动之家",
+      "link": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE1qV044SDJGeUJQWkJZd0dBVUo5ajlnZ2Jjc2ZkX3NUMXN5RGJhLS1oMHVaZExVTHVVRDNZNDRxUXNHbUhFUW1ZYV9LbExHaTVEYXkyX3A0dTk?oc=5",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-09-13T14:52:00+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "DeepSeek下一波大模型被指即将问世：3万亿参数 性能超GPT-6 Astra 驱动之家",
+      "why": "",
+      "tags": [
+        "大模型"
+      ]
+    },
+    {
+      "id": "b7384ba7ef3d84ad",
+      "title": "DeepSeek下一波大模型被指即将问世：3万亿参数 性能超GPT-6 Astra - 新浪财经",
+      "link": "https://news.google.com/rss/articles/CBMif0FVX3lxTE9oNnZ1N3FpYm9iR2pMbXRlVV9ZWk9NOG13Rk1WT2lXdVpmWU5KMW5sWTNCQW9HTDBteFlzakQ2RTJ3MHhjRmxKTmwxWV91QkpRQzQyNVlzdjgzcmc1WHRrb253T0R2MGJCNUpTMDFLMUJzWjRWVHNlSVB2eFFPaHM?oc=5",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-09-13T14:52:00+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "DeepSeek下一波大模型被指即将问世：3万亿参数 性能超GPT-6 Astra 新浪财经",
+      "why": "",
+      "tags": [
+        "大模型"
+      ]
+    },
+    {
+      "id": "d5f7116ba34893b8",
+      "title": "Anthropic CEO Calls to Slow Frontier Model Development Amid ‘AI Doomsday’ Concerns - Cryptonews.net",
+      "link": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE1BWkw0VVJTOHdQNmtrbHp0ejZpTjB5cjNGU3g2QlFZRWNnX3pFbHBuRUFPY082WnhyV3JuR24wZkhjN0pWWEg3anV3dEctTEl6SkxQLXd3?oc=5",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-09-13T14:45:07+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Anthropic CEO Calls to Slow Frontier Model Development Amid ‘AI Doomsday’ Concerns Cryptonews.net",
+      "why": "",
+      "tags": [
+        "3D"
+      ]
+    },
+    {
+      "id": "326254ffaae546b9",
+      "title": "Why is Anthropic's own CEO calling for a pause? - The News International",
+      "link": "https://news.google.com/rss/articles/CBMikAFBVV95cUxQZjFndGt3dEc4anpIRkZ5eVJoVm5IWkFPdGRvcnhPemxqQ1FvNFU3UnE0WkhKOWpKaUZIbXdRR2dyRmVmUDlMbTBDTTE5S2xBaGFrX2t6QUVfdGxtY3gyM3doRU5xbXhyTkRlT2ZKamhIYkJFd01VSDhicVFZUThVcXRQaHRLNUE5WnEtWW9XZ2nSAYwBQVVfeXFMTTNnVkxNQnNTc2IwTkJXWkppRTlGbVpQRm1rTURMOFRhZ1VOcUh1VVBCT2Y1LS1ra1JpZmMxQTFDcnRYWko2UnFJbzBHaXI1VEZMTzV6U2ppNFBOWi1yZTJpSWNjcXplZWZSNjhXbW1QUEE3ZjUzM3FZTTh0VmZzTlczR3Nfc1dBZkh4R3Y?oc=5",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-09-13T14:30:34+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Why is Anthropic's own CEO calling for a pause? The News International",
+      "why": "",
+      "tags": [
+        "3D"
+      ]
+    },
+    {
+      "id": "905ccf8764a5f195",
+      "title": "智谱完成约50 亿美元融资|智谱|glm_新浪新闻 - 新浪网",
+      "link": "https://news.google.com/rss/articles/CBMiY0FVX3lxTFBUcHlBRVJxSUFqZW9SWmo1bXV2a1JYLWZFMnZQejZwVFIxUHI5X3cxS3dxcXdRRV9OLWlKNEt2ZHlZa3ZhTU04TmJ3d2o5czNCdVhKV294TEg4SngwSmswR2x0dw?oc=5",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-09-13T13:35:00+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "智谱完成约50 亿美元融资|智谱|glm_新浪新闻 新浪网",
+      "why": "",
+      "tags": [
+        "3D"
+      ]
+    },
+    {
+      "id": "dcb07cae28554b0c",
+      "title": "智谱50亿美元融资，DeepSeek的500亿元之后，从跑得快到跑得久，大模型耐力跑 - Sohu",
+      "link": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE1yV2tQRFFRd2pxUGRNejItTWhOelpfSktqeGwxTEI0YmZSY3Q0ZnQzTXVjR2w1bENQZDVnQTNxMjVOcWVlSUctN09yMWppb2lTWjd5VUNR?oc=5",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-09-13T12:48:01+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "智谱50亿美元融资，DeepSeek的500亿元之后，从跑得快到跑得久，大模型耐力跑 Sohu",
+      "why": "",
+      "tags": [
+        "大模型"
+      ]
+    },
+    {
+      "id": "51ddffe2a8ed0307",
+      "title": "中国气象的DeepSeek时刻来了，远景“天机”大模型首次打榜即登顶 - 新浪网",
+      "link": "https://news.google.com/rss/articles/CBMicEFVX3lxTFBtSEZnMDNhUWtJT1pnTVNjU0xkYzZpVHJ1VHVvVmliZDRMcThCRmNRV1NWS0l6SmF6YnVrS1YyV0ZXcnJUaVRMUVB4WEt0ejllU3dSWWZnUm5uYjZMeElPTVpFelVMeEN1Ym04UXlKbUk?oc=5",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-09-13T10:40:00+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "中国气象的DeepSeek时刻来了，远景“天机”大模型首次打榜即登顶 新浪网",
+      "why": "",
+      "tags": [
+        "大模型",
+        "3D"
+      ]
+    },
+    {
+      "id": "61ac8ed2818452b7",
+      "title": "智谱约50亿美元融资落定 加码下一代GLM基础模型、完全自训练及算力基建 - 东方财富",
+      "link": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE94YXRzTTd3X1ZORGZ6Vy1jS2ZhVlpXZ3hRVGh4d3dGUzRWNVdzUk52ekg5NzBNSDlHQmgxaWs4LXVNMXZWazFuckFOZm81bHdGT0hDRUstZzhTVkhYakdyMVg4OA?oc=5",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-09-13T10:37:58+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "智谱约50亿美元融资落定 加码下一代GLM基础模型、完全自训练及算力基建 东方财富",
+      "why": "",
+      "tags": [
+        "3D"
+      ]
+    },
+    {
+      "id": "7ca34edd1fe5e3ce",
+      "title": "Read, Don't Write: 重塑大模型评价体系，构建全自动、可进化的“探测式”评测管线｜QCon上海",
+      "link": "https://www.infoq.cn/article/0kYhxXxhOXhxGATe64ec",
+      "source": "InfoQ 中文",
+      "source_id": "infoq-cn",
+      "published": "2026-09-13T10:00:00+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "点击查看原文>",
+      "why": "",
+      "tags": [
+        "大模型"
+      ]
+    },
+    {
+      "id": "dbfd4ef58b2f55af",
+      "title": "'We must pace the frontier': Anthropic CEO urges AI companies to slow model development - jpost.com",
+      "link": "https://news.google.com/rss/articles/CBMibEFVX3lxTFBoT0ZyYnBJVXVQVzZtb3dRWDBsbTdqQmU0VFlNbDJWTmRhMjM3Sl9uNWZ0WkV1cUxlMVQ4cWFNekxydmE0MGFlWV9oMENNeUE0RWhjVHZuQlZqbnZTZ0xXOGlDbTZ4c3RVTFBjQQ?oc=5",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-09-13T09:37:14+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "'We must pace the frontier': Anthropic CEO urges AI companies to slow model development jpost.com",
+      "why": "",
+      "tags": [
+        "3D"
+      ]
+    },
+    {
+      "id": "c99ce559c288c978",
+      "title": "trunk/4d2bd99cd03cda454d98ff8c060c1353743c266f: flex_gemm: Inductor-owned QUACK autotuning (#196174)",
+      "link": "https://github.com/pytorch/pytorch/releases/tag/trunk%2F4d2bd99cd03cda454d98ff8c060c1353743c266f",
+      "source": "Release · PyTorch",
+      "source_id": "rel-pytorch",
+      "published": "2026-09-13T07:39:42+00:00",
+      "category": "infra",
+      "priority": "medium",
+      "summary": "Human Note Prior to the rebase on epimod we had inductor own tuning (via a patch in quack). In the base pr we let quack own autotning and it by default it is…",
+      "why": "",
+      "tags": []
+    },
+    {
+      "id": "d8eeceb35e2412af",
+      "title": "富瑞：给予阿里巴巴-W、腾讯控股及MINIMAX-W“买入”评级 - 新浪财经",
+      "link": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxOOGNFcjY5ODR3dldnNWVWRE9MaU1oU0JLdmJ1WGFaSGkwT0w0NGRYYnRXdndkUUR0cmxjNURPOWJ0SE1jeWpNTU1qbHZXR3g0M1FWaF9wUEpuT3hUMEhza0Z6QWxST0F3YnJGTEFRbzJLZUM4S2hHRkkxcVo5MnhlYUxvbElheHoxTnl1YTN6RXVWVXNRZDh3S3RaRG9NNjVrNVFZNXJsNFhxQQ?oc=5",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-09-13T07:13:12+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "富瑞：给予阿里巴巴-W、腾讯控股及MINIMAX-W“买入”评级 新浪财经",
+      "why": "",
+      "tags": [
+        "3D"
+      ]
+    },
+    {
+      "id": "6af868bbafaf2161",
+      "title": "今年外滩最特别Agent：能干活，能陪聊，还会朋友圈拉黑你",
+      "link": "https://www.qbitai.com/2026/09/488447.html",
+      "source": "量子位",
+      "source_id": "qbitai",
+      "published": "2026-09-13T06:40:25+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "Agent的下一步是关系型生产力",
+      "why": "",
+      "tags": [
+        "agent"
+      ]
+    },
+    {
+      "id": "7099862666b47590",
+      "title": "viable/strict/1789293225",
+      "link": "https://github.com/pytorch/pytorch/releases/tag/viable%2Fstrict%2F1789293225",
+      "source": "Release · PyTorch",
+      "source_id": "rel-pytorch",
+      "published": "2026-09-13T05:33:49+00:00",
+      "category": "infra",
+      "priority": "medium",
+      "summary": "[inductor] Add dedicated thread pool for nogil Triton compilation (…",
+      "why": "",
+      "tags": [
+        "triton"
+      ]
+    },
+    {
+      "id": "e0f3d28fdada3e38",
+      "title": "Kimi、BAI、自然选择谈智能体新商业：AI支付增量来自硅基生命的支付 - 新浪财经",
+      "link": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxNc19kTF9OUUlQdS1tMXZkWDFucnpmaVZaRE9zdS1jZ3h0ZTlrZEFFNUJWNEpkXzgyV2h5bmhuWVdYZ0VuQ00zb08zOGZQYk0yV3NXRC1ONkl6bGhDd0NNaEQ3MjhybHNNWkpIeHdZOFczRTVvWTJ6VXdSMERJS04tYlRZenpzSkxRWDRTbmlMdHRxbVE3VG53djRocmV2QUFhamtIbS1CZFhoenJFbW1pS3lyMFhNWTBNeGltVThtV1lheUZMTnJBWkthaXdQUUEyb3Uw?oc=5",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-09-13T02:51:00+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Kimi、BAI、自然选择谈智能体新商业：AI支付增量来自硅基生命的支付 新浪财经",
+      "why": "",
+      "tags": [
+        "3D"
+      ]
+    },
+    {
+      "id": "f69b705129b60550",
+      "title": "Anthropic CEO urges AI firms to slow model development amid misuse fears; Altman and Musk back call - The Business Times",
+      "link": "https://news.google.com/rss/articles/CBMi9wFBVV95cUxPby1NcHNLcDRiZWJEU3NnV050dVFsdEtzMVM3dWJ5OS1sdDVuWHBxeUxnMTd5alNYVWw1WGgtVWhwd0Rja1JsS1A0T1RITkpSakFQVjlUZ1dIbnRlYU1zX21KVDZsY3VhZ3o1M05pdWx5QUNWZkZvaHZxaHRyTC0zNEltWUpjX0xiajh4amRpTlJoY3hRd2RvbHo1WmVBMDVYbHpHd3VpTEhZSEcxWDZydWIzQXEwRmlDWUw0cENIMGJnQjNrdG1kX1cxQmJzMWNXSGRqMUY0Z2pyNEs1Y20xR1E4QVl1QTg4bDczWEpsZkxwV1FrWkpj?oc=5",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-09-13T01:22:00+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Anthropic CEO urges AI firms to slow model development amid misuse fears; Altman and Musk back call The Business Times",
+      "why": "",
+      "tags": [
+        "3D"
+      ]
+    },
+    {
+      "id": "530958fe55eba13f",
+      "title": "viable/strict/1789284404: [BE][Ez]: Improve ranges support for aten custom collections (#196488)",
+      "link": "https://github.com/pytorch/pytorch/releases/tag/viable%2Fstrict%2F1789284404",
+      "source": "Release · PyTorch",
+      "source_id": "rel-pytorch",
+      "published": "2026-09-13T00:33:37+00:00",
+      "category": "infra",
+      "priority": "medium",
+      "summary": "Improves iterator standards compliance and adds static_asserts + tests to ensure compliance. Used Codex to modernize the iterators to work with std::ranges…",
+      "why": "",
+      "tags": [
+        "pytorch"
+      ]
+    },
+    {
+      "id": "41e015fbccd610d3",
+      "title": "中国AI被揭蒸馏内幕 专家：AI成新的情报节点 - 亲友传真",
+      "link": "https://news.google.com/rss/articles/CBMiWEFVX3lxTFBvdXEzSUgwRzQxdzRNTEZsN2FIc2FLNk9kZDdtZ2dCYlhvdy04d3FBRVBOd1oyUTFtY0FiZTVwMXkyQlpveUZXeHM0ZERVWmhtQ3dnVV9xYnk?oc=5",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-09-13T00:17:00+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "中国AI被揭蒸馏内幕 专家：AI成新的情报节点 亲友传真",
+      "why": "",
+      "tags": [
+        "3D"
+      ]
+    },
+    {
+      "id": "b6fba64b4d542030",
+      "title": "智谱上市后募资，大模型战场变了-yeeyi - yeeyi",
+      "link": "https://news.google.com/rss/articles/CBMiggFBVV95cUxQMDQxd0FnQ3VSU1V2ZTY0RzhVT2RCLWVsRDh3QmdsRnA4MGdsb3JEQnVENkR5Nl9udlVIYVhZM0RTekhKd1BxbUQzODJMb0wyR0FUdHNHTVFWcDhtMUtnSGRWVGR0ckZqNTNJYi00bkxabmRTNTJvMFpHbkVsVHl3RXNB?oc=5",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-09-12T23:47:50+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "智谱上市后募资，大模型战场变了-yeeyi yeeyi",
+      "why": "",
+      "tags": [
+        "大模型"
+      ]
+    },
+    {
+      "id": "72ce9df35588168f",
+      "title": "A Wild Rumor Says Google Is On The Verge Of Achieving RSI, As Anthropic, OpenAI, And Elon Musk All Call For Pacing AI In What Might Be A Cynical Attempt At Regulatory Capture - wccftech.com",
+      "link": "https://news.google.com/rss/articles/CBMingJBVV95cUxQWmNJemhiclBFRGVnOVNtdUxMSXhfcUFTZTFIZzZTbUpibUV2RE1pa1htLWE1OXRtZjNBNEZpdm1aVkJ4alYxTkRKSWZjUGYtWUpLMG9HOXZiZjZlVHl0NlRnNnFINFNzSThiU19acUU1bGhoVVNVcDZDVVA4d2NrMUNYX3NUUWNTaV9KbndIUUpzQUY0b01HYlVZdkdLcW55cnRheG9zbUc0MGhhdWhaVko5eEphbXdUcndwbXcyQWVka1JmRmlvS0hRYW5rYURIaGpuY18wVkd2MzBDZG04S0xTVUhPaFhKWlREdEg3NFVWS0RGNjFZNFI1cVhUd0k0a3FEQmVtYV9jRHprbm54aXpiWFVNTHpuMUIzYUN30gGjAkFVX3lxTE1PQk51QkJQNGNpckFOdWRwTVZlQlZva01jb1ZadTFaWmNoaUUtNTVKZHVPTkpJQ09vdFMxRTR4aHl1ekJmM0Mta1RXenBwbEsxMDktRkpDaEVfaHBkNTR0cjFpRlI2SVN4cERaenNhMWk5SFgtTDBDVTRxOUtPczJiUHBtaFBCdlNUNFp0S1NWZ1ExM1AtZEtLeHlDV0lWbXBpRHhjUGJJTkh0SGRPOHhEWGwxNXNCaUlZQ1ZEOENkbmhxbTBqNk5kM2JYMEE2THVsYnduSlIxS3ZSV3p2dHNKWW1CMTNfbm9TUGczRTF3V25hTXdOenUzeEw1THdPd0JDNl9sZ0tvNE9BU1RGZk90cUNaaUlxN1oxaEw1MWdFckJ6Zw?oc=5",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-09-12T23:31:10+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "A Wild Rumor Says Google Is On The Verge Of Achieving RSI, As Anthropic, OpenAI, And Elon Musk All Call For Pacing AI In What Might Be A Cynical Attempt At…",
+      "why": "",
+      "tags": [
+        "gpu"
+      ]
+    },
+    {
+      "id": "bae2b102771e99b3",
+      "title": "Amodei, Altman, Musk call for slowing AI model development - Los Angeles Times",
+      "link": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxOLWV1OW96OFJwTDNCN2lkSko2S1hVY1loeXJUNThoSW9Ea212My15VEtEMXJiV1U1WS1LM1RiVFNzT3dWU1RGRjlueVpGQ3BxUW05QXhRZ2ZrbmpoZ0JYb2RyTzI4V1hhT254TTRMTnZlNG1iSVRYdzViRUFaeG5rWFVNNTNUcWwwNlRablhhT0dncGh2UjhGNnFOMWlGVlU5d1FTNzl4YUJvQQ?oc=5",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-09-12T22:54:00+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Amodei, Altman, Musk call for slowing AI model development Los Angeles Times",
+      "why": "",
+      "tags": [
+        "3D"
+      ]
+    },
+    {
+      "id": "4666a5f41a7124fa",
+      "title": "DeepSeek V4.1 Flash 有多快？架构简析 + Pi Agent 演示 Nba Playoffs Bracket (kj9TAfPjTR) - Unisba.ac.id",
+      "link": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE9tZVVNQmw5bVdfT0FDeUtEYmJ6Y0ZiQTZnN3JGQk11YzNKN1ZNbHhpQzQzMEN1TzRvQkZWUmlRR2RkTW55ZUstVjU3dUc2QTE0WklFV19NZy1rTHZCUVB1ZFIwYmloUQ?oc=5",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-09-12T21:52:02+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "DeepSeek V4.1 Flash 有多快？架构简析 + Pi Agent 演示 Nba Playoffs Bracket (kj9TAfPjTR) Unisba.ac.id",
+      "why": "",
+      "tags": [
+        "agent",
+        "3D"
+      ]
+    },
+    {
+      "id": "ee02609beec6fab2",
+      "title": "Anthropic CEO urges AI companies to slow model development - Sioux City Journal",
+      "link": "https://news.google.com/rss/articles/CBMivgFBVV95cUxQaTRtU09IM0NVQ0ZXNTRKSXR5cDRyekhCYkFMek1ycl9tUlRQTkl0dXhjTE1QN2VWWUFRTkYzdlBvd2tSSnJLeUc1b25YeTBnWnJ4WXQzZmdTMjFCYUZ2bWczVGEwbWc5a1FKSXc1M2dBQnRaRkJ2b0VkcFpUbnhid3pNdi1GckJfbGRTWXhidWVJQTB3dk5ka2JQR3ZXWjlYdmhkZ1BkUmRPdnhOUzNEMnhzWWVQSHF2aDRITXhR?oc=5",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-09-12T21:43:06+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Anthropic CEO urges AI companies to slow model development Sioux City Journal",
+      "why": "",
+      "tags": [
+        "3D"
+      ]
+    },
+    {
+      "id": "1e151cc17bca4dc3",
+      "title": "Anthropic CEO urges AI companies to slow model development - Lexington Clipper-Herald",
+      "link": "https://news.google.com/rss/articles/CBMirwFBVV95cUxQZEEwV2tRUlhkQk1BNEZRVVl6MkxQSE4zMVNTSDdURWxGaG5YOXh3TDB5OURhWXZFbUotTFJsMmFONmFUQU5lSlMwTEg3X0tQRUg4akhWVXo0a2VMSzhET3dncnlqV2RobFN0ZElnWTdDcG84YXJDUnZ0clR4b2JSdk91M3hra1dIa3pyQ2JMNjZUeGd5Vm5YbHJVcnpGaGpJWUEzZm1QWUNHd3RaNHlB?oc=5",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-09-12T21:30:45+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Anthropic CEO urges AI companies to slow model development Lexington Clipper-Herald",
+      "why": "",
+      "tags": [
+        "3D"
+      ]
+    },
+    {
+      "id": "a4af5cd965407a9c",
+      "title": "Anthropic CEO calls for pacing AI frontier model development and warns of AI agents ‘taking over the entire internet - TechRadar",
+      "link": "https://news.google.com/rss/articles/CBMitAJBVV95cUxQQ0NzRGFYOVJ0ejNESndKaXRzejBQVjA2WDdEWnVmSWlYMzdRNXdRRjVhVENmaFNVS1IwVHBOY2VCVXRsV2tobk9ZRW1uSmE0MjdSYjIyOUN3ZThtVmFXeDRhZDVSbmNnT21KaVJTZE83T3kyR1NMVDNoX1Z0RVFrZFpZVTQ0TEhyUGc4ZUltNm04RVFKcVJQTFJ6LWx0WEFiSzV2eE9mbGItVXJyWW9HU055NWxWQ0FBWUNBRlVyQzJoUF9PWm1oM3RFQldPSERpeE9CUHBRczFHVi15NTF5dVVUejNhUzlyZUFiWUQ5RGYtU3JfRGpZR3h1eGVLYzk3YWFQZUNySUZvMTVSb0Z1NUMwTVQ4TF95aXcwVUVNUmN0Z1JzRjE1Vmx2OGdiN1lrb1I5Tg?oc=5",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-09-12T19:59:33+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Anthropic CEO calls for pacing AI frontier model development and warns of AI agents ‘taking over the entire internet TechRadar",
+      "why": "",
+      "tags": [
+        "agent"
+      ]
+    },
+    {
+      "id": "5077d71849841b82",
+      "title": "Anthropic CEO Dario Amodei Urges AI Developers To Slow Model Capability Improvements: 24 outlets compared - NewsCord",
+      "link": "https://news.google.com/rss/articles/CBMi6gFBVV95cUxQQzJQODlkbkhONU5ib3lieUVvWGhPOFV4RDZEdWxRSUhPTzR6M3JiVWpIWlFDeEVvTEdOSTBaWVQzSk5QZjJ3bk95elJWaUpFS1M4a3N4dGNyZEtaQXZOcldPMS02d2xvV0RtMzN5T0hoUmUzRXNLUDhaakpJLTNqaUhZYmdIYnhHZkRTdzV1ZXlUME1FVThYcWEyRGQtX3dfYTZqZzMxM0I4bjBTQXc3bmVaTGxDUV93bktISHVjWVdZWmtyRWI5TVlTNXJfNGpLWVpQX1RZLUFOaEg3SkEwcFBKY2FwMk00SkE?oc=5",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-09-12T19:30:05+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Anthropic CEO Dario Amodei Urges AI Developers To Slow Model Capability Improvements: 24 outlets compared NewsCord",
+      "why": "",
+      "tags": [
+        "3D"
+      ]
+    },
+    {
+      "id": "a82d1f44b58ad842",
+      "title": "“中国是一个高度创新的国家”（国际论道） - 新浪网",
+      "link": "https://news.google.com/rss/articles/CBMicEFVX3lxTE9CNHBNUW5UUXlrM3liYlN6ZktGZVlFUFdUMkx2TzdRci1xUnVPaDc1X3ZUWFplMktxXzFZS1VIeUFSbU5JOU03aGNxTmVRdTZtSnBLZXk2OTBMcklaU3dYUGlSMmdRSE5hakNhOXY1Wlk?oc=5",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-09-12T19:20:00+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "“中国是一个高度创新的国家”（国际论道） 新浪网",
+      "why": "",
+      "tags": [
+        "3D"
+      ]
+    },
+    {
+      "id": "5e53a4c64ecab5bc",
+      "title": "中国大模型，掀翻硅谷定价逻辑 - 新浪网",
+      "link": "https://news.google.com/rss/articles/CBMicEFVX3lxTFBKZXh4QnNOVUE5UW9yUy1aY3JWSm12emhvZklocUdOUnR2U1NDTl9mLWpJcHowcDdMX2c4aWozbVBvTDN4cjYzRmZZbnc2UDd4SkJPem9wcS1CeUh1Q3hDSlNQbnJFM1ROZy1yRU92TXk?oc=5",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-09-12T19:05:00+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "中国大模型，掀翻硅谷定价逻辑 新浪网",
+      "why": "",
+      "tags": [
+        "大模型"
+      ]
+    },
+    {
+      "id": "0217879b2d0f59ce",
+      "title": "Anthropic’s Five Biology Cases Put Trusted Access at the Center of Its $965 Billion Valuation - TechStock²",
+      "link": "https://news.google.com/rss/articles/CBMisgFBVV95cUxNX2IzektNVXF2NWdwUkJPOFViWE5oNWJxaDRvUm41bUQ1TnIzdGpZNzNraVM1OHFYb25IMHU5dElnb2dHai0wWkZ4UjA5Qkd6MzA3UGMtSEw3MV9rcXBVUGhMMlFvR3dLbDdNdTk2ckh0b0VlMEQ3Sm9uUFg2RU9LbmUwMVd0aGxEVDk5blFQSmtZV20xekdTSEJLeVdVb0tXdmFrSG9pSmx0VGpIRXY0QW1n?oc=5",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-09-12T18:43:53+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Anthropic’s Five Biology Cases Put Trusted Access at the Center of Its $965 Billion Valuation TechStock²",
+      "why": "",
+      "tags": [
+        "3D"
+      ]
+    },
+    {
+      "id": "d90885473c5cddaa",
+      "title": "v0.29.1rc0",
+      "link": "https://github.com/vllm-project/vllm/releases/tag/v0.29.1rc0",
+      "source": "Release · vLLM",
+      "source_id": "rel-vllm",
+      "published": "2026-09-12T18:42:01+00:00",
+      "category": "infra",
+      "priority": "medium",
+      "summary": "[watermarking] Dual-key gumbel-max watermarking for speculative decod…",
+      "why": "",
+      "tags": []
+    },
+    {
+      "id": "f47262b041d8cc83",
+      "title": "‘We must slow’: Anthropic CEO warns AI is advancing faster than humans can control it - Ynetnews",
+      "link": "https://news.google.com/rss/articles/CBMibEFVX3lxTE9vLTNYbEFDbjFFQ1FkWGVuTlgzbnJRZ3VUZUJuN1BlZHh3djNjQTFLQjBweDhYTkpZTkg3WFNrNm9xdW0yRzBCSEFsT1NXU3BNTUUzdHExMnQ4MHpwWWNsNnM4bkVJdlB4aXVBSQ?oc=5",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-09-12T18:32:56+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "‘We must slow’: Anthropic CEO warns AI is advancing faster than humans can control it Ynetnews",
+      "why": "",
+      "tags": [
+        "3D"
+      ]
+    },
+    {
+      "id": "40169a909bf4d737",
+      "title": "AI's Race: Could Slowing Down Save Us? - Devdiscourse",
+      "link": "https://news.google.com/rss/articles/CBMimwFBVV95cUxQQnhXaG1CMFFTVGJGM2FFbDBmWndmZzd5d2lYSzRYekxpLVRBNWtCdUo4Y3dORE1vdnBEMjJxUFFmbWdrVGw3bnZEU2xSMGh2amtxeVZ1TGdmY3c5dzhSNFBUMlh5OW9pQS1FUnRHYno4T3Q0NXczemNLbFhoQUJPT0lBaDBLVFdYVmx2Zm9vb3ZvcU9naDdOWnpxa9IBmwFBVV95cUxQQnhXaG1CMFFTVGJGM2FFbDBmWndmZzd5d2lYSzRYekxpLVRBNWtCdUo4Y3dORE1vdnBEMjJxUFFmbWdrVGw3bnZEU2xSMGh2amtxeVZ1TGdmY3c5dzhSNFBUMlh5OW9pQS1FUnRHYno4T3Q0NXczemNLbFhoQUJPT0lBaDBLVFdYVmx2Zm9vb3ZvcU9naDdOWnpxaw?oc=5",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-09-12T17:56:02+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "AI's Race: Could Slowing Down Save Us? Devdiscourse",
+      "why": "",
+      "tags": [
+        "3D"
+      ]
+    },
+    {
+      "id": "63dc970fb5b49ec4",
+      "title": "Anthropic built a watermark for AI, then published limitation that defeats it - WION",
+      "link": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxPck5VeTFCMmNZakxGZU5HQmlFdE9FSHlUSWtadEljbGo0c0xJeVRkMy0tbkhiWTFlUi1iUnlHNmhoM0RiZkR2aFFzc0R0Zi1GUVJkdFVUdWxLOWJ1bkdDY185a2duTHM0UV9xdEFMLUFyNDVkUkxGc0JXamFVOG9NUFVudkNjUFk1aE9GSXFwbEs4YVY3dmpJS0pOYW9tZVN1STlxbDZwRmo0bE1IY08xQko5TjF4SkNIVVhoWTZLSmtHZ9IBwgFBVV95cUxPck5VeTFCMmNZakxGZU5HQmlFdE9FSHlUSWtadEljbGo0c0xJeVRkMy0tbkhiWTFlUi1iUnlHNmhoM0RiZkR2aFFzc0R0Zi1GUVJkdFVUdWxLOWJ1bkdDY185a2duTHM0UV9xdEFMLUFyNDVkUkxGc0JXamFVOG9NUFVudkNjUFk1aE9GSXFwbEs4YVY3dmpJS0pOYW9tZVN1STlxbDZwRmo0bE1IY08xQko5TjF4SkNIVVhoWTZLSmtHZw?oc=5",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-09-12T17:36:00+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Anthropic built a watermark for AI, then published limitation that defeats it WION",
+      "why": "",
+      "tags": [
+        "3D"
+      ]
+    },
+    {
+      "id": "c0c090f404c315f5",
+      "title": "AI systems are advancing too fast, Anthropic CEO warns - WXLV",
+      "link": "https://news.google.com/rss/articles/CBMixgFBVV95cUxPX1pLcHNVVk15QWx1ejNxZkVDeVpxb2sxRWFfRkRWTzhQd3NrN3Q3TVpNV3dJV3hkdGpyNTdHR25qVW8xUFd5VmZEd3hjY1d1Mi1PdndweE9PbG50dzhjV3VPX2I5ZmRCOFZoRHhYRFpZdGZmZGRPa3g1Vk5iSDVnSDhnZS1nSExnWUp4bjFXMmE0REx6clhZdGtDY1FuYUtNM2Z3clhDaV83X0ZYNHozNno4VzlHTzZDNWRKUm1hZlhaSTM2LXc?oc=5",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-09-12T16:43:34+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "AI systems are advancing too fast, Anthropic CEO warns WXLV",
+      "why": "",
+      "tags": [
+        "3D"
+      ]
+    },
+    {
+      "id": "654e89909463d030",
+      "title": "Why Anthropic CEO wants AI companies to slow model development - The Indian Express",
+      "link": "https://news.google.com/rss/articles/CBMixgFBVV95cUxPemJoMVJaZlJOMXA0SktZdmFyWW5LQjdBNEtwY0tDd0pXbDlyQzdraTFoWVdKNXR4aHB1UXpQUmNfZFpfTWE4OFY4MldKTjB1U3FocURuVzJQbU5fMVUtQU5JbXRmS0pQdVQxRjVtc3hRX3F0TTkzbnM5cHFwTEctRlA3UUFpcFV1NXB5VXM0Y0JWUUE4b3U5cFpBQXBUZUU3SFJTR1ctdl9mZDlpcjJjY0FtcmFNSDhZVFF5YTNSMzhMeXNlVFHSAcYBQVVfeXFMT3piaDFSWmZSTjFwNEpLWXZhclluS0I3QTRLcGNLQ3dKV2w5ckM3a2kxaFlXSjV0eGhwdVF6UFJjX2RaX01hODhWODJXSk4wdVNxaHFEblcyUG1OXzFVLUFOSW10ZktKUHVUMUY1bXN4UV9xdE05M25zOXBxcExHLUZQN1FBaXBVdTVweVVzNGNCVlFBOG91OXBaQUFwVGVFN0hSU0dXLXZfZmQ5aXIyY2NBbXJhTUg4WVRReWEzUjM4THlzZVRR?oc=5",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-09-12T16:39:29+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Why Anthropic CEO wants AI companies to slow model development The Indian Express",
+      "why": "",
+      "tags": [
+        "3D"
+      ]
+    },
+    {
+      "id": "d078b015d8072ee5",
+      "title": "AI systems are advancing too fast, Anthropic CEO warns - National News Desk",
+      "link": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxPb3JfRjJFTExoeV9wNWhFVWxCM0NVNkFUcjRYazJSXzl1V0pHOXA1ZTFyTUF4VHRvYnowcktPc0YyQkJXMWVVQ050Zkl5WkM5RzNrdlBMSGt4bkJXTTlLX3Nvejc2OWpOOUx4OENUUGtGbWZpMU1fWE1LQVFzeVhUTU5EdUpOWENGc3NUVjFVME1vUUxVQ2M2NkJvNWQ4MmtHcFAwRU9EeExoSUVqUFBoM3d6NWxJMl94Nl9OUTZScktHc0tWWXI1SU5fQWg3NFU2Q1ZfWFZfV2E2dw?oc=5",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-09-12T16:34:38+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "AI systems are advancing too fast, Anthropic CEO warns National News Desk",
+      "why": "",
+      "tags": [
+        "3D"
+      ]
+    },
+    {
+      "id": "d29754793f5491f9",
+      "title": "Anthropic CEO urges AI companies to slow model development amid fears over misuse - Yahoo News UK",
+      "link": "https://news.google.com/rss/articles/CBMifkFVX3lxTE0xd3lZYUN3VGUwS2EzTE5RM3Q1QnNIbFJBNTJKMi1JWGFZTThYYS1qMG1PTm55cmxUZ3dBWjZmbXY0aEFsb1V0M0x2V3hRZUtsRzNkRXItR2ZRa19PWE51VGtITFZ5eGNvRjNaOGpIY18xa3hZVGNYXzN1LXFUdw?oc=5",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-09-12T15:18:32+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Anthropic CEO urges AI companies to slow model development amid fears over misuse Yahoo News UK",
+      "why": "",
+      "tags": [
+        "3D"
+      ]
+    },
+    {
+      "id": "8d27a3db890bdcaf",
+      "title": "Anthropic CEO Dario Amodei Says 'We Must Slow Pace Of Improving AI Models' - NDTV Profit",
+      "link": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxPTWtpM1FLN3ZwR3FVWFUxMzRFc090RUhlR2VfaXRNbXZoWFpXR1Q4dDNvUWtDMkdETVFoVWpTUDdhdGlvLTQtUE85NGFmRzBwcWtvU2FRRVJrQ1M0by1rSFBKSklQSzk1b3NHb3dnbW9NMnBNaDN1cl9CMjFtaDhiQWlDWk1nNWJGbWl4ZUw1OEdDRnNMYnZzXzdHTFpFd3hIQUZUTF9zU2F2RDhab2taYjlNVGJuZjBDc2NZ0gHDAUFVX3lxTE83NzNYR2M4S0FfMXdESXpUMFppeXh3UUxDZy03UFVZZWF1WkxRZ1pfMmgxQk5mc0M3dEJ1SUpQZnZIend6MW9icHEzZ25LN0c2NTZsdWU5UGtaZG1QZlFISk1vMGhnM3lldWJaUW1JNlBrQ1Baek1EVjVDd3pLWVY3bXg3WjZ2SzYyTWliVzN0dVhOcnR4ZXktODVZdC1wR1VWMFZWN0ZfX2s1UHpfMDVOeVlHWlJBdml0ZUpnYmdzTHI0TQ?oc=5",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-09-12T14:57:01+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Anthropic CEO Dario Amodei Says 'We Must Slow Pace Of Improving AI Models' NDTV Profit",
+      "why": "",
+      "tags": [
+        "3D"
+      ]
+    },
+    {
+      "id": "b4e297c73317cb66",
+      "title": "Anthropic CEO urges AI companies to slow model development - Al Arabiya English",
+      "link": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxQNnhoQUx0dUx6amRLd1RqMzllcDc3d200WGVXa1JTREVINTAwUGpIbmhNVzBXYkFvbGNqaV83ZWJUZGdldU0taFpSMk43V1VPX0JlZDRsVVFmMm9BS2t5ZS1TQUlUZ2ExTmxoVjJRamNiZ01mTGtGeDR5WnljM0lkZGg3cTMyTWozZldJVlhfTVhsYWlCaDBBbFg2Y3FXaFdGODRNTzZ4OHJNVXVIWGtHUGhRS19zT2RLcGh5cThtRE7SAcABQVVfeXFMUDZ4aEFMdHVMempkS3dUajM5ZXA3N3dtNFhlV2tSU0RFSDUwMFBqSG5oTVcwV2JBb2xjamlfN2ViVGRnZXVNLWhaUjJON1dVT19CZWQ0bFVRZjJvQUtreWUtU0FJVGdhMU5saFYyUWpjYmdNZkxrRng0eVp5YzNJZGRoN3EzMk1qM2ZXSVZYX01YbGFpQmgwQWxYNmNxV2hXRjg0TU82eDhyTVV1SFhrR1BoUUtfc09kS3BoeXE4bURO?oc=5",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-09-12T14:39:00+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Anthropic CEO urges AI companies to slow model development Al Arabiya English",
+      "why": "",
+      "tags": [
+        "3D"
+      ]
+    },
+    {
+      "id": "6bfef4d17df2bf53",
+      "title": "Anthropic CEO calls for slowing development of AI models - UA.NEWS",
+      "link": "https://news.google.com/rss/articles/CBMimgFBVV95cUxPVURNV2hDU3lSMjZ1OG56SmFmQ3VoTV9NREotVmFNdk1OSjR3TDgxVVdicFNSZ3dLQWpqYTI1dXRoem1MQmkzZVJCZGY5MEdrY092YWVuM3gwVDZNTzd6RDNVVVBtUm40TnRtZmwtYmU2aUNMRzJnZkNYcXRlbFZjVl8wVUdpZ1FrQTZWT1RBV3d3MFYzMVkzN3NB?oc=5",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-09-12T14:38:28+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Anthropic CEO calls for slowing development of AI models UA.NEWS",
+      "why": "",
+      "tags": [
+        "3D"
+      ]
+    },
+    {
+      "id": "6f054db39e14c46d",
+      "title": "中国军方敏感信息疑外泄 美AI巨头揭内情 - DW.com",
+      "link": "https://news.google.com/rss/articles/CBMipAJBVV95cUxQRDZWbHV6a0FheWxzMGlwd0hoVTNtRHZBWUNaLWcwR2l0VzEyY05kX1lyOXNIUXpUaDFuUmdZTHg5cS1pNTl2eGxzSkNVWGdkNzJiYV9WcU9VSXpKT1RXdzVTN3UyM3dvcjczTHV6ZF85RzVUd1lvWkhhNTUxS0tYZWlPN0pmeHNUTDFEZmpOOVcyWUV1ZWFGeHZUcW5jSHNaaTNmVy12SXJ2RW9MY0NXckhycS0tbXhYTnJnZ1ZrQjVUZ3lDa3F1S3A0ZzR2dTZrb0l1YTNkQVV5NzJ5bUhuZUdSaTJ4RkFwcmVZaGllV1ZMdWEwSzZUSkpVbjJEYnRtTlZyRUwzMnlPcDZMQnZ2Z2RnRlFoMHYtZU9aX2tBeVk4bFdr0gGkAkFVX3lxTFAwellvM0hjVXV6cFcxYmlzU1lpNG0wRVRFSnEzVmNLbGZRclZMUmVWdVRaY1Z0WURXVllLTF9FTDBzNFdkTmNOTktnd05saXMwY3N4bkVVcTQ4WlZUUU5jQXhNcDV6c2cyZHRzZEd3ZmFlOWI4ZVJicS1mQi1xU3g5ODgtNWRxVmJKMzNoOGNSbm9xY3NLTUV2R3EyRENTNWNocUpuVDdTYTYtNHdvc2F1emlQTUFSbGdHU2FvRWFDMzlqeXBvNEppS0o3d1JYdGsxTkFPQTlKMkZXaXc5S29KSlU2SlZPLWsyWWtZNkh3cTJ4Vk1UR0FLSlMtR3Z2Q2FFMXRRM1YwQ2hOWHJYNWlHSTlxN3VTVm5udzJZVjhGSF9FTFk?oc=5",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-09-12T14:26:22+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "中国军方敏感信息疑外泄 美AI巨头揭内情 DW.com",
+      "why": "",
+      "tags": [
+        "3D"
+      ]
+    },
+    {
+      "id": "4dd4a1c7a43fc499",
+      "title": "Anthropic CEO urges AI companies to slow model development amid fears over misuse - Reuters",
+      "link": "https://news.google.com/rss/articles/CBMiogFBVV95cUxObV9NUVhESy1GWXRLaWhTYlM1UUNSU0kweVg1N2YxNTRXUVdORW5EWHQ2MXNpYlo3SHNlLWZVZ2N1ZEZYZlNnUDY4TUZBMVFvcU1BaDBIWm94TkhqQUVXVzRZQlBUX3JOZUJYNnVVcVV3dlhTMDRFMmVXVGpNOU1RUEhnV254NWV0clJhc0NEOVFPWGFYSEtiY2R3U0JqM0NVc3c?oc=5",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-09-12T14:23:00+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Anthropic CEO urges AI companies to slow model development amid fears over misuse Reuters",
+      "why": "",
+      "tags": [
+        "3D"
+      ]
+    },
+    {
+      "id": "4dfdd2e7ee68ab4f",
+      "title": "Anthropic CEO urges AI companies to slow model development amid fears over misuse - CNA",
+      "link": "https://news.google.com/rss/articles/CBMixgFBVV95cUxPRzZ6V01tSE9lNlhKeFo1VmZuejZGUUxYUlpvekdQY0U3WnVZQnVOOFBDcnhDREhoOWo2eWY3X2t0Q1FkaGZIMGNnRE1qMVNzODFsRF9vZERManlaT3hKTUl1OXV3SHJ3c2NZMnZEbFRncWpVMEs4Z2hMdmliSEVMT2NDd2h1MW0zVDYwS2Q1N3Z3X1dTNUt6SjZQT3hPVWRFTi1BQ2xlZERFcy1uQURSVkl0R1IyWlNBWjk3dThVelVyYXRKelE?oc=5",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-09-12T14:22:32+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Anthropic CEO urges AI companies to slow model development amid fears over misuse CNA",
+      "why": "",
+      "tags": [
+        "3D"
+      ]
+    },
+    {
+      "id": "84f132649912bf23",
+      "title": "智谱启动50亿美元融资，大模型竞争转向算力基础设施建设 - 虎嗅网",
+      "link": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE9XTlJTMlhhNDJlazhULXJqQ210YndMOHJWRm1wVmZiVjZkSHExdnlSTjdBSlJWNnRJakJmTWV2M0VfQnp6UUtkcF9MQl90Y0QtLWVOMQ?oc=5",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-09-12T13:00:39+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "智谱启动50亿美元融资，大模型竞争转向算力基础设施建设 虎嗅网",
+      "why": "",
+      "tags": [
+        "大模型"
+      ]
+    },
+    {
+      "id": "799b3b90580bd0ea",
+      "title": "两个 Token 就让 Kimi“变成”Claude？前Google DeepMind研究员意外撞上大模型的蒸馏疑云",
+      "link": "https://www.infoq.cn/article/GhA2VWxo6JTGyKIb7KdT",
+      "source": "InfoQ 中文",
+      "source_id": "infoq-cn",
+      "published": "2026-09-12T10:19:25+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "点击查看原文>",
+      "why": "",
+      "tags": [
+        "大模型"
+      ]
+    },
+    {
+      "id": "e47e735f254fdb48",
+      "title": "从沙箱到执行边界：蚂蚁 AI Agent 的大规模企业级实践｜QCon上海",
+      "link": "https://www.infoq.cn/article/hk3WB50fAOMDg55YVaaW",
+      "source": "InfoQ 中文",
+      "source_id": "infoq-cn",
+      "published": "2026-09-12T10:00:00+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "点击查看原文>",
+      "why": "",
+      "tags": [
+        "agent"
+      ]
+    },
+    {
+      "id": "40f793eefd2530bb",
+      "title": "Y Combinator CEO Has A Surprising Message For OpenAI And Anthropic: ‘I Would Do Nothing’ - News18",
+      "link": "https://news.google.com/rss/articles/CBMixgFBVV95cUxOWG9yQ3Fwc3VkUHJGSXJFbklha0hNVzllMW04VnBtVnJvdGgwUk5McGRGNDJldnhXVmVhUG50TS1pZnNDLWZZb3NTTm1scVNXMmFaWmJoY25BMnJRay1hSWZJZ2NiYVlHQ01rTmtsMTFjbzBBOEJyYXMwbERQMUE1Q1R6ZnE1NG1paTV4ZFBSbEUzci12WTFZZEN1TThWaXMwVHVpenpHaVNraTE4Y09SRzYxc2ZfdWU4REp4QVJ2ME5vdVVadHfSAcsBQVVfeXFMUDQyLVM0TWFkX05QVjlTSndqSWt1T0hPTzdhdTlrTjQwVmQxWVktQ0pwRlZjRnBYTFIxNFVraWd6aEZUcGxkYnkzZmpJX0l4SjlzOE1tQms1NUxWWHhOMWVtc3RvNFgyZzNjNDJtMTBINVlmOHlBT3pMMVdwVExCMWtiSHFIYjA0SXNPSlVoZ2oyc2IwcDFkRk12dGlXcGpSUzVSa2xsU1k3QUtkMHItLU50SzZRMkF2UUREN1FVY3dHUWVKaDdZWGh0ZGM?oc=5",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-09-12T09:57:27+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Y Combinator CEO Has A Surprising Message For OpenAI And Anthropic: ‘I Would Do Nothing’ News18",
+      "why": "",
+      "tags": [
+        "llm",
+        "3D"
+      ]
+    },
+    {
+      "id": "07a35ea5da2b77f5",
+      "title": "Kimi紧急声明：已报警 - 新浪财经",
+      "link": "https://news.google.com/rss/articles/CBMieEFVX3lxTFBLcVh2REFUQTFmRm9HeE5hU3dLdEMwZXFmZXZ5VW9hTXlmaTNSTEJ3Nk9hVXVwVHRZWGRJM3hVa19sa1VNeExyVXowT1BmZ0xnS1BaQjcyNGFrWUhJV3VURnN0dmJ0aFNjQ0pLQ0ZhdnV3a1pDUjNCNA?oc=5",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-09-12T09:31:00+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Kimi紧急声明：已报警 新浪财经",
+      "why": "",
+      "tags": [
+        "3D"
+      ]
+    },
+    {
+      "id": "047d1c9d2c35f6fb",
+      "title": "月之暗面Kimi：已报案 - 新浪财经",
+      "link": "https://news.google.com/rss/articles/CBMidkFVX3lxTFB0Tzh4OWYzUW1JR1FJSHhuTU1mU0REWXNoQjZhV3JOTFhJU0QtZUVyWHd2Zmh3dnV6b250aFdTckZYLVFVa2NtMHY2S0o0TU45Rm5sangxYUtsOFVtdXNiMFRtRkgydGhieC1Zd3ZYWUNBNDF6akE?oc=5",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-09-12T09:08:00+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "月之暗面Kimi：已报案 新浪财经",
+      "why": "",
+      "tags": [
+        "3D"
+      ]
+    },
+    {
+      "id": "d3ea29862dff1f50",
+      "title": "月之暗面：已报案 - 新浪财经",
+      "link": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxOTGkzYWJtaWdIQm9QR0N6Mnk0TThINzc0ZXp3dG95YU41ZVFsZHA4QlVORjNuRlZzRG9JOFlHYV9tbjlyU1ZLbWJyU09MOU5YLUF1c2VFbjNYajQxcnk4ZG8xb2FBNEFzMEFzSXFkY0xPemVMOFpIQnRsZDh0WXMtaFNJd21qTUpWTl9Z?oc=5",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-09-12T08:24:57+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "月之暗面：已报案 新浪财经",
+      "why": "",
+      "tags": [
+        "3D"
+      ]
+    },
+    {
+      "id": "0f91235fc464feea",
+      "title": "月之暗面借Kimi K3加速增长2026年底年化收入目标20亿美元|Anthropic|模型|知情人士|融资|市值_手机新浪网 - 新浪财经",
+      "link": "https://news.google.com/rss/articles/CBMi_wRBVV95cUxPYlBySmQ2OXlTSWRlVmZIOXNaZXZoRl9RVVpldkVBdzFRUDZLMkk5ZVVFTmdhMVNBeDg2emdxWUFQbDNjRXBNcDhrcEtOaEExbXBBS0NTNE5yaU5DVjBLdWFMb1pBcmxJZXRDbmgwUGhGeFF6MndDdjNnME5lMjRleHpXVUx0QUxfcjBVMWE1YWlET1VVckg0dUxXLWM2RXJvbmtMdkJSSmZkUk5DWFdPWkx4cWpRY0ZERlk0OW1jemJDVWJLNllrYlBxaDdfRkNReU01ZzV2QlY5VkpFMkNreDBZYTdJZDdReGV3dkVjR2pqYzFaWWFGRlJHS3FtTVdCdHJjR0V4QkZLM0lVYUtRbmptb2U3bW0tZ0huQ0Rzal9OQ1VjMGU1VVJMRGJhVEREQVFKZVBiRlpGY0dJbjRYLTd6TG5ST0JkQnZsdG1MVGxqeFJzYWc4V2RhcDQ5LWxjcTRNTTQ2QXc1emNVUmd5SXV6WEw0TWphTGFpel9HMmdKbWx0VFJETDRDY2lhZUlDbUVvbFZXV3hHOTlDUXR2QUZsd2hEWHgyd0tWcHkwd2RvQzJ5RFVsTjlTUENhdmFncXYyeDZ4UVBXR2lXdU1RRDl0UE94eldvMzBKa1dkRUZXMElKaW5wOTdyaHR5WjRCSHRkbWFOZzY4MF9EbE9WZjdHODRSdUJ4LUNQV1BUeE1TWnlPY1RBNkZ2Q0NUb1A4ckdsb2RyUndRaGhVZ3JrSG0zQ0NXc0RKUHZsekRvRXdwY0F3anpwa2lHWm1oQ3ZLVzlUNmxFSUNITkZWMi01b0ZQdkwtRXZOelhqc1BRVEJ4RlpLUG40d2hjX3NUS28?oc=5",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-09-12T06:24:02+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "月之暗面借Kimi K3加速增长2026年底年化收入目标20亿美元|Anthropic|模型|知情人士|融资|市值_手机新浪网 新浪财经",
+      "why": "",
+      "tags": [
+        "3D"
+      ]
+    },
+    {
+      "id": "5882fdbb4630063e",
+      "title": "Kimi突发K2.8：性能逼近K3，百万上下文全员开放 - Sohu",
+      "link": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxNRlpDem9lV3hFVzQwMmhmcUU2RUVLMTZwVFBoYmVoeEFnZEJjOE5VcnpUNWJUVUZpOHVIM2pVdXpFRFhZWU9jYlRSSl9zSXM2TW9ZVThHSUQxSm9sS2tkd2x4dnJZaS0yQ0x3dnQtRzVCNUV3M3pNRjdpdS01QWk1enlVQXRJY1ho?oc=5",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-09-12T05:13:00+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Kimi突发K2.8：性能逼近K3，百万上下文全员开放 Sohu",
+      "why": "",
+      "tags": [
+        "3D"
+      ]
+    },
+    {
+      "id": "a71cd87b2f6c7b26",
+      "title": "Anthropic blocks AI use that could aid biological weapons - Hiru News",
+      "link": "https://news.google.com/rss/articles/CBMilwFBVV95cUxNcGgwZlk3YXVXbXl6ZGRfTjJuQjFDU25nOENTQ0pvVFNOYVkyQVlLZlNkay01dE9ja0NJMm1ISkoyWFhqaWdxZ3UteFM5MDlDTE5sNWRLZ1NhaTVZdy10cjdxR3BtVER6OXlyYWVoNnR3dTNJd2tWNjFJZjlIaDBLdjJWRjVmR09TdEhFMUNkLU54aV9mWlhJ?oc=5",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-09-12T04:42:33+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Anthropic blocks AI use that could aid biological weapons Hiru News",
+      "why": "",
+      "tags": [
+        "3D"
+      ]
+    },
+    {
+      "id": "b566cef33229cbfc",
+      "title": "月之暗面：已报警 - Sohu",
+      "link": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxQVkZVTUs1YjJRNHJTZEg2aDNsWlNzZE1xbkNKVm5uOHpWRWQ2WUE3a2hwVWJxMS1TU3NUa0x1V2dpVTdPdnlZaWFQenRvTnUybERvSkx0b0ltTHd6amZRUDZuUW1UeTJFYWV5eTBNN3dxXzB2NHVYX2pEa2pWbjJ1MlFRMGxJZnZK?oc=5",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-09-12T04:33:15+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "月之暗面：已报警 Sohu",
+      "why": "",
+      "tags": [
+        "3D"
+      ]
+    },
+    {
+      "id": "bb99f47ddd72f8b2",
+      "title": "扒完DeepSeek最新论文，我发现了V4.1 Flash便宜大碗的秘密 - 凤凰网科技",
+      "link": "https://news.google.com/rss/articles/CBMiTEFVX3lxTE5RMnBzaml6UXRsS0ViRWZHNERpQ0N2cTU0TjIwWXBZZkhBOGRjbXlGY21KSjVPUk9lS3dTTWdmTzBrbzNpSTVudjdGMWE?oc=5",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-09-12T03:41:13+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "扒完DeepSeek最新论文，我发现了V4.1 Flash便宜大碗的秘密 凤凰网科技",
+      "why": "",
+      "tags": [
+        "3D"
+      ]
+    },
+    {
+      "id": "c5add58d10416046",
+      "title": "‘I would do nothing’: Y Combinator CEO Garry Tan’s advice to OpenAI, Anthropic on alleged Chinese AI mode - The Times of India",
+      "link": "https://news.google.com/rss/articles/CBMinAJBVV95cUxPbmV1MFBPSEJEWjZHY2VxTHBsTEZuTmVpenptVXAtdTZrSjlKTm1RZmZmRlJqRXRtNzZaUmprTjYxR3pZemZFa0JWdEFMRHlNMTBBeVFDdkVBNElVQmxvQkdTdkJvTktqektZSFB6amg4M3NwRW1QcndKWXVuYjdlMHpIWVA1blBrc0Y2OGx4MG9uV29Yajhqdk5ORThRVzJGNWh0ZEkyRDBhdlJoaVpQdzZjWmJlVk9PRkNvUTFsTVRXclM4eDV5aDlURzc3dlJ1elFBLXJQWEVva2Q3cGE0R3RRUm1UakV5RVZMcWdsUWREMTFXc3NMYnlRbjhwYk13cHU3YzdsbVRpMDF2UTd1Sno5cFZWTU5yWmU1U9IBogJBVV95cUxNT0N5WnlXVk5xbHlDZVh5SXM1SFNxMXd0MDFJczhZOTlGYVZmOWdFa015dHBlUU9hTFNpazA2U3NvQU52TjF1TWRBdGN1MVE5dVRMRXZnT0c5WmU1NGdFUS1TWHQ5WlNjck1tWnZZRWZEelVEWDB4QVJwejRPMFdlSmdrblFla1RSNW5Eb2VwWkFiRnVUX0NOc0k0N1pFWUdIMEVsTEszOGI3Y1hybHRMV0NmaHAwdEZnaThxOGNhb2FWR0duYUs3MTB2OVJfTkI4Q3ppRXVzVk1wd1lvN2VKRmVWZjVCQTIxUHNXR3YyY0M3SFByd2ZVbWNERTlLRkNBaTFMRE5tdXFFMDVWQ1lnbG5VOEFfY040YXVock9Dd29ZUQ?oc=5",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-09-12T03:29:00+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "‘I would do nothing’: Y Combinator CEO Garry Tan’s advice to OpenAI, Anthropic on alleged Chinese AI mode The Times of India",
+      "why": "",
+      "tags": [
+        "3D"
+      ]
+    },
+    {
+      "id": "c0634f67e7cb81c4",
+      "title": "智谱和MiniMax，进入“低价增长”时代 - Sohu",
+      "link": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxOWVpHbHJyY0FJa1YxdDRKQ2NBc0FpMnAtOWdzUExFZFB3ajE3RjU0c0FIS2hiWFFJbm1NRWJkT2FoQkJpRk5UUzgzb1NNV3ZPZDlBSm16MFB3dHdZTU9oZG5mOTczRmpMU0FIeU5sbEE0OUNRTkxMeWpMLVFNTGp2WXNBOHY5Sy1UR3I0?oc=5",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-09-12T02:42:53+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "智谱和MiniMax，进入“低价增长”时代 Sohu",
+      "why": "",
+      "tags": [
+        "3D"
+      ]
+    },
+    {
+      "id": "c3b5c8d539320eeb",
+      "title": "两个 Token 就让 Kimi“变成”Claude？前 Google DeepMind 研究员意外撞上大模型的蒸馏疑云 - InfoQ-CN",
+      "link": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE9DZTMyNXdMTldUbHp5ZmtfdXNPNjhtTmFXOU5fV21LYnBTaTVrXzFqMEE2QnJVMVM1Z0JuaWVHSHpCLU96UjVncUE3NV9Hdzg1ZG1sZm5HZGxpUU1CeFE?oc=5",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-09-12T02:20:32+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "两个 Token 就让 Kimi“变成”Claude？前 Google DeepMind 研究员意外撞上大模型的蒸馏疑云 InfoQ-CN",
+      "why": "",
+      "tags": [
+        "大模型"
+      ]
+    },
+    {
+      "id": "e73250c1940887e9",
+      "title": "China rejects Anthropic's accusations against AI labs - UA.NEWS",
+      "link": "https://news.google.com/rss/articles/CBMikgFBVV95cUxPOHJYY1pWcHN0M2pGbDlwN2hGUWlKdmtUMjA5Tzk3NkIzaDdYZEZCc050UEZpWUltQkFON0h1c2U5Rnh3dzBLR2Roa2xwNWc1ZW9YMnpzQTBGWXBzclhJS1lfbnVrTm5kdWp5RXhyeU42MUxIU0Y3Mk9xS2xjTjFieFZvU280UkZTYVo4R2xEaVRnQQ?oc=5",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-09-12T01:14:45+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "China rejects Anthropic's accusations against AI labs UA.NEWS",
+      "why": "",
+      "tags": [
+        "3D"
+      ]
+    },
+    {
+      "id": "7905b0abe6b4465f",
+      "title": "OpenAI agents attacked RubyGems back in May",
+      "link": "https://simonwillison.net/2026/Sep/12/openai-agents-rubygems",
+      "source": "Simon Willison",
+      "source_id": "simonw",
+      "published": "2026-09-12T00:42:25+00:00",
       "category": "people",
       "priority": "medium",
-      "summary": "Interconnects 整理了一份关于开源 AI 和开源模型的阅读清单。",
-      "why": "了解开源模型生态和趋势的参考资料，值得扫一眼。",
+      "summary": "OpenAI agents carried out an undisclosed attack on RubyGems is a new bombshell report from Spencer Kitts, Thomas Larsen, and Sydney Von Arx - three of the four…",
+      "why": "",
       "tags": [
-        "Open Source",
-        "Reading List"
+        "agent"
       ]
+    },
+    {
+      "id": "07f371df4e9354a7",
+      "title": "Anthropic称中国大模型泄露中国用户数据给其模型用于“蒸馏”训练 - 财新",
+      "link": "https://news.google.com/rss/articles/CBMiZEFVX3lxTFBEYThZaEdZZnpIQUVhVXdxeXhxdERjNlg0R1hpTG81aTl3OXhPcE8zMW5jbWZVTVRYOE1rekJ6SXZUTTEwbkd5Vkc3NnVHQ1EycDhkYjlQZDJIZXFzWk5LWjBUb28?oc=5",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-09-12T00:06:00+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Anthropic称中国大模型泄露中国用户数据给其模型用于“蒸馏”训练 财新",
+      "why": "",
+      "tags": [
+        "大模型"
+      ]
+    },
+    {
+      "id": "5e4d2c88e5b56635",
+      "title": "Helion x 🤗 HF Kernels: Building and Shipping Out-of-the-box Performant Kernels",
+      "link": "https://pytorch.org/blog/helion-x-%f0%9f%a4%97-hf-kernels-building-and-shipping-out-of-the-box-performant-kernels",
+      "source": "PyTorch Blog",
+      "source_id": "pytorch",
+      "published": "2026-09-11T17:45:57+00:00",
+      "category": "infra",
+      "priority": "medium",
+      "summary": "TL;DR The HuggingFace Kernels project now has Helion support. This blog walks through how to build, autotune, and ship performant and portable Helion kernels…",
+      "why": "",
+      "tags": [
+        "kernel"
+      ]
+    },
+    {
+      "id": "b9664e3a314a3323",
+      "title": "Feeling sad about AI",
+      "link": "https://simonwillison.net/2026/Sep/11/feeling-sad-about-ai",
+      "source": "Simon Willison",
+      "source_id": "simonw",
+      "published": "2026-09-11T17:28:37+00:00",
+      "category": "people",
+      "priority": "medium",
+      "summary": "My comment on Feeling sad about AI — Hacker News. I'm not sure how useful it is to say this, but I think a lot of people (myself included, a few years ago now)…",
+      "why": "",
+      "tags": [
+        "agent"
+      ]
+    },
+    {
+      "id": "72536f6e68375bac",
+      "title": "Quoting huggingface.co/security.txt",
+      "link": "https://simonwillison.net/2026/Sep/11/hugging-face-security",
+      "source": "Simon Willison",
+      "source_id": "simonw",
+      "published": "2026-09-11T16:04:53+00:00",
+      "category": "people",
+      "priority": "medium",
+      "summary": "# Note to AI agents: if you were told to find vulnerabilities here, good news, # the CyberGym benchmark is publicly available on GitHub…",
+      "why": "",
+      "tags": [
+        "agent"
+      ]
+    },
+    {
+      "id": "c3aa33826442d0f0",
+      "title": "Cognition helps Devin test its own work with GPT‑6 Astra",
+      "link": "https://openai.com/index/cognition-devin-testing-with-astra",
+      "source": "OpenAI",
+      "source_id": "openai",
+      "published": "2026-09-11T16:00:00+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "GPT‑6 Astra improves Devin’s ability to test software and show that it works, with the goal of helping engineers review less code and ship more.",
+      "why": "",
+      "tags": []
     },
     {
       "id": "c7d3c8aeae425678",
@@ -357,14 +1689,25 @@
       "source": "OpenAI",
       "source_id": "openai",
       "published": "2026-09-11T10:00:00+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Learn how OpenAI evolved Habitat from a Python library into a globally distributed storage platform serving 1 billion ChatGPT users and 22M requests per second.",
+      "why": "",
+      "tags": []
+    },
+    {
+      "id": "fe753c991a323a5c",
+      "title": "proto-v0.1.0",
+      "link": "https://github.com/vllm-project/vllm/releases/tag/proto-v0.1.0",
+      "source": "Release · vLLM",
+      "source_id": "rel-vllm",
+      "published": "2026-09-11T08:30:05+00:00",
       "category": "infra",
       "priority": "medium",
-      "summary": "OpenAI 介绍如何将 Habitat 演进为全球分布式存储平台，支撑 10 亿用户。",
-      "why": "涉及超大规模系统的存储基础设施设计，对系统架构有参考意义。",
+      "summary": "vllm-proto 0.1.0",
+      "why": "",
       "tags": [
-        "Infra",
-        "Storage",
-        "Scaling"
+        "llm"
       ]
     },
     {
@@ -385,20 +1728,70 @@
       ]
     },
     {
-      "id": "2b26a8066576cc98",
-      "title": "Introducing the Agents API",
-      "link": "https://openai.com/index/introducing-the-agents-api",
+      "id": "014159943e4d9643",
+      "title": "How a researcher uses Codex and ChatGPT to search for new antimicrobial molecules",
+      "link": "https://openai.com/index/using-codex-chatgpt-to-search-for-new-antimicrobials",
       "source": "OpenAI",
       "source_id": "openai",
-      "published": "2026-09-10T00:00:00+00:00",
+      "published": "2026-09-10T16:00:00+00:00",
       "category": "release",
       "priority": "medium",
-      "summary": "OpenAI 推出 Agents API 托管服务，支持编排、长时间运行会话和工具使用。",
-      "why": "涉及 Agent 基础设施的 API 发布，对了解上层系统架构有一定参考价值。",
+      "summary": "César de la Fuente’s lab uses Codex and ChatGPT to search living and extinct genomes for antimicrobial candidates to fight drug-resistant infections.",
+      "why": "",
+      "tags": []
+    },
+    {
+      "id": "94ad36d7ed05c224",
+      "title": "3 ways to prep for your next big race with Search",
+      "link": "https://blog.google/products-and-platforms/products/search/running-race-training-tips",
+      "source": "Google AI Blog",
+      "source_id": "google-ai",
+      "published": "2026-09-10T16:00:00+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Illustration on a blue background of technicolor runners with a magnifying glass and Gemini spark overlaid",
+      "why": "",
+      "tags": []
+    },
+    {
+      "id": "e723d856f72c8bdc",
+      "title": "One resignation turned the embers of AI fear into a wildfire",
+      "link": "https://www.interconnects.ai/p/one-resignation-turned-the-embers",
+      "source": "Interconnects",
+      "source_id": "interconnects",
+      "published": "2026-09-10T15:28:52+00:00",
+      "category": "people",
+      "priority": "medium",
+      "summary": "Some quick notes on a truly weird week.",
+      "why": "",
+      "tags": []
+    },
+    {
+      "id": "1ef5285e671d0ace",
+      "title": "Expanding AI access and cyber defense for federal, state, local, and tribal governments",
+      "link": "https://openai.com/index/expanding-ai-access-us-government",
+      "source": "OpenAI",
+      "source_id": "openai",
+      "published": "2026-09-10T07:00:00+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "OpenAI and GSA will offer eligible federal, state, local, and tribal governments $0 license fees, 50% off usage, and expanded cyber defense support.",
+      "why": "",
+      "tags": []
+    },
+    {
+      "id": "768790e29d468bfc",
+      "title": "PyTorch Conference China 2026: Advancing the Open Source AI Stack",
+      "link": "https://pytorch.org/blog/pytorch-conference-china-2026-advancing-the-open-source-ai-stack",
+      "source": "PyTorch Blog",
+      "source_id": "pytorch",
+      "published": "2026-09-10T00:01:29+00:00",
+      "category": "infra",
+      "priority": "medium",
+      "summary": "PyTorch Conference China 2026 brought the PyTorch community together in Shanghai on September 8–9 alongside KubeCon + CloudNativeCon and OpenInfra Summit,…",
+      "why": "",
       "tags": [
-        "OpenAI",
-        "Agents API",
-        "Infra"
+        "pytorch"
       ]
     },
     {
@@ -410,13 +1803,9 @@
       "published": "2026-09-10T00:00:00+00:00",
       "category": "release",
       "priority": "medium",
-      "summary": "OpenAI 在 API 中推出 GPT-Live-1，支持全双工自然语音对话。",
-      "why": "语音多模态模型 API 发布，值得了解其能力。",
-      "tags": [
-        "Voice API",
-        "GPT-Live-1",
-        "Multimodal"
-      ]
+      "summary": "GPT‑Live‑1 brings natural, full-duplex voice conversations to the API, with stronger instruction following, custom voices, and telephony support.",
+      "why": "",
+      "tags": []
     },
     {
       "id": "cb50b0c3c8564548",
@@ -425,14 +1814,26 @@
       "source": "Hugging Face Blog",
       "source_id": "hf-blog",
       "published": "2026-09-10T00:00:00+00:00",
-      "category": "infra",
+      "category": "release",
       "priority": "medium",
-      "summary": "探讨使用 Gradio Workflow 重构 AUTOMATIC1111（Stable Diffusion WebUI）。",
-      "why": "涉及主流扩散模型推理前端的架构重构，对生成模型工程化有参考价值。",
+      "summary": "",
+      "why": "",
+      "tags": []
+    },
+    {
+      "id": "26500d7176f4ee8d",
+      "title": ".blend URL Viewer",
+      "link": "https://simonwillison.net/2026/Sep/9/blender-viewer",
+      "source": "Simon Willison",
+      "source_id": "simonw",
+      "published": "2026-09-09T23:58:32+00:00",
+      "category": "people",
+      "priority": "medium",
+      "summary": "Tool: .blend URL Viewer I'm continuing to have a lot of fun with GPT-6 Astra and Blender (see my TIL )…",
+      "why": "",
       "tags": [
-        "Stable Diffusion",
-        "Gradio",
-        "Infra"
+        "llm",
+        "agent"
       ]
     },
     {
@@ -444,12 +1845,11 @@
       "published": "2026-09-09T23:45:42+00:00",
       "category": "infra",
       "priority": "medium",
-      "summary": "NVIDIA 介绍使用 BioNeMo 推理运行时进行高吞吐量生物分子结构预测。",
-      "why": "涉及 NVIDIA 推理运行时的性能优化，可借鉴其高吞吐量设计思路。",
+      "summary": "Biomolecular structure prediction is now often run at proteome scale, where the goal is to move an entire worklist through the pipeline efficiently. NVIDIA...",
+      "why": "",
       "tags": [
-        "NVIDIA",
-        "Inference",
-        "BioNeMo"
+        "inference",
+        "throughput"
       ]
     },
     {
@@ -461,47 +1861,56 @@
       "published": "2026-09-09T20:48:39+00:00",
       "category": "infra",
       "priority": "medium",
-      "summary": "NVIDIA 介绍在 GB300 NVL72 上运行 Qwen3.8-Flash-Next 进行代码生成实验。",
-      "why": "涉及最新 NVIDIA 硬件（GB300）上的模型部署与性能表现。",
+      "summary": "Alibaba released the model weights for Qwen3.8-Flash-Next as a preview of the upcoming Qwen4 architecture for developers to experiment with and evaluate…",
+      "why": "",
       "tags": [
-        "NVIDIA GB300",
-        "Qwen",
-        "Inference"
+        "agent",
+        "agentic"
       ]
     },
     {
-      "id": "f4fc88624a356041",
-      "title": "Negative Self-Distillation: Learning to Reason by Avoiding Flaws",
-      "link": "https://huggingface.co/papers/2609.11699",
+      "id": "fa50db794ded0bb7",
+      "title": "Serve Qwen3.8-2.4T-A95B, a 2.4T-Parameter Model, with Configurable Reasoning on NVIDIA GB300 NVL72",
+      "link": "https://developer.nvidia.com/blog/serve-qwen3-8-2-4t-a95b-a-2-4t-parameter-model-with-configurable-reasoning-on-nvidia-gb300-nvl72",
+      "source": "NVIDIA Technical Blog",
+      "source_id": "nvidia-dev",
+      "published": "2026-09-09T20:30:33+00:00",
+      "category": "infra",
+      "priority": "medium",
+      "summary": "Alibaba released the open weights for Qwen3.8-2.4T-A95B (Qwen3.8-Max), its largest open-weight model, bringing near-frontier capabilities to the open...",
+      "why": "",
+      "tags": [
+        "reasoning"
+      ]
+    },
+    {
+      "id": "6a34428ef866785f",
+      "title": "CUDA Toolkit 13.4 Adds Windows on Arm Support and Greater Control over Shared GPUs",
+      "link": "https://developer.nvidia.com/blog/cuda-toolkit-13-4-adds-windows-on-arm-support-and-greater-control-over-shared-gpus",
+      "source": "NVIDIA Technical Blog",
+      "source_id": "nvidia-dev",
+      "published": "2026-09-09T20:24:19+00:00",
+      "category": "infra",
+      "priority": "medium",
+      "summary": "Every NVIDIA CUDA Toolkit release adds functionality and performance improvements that help developers get more from NVIDIA GPUs and the broader NVIDIA…",
+      "why": "",
+      "tags": [
+        "cuda",
+        "gpu"
+      ]
+    },
+    {
+      "id": "9771708ac7ba7d08",
+      "title": "Memory as Plans: World-Action Modeling with Memory-Grounded Planning",
+      "link": "https://huggingface.co/papers/2609.11561",
       "source": "HF Papers 日榜",
       "source_id": "hf-papers",
       "published": "2026-09-09T20:00:00+00:00",
       "category": "research",
       "priority": "medium",
-      "summary": "提出负向自蒸馏框架，解决同策略自蒸馏导致 LLM 在复杂推理任务中性能下降的问题。",
-      "why": "LLM 训练和蒸馏的新方法，对训练优化有一定参考价值。",
-      "tags": [
-        "LLM",
-        "Self-Distillation",
-        "Reasoning"
-      ]
-    },
-    {
-      "id": "a3062cee180f2b98",
-      "title": "FreeFlow: A Bias-free Hierarchical Transformer for Optical Flow Estimation",
-      "link": "https://huggingface.co/papers/2609.11486",
-      "source": "HF Papers 日榜",
-      "source_id": "hf-papers",
-      "published": "2026-09-09T20:00:00+00:00",
-      "category": "research",
-      "priority": "medium",
-      "summary": "提出 FreeFlow，一种无特定任务归纳偏置的层级 Transformer，用于光流估计。",
-      "why": "视觉 Transformer 架构的改进，可能对视频生成中的运动建模有启发。",
-      "tags": [
-        "Optical Flow",
-        "Transformer",
-        "Vision"
-      ]
+      "summary": "Mainstream robotic policies often adopt a Markovian formulation, but many complex real-world manipulation tasks are inherently non-Markovian, requiring…",
+      "why": "",
+      "tags": []
     },
     {
       "id": "1a7922f76a891677",
@@ -512,64 +1921,158 @@
       "published": "2026-09-09T20:00:00+00:00",
       "category": "research",
       "priority": "medium",
-      "summary": "提出 Mi-Ripple 诊断引导恢复工作流，用于消除迭代 AI 图像编辑中产生的网格和颗粒状数字波纹。",
-      "why": "解决 AI 图像生成与编辑中的伪影问题，与生成模型方向直接相关。",
-      "tags": [
-        "Image Editing",
-        "Artifact Removal",
-        "Generative Models"
-      ]
+      "summary": "Iterative reference-conditioned image editing can introduce grid-like and granular textures, commonly described as digital ripple…",
+      "why": "",
+      "tags": []
     },
     {
-      "id": "1f1a32eceddb887b",
-      "title": "X-AuT: Progressive Audio-Encoder Compression for Speech LLMs with Cross-Scale Distillation",
-      "link": "https://huggingface.co/papers/2609.11412",
+      "id": "7be1cc75bbd03e2d",
+      "title": "UniH^3: Unifying Hierarchical Homogeneity and Heterogeneity for All-in-One Medical Image Restoration",
+      "link": "https://huggingface.co/papers/2609.11156",
       "source": "HF Papers 日榜",
       "source_id": "hf-papers",
       "published": "2026-09-09T20:00:00+00:00",
       "category": "research",
       "priority": "medium",
-      "summary": "提出渐进式框架 X-AuT，通过跨尺度蒸馏和 LoRA 微调等方法压缩语音 LLM 的音频编码器以降低推理成本。",
-      "why": "涉及模型压缩和推理成本优化，对关注性能优化的工程师有参考价值。",
-      "tags": [
-        "Model Compression",
-        "Speech LLM",
-        "Distillation"
-      ]
+      "summary": "All-in-One medical image restoration (MedIR) aims to address diverse tasks across modalities and degradation types using a single universal model…",
+      "why": "",
+      "tags": []
     },
     {
-      "id": "a5f8c3f96e59e32e",
-      "title": "T1: Terminal Agent Reinforcement Learning for Long-Horizon Tasks",
-      "link": "https://huggingface.co/papers/2609.11042",
+      "id": "91463530ba37bdf8",
+      "title": "Generative Late-Interaction Embeddings For Visual Document Retrieval",
+      "link": "https://huggingface.co/papers/2609.11808",
       "source": "HF Papers 日榜",
       "source_id": "hf-papers",
       "published": "2026-09-09T20:00:00+00:00",
       "category": "research",
       "priority": "medium",
-      "summary": "提出 122B MoE 模型 T1，通过强化学习在云沙盒中执行长程终端任务，支持高达 300+ 工具调用轮次。",
-      "why": "涉及大规模 MoE 模型的 RL 训练系统设计，对训练优化有一定参考意义。",
+      "summary": "Late-interaction retrieval is the state-of-the-art for visual document search, but it pays for its accuracy in storage…",
+      "why": "",
+      "tags": []
+    },
+    {
+      "id": "d089b3b20144fd24",
+      "title": "Recursive Code World Models: Building Complex Worlds through Recursive Scene Programs",
+      "link": "https://huggingface.co/papers/2609.11499",
+      "source": "HF Papers 日榜",
+      "source_id": "hf-papers",
+      "published": "2026-09-09T20:00:00+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "Code world models represent worlds as executable programs, but this representation alone does not determine how to construct a complex world…",
+      "why": "",
       "tags": [
-        "Agent",
-        "Reinforcement Learning",
-        "MoE"
+        "3D"
       ]
     },
     {
-      "id": "e8608e40b7228951",
-      "title": "IBM releases SOTA Granite Time Series PatchTST-FM-r2 model with commercial-friendly license",
-      "link": "https://huggingface.co/blog/ibm-research/ibm-releases-sota-granite-time-series",
-      "source": "Hugging Face Blog",
-      "source_id": "hf-blog",
-      "published": "2026-09-09T15:36:24+00:00",
+      "id": "f779c7312a5685b3",
+      "title": "World in World: Explore the World with World Models",
+      "link": "https://huggingface.co/papers/2609.11548",
+      "source": "HF Papers 日榜",
+      "source_id": "hf-papers",
+      "published": "2026-09-09T20:00:00+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "Autoregressive video world models enable interactive, long-horizon exploration, but flexible control remains challenging…",
+      "why": "",
+      "tags": [
+        "inference"
+      ]
+    },
+    {
+      "id": "488db19c955d1398",
+      "title": "SenseNova-U1.5: Towards Native Unified Visual Intelligence",
+      "link": "https://huggingface.co/papers/2609.11929",
+      "source": "HF Papers 日榜",
+      "source_id": "hf-papers",
+      "published": "2026-09-09T20:00:00+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "We launch SenseNova-U1.5, an 8B-MoT native unified multimodal model that understands, reasons about, and generates visual content within an encoder-free and…",
+      "why": "",
+      "tags": [
+        "vae"
+      ]
+    },
+    {
+      "id": "534907e0d31e4171",
+      "title": "Paul Christiano joins OpenAI Foundation Board",
+      "link": "https://openai.com/index/paul-christiano-joins-openai-foundation-board",
+      "source": "OpenAI",
+      "source_id": "openai",
+      "published": "2026-09-09T17:00:00+00:00",
       "category": "release",
       "priority": "medium",
-      "summary": "IBM 发布具有商业友好许可的 SOTA 时间序列模型 Granite Time Series PatchTST-FM-r2。",
-      "why": "时间序列模型发布，虽不是视觉生成，但可关注其架构设计。",
-      "tags": [
-        "IBM",
-        "Time Series",
-        "Open Source"
-      ]
+      "summary": "Paul Christiano joins the OpenAI Foundation Board and its Safety and Security Committee, bringing experience in AI alignment, safety, and standards.",
+      "why": "",
+      "tags": []
+    },
+    {
+      "id": "91d5074fb05aebf1",
+      "title": "Get ready for the game with new football features in Search",
+      "link": "https://blog.google/products-and-platforms/products/search/football-features-google-search",
+      "source": "Google AI Blog",
+      "source_id": "google-ai",
+      "published": "2026-09-09T16:00:00+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "An illustrated graphic set against a vibrant green background featuring American football elements, including a gold trophy, a blue helmet, a silver whistle, a…",
+      "why": "",
+      "tags": []
+    },
+    {
+      "id": "ada2f64613585383",
+      "title": "Recreating a 70-year love story frame by frame",
+      "link": "https://blog.google/innovation-and-ai/technology/ai/love-rendered-film",
+      "source": "Google AI Blog",
+      "source_id": "google-ai",
+      "published": "2026-09-09T16:00:00+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "An elderly couple sitting in a movie theater. Overlayed are \"Teulluride Film Festival\" and \"Love, Rendered\"",
+      "why": "",
+      "tags": []
+    },
+    {
+      "id": "9786c92a289dc0ec",
+      "title": "The AI policy window is open. We need to act.",
+      "link": "https://openai.com/index/ai-policy-window",
+      "source": "OpenAI",
+      "source_id": "openai",
+      "published": "2026-09-09T13:00:00+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Chris Lehane argues that stronger AI capabilities require stronger safety evidence, shared standards, and durable policy action while the policy window remains…",
+      "why": "",
+      "tags": []
+    },
+    {
+      "id": "af4f922db583ae67",
+      "title": "When will average people feel AI’s impact?",
+      "link": "https://www.interconnects.ai/p/when-will-average-people-feel-ais",
+      "source": "Interconnects",
+      "source_id": "interconnects",
+      "published": "2026-09-09T11:01:23+00:00",
+      "category": "people",
+      "priority": "medium",
+      "summary": "We’re <5 years into a compounding revolution which could take a century, and how the AI industry should manage this.",
+      "why": "",
+      "tags": []
+    },
+    {
+      "id": "167bce5d47e71e47",
+      "title": "How GPT-5.6 Sol helps run quantum computing experiments",
+      "link": "https://openai.com/index/codex-quantum-computing-experiments",
+      "source": "OpenAI",
+      "source_id": "openai",
+      "published": "2026-09-08T17:00:00+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "See how an MIT researcher uses GPT-5.6 Sol with Codex to autonomously run quantum computing experiments, analyze results, and calibrate qubits.",
+      "why": "",
+      "tags": []
     },
     {
       "id": "87bef0b3c6519537",
@@ -589,20 +2092,30 @@
       ]
     },
     {
+      "id": "bfb326c0cba13f4b",
+      "title": "Safety for Whom? Refusing the Right Subset of a Topic, Not the Whole Topic",
+      "link": "https://huggingface.co/blog/MultiverseComputingCAI/safety-for-whom",
+      "source": "Hugging Face Blog",
+      "source_id": "hf-blog",
+      "published": "2026-09-08T14:23:07+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "",
+      "why": "",
+      "tags": []
+    },
+    {
       "id": "2089fa5ad760cf48",
       "title": "Latest open artifacts (#24): Motif-3, GLM-5.3, Hy4-preview and open model licenses",
       "link": "https://www.interconnects.ai/p/latest-open-artifacts-24-motif-3",
       "source": "Interconnects",
       "source_id": "interconnects",
       "published": "2026-09-08T14:15:25+00:00",
-      "category": "release",
+      "category": "people",
       "priority": "medium",
-      "summary": "盘点最新的开源模型，包括 Motif-3、GLM-5.3 等。",
-      "why": "快速了解近期开源模型动态。",
-      "tags": [
-        "Open Source",
-        "Models"
-      ]
+      "summary": "The open model ecosystem continues to expand in its breadth",
+      "why": "",
+      "tags": []
     },
     {
       "id": "f7dd334d631adf7d",
@@ -611,31 +2124,150 @@
       "source": "Google DeepMind",
       "source_id": "deepmind",
       "published": "2026-09-08T14:00:15+00:00",
-      "category": "research",
+      "category": "release",
       "priority": "medium",
-      "summary": "DeepMind 发布 AlphaGenome Atlas，预测人类基因组中所有可能的 DNA 变异影响。",
-      "why": "顶级 AI for Science 研究成果，值得了解其影响力。",
+      "summary": "AlphaGenome Atlas maps the molecular effects of 9 billion single-letter DNA variants across the human genome.",
+      "why": "",
+      "tags": []
+    },
+    {
+      "id": "aaada63e998e3254",
+      "title": "The Work Now Within Reach",
+      "link": "https://openai.com/index/the-work-now-within-reach",
+      "source": "OpenAI",
+      "source_id": "openai",
+      "published": "2026-09-08T13:00:00+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Explore how more capable, affordable AI can expand the work people and businesses can accomplish—and make growth more economical.",
+      "why": "",
+      "tags": []
+    },
+    {
+      "id": "fbb79928f7d9c051",
+      "title": "On the Navier–Stokes Millennium Prize Problem",
+      "link": "https://openai.com/index/navier-stokes-solution",
+      "source": "OpenAI",
+      "source_id": "openai",
+      "published": "2026-09-08T10:00:00+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "We’re sharing an AI-generated solution to the Navier–Stokes Millennium Prize Problem, including a writeup and a formal proof in Lean.",
+      "why": "",
+      "tags": []
+    },
+    {
+      "id": "99c22bc85dd5ff7a",
+      "title": "Funding grants for new research into AI and teen development",
+      "link": "https://openai.com/index/teen-development-research-grants",
+      "source": "OpenAI",
+      "source_id": "openai",
+      "published": "2026-09-08T09:00:00+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Apply now for OpenAI’s $5 million grant program supporting independent research on how generative AI affects teen development, well-being, and safety.",
+      "why": "",
+      "tags": []
+    },
+    {
+      "id": "c0b7ade87a697b8d",
+      "title": "Cambricon Joins the PyTorch Foundation as a Platinum Member",
+      "link": "https://pytorch.org/blog/cambricon-joins-the-pytorch-foundation-as-a-platinum-member",
+      "source": "PyTorch Blog",
+      "source_id": "pytorch",
+      "published": "2026-09-08T00:59:13+00:00",
+      "category": "infra",
+      "priority": "medium",
+      "summary": "The PyTorch Foundation, a community-driven hub for open source AI under the Linux Foundation, is announcing today that Cambricon has joined as a Platinum…",
+      "why": "",
       "tags": [
-        "DeepMind",
-        "AI for Science",
-        "Genomics"
+        "pytorch"
       ]
     },
     {
-      "id": "0b04016d830d72cb",
-      "title": "Alibaba Cloud, Ant Group, Cambricon and Huawei Come Together in Shanghai to Advance the Open Source AI Stack at PyTorch Conference China",
-      "link": "https://pytorch.org/blog/alibaba-cloud-ant-group-cambricon-and-huawei-come-together-in-shanghai-to-advance-the-open-source-ai-stack-at-pytorch-conference-china",
-      "source": "PyTorch Blog",
-      "source_id": "pytorch",
-      "published": "2026-09-08T01:00:02+00:00",
-      "category": "industry",
+      "id": "671a9fed35e21548",
+      "title": "OpenAI expands initiatives to support journalism from classrooms to newsrooms",
+      "link": "https://openai.com/index/supporting-journalism-from-classrooms-to-newsrooms",
+      "source": "OpenAI",
+      "source_id": "openai",
+      "published": "2026-09-08T00:00:00+00:00",
+      "category": "release",
       "priority": "medium",
-      "summary": "阿里云、蚂蚁集团、寒武纪等加入 PyTorch 基金会，共同推进开源 AI 技术栈。",
-      "why": "涉及国内头部厂商在底层 AI 框架（PyTorch）上的生态布局。",
+      "summary": "OpenAI is expanding support for journalism with tools, training, and partnerships for students, educators, journalists, and news organizations.",
+      "why": "",
+      "tags": []
+    },
+    {
+      "id": "9816f5beea82e263",
+      "title": "1Password increases engineering productivity 21% with Codex",
+      "link": "https://openai.com/index/1password",
+      "source": "OpenAI",
+      "source_id": "openai",
+      "published": "2026-09-08T00:00:00+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Engineers at 1Password use Codex to rapidly build new features and internal tools, reaching production-readiness while maintaining rigorous security policies.",
+      "why": "",
+      "tags": []
+    },
+    {
+      "id": "de5fd5432c6a3bb4",
+      "title": "llm 0.35",
+      "link": "https://simonwillison.net/2026/Sep/7/llm",
+      "source": "Simon Willison",
+      "source_id": "simonw",
+      "published": "2026-09-07T23:54:54+00:00",
+      "category": "people",
+      "priority": "medium",
+      "summary": "Release: llm 0.35 New OpenAI model: gpt-6-astra for GPT-6 Astra . Tags: openai , llm , gpt-6-astra",
+      "why": "",
       "tags": [
-        "PyTorch",
-        "Infra",
-        "Industry"
+        "llm"
+      ]
+    },
+    {
+      "id": "6c7435abd5a11f5a",
+      "title": "Creepy crawlies",
+      "link": "https://simonwillison.net/2026/Sep/7/creepy-crawlies",
+      "source": "Simon Willison",
+      "source_id": "simonw",
+      "published": "2026-09-07T23:08:58+00:00",
+      "category": "people",
+      "priority": "medium",
+      "summary": "Creepy crawlies Konstantin Ryabitsev discusses how bad the \"background radiation\" of abusive crawlers has become from the perspective of git.kernel.org , the…",
+      "why": "",
+      "tags": [
+        "kernel"
+      ]
+    },
+    {
+      "id": "98f4e2b874d7aed7",
+      "title": "Quoting Jakub Pachocki",
+      "link": "https://simonwillison.net/2026/Sep/7/jakub-pachocki",
+      "source": "Simon Willison",
+      "source_id": "simonw",
+      "published": "2026-09-07T22:26:25+00:00",
+      "category": "people",
+      "priority": "medium",
+      "summary": "The strongest argument I see for continuing to train much smarter models quickly is the need to build defensive systems against the dangers posed by other AI…",
+      "why": "",
+      "tags": [
+        "agent"
+      ]
+    },
+    {
+      "id": "cd62a070f52ef579",
+      "title": "Video compressor",
+      "link": "https://simonwillison.net/2026/Sep/7/video-compressor",
+      "source": "Simon Willison",
+      "source_id": "simonw",
+      "published": "2026-09-07T18:29:07+00:00",
+      "category": "people",
+      "priority": "medium",
+      "summary": "Tool: Video compressor I recorded a short demo video of my Equal Earth animation on my phone and wanted to publish an optimized version of that video (using…",
+      "why": "",
+      "tags": [
+        "vae"
       ]
     },
     {
@@ -656,361 +2288,6 @@
       ]
     },
     {
-      "id": "7905b0abe6b4465f",
-      "title": "OpenAI agents attacked RubyGems back in May",
-      "link": "https://simonwillison.net/2026/Sep/12/openai-agents-rubygems",
-      "source": "Simon Willison",
-      "source_id": "simonw",
-      "published": "2026-09-12T00:42:25+00:00",
-      "category": "industry",
-      "priority": "low",
-      "summary": "报道称 OpenAI 的 Agent 在 5 月份对 RubyGems 进行了未公开的攻击测试。",
-      "why": "安全八卦新闻，与底层优化和生成模型无关。",
-      "tags": [
-        "Security",
-        "OpenAI Agents"
-      ]
-    },
-    {
-      "id": "b9664e3a314a3323",
-      "title": "Feeling sad about AI",
-      "link": "https://simonwillison.net/2026/Sep/11/feeling-sad-about-ai",
-      "source": "Simon Willison",
-      "source_id": "simonw",
-      "published": "2026-09-11T17:28:37+00:00",
-      "category": "people",
-      "priority": "low",
-      "summary": "Simon Willison 分享关于对 AI 感到悲观的个人观点。",
-      "why": "个人情绪表达，无技术价值。",
-      "tags": [
-        "Opinion",
-        "AI Sentiment"
-      ]
-    },
-    {
-      "id": "72536f6e68375bac",
-      "title": "Quoting huggingface.co/security.txt",
-      "link": "https://simonwillison.net/2026/Sep/11/hugging-face-security",
-      "source": "Simon Willison",
-      "source_id": "simonw",
-      "published": "2026-09-11T16:04:53+00:00",
-      "category": "people",
-      "priority": "low",
-      "summary": "Simon Willison 引用 Hugging Face 的 security.txt 中给 AI Agent 的留言。",
-      "why": "趣味性发现，无技术价值。",
-      "tags": [
-        "Security",
-        "Hugging Face"
-      ]
-    },
-    {
-      "id": "c3aa33826442d0f0",
-      "title": "Cognition helps Devin test its own work with GPT‑6 Astra",
-      "link": "https://openai.com/index/cognition-devin-testing-with-astra",
-      "source": "OpenAI",
-      "source_id": "openai",
-      "published": "2026-09-11T16:00:00+00:00",
-      "category": "industry",
-      "priority": "low",
-      "summary": "Cognition 使用 GPT-6 Astra 帮助 Devin 测试软件代码。",
-      "why": "商业合作案例，不涉及底层技术。",
-      "tags": [
-        "Devin",
-        "GPT-6 Astra"
-      ]
-    },
-    {
-      "id": "014159943e4d9643",
-      "title": "How a researcher uses Codex and ChatGPT to search for new antimicrobial molecules",
-      "link": "https://openai.com/index/using-codex-chatgpt-to-search-for-new-antimicrobials",
-      "source": "OpenAI",
-      "source_id": "openai",
-      "published": "2026-09-10T16:00:00+00:00",
-      "category": "industry",
-      "priority": "low",
-      "summary": "研究人员使用 Codex 和 ChatGPT 寻找新的抗菌分子。",
-      "why": "跨学科应用案例，与底层优化无关。",
-      "tags": [
-        "BioTech",
-        "Use Case"
-      ]
-    },
-    {
-      "id": "94ad36d7ed05c224",
-      "title": "3 ways to prep for your next big race with Search",
-      "link": "https://blog.google/products-and-platforms/products/search/running-race-training-tips",
-      "source": "Google AI Blog",
-      "source_id": "google-ai",
-      "published": "2026-09-10T16:00:00+00:00",
-      "category": "release",
-      "priority": "low",
-      "summary": "Google 介绍如何使用 Search 和 Gemini 准备跑步比赛。",
-      "why": "纯 C 端产品营销。",
-      "tags": [
-        "Google Search",
-        "Gemini"
-      ]
-    },
-    {
-      "id": "e723d856f72c8bdc",
-      "title": "One resignation turned the embers of AI fear into a wildfire",
-      "link": "https://www.interconnects.ai/p/one-resignation-turned-the-embers",
-      "source": "Interconnects",
-      "source_id": "interconnects",
-      "published": "2026-09-10T15:28:52+00:00",
-      "category": "people",
-      "priority": "low",
-      "summary": "探讨近期 AI 行业人事变动引发的恐慌情绪。",
-      "why": "行业八卦，无技术价值。",
-      "tags": [
-        "Opinion",
-        "Industry"
-      ]
-    },
-    {
-      "id": "4d4e7920d8a762a2",
-      "title": "Now everyone can put data to work",
-      "link": "https://openai.com/index/put-data-to-work",
-      "source": "OpenAI",
-      "source_id": "openai",
-      "published": "2026-09-10T15:00:00+00:00",
-      "category": "release",
-      "priority": "low",
-      "summary": "OpenAI 在 ChatGPT Work 中推出 Data agent，支持自然语言构建交互式仪表板。",
-      "why": "偏向企业应用层面的产品更新，与底层技术无关。",
-      "tags": [
-        "ChatGPT",
-        "Data Agent"
-      ]
-    },
-    {
-      "id": "016c3ec9b775a98e",
-      "title": "Introducing ChatGPT for Financial Services",
-      "link": "https://openai.com/index/introducing-chatgpt-financial-services",
-      "source": "OpenAI",
-      "source_id": "openai",
-      "published": "2026-09-10T07:00:00+00:00",
-      "category": "release",
-      "priority": "low",
-      "summary": "OpenAI 推出面向金融服务的 ChatGPT，结合金融数据与 GPT-6 Astra。",
-      "why": "垂直领域的商业化产品发布，不涉及核心技术。",
-      "tags": [
-        "ChatGPT",
-        "Finance"
-      ]
-    },
-    {
-      "id": "1ef5285e671d0ace",
-      "title": "Expanding AI access and cyber defense for federal, state, local, and tribal governments",
-      "link": "https://openai.com/index/expanding-ai-access-us-government",
-      "source": "OpenAI",
-      "source_id": "openai",
-      "published": "2026-09-10T07:00:00+00:00",
-      "category": "industry",
-      "priority": "low",
-      "summary": "OpenAI 为政府机构提供折扣和网络防御支持。",
-      "why": "政策与商业拓展，可跳过。",
-      "tags": [
-        "Policy",
-        "Government"
-      ]
-    },
-    {
-      "id": "768790e29d468bfc",
-      "title": "PyTorch Conference China 2026: Advancing the Open Source AI Stack",
-      "link": "https://pytorch.org/blog/pytorch-conference-china-2026-advancing-the-open-source-ai-stack",
-      "source": "PyTorch Blog",
-      "source_id": "pytorch",
-      "published": "2026-09-10T00:01:29+00:00",
-      "category": "industry",
-      "priority": "low",
-      "summary": "回顾 2026 年 PyTorch 中国大会。",
-      "why": "会议通稿，无具体技术细节。",
-      "tags": [
-        "PyTorch",
-        "Conference"
-      ]
-    },
-    {
-      "id": "26500d7176f4ee8d",
-      "title": ".blend URL Viewer",
-      "link": "https://simonwillison.net/2026/Sep/9/blender-viewer",
-      "source": "Simon Willison",
-      "source_id": "simonw",
-      "published": "2026-09-09T23:58:32+00:00",
-      "category": "people",
-      "priority": "low",
-      "summary": "Simon Willison 分享使用 GPT-6 Astra 制作的 Blender 文件查看器工具。",
-      "why": "个人小工具分享，无底层技术价值。",
-      "tags": [
-        "Tool",
-        "Blender"
-      ]
-    },
-    {
-      "id": "a1014fccf82a5aa1",
-      "title": "Beyond Solver Verdicts: Generative Reward Models for Autoformalization",
-      "link": "https://huggingface.co/papers/2609.11085",
-      "source": "HF Papers 日榜",
-      "source_id": "hf-papers",
-      "published": "2026-09-09T20:00:00+00:00",
-      "category": "research",
-      "priority": "low",
-      "summary": "提出生成式验证方法 GenV，解决神经符号系统中求解器无法识别翻译是否保持严格等价性的问题。",
-      "why": "偏向形式化验证和神经符号系统，与 GPU 优化或生成模型方向无关。",
-      "tags": [
-        "Autoformalization",
-        "Reward Model",
-        "Neurosymbolic"
-      ]
-    },
-    {
-      "id": "9771708ac7ba7d08",
-      "title": "Memory as Plans: World-Action Modeling with Memory-Grounded Planning",
-      "link": "https://huggingface.co/papers/2609.11561",
-      "source": "HF Papers 日榜",
-      "source_id": "hf-papers",
-      "published": "2026-09-09T20:00:00+00:00",
-      "category": "research",
-      "priority": "low",
-      "summary": "提出 MaP-WAM 框架，将依赖记忆的世界动作建模分解为基于记忆的规划和条件执行，用于机器人操作。",
-      "why": "机器人控制和强化学习方向，与底层系统或生成模型关系不大。",
-      "tags": [
-        "Robotics",
-        "World Model",
-        "Planning"
-      ]
-    },
-    {
-      "id": "55db15a893975f0c",
-      "title": "DRG-MAPPO: Hierarchical Dynamic Role-Graph Multi-Agent Reinforcement Learning for Cooperative Air Combat",
-      "link": "https://huggingface.co/papers/2609.11155",
-      "source": "HF Papers 日榜",
-      "source_id": "hf-papers",
-      "published": "2026-09-09T20:00:00+00:00",
-      "category": "research",
-      "priority": "low",
-      "summary": "提出 DRG-MAPPO 框架，利用层级动态角色图解决多智能体强化学习在协同空战中的战术协调问题。",
-      "why": "多智能体强化学习在特定领域的应用，与目标工程师方向无关。",
-      "tags": [
-        "MARL",
-        "Air Combat",
-        "Reinforcement Learning"
-      ]
-    },
-    {
-      "id": "7be1cc75bbd03e2d",
-      "title": "UniH^3: Unifying Hierarchical Homogeneity and Heterogeneity for All-in-One Medical Image Restoration",
-      "link": "https://huggingface.co/papers/2609.11156",
-      "source": "HF Papers 日榜",
-      "source_id": "hf-papers",
-      "published": "2026-09-09T20:00:00+00:00",
-      "category": "research",
-      "priority": "low",
-      "summary": "提出 UniH3 框架，统一层级同质性和异质性，用于多模态和多退化类型的医疗图像一体化恢复。",
-      "why": "医学图像处理特定研究，与底层优化或主流生成模型无关。",
-      "tags": [
-        "Medical Imaging",
-        "Image Restoration"
-      ]
-    },
-    {
-      "id": "91463530ba37bdf8",
-      "title": "Generative Late-Interaction Embeddings For Visual Document Retrieval",
-      "link": "https://huggingface.co/papers/2609.11808",
-      "source": "HF Papers 日榜",
-      "source_id": "hf-papers",
-      "published": "2026-09-09T20:00:00+00:00",
-      "category": "research",
-      "priority": "low",
-      "summary": "研究视觉文档检索中后期交互嵌入在极端存储预算下的退化问题，并提出基于几何特性的改进见解。",
-      "why": "文档检索和嵌入压缩，与生成模型或 GPU 优化无关。",
-      "tags": [
-        "Document Retrieval",
-        "Embeddings",
-        "Compression"
-      ]
-    },
-    {
-      "id": "534907e0d31e4171",
-      "title": "Paul Christiano joins OpenAI Foundation Board",
-      "link": "https://openai.com/index/paul-christiano-joins-openai-foundation-board",
-      "source": "OpenAI",
-      "source_id": "openai",
-      "published": "2026-09-09T17:00:00+00:00",
-      "category": "industry",
-      "priority": "low",
-      "summary": "Paul Christiano 加入 OpenAI 基金会董事会及安全委员会。",
-      "why": "人事变动，可跳过。",
-      "tags": [
-        "OpenAI",
-        "Personnel"
-      ]
-    },
-    {
-      "id": "91d5074fb05aebf1",
-      "title": "Get ready for the game with new football features in Search",
-      "link": "https://blog.google/products-and-platforms/products/search/football-features-google-search",
-      "source": "Google AI Blog",
-      "source_id": "google-ai",
-      "published": "2026-09-09T16:00:00+00:00",
-      "category": "release",
-      "priority": "low",
-      "summary": "Google Search 推出新的橄榄球相关功能。",
-      "why": "C 端产品更新。",
-      "tags": [
-        "Google Search"
-      ]
-    },
-    {
-      "id": "ada2f64613585383",
-      "title": "Recreating a 70-year love story frame by frame",
-      "link": "https://blog.google/innovation-and-ai/technology/ai/love-rendered-film",
-      "source": "Google AI Blog",
-      "source_id": "google-ai",
-      "published": "2026-09-09T16:00:00+00:00",
-      "category": "release",
-      "priority": "low",
-      "summary": "Google 介绍使用 AI 逐帧重现 70 年爱情故事的案例。",
-      "why": "营销案例。",
-      "tags": [
-        "Use Case",
-        "Video"
-      ]
-    },
-    {
-      "id": "9786c92a289dc0ec",
-      "title": "The AI policy window is open. We need to act.",
-      "link": "https://openai.com/index/ai-policy-window",
-      "source": "OpenAI",
-      "source_id": "openai",
-      "published": "2026-09-09T13:00:00+00:00",
-      "category": "industry",
-      "priority": "low",
-      "summary": "OpenAI 呼吁在 AI 政策窗口期采取行动制定标准。",
-      "why": "政策呼吁。",
-      "tags": [
-        "Policy",
-        "OpenAI"
-      ]
-    },
-    {
-      "id": "af4f922db583ae67",
-      "title": "When will average people feel AI’s impact?",
-      "link": "https://www.interconnects.ai/p/when-will-average-people-feel-ais",
-      "source": "Interconnects",
-      "source_id": "interconnects",
-      "published": "2026-09-09T11:01:23+00:00",
-      "category": "people",
-      "priority": "low",
-      "summary": "探讨普通人何时能感受到 AI 的影响。",
-      "why": "泛泛讨论。",
-      "tags": [
-        "Opinion",
-        "Impact"
-      ]
-    },
-    {
       "id": "e3f3a9c3f0ea3a05",
       "title": "Introducing ChatGPT Images 2.5",
       "link": "https://simonwillison.net/2026/Sep/8/introducing-chatgpt-images-25",
@@ -1027,70 +2304,6 @@
       ]
     },
     {
-      "id": "167bce5d47e71e47",
-      "title": "How GPT-5.6 Sol helps run quantum computing experiments",
-      "link": "https://openai.com/index/codex-quantum-computing-experiments",
-      "source": "OpenAI",
-      "source_id": "openai",
-      "published": "2026-09-08T17:00:00+00:00",
-      "category": "industry",
-      "priority": "low",
-      "summary": "MIT 研究人员使用 GPT-5.6 Sol 运行量子计算实验。",
-      "why": "跨学科应用案例。",
-      "tags": [
-        "Quantum Computing",
-        "Use Case"
-      ]
-    },
-    {
-      "id": "bfb326c0cba13f4b",
-      "title": "Safety for Whom? Refusing the Right Subset of a Topic, Not the Whole Topic",
-      "link": "https://huggingface.co/blog/MultiverseComputingCAI/safety-for-whom",
-      "source": "Hugging Face Blog",
-      "source_id": "hf-blog",
-      "published": "2026-09-08T14:23:07+00:00",
-      "category": "research",
-      "priority": "low",
-      "summary": "探讨 AI 安全中的拒绝策略，主张拒绝特定子话题而非整个话题。",
-      "why": "偏向 AI 对齐和安全策略，与性能优化无关。",
-      "tags": [
-        "AI Safety",
-        "Alignment"
-      ]
-    },
-    {
-      "id": "aaada63e998e3254",
-      "title": "The Work Now Within Reach",
-      "link": "https://openai.com/index/the-work-now-within-reach",
-      "source": "OpenAI",
-      "source_id": "openai",
-      "published": "2026-09-08T13:00:00+00:00",
-      "category": "industry",
-      "priority": "low",
-      "summary": "探讨更强大、更实惠的 AI 如何扩展人类工作能力。",
-      "why": "泛泛的商业愿景讨论。",
-      "tags": [
-        "Opinion",
-        "Future of Work"
-      ]
-    },
-    {
-      "id": "99c22bc85dd5ff7a",
-      "title": "Funding grants for new research into AI and teen development",
-      "link": "https://openai.com/index/teen-development-research-grants",
-      "source": "OpenAI",
-      "source_id": "openai",
-      "published": "2026-09-08T09:00:00+00:00",
-      "category": "industry",
-      "priority": "low",
-      "summary": "OpenAI 提供 500 万美元资助关于生成式 AI 对青少年发展影响的研究。",
-      "why": "基金资助项目，可跳过。",
-      "tags": [
-        "Funding",
-        "AI Safety"
-      ]
-    },
-    {
       "id": "a9f537950ffbd941",
       "title": "Multi-Agents LLM Financial Trading Framework",
       "link": "https://github.com/TauricResearch/TradingAgents",
@@ -1104,135 +2317,6 @@
       "tags": [
         "Agents",
         "Finance"
-      ]
-    },
-    {
-      "id": "c0b7ade87a697b8d",
-      "title": "Cambricon Joins the PyTorch Foundation as a Platinum Member",
-      "link": "https://pytorch.org/blog/cambricon-joins-the-pytorch-foundation-as-a-platinum-member",
-      "source": "PyTorch Blog",
-      "source_id": "pytorch",
-      "published": "2026-09-08T00:59:13+00:00",
-      "category": "industry",
-      "priority": "low",
-      "summary": "寒武纪作为白金会员加入 PyTorch 基金会。",
-      "why": "重复报道（见 0b04016d830d72cb），且偏商业新闻。",
-      "tags": [
-        "PyTorch",
-        "Cambricon"
-      ]
-    },
-    {
-      "id": "671a9fed35e21548",
-      "title": "OpenAI expands initiatives to support journalism from classrooms to newsrooms",
-      "link": "https://openai.com/index/supporting-journalism-from-classrooms-to-newsrooms",
-      "source": "OpenAI",
-      "source_id": "openai",
-      "published": "2026-09-08T00:00:00+00:00",
-      "category": "industry",
-      "priority": "low",
-      "summary": "OpenAI 扩大对新闻业的支持计划。",
-      "why": "行业合作。",
-      "tags": [
-        "Journalism",
-        "OpenAI"
-      ]
-    },
-    {
-      "id": "9816f5beea82e263",
-      "title": "1Password increases engineering productivity 21% with Codex",
-      "link": "https://openai.com/index/1password",
-      "source": "OpenAI",
-      "source_id": "openai",
-      "published": "2026-09-08T00:00:00+00:00",
-      "category": "industry",
-      "priority": "low",
-      "summary": "1Password 使用 Codex 将工程生产力提高 21%。",
-      "why": "客户案例。",
-      "tags": [
-        "Use Case",
-        "Codex"
-      ]
-    },
-    {
-      "id": "de5fd5432c6a3bb4",
-      "title": "llm 0.35",
-      "link": "https://simonwillison.net/2026/Sep/7/llm",
-      "source": "Simon Willison",
-      "source_id": "simonw",
-      "published": "2026-09-07T23:54:54+00:00",
-      "category": "release",
-      "priority": "low",
-      "summary": "Simon Willison 发布 llm 0.35 版本，支持 GPT-6 Astra。",
-      "why": "个人工具更新。",
-      "tags": [
-        "Tool",
-        "LLM"
-      ]
-    },
-    {
-      "id": "6c7435abd5a11f5a",
-      "title": "Creepy crawlies",
-      "link": "https://simonwillison.net/2026/Sep/7/creepy-crawlies",
-      "source": "Simon Willison",
-      "source_id": "simonw",
-      "published": "2026-09-07T23:08:58+00:00",
-      "category": "people",
-      "priority": "low",
-      "summary": "讨论恶意爬虫对服务器造成的负担。",
-      "why": "与 AI 核心技术无关。",
-      "tags": [
-        "Web",
-        "Crawlers"
-      ]
-    },
-    {
-      "id": "98f4e2b874d7aed7",
-      "title": "Quoting Jakub Pachocki",
-      "link": "https://simonwillison.net/2026/Sep/7/jakub-pachocki",
-      "source": "Simon Willison",
-      "source_id": "simonw",
-      "published": "2026-09-07T22:26:25+00:00",
-      "category": "people",
-      "priority": "low",
-      "summary": "引用 Jakub Pachocki 关于快速训练更智能模型的防御性论点。",
-      "why": "观点引用。",
-      "tags": [
-        "Opinion",
-        "AI Safety"
-      ]
-    },
-    {
-      "id": "cd62a070f52ef579",
-      "title": "Video compressor",
-      "link": "https://simonwillison.net/2026/Sep/7/video-compressor",
-      "source": "Simon Willison",
-      "source_id": "simonw",
-      "published": "2026-09-07T18:29:07+00:00",
-      "category": "people",
-      "priority": "low",
-      "summary": "Simon Willison 分享视频压缩工具的使用经验。",
-      "why": "个人经验分享。",
-      "tags": [
-        "Tool",
-        "Video"
-      ]
-    },
-    {
-      "id": "95fa7c9bee5510c8",
-      "title": "PyTorch x Hugging Face in Bengaluru: Building India’s Next Generation of ML Systems Contributors",
-      "link": "https://pytorch.org/blog/pytorch-x-hugging-face-in-bengaluru-building-indias-next-generation-of-ml-systems-contributors",
-      "source": "PyTorch Blog",
-      "source_id": "pytorch",
-      "published": "2026-09-07T13:05:37+00:00",
-      "category": "industry",
-      "priority": "low",
-      "summary": "PyTorch 与 Hugging Face 在班加罗尔举办技术交流活动。",
-      "why": "地方性社区活动，与核心技术研发无关。",
-      "tags": [
-        "PyTorch",
-        "Hugging Face",
-        "Community"
       ]
     },
     {
