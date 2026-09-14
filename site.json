@@ -1,0 +1,65 @@
+{
+  "name": "Garry",
+  "tagline": "GPU kernel · 生成模型 · 深圳",
+  "description": "一个跑在 GitHub 上的个人平台：记我写的和读的，看机器替我盯着的世界，做定时替我跑的小工具。",
+  "url": "https://lgystoic.github.io",
+  "nav": ["notes", "radar", "events", "about"],
+  "modules": [
+    {
+      "id": "notes",
+      "role": "记",
+      "name": "笔记",
+      "path": "/notes/",
+      "blurb": "课程、论文、性能实验的整理，写给半年后的自己。",
+      "status": "notes",
+      "script": null
+    },
+    {
+      "id": "radar",
+      "role": "看",
+      "name": "每日雷达",
+      "path": "/radar/",
+      "blurb": "29 个源每天 08:00 抓一遍，去重后由模型排优先级、写一句话摘要。",
+      "status": "radar",
+      "script": "tools/radar.py"
+    },
+    {
+      "id": "events",
+      "role": "看",
+      "name": "活动清单",
+      "path": "/radar/events/",
+      "blurb": "深圳 / 广州 / 香港及线上可以报名的聚会、黑客松、比赛、讲座，按日期排。",
+      "status": "events",
+      "script": "tools/events.py"
+    },
+    {
+      "id": "inbox",
+      "role": "做",
+      "name": "收件箱",
+      "path": "https://github.com/lgyStoic/radar-inbox",
+      "blurb": "小红书、微信这类抓不到的，手机一键投递，次日整理进私有仓库。",
+      "status": "inbox",
+      "script": "tools/inbox.py",
+      "private": true
+    },
+    {
+      "id": "status",
+      "role": "做",
+      "name": "运行状态",
+      "path": "/status/",
+      "blurb": "流水线最近一次运行、源健康表、每日巡检报告。",
+      "status": "status",
+      "script": null
+    },
+    {
+      "id": "about",
+      "role": "",
+      "name": "关于",
+      "path": "/about/",
+      "blurb": "我是谁、这个站是什么、怎么搭的。",
+      "status": null,
+      "script": null,
+      "card": false
+    }
+  ]
+}

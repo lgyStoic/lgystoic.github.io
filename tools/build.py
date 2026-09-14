@@ -39,9 +39,10 @@ EVENTS_CONFIG = RADAR_DIR / "event_sources.json"
 CHECKS_DIR = RADAR_DIR / "checks"
 LAST_RUN = RADAR_DATA / "last-run.json"
 SITE_URL = "https://lgystoic.github.io"
-SITE_TITLE = "Garry 的学习站"
+SITE_TITLE = "Garry"
+SITE_JSON = ROOT / "site.json"
 SITE_DESC = "GPU kernel、训练性能、生成模型和城市数据的中文笔记存档。"
-LATEST_ON_HOME = 6
+LATEST_ON_HOME = 4
 
 
 def esc(value: str) -> str:
@@ -227,7 +228,7 @@ RADAR_DAY_TEMPLATE = """<!doctype html>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>AI 信息雷达 {date} | Garry 的学习站</title>
+    <title>AI 信息雷达 {date} | Garry</title>
     <meta name="description" content="{description}" />
     <link rel="canonical" href="{site_url}/radar/{date}/" />
     <meta property="og:type" content="article" />
@@ -256,7 +257,7 @@ RADAR_DAY_TEMPLATE = """<!doctype html>
           <a href="../../notes/">笔记</a>
           <a href="../" aria-current="page">雷达</a>
           <a href="../events/">活动</a>
-          <a href="https://github.com/lgyStoic" rel="me noreferrer">GitHub</a>
+          <a href="../../about/">关于</a>
           <button class="theme-toggle" type="button" data-theme-toggle aria-label="切换深浅色">
             <span data-theme-icon>◑</span>
           </button>
@@ -440,11 +441,13 @@ def load_events() -> tuple[dict, dict | None]:
 def ev_anchor_date(ev: dict, today: str = "") -> str:
     """排序与分组用的锚点日期——下一步要行动的那天：
     学术截止类用截止日；已经开始（或没有开始日）但还能报名/提交的用截止日；否则用开始日。"""
-    start, deadline = ev.get("start") or "", ev.get("deadline") or ""
+    start, end, deadline = ev.get("start") or "", ev.get("end") or "", ev.get("deadline") or ""
     if ev.get("event_type") == "deadline" and deadline:
         return deadline
     if deadline and (not start or (today and start < today <= deadline)):
         return deadline
+    if today and start and start < today and end and end >= today:
+        return end  # 已开始、还没结束、没有截止：锚在结束日，标「进行中」
     return start or deadline
 
 
@@ -468,6 +471,8 @@ def render_event_row(ev: dict, types: dict, today: str) -> str:
         label = "投稿截止"
     elif anchor and anchor == ev.get("deadline") and anchor != ev.get("start"):
         label = "提交截止" if ev.get("event_type") in ("hackathon", "competition") else "报名截止"
+    elif anchor and anchor == ev.get("end") and anchor != ev.get("start"):
+        label = "进行中·止"
     else:
         label = ""
     span = ""
@@ -683,6 +688,67 @@ def render_status(days: list[dict], events_data: dict | None) -> dict[str, str]:
     return {"status-run": run_html + ("\n" + ai_line if ai_line else ""), "status-checks": checks_html, "status-sources": table}
 
 
+
+# ---------------------------------------------------------------- 门户卡片（由 site.json 生成）
+
+
+def load_site() -> dict:
+    return json.loads(SITE_JSON.read_text(encoding="utf-8")) if SITE_JSON.exists() else {"modules": []}
+
+
+def module_status(mod: dict, notes: list[dict], days: list[dict], events_data: dict | None) -> str:
+    kind = mod.get("status")
+    if kind == "notes":
+        latest = notes[0].get("updated", "") if notes else ""
+        return f"{len(notes)} 篇 · 最近 {esc(latest[5:].replace('-', '/'))}" if notes else "还没有笔记"
+    if kind == "radar":
+        if not days:
+            return "第一期还没生成"
+        d = days[0]
+        c = d.get("counts", {})
+        mode = esc(d.get("model", "")) if d.get("ai") else "规则"
+        return f"{esc(d['date'][5:].replace('-', '/'))} · {len(d.get('items', []))} 条 · 必看 {c.get('high', 0)} · {mode}"
+    if kind == "events":
+        if not events_data or not events_data.get("events"):
+            return "清单还没生成"
+        today = events_data.get("today") or datetime.now(SHANGHAI).strftime("%Y-%m-%d")
+        alive = [e for e in events_data["events"] if (ev_last_date(e) or today) >= today and e.get("relevance") != "low"]
+        week_end = (datetime.strptime(today, "%Y-%m-%d") + timedelta(days=7)).strftime("%Y-%m-%d")
+        this_week = [e for e in alive if today <= (ev_anchor_date(e, today) or "9999") <= week_end]
+        local = [e for e in alive if e.get("city") in ("深圳", "广州", "香港")]
+        return f"即将 {len(alive)} 个 · 本周 {len(this_week)} · 深广港 {len(local)}"
+    if kind == "inbox":
+        return "私有仓库 · 手机一键投递"
+    if kind == "status":
+        run = json.loads(LAST_RUN.read_text(encoding="utf-8")) if LAST_RUN.exists() else None
+        if not run:
+            return "还没有运行记录"
+        ev = {"schedule": "定时", "workflow_dispatch": "手动", "push": "触发"}.get(run.get("event", ""), run.get("event", ""))
+        return f"最近运行 #{run.get('run_number', '')} · {esc(ev)} · {esc(fmt_time(run.get('started_at', '')))}"
+    return ""
+
+
+def render_cards(site: dict, notes: list[dict], days: list[dict], events_data: dict | None) -> str:
+    cards = []
+    for mod in site.get("modules", []):
+        if mod.get("card") is False:
+            continue
+        href = mod["path"]
+        if href.startswith("/"):
+            href = "." + href
+        attrs = ' rel="noreferrer"' if href.startswith("http") else ""
+        lock = ' <span class="card-lock" title="私有">🔒</span>' if mod.get("private") else ""
+        status = module_status(mod, notes, days, events_data)
+        cards.append(
+            f'      <li><a class="card" href="{esc(href)}"{attrs}>'
+            f'<p class="card-role">{esc(mod.get("role", ""))}</p>'
+            f'<h3 class="card-name">{esc(mod["name"])}{lock}</h3>'
+            f'<p class="card-blurb">{esc(mod.get("blurb", ""))}</p>'
+            f'<p class="card-status">{status}</p></a></li>'
+        )
+    return '    <ul class="card-grid">\n' + "\n".join(cards) + "\n    </ul>"
+
+
 def inject(path: Path, blocks: dict[str, str]) -> None:
     text = path.read_text(encoding="utf-8")
     for name, content in blocks.items():
@@ -736,7 +802,7 @@ def write_feed(notes: list[dict]) -> None:
 
 def write_sitemap(notes: list[dict], days: list[dict]) -> None:
     latest = notes[0].get("updated") if notes else None
-    urls = [(f"{SITE_URL}/", latest), (f"{SITE_URL}/notes/", latest)]
+    urls = [(f"{SITE_URL}/", latest), (f"{SITE_URL}/notes/", latest), (f"{SITE_URL}/about/", None)]
     urls += [(SITE_URL + note_href(n, from_root=False), n.get("updated")) for n in notes]
     if days:
         urls.append((f"{SITE_URL}/radar/", days[0]["date"]))
@@ -763,12 +829,12 @@ def main() -> None:
     events_config, events_data = load_events()
     event_types = events_config.get("types", {})
 
+    site = load_site()
     inject(
         ROOT / "index.html",
         {
+            "cards": render_cards(site, notes, days, events_data),
             "latest": render_latest(notes),
-            "topics": render_topic_links(notes),
-            "stats": f'    <p class="meta-line">{len(notes)} 篇笔记 · 最近更新 {esc(latest)}</p>',
             "radar": render_home_radar(days),
             "events": render_home_events(events_data, event_types),
         },

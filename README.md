@@ -1,7 +1,8 @@
-# Garry 的学习站
+# Garry（lgystoic.github.io）
 
-纯静态个人站，放课程笔记、性能实验、论文整理和数据研究。没有框架、没有构建依赖，
-GitHub Pages 直接托管仓库根目录。
+一个跑在 GitHub 上的个人平台：记（笔记）、看（每日雷达、活动清单）、做（收件箱、巡检）。
+纯静态、没有框架、没有构建依赖，GitHub Pages 直接托管仓库根目录；后台任务全在 Actions。
+功能注册表在 `site.json`，首页卡片和 sitemap 由它生成。
 
 ## 结构
 

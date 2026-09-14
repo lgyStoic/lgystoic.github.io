@@ -977,3 +977,109 @@ main.wrap {
 .src-ok b { color: var(--muted); font-weight: 500; }
 .src-warn b { color: var(--ink-soft); }
 .src-bad b { color: var(--accent); }
+
+/* ---------- 门户 ---------- */
+
+.portal-intro {
+  padding-block: 46px 30px;
+  border-bottom: 1px solid var(--line-soft);
+}
+
+.portal-intro h1 {
+  font-size: clamp(1.6rem, 1.2rem + 1.6vw, 2.1rem);
+}
+
+.portal-intro .bio {
+  max-width: 38em;
+  margin-top: 14px;
+  color: var(--ink-soft);
+}
+
+.portal-intro .bio b {
+  color: var(--accent);
+  font-weight: 650;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  padding: 0;
+  list-style: none;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  height: 100%;
+  padding: 16px 18px 14px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--surface);
+  transition: border-color 0.15s, transform 0.15s;
+}
+
+.card:hover {
+  border-color: var(--accent);
+  transform: translateY(-1px);
+}
+
+.card-role {
+  color: var(--accent);
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+}
+
+.card-name {
+  font-size: 1.08rem;
+  font-weight: 650;
+  letter-spacing: -0.012em;
+}
+
+.card-lock {
+  font-size: 0.8rem;
+}
+
+.card-blurb {
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.card-status {
+  margin-top: auto;
+  padding-top: 8px;
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 0.74rem;
+}
+
+.prose p,
+.prose ul {
+  margin-top: 12px;
+  color: var(--ink-soft);
+}
+
+.prose ul {
+  padding-left: 1.2em;
+}
+
+.prose li + li {
+  margin-top: 6px;
+}
+
+.prose a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, var(--accent) 40%, transparent);
+  text-underline-offset: 3px;
+}
+
+@media (max-width: 560px) {
+  .card-grid {
+    grid-template-columns: 1fr;
+  }
+}
