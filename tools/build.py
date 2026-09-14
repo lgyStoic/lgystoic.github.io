@@ -614,17 +614,15 @@ def render_home_events(data: dict | None, types: dict) -> str:
 
 
 def render_day_events(date: str, data: dict | None, types: dict) -> str:
-    """某一期简报里「新发现的活动」栏目。"""
+    """雷达简报里不再嵌活动列表，只留一行指向活动清单的提示。"""
     if not data:
         return ""
     found = [e for e in data.get("events", []) if e.get("found") == date and e.get("relevance") != "low"]
     if not found:
         return ""
-    found.sort(key=lambda e: ev_anchor_date(e, date) or "9999")
-    rows = "\n".join(render_event_row(e, types, date) for e in found)
     return (
-        f'<h2 class="radar-heading prio-events">新发现的活动 <b>{len(found)}</b> <a class="text-link" href="../events/">全部活动 →</a></h2>\n'
-        f'      <ul class="event-list">\n{rows}\n      </ul>'
+        f'<p class="radar-events-link">当天新发现 <b>{len(found)}</b> 个活动，已归入 '
+        f'<a class="text-link" href="../events/">活动清单 →</a></p>'
     )
 
 
