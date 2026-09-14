@@ -95,8 +95,7 @@ radar/sources.json  →  tools/radar.py  →  radar/data/<date>.json  →  tools
 
 ## 活动清单（/radar/events/）
 
-`radar/event_sources.json` 里的源专门找**可以报名参加的活动**：lu.ma 城市页、活动行、Eventbrite、Devpost、
-天池、讯飞、ai-deadlines 会议截止，以及 Google 新闻的活动关键词搜索。每天和雷达一起跑（`tools/events.py`）：
+`radar/event_sources.json` 里的源专门找**可以报名参加的活动**：报名平台（活动行、互动吧、百格）、公众号（第三方 RSS 索引）、港深主办方（HKSTP、數碼港）、大厂开发者活动页（腾讯云、阿里云、华为云）、技术媒体与会议（InfoQ、CSDN、机器之心）、高校与研究院讲座页、黑客松平台（Devpost、AdventureX、AI Studio）、GDG、SegmentFault / 开源中国 / 掘金，以及 Google 新闻 / 搜狗微信的关键词搜索。抓不到的源由自检 3 天后自动停用。每天和雷达一起跑（`tools/events.py`）：
 
 - 源类型除 `rss` / `json` 外新增 `ics`（iCal 日历）、`page`（列表页按 `link_pattern` 抽链接，再抓详情页的 OG 与 schema.org Event）、
   `yaml`（ai-deadlines 的扁平列表）。
