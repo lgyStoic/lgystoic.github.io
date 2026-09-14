@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>关于 | Garry</title>
+    <meta name="description" content="Garry 是谁，这个站是什么，怎么搭的。" />
+    <link rel="canonical" href="https://lgystoic.github.io/about/" />
+    <meta property="og:type" content="profile" />
+    <meta property="og:title" content="关于 | Garry" />
+    <meta property="og:description" content="Garry 是谁，这个站是什么，怎么搭的。" />
+    <meta property="og:url" content="https://lgystoic.github.io/about/" />
+    <meta name="twitter:card" content="summary" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231b1b1a'/%3E%3Ctext x='32' y='43' text-anchor='middle' font-size='32' font-family='Helvetica,Arial' font-weight='700' fill='%23fbfaf8'%3EG%3C/text%3E%3C/svg%3E"
+    />
+    <link rel="stylesheet" href="../site.css" />
+    <script>
+      try {
+        var t = localStorage.getItem("theme");
+        if (t === "dark" || t === "light") document.documentElement.dataset.theme = t;
+      } catch (e) {}
+    </script>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="wrap">
+        <a class="brand" href="../" aria-label="首页">
+          <span class="brand-mark">G</span>
+          <span>Garry</span>
+        </a>
+        <nav class="site-nav" aria-label="主导航">
+          <a href="../notes/">笔记</a>
+          <a href="../radar/">雷达</a>
+          <a href="../radar/events/">活动</a>
+          <a href="./" aria-current="page">关于</a>
+          <button class="theme-toggle" type="button" data-theme-toggle aria-label="切换深浅色">
+            <span data-theme-icon>◑</span>
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <main class="wrap">
+      <section class="intro">
+        <p class="kicker">About</p>
+        <h1>我是 Garry。</h1>
+        <p class="bio">
+          日常在做 GPU kernel 与训练性能优化（CUDA / Triton / Blackwell），也持续整理生成模型、PyTorch
+          内部机制，偶尔用公开数据做一些城市与住房方向的研究。住在深圳。
+        </p>
+        <p class="bio">
+          这里的笔记是原始版本——写给以后的自己看，所以推导、数字和失败的尝试都尽量留着。
+        </p>
+        <ul class="links">
+          <li><a href="https://github.com/lgyStoic" rel="me noreferrer">GitHub</a></li>
+          <li><a href="../feed.xml">笔记 RSS</a></li>
+          <li><a href="../radar/feed.xml">雷达 RSS</a></li>
+        </ul>
+      </section>
+
+      <section class="section prose">
+        <h2>这个站是什么</h2>
+        <p>
+          它从一个「学习笔记站」长成了一个<b>没有服务器、没有域名时的个人平台</b>：<code>lgystoic.github.io</code> 当域名，GitHub Actions 当后台，仓库里的 JSON 当数据库，Pages 当前端。三个角色：
+        </p>
+        <ul>
+          <li><b>记</b>——我写的笔记，以后还有我读过的东西。</li>
+          <li><b>看</b>——机器替我盯着世界：<a href="../radar/">每日雷达</a>每天早上 8 点从 28 个源抓取、去重、由模型排优先级写摘要；<a href="../radar/events/">活动清单</a>把深圳、广州、香港及线上可以报名的聚会、黑客松、比赛、讲座按日期排好。</li>
+          <li><b>做</b>——定时替我跑的小工具：私有收件箱把小红书、微信这类抓不到的链接整理归档；每天 08:40 一个巡检 agent 检查流水线，<a href="../status/">状态页</a>能看到它的报告。</li>
+        </ul>
+      </section>
+
+      <section class="section prose">
+        <h2>怎么搭的</h2>
+        <ul>
+          <li>纯静态 HTML + 少量 JS，没有框架、没有构建依赖，系统字体，零外部请求。</li>
+          <li>每个功能是一个模块：一个目录、一个 Python 脚本、注册表 <code>site.json</code> 里一行。首页卡片和 sitemap 由注册表生成。</li>
+          <li>数据即文件：模块把结果写成 JSON 提交进仓库，页面只是渲染。所以 <code>/radar/data/events.json</code> 这类文件也是公开 API。</li>
+          <li>AI 环节可插拔：有什么 key 用什么模型，失败退回关键词规则，永不让整轮挂掉。</li>
+          <li>公私分层：公开的在这个仓库，私密的在私有仓库，密钥只在 Actions Secrets。</li>
+        </ul>
+        <p>
+          代码全部开源：<a href="https://github.com/lgyStoic/lgystoic.github.io" rel="noreferrer">lgyStoic/lgystoic.github.io</a>。抓取只用官方 RSS、公开 API 和静态页面；小红书、微信、X 不硬抓。
+        </p>
+      </section>
+
+      <section class="section prose">
+        <h2>来源与版权</h2>
+        <p>
+          笔记中的课程整理（如 MIT 6.S184）为个人学习记录，原课程见各笔记页注明的来源。雷达与活动清单的摘要由模型自动生成，仅用于快速筛选，请以原文为准；所有条目均链接回原始出处。
+        </p>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap">
+        <span>© 2026 Garry</span>
+        <span><a href="https://github.com/lgyStoic/lgystoic.github.io" rel="noreferrer">源码</a> · <a href="../status/">状态</a></span>
+      </div>
+    </footer>
+    <script src="../site.js" defer></script>
+  </body>
+</html>
