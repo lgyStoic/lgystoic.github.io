@@ -194,6 +194,7 @@ main.wrap {
 
 .site-nav a {
   padding: 5px 9px;
+  white-space: nowrap;
   border-radius: 7px;
   color: var(--muted);
   transition: color 0.15s, background 0.15s;
@@ -609,7 +610,20 @@ main.wrap {
   }
 
   .site-nav {
-    font-size: 0.88rem;
+    font-size: 0.86rem;
+    gap: 0;
+  }
+
+  .site-nav a {
+    padding: 5px 6px;
+  }
+
+  .site-header .wrap {
+    gap: 8px;
+  }
+
+  .brand > span:last-child {
+    display: none;
   }
 }
 
@@ -1588,4 +1602,46 @@ main.wrap {
 
 .warn li + li {
   margin-top: 4px;
+}
+
+.table-wrap {
+  margin-top: 14px;
+  overflow-x: auto;
+}
+
+.cmp {
+  width: 100%;
+  min-width: 36rem;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+}
+
+.cmp th,
+.cmp td {
+  padding: 9px 10px;
+  border-top: 1px solid var(--line-soft);
+  text-align: left;
+  vertical-align: top;
+  line-height: 1.55;
+  color: var(--ink-soft);
+}
+
+.cmp th {
+  border-top: 0;
+  border-bottom: 1px solid var(--line);
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+
+.cmp td:first-child {
+  color: var(--ink);
+  white-space: nowrap;
+}
+
+.cmp td:first-child span {
+  color: var(--muted);
+  font-size: 0.78rem;
 }
