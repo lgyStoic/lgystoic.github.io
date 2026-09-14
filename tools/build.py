@@ -260,6 +260,7 @@ RADAR_DAY_TEMPLATE = """<!doctype html>
           <a href="../../notes/">笔记</a>
           <a href="../" aria-current="page">雷达</a>
           <a href="../events/">活动</a>
+          <a href="../../guides/">指南</a>
           <a href="../../about/">关于</a>
           <button class="theme-toggle" type="button" data-theme-toggle aria-label="切换深浅色">
             <span data-theme-icon>◑</span>
@@ -856,13 +857,40 @@ def apply_affiliate_links(path: Path, links: dict) -> tuple[int, int]:
     return filled, hidden
 
 
+def render_guide_jsonld(g: dict, page: Path) -> str:
+    """给指南子页生成 BreadcrumbList + HowTo 结构化数据（步骤取自 <ol class="steps">）。"""
+    html = page.read_text(encoding="utf-8")
+    url = SITE_URL + g["path"]
+    steps = []
+    for li in re.findall(r'<ol class="steps">(.*?)</ol>', html, re.DOTALL):
+        for name, body in re.findall(r"<h3>(.*?)</h3>\s*<p>(.*?)</p>", li, re.DOTALL):
+            steps.append({"@type": "HowToStep", "name": re.sub(r"<[^>]+>", "", name).strip(),
+                          "text": re.sub(r"\s+", " ", re.sub(r"<[^>]+>", "", body)).strip()})
+    desc_m = re.search(r'<meta name="description" content="([^"]*)"', html)
+    data = [
+        {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": SITE_TITLE, "item": SITE_URL + "/"},
+            {"@type": "ListItem", "position": 2, "name": "上手指南", "item": SITE_URL + "/guides/"},
+            {"@type": "ListItem", "position": 3, "name": g["title"], "item": url}]},
+        {"@context": "https://schema.org", "@type": "HowTo", "name": g["title"],
+         "description": desc_m.group(1) if desc_m else g.get("blurb", ""),
+         "inLanguage": "zh-CN", "url": url, "dateModified": g.get("updated", ""),
+         "author": {"@type": "Person", "name": SITE_TITLE, "url": SITE_URL + "/about/"},
+         "step": steps},
+    ]
+    return "\n".join(f'    <script type="application/ld+json">{json.dumps(d, ensure_ascii=False)}</script>' for d in data)
+
 def build_guides() -> list[dict]:
     if not (GUIDES_DIR / "index.html").exists():
         return []
     guides, links = load_guides()
     inject(GUIDES_DIR / "index.html", {"guides-path": render_guides_path(guides)})
+    by_dir = {g["path"].rstrip("/").rsplit("/", 1)[-1]: g for g in guides}
     for page in sorted(GUIDES_DIR.glob("*/index.html")):
         filled, hidden = apply_affiliate_links(page, links)
+        g = by_dir.get(page.parent.name)
+        if g and "build:jsonld" in page.read_text(encoding="utf-8"):
+            inject(page, {"jsonld": render_guide_jsonld(g, page)})
         print(f"guides/{page.parent.name}: 推广位 {filled} 个已填 · {hidden} 个隐藏")
     return guides
 
