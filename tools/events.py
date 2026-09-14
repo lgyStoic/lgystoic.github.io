@@ -381,7 +381,7 @@ def collect(config: dict, seen: dict) -> tuple[list[dict], list[dict]]:
             else:
                 entries = parse_feed(blob)
         except Exception as e:  # 任何一个源坏掉都不该拖垮整轮
-            status.append({"id": sid, "name": source["name"], "ok": False, "count": 0, "error": str(e)[:160]})
+            status.append({"id": sid, "name": source["name"], "ok": False, "count": 0, "total": 0, "error": str(e)[:160]})
             log(f"[events] ✗ {source['name']}: {e}")
             continue
 
@@ -411,7 +411,7 @@ def collect(config: dict, seen: dict) -> tuple[list[dict], list[dict]]:
                 "kind": kind,
             }
             kept += 1
-        status.append({"id": sid, "name": source["name"], "ok": True, "count": kept, "error": ""})
+        status.append({"id": sid, "name": source["name"], "ok": True, "count": kept, "total": len(entries), "error": ""})
         log(f"[events] ✓ {source['name']}: {kept} 条新候选（共 {len(entries)} 条）")
     return list(cands.values()), status
 
