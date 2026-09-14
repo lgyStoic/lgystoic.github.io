@@ -32,7 +32,7 @@ from zoneinfo import ZoneInfo
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import radar  # noqa: E402
-from radar import call_llm_json, fetch, item_id, log, normalize_link, parse_date, parse_feed, parse_json_feed, strip_html  # noqa: E402
+from radar import call_llm_json, fetch, item_id, log, normalize_link, parse_date, parse_feed, parse_json_feed, strip_html, title_key  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 CONFIG = ROOT / "radar" / "event_sources.json"
@@ -456,8 +456,9 @@ def sort_key(ev: dict) -> tuple:
     return (ev.get("start") or ev.get("deadline") or "9999-12-31", ev.get("title", ""))
 
 
-def collect(config: dict, seen: dict) -> tuple[list[dict], list[dict]]:
+def collect(config: dict, seen: dict, seen_titles: set[str] | None = None) -> tuple[list[dict], list[dict]]:
     site = config["site"]
+    seen_titles = seen_titles or set()
     per_source = site.get("max_candidates_per_source", 40)
     cands: dict[str, dict] = {}
     status: list[dict] = []
@@ -487,12 +488,16 @@ def collect(config: dict, seen: dict) -> tuple[list[dict], list[dict]]:
         kept = 0
         for raw in entries[:per_source]:
             link = normalize_link(raw.get("link", "")) or raw.get("link", "")
+            link = link.replace("https://luma.com/", "https://lu.ma/").replace("http://luma.com/", "https://lu.ma/")
             title = strip_html(raw.get("title", ""))
             if not link:
                 continue
             cid = item_id(link, title)
             if cid in seen or cid in cands:
                 continue
+            tk = title_key(title)
+            if len(tk) >= 8 and (tk in seen_titles or any(title_key(c["title"]) == tk for c in cands.values())):
+                continue  # 同一活动的另一个链接（lu.ma 与 luma.com、页面锚与 JSON-LD）
             if kind in ("rss", "wechat"):
                 published = parse_date(raw.get("published"))
                 if published and datetime.now(timezone.utc) - published > timedelta(days=10):
@@ -560,7 +565,8 @@ def main() -> None:
     data = load_json(DATA, {"events": [], "seen": {}, "sources": [], "updated": ""})
     seen: dict[str, str] = data.get("seen", {})
 
-    cands, status = collect(config, seen)
+    existing_titles = {title_key(e.get("title", "")) for e in data.get("events", []) if len(title_key(e.get("title", ""))) >= 8}
+    cands, status = collect(config, seen, existing_titles)
     cands = cands[: site.get("max_new_per_run", 120)]
     log(f"[events] 共 {len(cands)} 条新候选，来自 {sum(1 for s in status if s['ok'])}/{len(status)} 个源")
 
@@ -587,7 +593,16 @@ def main() -> None:
 
     # 源从配置里移除后，它留下的旧条目一起清掉（例如被证实是前端渲染占位页的源）
     live_sources = {s["id"] for s in config["sources"]} | {"inbox"}
-    events = {e["id"]: e for e in data.get("events", []) if e.get("source_id") in live_sources}
+    events: dict[str, dict] = {}
+    seen_tk: set[str] = set()
+    for ev in sorted(data.get("events", []), key=lambda x: x.get("found", "")):
+        if ev.get("source_id") not in live_sources:
+            continue
+        tk = title_key(ev.get("title", ""))
+        if len(tk) >= 8 and tk in seen_tk:
+            continue  # 同一活动重复入库（不同链接形态），留先来的
+        seen_tk.add(tk)
+        events[ev["id"]] = ev
 
     # 自愈：已入库但没抽到日期的活动，补抓一次详情页正文再重抽（每轮最多 15 条，只补一次）
     src_by_id = {s["id"]: s for s in config["sources"]}

@@ -488,32 +488,120 @@
       "default_city": "深圳"
     },
     {
-      "id": "sogou-wechat-sz",
-      "name": "搜狗微信 · 深圳 AI 活动",
-      "kind": "page",
-      "url": "https://weixin.sogou.com/weixin?type=2&query=%E6%B7%B1%E5%9C%B3%20AI%20%E6%B4%BB%E5%8A%A8%20%E6%8A%A5%E5%90%8D",
-      "link_pattern": "^https?://(mp\\.weixin\\.qq\\.com/s|weixin\\.sogou\\.com/link)",
-      "base": "https://weixin.sogou.com",
-      "default_type": "meetup",
-      "default_city": "深圳",
-      "keep_query": true
-    },
-    {
-      "id": "sogou-wechat-hack",
-      "name": "搜狗微信 · 黑客松",
-      "kind": "page",
-      "url": "https://weixin.sogou.com/weixin?type=2&query=%E9%BB%91%E5%AE%A2%E6%9D%BE%20%E6%8A%A5%E5%90%8D%20%E6%B7%B1%E5%9C%B3%20OR%20%E5%B9%BF%E5%B7%9E%20OR%20%E9%A6%99%E6%B8%AF",
-      "link_pattern": "^https?://(mp\\.weixin\\.qq\\.com/s|weixin\\.sogou\\.com/link)",
-      "base": "https://weixin.sogou.com",
-      "default_type": "hackathon",
-      "default_city": "",
-      "keep_query": true
-    },
-    {
       "id": "gnews-univ",
       "name": "Google 新闻 · 深圳高校 AI 讲座",
       "kind": "rss",
       "url": "https://news.google.com/rss/search?q=%28%E5%8D%97%E6%96%B9%E7%A7%91%E6%8A%80%E5%A4%A7%E5%AD%A6%20OR%20%E6%B8%AF%E4%B8%AD%E6%B7%B1%20OR%20%E6%B7%B1%E5%9C%B3%E5%A4%A7%E5%AD%A6%20OR%20%E5%93%88%E5%B7%A5%E5%A4%A7%E6%B7%B1%E5%9C%B3%20OR%20%E9%B9%8F%E5%9F%8E%E5%AE%9E%E9%AA%8C%E5%AE%A4%20OR%20IDEA%E7%A0%94%E7%A9%B6%E9%99%A2%29%20%28%E8%AE%B2%E5%BA%A7%20OR%20%E8%AE%BA%E5%9D%9B%20OR%20%E6%8A%A5%E5%91%8A%E4%BC%9A%20OR%20%E5%BC%80%E6%94%BE%E6%97%A5%29%20when%3A14d&hl=zh-CN&gl=CN&ceid=CN:zh-Hans",
+      "default_type": "talk",
+      "default_city": "深圳"
+    },
+    {
+      "id": "sogou-sz-hack",
+      "name": "搜狗微信 · 深圳 黑客松",
+      "kind": "page",
+      "url": "https://weixin.sogou.com/weixin?type=2&query=%E6%B7%B1%E5%9C%B3%20%E9%BB%91%E5%AE%A2%E6%9D%BE%20%E6%8A%A5%E5%90%8D",
+      "link_pattern": "^https?://(mp\\.weixin\\.qq\\.com/s|weixin\\.sogou\\.com/link)",
+      "base": "https://weixin.sogou.com",
+      "keep_query": true,
+      "default_type": "hackathon",
+      "default_city": "深圳"
+    },
+    {
+      "id": "sogou-sz-salon",
+      "name": "搜狗微信 · 深圳 AI 沙龙",
+      "kind": "page",
+      "url": "https://weixin.sogou.com/weixin?type=2&query=%E6%B7%B1%E5%9C%B3%20AI%20%E6%B2%99%E9%BE%99%20%E6%8A%A5%E5%90%8D",
+      "link_pattern": "^https?://(mp\\.weixin\\.qq\\.com/s|weixin\\.sogou\\.com/link)",
+      "base": "https://weixin.sogou.com",
+      "keep_query": true,
+      "default_type": "talk",
+      "default_city": "深圳"
+    },
+    {
+      "id": "sogou-sz-meetup",
+      "name": "搜狗微信 · 深圳 AI meetup",
+      "kind": "page",
+      "url": "https://weixin.sogou.com/weixin?type=2&query=%E6%B7%B1%E5%9C%B3%20AI%20meetup",
+      "link_pattern": "^https?://(mp\\.weixin\\.qq\\.com/s|weixin\\.sogou\\.com/link)",
+      "base": "https://weixin.sogou.com",
+      "keep_query": true,
+      "default_type": "meetup",
+      "default_city": "深圳"
+    },
+    {
+      "id": "sogou-gz-ai",
+      "name": "搜狗微信 · 广州 AI 活动",
+      "kind": "page",
+      "url": "https://weixin.sogou.com/weixin?type=2&query=%E5%B9%BF%E5%B7%9E%20AI%20%E6%B4%BB%E5%8A%A8%20%E6%8A%A5%E5%90%8D",
+      "link_pattern": "^https?://(mp\\.weixin\\.qq\\.com/s|weixin\\.sogou\\.com/link)",
+      "base": "https://weixin.sogou.com",
+      "keep_query": true,
+      "default_type": "meetup",
+      "default_city": "广州"
+    },
+    {
+      "id": "sogou-hk-ai",
+      "name": "搜狗微信 · 香港 AI 活动",
+      "kind": "page",
+      "url": "https://weixin.sogou.com/weixin?type=2&query=%E9%A6%99%E6%B8%AF%20AI%20%E6%B4%BB%E5%8A%A8%20%E6%8A%A5%E5%90%8D%20%E9%BB%91%E5%AE%A2%E6%9D%BE",
+      "link_pattern": "^https?://(mp\\.weixin\\.qq\\.com/s|weixin\\.sogou\\.com/link)",
+      "base": "https://weixin.sogou.com",
+      "keep_query": true,
+      "default_type": "meetup",
+      "default_city": "香港"
+    },
+    {
+      "id": "sogou-anker",
+      "name": "搜狗微信 · 安克黑客松",
+      "kind": "page",
+      "url": "https://weixin.sogou.com/weixin?type=2&query=%E5%AE%89%E5%85%8B%20%E9%BB%91%E5%AE%A2%E6%9D%BE",
+      "link_pattern": "^https?://(mp\\.weixin\\.qq\\.com/s|weixin\\.sogou\\.com/link)",
+      "base": "https://weixin.sogou.com",
+      "keep_query": true,
+      "default_type": "hackathon",
+      "default_city": "深圳"
+    },
+    {
+      "id": "sogou-tencent",
+      "name": "搜狗微信 · 腾讯云黑客松",
+      "kind": "page",
+      "url": "https://weixin.sogou.com/weixin?type=2&query=%E8%85%BE%E8%AE%AF%E4%BA%91%20%E9%BB%91%E5%AE%A2%E6%9D%BE",
+      "link_pattern": "^https?://(mp\\.weixin\\.qq\\.com/s|weixin\\.sogou\\.com/link)",
+      "base": "https://weixin.sogou.com",
+      "keep_query": true,
+      "default_type": "hackathon",
+      "default_city": "深圳"
+    },
+    {
+      "id": "sogou-hetao",
+      "name": "搜狗微信 · 河套 AI 赛",
+      "kind": "page",
+      "url": "https://weixin.sogou.com/weixin?type=2&query=%E6%B2%B3%E5%A5%97%20AI%20%E8%B5%9B%E9%81%93%20%E6%8A%A5%E5%90%8D",
+      "link_pattern": "^https?://(mp\\.weixin\\.qq\\.com/s|weixin\\.sogou\\.com/link)",
+      "base": "https://weixin.sogou.com",
+      "keep_query": true,
+      "default_type": "hackathon",
+      "default_city": "深圳"
+    },
+    {
+      "id": "sogou-cyber",
+      "name": "搜狗微信 · 赛博AI黑客松",
+      "kind": "page",
+      "url": "https://weixin.sogou.com/weixin?type=2&query=%E8%B5%9B%E5%8D%9AAI%20%E9%BB%91%E5%AE%A2%E6%9D%BE",
+      "link_pattern": "^https?://(mp\\.weixin\\.qq\\.com/s|weixin\\.sogou\\.com/link)",
+      "base": "https://weixin.sogou.com",
+      "keep_query": true,
+      "default_type": "hackathon",
+      "default_city": "深圳"
+    },
+    {
+      "id": "sogou-embodied",
+      "name": "搜狗微信 · 具身智能 沙龙",
+      "kind": "page",
+      "url": "https://weixin.sogou.com/weixin?type=2&query=%E5%85%B7%E8%BA%AB%E6%99%BA%E8%83%BD%20%E6%B2%99%E9%BE%99%20%E6%B7%B1%E5%9C%B3",
+      "link_pattern": "^https?://(mp\\.weixin\\.qq\\.com/s|weixin\\.sogou\\.com/link)",
+      "base": "https://weixin.sogou.com",
+      "keep_query": true,
       "default_type": "talk",
       "default_city": "深圳"
     }
