@@ -156,7 +156,8 @@ def parse_page(blob: bytes, source: dict) -> list[dict]:
         seen.add(url)
         # 列表页上链接前后的文字通常就是日期、地点、价格——详情页可能是前端渲染拿不到，这里先兜住
         context = strip_html(html[max(0, m.start() - 250) : m.end() + 450])
-        entries.append({"title": strip_html(inner)[:200], "link": url, "description": context[:600], "published": "", "hints": {}})
+        title = strip_html(inner)[:200] or strip_html(html[m.end() : m.end() + 300])[:80]
+        entries.append({"title": title, "link": url, "description": context[:600], "published": "", "hints": {}})
     # 页面里的 schema.org Event（lu.ma 城市页、Eventbrite 等都嵌），时间地点直接就有
     for m in re.finditer(r'<script[^>]+type=["\']application/ld\+json["\'][^>]*>(.*?)</script>', html, re.I | re.S):
         try:
@@ -269,7 +270,7 @@ def parse_wechat_list(source: dict) -> list[dict]:
                     pass
                 shown += 1
             log(f"[events] 公众号 {name} 的 feed 抓取失败（{url[:70]}）：{ex}{snippet}")
-    log(f"[events] 公众号：找到 {len(feeds)}/{len(wanted)} 个账号的 feed，共 {len(entries)} 篇")
+    log(f"[events] 公众号：找到 {len(feeds)}/{len(wanted)} 个账号的 feed（{'、'.join(feeds)}），共 {len(entries)} 篇")
     return entries
 
 
@@ -307,6 +308,8 @@ def fetch_detail(url: str) -> dict:
     body = re.search(r"<body[^>]*>(.*)</body>", html, re.I | re.S)
     body_text = strip_html(re.sub(r"<(nav|header|footer|script|style)\b.*?</\1>", " ", body.group(1) if body else html, flags=re.I | re.S))
     out["text"] = body_text[:1200]
+    if len(body_text) < 200:
+        log(f"[events] 详情页几乎没有正文 {url[:70]}：{body_text[:80]!r}")
 
     for m in re.finditer(r'<script[^>]+type=["\']application/ld\+json["\'][^>]*>(.*?)</script>', html, re.I | re.S):
         try:
@@ -601,6 +604,9 @@ def main() -> None:
     for c in cands:
         ev = to_event(c, ai.get(c["id"]) if ai else None, today)
         seen[c["id"]] = today
+        if ai and c.get("kind") in ("wechat", "page") and c["id"] in ai:
+            a = ai[c["id"]]
+            log(f"[events] 判定 {c['source'][:14]} | {c['title'][:36]!r} → {'活动' if a.get('is_event') else '非活动'} {a.get('start', '')} {a.get('city', '')} {a.get('relevance', '')}")
         if c.get("kind") == "refresh":
             old = c["_existing"]
             if ev is None:
