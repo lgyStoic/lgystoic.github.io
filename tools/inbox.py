@@ -93,7 +93,7 @@ def gh(method: str, path: str, body: dict | None = None, *, ok404: bool = False)
             "Authorization": f"Bearer {TOKEN}",
             "Accept": "application/vnd.github+json",
             "X-GitHub-Api-Version": "2022-11-28",
-            "User-Agent": "GarryRadarInbox/1.0",
+            "User-Agent": "AnaxagoreRadarInbox/1.0",
             "Content-Type": "application/json",
         },
     )
