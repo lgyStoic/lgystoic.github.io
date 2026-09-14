@@ -4,6 +4,9 @@ on:
   schedule:
     # 每天北京时间 08:00（UTC 00:00）
     - cron: "0 0 * * *"
+  push:
+    paths:
+      - radar/trigger        # 没有 API 权限的 agent 改这个文件并 push 即可触发一次
   workflow_dispatch:
     inputs:
       window_hours:
@@ -34,21 +37,34 @@ jobs:
       - name: 安装 anthropic SDK（仅在配置了 key 时使用）
         run: pip install --quiet anthropic
 
+      - name: 记录本次运行元数据
+        run: |
+          mkdir -p radar/data
+          python3 - <<'EOF'
+          import json, os, datetime
+          json.dump({
+            "run_id": int(os.environ["GITHUB_RUN_ID"]),
+            "run_number": int(os.environ["GITHUB_RUN_NUMBER"]),
+            "event": os.environ["GITHUB_EVENT_NAME"],
+            "sha": os.environ["GITHUB_SHA"],
+            "started_at": datetime.datetime.now(datetime.timezone.utc).isoformat(timespec="seconds"),
+            "url": f"{os.environ['GITHUB_SERVER_URL']}/{os.environ['GITHUB_REPOSITORY']}/actions/runs/{os.environ['GITHUB_RUN_ID']}",
+          }, open("radar/data/last-run.json", "w"), ensure_ascii=False, indent=2)
+          EOF
+          : > radar/data/last-run.log
+
       - name: 抓取并打分
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           RADAR_WINDOW_HOURS: ${{ inputs.window_hours }}
-        run: python3 tools/radar.py
+        run: python3 tools/radar.py 2>&1 | tee -a radar/data/last-run.log
 
       - name: 找活动
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-        run: python3 tools/events.py
-
-      - name: 渲染页面
-        run: python3 tools/build.py
+        run: python3 tools/events.py 2>&1 | tee -a radar/data/last-run.log
 
       - name: 整理私有收件箱（未配置 INBOX_TOKEN 时跳过）
         env:
@@ -56,7 +72,10 @@ jobs:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           INBOX_TOKEN: ${{ secrets.INBOX_TOKEN }}
           INBOX_REPO: ${{ vars.INBOX_REPO || 'lgyStoic/radar-inbox' }}
-        run: python3 tools/inbox.py
+        run: python3 tools/inbox.py 2>&1 | tee -a radar/data/last-run.log
+
+      - name: 渲染页面
+        run: python3 tools/build.py 2>&1 | tee -a radar/data/last-run.log
 
       - name: 提交并推送
         run: |

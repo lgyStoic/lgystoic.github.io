@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>运行状态 | Garry 的学习站</title>
+    <meta name="description" content="雷达 / 活动 / 收件箱流水线的运行状态、源健康与每日巡检报告。" />
+    <meta name="robots" content="noindex" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231b1b1a'/%3E%3Ctext x='32' y='43' text-anchor='middle' font-size='32' font-family='Helvetica,Arial' font-weight='700' fill='%23fbfaf8'%3EG%3C/text%3E%3C/svg%3E"
+    />
+    <link rel="stylesheet" href="../site.css" />
+    <script>
+      try {
+        var t = localStorage.getItem("theme");
+        if (t === "dark" || t === "light") document.documentElement.dataset.theme = t;
+      } catch (e) {}
+    </script>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="wrap">
+        <a class="brand" href="../" aria-label="回到首页">
+          <span class="brand-mark">G</span>
+          <span>Garry</span>
+        </a>
+        <nav class="site-nav" aria-label="主导航">
+          <a href="../notes/">笔记</a>
+          <a href="../radar/">雷达</a>
+          <a href="../radar/events/">活动</a>
+          <a href="https://github.com/lgyStoic" rel="me noreferrer">GitHub</a>
+          <button class="theme-toggle" type="button" data-theme-toggle aria-label="切换深浅色">
+            <span data-theme-icon>◑</span>
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <main class="wrap">
+      <section class="intro">
+        <p class="kicker">Status</p>
+        <h1>运行状态</h1>
+        <p class="bio">流水线每天北京时间 08:00 跑一次，08:40 由巡检 agent 检查一遍。这一页是给手机上快速看一眼用的。</p>
+        <!-- build:status-run -->
+    <p class="radar-stats">还没有运行记录。</p>
+    <p class="radar-stats">今日简报：142 条 · AI 摘要（gemini-3.1-pro-preview）</p>
+    <p class="radar-stats">活动清单：111 条 · AI 抽取（gemini-3.1-pro-preview）</p>
+    <!-- /build:status-run -->
+      </section>
+
+      <section class="section">
+        <div class="section-head"><h2>巡检报告</h2><a class="text-link" href="https://github.com/lgyStoic/lgystoic.github.io/blob/master/.github/agents/daily-check.md" rel="noreferrer">巡检手册 →</a></div>
+        <!-- build:status-checks -->
+    <ul class="check-list">
+      <li class="check has-issue"><h3>📅 2026-09-14 巡检（人工，建立基线）</h3><ul><li>运行：手动 ×7（定时 08:00 未见触发，明日复查）｜ AI：gemini-3.1-pro-preview ｜ 简报 142 条（必看 19）｜ 活动 111 条</li><li>问题：arXiv API 429；hnrss 502；机器之心 / LMArena feed 非法 XML；PyTorch nightly tag 混入必看；活动行条目无日期</li><li>已修：#28 分批 AI、429 退避、宽松 XML；#29 合并 arXiv 查询、HN 换 Algolia、Release 过滤 tag、无日期活动重抽</li><li>待人决定：无</li></ul></li>
+    </ul>
+    <!-- /build:status-checks -->
+      </section>
+
+      <section class="section">
+        <div class="section-head"><h2>源健康</h2><a class="text-link" href="https://github.com/lgyStoic/lgystoic.github.io/actions/workflows/radar.yml" rel="noreferrer">Actions →</a></div>
+        <!-- build:status-sources -->
+    <p class="radar-stats">53 个源 · 正常 11 · 失败 6 · 其余抓到但当次无新内容</p>
+    <div class="table-wrap"><table class="src-table">
+      <thead><tr><th>栏目</th><th>源</th><th>状态</th><th>新条目</th><th>错误</th></tr></thead>
+      <tbody>
+        <tr class="src-ok"><td>简报</td><td>OpenAI</td><td><b>正常</b></td><td>1</td><td class="err"></td></tr>
+        <tr class="src-warn"><td>简报</td><td>Google DeepMind</td><td><b>0 条</b></td><td>0</td><td class="err"></td></tr>
+        <tr class="src-warn"><td>简报</td><td>Google AI Blog</td><td><b>0 条</b></td><td>0</td><td class="err"></td></tr>
+        <tr class="src-warn"><td>简报</td><td>Qwen</td><td><b>0 条</b></td><td>0</td><td class="err"></td></tr>
+        <tr class="src-warn"><td>简报</td><td>Hugging Face Blog</td><td><b>0 条</b></td><td>0</td><td class="err"></td></tr>
+        <tr class="src-warn"><td>简报</td><td>NVIDIA Technical Blog</td><td><b>0 条</b></td><td>0</td><td class="err"></td></tr>
+        <tr class="src-ok"><td>简报</td><td>HF Papers 日榜</td><td><b>正常</b></td><td>13</td><td class="err"></td></tr>
+        <tr class="src-warn"><td>简报</td><td>PyTorch Blog</td><td><b>0 条</b></td><td>0</td><td class="err"></td></tr>
+        <tr class="src-warn"><td>简报</td><td>Simon Willison</td><td><b>0 条</b></td><td>0</td><td class="err"></td></tr>
+        <tr class="src-warn"><td>简报</td><td>Lil&#x27;Log</td><td><b>0 条</b></td><td>0</td><td class="err"></td></tr>
+        <tr class="src-warn"><td>简报</td><td>Interconnects</td><td><b>0 条</b></td><td>0</td><td class="err"></td></tr>
+        <tr class="src-warn"><td>简报</td><td>Sebastian Raschka</td><td><b>0 条</b></td><td>0</td><td class="err"></td></tr>
+        <tr class="src-warn"><td>简报</td><td>Chip Huyen</td><td><b>0 条</b></td><td>0</td><td class="err"></td></tr>
+        <tr class="src-bad"><td>简报</td><td>Hacker News (LLM, 100+ 分)</td><td><b>失败</b></td><td>0</td><td class="err">HTTP Error 502: Bad Gateway</td></tr>
+        <tr class="src-bad"><td>简报</td><td>arXiv · 生成模型</td><td><b>失败</b></td><td>0</td><td class="err">The read operation timed out</td></tr>
+        <tr class="src-bad"><td>简报</td><td>arXiv · GPU / 系统</td><td><b>失败</b></td><td>0</td><td class="err">HTTP Error 429: Unknown Error</td></tr>
+        <tr class="src-bad"><td>简报</td><td>arXiv · 训练系统</td><td><b>失败</b></td><td>0</td><td class="err">The read operation timed out</td></tr>
+        <tr class="src-ok"><td>简报</td><td>Release · PyTorch</td><td><b>正常</b></td><td>10</td><td class="err"></td></tr>
+        <tr class="src-warn"><td>简报</td><td>Release · Triton</td><td><b>0 条</b></td><td>0</td><td class="err"></td></tr>
+        <tr class="src-warn"><td>简报</td><td>Release · CUTLASS</td><td><b>0 条</b></td><td>0</td><td class="err"></td></tr>
+        <tr class="src-warn"><td>简报</td><td>Release · FlashAttention</td><td><b>0 条</b></td><td>0</td><td class="err"></td></tr>
+        <tr class="src-ok"><td>简报</td><td>Release · vLLM</td><td><b>正常</b></td><td>2</td><td class="err"></td></tr>
+        <tr class="src-warn"><td>简报</td><td>Release · SGLang</td><td><b>0 条</b></td><td>0</td><td class="err"></td></tr>
+        <tr class="src-warn"><td>简报</td><td>Release · TensorRT-LLM</td><td><b>0 条</b></td><td>0</td><td class="err"></td></tr>
+        <tr class="src-warn"><td>简报</td><td>Release · Diffusers</td><td><b>0 条</b></td><td>0</td><td class="err"></td></tr>
+        <tr class="src-warn"><td>简报</td><td>Release · cuda-python</td><td><b>0 条</b></td><td>0</td><td class="err"></td></tr>
+        <tr class="src-ok"><td>简报</td><td>新闻 · Anthropic / Mistral / xAI</td><td><b>正常</b></td><td>24</td><td class="err"></td></tr>
+        <tr class="src-ok"><td>简报</td><td>新闻 · 国内模型公司</td><td><b>正常</b></td><td>17</td><td class="err"></td></tr>
+        <tr class="src-bad"><td>简报</td><td>机器之心</td><td><b>失败</b></td><td>0</td><td class="err">mismatched tag: line 36, column 66</td></tr>
+        <tr class="src-ok"><td>简报</td><td>量子位</td><td><b>正常</b></td><td>1</td><td class="err"></td></tr>
+        <tr class="src-ok"><td>简报</td><td>InfoQ 中文</td><td><b>正常</b></td><td>1</td><td class="err"></td></tr>
+        <tr class="src-bad"><td>简报</td><td>LMArena Blog</td><td><b>失败</b></td><td>0</td><td class="err">not well-formed (invalid token): line 1, column 33481</td></tr>
+        <tr class="src-warn"><td>简报</td><td>Horace He (thonking)</td><td><b>0 条</b></td><td>0</td><td class="err"></td></tr>
+        <tr class="src-warn"><td>活动</td><td>lu.ma · 深圳</td><td><b>0 条</b></td><td>0</td><td class="err"></td></tr>
+        <tr class="src-warn"><td>活动</td><td>lu.ma · 香港</td><td><b>0 条</b></td><td>0</td><td class="err"></td></tr>
+        <tr class="src-ok"><td>活动</td><td>活动行 · 深圳 AI</td><td><b>正常</b></td><td>3</td><td class="err"></td></tr>
+        <tr class="src-warn"><td>活动</td><td>活动行 · 广州 AI</td><td><b>0 条</b></td><td>0</td><td class="err"></td></tr>
+        <tr class="src-warn"><td>活动</td><td>Devpost 黑客松</td><td><b>0 条</b></td><td>0</td><td class="err"></td></tr>
+        <tr class="src-ok"><td>活动</td><td>Google 新闻 · 深圳 AI 活动</td><td><b>正常</b></td><td>1</td><td class="err"></td></tr>
+        <tr class="src-warn"><td>活动</td><td>Google 新闻 · 黑客松 / 比赛</td><td><b>0 条</b></td><td>0</td><td class="err"></td></tr>
+        <tr class="src-warn"><td>活动</td><td>活动行 · 深圳 大模型/开发者</td><td><b>0 条</b></td><td>0</td><td class="err"></td></tr>
+        <tr class="src-warn"><td>活动</td><td>活动行 · 香港 AI</td><td><b>0 条</b></td><td>0</td><td class="err"></td></tr>
+        <tr class="src-warn"><td>活动</td><td>SegmentFault 活动</td><td><b>0 条</b></td><td>0</td><td class="err"></td></tr>
+        <tr class="src-warn"><td>活动</td><td>开源中国 活动</td><td><b>0 条</b></td><td>0</td><td class="err"></td></tr>
+        <tr class="src-warn"><td>活动</td><td>稀土掘金 活动</td><td><b>0 条</b></td><td>0</td><td class="err"></td></tr>
+        <tr class="src-warn"><td>活动</td><td>HackathonWeekly（深圳周周黑客松）</td><td><b>0 条</b></td><td>0</td><td class="err"></td></tr>
+        <tr class="src-warn"><td>活动</td><td>GDG 深圳</td><td><b>0 条</b></td><td>0</td><td class="err"></td></tr>
+        <tr class="src-warn"><td>活动</td><td>GDG 广州</td><td><b>0 条</b></td><td>0</td><td class="err"></td></tr>
+        <tr class="src-warn"><td>活动</td><td>GDG 香港</td><td><b>0 条</b></td><td>0</td><td class="err"></td></tr>
+        <tr class="src-warn"><td>活动</td><td>DataFountain 比赛</td><td><b>0 条</b></td><td>0</td><td class="err"></td></tr>
+        <tr class="src-warn"><td>活动</td><td>Kaggle 新比赛（Google 新闻）</td><td><b>0 条</b></td><td>0</td><td class="err"></td></tr>
+        <tr class="src-ok"><td>活动</td><td>Google 新闻 · 广州 / 香港 AI 活动</td><td><b>正常</b></td><td>1</td><td class="err"></td></tr>
+        <tr class="src-warn"><td>活动</td><td>Google 新闻 · AI 大会 报名</td><td><b>0 条</b></td><td>0</td><td class="err"></td></tr>
+      </tbody>
+    </table></div>
+    <!-- /build:status-sources -->
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap">
+        <span>© 2026 Garry</span>
+        <span><a href="../radar/">雷达</a> · <a href="../radar/events/">活动</a></span>
+      </div>
+    </footer>
+    <script src="../site.js" defer></script>
+  </body>
+</html>
