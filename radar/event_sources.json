@@ -247,9 +247,8 @@
       "kind": "wechat",
       "url": "",
       "list_urls": [
-        "https://raw.githubusercontent.com/feeddd/feeds/main/feeds_all_rss.txt",
-        "https://raw.githubusercontent.com/feeddd/feeds/main/feeds_all_json.txt",
-        "https://wechat2rss.xlab.app/list/"
+        "https://wechat2rss.xlab.app/list/",
+        "https://wechat2rss.xlab.app/list/all.html"
       ],
       "accounts": [
         "腾讯云开发者",
@@ -496,7 +495,8 @@
       "link_pattern": "^https?://(mp\\.weixin\\.qq\\.com/s|weixin\\.sogou\\.com/link)",
       "base": "https://weixin.sogou.com",
       "default_type": "meetup",
-      "default_city": "深圳"
+      "default_city": "深圳",
+      "keep_query": true
     },
     {
       "id": "sogou-wechat-hack",
@@ -506,7 +506,8 @@
       "link_pattern": "^https?://(mp\\.weixin\\.qq\\.com/s|weixin\\.sogou\\.com/link)",
       "base": "https://weixin.sogou.com",
       "default_type": "hackathon",
-      "default_city": ""
+      "default_city": "",
+      "keep_query": true
     },
     {
       "id": "gnews-univ",

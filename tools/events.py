@@ -147,17 +147,58 @@ def parse_page(blob: bytes, source: dict) -> list[dict]:
         href, inner = m.group(1), m.group(2)
         # href 里常见 &amp; 转义和跟踪参数；列表页链接的 query 一律不要
         url = urljoin(base, html_mod.unescape(href.strip()))
-        url = normalize_link(url.split("#", 1)[0].split("?", 1)[0])
+        url = url.split("#", 1)[0]
+        if not source.get("keep_query"):  # 搜狗这类跳转链接的 query 就是目标，其他站的 query 多是跟踪参数
+            url = url.split("?", 1)[0]
+        url = normalize_link(url) if not source.get("keep_query") else url.strip()
         if not pattern.search(url) or url in seen or (exclude and exclude.search(url)):
             continue
         seen.add(url)
         # 列表页上链接前后的文字通常就是日期、地点、价格——详情页可能是前端渲染拿不到，这里先兜住
         context = strip_html(html[max(0, m.start() - 250) : m.end() + 450])
         entries.append({"title": strip_html(inner)[:200], "link": url, "description": context[:600], "published": "", "hints": {}})
+    # 页面里的 schema.org Event（lu.ma 城市页、Eventbrite 等都嵌），时间地点直接就有
+    for m in re.finditer(r'<script[^>]+type=["\']application/ld\+json["\'][^>]*>(.*?)</script>', html, re.I | re.S):
+        try:
+            data = json.loads(m.group(1))
+        except json.JSONDecodeError:
+            continue
+        nodes = data if isinstance(data, list) else [data]
+        i = 0
+        while i < len(nodes):
+            node = nodes[i]; i += 1
+            if not isinstance(node, dict):
+                continue
+            for key in ("@graph", "itemListElement"):
+                if isinstance(node.get(key), list):
+                    nodes.extend(x.get("item", x) if isinstance(x, dict) else x for x in node[key])
+            if str(node.get("@type", "")).endswith("Event") and node.get("url") and node.get("name"):
+                url = normalize_link(str(node["url"]).split("#", 1)[0].split("?", 1)[0])
+                if url in seen:
+                    continue
+                seen.add(url)
+                loc = node.get("location") or {}
+                if isinstance(loc, list):
+                    loc = loc[0] if loc else {}
+                addr = loc.get("address") if isinstance(loc, dict) else ""
+                if isinstance(addr, dict):
+                    addr = " ".join(str(addr.get(k, "")) for k in ("addressLocality", "addressRegion", "streetAddress") if addr.get(k))
+                entries.append(
+                    {
+                        "title": strip_html(str(node["name"]))[:200], "link": url,
+                        "description": strip_html(str(node.get("description", "")))[:600], "published": "",
+                        "hints": {
+                            "start": str(node.get("startDate", ""))[:10], "end": str(node.get("endDate", ""))[:10],
+                            "location": " ".join(x for x in [str(loc.get("name", "")) if isinstance(loc, dict) else "", str(addr or "")] if x).strip(),
+                            "online": "Online" in str(node.get("eventAttendanceMode", "")),
+                        },
+                    }
+                )
     total_anchors = len(ANCHOR_RE.findall(html))
     if len(entries) <= 1:
         head = strip_html(html[:3000])[:120]
-        log(f"[events] {source.get('name', source.get('id'))}: 页面 {len(html)} 字、{total_anchors} 个链接、匹配 {len(entries)}；正文开头「{head}」")
+        sample = [html_mod.unescape(h)[:70] for h, _ in ANCHOR_RE.findall(html)[:6]]
+        log(f"[events] {source.get('name', source.get('id'))}: 页面 {len(html)} 字、{total_anchors} 个链接、匹配 {len(entries)}；正文开头「{head}」；链接样例 {sample}")
     else:
         log(f"[events] {source.get('name', source.get('id'))}: {total_anchors} 个链接，匹配 {len(entries)}，例：{entries[0]['title'][:30]!r} {entries[0]['link'][:60]}")
     return entries
@@ -181,7 +222,15 @@ def parse_wechat_list(source: dict) -> list[dict]:
         log(f"[events] 公众号列表 {list_url[:60]}：{len(text)} 字，开头「{text[:80].strip()!r}」")
         pairs: list[tuple[str, str]] = []  # (那一段文字, 候选 url)
         stripped = text.lstrip()
-        if stripped.startswith("[") or stripped.startswith("{"):
+        if stripped[:15].lower().startswith(("<!doctype", "<html")):
+            # HTML 列表页：链接文字里带公众号名、href 是 feed，就把两者拼成一行交给下面统一匹配
+            for m in ANCHOR_RE.finditer(text):
+                href, inner = html_mod.unescape(m.group(1).strip()), strip_html(m.group(2))
+                if not inner:
+                    continue
+                pairs.append((f"{inner} {urljoin(list_url, href)}", href))
+            log(f"[events] 公众号列表是 HTML，解析出 {len(pairs)} 个链接")
+        elif stripped.startswith("[") or stripped.startswith("{"):
             try:  # JSON 列表：把每个对象序列化成一行来匹配名字
                 data = json.loads(stripped)
                 rows = data if isinstance(data, list) else (data.get("feeds") or data.get("data") or list(data.values()))
