@@ -164,7 +164,11 @@ def parse_page(blob: bytes, source: dict) -> list[dict]:
         seen.add(url)
         # 列表页上链接前后的文字通常就是日期、地点、价格——详情页可能是前端渲染拿不到，这里先兜住
         context = strip_html(html[max(0, m.start() - 250) : m.end() + 450])
-        entries.append({"title": text, "link": url, "description": context[:600], "published": "", "hints": {}})
+        # 截取的片段可能从一个标签中间开始，留下 'arget="_blank" href=…>' 这种半截，砍掉第一个 > 之前的部分
+        first_gt, first_lt = context.find(">"), context.find("<")
+        if 0 <= first_gt < 120 and (first_lt == -1 or first_lt > first_gt):
+            context = context[first_gt + 1 :]
+        entries.append({"title": text, "link": url, "description": context.strip()[:600], "published": "", "hints": {}})
     for en in entries:  # 仍然没有标题的，用链接后面那段文字顶上
         if not en["title"]:
             en["title"] = (en["description"][:80] or en["link"])
