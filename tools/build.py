@@ -271,6 +271,7 @@ RADAR_DAY_TEMPLATE = """<!doctype html>
       </div>
     </footer>
     <script src="../../site.js" defer></script>
+{analytics}
   </body>
 </html>
 """
@@ -308,6 +309,7 @@ def write_radar_days(days: list[dict], config: dict, events_data: dict | None = 
         html_text = RADAR_DAY_TEMPLATE.format(
             header=render_site_header(load_site(), "../../", "radar"),
             site_name=esc(SITE_TITLE),
+            analytics=render_analytics(load_site()),
             date=esc(day["date"]),
             date_human=esc(human_date(day["date"])),
             description=radar_description(day),
@@ -680,6 +682,13 @@ def render_status(days: list[dict], events_data: dict | None) -> dict[str, str]:
     if events_data:
         ai_line += f'\n    <p class="radar-stats">活动清单：{len(events_data.get("events", []))} 条 · ' + (f'AI 抽取（{esc(events_data.get("model", ""))}）' if events_data.get("model") else "规则默认值") + "</p>"
 
+    site = load_site()
+    dash = analytics_dashboard(site)
+    if dash:
+        vis = "公开" if (site.get("analytics") or {}).get("public") else "仅站长可见"
+        run_html += f'\n    <p class="radar-stats">访问统计：GoatCounter（{vis}） · <a href="{esc(dash)}" rel="noreferrer">看板</a> · 记录来源站、UTM、每页访问和推荐位点击</p>'
+    else:
+        run_html += '\n    <p class="radar-stats">访问统计：未启用（site.json → analytics.code 为空）</p>'
     return {"status-run": run_html + ("\n" + ai_line if ai_line else ""), "status-checks": checks_html, "status-sources": table}
 
 
@@ -879,6 +888,45 @@ def build_guides() -> list[dict]:
     return guides
 
 
+# ---------------------------------------------------------------- 访问统计（GoatCounter）
+
+ANALYTICS_EVENTS_JS = """(function(){
+  function gc(){return window.goatcounter&&window.goatcounter.count?window.goatcounter:null}
+  function send(path,title){var g=gc();if(g)g.count({path:path,title:title||path,event:true})}
+  document.addEventListener("click",function(e){
+    var a=e.target.closest&&e.target.closest("a");
+    if(!a)return;
+    var offer=a.closest(".offer");
+    if(a.hasAttribute("data-aff-link")||a.hasAttribute("data-aff")||(a.rel||"").indexOf("sponsored")>-1){
+      var key=(offer&&offer.getAttribute("data-aff"))||a.getAttribute("data-aff")||"link";
+      send("aff/"+key,"推荐位："+key+" @ "+location.pathname);return}
+    if(a.host&&a.host!==location.host){send("out/"+a.host,"外链："+a.host+" @ "+location.pathname)}
+  });
+  document.addEventListener("click",function(e){
+    var b=e.target.closest&&e.target.closest("[data-share-copy],[data-share-native]");
+    if(b)send("share/"+(b.hasAttribute("data-share-copy")?"copy":"native"),"分享 @ "+location.pathname)
+  });
+})();"""
+
+
+def render_analytics(site: dict) -> str:
+    """GoatCounter 计数脚本 + 推荐位 / 外链 / 分享事件埋点。code 为空则输出空字符串。"""
+    a = site.get("analytics") or {}
+    code = (a.get("code") or "").strip()
+    if not code or a.get("provider", "goatcounter") != "goatcounter":
+        return ""
+    return (
+        f'    <script data-goatcounter="https://{esc(code)}.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>\n'
+        f"    <script>{ANALYTICS_EVENTS_JS}</script>"
+    )
+
+
+def analytics_dashboard(site: dict) -> str:
+    a = site.get("analytics") or {}
+    code = (a.get("code") or "").strip()
+    return f"https://{code}.goatcounter.com" if code else ""
+
+
 # ---------------------------------------------------------------- 站点公共头部
 
 def page_prefix(rel_path: str) -> str:
@@ -949,6 +997,8 @@ def inject_site_chrome(site: dict) -> int:
             blocks["header"] = render_site_header(site, prefix, current)
         if "<!-- build:site-name -->" in text:
             blocks["site-name"] = esc(site.get("name", SITE_TITLE))
+        if "<!-- build:analytics -->" in text:
+            blocks["analytics"] = render_analytics(site)
         if blocks:
             inject(page, blocks)
             n += 1
