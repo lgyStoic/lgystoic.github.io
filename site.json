@@ -3,7 +3,12 @@
   "tagline": "GPU kernel · 生成模型 · 深圳",
   "description": "一个跑在 GitHub 上的个人平台：记我写的和读的，看机器替我盯着的世界，做定时替我跑的小工具。",
   "url": "https://lgystoic.github.io",
-  "nav": ["notes", "radar", "events", "about"],
+  "nav": [
+    "notes",
+    "radar",
+    "events",
+    "about"
+  ],
   "modules": [
     {
       "id": "notes",
@@ -12,6 +17,15 @@
       "path": "/notes/",
       "blurb": "课程、论文、性能实验的整理，写给半年后的自己。",
       "status": "notes",
+      "script": null
+    },
+    {
+      "id": "guides",
+      "role": "记",
+      "name": "上手指南",
+      "path": "/guides/",
+      "blurb": "离职后从零开始用 AI 工具的三步：租一台电脑、装好代理、注册 ChatGPT。含推广链接，已逐一标注。",
+      "status": "guides",
       "script": null
     },
     {
