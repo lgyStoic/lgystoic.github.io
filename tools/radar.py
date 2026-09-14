@@ -531,6 +531,8 @@ def collect(config: dict, now_utc: datetime, seen: dict[str, str]) -> tuple[list
 
     for source in config["sources"]:
         sid = source["id"]
+        if source.get("disabled"):
+            continue
         try:
             blob = fetch(source["url"], sid)
             raw_entries = parse_json_feed(blob, source) if source.get("kind") == "json" else parse_feed(blob)

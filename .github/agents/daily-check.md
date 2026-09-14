@@ -1,6 +1,15 @@
 # 每日巡检手册
 
-给自动唤醒的 agent（Claude Routine，将来也可能是 Codex）用的操作手册。目标只有一个：**让雷达 / 活动 / 收件箱这条流水线每天都健康地跑，人不用盯。**
+目标只有一个：**让雷达 / 活动 / 收件箱这条流水线每天都健康地跑，人不用盯。**
+
+巡检分两层，先分清谁干什么：
+
+| 层 | 谁 | 干什么 | 依赖 |
+|---|---|---|---|
+| **自动层** | GitHub Actions（`tools/check.py`，radar.yml 最后一步；`health.yml` 08:40 兜底补跑） | 统计每个源连续失败 / 0 条天数；连续失败 ≥ 3 天自动停用；记录 AI 是否退回规则、定时是否触发；写当天报告 `radar/checks/<日期>.md`；把需要判断的事列进 `radar/data/health.json` 的 `needs_agent` | 只依赖 GitHub，不依赖任何 Claude 会话 |
+| **判断层** | agent（Claude 会话，按需或定时；将来也可能是 Codex） | 只处理 `needs_agent` 里的事：源改版要改解析、抽取明显错、要不要加/换源 | 本手册 |
+
+自动层每天都在；判断层只在 `health.json` 的 `needs_agent` 非空时才有事做，空的话直接回复「无事」结束。
 
 ## 0. 边界（先读）
 
@@ -29,6 +38,8 @@
 
 ## 1. 看什么
 
+先看 `radar/data/health.json`：`needs_agent` 为空且今天的 `radar/checks/<日期>.md` 里「问题：无」，就不用再往下看。否则：
+
 1. `radar/data/last-run.log`（最近一次运行的完整日志）。关注：
    - `[radar] ✗` / `[events] ✗` 行：哪个源失败，错误是什么
    - `共 N 条新内容（共 M 条）` 里 M=0 的源：抓到了但解析出 0 条，多半是格式变了
@@ -51,7 +62,7 @@
 
 ## 3. 怎么报告
 
-写文件 `radar/checks/YYYY-MM-DD.md`（同一天重复巡检就覆盖），**不超过 8 行**，和代码改动一起 commit、push。模板：
+自动层已经写了当天的 `radar/checks/YYYY-MM-DD.md`。agent 有动作时在文件末尾**追加**一行 `agent：<做了什么 / 分支名>`，和代码改动一起 commit、push。自动报告的模板：
 
 ```
 📅 2026-09-15 巡检
