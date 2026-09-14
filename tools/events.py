@@ -591,13 +591,11 @@ def main() -> None:
     if len(cands) != before:
         log(f"[events] 丢弃 {before - len(cands)} 条占位标题候选")
 
-    # 源从配置里移除后，它留下的旧条目一起清掉（例如被证实是前端渲染占位页的源）
-    live_sources = {s["id"] for s in config["sources"]} | {"inbox"}
+    # 已入库的活动不因源被改名/移除而删除（改搜狗查询时就误删过一条真活动）；
+    # 它们按日期自然过期。占位标题那类垃圾在入库前就被过滤了。
     events: dict[str, dict] = {}
     seen_tk: set[str] = set()
     for ev in sorted(data.get("events", []), key=lambda x: x.get("found", "")):
-        if ev.get("source_id") not in live_sources:
-            continue
         tk = title_key(ev.get("title", ""))
         if len(tk) >= 8 and tk in seen_tk:
             continue  # 同一活动重复入库（不同链接形态），留先来的
@@ -630,7 +628,7 @@ def main() -> None:
     ai = enrich_events(cands, today) if cands and radar.ai_available() else {}
     model = radar.LAST_MODEL_USED if ai else ""
     if len(events) != len(data.get("events", [])):
-        log(f"[events] 清掉 {len(data.get('events', [])) - len(events)} 条已移除源的旧条目")
+        log(f"[events] 合并 {len(data.get('events', [])) - len(events)} 条同题重复的旧条目")
     added, dropped = 0, 0
     for c in cands:
         ev = to_event(c, ai.get(c["id"]) if ai else None, today)
