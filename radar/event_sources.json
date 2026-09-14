@@ -216,6 +216,136 @@
       "url": "https://news.google.com/rss/search?q=%28AI%20OR%20%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%20OR%20%E5%A4%A7%E6%A8%A1%E5%9E%8B%29%20%28%E5%A4%A7%E4%BC%9A%20OR%20%E5%B3%B0%E4%BC%9A%20OR%20%E8%AE%BA%E5%9D%9B%29%20%28%E6%8A%A5%E5%90%8D%20OR%20%E5%BC%80%E6%94%BE%E6%B3%A8%E5%86%8C%20OR%20%E5%85%8D%E8%B4%B9%29%20when%3A7d&hl=zh-CN&gl=CN&ceid=CN:zh-Hans",
       "default_type": "conference",
       "default_city": ""
+    },
+    {
+      "id": "gnews-orgs",
+      "name": "Google 新闻 · 点名主办方",
+      "kind": "rss",
+      "url": "https://news.google.com/rss/search?q=%28%E5%AE%89%E5%85%8B%20OR%20Anker%20OR%20%E8%85%BE%E8%AE%AF%E4%BA%91%20OR%20%E6%B2%B3%E5%A5%97%20OR%20%E5%8C%97%E5%A4%A7%E9%9D%92%E5%B9%B4%E5%88%9B%E4%B8%9A%E8%80%85%E5%8D%8F%E4%BC%9A%20OR%20%E8%B5%9B%E5%8D%9AAI%29%20%28%E9%BB%91%E5%AE%A2%E6%9D%BE%20OR%20hackathon%20OR%20%E6%B2%99%E9%BE%99%20OR%20%E5%A4%A7%E8%B5%9B%20OR%20%E6%8C%91%E6%88%98%E8%B5%9B%29%20when%3A14d&hl=zh-CN&gl=CN&ceid=CN:zh-Hans",
+      "default_type": "hackathon",
+      "default_city": "深圳"
+    },
+    {
+      "id": "gnews-sz-hack",
+      "name": "Google 新闻 · 深圳黑客松报名",
+      "kind": "rss",
+      "url": "https://news.google.com/rss/search?q=%E6%B7%B1%E5%9C%B3%20%28%E9%BB%91%E5%AE%A2%E6%9D%BE%20OR%20hackathon%20OR%20%E5%88%9B%E5%AE%A2%20OR%20%E8%B7%AF%E6%BC%94%29%20%28%E6%8A%A5%E5%90%8D%20OR%20%E6%8B%9B%E5%8B%9F%20OR%20%E5%BC%80%E5%90%AF%29%20when%3A14d&hl=zh-CN&gl=CN&ceid=CN:zh-Hans",
+      "default_type": "hackathon",
+      "default_city": "深圳"
+    },
+    {
+      "id": "gnews-physical-ai",
+      "name": "Google 新闻 · 具身/硬件 AI 活动",
+      "kind": "rss",
+      "url": "https://news.google.com/rss/search?q=%28Physical%20AI%20OR%20%E5%85%B7%E8%BA%AB%E6%99%BA%E8%83%BD%20OR%20AI%E7%A1%AC%E4%BB%B6%20OR%20%E6%9C%BA%E5%99%A8%E4%BA%BA%29%20%28%E6%B2%99%E9%BE%99%20OR%20%E8%AE%BA%E5%9D%9B%20OR%20%E5%B3%B0%E4%BC%9A%20OR%20%E9%BB%91%E5%AE%A2%E6%9D%BE%29%20%28%E6%B7%B1%E5%9C%B3%20OR%20%E5%B9%BF%E5%B7%9E%20OR%20%E9%A6%99%E6%B8%AF%29%20when%3A14d&hl=zh-CN&gl=CN&ceid=CN:zh-Hans",
+      "default_type": "talk",
+      "default_city": "深圳"
+    },
+    {
+      "id": "wechat-orgs",
+      "name": "公众号（第三方 RSS）",
+      "kind": "wechat",
+      "url": "",
+      "list_urls": [
+        "https://raw.githubusercontent.com/feeddd/feeds/main/feeds_all_rss.txt",
+        "https://raw.githubusercontent.com/feeddd/feeds/main/feeds_all_json.txt",
+        "https://wechat2rss.xlab.app/list/"
+      ],
+      "accounts": [
+        "腾讯云开发者",
+        "腾讯云",
+        "安克创新",
+        "Anker",
+        "HackathonWeekly",
+        "周周黑客松",
+        "一起开源",
+        "706青年空间",
+        "深圳湾",
+        "机器之心",
+        "量子位",
+        "Datawhale",
+        "阿里云开发者",
+        "InfoQ",
+        "极客邦科技",
+        "北大青年创业者协会",
+        "河套深港科技创新合作区",
+        "AdventureX"
+      ],
+      "default_type": "other",
+      "default_city": "深圳"
+    },
+    {
+      "id": "hkstp-events",
+      "name": "HKSTP 科技园活动",
+      "kind": "page",
+      "url": "https://www.hkstp.org/events/",
+      "link_pattern": "^https://www\\.hkstp\\.org/(zh-hk/|en/)?events/[a-z0-9-]+",
+      "base": "https://www.hkstp.org",
+      "exclude_pattern": "/events/?$",
+      "default_type": "conference",
+      "default_city": "香港"
+    },
+    {
+      "id": "cyberport-events",
+      "name": "數碼港活動",
+      "kind": "page",
+      "url": "https://www.cyberport.hk/zh_tw/about_cyberport/cyberport_events",
+      "link_pattern": "^https://www\\.cyberport\\.hk/[a-z_]+/about_cyberport/cyberport_events/[a-z0-9_-]+",
+      "base": "https://www.cyberport.hk",
+      "default_type": "conference",
+      "default_city": "香港"
+    },
+    {
+      "id": "tencent-cloud-salon",
+      "name": "腾讯云开发者 · 沙龙",
+      "kind": "page",
+      "url": "https://cloud.tencent.com/developer/salon",
+      "link_pattern": "^https://cloud\\.tencent\\.com/developer/salon/(live|salon|hackathon)/\\d+",
+      "base": "https://cloud.tencent.com",
+      "default_type": "talk",
+      "default_city": "深圳"
+    },
+    {
+      "id": "aliyun-activity",
+      "name": "阿里云开发者 · 活动",
+      "kind": "page",
+      "url": "https://developer.aliyun.com/activity",
+      "link_pattern": "^https://developer\\.aliyun\\.com/(article|activity|ebook|topic)/[a-z0-9]+",
+      "base": "https://developer.aliyun.com",
+      "exclude_pattern": "/activity/?$",
+      "default_type": "talk",
+      "default_city": "线上"
+    },
+    {
+      "id": "hdb-shenzhen",
+      "name": "互动吧 · 深圳 AI",
+      "kind": "page",
+      "url": "https://www.hdb.com/search/?keyword=AI&city=%E6%B7%B1%E5%9C%B3",
+      "link_pattern": "^https://www\\.hdb\\.com/party/[a-z0-9]+\\.html",
+      "base": "https://www.hdb.com",
+      "default_type": "meetup",
+      "default_city": "深圳"
+    },
+    {
+      "id": "sustech-lectures",
+      "name": "南科大 · 讲座",
+      "kind": "page",
+      "url": "https://www.sustech.edu.cn/zh/lectures.html",
+      "link_pattern": "^https://www\\.sustech\\.edu\\.cn/zh/[a-z-]*lecture[a-z-]*/\\d+",
+      "base": "https://www.sustech.edu.cn",
+      "default_type": "talk",
+      "default_city": "深圳"
+    },
+    {
+      "id": "cuhksz-events",
+      "name": "港中深 · 活动",
+      "kind": "page",
+      "url": "https://www.cuhk.edu.cn/zh-hans/events",
+      "link_pattern": "^https://www\\.cuhk\\.edu\\.cn/zh-hans/(event|events|node)/[a-z0-9-]+",
+      "base": "https://www.cuhk.edu.cn",
+      "exclude_pattern": "/events/?$",
+      "default_type": "talk",
+      "default_city": "深圳"
     }
   ]
 }
