@@ -24,16 +24,17 @@
     </script>
   </head>
   <body>
+    <!-- build:header -->
     <header class="site-header">
       <div class="wrap">
-        <a class="brand" href="../../" aria-label="回到首页">
+        <a class="brand" href="../../" aria-label="首页">
           <span class="brand-mark">A</span>
           <span>Anaxagore</span>
         </a>
         <nav class="site-nav" aria-label="主导航">
           <a href="../../notes/">笔记</a>
-          <a href="../">雷达</a>
-          <a href="./" aria-current="page">活动</a>
+          <a href="../../radar/">雷达</a>
+          <a href="../../radar/events/" aria-current="page">活动</a>
           <a href="../../guides/">指南</a>
           <a href="../../about/">关于</a>
           <button class="theme-toggle" type="button" data-theme-toggle aria-label="切换深浅色">
@@ -42,6 +43,7 @@
         </nav>
       </div>
     </header>
+    <!-- /build:header -->
 
     <main class="wrap">
       <section class="intro">
@@ -832,7 +834,9 @@
 
     <footer class="site-footer">
       <div class="wrap">
-        <span>© 2026 Anaxagore · 自动汇总，报名信息请以原文为准</span>
+        <span>© 2026 <!-- build:site-name -->
+Anaxagore
+    <!-- /build:site-name --> · 自动汇总，报名信息请以原文为准</span>
         <span><a href="https://github.com/lgyStoic/lgystoic.github.io/blob/master/radar/event_sources.json" rel="noreferrer">活动源清单</a> · <a href="../">雷达</a> · <a href="../../status/">状态</a></span>
       </div>
     </footer>

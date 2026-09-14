@@ -23,6 +23,7 @@
     <!-- /build:jsonld -->
   </head>
   <body>
+    <!-- build:header -->
     <header class="site-header">
       <div class="wrap">
         <a class="brand" href="../../" aria-label="首页">
@@ -33,7 +34,7 @@
           <a href="../../notes/">笔记</a>
           <a href="../../radar/">雷达</a>
           <a href="../../radar/events/">活动</a>
-          <a href="../" aria-current="page">指南</a>
+          <a href="../../guides/" aria-current="page">指南</a>
           <a href="../../about/">关于</a>
           <button class="theme-toggle" type="button" data-theme-toggle aria-label="切换深浅色">
             <span data-theme-icon>◑</span>
@@ -41,6 +42,7 @@
         </nav>
       </div>
     </header>
+    <!-- /build:header -->
 
     <main class="wrap guide">
       <section class="intro">
@@ -158,7 +160,9 @@
 
     <footer class="site-footer">
       <div class="wrap">
-        <span>© 2026 Anaxagore</span>
+        <span>© 2026 <!-- build:site-name -->
+Anaxagore
+    <!-- /build:site-name --></span>
         <span><a href="../">上手指南</a></span>
       </div>
     </footer>
