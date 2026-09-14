@@ -143,14 +143,17 @@ def parse_page(blob: bytes, source: dict) -> list[dict]:
     exclude = re.compile(source["exclude_pattern"]) if source.get("exclude_pattern") else None
     base = source.get("base") or source["url"]
     seen, entries = set(), []
-    for href, inner in ANCHOR_RE.findall(html):
+    for m in ANCHOR_RE.finditer(html):
+        href, inner = m.group(1), m.group(2)
         # href 里常见 &amp; 转义和跟踪参数；列表页链接的 query 一律不要
         url = urljoin(base, html_mod.unescape(href.strip()))
         url = normalize_link(url.split("#", 1)[0].split("?", 1)[0])
         if not pattern.search(url) or url in seen or (exclude and exclude.search(url)):
             continue
         seen.add(url)
-        entries.append({"title": strip_html(inner)[:200], "link": url, "description": "", "published": "", "hints": {}})
+        # 列表页上链接前后的文字通常就是日期、地点、价格——详情页可能是前端渲染拿不到，这里先兜住
+        context = strip_html(html[max(0, m.start() - 250) : m.end() + 450])
+        entries.append({"title": strip_html(inner)[:200], "link": url, "description": context[:600], "published": "", "hints": {}})
     return entries
 
 
@@ -432,8 +435,8 @@ def main() -> None:
                 c["title"] = c["detail"]["title"]
             desc = c["detail"].get("description", "")
             text = c["detail"].get("text", "")
-            # 描述太短就把正文拼上，给模型足够的上下文抽日期/地点
-            c["description"] = (desc + "\n" + text) if len(desc) < 200 and text else (desc or c["description"])
+            # 列表页上下文 + OG 描述 + 正文前段，一起给模型抽日期/地点
+            c["description"] = "\n".join(x for x in (c["description"], desc, text if len(desc) < 200 else "") if x)
 
     # 同一个源里 3 条以上共用同一个标题，多半是前端渲染页的占位标题（如「算法大赛-天池大赛」），没有信息量
     from collections import Counter
@@ -450,11 +453,10 @@ def main() -> None:
     # 自愈：已入库但没抽到日期的活动，补抓一次详情页正文再重抽（每轮最多 15 条，只补一次）
     src_by_id = {s["id"]: s for s in config["sources"]}
     undated = [ev for ev in events.values() if not ev.get("start") and not ev.get("deadline") and not ev.get("refreshed")][:15]
-    if undated and radar.ai_available() and budget > 0:
-        for ev in undated:
+    if undated and radar.ai_available():
+        for ev in undated:  # 重抽有自己的预算，不和新候选抢
             ev["refreshed"] = True
-            detail = fetch_detail(ev["link"]) if budget > 0 else {}
-            budget -= 1
+            detail = fetch_detail(ev["link"])
             desc = detail.get("description", "")
             text = detail.get("text", "")
             src = src_by_id.get(ev.get("source_id"), {})

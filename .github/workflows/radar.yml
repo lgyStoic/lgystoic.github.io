@@ -5,6 +5,7 @@ on:
     # 每天北京时间 08:00（UTC 00:00）
     - cron: "0 0 * * *"
   push:
+    branches: [master]       # 只认 master 上的触发文件，功能分支推送不触发
     paths:
       - radar/trigger        # 没有 API 权限的 agent 改这个文件并 push 即可触发一次
   workflow_dispatch:

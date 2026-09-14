@@ -177,12 +177,20 @@
       "window_hours": 120
     },
     {
-      "id": "arxiv-topics",
-      "name": "arXiv · 方向检索",
-      "url": "https://export.arxiv.org/api/query?search_query=all%3A%22flow%20matching%22%20OR%20all%3A%22rectified%20flow%22%20OR%20all%3A%22diffusion%20transformer%22%20OR%20all%3A%22video%20generation%22%20OR%20all%3A%223D%20generation%22%20OR%20all%3Atriton%20OR%20all%3A%22CUDA%20kernel%22%20OR%20all%3AFlashAttention%20OR%20all%3A%22tensor%20core%22%20OR%20all%3A%22GPU%20kernel%22%20OR%20all%3AFP8%20OR%20all%3A%22distributed%20training%22%20OR%20all%3A%22pipeline%20parallel%22%20OR%20all%3A%22tensor%20parallel%22%20OR%20all%3A%22mixture%20of%20experts%22&sortBy=submittedDate&sortOrder=descending&max_results=60",
+      "id": "arxiv-cs-cv",
+      "name": "arXiv cs.CV",
+      "url": "https://rss.arxiv.org/rss/cs.CV",
       "category": "research",
-      "weight": 1,
-      "window_hours": 72
+      "weight": 0,
+      "require_topic": true
+    },
+    {
+      "id": "arxiv-cs-lg",
+      "name": "arXiv cs.LG",
+      "url": "https://rss.arxiv.org/rss/cs.LG",
+      "category": "research",
+      "weight": 0,
+      "require_topic": true
     },
     {
       "id": "pytorch",
