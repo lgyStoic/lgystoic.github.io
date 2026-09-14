@@ -64,6 +64,8 @@ def main() -> None:
             key = f"{kind}:{s['id']}"
             h = health["sources"].setdefault(key, {"fail": 0, "zero": 0, "name": s["name"]})
             h["name"] = s["name"]
+            if same_day and not s.get("ok") and h["fail"] == 0:
+                h["fail"] = 1  # 当天新加的源第一次就失败，也算一天
             if not same_day:
                 if not s.get("ok"):
                     h["fail"] += 1
