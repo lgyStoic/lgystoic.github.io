@@ -443,18 +443,52 @@ def main() -> None:
     if len(cands) != before:
         log(f"[events] 丢弃 {before - len(cands)} 条占位标题候选")
 
-    ai = enrich_events(cands, today) if cands and radar.ai_available() else {}
-    model = radar.LAST_MODEL_USED if ai else ""
-
     # 源从配置里移除后，它留下的旧条目一起清掉（例如被证实是前端渲染占位页的源）
     live_sources = {s["id"] for s in config["sources"]} | {"inbox"}
     events = {e["id"]: e for e in data.get("events", []) if e.get("source_id") in live_sources}
+
+    # 自愈：已入库但没抽到日期的活动，补抓一次详情页正文再重抽（每轮最多 15 条，只补一次）
+    src_by_id = {s["id"]: s for s in config["sources"]}
+    undated = [ev for ev in events.values() if not ev.get("start") and not ev.get("deadline") and not ev.get("refreshed")][:15]
+    if undated and radar.ai_available() and budget > 0:
+        for ev in undated:
+            ev["refreshed"] = True
+            detail = fetch_detail(ev["link"]) if budget > 0 else {}
+            budget -= 1
+            desc = detail.get("description", "")
+            text = detail.get("text", "")
+            src = src_by_id.get(ev.get("source_id"), {})
+            cands.append(
+                {
+                    "id": ev["id"], "title": ev["title"], "link": ev["link"],
+                    "description": (desc + "\n" + text) if text else (desc or ev.get("summary", "")),
+                    "hints": detail.get("hints") or {},
+                    "source": ev["source"], "source_id": ev.get("source_id", ""),
+                    "default_type": ev.get("event_type") or src.get("default_type", "other"),
+                    "default_city": ev.get("city") or src.get("default_city", ""),
+                    "kind": "refresh", "detail": detail, "_existing": ev,
+                }
+            )
+        log(f"[events] 重抽 {len(undated)} 条没有日期的旧活动")
+
+    ai = enrich_events(cands, today) if cands and radar.ai_available() else {}
+    model = radar.LAST_MODEL_USED if ai else ""
     if len(events) != len(data.get("events", [])):
         log(f"[events] 清掉 {len(data.get('events', [])) - len(events)} 条已移除源的旧条目")
     added, dropped = 0, 0
     for c in cands:
         ev = to_event(c, ai.get(c["id"]) if ai else None, today)
         seen[c["id"]] = today
+        if c.get("kind") == "refresh":
+            old = c["_existing"]
+            if ev is None:
+                events.pop(old["id"], None)  # 重看之后判定不是活动，删掉
+                dropped += 1
+            else:
+                ev["found"] = old.get("found", today)
+                ev["refreshed"] = True
+                events[old["id"]] = ev
+            continue
         if ev is None:
             dropped += 1
             continue
