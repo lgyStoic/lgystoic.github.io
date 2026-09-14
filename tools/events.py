@@ -151,13 +151,23 @@ def parse_page(blob: bytes, source: dict) -> list[dict]:
         if not source.get("keep_query"):  # 搜狗这类跳转链接的 query 就是目标，其他站的 query 多是跟踪参数
             url = url.split("?", 1)[0]
         url = normalize_link(url) if not source.get("keep_query") else url.strip()
-        if not pattern.search(url) or url in seen or (exclude and exclude.search(url)):
+        if not pattern.search(url) or (exclude and exclude.search(url)):
+            continue
+        text = strip_html(inner)[:200]
+        if url in seen:
+            # 搜狗、活动行这类列表里同一个链接会出现两次：先是图片锚（无文字），后是标题锚。用后者补标题。
+            for prev in entries:
+                if prev["link"] == url and not prev["title"] and text:
+                    prev["title"] = text
+                    break
             continue
         seen.add(url)
         # 列表页上链接前后的文字通常就是日期、地点、价格——详情页可能是前端渲染拿不到，这里先兜住
         context = strip_html(html[max(0, m.start() - 250) : m.end() + 450])
-        title = strip_html(inner)[:200] or strip_html(html[m.end() : m.end() + 300])[:80]
-        entries.append({"title": title, "link": url, "description": context[:600], "published": "", "hints": {}})
+        entries.append({"title": text, "link": url, "description": context[:600], "published": "", "hints": {}})
+    for en in entries:  # 仍然没有标题的，用链接后面那段文字顶上
+        if not en["title"]:
+            en["title"] = (en["description"][:80] or en["link"])
     # 页面里的 schema.org Event（lu.ma 城市页、Eventbrite 等都嵌），时间地点直接就有
     for m in re.finditer(r'<script[^>]+type=["\']application/ld\+json["\'][^>]*>(.*?)</script>', html, re.I | re.S):
         try:
