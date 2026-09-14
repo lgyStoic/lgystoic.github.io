@@ -116,18 +116,25 @@ def fetch(url: str, source_id: str) -> bytes:
         return path.read_bytes()
 
     req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT, "Accept": "application/rss+xml, application/atom+xml, application/json, application/xml, text/xml, */*"})
+    timeout = FETCH_TIMEOUT
     if "arxiv.org" in url:
-        time.sleep(3.5)  # arXiv API 要求请求间隔 ≥ 3 秒，否则 429
+        time.sleep(5)  # arXiv API 要求请求间隔 ≥ 3 秒，否则 429；接口本身也慢
+        timeout = 75
     for attempt in (1, 2, 3):
         try:
-            with urllib.request.urlopen(req, timeout=FETCH_TIMEOUT) as resp:
+            with urllib.request.urlopen(req, timeout=timeout) as resp:
                 return resp.read()
         except urllib.error.HTTPError as e:
             # 5xx / 429 多为临时故障，退避后再试；其他 4xx 直接放弃
             if (e.code >= 500 or e.code == 429) and attempt < 3:
-                wait = 3 * attempt if e.code >= 500 else 6 * attempt
+                wait = 3 * attempt if e.code >= 500 else 10 * attempt
                 log(f"[radar] {source_id} HTTP {e.code}，{wait} 秒后重试")
                 time.sleep(wait)
+                continue
+            raise
+        except TimeoutError:
+            if attempt < 3:
+                log(f"[radar] {source_id} 读取超时，重试")
                 continue
             raise
     raise RuntimeError("unreachable")
@@ -533,10 +540,13 @@ def collect(config: dict, now_utc: datetime, seen: dict[str, str]) -> tuple[list
             continue
 
         kept = 0
+        title_pattern = re.compile(source["title_pattern"]) if source.get("title_pattern") else None
         for raw in raw_entries:
             title = strip_html(raw["title"])
             link = raw["link"].strip()
             if not title or not link:
+                continue
+            if title_pattern and not title_pattern.search(title):
                 continue
             iid = item_id(link, title)
             if iid in seen or iid in items:
