@@ -176,7 +176,7 @@ def parse_wechat_list(source: dict) -> list[dict]:
             for name in wanted:
                 if name in line and name not in feeds:
                     urls = [u for u in WECHAT_URL_RE.findall(line) if "xml" in u or "rss" in u.lower() or "feed" in u.lower()]
-                    if urls:
+                    if urls and urls[0] not in feeds.values():  # 「腾讯云」会子串命中「腾讯云开发者」，同一 feed 只订一次
                         feeds[name] = urls[0]
     if not feeds:
         log(f"[events] 公众号：{len(wanted)} 个账号在列表里都没找到 feed")
