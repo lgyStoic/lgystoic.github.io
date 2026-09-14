@@ -1477,3 +1477,29 @@ main.wrap {
 .offer[hidden] {
   display: none;
 }
+
+.offer.plain {
+  border-color: var(--line);
+  background: var(--bg-tint);
+}
+
+.offer.plain .offer-tag {
+  border-color: var(--muted);
+  color: var(--muted);
+}
+
+.offer-how {
+  padding: 8px 12px;
+  border: 1px dashed var(--line);
+  border-radius: 6px;
+  color: var(--ink-soft);
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+
+@media (max-width: 560px) {
+  .offer-how {
+    grid-column: 1 / -1;
+    white-space: normal;
+  }
+}
