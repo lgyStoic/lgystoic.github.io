@@ -59,33 +59,41 @@ jobs:
           : > radar/data/last-run.log
 
       - name: 抓取并打分
+        continue-on-error: true
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           RADAR_WINDOW_HOURS: ${{ inputs.window_hours }}
-        run: python3 tools/radar.py 2>&1 | tee -a radar/data/last-run.log
+        shell: bash
+        run: set -o pipefail; python3 tools/radar.py 2>&1 | tee -a radar/data/last-run.log
 
       - name: 找活动
+        continue-on-error: true
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-        run: python3 tools/events.py 2>&1 | tee -a radar/data/last-run.log
+        shell: bash
+        run: set -o pipefail; python3 tools/events.py 2>&1 | tee -a radar/data/last-run.log
 
       - name: 整理私有收件箱（未配置 INBOX_TOKEN 时跳过）
+        continue-on-error: true
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           INBOX_TOKEN: ${{ secrets.INBOX_TOKEN }}
           INBOX_REPO: ${{ vars.INBOX_REPO || 'lgyStoic/radar-inbox' }}
-        run: python3 tools/inbox.py 2>&1 | tee -a radar/data/last-run.log
+        shell: bash
+        run: set -o pipefail; python3 tools/inbox.py 2>&1 | tee -a radar/data/last-run.log
 
       - name: 自检并写巡检报告
         env:
           RADAR_TRIGGER_REASON: ${{ inputs.reason }}
-        run: python3 tools/check.py 2>&1 | tee -a radar/data/last-run.log
+        shell: bash
+        run: set -o pipefail; python3 tools/check.py 2>&1 | tee -a radar/data/last-run.log
 
       - name: 渲染页面
-        run: python3 tools/build.py 2>&1 | tee -a radar/data/last-run.log
+        shell: bash
+        run: set -o pipefail; python3 tools/build.py 2>&1 | tee -a radar/data/last-run.log
 
       - name: 提交并推送
         run: |

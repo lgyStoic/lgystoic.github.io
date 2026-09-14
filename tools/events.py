@@ -281,12 +281,12 @@ def fetch_detail(url: str) -> dict:
     """抓活动详情页的 OG 与 schema.org Event（有的话直接拿到时间地点）。fixture 模式跳过。"""
     if os.environ.get("RADAR_FIXTURE_DIR"):
         return {}
-    req = urllib.request.Request(url, headers={"User-Agent": UA, "Accept": "text/html,*/*"})
     try:
+        req = urllib.request.Request(url, headers={"User-Agent": UA, "Accept": "text/html,*/*"})
         with urllib.request.urlopen(req, timeout=15) as resp:
             html = resp.read(400_000).decode("utf-8", "replace")
-    except (urllib.error.URLError, TimeoutError, OSError, ValueError) as e:
-        log(f"[events] 详情页取不到 {url[:70]}：{e}")
+    except Exception as e:  # 详情页什么错都可能有（非 ASCII URL、RemoteDisconnected、IncompleteRead…），绝不能拖垮整轮
+        log(f"[events] 详情页取不到 {url[:70]}：{type(e).__name__}: {str(e)[:80]}")
         return {}
 
     def meta(*names: str) -> str:
