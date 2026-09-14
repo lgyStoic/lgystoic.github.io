@@ -43,6 +43,9 @@ SITE_TITLE = "Garry"
 SITE_JSON = ROOT / "site.json"
 SITE_DESC = "GPU kernel、训练性能、生成模型和城市数据的中文笔记存档。"
 LATEST_ON_HOME = 4
+GUIDES_DIR = ROOT / "guides"
+GUIDES_JSON = GUIDES_DIR / "guides.json"
+GUIDE_LINKS = GUIDES_DIR / "links.json"
 
 
 def esc(value: str) -> str:
@@ -724,6 +727,13 @@ def module_status(mod: dict, notes: list[dict], days: list[dict], events_data: d
         this_week = [e for e in alive if today <= (ev_anchor_date(e, today) or "9999") <= week_end]
         local = [e for e in alive if e.get("city") in ("深圳", "广州", "香港")]
         return f"即将 {len(alive)} 个 · 本周 {len(this_week)} · 深广港 {len(local)}"
+    if kind == "guides":
+        guides, _ = load_guides()
+        pub = [g for g in guides if g.get("status") == "published"]
+        if not pub:
+            return f"{len(guides)} 步 · 整理中"
+        latest = max(g.get("updated", "") for g in pub)
+        return f"{len(pub)} / {len(guides)} 步已发布 · 最近 {esc(latest[5:].replace('-', '/'))}"
     if kind == "inbox":
         return "私有仓库 · 手机一键投递"
     if kind == "status":
@@ -754,6 +764,107 @@ def render_cards(site: dict, notes: list[dict], days: list[dict], events_data: d
             f'<p class="card-status">{status}</p></a></li>'
         )
     return '    <ul class="card-grid">\n' + "\n".join(cards) + "\n    </ul>"
+
+
+# ---------------------------------------------------------------- 指南 / 推广链接
+
+def load_guides() -> tuple[list[dict], dict]:
+    guides = json.loads(GUIDES_JSON.read_text(encoding="utf-8")) if GUIDES_JSON.exists() else []
+    links = json.loads(GUIDE_LINKS.read_text(encoding="utf-8")) if GUIDE_LINKS.exists() else {}
+    return sorted(guides, key=lambda g: g.get("step", 0)), links
+
+
+def guide_href(g: dict, *, from_root: bool) -> str:
+    return ("." + g["path"]) if from_root else ("../" + g["path"].split("/guides/", 1)[1])
+
+
+def render_guides_path(guides: list[dict]) -> str:
+    rows = []
+    for g in guides:
+        published = g.get("status") == "published"
+        title = esc(g["title"])
+        head = f'<a href="{esc(guide_href(g, from_root=False))}">{title}</a>' if published else f"<span>{title}</span>"
+        meta = f'更新于 {esc(g["updated"])}' if published and g.get("updated") else "整理中"
+        cls = "guide-step" + ("" if published else " is-draft")
+        rows.append(
+            f'      <li class="{cls}"><span class="guide-num">{g.get("step", "")}</span>'
+            f'<div><h3>{head}</h3><p>{esc(g.get("blurb", ""))}</p><p class="guide-meta">{meta}</p></div></li>'
+        )
+    return '    <ol class="guide-path">\n' + "\n".join(rows) + "\n    </ol>"
+
+
+_OFFER_RE = re.compile(r'(<div class="offer"[^>]*\bdata-aff="([^"]+)"[^>]*>)(.*?)(</div>)', re.DOTALL)
+_INLINE_AFF_RE = re.compile(r'<a\b([^>]*)\bdata-aff="([^"]+)"([^>]*)>')
+
+
+def _set_attr(tag: str, name: str, value: str | None) -> str:
+    """把 <a …> 开标签里的某个属性设为 value；value 为 None 时删除。"""
+    tag = re.sub(rf'\s{re.escape(name)}(="[^"]*")?(?=[\s>])', "", tag)
+    if value is None:
+        return tag
+    return tag[:-1] + f' {name}="{esc(value)}">'
+
+
+def apply_affiliate_links(path: Path, links: dict) -> tuple[int, int]:
+    """填充推广链接。空链接的 .offer 整块 hidden；返回 (已填, 已隐藏)。幂等。"""
+    table = links.get("links", {})
+    text = path.read_text(encoding="utf-8")
+    filled = hidden = 0
+
+    def offer(m: re.Match) -> str:
+        nonlocal filled, hidden
+        open_tag, key, body, close = m.groups()
+        url = (table.get(key) or {}).get("url", "").strip()
+        open_tag = re.sub(r"\s+hidden(?=[\s>])", "", open_tag)
+        if url:
+            filled += 1
+            body = re.sub(r'(<a\b[^>]*\bdata-aff-link\b[^>]*)\bhref="[^"]*"', lambda a: a.group(1) + f'href="{esc(url)}"', body)
+        else:
+            hidden += 1
+            open_tag = open_tag[:-1] + " hidden>"
+            body = re.sub(r'(<a\b[^>]*\bdata-aff-link\b[^>]*)\bhref="[^"]*"', lambda a: a.group(1) + 'href="#"', body)
+        return open_tag + body + close
+
+    text = _OFFER_RE.sub(offer, text)
+
+    def inline(m: re.Match) -> str:
+        nonlocal filled
+        before, key, after = m.groups()
+        tag = f"<a{before}data-aff=\"{key}\"{after}>"
+        url = (table.get(key) or {}).get("url", "").strip()
+        if url:
+            filled += 1
+            tag = _set_attr(tag, "href", url)
+            tag = _set_attr(tag, "rel", "sponsored noopener noreferrer")
+            tag = _set_attr(tag, "class", "aff")
+        else:
+            tag = _set_attr(tag, "href", None)
+            tag = _set_attr(tag, "rel", None)
+            tag = _set_attr(tag, "class", "aff aff-off")
+        return tag
+
+    text = _INLINE_AFF_RE.sub(inline, text)
+
+    disclosure = esc(links.get("disclosure", ""))
+    text = re.sub(
+        r'(<p class="disclosure" data-disclosure[^>]*>).*?(</p>)',
+        lambda m: m.group(1) + disclosure + m.group(2),
+        text,
+        flags=re.DOTALL,
+    )
+    path.write_text(text, encoding="utf-8")
+    return filled, hidden
+
+
+def build_guides() -> list[dict]:
+    if not (GUIDES_DIR / "index.html").exists():
+        return []
+    guides, links = load_guides()
+    inject(GUIDES_DIR / "index.html", {"guides-path": render_guides_path(guides)})
+    for page in sorted(GUIDES_DIR.glob("*/index.html")):
+        filled, hidden = apply_affiliate_links(page, links)
+        print(f"guides/{page.parent.name}: 推广位 {filled} 个已填 · {hidden} 个隐藏")
+    return guides
 
 
 def inject(path: Path, blocks: dict[str, str]) -> None:
@@ -807,10 +918,14 @@ def write_feed(notes: list[dict]) -> None:
     (ROOT / "feed.xml").write_text(feed, encoding="utf-8")
 
 
-def write_sitemap(notes: list[dict], days: list[dict]) -> None:
+def write_sitemap(notes: list[dict], days: list[dict], guides: list[dict] | None = None) -> None:
     latest = notes[0].get("updated") if notes else None
     urls = [(f"{SITE_URL}/", latest), (f"{SITE_URL}/notes/", latest), (f"{SITE_URL}/about/", None)]
     urls += [(SITE_URL + note_href(n, from_root=False), n.get("updated")) for n in notes]
+    pub = [g for g in (guides or []) if g.get("status") == "published"]
+    if pub:
+        urls.append((f"{SITE_URL}/guides/", max(g.get("updated", "") for g in pub) or None))
+        urls += [(SITE_URL + g["path"], g.get("updated")) for g in pub]
     if days:
         urls.append((f"{SITE_URL}/radar/", days[0]["date"]))
         urls.append((f"{SITE_URL}/radar/events/", days[0]["date"]))
@@ -868,8 +983,9 @@ def main() -> None:
             "count": f'    <p class="result-count" data-result-count>{len(notes)} 篇</p>',
         },
     )
+    guides = build_guides()
     write_feed(notes)
-    write_sitemap(notes, days)
+    write_sitemap(notes, days, guides)
     print(f"已生成：{len(notes)} 篇笔记 · {len(days)} 期雷达 · index.html · notes/index.html · radar/ · feed.xml · sitemap.xml")
 
 

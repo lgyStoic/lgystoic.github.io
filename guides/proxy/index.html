@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>代理软件的购买与使用 | Garry</title>
+    <meta name="description" content="选一个套餐，装 Clash Verge Rev，十分钟让电脑能访问海外服务：购买、订阅链接、导入、开启代理、排查，一页讲完。" />
+    <link rel="canonical" href="https://lgystoic.github.io/guides/proxy/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="代理软件的购买与使用 | Garry" />
+    <meta property="og:description" content="选一个套餐，装 Clash Verge Rev，十分钟让电脑能访问海外服务。" />
+    <meta property="og:url" content="https://lgystoic.github.io/guides/proxy/" />
+    <meta name="twitter:card" content="summary" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231b1b1a'/%3E%3Ctext x='32' y='43' text-anchor='middle' font-size='32' font-family='Helvetica,Arial' font-weight='700' fill='%23fbfaf8'%3EG%3C/text%3E%3C/svg%3E"
+    />
+    <link rel="stylesheet" href="../../site.css" />
+    <script>
+      try {
+        var t = localStorage.getItem("theme");
+        if (t === "dark" || t === "light") document.documentElement.dataset.theme = t;
+      } catch (e) {}
+    </script>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="wrap">
+        <a class="brand" href="../../" aria-label="首页">
+          <span class="brand-mark">G</span>
+          <span>Garry</span>
+        </a>
+        <nav class="site-nav" aria-label="主导航">
+          <a href="../../notes/">笔记</a>
+          <a href="../../radar/">雷达</a>
+          <a href="../../radar/events/">活动</a>
+          <a href="../../about/">关于</a>
+          <button class="theme-toggle" type="button" data-theme-toggle aria-label="切换深浅色">
+            <span data-theme-icon>◑</span>
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <main class="wrap guide">
+      <section class="intro">
+        <p class="kicker"><a href="../">上手指南</a> · 第 2 步</p>
+        <h1>代理软件的购买与使用</h1>
+        <p class="bio">目标：让这台电脑能正常访问海外服务（ChatGPT、GitHub、Google 等）。方案是「一个服务商的订阅 + Clash Verge Rev 客户端」，全程十分钟。</p>
+        <div class="tldr">
+          <p><b>30 秒结论</b></p>
+          <ul>
+            <li>买 <b>Lite 年付</b>套餐（19.95 USD / 年，2 台设备，每月 100GB+），个人够用</li>
+            <li>客户端用 <b>Clash Verge Rev</b>（免费开源），Windows / macOS 都有</li>
+            <li>流程：客户中心拿订阅链接 → 导入客户端 → 选节点 → 开系统代理</li>
+          </ul>
+        </div>
+        <p class="prereq">前置条件：一台 Windows 或 macOS 电脑。还没有？先看 <a href="../pc/">第 1 步：租一台电脑过渡</a>。</p>
+      </section>
+
+      <section class="section">
+        <h2>一、选套餐并购买</h2>
+        <p class="lead-p">两个套餐的差别只在设备数和专线。自己一个人、一台电脑一部手机，Lite 年付足够；要给家人或同事共用、或者对延迟敏感，再看 Pro。</p>
+        <div class="plan-grid">
+          <div class="plan featured">
+            <p class="plan-name">Lite <span class="plan-badge">推荐</span></p>
+            <p class="plan-price">$19.95 <span>USD / 年</span></p>
+            <ul>
+              <li>单用户 / 2 台设备同时在线</li>
+              <li>节点：香港、日本、美国、欧洲、澳大利亚</li>
+              <li>全平台客户端，IPv4 / IPv6 双栈</li>
+              <li>每月 100GB+ 流量</li>
+            </ul>
+          </div>
+          <div class="plan">
+            <p class="plan-name">Pro</p>
+            <p class="plan-price">$12.95 <span>USD / 月</span></p>
+            <ul>
+              <li>单用户 / 5 台设备同时在线</li>
+              <li>国际专线 IPLC，额外节点</li>
+              <li>其余同 Lite</li>
+            </ul>
+          </div>
+        </div>
+        <div class="offer" data-aff="ss_lite">
+          <p class="offer-tag">推广</p>
+          <p class="offer-body"><b>购买 Shadowsocks 服务</b> — 我自己在用的这家。购买开通后，客户中心会生成服务信息和订阅链接。价格、设备数、节点与流量以购买页为准；下单前看清周期、自动续费和服务条款。</p>
+          <a class="button" data-aff-link href="https://portal.shadowsocks.nz/aff.php?aff=5596" rel="sponsored noopener noreferrer">前往购买 →</a>
+        </div>
+      </section>
+
+      <section class="section prose">
+        <h2>二、它是怎么工作的（一分钟）</h2>
+        <p>服务商在不同地区部署了服务器，并给你一条<b>订阅链接</b>——本质是「配置下载地址」，里面包含所有节点的地址、端口和加密方式。Clash Verge Rev 读取它之后：</p>
+        <ol>
+          <li>应用的网络请求先交给 Clash Verge Rev；</li>
+          <li>客户端按规则判断这条请求要不要走代理；</li>
+          <li>要走的，经你选的远程节点转发；不用走的（国内网站）直接连接；</li>
+          <li>客户端定期刷新订阅，拿到最新节点。</li>
+        </ol>
+        <p class="warn">订阅链接等同于账号密码，不要分享、不要发到群里。泄露了就到客户中心重置链接，并提交工单重置服务密码。</p>
+      </section>
+
+      <section class="section">
+        <h2>三、五步开通</h2>
+        <ol class="steps">
+          <li>
+            <h3>下载客户端</h3>
+            <p>到 <a href="https://github.com/clash-verge-rev/clash-verge-rev/releases" rel="noreferrer">GitHub Releases</a> 下载最新版：Windows 64 位选 <code>x64</code> 安装包；macOS 按芯片选 <code>aarch64</code>（Apple 芯片）或 <code>x64</code>（Intel）。Windows 7 请改用 Clash for Windows v0.20.39。</p>
+            <p class="tip">更新时选「安装前卸载」，但<b>不要</b>勾「删除数据」。Windows 提示 WebView2 错误的话，装一下 <a href="https://developer.microsoft.com/zh-cn/microsoft-edge/webview2/#download" rel="noreferrer">Microsoft Edge WebView2</a>。</p>
+          </li>
+          <li>
+            <h3>获取订阅链接</h3>
+            <p>登录服务商客户中心 → 「我的产品与服务」→ 点进有效服务 → 找到「Clash / mihomo 配置」→「获得地址」，复制订阅链接。导入失败时也可以在这里「下载配置」拿到配置文件。</p>
+          </li>
+          <li>
+            <h3>导入配置</h3>
+            <p>打开 Clash Verge Rev → 左侧「订阅」（Profiles）→ 粘贴订阅链接 →「导入」。成功后到「代理」（Proxies），在 Proxy 分组里选一个节点，或选 <code>Auto</code> 自动选择。导入失败就把下载好的配置文件拖进「订阅」页。</p>
+          </li>
+          <li>
+            <h3>开启代理</h3>
+            <p>「设置」里打开<b>系统代理</b>和 <b>DNS 覆写</b>。想开机就有网，再开「开机自启」和「静默启动」。</p>
+          </li>
+          <li>
+            <h3>选工作模式</h3>
+            <table class="kv">
+              <tr><td>规则模式</td><td>自动判断哪些流量走代理。<b>日常用这个。</b></td></tr>
+              <tr><td>全局模式</td><td>所有流量都走代理。启用后要选具体节点，不要选 DIRECT。</td></tr>
+              <tr><td>直连模式</td><td>完全不走代理。</td></tr>
+            </table>
+          </li>
+        </ol>
+      </section>
+
+      <section class="section">
+        <h2>四、不通时先查这四项</h2>
+        <table class="kv">
+          <tr><td>浏览器不走代理</td><td>检查「系统代理」是否开启；手动配代理的软件或浏览器扩展，端口填 <code>7897</code></td></tr>
+          <tr><td>订阅无法导入</td><td>到客户中心下载配置文件，拖进「订阅」页</td></tr>
+          <tr><td>某个节点连不上</td><td>换节点，或重新更新订阅</td></tr>
+          <tr><td>所有节点都不通</td><td>到客户中心看服务是否过期或被暂停</td></tr>
+        </table>
+      </section>
+
+      <section class="section next">
+        <h2>下一步</h2>
+        <p>网络通了，就可以去注册账号了：<a href="../chatgpt/">第 3 步：注册并订阅 ChatGPT</a>（整理中）。回到 <a href="../">上手指南</a> 看全部三步。</p>
+        <p class="disclosure" data-disclosure>本页部分链接为推广链接：通过它们购买，站长会获得佣金，你的价格不变。推荐与否只看我自己用得怎么样。</p>
+        <p class="updated">更新于 2026-09-14</p>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap">
+        <span>© 2026 Garry · 含推广链接，已逐一标注</span>
+        <span><a href="../">上手指南</a> · <a href="../../about/">关于</a></span>
+      </div>
+    </footer>
+    <script src="../../site.js" defer></script>
+  </body>
+</html>
