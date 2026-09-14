@@ -184,6 +184,10 @@ def fetch_detail(url: str) -> dict:
     if not out["title"]:
         m = re.search(r"<title[^>]*>(.*?)</title>", html, re.I | re.S)
         out["title"] = strip_html(m.group(1)) if m else ""
+    # 正文前 1200 字：日期、地点、费用往往只在正文里，OG 描述放不下
+    body = re.search(r"<body[^>]*>(.*)</body>", html, re.I | re.S)
+    body_text = strip_html(re.sub(r"<(nav|header|footer|script|style)\b.*?</\1>", " ", body.group(1) if body else html, flags=re.I | re.S))
+    out["text"] = body_text[:1200]
 
     for m in re.finditer(r'<script[^>]+type=["\']application/ld\+json["\'][^>]*>(.*?)</script>', html, re.I | re.S):
         try:
@@ -278,7 +282,7 @@ def enrich_events(cands: list[dict], today: str) -> dict[str, dict]:
                 "default_type": c["default_type"],
                 "default_city": c["default_city"],
                 "title": c["title"],
-                "description": strip_html(c["description"])[:500],
+                "description": strip_html(c["description"])[:900],
                 "hints": {k: v for k, v in (c.get("hints") or {}).items() if v},
                 "url": c["link"],
             }
@@ -426,8 +430,10 @@ def main() -> None:
             budget -= 1
             if c["detail"].get("title") and not c["title"]:
                 c["title"] = c["detail"]["title"]
-            if c["detail"].get("description"):
-                c["description"] = c["detail"]["description"]
+            desc = c["detail"].get("description", "")
+            text = c["detail"].get("text", "")
+            # 描述太短就把正文拼上，给模型足够的上下文抽日期/地点
+            c["description"] = (desc + "\n" + text) if len(desc) < 200 and text else (desc or c["description"])
 
     # 同一个源里 3 条以上共用同一个标题，多半是前端渲染页的占位标题（如「算法大赛-天池大赛」），没有信息量
     from collections import Counter
