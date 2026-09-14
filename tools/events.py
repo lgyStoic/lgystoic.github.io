@@ -27,7 +27,7 @@ import urllib.error
 import urllib.request
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
-from urllib.parse import urljoin
+from urllib.parse import quote, urljoin
 from zoneinfo import ZoneInfo
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -282,7 +282,9 @@ def fetch_detail(url: str) -> dict:
     if os.environ.get("RADAR_FIXTURE_DIR"):
         return {}
     try:
-        req = urllib.request.Request(url, headers={"User-Agent": UA, "Accept": "text/html,*/*"})
+        # 含中文的 URL（活动行、搜狗跳转）直接发会在 http.client 里 UnicodeEncodeError，先按 RFC 3986 转义
+        safe_url = quote(url, safe=":/?&=%#+@!$,;'()*[]~")
+        req = urllib.request.Request(safe_url, headers={"User-Agent": UA, "Accept": "text/html,*/*"})
         with urllib.request.urlopen(req, timeout=15) as resp:
             html = resp.read(400_000).decode("utf-8", "replace")
     except Exception as e:  # 详情页什么错都可能有（非 ASCII URL、RemoteDisconnected、IncompleteRead…），绝不能拖垮整轮
