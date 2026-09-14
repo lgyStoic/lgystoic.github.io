@@ -1654,3 +1654,38 @@ main.wrap {
   color: var(--muted);
   font-size: 0.88rem;
 }
+
+.share {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-top: 28px;
+  padding: 12px 16px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--bg-tint);
+}
+
+.share-label {
+  margin-right: auto;
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+}
+
+.btn-sm {
+  padding: 6px 12px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--surface);
+  color: var(--ink);
+  font: inherit;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.btn-sm.primary {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: #fff;
+}

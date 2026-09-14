@@ -1,5 +1,15 @@
 # Anaxagore（lgystoic.github.io）
 
+**站点：https://lgystoic.github.io**
+
+一个跑在 GitHub 上的个人平台，没有服务器、没有域名：
+
+- **[上手指南](https://lgystoic.github.io/guides/)** — 离职后从零开始用 AI 工具的三步：租一台电脑 → 装好代理 → 注册 ChatGPT
+- **[每日雷达](https://lgystoic.github.io/radar/)** — 29 个源每天 08:00 由 Actions 抓取，模型排优先级、写摘要，附 RSS
+- **[活动清单](https://lgystoic.github.io/radar/events/)** — 深圳 / 广州 / 香港的 AI 聚会、黑客松、比赛
+- **[笔记](https://lgystoic.github.io/notes/)** — GPU kernel、训练性能、生成模型
+- **[运行状态](https://lgystoic.github.io/status/)** — 源健康表、每日巡检
+
 一个跑在 GitHub 上的个人平台：记（笔记）、看（每日雷达、活动清单）、做（收件箱、巡检）。
 纯静态、没有框架、没有构建依赖，GitHub Pages 直接托管仓库根目录；后台任务全在 Actions。
 功能注册表在 `site.json`，首页卡片和 sitemap 由它生成。

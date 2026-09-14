@@ -106,3 +106,24 @@
 
   apply();
 })();
+
+(function share() {
+  const bar = document.querySelector("[data-share]");
+  if (!bar) return;
+  const url = location.origin + location.pathname;
+  const title = document.title;
+  const copyBtn = bar.querySelector("[data-share-copy]");
+  const nativeBtn = bar.querySelector("[data-share-native]");
+  copyBtn.addEventListener("click", () => {
+    const done = () => {
+      copyBtn.textContent = "已复制";
+      setTimeout(() => (copyBtn.textContent = "复制链接"), 1500);
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(url).then(done, done);
+    else window.prompt("复制这个链接", url);
+  });
+  if (navigator.share) {
+    nativeBtn.hidden = false;
+    nativeBtn.addEventListener("click", () => navigator.share({ title, url }).catch(() => {}));
+  }
+})();
