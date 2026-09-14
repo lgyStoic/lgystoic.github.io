@@ -68,8 +68,8 @@ def main() -> None:
                 if not s.get("ok"):
                     h["fail"] += 1
                     h["zero"] = 0
-                elif s.get("count", 0) == 0:
-                    h["zero"] += 1
+                elif s.get("total", s.get("count", 0)) == 0:
+                    h["zero"] += 1  # 抓通了但一条都解析不出来：多半是前端渲染或格式变了
                     h["fail"] = 0
                 else:
                     h["fail"] = h["zero"] = 0
@@ -83,7 +83,7 @@ def main() -> None:
             elif not s.get("ok"):
                 problems.append(f"{s['name']} 失败 ×{h['fail']}：{(s.get('error') or '')[:50]}")
             elif h["zero"] >= 3:
-                problems.append(f"{s['name']} 连续 {h['zero']} 天 0 条（格式可能变了）")
+                problems.append(f"{s['name']} 连续 {h['zero']} 天解析出 0 条（前端渲染或格式变了）")
         if changed:
             dump(cfg_path, cfg)
 

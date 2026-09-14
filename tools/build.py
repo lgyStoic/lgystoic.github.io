@@ -659,10 +659,17 @@ def render_status(days: list[dict], events_data: dict | None) -> dict[str, str]:
     rows = []
     def add_rows(kind: str, sources: list[dict]):
         for s in sources:
-            state = "ok" if s.get("ok") and s.get("count", 0) else ("warn" if s.get("ok") else "bad")
-            label = {"ok": "正常", "warn": "0 条", "bad": "失败"}[state]
+            total = s.get("total", s.get("count", 0))
+            if not s.get("ok"):
+                state, label = "bad", "失败"
+            elif total == 0:
+                state, label = "warn", "解析 0 条"
+            elif s.get("count", 0) == 0:
+                state, label = "ok", "无新内容"
+            else:
+                state, label = "ok", "正常"
             err = esc(s.get("error", "")[:90])
-            rows.append(f'        <tr class="src-{state}"><td>{esc(kind)}</td><td>{esc(s["name"])}</td><td><b>{label}</b></td><td>{s.get("count", 0)}</td><td class="err">{err}</td></tr>')
+            rows.append(f'        <tr class="src-{state}"><td>{esc(kind)}</td><td>{esc(s["name"])}</td><td><b>{label}</b></td><td>{s.get("count", 0)} / {total}</td><td class="err">{err}</td></tr>')
     if days:
         add_rows("简报", days[0].get("sources", []))
     if events_data:
@@ -670,9 +677,9 @@ def render_status(days: list[dict], events_data: dict | None) -> dict[str, str]:
     if rows:
         ok_n = sum(1 for r in rows if "src-ok" in r); bad_n = sum(1 for r in rows if "src-bad" in r)
         table = (
-            f'    <p class="radar-stats">{len(rows)} 个源 · 正常 {ok_n} · 失败 {bad_n} · 其余抓到但当次无新内容</p>\n'
+            f'    <p class="radar-stats">{len(rows)} 个源 · 通 {ok_n} · 失败 {bad_n} · 其余抓通但解析出 0 条</p>\n'
             '    <div class="table-wrap"><table class="src-table">\n'
-            '      <thead><tr><th>栏目</th><th>源</th><th>状态</th><th>新条目</th><th>错误</th></tr></thead>\n      <tbody>\n'
+            '      <thead><tr><th>栏目</th><th>源</th><th>状态</th><th>新 / 总</th><th>错误</th></tr></thead>\n      <tbody>\n'
             + "\n".join(rows) + "\n      </tbody>\n    </table></div>"
         )
     else:

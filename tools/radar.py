@@ -537,7 +537,7 @@ def collect(config: dict, now_utc: datetime, seen: dict[str, str]) -> tuple[list
             blob = fetch(source["url"], sid)
             raw_entries = parse_json_feed(blob, source) if source.get("kind") == "json" else parse_feed(blob)
         except (urllib.error.URLError, urllib.error.HTTPError, TimeoutError, ET.ParseError, FileNotFoundError, OSError, json.JSONDecodeError, KeyError, TypeError) as e:
-            status.append({"id": sid, "name": source["name"], "ok": False, "count": 0, "error": str(e)[:160]})
+            status.append({"id": sid, "name": source["name"], "ok": False, "count": 0, "total": 0, "error": str(e)[:160]})
             log(f"[radar] ✗ {source['name']}: {e}")
             continue
 
@@ -577,7 +577,7 @@ def collect(config: dict, now_utc: datetime, seen: dict[str, str]) -> tuple[list
             items[iid] = item
             kept += 1
 
-        status.append({"id": sid, "name": source["name"], "ok": True, "count": kept, "error": ""})
+        status.append({"id": sid, "name": source["name"], "ok": True, "count": kept, "total": len(raw_entries), "error": ""})
         log(f"[radar] ✓ {source['name']}: {kept} 条新内容（共 {len(raw_entries)} 条）")
 
     return dedupe_titles(list(items.values()), config), status
