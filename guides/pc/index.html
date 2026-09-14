@@ -46,11 +46,12 @@
       <section class="intro">
         <p class="kicker"><a href="../">上手指南</a> · 第 1 步</p>
         <h1>离职后如何租一台电脑过渡</h1>
+        <p class="bio">目标：不花大钱，先弄到一台能写文档、开网页、跑轻量代码的电脑，撑过找工作或试水的这几个月。先定路线，再看我实际怎么租的。</p>
         <div class="tldr">
-          <p><b>30 秒结论</b></p>
+          <p>30 秒结论</p>
           <ul>
-            <li>不买电脑。用「云电脑 / 短租实体机 / 二手买入再卖出」三选一撑过 1–3 个月</li>
-            <li>只写文档、聊 AI → 云电脑最低配；要跑模型 → GPU 按小时；要用半年以上 → 二手</li>
+            <li>不买电脑。短租实体机 / 云电脑 / 按小时 GPU / 二手买卖，四条路线选一条撑过 1–3 个月</li>
+            <li>只写文档、聊 AI → 云电脑最低配；要跑模型 → Colab 免费 T4 或按小时租 GPU；要用半年以上 → 二手</li>
             <li>我自己走的是短租：在芝麻租赁租了一台，体验靠谱（详见下文）</li>
           </ul>
         </div>
@@ -80,9 +81,9 @@
                 <td>随时停，没有沉没成本</td>
               </tr>
               <tr>
-                <td><b>GPU 按小时</b><br /><span>AutoDL、RunPod</span></td>
-                <td>按小时计费，几块钱一小时，不开不花钱</td>
-                <td>要会 SSH 或 Jupyter，不是日常电脑</td>
+                <td><b>GPU 按小时</b><br /><span>Colab 免费 T4、AutoDL、RunPod</span></td>
+                <td>Colab 免费档送 T4；付费的按小时几块钱，不开不花钱</td>
+                <td>要会 Jupyter 或 SSH，不是日常电脑</td>
                 <td>要跑模型、做实验的人，作为上面两条的补充</td>
                 <td>关机即止</td>
               </tr>
@@ -135,6 +136,11 @@
       <section class="section">
         <h2>三、备选：云电脑与按小时 GPU</h2>
         <p class="lead-p">手头有旧设备、或者只是偶尔要跑模型的，看这里。开通都是网页下单、几分钟可用。</p>
+        <div class="offer plain">
+          <p class="offer-tag">免费</p>
+          <p class="offer-body"><b>Google Colab</b> — 免费档就给一块 T4 GPU，跑推理、微调小模型、做实验都够；浏览器里写 Jupyter，不用配环境。限制是单次会话有时长上限，闲置会断。它需要 Google 账号并且能访问海外服务，所以先把<a href="../proxy/">第 2 步</a>走完。</p>
+          <p class="offer-how">colab.research.google.com</p>
+        </div>
         <div class="offer" data-aff="tencent_cloud_server"><p class="offer-tag">推广</p><p class="offer-body"><b>腾讯云轻量服务器</b> — 2核2G4M 新客 99 元/年。注意它不是带桌面的电脑，而是一台 Linux 远程机：适合用 VS Code Remote 连上去写代码、跑脚本、部署小服务，配一台旧笔记本或平板就能干活。</p><a class="button" data-aff-link href="https://cloud.tencent.com/act/cps/redirect?redirect=6544&amp;cps_key=0216a9d75428d5e4b32af1bf760d9c3b&amp;from=console" rel="sponsored noopener noreferrer">99 元/年开通 →</a></div>
         <div class="offer" data-aff="tencent_cloud_pc" hidden><p class="offer-tag">推广</p><p class="offer-body"><b>腾讯云电脑</b></p><a class="button" data-aff-link href="#" rel="sponsored noopener noreferrer">开通 →</a></div>
         <div class="offer" data-aff="aliyun_cloud_pc" hidden><p class="offer-tag">推广</p><p class="offer-body"><b>阿里云无影</b></p><a class="button" data-aff-link href="#" rel="sponsored noopener noreferrer">开通 →</a></div>
