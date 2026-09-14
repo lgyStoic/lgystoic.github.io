@@ -328,6 +328,8 @@ def collect(config: dict, seen: dict) -> tuple[list[dict], list[dict]]:
     status: list[dict] = []
     for source in config["sources"]:
         sid, kind = source["id"], source.get("kind", "rss")
+        if source.get("disabled"):
+            continue
         try:
             blob = fetch(source["url"], sid)
             if kind == "ics":

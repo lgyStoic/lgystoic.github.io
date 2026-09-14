@@ -14,6 +14,10 @@ on:
         description: "抓取时间窗口（小时）。留空用 sources.json 的默认值；首次或补漏可填 168"
         required: false
         default: ""
+      reason:
+        description: "触发原因（health.yml 补跑时填 schedule_missed）"
+        required: false
+        default: ""
 
 permissions:
   contents: write
@@ -74,6 +78,11 @@ jobs:
           INBOX_TOKEN: ${{ secrets.INBOX_TOKEN }}
           INBOX_REPO: ${{ vars.INBOX_REPO || 'lgyStoic/radar-inbox' }}
         run: python3 tools/inbox.py 2>&1 | tee -a radar/data/last-run.log
+
+      - name: 自检并写巡检报告
+        env:
+          RADAR_TRIGGER_REASON: ${{ inputs.reason }}
+        run: python3 tools/check.py 2>&1 | tee -a radar/data/last-run.log
 
       - name: 渲染页面
         run: python3 tools/build.py 2>&1 | tee -a radar/data/last-run.log

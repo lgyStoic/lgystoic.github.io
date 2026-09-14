@@ -1,0 +1,266 @@
+{
+  "sources": {
+    "radar:openai": {
+      "fail": 0,
+      "zero": 0,
+      "name": "OpenAI",
+      "last_ok": "2026-09-14"
+    },
+    "radar:deepmind": {
+      "fail": 0,
+      "zero": 1,
+      "name": "Google DeepMind"
+    },
+    "radar:google-ai": {
+      "fail": 0,
+      "zero": 1,
+      "name": "Google AI Blog"
+    },
+    "radar:qwen": {
+      "fail": 0,
+      "zero": 1,
+      "name": "Qwen"
+    },
+    "radar:hf-blog": {
+      "fail": 0,
+      "zero": 1,
+      "name": "Hugging Face Blog"
+    },
+    "radar:nvidia-dev": {
+      "fail": 0,
+      "zero": 1,
+      "name": "NVIDIA Technical Blog"
+    },
+    "radar:hf-papers": {
+      "fail": 0,
+      "zero": 0,
+      "name": "HF Papers 日榜",
+      "last_ok": "2026-09-14"
+    },
+    "radar:arxiv-cs-cv": {
+      "fail": 0,
+      "zero": 1,
+      "name": "arXiv cs.CV"
+    },
+    "radar:arxiv-cs-lg": {
+      "fail": 0,
+      "zero": 1,
+      "name": "arXiv cs.LG"
+    },
+    "radar:pytorch": {
+      "fail": 0,
+      "zero": 1,
+      "name": "PyTorch Blog"
+    },
+    "radar:simonw": {
+      "fail": 0,
+      "zero": 1,
+      "name": "Simon Willison"
+    },
+    "radar:lilianweng": {
+      "fail": 0,
+      "zero": 1,
+      "name": "Lil'Log"
+    },
+    "radar:interconnects": {
+      "fail": 0,
+      "zero": 1,
+      "name": "Interconnects"
+    },
+    "radar:raschka": {
+      "fail": 0,
+      "zero": 1,
+      "name": "Sebastian Raschka"
+    },
+    "radar:chiphuyen": {
+      "fail": 0,
+      "zero": 1,
+      "name": "Chip Huyen"
+    },
+    "radar:rel-pytorch": {
+      "fail": 0,
+      "zero": 1,
+      "name": "Release · PyTorch"
+    },
+    "radar:rel-triton": {
+      "fail": 0,
+      "zero": 1,
+      "name": "Release · Triton"
+    },
+    "radar:rel-cutlass": {
+      "fail": 0,
+      "zero": 1,
+      "name": "Release · CUTLASS"
+    },
+    "radar:rel-flash-attention": {
+      "fail": 0,
+      "zero": 1,
+      "name": "Release · FlashAttention"
+    },
+    "radar:rel-vllm": {
+      "fail": 0,
+      "zero": 0,
+      "name": "Release · vLLM",
+      "last_ok": "2026-09-14"
+    },
+    "radar:rel-sglang": {
+      "fail": 0,
+      "zero": 1,
+      "name": "Release · SGLang"
+    },
+    "radar:rel-tensorrt-llm": {
+      "fail": 0,
+      "zero": 1,
+      "name": "Release · TensorRT-LLM"
+    },
+    "radar:rel-diffusers": {
+      "fail": 0,
+      "zero": 1,
+      "name": "Release · Diffusers"
+    },
+    "radar:rel-cuda-python": {
+      "fail": 0,
+      "zero": 1,
+      "name": "Release · cuda-python"
+    },
+    "radar:gnews-labs-en": {
+      "fail": 0,
+      "zero": 0,
+      "name": "新闻 · Anthropic / Mistral / xAI",
+      "last_ok": "2026-09-14"
+    },
+    "radar:gnews-labs-cn": {
+      "fail": 0,
+      "zero": 0,
+      "name": "新闻 · 国内模型公司",
+      "last_ok": "2026-09-14"
+    },
+    "radar:qbitai": {
+      "fail": 0,
+      "zero": 0,
+      "name": "量子位",
+      "last_ok": "2026-09-14"
+    },
+    "radar:infoq-cn": {
+      "fail": 0,
+      "zero": 0,
+      "name": "InfoQ 中文",
+      "last_ok": "2026-09-14"
+    },
+    "radar:thonking": {
+      "fail": 0,
+      "zero": 1,
+      "name": "Horace He (thonking)"
+    },
+    "radar:hn-algolia": {
+      "fail": 0,
+      "zero": 1,
+      "name": "Hacker News（100+ 分）"
+    },
+    "events:luma-shenzhen": {
+      "fail": 0,
+      "zero": 1,
+      "name": "lu.ma · 深圳"
+    },
+    "events:luma-hongkong": {
+      "fail": 0,
+      "zero": 1,
+      "name": "lu.ma · 香港"
+    },
+    "events:huodongxing-shenzhen": {
+      "fail": 0,
+      "zero": 0,
+      "name": "活动行 · 深圳 AI",
+      "last_ok": "2026-09-14"
+    },
+    "events:huodongxing-guangzhou": {
+      "fail": 0,
+      "zero": 1,
+      "name": "活动行 · 广州 AI"
+    },
+    "events:devpost": {
+      "fail": 0,
+      "zero": 1,
+      "name": "Devpost 黑客松"
+    },
+    "events:gnews-shenzhen": {
+      "fail": 0,
+      "zero": 1,
+      "name": "Google 新闻 · 深圳 AI 活动"
+    },
+    "events:gnews-hackathon": {
+      "fail": 0,
+      "zero": 1,
+      "name": "Google 新闻 · 黑客松 / 比赛"
+    },
+    "events:huodongxing-shenzhen-llm": {
+      "fail": 0,
+      "zero": 1,
+      "name": "活动行 · 深圳 大模型/开发者"
+    },
+    "events:huodongxing-hongkong": {
+      "fail": 0,
+      "zero": 1,
+      "name": "活动行 · 香港 AI"
+    },
+    "events:segmentfault-events": {
+      "fail": 0,
+      "zero": 1,
+      "name": "SegmentFault 活动"
+    },
+    "events:oschina-events": {
+      "fail": 0,
+      "zero": 1,
+      "name": "开源中国 活动"
+    },
+    "events:juejin-events": {
+      "fail": 0,
+      "zero": 1,
+      "name": "稀土掘金 活动"
+    },
+    "events:hackathonweekly": {
+      "fail": 0,
+      "zero": 1,
+      "name": "HackathonWeekly（深圳周周黑客松）"
+    },
+    "events:gdg-shenzhen": {
+      "fail": 0,
+      "zero": 1,
+      "name": "GDG 深圳"
+    },
+    "events:gdg-guangzhou": {
+      "fail": 0,
+      "zero": 1,
+      "name": "GDG 广州"
+    },
+    "events:gdg-hongkong": {
+      "fail": 0,
+      "zero": 1,
+      "name": "GDG 香港"
+    },
+    "events:datafountain": {
+      "fail": 0,
+      "zero": 1,
+      "name": "DataFountain 比赛"
+    },
+    "events:kaggle-rss": {
+      "fail": 0,
+      "zero": 1,
+      "name": "Kaggle 新比赛（Google 新闻）"
+    },
+    "events:gnews-gz-hk": {
+      "fail": 0,
+      "zero": 1,
+      "name": "Google 新闻 · 广州 / 香港 AI 活动"
+    },
+    "events:gnews-conf-cn": {
+      "fail": 0,
+      "zero": 1,
+      "name": "Google 新闻 · AI 大会 报名"
+    }
+  },
+  "ai_fallback_streak": 0,
+  "schedule_miss_streak": 0,
+  "last_checked": "2026-09-14",
+  "needs_agent": []
+}

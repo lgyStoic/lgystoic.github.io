@@ -1,0 +1,39 @@
+name: 定时兜底
+
+# 每天 08:40（北京时间）看一眼 08:00 的定时运行有没有发生；没有就补跑一次。
+# GitHub 的 cron 在高峰期会延迟甚至跳过，这一层保证每天至少有一期。
+on:
+  schedule:
+    - cron: "40 0 * * *"
+  workflow_dispatch:
+
+permissions:
+  actions: write
+  contents: read
+
+jobs:
+  ensure-daily-run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: master
+      - name: 检查今天是否已有定时运行
+        id: probe
+        run: |
+          python3 - <<'EOF' >> "$GITHUB_OUTPUT"
+          import json, datetime, zoneinfo, pathlib
+          p = pathlib.Path("radar/data/last-run.json")
+          today = datetime.datetime.now(zoneinfo.ZoneInfo("Asia/Shanghai")).strftime("%Y-%m-%d")
+          ok = False
+          if p.exists():
+              run = json.loads(p.read_text())
+              started = datetime.datetime.fromisoformat(run["started_at"]).astimezone(zoneinfo.ZoneInfo("Asia/Shanghai"))
+              ok = run.get("event") == "schedule" and started.strftime("%Y-%m-%d") == today
+          print(f"missing={'false' if ok else 'true'}")
+          EOF
+      - name: 补跑
+        if: steps.probe.outputs.missing == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run radar.yml --ref master -f reason=schedule_missed
