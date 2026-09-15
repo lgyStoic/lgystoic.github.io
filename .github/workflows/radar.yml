@@ -3,7 +3,7 @@ name: AI 信息雷达
 on:
   schedule:
     # 每天北京时间 08:00（UTC 00:00）
-    - cron: "0 0 * * *"
+    - cron: "50 23 * * *"  # 北京时间 07:50；避开整点高峰，GitHub 在整点常延迟数小时
   push:
     branches: [master]       # 只认 master 上的触发文件，功能分支推送不触发
     paths:
