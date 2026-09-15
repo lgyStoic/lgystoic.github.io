@@ -2,8 +2,11 @@ name: AI 信息雷达
 
 on:
   schedule:
-    # 每天北京时间 08:00（UTC 00:00）
-    - cron: "50 23 * * *"  # 北京时间 07:50；避开整点高峰，GitHub 在整点常延迟数小时
+    # GitHub 的 cron 高峰期会延迟数小时甚至跳过，所以一天给三次机会（北京时间 07:50 / 08:20 / 10:05）。
+    # guard 作业保证同一天只真正跑一次：后面的定时触发发现当天已跑过就直接结束。
+    - cron: "50 23 * * *"
+    - cron: "20 0 * * *"
+    - cron: "5 2 * * *"
   push:
     branches: [master]       # 只认 master 上的触发文件，功能分支推送不触发
     paths:
@@ -27,7 +30,38 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  guard:
+    runs-on: ubuntu-latest
+    outputs:
+      skip: ${{ steps.probe.outputs.skip }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: master
+          sparse-checkout: radar/data/last-run.json
+          sparse-checkout-cone-mode: false
+      - name: 定时触发时，当天已跑过就跳过
+        id: probe
+        env:
+          EVENT: ${{ github.event_name }}
+        run: |
+          python3 - <<'EOF' >> "$GITHUB_OUTPUT"
+          import json, os, datetime, zoneinfo, pathlib
+          skip = False
+          if os.environ["EVENT"] == "schedule":
+              p = pathlib.Path("radar/data/last-run.json")
+              if p.exists():
+                  tz = zoneinfo.ZoneInfo("Asia/Shanghai")
+                  run = json.loads(p.read_text())
+                  started = datetime.datetime.fromisoformat(run["started_at"]).astimezone(tz)
+                  skip = started.strftime("%Y-%m-%d") == datetime.datetime.now(tz).strftime("%Y-%m-%d")
+          print(f"skip={'true' if skip else 'false'}")
+          print("今天已有一期，跳过" if skip else "今天还没跑，继续", file=__import__("sys").stderr)
+          EOF
+
   radar:
+    needs: guard
+    if: needs.guard.outputs.skip != 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
