@@ -1,0 +1,897 @@
+{
+  "date": "2026-09-15",
+  "generated_at": "2026-09-15T02:20:17+00:00",
+  "ai": true,
+  "model": "gemini-3.1-pro-preview",
+  "sources": [
+    {
+      "id": "openai",
+      "name": "OpenAI",
+      "ok": true,
+      "count": 1,
+      "total": 1193,
+      "error": ""
+    },
+    {
+      "id": "deepmind",
+      "name": "Google DeepMind",
+      "ok": true,
+      "count": 0,
+      "total": 100,
+      "error": ""
+    },
+    {
+      "id": "google-ai",
+      "name": "Google AI Blog",
+      "ok": true,
+      "count": 2,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "qwen",
+      "name": "Qwen",
+      "ok": true,
+      "count": 0,
+      "total": 44,
+      "error": ""
+    },
+    {
+      "id": "hf-blog",
+      "name": "Hugging Face Blog",
+      "ok": true,
+      "count": 0,
+      "total": 862,
+      "error": ""
+    },
+    {
+      "id": "nvidia-dev",
+      "name": "NVIDIA Technical Blog",
+      "ok": true,
+      "count": 1,
+      "total": 100,
+      "error": ""
+    },
+    {
+      "id": "hf-papers",
+      "name": "HF Papers 日榜",
+      "ok": true,
+      "count": 1,
+      "total": 35,
+      "error": ""
+    },
+    {
+      "id": "pytorch",
+      "name": "PyTorch Blog",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "simonw",
+      "name": "Simon Willison",
+      "ok": true,
+      "count": 0,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "lilianweng",
+      "name": "Lil'Log",
+      "ok": true,
+      "count": 0,
+      "total": 53,
+      "error": ""
+    },
+    {
+      "id": "interconnects",
+      "name": "Interconnects",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "raschka",
+      "name": "Sebastian Raschka",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "chiphuyen",
+      "name": "Chip Huyen",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-pytorch",
+      "name": "Release · PyTorch",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-triton",
+      "name": "Release · Triton",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-cutlass",
+      "name": "Release · CUTLASS",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-flash-attention",
+      "name": "Release · FlashAttention",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-vllm",
+      "name": "Release · vLLM",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-sglang",
+      "name": "Release · SGLang",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-tensorrt-llm",
+      "name": "Release · TensorRT-LLM",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-diffusers",
+      "name": "Release · Diffusers",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-cuda-python",
+      "name": "Release · cuda-python",
+      "ok": true,
+      "count": 1,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "gnews-labs-en",
+      "name": "新闻 · Anthropic / Mistral / xAI",
+      "ok": true,
+      "count": 10,
+      "total": 70,
+      "error": ""
+    },
+    {
+      "id": "gnews-labs-cn",
+      "name": "新闻 · 国内模型公司",
+      "ok": true,
+      "count": 22,
+      "total": 100,
+      "error": ""
+    },
+    {
+      "id": "qbitai",
+      "name": "量子位",
+      "ok": true,
+      "count": 1,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "infoq-cn",
+      "name": "InfoQ 中文",
+      "ok": true,
+      "count": 1,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "thonking",
+      "name": "Horace He (thonking)",
+      "ok": true,
+      "count": 0,
+      "total": 6,
+      "error": ""
+    },
+    {
+      "id": "hn-algolia",
+      "name": "Hacker News（100+ 分）",
+      "ok": true,
+      "count": 0,
+      "total": 0,
+      "error": ""
+    }
+  ],
+  "counts": {
+    "high": 5,
+    "medium": 8,
+    "low": 27
+  },
+  "items": [
+    {
+      "id": "12941bd70c261966",
+      "title": "v12.9.8: Prepare cuda-bindings 12.9.8 release (#2814)",
+      "link": "https://github.com/NVIDIA/cuda-python/releases/tag/v12.9.8",
+      "source": "Release · cuda-python",
+      "source_id": "rel-cuda-python",
+      "published": "2026-09-14T18:37:45+00:00",
+      "category": "infra",
+      "priority": "high",
+      "summary": "cuda-python 发布 12.9.8 版本，修复 Python 3.15 构建及 Numpy 安装问题。",
+      "why": "CUDA Python 绑定的底层更新，直接影响 GPU kernel 开发和环境配置。",
+      "tags": [
+        "CUDA",
+        "Python",
+        "Release"
+      ]
+    },
+    {
+      "id": "319da0d298a0871e",
+      "title": "Accelerating Dropless MoE Training in JAX with NVIDIA Transformer Engine",
+      "link": "https://developer.nvidia.com/blog/accelerating-dropless-moe-training-in-jax-with-nvidia-transformer-engine",
+      "source": "NVIDIA Technical Blog",
+      "source_id": "nvidia-dev",
+      "published": "2026-09-14T16:39:23+00:00",
+      "category": "infra",
+      "priority": "high",
+      "summary": "NVIDIA 介绍如何使用 Transformer Engine 在 JAX 中加速无丢弃 MoE 模型的训练。",
+      "why": "涉及 MoE 训练性能优化和底层系统，直接契合你的工作方向。",
+      "tags": [
+        "MoE",
+        "JAX",
+        "NVIDIA",
+        "训练优化"
+      ]
+    },
+    {
+      "id": "e427eacedf14bc2e",
+      "title": "中国AI大模型调用量连续二十周领跑：DeepSeek V4.1 Flash上线三天升至第六，智谱GLM 5.3、MiniMax M3跌出榜单 - Sohu",
+      "link": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxPSzhPQjJWLXhhM2tQcGxkdzYxVHhnOThNeDNhc21LZUVHVmhLNExMbE16c29IQXNpREZ5dEJLcEZXalQxeHRMeUlNcVZpVzVqNUZPY0xLNGppb3l2cDlJXzFyTkRYaFNXX2hlM3pZR1FNeHhjS2o0WkthekI2Zm5zenBxYW8wWFlB?oc=5",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-09-14T04:03:41+00:00",
+      "category": "industry",
+      "priority": "high",
+      "summary": "国内大模型调用量榜单更新，DeepSeek V4.1 Flash上线三天升至第六。",
+      "why": "榜单显著变化及新Flash模型上线，反映当前主流模型推理效率。",
+      "tags": [
+        "调用量榜单",
+        "DeepSeek",
+        "模型动态"
+      ]
+    },
+    {
+      "id": "f679bf523065572a",
+      "title": "阿里云百炼上线DeepSeek-V4.1-Flash模型 - 品玩",
+      "link": "https://news.google.com/rss/articles/CBMiSEFVX3lxTE1OS08wQnlPSDVTLWQ3Rjd2ZjU2OERyeHVXZERnWXlHa0didkVLbF9ZM3dnQUVuVHhNcWFwT1RhV21UdGcyN09TTQ?oc=5",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-09-14T03:10:36+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "阿里云百炼平台正式上线 DeepSeek-V4.1-Flash 模型。",
+      "why": "头部开源模型的新版本上线，可能涉及推理优化和架构改进，值得关注。",
+      "tags": [
+        "DeepSeek",
+        "模型发布",
+        "阿里云"
+      ]
+    },
+    {
+      "id": "8f856115817cb98f",
+      "title": "智谱宣布约50亿美元融资，六成资金投向下一代GLM模型和算力基础设施 - 新浪财经",
+      "link": "https://news.google.com/rss/articles/CBMihAFBVV95cUxOLV83U09tRUNqdENxSVhyNXJ5TlRpOV9IbVhWbVktck9YdlpPWEhzMkxYUkVBTmlCYXdGUG1oUHJvVlZMbWJ5cjJYdlh6TS0ya3dkUDl5c280OU84X0c5Y193ZjhGRXBXQkszOWN0VjVpWm03YnhhSmE2dDBaWnZndUN3VzM?oc=5",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-09-14T01:04:53+00:00",
+      "category": "industry",
+      "priority": "high",
+      "summary": "智谱宣布约50亿美元融资，60%将用于下一代GLM模型和算力基础设施。",
+      "why": "巨额算力投资意味着更大规模的集群建设，直接关联训练系统与Infra。",
+      "tags": [
+        "智谱",
+        "融资",
+        "算力基础设施"
+      ]
+    },
+    {
+      "id": "6bd2222764e39d87",
+      "title": "智谱融资50亿美元，加码大模型研发 - 21财经",
+      "link": "https://news.google.com/rss/articles/CBMigwFBVV95cUxPMTBlT21rQlZxVlgxd0NlNUhUcTBRajh1S1l1U1dwT1B4amE5TDQ5dmV6YWVJcTNpU0pqdTd4SlBlbXNPQlNzamw0dEJJaEpIazRHVXpNeE1lYnVaT2ZNT1BIMWxjZ3FsbzNsVWxna0NqcEZjeng1T1ZsYV9JT2dOb042WQ?oc=5",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-09-14T23:00:00+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "智谱完成 50 亿美元融资，将用于加码大模型研发。",
+      "why": "国内头部模型公司的重大融资，反映行业算力投入趋势。",
+      "tags": [
+        "智谱",
+        "融资",
+        "行业动态"
+      ]
+    },
+    {
+      "id": "d2aced309e671c89",
+      "title": "Industrial-Scale AI Model Distillation Attacks Targeting Anthropic Claude by Seven China-Based AI Labs: Incident Analysis and Mitigation Strategies - Rescana",
+      "link": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxQMVQxMmtLYVdZYS1zcHRTcGNPMVRXWlZtV0p1YzFUYlBvOFhDenpqWmJiVHNHYklKU2QyRGN2SE1DWnI4Nmc2dnVoSnVTSFY5VVN1bzdzVnZ5X3NkX1Y3di1RSGVZakNhRW1lQ0NNaE5rMnJFUW5iY3dfSTdZTWUxaGxtLTB0UlZramlLbkYySmlzeUlfVUhacE5ndHo0STVFbHY0ckdsNkl2QmsxYk82RWh2UlVieENsMDBFQWNMQUFaajdkUFRDR2xIN2kwQlJzbzJUODZ2aVhtRzkxc0ZwYU1EUQ?oc=5",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-09-14T19:04:04+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "报告称七家中国 AI 实验室对 Anthropic Claude 进行了工业级模型蒸馏攻击。",
+      "why": "涉及模型蒸馏和安全攻防的行业事件，可作背景了解。",
+      "tags": [
+        "模型蒸馏",
+        "Anthropic",
+        "安全"
+      ]
+    },
+    {
+      "id": "fd66a5ba977cdb31",
+      "title": "Palantir, Nvidia curb AI model use over data fears, The Information reports - Reuters",
+      "link": "https://news.google.com/rss/articles/CBMitAFBVV95cUxONWNhdEVPc1dqTGMyRWxhWWFrWF9wM2J3NmhWRW1HS3VQT1U3ZjV5M1R1Qi1faVE0cVJzaXZEWHhac25nT1J4bFlGaVdkVHFOZklJcWxydE5OWk04anFNZURQeEVxZklRYk5rRDN0dXdMWlZSOC13RHY0eXJqVi1VQ2x1WHRWemZXMElNVm5JWHZBS3d3UmNGWXJwa2poV0VGdjBfRjM5WUNHZFhWTW5oRkZVaU4?oc=5",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-09-14T15:11:30+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "据报 Palantir 和 Nvidia 因数据隐私担忧限制了高级 AI 模型的使用。",
+      "why": "行业动态，涉及数据安全对大厂模型使用的影响，值得了解。",
+      "tags": [
+        "Nvidia",
+        "数据隐私",
+        "行业动态"
+      ]
+    },
+    {
+      "id": "4f2198964cbbb641",
+      "title": "Grok 4.7 and Grok 5: Elon Musk Shares Details on xAI’s Upcoming AI Models - LatestLY",
+      "link": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxPT3dwcVlpYlhQN1lXRXhxbEpXckZadWM3UzgxSkZsSFp0Uk5yVHRwOWpLd3RDaWg2NWlRYlA2UjdZeTlfdlhCbkdaQjJRTC1RenJCaEdNVnBxY0tlTnYwWlRiMC1nVFhPdFdYVlhKcEgxZW1aOEc5TWduVWZLUFdHZ3FlS2Vxd3ZFLURaUFJMQ3BfamJjdGdzZk1adEQ0QXlSNzNCSUxabS1rZEtDU3BLMmthTUJ1aHN2TUEtUE9WT0Q1QU53VjVzd9IBzgFBVV95cUxOQzI1SnhkeWRaMnNGU194Qk5FbnB2QnFicEZ3ZmhtY1ZZeEtnNHROdjlRbVRvQ0ZIZlVNbUlFNUtwVXRGcEU4enN6LXoyUzNkOWE1OFVGS3FlRlBhRk5wSW4zWlJ0WHI5NTdXdk5BbkV0T3JXelNxZmdra0Q2dC1nemhmU1BUZVFIZ0RSNXowRmpZNUVleDR2SmgzTFQwb3RtVGJITWROR2I4LTlpTFNfOFZDazRvZnNOdURMWml0TGhQazZRWDc5MDZVNXFpQQ?oc=5",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-09-14T12:58:29+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "马斯克分享了 xAI 即将推出的 Grok 4.7 和 Grok 5 模型的细节。",
+      "why": "头部大模型的新一代规划，可能涉及算力规模和架构演进，值得关注。",
+      "tags": [
+        "xAI",
+        "Grok",
+        "模型发布"
+      ]
+    },
+    {
+      "id": "32c7c756fa296807",
+      "title": "Anthropic指控Kimi转发客户请求至Claude 用户资料去向引发争议 - 虎嗅网",
+      "link": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE1BUXdtcU9rS0FvUWR6THZNOG1fZTJlSUF5T3dfSENqUmF4TkMwY0hqc0NDZkZFSURZNTdKd2xsYjFxY2laQ2JybjBsczZYMTFPX1FBcA?oc=5",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-09-14T10:50:38+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "Anthropic 指控 Kimi 将客户请求转发至 Claude，引发数据去向争议。",
+      "why": "涉及国内大模型套壳/API调用的争议事件，可作行业八卦了解。",
+      "tags": [
+        "Kimi",
+        "Anthropic",
+        "行业争议"
+      ]
+    },
+    {
+      "id": "5452d6f4b3f17d85",
+      "title": "智谱2025上半年营收增长2736%但亏损扩大，Agent应用爆发驱动Token调用量涨40倍 - 虎嗅网",
+      "link": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE5xazlobFRyR0JBLURvSlZFVGM0R2dKbkxzamQ2eEkxbmd6bzVuYlNaWnpSZTFYUmdWX202RjBlZHNueVVOMEtMY21xSVA5MnVxY3BHNg?oc=5",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-09-14T00:44:28+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "智谱2025上半年营收大增但亏损扩大，Agent爆发致Token调用量涨40倍。",
+      "why": "Token调用量暴涨反映了推理侧的巨大压力，侧面印证推理优化的重要性。",
+      "tags": [
+        "智谱",
+        "Token调用量",
+        "推理需求"
+      ]
+    },
+    {
+      "id": "d03b1559db5bba6a",
+      "title": "DeepSeek下一波大模型被指即将问世：3万亿参数 性能超GPT-6 Astra - i.ifeng.com",
+      "link": "https://news.google.com/rss/articles/CBMiSEFVX3lxTE9FY1ZXcmhFQV9xc05LT3hMXzdnVjRXWTZFT0o1dmo3Q3R2Y0F1THgzMlR6YXU4MXJfS29FUXpMNkY5YXNkaHlvZQ?oc=5",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-09-13T22:08:07+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "传闻DeepSeek即将发布3万亿参数新模型，性能超GPT-6 Astra。",
+      "why": "3万亿参数级别的训练对集群和并行策略要求极高，值得关注。",
+      "tags": [
+        "DeepSeek",
+        "大模型",
+        "参数规模"
+      ]
+    },
+    {
+      "id": "8e66474bc8fec695",
+      "title": "Omni-Streaming Thinking",
+      "link": "https://huggingface.co/papers/2609.15128",
+      "source": "HF Papers 日榜",
+      "source_id": "hf-papers",
+      "published": "2026-09-13T20:00:00+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "论文提出 Omni-Streaming Thinking，解决流式全模态模型中过早跨模态承诺的问题。",
+      "why": "涉及多模态模型的推理机制，对理解新架构有一定帮助。",
+      "tags": [
+        "多模态",
+        "流式推理",
+        "论文"
+      ]
+    },
+    {
+      "id": "3b08bceff089f9b8",
+      "title": "从 Trace 到规模化实时评估：面向生产流量的 Agent 可观测实践｜QCon上海",
+      "link": "https://www.infoq.cn/article/556HrGKWUqWSg7NM3YT3",
+      "source": "InfoQ 中文",
+      "source_id": "infoq-cn",
+      "published": "2026-09-15T10:08:44+00:00",
+      "category": "infra",
+      "priority": "low",
+      "summary": "QCon上海分享面向生产流量的Agent可观测性与实时评估实践。",
+      "why": "偏向应用层Agent的工程监控，不涉及GPU或底层训练推理优化。",
+      "tags": [
+        "Agent",
+        "可观测性",
+        "MLOps"
+      ]
+    },
+    {
+      "id": "12727d71ca0a1c26",
+      "title": "智谱融资50亿美元，加码大模型研发 - 新浪网",
+      "link": "https://news.google.com/rss/articles/CBMickFVX3lxTE9qdVFzVmpUbm5Gd0NGWTFGM3hGM1FPR195X1JsWUxzTFJ4WXNBWFV0TUJjbVIzMHdSa0RNcDUxSGl0WnhIMVlDSkFsODVwYmlTNGpxdVZqZ2FLcjdlYWRlNk1WLUhBZjFodWs2UHRBN2NDZw?oc=5",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-09-15T00:42:47+00:00",
+      "category": "industry",
+      "priority": "low",
+      "summary": "智谱完成 50 亿美元融资，加码大模型研发。",
+      "why": "与前述智谱融资新闻重复。",
+      "tags": [
+        "智谱",
+        "融资"
+      ]
+    },
+    {
+      "id": "10c874abf1edffb5",
+      "title": "大模型重压之下 - 北京商报",
+      "link": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE1xWEo4WllGeVZXanBtendYOGFtZF9ETW5fczZRSGUydG9QV2NIenl1eGtLRzhyTmZ1RkdaWEcxVEYwclF5NFRxVzk1cnRUa2xYNWhwX2pUZTRNeXZ2ZWc?oc=5",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-09-14T23:03:45+00:00",
+      "category": "industry",
+      "priority": "low",
+      "summary": "媒体评论大模型行业面临的重重压力。",
+      "why": "泛泛的行业评论文章，无具体技术信息。",
+      "tags": [
+        "行业评论",
+        "国内大模型"
+      ]
+    },
+    {
+      "id": "6860ae25bff9c85f",
+      "title": "Watch astronaut Christina Koch and Google’s James Manyika discuss space, technology, and discovery.",
+      "link": "https://blog.google/innovation-and-ai/technology/ai/dialogues-christina-koch",
+      "source": "Google AI Blog",
+      "source_id": "google-ai",
+      "published": "2026-09-14T19:00:00+00:00",
+      "category": "people",
+      "priority": "low",
+      "summary": "宇航员 Christina Koch 与谷歌高管 James Manyika 探讨太空与科技。",
+      "why": "泛泛的科技对谈，不涉及具体技术细节，可以跳过。",
+      "tags": [
+        "Google",
+        "访谈"
+      ]
+    },
+    {
+      "id": "d7a99da64efd0d43",
+      "title": "Anthropic Says Chinese AI Labs Secretly Used 190M Claude Exchanges - Memeburn",
+      "link": "https://news.google.com/rss/articles/CBMikgFBVV95cUxOVjhKYjlQSjFGLXVnX1hCYkllMUR0VGpUZVM3OUJLOTd3RDVScl9uM2FCY2RQT0VPb1ZCT1VKZ3BZa0U1QUcyWURBM3V5bkkzeG5fdVk1WnFqVGZSLWxhMXA4ZkwtM0hWV201SU41V1JSY2JLaEQ1TEotYkVrVkJ0Mi1TenBpSHpjM3dSVFpDbF9iQQ?oc=5",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-09-14T18:04:15+00:00",
+      "category": "industry",
+      "priority": "low",
+      "summary": "Anthropic 称中国 AI 实验室秘密使用了 1.9 亿次 Claude 交互数据。",
+      "why": "与前述模型蒸馏攻击的新闻重复。",
+      "tags": [
+        "Anthropic",
+        "数据安全"
+      ]
+    },
+    {
+      "id": "812337adea1e08b3",
+      "title": "Orion Expands Anthropic Collaboration as Launch Partner for Claude for Financial Advisors - Business Wire",
+      "link": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxPLTZteGo2WlBVM2R0VkI5dElROU01MUxQNXRMQ1NBcnl4VlZ0VWdvekFaaVYwbkV1Z3U5ajJsT0dtYURibnUxbDBSNklCa1hjdDhRbTlHbDZta051UWM5NHhyZVA2SXAxS0FqVzRWS3dqZHdWX1h2WkgwdDBPbkxJdnhCZnBBb1hLWG5ZSUtHUXhoVVNxUXFQdGk5VkhUTTdEalVBWXBuX2ttVTRFVnhQOFBfZnI3amhxUUdydGxqZU5GMnVHTUpueGxGOXlhWHFVZjZLY3dfU3BrMDVSYTFF?oc=5",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-09-14T16:02:00+00:00",
+      "category": "industry",
+      "priority": "low",
+      "summary": "Orion 扩大与 Anthropic 的合作，推出面向财务顾问的 Claude 服务。",
+      "why": "纯商业合作与金融应用落地，与底层技术无关。",
+      "tags": [
+        "Anthropic",
+        "金融应用"
+      ]
+    },
+    {
+      "id": "2267286cfd5cc9d7",
+      "title": "DevFest is back",
+      "link": "https://blog.google/innovation-and-ai/technology/developers-tools/devfest2026",
+      "source": "Google AI Blog",
+      "source_id": "google-ai",
+      "published": "2026-09-14T16:00:00+00:00",
+      "category": "industry",
+      "priority": "low",
+      "summary": "谷歌宣布 2026 年 DevFest 开发者大会回归。",
+      "why": "开发者活动预告，无实质技术内容。",
+      "tags": [
+        "Google",
+        "开发者活动"
+      ]
+    },
+    {
+      "id": "b41c1f1cdb09974d",
+      "title": "Nvidia, Palantir, and others restrict advanced AI model usage over privacy concerns, report claims — 'paranoia' rising over customer intellectual property - Tom's Hardware",
+      "link": "https://news.google.com/rss/articles/CBMiugJBVV95cUxOTExpN2RwblRJUHlTbmlmMTJDcmRZUUZLS0Nud1pLMmg0NWY4Mi1waUxjLTVVTF9qZGczVWRjX1hMTVNqU2I3ekZXcmtfcVoxTnZ4SmRxYzc1TDFhSWdGMzI0WFRrVVNvVnQwQUZfNHFXWlIwZnRhcWdBeFViUmU1Tm4wUURQbjg3LVpSS1c4Y1plYUNOUFNteUE2R2NtSHFHajJZWUo3aVhfeUZjUHpyNkxUbTZ0N09LYURuRDF6SWNpR2I1ajRiOGptcHRNYXgxZXJkdi1vQm5MNG15NDlwWDZhQ1BoMHhmOHI4YWNoWG1uOVJIX0FZUFZsVlNLQTVacHg1VEp5UnVmNUZOcHRNcERHRk52SlF6VDhpejJ6MEpobzFpWDRxV2ZUbDJRSTQ2anU3dHJYMDVvZw?oc=5",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-09-14T15:58:32+00:00",
+      "category": "industry",
+      "priority": "low",
+      "summary": "Nvidia 和 Palantir 等公司因隐私担忧限制高级 AI 模型使用。",
+      "why": "与前述 Nvidia 限制模型使用的新闻重复。",
+      "tags": [
+        "Nvidia",
+        "数据隐私"
+      ]
+    },
+    {
+      "id": "e055ab0c76ad4a8d",
+      "title": "智谱股债双线再融资50亿美元 AI大模型资本竞赛进入深水区 - 观点网",
+      "link": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE5Sc3FqSlFoOEhKWm9wMlVQV0VTNndPZ2ZSNWtiUERNV3dIX25QN2xrcEw4ZERPOFFwYXM0WVhETmw1Uy1QZE1WclJGbXBqZw?oc=5",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-09-14T14:08:32+00:00",
+      "category": "industry",
+      "priority": "low",
+      "summary": "智谱通过股债双线再融资 50 亿美元，AI 资本竞赛加剧。",
+      "why": "与前述智谱融资新闻重复。",
+      "tags": [
+        "智谱",
+        "融资"
+      ]
+    },
+    {
+      "id": "340f65c80656e9db",
+      "title": "Anthropic prepares Claude Money feature for iOS app launch - Crypto Briefing",
+      "link": "https://news.google.com/rss/articles/CBMib0FVX3lxTE5BSjhubEdobmpvT24wemVaTU5GTTBPVzlnRWJzVHFQNzBZMFUzbllMQmk4LWprb01FMGFQRDZYUE9SS3dBVU5nak5RWDNBenRpbE40U29rNTN0NWxod2lHeE83OElmUUNUZEpHSzVRNA?oc=5",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-09-14T13:21:37+00:00",
+      "category": "release",
+      "priority": "low",
+      "summary": "Anthropic 准备在 iOS 应用中推出 Claude Money 功能。",
+      "why": "C端产品功能更新，不涉及底层或模型架构。",
+      "tags": [
+        "Anthropic",
+        "iOS",
+        "产品更新"
+      ]
+    },
+    {
+      "id": "6b38992a7c54e921",
+      "title": "Pentagon shifts away from Anthropic models as Nvidia, Palantir, and Booz Allen raise AI concerns - Crypto Briefing",
+      "link": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxOTTlKcnZ2VGM2cXVCMTR0MTVEdWFyWWhlVUEtWEoxR0hJS0lYMHVMd1RBMFNyLUFSQWg4bXllVEdkZkRKUVM3cS1XVm5HdUpPNDFtSkVVdW1ZNjF0TlNRV0R2LVpYeGY5czRHallFR05YTDlLMGxjYThubWwwcllNNGNGUkJKQjBRbnF3?oc=5",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-09-14T13:08:25+00:00",
+      "category": "industry",
+      "priority": "low",
+      "summary": "因 Nvidia 等公司提出 AI 担忧，五角大楼逐渐放弃使用 Anthropic 模型。",
+      "why": "政策与行业动态，与前述隐私担忧新闻相关，技术价值低。",
+      "tags": [
+        "政策",
+        "Anthropic"
+      ]
+    },
+    {
+      "id": "296d33defd03a1b2",
+      "title": "How Fyxer built an AI executive assistant people trust",
+      "link": "https://openai.com/index/fyxer",
+      "source": "OpenAI",
+      "source_id": "openai",
+      "published": "2026-09-14T12:00:00+00:00",
+      "category": "industry",
+      "priority": "low",
+      "summary": "Fyxer 利用 OpenAI 模型和微调技术构建了受用户信任的 AI 行政助手。",
+      "why": "偏应用层面的营销案例，与底层优化和生成模型方向无关。",
+      "tags": [
+        "OpenAI",
+        "应用案例"
+      ]
+    },
+    {
+      "id": "0f382464d96db5a2",
+      "title": "DeepSeek“推倒重来” - Sohu",
+      "link": "https://news.google.com/rss/articles/CBMihAFBVV95cUxOdUVuMkNXZWJBR2F5aTR5MlhYc1FSTDl3eTNydjhXNXAyUVc5NGpnTS1qb2h3aW9vbjd3Y216YjNBdU5jd3ZDWHVMNU1iUFdTZnpoSXh4YnlGNm5FdWt0eDBKMXYzSmIxTFhnXzdiQVRnUGdXY0NIN3FpTVl3dDNZbjdRNm4?oc=5",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-09-14T11:20:11+00:00",
+      "category": "industry",
+      "priority": "low",
+      "summary": "媒体文章探讨 DeepSeek 的战略或架构调整。",
+      "why": "标题党或泛泛的商业评论，缺乏实质技术干货。",
+      "tags": [
+        "DeepSeek",
+        "行业评论"
+      ]
+    },
+    {
+      "id": "f3e7f195aa29574a",
+      "title": "393亿港元！智谱又融资了 - 新浪财经",
+      "link": "https://news.google.com/rss/articles/CBMiigFBVV95cUxNV19QSjNGUC02cWpfY3JRTEh3d0VmUUowSTg3YzE3VUN4bnJ5RlNLd3U5dWRFQjJHLWc4Sm92R0xqNTVFRDk3Y2FQMXIyRnFrUTI2OUdOQmJ5QUZycjFyZUJCeUxuUHRoblhGSFVpSVB6dmE0bjVlYzNZaEl0Nnhod1h0eVo2V2FsaFE?oc=5",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-09-14T10:39:38+00:00",
+      "category": "industry",
+      "priority": "low",
+      "summary": "智谱再次获得巨额融资。",
+      "why": "与前述智谱融资新闻重复。",
+      "tags": [
+        "智谱",
+        "融资"
+      ]
+    },
+    {
+      "id": "aa8c02bb34ad09f0",
+      "title": "三个月价格腰斩，大模型的“聪明”正在贬值？ - 潮起网",
+      "link": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE5qQ2JoN0R2a09OSEIxaDl5aWZyaUZkaXZXMUNqd3hZcm1pUm1pWWh4S2hIeHlmV2NHQzBVRHdMRThOT0MzbUI3RmZpTlBSNFdIQjIxRU01dklZUW9IeXplVVZzOA?oc=5",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-09-14T10:31:27+00:00",
+      "category": "industry",
+      "priority": "low",
+      "summary": "媒体讨论大模型API价格战导致价格腰斩的现象。",
+      "why": "泛泛的商业与价格战讨论，不涉及底层技术。",
+      "tags": [
+        "价格战",
+        "商业动态"
+      ]
+    },
+    {
+      "id": "c86a1074b585373c",
+      "title": "是时候重新评估 MiniMax 了 - PANews",
+      "link": "https://news.google.com/rss/articles/CBMif0FVX3lxTE9hOFRfLWxGSlpuNkRKZmM4M0pyN1RvNjNUX3ZGV29hZUZPa3dmeFdlYklGTWRoUFdJZi13ODNoLWRTWHVGck4ycjVtQnY4VURyTUVhUnJ4Q3BwMXdWVEYyVU5aeEp1eUdPaEdWWmszQkVNVTQ5UEdSS1ltYWhHRmc?oc=5",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-09-14T10:13:09+00:00",
+      "category": "industry",
+      "priority": "low",
+      "summary": "媒体发文呼吁重新评估大模型公司 MiniMax 的价值。",
+      "why": "偏向投资和商业价值评估的文章，可跳过。",
+      "tags": [
+        "MiniMax",
+        "商业评估"
+      ]
+    },
+    {
+      "id": "9dcf0ea1683e383d",
+      "title": "智谱要用50亿美元织一张网 - Sohu",
+      "link": "https://news.google.com/rss/articles/CBMijAFBVV95cUxNNkRaS2ZDS3c1dFRENXU2S3d0LUtMTjh4czJRWEt6X1l4VTVIYXByeVJVa2hnT1JRNzgxa1g3cVFzT0I4ZEFwYlM3aUJHSjN5bGcweGxhdFZFWS1ycl80TmxkMDNFQ21VZjl0OUFMYV83QU9Wc0FKUEY3S1FtejlwN2tITlM3ZnlMUDVhTw?oc=5",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-09-14T10:04:30+00:00",
+      "category": "industry",
+      "priority": "low",
+      "summary": "媒体分析智谱 50 亿美元融资后的战略布局。",
+      "why": "与前述融资事件相关的商业分析，技术价值低。",
+      "tags": [
+        "智谱",
+        "商业分析"
+      ]
+    },
+    {
+      "id": "1cf3b72857c7e537",
+      "title": "首届蚂蚁灵波具身大模型挑战赛正式启动",
+      "link": "https://www.qbitai.com/2026/09/489105.html",
+      "source": "量子位",
+      "source_id": "qbitai",
+      "published": "2026-09-14T09:47:07+00:00",
+      "category": "industry",
+      "priority": "low",
+      "summary": "蚂蚁启动首届灵波具身大模型挑战赛，推广LingBot-VLA。",
+      "why": "具身智能比赛，与底层算子优化或生成模型核心方向关联较弱。",
+      "tags": [
+        "具身智能",
+        "比赛",
+        "蚂蚁"
+      ]
+    },
+    {
+      "id": "717f7d440fae550a",
+      "title": "Artificial intelligence debate explodes: From Anthropic warnings to Palantir optimism, what are tech bros... - Moneycontrol.com",
+      "link": "https://news.google.com/rss/articles/CBMiigJBVV95cUxQOHVPcXluZVdlVktxWGtNRTYzM0t1OGdiZWFxRk9kR0JqRFIybFNVRjJyTDE3bUoyMVdnZG94eE5ZLS1LVTlsTTRURUNROXl0bE5MQkxfVEc5QmRsOG1OTmt0UnFxY1l2SjU4QmlRQmt3ZEZaRUNVdW92d1d2QktRc3V0U3djdVlLSUFETG82S0RxUjVBSWVVY3pPbFNVU2pxS1M3dF9Fek5kZWljcXZxSUV2cWNZU3NHdXRGbW5oNjhkV0N2c1FEa05CS2J3SnJVRjNRVGZBN1FRU2ZUeHlGT1VjUW5McF9CVUlDb0RsZUxNX0l2cXl2ekdBcXNta0pHZUtCMzRfMlNXZ9IBigJBVV95cUxQOHVPcXluZVdlVktxWGtNRTYzM0t1OGdiZWFxRk9kR0JqRFIybFNVRjJyTDE3bUoyMVdnZG94eE5ZLS1LVTlsTTRURUNROXl0bE5MQkxfVEc5QmRsOG1OTmt0UnFxY1l2SjU4QmlRQmt3ZEZaRUNVdW92d1d2QktRc3V0U3djdVlLSUFETG82S0RxUjVBSWVVY3pPbFNVU2pxS1M3dF9Fek5kZWljcXZxSUV2cWNZU3NHdXRGbW5oNjhkV0N2c1FEa05CS2J3SnJVRjNRVGZBN1FRU2ZUeHlGT1VjUW5McF9CVUlDb0RsZUxNX0l2cXl2ekdBcXNta0pHZUtCMzRfMlNXZw?oc=5",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-09-14T09:17:53+00:00",
+      "category": "industry",
+      "priority": "low",
+      "summary": "媒体探讨从 Anthropic 的警告到 Palantir 的乐观态度引发的 AI 辩论。",
+      "why": "泛泛的行业观点讨论，缺乏技术深度。",
+      "tags": [
+        "行业观点",
+        "AI辩论"
+      ]
+    },
+    {
+      "id": "ef27b13bfce5a88d",
+      "title": "恒指涨，恒科跌，汽车、生物医药爆发；光通信、半导体、大模型下挫，智谱跌超9%，兆易创新跌超7% | 港股收盘 - 每日经济新闻",
+      "link": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE14Wm1GZ2NoaUN4UC1QRWw0blRfOUpQSkZBS196NFB2dTdLajBEZmxxeFd1ZC0xV0JQUEd4QjZyLUJOSy1Nak8zOHBoYzhQaEhiZmVqejVyZEphSXVHc2ZsQU5VOFZCQQ?oc=5",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-09-14T09:01:00+00:00",
+      "category": "industry",
+      "priority": "low",
+      "summary": "港股收盘大模型及半导体板块下挫，智谱跌超9%。",
+      "why": "纯股市行情波动，与技术研发和性能优化无关。",
+      "tags": [
+        "股市",
+        "行业动态"
+      ]
+    },
+    {
+      "id": "10f9aeb3bbb07ce2",
+      "title": "曝DeepSeek来了位90后CFO - 华尔街见闻",
+      "link": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE16d250UXc5cXRrYkFlVjhlN0s3TV80bGZKaUdrZ1NLYkw4T0w4T0tybW5FRGpuc3UxeXRjbFQweTlmMmZtRWVCMm40TFBmUGdMbnBF?oc=5",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-09-14T07:52:21+00:00",
+      "category": "people",
+      "priority": "low",
+      "summary": "传闻 DeepSeek 迎来一位 90 后首席财务官。",
+      "why": "公司人事变动，与技术无关。",
+      "tags": [
+        "DeepSeek",
+        "人事变动"
+      ]
+    },
+    {
+      "id": "239e04710b44fddc",
+      "title": "【中国新闻周刊】不差钱的DeepSeek，冲刺上市？ - fj.chinanews.com.cn",
+      "link": "https://news.google.com/rss/articles/CBMickFVX3lxTE9pRUh2VF9PT0pqQ3FtbzctTVFmRGdVNjFKOExNazMtYTRjeC1QRHVKTzRIOFY0UmhiOWJqWldPbGYtVzJ1aXhOaFFpRU9la25ta3dTczN3b0NmcTlUUjNidG4wTzJYSVNYQlc5SFVZQW9aUQ?oc=5",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-09-14T05:53:21+00:00",
+      "category": "industry",
+      "priority": "low",
+      "summary": "媒体探讨资金充裕的 DeepSeek 是否正在冲刺上市。",
+      "why": "资本市场传闻，不涉及技术细节。",
+      "tags": [
+        "DeepSeek",
+        "上市传闻"
+      ]
+    },
+    {
+      "id": "58576efb5567979f",
+      "title": "DeepSeek灰度测试语音对话功能 App新增四种朗读音色 - 观点网",
+      "link": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE1FZDNfb3pHNlV5RGdTdk53dDRCTXpxRzc4WjUtbVNEM2dtYmlQMkI0MHBITldxclRhdTZKNTZFaVY2Sm5BR2dkdm5CSEMta2VWbmE2eXNPSklmaFpFMHNxbUZR?oc=5",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-09-14T05:28:18+00:00",
+      "category": "release",
+      "priority": "low",
+      "summary": "DeepSeek App 灰度测试语音对话功能，新增四种朗读音色。",
+      "why": "C端应用层面的小功能更新，可跳过。",
+      "tags": [
+        "DeepSeek",
+        "语音对话",
+        "产品更新"
+      ]
+    },
+    {
+      "id": "85507002059feabb",
+      "title": "智谱完成约50亿美元融资：用于扩大算力供给等用途 - Pchome电脑之家",
+      "link": "https://news.google.com/rss/articles/CBMiVEFVX3lxTFBWczJnai1sb3VOX1haWTg1b1pxWlZJNVN0U0prak13Z1kwNzdwZDhNMkpZbzNmM3dNcjhpRFhSdUhINUJKRmRjVjYwNjd6SXR4R29BRQ?oc=5",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-09-14T04:22:50+00:00",
+      "category": "industry",
+      "priority": "low",
+      "summary": "智谱完成约50亿美元融资用于扩大算力供给。",
+      "why": "重复报道，已在另一条智谱融资新闻中说明。",
+      "tags": [
+        "智谱",
+        "融资"
+      ]
+    },
+    {
+      "id": "fd344259423e1d78",
+      "title": "港股大模型“双雄”齐重挫 智谱跌超10% MINIMAX跌超6% - 东方财富",
+      "link": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE5Wc2Zyc292Vy1pekY5V0g4dHZNaTBTZnE2RjFlczFRdjVhTjUyOWNhQUViYVFxdjFjSzItVnhTVTFNVHgtazdycHpLeFUzN3pzOXpaOFpKWDI3cUF4Q3pmUw?oc=5",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-09-14T01:49:54+00:00",
+      "category": "industry",
+      "priority": "low",
+      "summary": "港股大模型公司智谱和 MiniMax 股价遭遇重挫。",
+      "why": "纯股市波动新闻，与技术研发无关。",
+      "tags": [
+        "股市",
+        "国内大模型"
+      ]
+    },
+    {
+      "id": "226fc69a104e88ef",
+      "title": "Crypto Hack Fears Grow Around Anthropic’s Possible Claude Fable Release - Yellow.com",
+      "link": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxNZ01NUmpQcm9ZRjJpUWdhU3dJbUx4bTltT283eW5wSWJlMU5TLUZMalNaS2xKeWg4cmNDT1N2czlqSjlKX0M2Z2VmbWotVmNSZDJ2NzVrUFp4R1FSay1RTTdhRTJreVh2bVNIcjBEb2kzcjA2b2ZDeXlpT3lKZmJYM29qS01LRGdwMXpmcFFSd1laaGx6SDJad2ktdWlXakxfOTdfWnFieGFkTHV1MHhxajhUMnVMU0RCMjJyRko2ZVJNYUE?oc=5",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-09-14T01:27:56+00:00",
+      "category": "industry",
+      "priority": "low",
+      "summary": "围绕 Anthropic 可能发布的 Claude Fable，加密货币黑客攻击的担忧加剧。",
+      "why": "涉及加密货币安全的行业传闻，与你的技术方向无关。",
+      "tags": [
+        "Anthropic",
+        "安全传闻"
+      ]
+    },
+    {
+      "id": "9aea2dc5bf46d2a6",
+      "title": "WAIC现场，国产大模型集体“摸高” - 第一财经",
+      "link": "https://news.google.com/rss/articles/CBMiU0FVX3lxTFA4VmpSM3l5c3lvQ2tKZjVrRWNjUk9lODNOelNicS1CWEZIc0Q5WnZGU20yRnFXWnQxeWU1TVhVUWdfbjVxNFJLMVgzM2RwM1lUd2xR?oc=5",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-09-13T21:38:16+00:00",
+      "category": "industry",
+      "priority": "low",
+      "summary": "WAIC大会现场国产大模型集体展示最新进展。",
+      "why": "展会泛泛报道，缺乏具体的技术细节或硬核发布。",
+      "tags": [
+        "WAIC",
+        "展会"
+      ]
+    }
+  ]
+}
