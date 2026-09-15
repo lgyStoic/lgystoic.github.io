@@ -130,15 +130,31 @@ jobs:
         run: set -o pipefail; python3 tools/build.py 2>&1 | tee -a radar/data/last-run.log
 
       - name: 提交并推送
+        # 运行期间 master 可能已有新提交（合并 PR）。生成的 HTML 会和它们冲突，
+        # 所以不 rebase 生成物：只保留本次产出的数据，回到最新 master 重新渲染再提交。
         run: |
           git config user.name "radar-bot"
           git config user.email "radar-bot@users.noreply.github.com"
-          git add -A
-          if git diff --cached --quiet; then
-            echo "没有变化，跳过提交"
-            exit 0
-          fi
-          DATE=$(TZ=Asia/Shanghai date +%F)
-          git commit -m "radar: ${DATE}"
-          git pull --rebase origin master
-          git push origin HEAD:master
+          for attempt in 1 2 3; do
+            git add -A
+            if git diff --cached --quiet; then
+              echo "没有变化，跳过提交"
+              exit 0
+            fi
+            DATE=$(TZ=Asia/Shanghai date +%F)
+            git commit -q -m "radar: ${DATE}"
+            if git push origin HEAD:master; then
+              exit 0
+            fi
+            echo "推送被拒（master 有新提交），第 ${attempt} 次：保留数据，回到最新 master 重新渲染"
+            rm -rf /tmp/radar-out && mkdir -p /tmp/radar-out
+            cp -r radar/data /tmp/radar-out/data
+            [ -d radar/checks ] && cp -r radar/checks /tmp/radar-out/checks
+            git fetch origin master
+            git reset -q --hard origin/master
+            rm -rf radar/data && cp -r /tmp/radar-out/data radar/data
+            [ -d /tmp/radar-out/checks ] && rm -rf radar/checks && cp -r /tmp/radar-out/checks radar/checks
+            python3 tools/build.py
+          done
+          echo "连续三次都没推上去"
+          exit 1
