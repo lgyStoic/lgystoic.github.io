@@ -298,7 +298,9 @@
       "base": "https://www.hkstp.org",
       "exclude_pattern": "/events/?$",
       "default_type": "conference",
-      "default_city": "香港"
+      "default_city": "香港",
+      "disabled": true,
+      "disabled_reason": "2026-09-16 自动停用：连续 3 天失败（HTTP Error 404: Not Found）"
     },
     {
       "id": "cyberport-events",
@@ -308,7 +310,9 @@
       "link_pattern": "^https://www\\.cyberport\\.hk/[a-z_]+/about_cyberport/cyberport_events/[a-z0-9_-]+",
       "base": "https://www.cyberport.hk",
       "default_type": "conference",
-      "default_city": "香港"
+      "default_city": "香港",
+      "disabled": true,
+      "disabled_reason": "2026-09-16 自动停用：连续 3 天失败（HTTP Error 403: Forbidden）"
     },
     {
       "id": "tencent-cloud-salon",
@@ -329,7 +333,9 @@
       "base": "https://developer.aliyun.com",
       "exclude_pattern": "/activity/?$",
       "default_type": "talk",
-      "default_city": "线上"
+      "default_city": "线上",
+      "disabled": true,
+      "disabled_reason": "2026-09-16 自动停用：连续 3 天失败（HTTP Error 404: Not Found）"
     },
     {
       "id": "hdb-shenzhen",
@@ -360,7 +366,9 @@
       "base": "https://www.cuhk.edu.cn",
       "exclude_pattern": "/events/?$",
       "default_type": "talk",
-      "default_city": "深圳"
+      "default_city": "深圳",
+      "disabled": true,
+      "disabled_reason": "2026-09-16 自动停用：连续 3 天失败（<urlopen error [SSL: SSLV3_ALERT_HANDSHAKE_FAILURE] sslv3 al）"
     },
     {
       "id": "bagevent-shenzhen",
@@ -391,7 +399,9 @@
       "base": "https://developer.huaweicloud.com",
       "exclude_pattern": "/activity/?$",
       "default_type": "talk",
-      "default_city": "线上"
+      "default_city": "线上",
+      "disabled": true,
+      "disabled_reason": "2026-09-16 自动停用：连续 3 天失败（HTTP Error 404: Not Found）"
     },
     {
       "id": "infoq-conferences",
@@ -413,7 +423,9 @@
       "base": "https://huodong.csdn.net",
       "exclude_pattern": "csdn\\.net/?$",
       "default_type": "talk",
-      "default_city": "线上"
+      "default_city": "线上",
+      "disabled": true,
+      "disabled_reason": "2026-09-16 自动停用：连续 3 天失败（<urlopen error [Errno -2] Name or service not known>）"
     },
     {
       "id": "jiqizhixin-events",
@@ -455,7 +467,9 @@
       "link_pattern": "^https://www\\.szu\\.edu\\.cn/info/\\d+/\\d+\\.htm",
       "base": "https://www.szu.edu.cn",
       "default_type": "talk",
-      "default_city": "深圳"
+      "default_city": "深圳",
+      "disabled": true,
+      "disabled_reason": "2026-09-16 自动停用：连续 3 天失败（HTTP Error 404: Not Found）"
     },
     {
       "id": "hitsz-lectures",
@@ -465,7 +479,9 @@
       "link_pattern": "^https://www\\.hitsz\\.edu\\.cn/article/view/id-\\d+\\.html",
       "base": "https://www.hitsz.edu.cn",
       "default_type": "talk",
-      "default_city": "深圳"
+      "default_city": "深圳",
+      "disabled": true,
+      "disabled_reason": "2026-09-16 自动停用：连续 3 天失败（HTTP Error 404: Not Found）"
     },
     {
       "id": "pcl-news",
@@ -475,7 +491,9 @@
       "link_pattern": "^https://www\\.pcl\\.ac\\.cn/html/\\d+/[A-Za-z0-9_-]+\\.html",
       "base": "https://www.pcl.ac.cn",
       "default_type": "talk",
-      "default_city": "深圳"
+      "default_city": "深圳",
+      "disabled": true,
+      "disabled_reason": "2026-09-16 自动停用：连续 3 天失败（HTTP Error 508: ）"
     },
     {
       "id": "idea-news",
@@ -485,7 +503,9 @@
       "link_pattern": "^https://www\\.idea\\.edu\\.cn/(news|event|research)/[A-Za-z0-9_-]+\\.html",
       "base": "https://www.idea.edu.cn",
       "default_type": "talk",
-      "default_city": "深圳"
+      "default_city": "深圳",
+      "disabled": true,
+      "disabled_reason": "2026-09-16 自动停用：连续 3 天失败（HTTP Error 404: Not Found）"
     },
     {
       "id": "gnews-univ",
