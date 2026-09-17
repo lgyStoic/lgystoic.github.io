@@ -7,6 +7,7 @@
     "notes",
     "radar",
     "events",
+    "jobs",
     "guides",
     "about"
   ],
@@ -50,6 +51,16 @@
       "status": "events",
       "script": "tools/events.py",
       "nav_label": "活动"
+    },
+    {
+      "id": "jobs",
+      "role": "看",
+      "name": "工作机会",
+      "path": "/radar/jobs/",
+      "blurb": "深圳优先，兼顾远程与海外；AI Infra、DiT、端侧部署、训推加速。",
+      "status": null,
+      "script": "tools/jobs.py",
+      "nav_label": "工作"
     },
     {
       "id": "inbox",

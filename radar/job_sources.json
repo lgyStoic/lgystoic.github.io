@@ -1,0 +1,110 @@
+{
+  "profile": {
+    "title_terms": [
+      "engineer",
+      "scientist",
+      "architect",
+      "research",
+      "工程师",
+      "研究"
+    ],
+    "directions": {
+      "AI Infra": [
+        "ai infrastructure",
+        "ml infrastructure",
+        "gpu",
+        "cuda",
+        "triton",
+        "ml systems",
+        "distributed systems"
+      ],
+      "DiT": [
+        "diffusion",
+        "dit",
+        "video generation",
+        "diffusion transformer"
+      ],
+      "端侧部署": [
+        "edge ai",
+        "on-device",
+        "tensorrt",
+        "quantization",
+        "embedded",
+        "端侧"
+      ],
+      "训推加速": [
+        "inference",
+        "training infrastructure",
+        "distributed training",
+        "kernel",
+        "vllm",
+        "sglang",
+        "model optimization"
+      ]
+    },
+    "title_focus": [
+      "infrastructure",
+      "infra",
+      "inference",
+      "training",
+      "pretraining",
+      "diffusion",
+      "dit",
+      "gpu",
+      "cuda",
+      "kernel",
+      "compiler",
+      "performance",
+      "optimization",
+      "on-device",
+      "edge",
+      "embedded",
+      "tensorrt",
+      "ml systems",
+      "distributed systems",
+      "machine learning",
+      "deep learning",
+      "ml networking",
+      "scaling",
+      "cluster",
+      "accelerat"
+    ],
+    "exclude_title": [
+      "recruit",
+      "sales",
+      "marketing",
+      "economist",
+      "security",
+      "gtm",
+      "user experience"
+    ]
+  },
+  "sources": [
+    {
+      "id": "nvidia",
+      "name": "NVIDIA",
+      "kind": "workday",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/wday/cxs/nvidia/NVIDIAExternalCareerSite/jobs",
+      "base": "https://nvidia.wd5.myworkdayjobs.com/en-US/NVIDIAExternalCareerSite",
+      "queries": [
+        "Shenzhen",
+        "inference",
+        "diffusion",
+        "edge",
+        "training"
+      ]
+    },
+    {
+      "id": "anthropic",
+      "name": "Anthropic",
+      "kind": "greenhouse",
+      "url": "https://boards-api.greenhouse.io/v1/boards/anthropic/jobs"
+    },
+    {
+      "id": "togetherai",
+      "name": "Together AI",
+      "kind": "greenhouse",
+      "url": "https://boards-api.greenhouse.io/v1/boards/togetherai/jobs"
+    }
+  ]
+}

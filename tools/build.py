@@ -1059,6 +1059,7 @@ def write_feed(notes: list[dict]) -> None:
 def write_sitemap(notes: list[dict], days: list[dict], guides: list[dict] | None = None) -> None:
     latest = notes[0].get("updated") if notes else None
     urls = [(f"{SITE_URL}/", latest), (f"{SITE_URL}/notes/", latest), (f"{SITE_URL}/about/", None)]
+    urls.append((f"{SITE_URL}/radar/jobs/", None))
     urls += [(SITE_URL + note_href(n, from_root=False), n.get("updated")) for n in notes]
     pub = [g for g in (guides or []) if g.get("status") == "published"]
     if pub:
@@ -1083,6 +1084,8 @@ def write_sitemap(notes: list[dict], days: list[dict], guides: list[dict] | None
 
 
 def main() -> None:
+    from jobs import render as render_jobs
+    inject(ROOT / "radar/jobs/index.html", {"jobs": render_jobs()})
     notes = load_notes()
     latest = notes[0].get("updated", "") if notes else ""
     radar_config, days = load_radar()

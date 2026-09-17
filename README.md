@@ -149,3 +149,14 @@ GitHub Pages：Deploy from a branch，`master` 分支，`/ (root)` 目录，
 
 MIT 6.S184 页面是个人学习整理，原课程网站是 <https://diffusion.csail.mit.edu/>。
 公开发布时请保留来源说明；不确定课程图表是否允许转载的，建议换成自己的图解或只留文字总结。
+
+## 工作机会（/radar/jobs/）
+
+随现有 radar Actions 运行 `python3 tools/jobs.py`，随后 `tools/build.py` 渲染页面。
+使用 NVIDIA Workday、Anthropic 与 Together AI Greenhouse 官方招聘列表，无需新增密钥。
+`radar/job_sources.json` 管理来源、技术方向、标题过滤；深圳优先，兼顾远程及其他地区。
+规则匹配给出命中的技术词，不等于个人履历匹配或录用概率。经验、薪资、签证和远程地域限制需看原文。
+NVIDIA 当前按配置关键词搜索，匹配依据为列表标题；多地点职位可能包含深圳，需要原文确认，尚未全量抓详情。
+来源成功时用当前列表替换旧结果；失败则保留旧结果并标记待复核。页面显示各源状态，全部失败时脚本返回失败码。
+数据在 `radar/data/jobs.json`，复用现有推送重试的数据保护逻辑；首页、导航与 sitemap 均有入口。
+本地验证：`python3 -m unittest discover -s tests`；试抓且不落盘：`python3 tools/jobs.py --dry-run`。
