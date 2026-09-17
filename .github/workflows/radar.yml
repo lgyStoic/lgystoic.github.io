@@ -109,6 +109,10 @@ jobs:
         shell: bash
         run: set -o pipefail; python3 tools/events.py 2>&1 | tee -a radar/data/last-run.log
 
+      - name: 查找匹配工作
+        continue-on-error: true
+        shell: bash
+        run: set -o pipefail; python3 tools/jobs.py 2>&1 | tee -a radar/data/last-run.log
       - name: 整理私有收件箱（未配置 INBOX_TOKEN 时跳过）
         continue-on-error: true
         env:
