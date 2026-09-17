@@ -19,7 +19,8 @@ jobs:
         env:
           ADZUNA_APP_ID: ${{ secrets.ADZUNA_APP_ID }}
           ADZUNA_APP_KEY: ${{ secrets.ADZUNA_APP_KEY }}
-        run: python3 tools/jobs.py && python3 tools/build.py
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: python3 tools/jobs.py && python3 tools/jobs_ai.py && python3 tools/build.py
       - name: 提交结果
         run: |
           git config user.name radar-bot

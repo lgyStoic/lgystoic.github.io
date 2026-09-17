@@ -69,6 +69,20 @@ def fetch_source(source):
         payload = request(source['url'])
         for j in payload.get('jobs', []) if isinstance(payload, dict) else []:
             rows.append({'title': j.get('title', ''), 'url': j.get('jobUrl') or j.get('applyUrl', ''), 'location': j.get('location', ''), 'description': plain(j.get('description', '')), 'source_updated': j.get('publishedAt', '')})
+    elif source['kind'] == 'smartrecruiters':
+        payload = request(source['url'])
+        for j in payload.get('content', []) if isinstance(payload, dict) else []:
+            rows.append({'title': j.get('name', ''), 'url': j.get('ref', ''), 'location': (j.get('location') or {}).get('city', ''), 'description': '', 'source_updated': j.get('releasedDate', '')})
+    elif source['kind'] == 'workable':
+        payload = request(source['url'])
+        records = payload.get('jobs', []) if isinstance(payload, dict) else []
+        for j in records:
+            loc = j.get('location') or {}
+            rows.append({'title': j.get('title', ''), 'url': j.get('url', ''), 'location': loc.get('location_str', '') if isinstance(loc, dict) else str(loc), 'description': plain(j.get('description', '')), 'source_updated': j.get('created_at', '')})
+    elif source['kind'] == 'recruitee':
+        payload = request(source['url'])
+        for j in payload.get('offers', []) if isinstance(payload, dict) else []:
+            rows.append({'title': j.get('title', ''), 'url': j.get('careers_url') or j.get('url', ''), 'location': j.get('location', ''), 'description': plain(j.get('description', '')), 'source_updated': j.get('published_at', '')})
     elif source['kind'] == 'workday':
         for query in source['queries']:
             offset = 0
