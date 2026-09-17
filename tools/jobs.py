@@ -189,6 +189,12 @@ def collect(config, old, fetcher=fetch_source):
                         if updated:
                             updated.pop('description', None)
                             jobs[updated['url']] = dict(updated, stale=True)
+    # External adapters run after this collector. Keep their last successful rows
+    # until the adapter can refresh them, so transient network failures do not
+    # empty the page.
+    for previous in old.get('jobs', []):
+        if previous.get('source') in ('ats-jobs', 'liepin-shenzhen') and previous.get('url') not in jobs:
+            jobs[previous['url']] = dict(previous, stale=True)
     ordered = sorted(jobs.values(), key=lambda j: (j['region'] not in ('深圳', '香港'), j['region'] != '深圳', -j['score'], j['company'], j['title']))
     limited, counts = [], {}
     for job in ordered:
