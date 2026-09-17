@@ -1713,11 +1713,11 @@ main.wrap {
 .guide-support .support-note { margin-top: 8px; color: var(--muted); font-size: 0.82rem; }
 .support-methods { display: flex; gap: 14px; }
 .support-method { margin: 0; text-align: center; }
-.support-method img { display: block; width: 132px; height: 132px; object-fit: contain; border-radius: 8px; background: #fff; }
+.support-method img { display: block; width: 180px; height: auto; object-fit: contain; border-radius: 8px; background: #fff; }
 .support-method figcaption { margin-top: 5px; color: var(--muted); font-size: 0.78rem; }
 
 @media (max-width: 640px) {
   .guide-support { grid-template-columns: 1fr; }
   .support-methods { justify-content: center; }
-  .support-method img { width: min(36vw, 132px); height: min(36vw, 132px); }
+  .support-method img { width: min(58vw, 180px); height: auto; }
 }
