@@ -7,7 +7,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from urllib.parse import urlparse
 
-from jobs import CONFIG, DATA, match
+from jobs import CONFIG, DATA, match, limit_jobs
 
 ROOT = Path(__file__).resolve().parent.parent
 
@@ -45,7 +45,7 @@ def main():
     data = json.loads(DATA.read_text()) if DATA.exists() else {'jobs': [], 'sources': []}
     files = [] if args.failed else sorted(Path(args.directory).glob('*.json'))
     if not files:
-        data.setdefault('sources', []).append({'name': '猎聘 · 深圳', 'ok': False, 'error': 'ExternalToolError'})
+        data.setdefault('sources', []).append({'name': '猎聘 · 深圳/北京/上海/杭州/广州', 'ok': False, 'error': 'ExternalToolError'})
         DATA.write_text(json.dumps(data, ensure_ascii=False, indent=2) + '\n')
         return
 
@@ -53,7 +53,7 @@ def main():
     now = datetime.now(timezone.utc).isoformat(timespec='seconds')
     # A successful refresh replaces the previous Liepin slice. This also lets
     # tightened quality rules remove old anonymous recruiter rows immediately.
-    merged = {j['url']: j for j in data.get('jobs', []) if j.get('source') != 'liepin-shenzhen'}
+    merged = {j['url']: j for j in data.get('jobs', []) if j.get('source') not in ('liepin', 'liepin-shenzhen')}
     fetched = matched = 0
     for path in files:
         try:
@@ -70,11 +70,11 @@ def main():
             row = {
                 'title': j.get('title', ''),
                 'url': url,
-                'location': j.get('location') or '深圳',
+                'location': j.get('location') or '',
                 'description': ' '.join(str(v or '') for v in (j.get('salary'), j.get('workYears'), j.get('eduLevel'), j.get('compIndustry'))),
                 'source_updated': j.get('date') or '',
                 'company': j.get('company') or '猎聘企业未公开',
-                'source': 'liepin-shenzhen',
+                'source': 'liepin',
                 'listing_type': 'direct' if direct else 'headhunter',
             }
             if not url.startswith('https://'):
@@ -85,20 +85,14 @@ def main():
                 merged[url] = dict(result, last_seen=now, stale=False)
                 matched += 1
 
-    ordered = sorted(merged.values(), key=lambda j: (j['region'] not in ('深圳', '香港'), j['region'] != '深圳', -j['score'], j['company'], j['title']))
-    limited, counts = [], {}
-    for job in ordered:
-        if counts.get(job['company'], 0) >= profile.get('max_per_company', 3):
-            continue
-        counts[job['company']] = counts.get(job['company'], 0) + 1
-        limited.append(job)
+    limited = limit_jobs(merged.values(), profile)
     data['jobs'] = limited
-    direct_count = sum(j.get('source') == 'liepin-shenzhen' and j.get('listing_type') != 'headhunter' for j in limited)
-    headhunter_count = sum(j.get('source') == 'liepin-shenzhen' and j.get('listing_type') == 'headhunter' for j in limited)
-    data.setdefault('sources', []).append({'name': '猎聘 · 深圳', 'ok': True, 'fetched': fetched, 'matched': matched,
+    direct_count = sum(j.get('source') == 'liepin' and j.get('listing_type') != 'headhunter' for j in limited)
+    headhunter_count = sum(j.get('source') == 'liepin' and j.get('listing_type') == 'headhunter' for j in limited)
+    data.setdefault('sources', []).append({'name': '猎聘 · 深圳/北京/上海/杭州/广州', 'ok': True, 'fetched': fetched, 'matched': matched,
                                            'direct': direct_count, 'headhunter': headhunter_count})
     DATA.write_text(json.dumps(data, ensure_ascii=False, indent=2) + '\n')
-    print(f'猎聘深圳：原始 {fetched}，匹配 {matched}')
+    print(f'猎聘：原始 {fetched}，匹配 {matched}')
 
 
 if __name__ == '__main__':

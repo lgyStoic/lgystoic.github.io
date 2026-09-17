@@ -10,7 +10,12 @@
       "架构师",
       "算法",
       "开发",
-      "技术专家"
+      "技术专家",
+      "研发",
+      "专家",
+      "负责人",
+      "科学家",
+      "实习"
     ],
     "directions": {
       "AI Infra": [
@@ -20,15 +25,41 @@
         "cuda",
         "triton",
         "ml systems",
-        "distributed systems"
-        ,"ai tools","ai/ml","ai engineer","分布式","算力","基础设施"
+        "distributed systems",
+        "ai tools",
+        "ai/ml",
+        "ai engineer",
+        "分布式",
+        "算力",
+        "基础设施",
+        "deep learning",
+        "machine learning",
+        "llm",
+        "大模型",
+        "深度学习",
+        "机器学习",
+        "异构",
+        "昇腾",
+        "hpc",
+        "高性能计算",
+        "并行计算",
+        "ai系统",
+        "ai 系统"
       ],
       "DiT": [
         "diffusion",
         "dit",
         "video generation",
-        "diffusion transformer"
-        ,"扩散模型","视频生成"
+        "diffusion transformer",
+        "扩散模型",
+        "视频生成",
+        "生成模型",
+        "多模态",
+        "aigc",
+        "文生图",
+        "文生视频",
+        "生图",
+        "视频模型"
       ],
       "端侧部署": [
         "edge ai",
@@ -36,8 +67,14 @@
         "tensorrt",
         "quantization",
         "embedded",
-        "端侧"
-        ,"量化","嵌入式","移动端"
+        "端侧",
+        "量化",
+        "嵌入式",
+        "移动端",
+        "部署",
+        "npu",
+        "芯片",
+        "soc"
       ],
       "训推加速": [
         "inference",
@@ -46,8 +83,23 @@
         "kernel",
         "vllm",
         "sglang",
-        "model optimization"
-        ,"推理","训练","加速","算子","性能优化","编译器"
+        "model optimization",
+        "推理",
+        "训练",
+        "加速",
+        "算子",
+        "性能优化",
+        "编译器",
+        "预训练",
+        "后训练",
+        "微调",
+        "rlhf",
+        "强化学习",
+        "训推",
+        "推理引擎",
+        "serving",
+        "吞吐",
+        "显存"
       ]
     },
     "title_focus": [
@@ -75,10 +127,38 @@
       "ml networking",
       "scaling",
       "cluster",
-      "accelerat"
-      ,"ai tools","ai/ml","ai engineer","推理","训练","加速","算法","架构","大模型","端侧","编译","算子","性能","分布式","算力"
+      "accelerat",
+      "ai tools",
+      "ai/ml",
+      "ai engineer",
+      "推理",
+      "训练",
+      "加速",
+      "算法",
+      "架构",
+      "大模型",
+      "端侧",
+      "编译",
+      "算子",
+      "性能",
+      "分布式",
+      "算力",
+      "深度学习",
+      "机器学习",
+      "llm",
+      "模型",
+      "昇腾",
+      "异构",
+      "部署",
+      "ai",
+      "hpc",
+      "高性能",
+      "并行",
+      "系统研发"
     ],
-    "excluded_companies": ["Anthropic"],
+    "excluded_companies": [
+      "Anthropic"
+    ],
     "max_per_company": 3,
     "exclude_title": [
       "recruit",
@@ -87,16 +167,49 @@
       "economist",
       "security",
       "gtm",
-      "user experience"
-    ]
+      "user experience",
+      "销售",
+      "招聘",
+      "市场",
+      "运营",
+      "产品经理",
+      "hr",
+      "法务",
+      "财务"
+    ],
+    "max_per_company_cn": 8
   },
   "search_links": [
-    {"name": "LinkedIn · 深圳 / 香港", "scope": "AI Infra / GPU / 推理", "url": "https://www.linkedin.com/jobs/search/?keywords=AI%20infrastructure%20GPU%20inference&location=Shenzhen%2C%20Hong%20Kong"},
-    {"name": "LinkedIn · 远程", "scope": "ML systems / inference", "url": "https://www.linkedin.com/jobs/search/?keywords=ML%20systems%20inference&f_WT=2"},
-    {"name": "BOSS 直聘 · 深圳", "scope": "AI 算力 / 推理 / CUDA", "url": "https://www.zhipin.com/web/geek/job?query=AI%20推理%20CUDA&city=100026"},
-    {"name": "猎聘 · 深圳", "scope": "AI Infra / 大模型", "url": "https://www.liepin.com/zhaopin/?key=AI%20Infra&dqs=040"},
-    {"name": "拉勾 · 深圳", "scope": "GPU / 算子 / 推理", "url": "https://www.lagou.com/wn/jobs?kd=GPU%20推理&city=深圳"},
-    {"name": "Indeed · 远程", "scope": "ML infrastructure", "url": "https://www.indeed.com/jobs?q=machine+learning+infrastructure+inference&l=Remote"}
+    {
+      "name": "LinkedIn · 深圳 / 香港",
+      "scope": "AI Infra / GPU / 推理",
+      "url": "https://www.linkedin.com/jobs/search/?keywords=AI%20infrastructure%20GPU%20inference&location=Shenzhen%2C%20Hong%20Kong"
+    },
+    {
+      "name": "LinkedIn · 远程",
+      "scope": "ML systems / inference",
+      "url": "https://www.linkedin.com/jobs/search/?keywords=ML%20systems%20inference&f_WT=2"
+    },
+    {
+      "name": "BOSS 直聘 · 深圳",
+      "scope": "AI 算力 / 推理 / CUDA",
+      "url": "https://www.zhipin.com/web/geek/job?query=AI%20推理%20CUDA&city=100026"
+    },
+    {
+      "name": "猎聘 · 深圳",
+      "scope": "AI Infra / 大模型",
+      "url": "https://www.liepin.com/zhaopin/?key=AI%20Infra&dqs=040"
+    },
+    {
+      "name": "拉勾 · 深圳",
+      "scope": "GPU / 算子 / 推理",
+      "url": "https://www.lagou.com/wn/jobs?kd=GPU%20推理&city=深圳"
+    },
+    {
+      "name": "Indeed · 远程",
+      "scope": "ML infrastructure",
+      "url": "https://www.indeed.com/jobs?q=machine+learning+infrastructure+inference&l=Remote"
+    }
   ],
   "sources": [
     {
@@ -113,6 +226,9 @@
       "base": "https://nvidia.wd5.myworkdayjobs.com/en-US/NVIDIAExternalCareerSite",
       "queries": [
         "Shenzhen",
+        "Shanghai",
+        "Beijing",
+        "China",
         "inference",
         "diffusion",
         "edge",
@@ -131,8 +247,18 @@
       "kind": "greenhouse",
       "url": "https://boards-api.greenhouse.io/v1/boards/togetherai/jobs"
     },
-    {"id": "modal-ashby", "name": "Modal · Ashby", "kind": "ashby", "url": "https://api.ashbyhq.com/posting-api/job-board/modal"},
-    {"id": "fireworks-ashby", "name": "Fireworks AI · Ashby", "kind": "ashby", "url": "https://api.ashbyhq.com/posting-api/job-board/fireworks"},
+    {
+      "id": "modal-ashby",
+      "name": "Modal · Ashby",
+      "kind": "ashby",
+      "url": "https://api.ashbyhq.com/posting-api/job-board/modal"
+    },
+    {
+      "id": "fireworks-ashby",
+      "name": "Fireworks AI · Ashby",
+      "kind": "ashby",
+      "url": "https://api.ashbyhq.com/posting-api/job-board/fireworks"
+    },
     {
       "id": "huawei-china-ai",
       "name": "华为",
@@ -140,7 +266,14 @@
       "url": "https://career.huawei.com/reccampportal/portal5/social-recruitment-ai.html",
       "base": "https://career.huawei.com/reccampportal/portal5/",
       "location": "中国 / 深圳及其他城市",
-      "title_terms": ["AI", "推理", "训练", "昇腾", "架构", "大模型"]
+      "title_terms": [
+        "AI",
+        "推理",
+        "训练",
+        "昇腾",
+        "架构",
+        "大模型"
+      ]
     },
     {
       "id": "remotive",
@@ -179,7 +312,12 @@
       "name": "Job-Hunter · Himalayas",
       "kind": "himalayas",
       "url": "https://himalayas.app/jobs/api/search",
-      "queries": ["AI infrastructure", "GPU inference", "machine learning systems", "edge AI"]
+      "queries": [
+        "AI infrastructure",
+        "GPU inference",
+        "machine learning systems",
+        "edge AI"
+      ]
     },
     {
       "id": "boolean-tavily",
@@ -197,7 +335,12 @@
       "kind": "adzuna",
       "country": "sg",
       "where": "Singapore",
-      "queries": ["AI infrastructure", "GPU CUDA inference", "training performance", "diffusion"]
+      "queries": [
+        "AI infrastructure",
+        "GPU CUDA inference",
+        "training performance",
+        "diffusion"
+      ]
     },
     {
       "id": "adzuna-malaysia",
@@ -205,7 +348,127 @@
       "kind": "adzuna",
       "country": "my",
       "where": "Malaysia",
-      "queries": ["AI infrastructure", "GPU CUDA inference", "machine learning systems"]
+      "queries": [
+        "AI infrastructure",
+        "GPU CUDA inference",
+        "machine learning systems"
+      ]
+    },
+    {
+      "id": "tencent",
+      "name": "腾讯招聘",
+      "kind": "tencent",
+      "url": "https://careers.tencent.com/tencentcareer/api/post/Query",
+      "queries": [
+        "CUDA",
+        "推理加速",
+        "大模型训练",
+        "AI Infra",
+        "分布式训练",
+        "算子",
+        "视频生成",
+        "端侧",
+        "GPU",
+        "异构计算",
+        "混元"
+      ]
+    },
+    {
+      "id": "bytedance",
+      "name": "字节跳动",
+      "kind": "feishu",
+      "url": "https://jobs.bytedance.com",
+      "path": "experienced",
+      "queries": [
+        "CUDA",
+        "推理",
+        "训练框架",
+        "AI Infra",
+        "算子",
+        "视频生成",
+        "端侧",
+        "GPU",
+        "异构",
+        "大模型系统"
+      ]
+    },
+    {
+      "id": "zhipu",
+      "name": "智谱",
+      "kind": "feishu",
+      "url": "https://zhipu-ai.jobs.feishu.cn",
+      "path": "index",
+      "queries": [
+        "推理",
+        "训练",
+        "CUDA",
+        "Infra",
+        "算子"
+      ]
+    },
+    {
+      "id": "moonshot",
+      "name": "月之暗面",
+      "kind": "feishu",
+      "url": "https://moonshot.jobs.feishu.cn",
+      "path": "index",
+      "queries": [
+        "推理",
+        "训练",
+        "Infra",
+        "CUDA"
+      ]
+    },
+    {
+      "id": "minimax",
+      "name": "MiniMax",
+      "kind": "feishu",
+      "url": "https://minimax.jobs.feishu.cn",
+      "path": "index",
+      "queries": [
+        "推理",
+        "训练",
+        "Infra",
+        "CUDA",
+        "视频"
+      ]
+    },
+    {
+      "id": "baidu",
+      "name": "百度",
+      "kind": "baidu",
+      "url": "https://talent.baidu.com/httservice/getPostListNew",
+      "queries": [
+        "CUDA",
+        "推理",
+        "大模型训练",
+        "AI Infra",
+        "算子",
+        "GPU",
+        "异构"
+      ]
+    },
+    {
+      "id": "linkedin-cn",
+      "name": "LinkedIn · 国内城市",
+      "kind": "linkedin",
+      "url": "https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search",
+      "locations": [
+        "Shenzhen, Guangdong, China",
+        "Beijing, China",
+        "Shanghai, China",
+        "Hangzhou, Zhejiang, China",
+        "Hong Kong SAR"
+      ],
+      "queries": [
+        "CUDA",
+        "AI infrastructure",
+        "LLM inference",
+        "diffusion model",
+        "GPU kernel",
+        "推理加速",
+        "大模型 训练"
+      ]
     }
   ]
 }
