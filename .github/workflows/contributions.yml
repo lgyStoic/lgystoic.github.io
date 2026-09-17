@@ -7,7 +7,7 @@ permissions: {contents: write}
 jobs:
   roadmap:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
         with: {ref: master}
@@ -16,11 +16,13 @@ jobs:
       - name: 分析仓库并生成路线
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GEMINI_MODEL: gemini-3.1-pro-preview
+          GEMINI_FALLBACK_MODEL: gemini-2.5-pro
           GITHUB_TOKEN: ${{ github.token }}
         run: python3 tools/contributions.py && python3 tools/build.py
       - name: 提交结果
         run: |
           git config user.name radar-bot
           git config user.email radar-bot@users.noreply.github.com
-          git add radar/data/contributions.json radar/contributions/index.html sitemap.xml
+          git add radar/data/contributions.json radar/contributions/ sitemap.xml
           git diff --cached --quiet || git commit -m "roadmap: refresh contribution plan" && git push origin HEAD:master

@@ -1091,6 +1091,14 @@ def write_sitemap(notes: list[dict], days: list[dict], guides: list[dict] | None
     urls = [(f"{SITE_URL}/", latest), (f"{SITE_URL}/notes/", latest), (f"{SITE_URL}/about/", None)]
     urls.append((f"{SITE_URL}/radar/jobs/", None))
     urls.append((f"{SITE_URL}/radar/contributions/", None))
+    contribution_data = ROOT / "radar/data/contributions.json"
+    if contribution_data.exists():
+        try:
+            contribution_repos = json.loads(contribution_data.read_text()).get("repos", [])
+            from contributions import slug as contribution_slug
+            urls += [(f"{SITE_URL}/radar/contributions/{contribution_slug(r['repo'])}/", None) for r in contribution_repos]
+        except (OSError, json.JSONDecodeError, KeyError):
+            pass
     urls += [(SITE_URL + note_href(n, from_root=False), n.get("updated")) for n in notes]
     pub = [g for g in (guides or []) if g.get("status") == "published"]
     if pub:
