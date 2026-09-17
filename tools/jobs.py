@@ -102,6 +102,39 @@ def fetch_source(source):
                     break
                 if not postings or offset >= 500:
                     raise ValueError('Incomplete pagination')
+    elif source['kind'] == 'apple':
+        pattern = re.compile(r'<h3><a[^>]+href="([^"]+/details/[^"]+)"[^>]*>(.*?)</a></h3>', re.I | re.S)
+        seen = set()
+        def apple_page(page):
+            separator = '&' if '?' in source['url'] else '?'
+            raw = ''
+            for _ in range(2):
+                try:
+                    raw = request_text(f"{source['url']}{separator}page={page}")
+                    break
+                except Exception:
+                    pass
+            if not raw:
+                return []
+            found = list(pattern.finditer(raw))
+            page_rows = []
+            for index, hit in enumerate(found):
+                block = raw[hit.start():found[index + 1].start() if index + 1 < len(found) else hit.start() + 12000]
+                location_match = re.search(r'id="search-(?:store-name-container|store-name)-[^"]*"[^>]*>(.*?)</span>', block, re.I | re.S)
+                summary_match = re.search(r'job-summary[^>]*>.*?<p[^>]*>\s*<span>(.*?)</span>', block, re.I | re.S)
+                href = html.unescape(hit.group(1))
+                url = urllib.parse.urljoin(source['url'], href)
+                page_rows.append({'title': plain(hit.group(2)), 'url': url,
+                                  'location': plain(location_match.group(1)) if location_match else '深圳',
+                                  'description': plain(summary_match.group(1)) if summary_match else '',
+                                  'source_updated': ''})
+            return page_rows
+        with concurrent.futures.ThreadPoolExecutor(max_workers=2) as pages:
+            for page_rows in pages.map(apple_page, range(1, 7)):
+                for row in page_rows:
+                    if row['url'] not in seen:
+                        seen.add(row['url'])
+                        rows.append(row)
     elif source['kind'] == 'page':
         raw = urllib.request.urlopen(urllib.request.Request(source['url'], headers={'User-Agent': 'Mozilla/5.0'}), timeout=25).read().decode('utf-8', 'replace')
         for href, title in re.findall(r'<a[^>]+href=["\']([^"\']+)["\'][^>]*>(.*?)</a>', raw, re.I | re.S):
@@ -220,7 +253,9 @@ def render():
         for link in data['search_links']:
             parts.append(f'<li><a href="{esc(link["url"], quote=True)}" rel="noopener noreferrer">{esc(link["name"])}</a> · {esc(link["scope"])}</li>')
         parts.append('</ul></details>')
-    groups = [('深圳 / 香港', [j for j in data.get('jobs', []) if j['region'] in ('深圳', '香港')]), ('远程', [j for j in data.get('jobs', []) if j['region'] == '远程']), ('其他地区', [j for j in data.get('jobs', []) if j['region'] == '其他地区'])]
+    primary = [j for j in data.get('jobs', []) if j.get('listing_type') != 'headhunter']
+    headhunters = [j for j in data.get('jobs', []) if j.get('listing_type') == 'headhunter']
+    groups = [('深圳 / 香港', [j for j in primary if j['region'] in ('深圳', '香港')]), ('远程', [j for j in primary if j['region'] == '远程']), ('其他地区', [j for j in primary if j['region'] == '其他地区'])]
     for label, group in groups:
         if not group: continue
         parts.append(f'<section data-filter-group><h2>{label} <small>({len(group)})</small></h2><ul class="job-list" data-archive>')
@@ -232,6 +267,16 @@ def render():
             state = '待复核：本次来源抓取失败' if job.get('stale') else '最近在招聘列表中发现'
             parts.append(f'<p class="radar-stats">{state} · {esc(job["last_seen"][:10])}</p></article></li>')
         parts.append('</ul></section>')
+    if headhunters:
+        parts.append(f'<details class="headhunter-jobs" data-filter-group><summary>猎头代招 · 公司未公开 ({len(headhunters)})</summary>')
+        parts.append('<p>这些是猎聘匿名代招岗位，可能有价值，但无法核验实际雇主；与企业直招分开显示。</p><ul class="job-list" data-archive>')
+        for job in headhunters:
+            search = esc(' '.join([job['title'], job['company'], job['location'], *job['tags']]).lower(), quote=True)
+            parts.append(f'<li data-search="{search}" data-tags="{esc("|".join(job["tags"]), quote=True)}"><article><h2><a href="{esc(job["url"], quote=True)}" rel="noopener noreferrer">{esc(job["title"])}</a></h2>')
+            parts.append(f'<p>猎头代招 · 公司未公开 · {esc(job["location"])} · {esc(job["region"])}</p>')
+            parts.append(f'<p>{esc("；".join(job["reasons"]))}</p>')
+            parts.append(f'<p class="radar-stats">请先向猎头确认实际公司、职级与薪资 · {esc(job["last_seen"][:10])}</p></article></li>')
+        parts.append('</ul></details>')
     parts.append('<p class="empty-state" data-empty hidden>没有符合当前筛选的岗位。</p>')
     if not data.get('jobs'):
         parts.append('<p>暂未发现符合方向的岗位，请查看招聘源状态；不使用示例岗位填充。</p>')

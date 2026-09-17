@@ -31,6 +31,12 @@ def is_direct_employer_job(job):
     return True
 
 
+def is_headhunter_job(job):
+    url = str(job.get('url') or '')
+    parsed = urlparse(url)
+    return parsed.hostname in ('www.liepin.com', 'liepin.com') and bool(re.fullmatch(r'/a/\d+\.shtml', parsed.path))
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('directory', nargs='?', default=str(ROOT / 'radar/data/liepin'))
@@ -56,7 +62,9 @@ def main():
             continue
         for j in payload.get('results', []):
             fetched += 1
-            if not is_direct_employer_job(j):
+            direct = is_direct_employer_job(j)
+            headhunter = is_headhunter_job(j)
+            if not direct and not headhunter:
                 continue
             url = j.get('url', '')
             row = {
@@ -67,6 +75,7 @@ def main():
                 'source_updated': j.get('date') or '',
                 'company': j.get('company') or '猎聘企业未公开',
                 'source': 'liepin-shenzhen',
+                'listing_type': 'direct' if direct else 'headhunter',
             }
             if not url.startswith('https://'):
                 continue
@@ -84,7 +93,10 @@ def main():
         counts[job['company']] = counts.get(job['company'], 0) + 1
         limited.append(job)
     data['jobs'] = limited
-    data.setdefault('sources', []).append({'name': '猎聘 · 深圳', 'ok': True, 'fetched': fetched, 'matched': matched})
+    direct_count = sum(j.get('source') == 'liepin-shenzhen' and j.get('listing_type') != 'headhunter' for j in limited)
+    headhunter_count = sum(j.get('source') == 'liepin-shenzhen' and j.get('listing_type') == 'headhunter' for j in limited)
+    data.setdefault('sources', []).append({'name': '猎聘 · 深圳', 'ok': True, 'fetched': fetched, 'matched': matched,
+                                           'direct': direct_count, 'headhunter': headhunter_count})
     DATA.write_text(json.dumps(data, ensure_ascii=False, indent=2) + '\n')
     print(f'猎聘深圳：原始 {fetched}，匹配 {matched}')
 

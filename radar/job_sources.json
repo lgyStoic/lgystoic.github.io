@@ -21,7 +21,7 @@
         "triton",
         "ml systems",
         "distributed systems"
-        ,"分布式","算力","基础设施"
+        ,"ai tools","ai/ml","ai engineer","分布式","算力","基础设施"
       ],
       "DiT": [
         "diffusion",
@@ -76,9 +76,9 @@
       "scaling",
       "cluster",
       "accelerat"
-      ,"推理","训练","加速","算法","架构","大模型","端侧","编译","算子","性能","分布式","算力"
+      ,"ai tools","ai/ml","ai engineer","推理","训练","加速","算法","架构","大模型","端侧","编译","算子","性能","分布式","算力"
     ],
-    "excluded_companies": ["Anthropic", "NVIDIA"],
+    "excluded_companies": ["Anthropic"],
     "max_per_company": 3,
     "exclude_title": [
       "recruit",
@@ -99,6 +99,12 @@
     {"name": "Indeed · 远程", "scope": "ML infrastructure", "url": "https://www.indeed.com/jobs?q=machine+learning+infrastructure+inference&l=Remote"}
   ],
   "sources": [
+    {
+      "id": "apple-shenzhen",
+      "name": "Apple",
+      "kind": "apple",
+      "url": "https://jobs.apple.com/zh-cn/search?location=shenzhen-SHZ"
+    },
     {
       "id": "nvidia",
       "name": "NVIDIA",
