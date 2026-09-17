@@ -109,21 +109,6 @@ jobs:
         shell: bash
         run: set -o pipefail; python3 tools/events.py 2>&1 | tee -a radar/data/last-run.log
 
-      - name: 查找匹配工作
-        continue-on-error: true
-        shell: bash
-        run: set -o pipefail; python3 tools/jobs.py 2>&1 | tee -a radar/data/last-run.log
-      - name: 生成学习卡片与小红书草稿
-        continue-on-error: true
-        env:
-          ADZUNA_APP_ID: ${{ secrets.ADZUNA_APP_ID }}
-          ADZUNA_APP_KEY: ${{ secrets.ADZUNA_APP_KEY }}
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          INBOX_TOKEN: ${{ secrets.INBOX_TOKEN }}
-          INBOX_REPO: ${{ vars.INBOX_REPO || 'lgyStoic/radar-inbox' }}
-          RADAR_DATE: ${{ env.RADAR_DATE }}
-        shell: bash
-        run: set -o pipefail; RADAR_DATE=$(TZ=Asia/Shanghai date +%F) python3 tools/xhs.py 2>&1 | tee -a radar/data/last-run.log
       - name: 整理私有收件箱（未配置 INBOX_TOKEN 时跳过）
         continue-on-error: true
         env:

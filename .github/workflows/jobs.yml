@@ -1,0 +1,28 @@
+name: 工作机会聚合
+on:
+  workflow_dispatch:
+    inputs:
+      window_hours: {description: 抓取窗口（小时）, required: false, default: "24"}
+  schedule:
+    - cron: "35 0 * * *"
+permissions: {contents: write}
+jobs:
+  jobs:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: master}
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12"}
+      - name: 抓取岗位并渲染
+        env:
+          ADZUNA_APP_ID: ${{ secrets.ADZUNA_APP_ID }}
+          ADZUNA_APP_KEY: ${{ secrets.ADZUNA_APP_KEY }}
+        run: python3 tools/jobs.py && python3 tools/build.py
+      - name: 提交结果
+        run: |
+          git config user.name radar-bot
+          git config user.email radar-bot@users.noreply.github.com
+          git add radar/data/jobs.json radar/jobs/index.html sitemap.xml index.html site.json
+          git diff --cached --quiet || git commit -m "jobs: refresh" && git push origin HEAD:master

@@ -1,0 +1,24 @@
+name: 小红书学习文稿
+on:
+  workflow_dispatch:
+    inputs:
+      date: {description: 生成日期 YYYY-MM-DD（留空为今天）, required: false, default: ""}
+  schedule:
+    - cron: "10 1 * * *"
+permissions: {contents: read}
+jobs:
+  xhs:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: master}
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12"}
+      - name: 生成并写入私有仓库
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          INBOX_TOKEN: ${{ secrets.INBOX_TOKEN }}
+          INBOX_REPO: ${{ vars.INBOX_REPO || 'lgyStoic/radar-inbox' }}
+          RADAR_DATE: ${{ inputs.date }}
+        run: RADAR_DATE="${RADAR_DATE:-$(TZ=Asia/Shanghai date +%F)}" python3 tools/xhs.py
