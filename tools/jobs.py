@@ -4,8 +4,9 @@ import argparse
 import concurrent.futures
 import html
 import json
+import os
 import re
-import urllib.request
+import urllib.request, urllib.parse
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -90,6 +91,16 @@ def fetch_source(source):
             description = plain(j.get(source.get('description', 'description'), ''))
             if title and url:
                 rows.append({'title': title, 'url': url, 'location': location if isinstance(location, str) else ', '.join(location or []), 'description': description, 'source_updated': j.get('published_at', '')})
+    elif source['kind'] == 'adzuna':
+        app_id, app_key = os.environ.get('ADZUNA_APP_ID', '').strip(), os.environ.get('ADZUNA_APP_KEY', '').strip()
+        if not app_id or not app_key:
+            raise ValueError('ADZUNA_APP_ID/ADZUNA_APP_KEY 未配置')
+        for query in source['queries']:
+            params = urllib.parse.urlencode({'app_id': app_id, 'app_key': app_key, 'results_per_page': 50, 'what': query, 'where': source['where'], 'content-type': 'application/json'})
+            payload = request(f"https://api.adzuna.com/v1/api/jobs/{source['country']}/search/1?{params}")
+            for j in payload.get('results', []):
+                loc = j.get('location', {}).get('display_name', '') if isinstance(j.get('location'), dict) else ''
+                rows.append({'title': j.get('title', ''), 'url': j.get('redirect_url', ''), 'location': loc or source['where'], 'description': plain(j.get('description', '')), 'source_updated': j.get('created', '')})
     else:
         raise ValueError('Unsupported source kind')
     return [dict(j, company=source['name'], source=source['id']) for j in rows]
