@@ -15,7 +15,7 @@ def main():
     out=call_llm_json('你是招聘数据清洗器，只做去重和措辞优化，不编造事实。',prompt,SCHEMA,label='jobs-ai')
     if not out: return
     keep=set(out.get('keep_urls', [])); by={j['url']:j for j in jobs}
-    if keep: data['jobs']=[by[u] for u in keep if u in by]
+    if keep: data['jobs']=[j for j in jobs if j['url'] in keep]
     for u, reasons in out.get('reason_updates', {}).items():
         if u in by and isinstance(reasons,list): by[u]['reasons']=reasons[:3]
     DATA.write_text(json.dumps(data,ensure_ascii=False,indent=2)+'\n')
