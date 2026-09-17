@@ -60,6 +60,15 @@ def fetch_source(source):
         payload = request(source['url'] + '?content=true')
         for j in payload['jobs']:
             rows.append({'title': j['title'], 'url': j['absolute_url'], 'location': j['location']['name'], 'description': plain(j.get('content', '')), 'source_updated': j.get('updated_at', '')})
+    elif source['kind'] == 'lever':
+        payload = request(source['url'])
+        for j in payload if isinstance(payload, list) else []:
+            cats = j.get('categories', {}) or {}
+            rows.append({'title': j.get('text', ''), 'url': j.get('hostedUrl') or j.get('applyUrl', ''), 'location': cats.get('location', ''), 'description': plain(j.get('descriptionPlain') or j.get('description', '')), 'source_updated': ''})
+    elif source['kind'] == 'ashby':
+        payload = request(source['url'])
+        for j in payload.get('jobs', []) if isinstance(payload, dict) else []:
+            rows.append({'title': j.get('title', ''), 'url': j.get('jobUrl') or j.get('applyUrl', ''), 'location': j.get('location', ''), 'description': plain(j.get('description', '')), 'source_updated': j.get('publishedAt', '')})
     elif source['kind'] == 'workday':
         for query in source['queries']:
             offset = 0
