@@ -69,6 +69,8 @@
       "cluster",
       "accelerat"
     ],
+    "excluded_companies": ["Anthropic", "NVIDIA"],
+    "max_per_company": 3,
     "exclude_title": [
       "recruit",
       "sales",
@@ -105,6 +107,15 @@
       "name": "Together AI",
       "kind": "greenhouse",
       "url": "https://boards-api.greenhouse.io/v1/boards/togetherai/jobs"
+    },
+    {
+      "id": "huawei-china-ai",
+      "name": "华为",
+      "kind": "page",
+      "url": "https://career.huawei.com/reccampportal/portal5/social-recruitment-ai.html",
+      "base": "https://career.huawei.com/reccampportal/portal5/",
+      "location": "中国 / 深圳及其他城市",
+      "title_terms": ["AI", "推理", "训练", "昇腾", "架构", "大模型"]
     }
   ]
 }

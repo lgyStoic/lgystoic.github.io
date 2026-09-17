@@ -72,6 +72,14 @@ def fetch_source(source):
                     break
                 if not postings or offset >= 500:
                     raise ValueError('Incomplete pagination')
+    elif source['kind'] == 'page':
+        raw = urllib.request.urlopen(urllib.request.Request(source['url'], headers={'User-Agent': 'Mozilla/5.0'}), timeout=25).read().decode('utf-8', 'replace')
+        for href, title in re.findall(r'<a[^>]+href=["\']([^"\']+)["\'][^>]*>(.*?)</a>', raw, re.I | re.S):
+            title = plain(title)
+            if len(title) < 8 or not any(k in title.lower() for k in source.get('title_terms', [])):
+                continue
+            url = href if href.startswith('http') else source['base'] + href
+            rows.append({'title': title, 'url': url, 'location': source.get('location', ''), 'description': title, 'source_updated': ''})
     else:
         raise ValueError('Unsupported source kind')
     return [dict(j, company=source['name'], source=source['id']) for j in rows]
@@ -89,6 +97,8 @@ def collect(config, old, fetcher=fetch_source):
                 for row in rows:
                     if not row['url'].startswith('https://'):
                         continue
+                    if row['company'] in config['profile'].get('excluded_companies', []):
+                        continue
                     result = match(row, config['profile'])
                     if result:
                         result.pop('description', None)
@@ -99,11 +109,20 @@ def collect(config, old, fetcher=fetch_source):
                 statuses.append({'name': source['name'], 'ok': False, 'error': type(exc).__name__})
                 for previous in old.get('jobs', []):
                     if previous['source'] == source['id']:
+                        if previous['company'] in config['profile'].get('excluded_companies', []):
+                            continue
                         updated = match(dict(previous, description=' '.join(previous.get('reasons', []))), config['profile'])
                         if updated:
                             updated.pop('description', None)
                             jobs[updated['url']] = dict(updated, stale=True)
-    return {'updated': now, 'sources': statuses, 'jobs': sorted(jobs.values(), key=lambda j: (j['region'] != '深圳', -j['score'], j['company'], j['title']))}
+    ordered = sorted(jobs.values(), key=lambda j: (j['region'] not in ('深圳', '香港'), j['region'] != '深圳', -j['score'], j['company'], j['title']))
+    limited, counts = [], {}
+    for job in ordered:
+        if counts.get(job['company'], 0) >= config['profile'].get('max_per_company', 3):
+            continue
+        counts[job['company']] = counts.get(job['company'], 0) + 1
+        limited.append(job)
+    return {'updated': now, 'sources': statuses, 'jobs': limited}
 
 
 def render():
@@ -115,15 +134,20 @@ def render():
     for s in data.get('sources', []):
         state = f'成功 · {s["fetched"]} 条原始岗位' if s['ok'] else '抓取失败，保留上次结果并标记待复核'
         parts.append(f'<li>{esc(s["name"])}：{state}</li>')
-    parts.append('</ul></details><ul class="job-list" data-archive>')
-    for job in data.get('jobs', []):
-        search = esc(' '.join([job['title'], job['company'], job['location'], *job['tags']]).lower(), quote=True)
-        parts.append(f'<li data-search="{search}" data-tags="{esc("|".join(job["tags"]), quote=True)}"><article><h2><a href="{esc(job["url"], quote=True)}" rel="noopener noreferrer">{esc(job["title"])}</a></h2>')
-        parts.append(f'<p>{esc(job["company"])} · {esc(job["location"])} · {esc(job["region"])}</p>')
-        parts.append(f'<p>{esc("；".join(job["reasons"]))}</p>')
-        state = '待复核：本次来源抓取失败' if job.get('stale') else '最近在招聘列表中发现'
-        parts.append(f'<p class="radar-stats">{state} · {esc(job["last_seen"][:10])}</p></article></li>')
-    parts.append('</ul><p class="empty-state" data-empty hidden>没有符合当前筛选的岗位。</p>')
+    parts.append('</ul></details>')
+    groups = [('深圳 / 香港', [j for j in data.get('jobs', []) if j['region'] in ('深圳', '香港')]), ('远程', [j for j in data.get('jobs', []) if j['region'] == '远程']), ('其他地区', [j for j in data.get('jobs', []) if j['region'] == '其他地区'])]
+    for label, group in groups:
+        if not group: continue
+        parts.append(f'<h2>{label} <small>({len(group)})</small></h2><ul class="job-list" data-archive>')
+        for job in group:
+            search = esc(' '.join([job['title'], job['company'], job['location'], *job['tags']]).lower(), quote=True)
+            parts.append(f'<li data-search="{search}" data-tags="{esc("|".join(job["tags"]), quote=True)}"><article><h2><a href="{esc(job["url"], quote=True)}" rel="noopener noreferrer">{esc(job["title"])}</a></h2>')
+            parts.append(f'<p>{esc(job["company"])} · {esc(job["location"])} · {esc(job["region"])}</p>')
+            parts.append(f'<p>{esc("；".join(job["reasons"]))}</p>')
+            state = '待复核：本次来源抓取失败' if job.get('stale') else '最近在招聘列表中发现'
+            parts.append(f'<p class="radar-stats">{state} · {esc(job["last_seen"][:10])}</p></article></li>')
+        parts.append('</ul>')
+    parts.append('<p class="empty-state" data-empty hidden>没有符合当前筛选的岗位。</p>')
     if not data.get('jobs'):
         parts.append('<p>暂未发现符合方向的岗位，请查看招聘源状态；不使用示例岗位填充。</p>')
     return '\n'.join(parts)
