@@ -122,7 +122,7 @@ def collect(config, old, fetcher=fetch_source):
             continue
         counts[job['company']] = counts.get(job['company'], 0) + 1
         limited.append(job)
-    return {'updated': now, 'sources': statuses, 'jobs': limited}
+    return {'updated': now, 'sources': statuses, 'jobs': limited, 'search_links': config.get('search_links', [])}
 
 
 def render():
@@ -135,6 +135,11 @@ def render():
         state = f'成功 · {s["fetched"]} 条原始岗位' if s['ok'] else '抓取失败，保留上次结果并标记待复核'
         parts.append(f'<li>{esc(s["name"])}：{state}</li>')
     parts.append('</ul></details>')
+    if data.get('search_links'):
+        parts.append('<details open><summary>更多招聘网站搜索</summary><ul class="job-search-links">')
+        for link in data['search_links']:
+            parts.append(f'<li><a href="{esc(link["url"], quote=True)}" rel="noopener noreferrer">{esc(link["name"])}</a> · {esc(link["scope"])}</li>')
+        parts.append('</ul></details>')
     groups = [('深圳 / 香港', [j for j in data.get('jobs', []) if j['region'] in ('深圳', '香港')]), ('远程', [j for j in data.get('jobs', []) if j['region'] == '远程']), ('其他地区', [j for j in data.get('jobs', []) if j['region'] == '其他地区'])]
     for label, group in groups:
         if not group: continue
