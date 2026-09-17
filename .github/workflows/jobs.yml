@@ -25,7 +25,7 @@ jobs:
           BOOLEAN_TAVILY_API_KEY: ${{ secrets.BOOLEAN_TAVILY_API_KEY }}
         run: |
           python3 tools/jobs.py
-          mapfile -t ATS_COMPANIES < <(python3 -c 'import json; print("\\n".join(json.load(open("radar/ats_companies.json"))))')
+          mapfile -t ATS_COMPANIES < <(python3 -c 'import json; print("\n".join(json.load(open("radar/ats_companies.json"))))')
           if git clone --depth 1 https://github.com/shunsukefuruyama/ats-jobs.git /tmp/ats-jobs && node /tmp/ats-jobs/bin/ats-jobs.js --json --descriptions --limit 200 "${ATS_COMPANIES[@]}" > radar/data/ats-jobs.json; then
             python3 tools/import_ats_jobs.py
           else
