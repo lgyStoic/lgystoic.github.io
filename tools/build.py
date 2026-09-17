@@ -46,6 +46,7 @@ LATEST_ON_HOME = 4
 GUIDES_DIR = ROOT / "guides"
 GUIDES_JSON = GUIDES_DIR / "guides.json"
 GUIDE_LINKS = GUIDES_DIR / "links.json"
+GUIDE_SUPPORT = GUIDES_DIR / "support.json"
 
 
 def esc(value: str) -> str:
@@ -850,6 +851,33 @@ def apply_affiliate_links(path: Path, links: dict) -> tuple[int, int]:
     return filled, hidden
 
 
+def apply_guide_support(path: Path, *, from_index: bool = False) -> None:
+    """Insert the optional support card into every current and future guide."""
+    config = json.loads(GUIDE_SUPPORT.read_text(encoding="utf-8")) if GUIDE_SUPPORT.exists() else {}
+    prefix = "../" if from_index else "../../"
+    methods = []
+    for key, label in (("wechat_image", "微信"), ("alipay_image", "支付宝")):
+        image = str(config.get(key, "")).strip().lstrip("/")
+        if image:
+            methods.append(
+                f'<figure class="support-method"><img src="{prefix}{esc(image)}" alt="{label}打赏码" '
+                f'loading="lazy" width="220" height="220"><figcaption>{label}</figcaption></figure>'
+            )
+    hidden = "" if config.get("enabled") and methods else " hidden"
+    block = (
+        f'<!-- build:guide-support -->\n<section class="guide-support" data-support{hidden}>'
+        f'<div><p class="kicker">Support</p><h2>{esc(config.get("title", "支持继续创作"))}</h2>'
+        f'<p>{esc(config.get("description", ""))}</p><p class="support-note">完全自愿，所有指南免费阅读。</p></div>'
+        f'<div class="support-methods">{"".join(methods)}</div></section>\n<!-- /build:guide-support -->'
+    )
+    text = path.read_text(encoding="utf-8")
+    text = re.sub(r'<!-- build:guide-support -->.*?<!-- /build:guide-support -->', block, text, flags=re.DOTALL)
+    if "build:guide-support" not in text:
+        anchor = '<div class="share" data-share>' if not from_index else '</main>'
+        text = text.replace(anchor, block + "\n\n      " + anchor, 1)
+    path.write_text(text, encoding="utf-8")
+
+
 def render_guide_jsonld(g: dict, page: Path) -> str:
     """给指南子页生成 BreadcrumbList + HowTo 结构化数据（步骤取自 <ol class="steps">）。"""
     html = page.read_text(encoding="utf-8")
@@ -878,9 +906,11 @@ def build_guides() -> list[dict]:
         return []
     guides, links = load_guides()
     inject(GUIDES_DIR / "index.html", {"guides-path": render_guides_path(guides)})
+    apply_guide_support(GUIDES_DIR / "index.html", from_index=True)
     by_dir = {g["path"].rstrip("/").rsplit("/", 1)[-1]: g for g in guides}
     for page in sorted(GUIDES_DIR.glob("*/index.html")):
         filled, hidden = apply_affiliate_links(page, links)
+        apply_guide_support(page)
         g = by_dir.get(page.parent.name)
         if g and "build:jsonld" in page.read_text(encoding="utf-8"):
             inject(page, {"jsonld": render_guide_jsonld(g, page)})
