@@ -114,6 +114,23 @@ def fetch_source(source):
             description = plain(j.get(source.get('description', 'description'), ''))
             if title and url:
                 rows.append({'title': title, 'url': url, 'location': location if isinstance(location, str) else ', '.join(location or []), 'description': description, 'source_updated': j.get('published_at', '')})
+    elif source['kind'] == 'himalayas':
+        for query in source['queries']:
+            params = urllib.parse.urlencode({'q': query, 'page': 1, 'sort': 'recent'})
+            payload = request(source['url'] + '?' + params)
+            for j in payload.get('jobs', []):
+                restrictions = j.get('locationRestrictions') or []
+                rows.append({'title': j.get('title', ''), 'url': 'https://himalayas.app/jobs/' + j.get('slug', ''), 'location': ', '.join(restrictions) or 'Remote', 'description': plain(j.get('excerpt', '')), 'source_updated': j.get('pubDate', '')})
+    elif source['kind'] == 'tavily':
+        api_key = os.environ.get('BOOLEAN_TAVILY_API_KEY', '').strip()
+        if not api_key:
+            raise ValueError('BOOLEAN_TAVILY_API_KEY 未配置')
+        for query in source['queries']:
+            payload = request(source['url'], {'api_key': api_key, 'query': query, 'search_depth': 'advanced', 'max_results': 10, 'include_answer': False})
+            for j in payload.get('results', []):
+                text = plain(j.get('content', ''))
+                location = '深圳 / 香港' if re.search(r'深圳|Shenzhen|香港|Hong Kong', j.get('title', '') + ' ' + text, re.I) else ''
+                rows.append({'title': j.get('title', ''), 'url': j.get('url', ''), 'location': location, 'description': text, 'source_updated': ''})
     elif source['kind'] == 'adzuna':
         app_id, app_key = os.environ.get('ADZUNA_APP_ID', '').strip(), os.environ.get('ADZUNA_APP_KEY', '').strip()
         if not app_id or not app_key:

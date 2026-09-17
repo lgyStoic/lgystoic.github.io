@@ -9,18 +9,35 @@ permissions: {contents: write}
 jobs:
   jobs:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
         with: {ref: master}
       - uses: actions/setup-python@v5
         with: {python-version: "3.12"}
+      - uses: actions/setup-node@v4
+        with: {node-version: "22"}
       - name: 抓取岗位并渲染
         env:
           ADZUNA_APP_ID: ${{ secrets.ADZUNA_APP_ID }}
           ADZUNA_APP_KEY: ${{ secrets.ADZUNA_APP_KEY }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-        run: python3 tools/jobs.py && python3 tools/jobs_ai.py && python3 tools/build.py
+          BOOLEAN_TAVILY_API_KEY: ${{ secrets.BOOLEAN_TAVILY_API_KEY }}
+        run: |
+          python3 tools/jobs.py
+          mapfile -t ATS_COMPANIES < <(python3 -c 'import json; print("\\n".join(json.load(open("radar/ats_companies.json"))))')
+          if npx --yes ats-jobs --json --descriptions --limit 200 "${ATS_COMPANIES[@]}" > radar/data/ats-jobs.json; then
+            python3 tools/import_ats_jobs.py
+          else
+            python3 tools/import_ats_jobs.py --failed
+          fi
+          if python3 -m pip install --quiet 'jobsearch-buddy @ git+https://github.com/coryking/jobsearch-buddy.git'; then
+            python3 tools/jobbuddy_enrich.py
+          else
+            python3 tools/jobbuddy_enrich.py --failed
+          fi
+          python3 tools/jobs_ai.py
+          python3 tools/build.py
       - name: 提交结果
         run: |
           git config user.name radar-bot
