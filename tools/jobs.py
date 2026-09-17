@@ -6,7 +6,7 @@ import html
 import json
 import os
 import re
-import urllib.request, urllib.parse
+import urllib.request, urllib.parse, urllib.error
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -270,10 +270,15 @@ def fetch_source(source):
         path = source.get('path', 'experienced')
         seen = set()
         for query in source['queries']:
-            payload = request(f"{host}/api/v1/search/job/posts",
-                              {'keyword': query, 'limit': 50, 'offset': 0, 'job_category_id_list': [], 'tag_id_list': [], 'location_code_list': source.get('location_codes', []),
-                               'subject_id_list': [], 'recruitment_id_list': [], 'portal_type': 2, 'job_function_id_list': []},
-                              headers={'portal-platform': '1', 'website-path': path, 'env': 'undefined', 'Referer': f'{host}/{path}/', 'Origin': host})
+            body = {'keyword': query, 'limit': 50, 'offset': 0, 'job_category_id_list': [], 'tag_id_list': [], 'location_code_list': source.get('location_codes', []),
+                    'subject_id_list': [], 'recruitment_id_list': [], 'portal_type': 2, 'job_function_id_list': [], 'portal_entrance': 1}
+            qs = urllib.parse.urlencode({'keyword': query, 'limit': 50, 'offset': 0, 'portal_type': 2, 'portal_entrance': 1})
+            payload = request(f"{host}/api/v1/search/job/posts?{qs}", body,
+                              headers={'portal-platform': '1', 'website-path': path, 'env': 'undefined', 'Accept': 'application/json, text/plain, */*',
+                                       'Accept-Language': 'zh-CN,zh;q=0.9', 'Referer': f'{host}/{path}/position?keywords={urllib.parse.quote(query)}', 'Origin': host,
+                                       'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0 Safari/537.36'})
+            if payload.get('code') not in (None, 0):
+                raise ValueError(f"feishu code={payload.get('code')} {str(payload.get('message', ''))[:80]}")
             for j in (payload.get('data') or {}).get('job_post_list') or []:
                 jid = j.get('id')
                 if not jid or jid in seen:
@@ -287,7 +292,10 @@ def fetch_source(source):
         for query in source['queries']:
             payload = request(source['url'], {'recruitType': 'SOCIAL', 'pageSize': 50, 'keyWord': query, 'curPage': 1, 'projectType': ''}, form=True,
                               headers={'Referer': 'https://talent.baidu.com/jobs/social-list', 'Origin': 'https://talent.baidu.com'})
-            for j in (payload.get('data') or {}).get('list') or []:
+            records = (payload.get('data') or {}).get('list') or []
+            if not records:
+                print(f"百度 {query}: 返回键 {list(payload)[:6]} data 键 {list(payload.get('data') or {})[:6] if isinstance(payload.get('data'), dict) else type(payload.get('data')).__name__}")
+            for j in records:
                 pid = j.get('postId')
                 if not pid or pid in seen:
                     continue
@@ -341,7 +349,17 @@ def collect(config, old, fetcher=fetch_source):
                         count += 1
                 statuses.append({'name': source['name'], 'ok': True, 'fetched': len(rows), 'matched': count})
             except Exception as exc:
-                statuses.append({'name': source['name'], 'ok': False, 'error': type(exc).__name__})
+                detail = type(exc).__name__
+                if isinstance(exc, urllib.error.HTTPError):
+                    try:
+                        snippet = exc.read(300).decode('utf-8', 'replace').replace('\n', ' ')
+                    except Exception:
+                        snippet = ''
+                    detail = f'HTTP {exc.code} {snippet[:160]}'.strip()
+                elif str(exc):
+                    detail = f'{detail}: {str(exc)[:160]}'
+                print(f"源失败 {source['name']}: {detail}")
+                statuses.append({'name': source['name'], 'ok': False, 'error': detail})
                 for previous in old.get('jobs', []):
                     if previous['source'] == source['id']:
                         if previous['company'] in config['profile'].get('excluded_companies', []):
