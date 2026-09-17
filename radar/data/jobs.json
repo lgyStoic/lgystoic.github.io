@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-17T07:01:55+00:00",
+  "updated": "2026-09-17T07:04:40+00:00",
   "sources": [
     {
       "name": "NVIDIA",
@@ -42,6 +42,28 @@
       "error": "HTTPError"
     },
     {
+      "name": "Scale AI · SmartRecruiters",
+      "ok": true,
+      "fetched": 0,
+      "matched": 0
+    },
+    {
+      "name": "Cohere · SmartRecruiters",
+      "ok": true,
+      "fetched": 0,
+      "matched": 0
+    },
+    {
+      "name": "Mistral AI · Workable",
+      "ok": false,
+      "error": "HTTPError"
+    },
+    {
+      "name": "AI 公司 · Recruitee",
+      "ok": false,
+      "error": "HTTPError"
+    },
+    {
       "name": "华为",
       "ok": true,
       "fetched": 9,
@@ -73,29 +95,6 @@
   ],
   "jobs": [
     {
-      "title": "Senior Embedded Software Engineer – EO/IR Gimbal Systems (m/f/d)",
-      "url": "https://www.arbeitnow.com/jobs/companies/quantum-systems-gmbh/senior-embedded-software-engineer-eo-ir-gimbal-systems-gilching-47901",
-      "location": "Gilching, Bayern, Germany",
-      "source_updated": "",
-      "company": "Arbeitnow 聚合",
-      "source": "arbeitnow",
-      "tags": [
-        "AI Infra",
-        "端侧部署",
-        "训推加速",
-        "其他地区"
-      ],
-      "reasons": [
-        "AI Infra：gpu、cuda、distributed systems",
-        "端侧部署：embedded",
-        "训推加速：kernel"
-      ],
-      "score": 5,
-      "region": "其他地区",
-      "last_seen": "2026-09-17T07:01:55+00:00",
-      "stale": false
-    },
-    {
       "title": "Machine Learning Engineer - Inference",
       "url": "https://job-boards.greenhouse.io/togetherai/jobs/4385540007",
       "location": "San Francisco ",
@@ -115,7 +114,26 @@
       ],
       "score": 5,
       "region": "其他地区",
-      "last_seen": "2026-09-17T07:01:55+00:00",
+      "last_seen": "2026-09-17T07:04:40+00:00",
+      "stale": false
+    },
+    {
+      "title": "Inference Engineering and Product Lead ",
+      "url": "https://jobs.ashbyhq.com/modal/ead55e1a-873d-4837-8450-95fe8f4c8931",
+      "location": "San Francisco",
+      "source_updated": "2026-09-16T12:05:13.551+00:00",
+      "company": "Modal · Ashby",
+      "source": "modal-ashby",
+      "tags": [
+        "训推加速",
+        "其他地区"
+      ],
+      "reasons": [
+        "训推加速：inference"
+      ],
+      "score": 3,
+      "region": "其他地区",
+      "last_seen": "2026-09-17T07:04:40+00:00",
       "stale": false
     },
     {
@@ -138,7 +156,7 @@
       ],
       "score": 5,
       "region": "其他地区",
-      "last_seen": "2026-09-17T07:01:55+00:00",
+      "last_seen": "2026-09-17T07:04:40+00:00",
       "stale": false
     },
     {
@@ -159,70 +177,68 @@
       ],
       "score": 4,
       "region": "其他地区",
-      "last_seen": "2026-09-17T07:01:55+00:00",
+      "last_seen": "2026-09-17T07:04:40+00:00",
       "stale": false
     },
     {
-      "title": "ML Engineer, AI Infrastructure for Scalable Production",
-      "url": "https://www.adzuna.sg/details/5866941926?utm_medium=api&utm_source=9c5d13f7",
-      "location": "Singapore",
-      "source_updated": "2026-09-02T18:49:16Z",
-      "company": "Adzuna · 新加坡",
-      "source": "adzuna-singapore",
-      "tags": [
-        "AI Infra",
-        "训推加速",
-        "其他地区"
-      ],
-      "reasons": [
-        "AI Infra：ai infrastructure",
-        "训推加速：inference"
-      ],
-      "score": 4,
-      "region": "其他地区",
-      "last_seen": "2026-09-17T07:01:55+00:00",
-      "stale": false
-    },
-    {
-      "title": "Machine Learning Engineer (AI Infrastructure)",
-      "url": "https://www.adzuna.sg/details/5866953952?utm_medium=api&utm_source=9c5d13f7",
-      "location": "Singapore",
-      "source_updated": "2026-09-02T18:50:59Z",
-      "company": "Adzuna · 新加坡",
-      "source": "adzuna-singapore",
-      "tags": [
-        "AI Infra",
-        "训推加速",
-        "其他地区"
-      ],
-      "reasons": [
-        "AI Infra：ai infrastructure",
-        "训推加速：inference"
-      ],
-      "score": 4,
-      "region": "其他地区",
-      "last_seen": "2026-09-17T07:01:55+00:00",
-      "stale": false
-    },
-    {
-      "title": "Senior/Staff Data Scientist - Measurement, Experimentation & Causal Inference",
-      "url": "https://www.arbeitnow.co.uk/jobs/companies/sonyinteractiveentertainmentglobal/senior-staff-data-scientist-measurement-experimentation-causal-inference-london-316157",
-      "location": "London",
+      "title": "Senior Embedded Software Engineer – EO/IR Gimbal Systems (m/f/d)",
+      "url": "https://www.arbeitnow.com/jobs/companies/quantum-systems-gmbh/senior-embedded-software-engineer-eo-ir-gimbal-systems-gilching-47901",
+      "location": "Gilching, Bayern, Germany",
       "source_updated": "",
       "company": "Arbeitnow 聚合",
       "source": "arbeitnow",
       "tags": [
+        "AI Infra",
         "端侧部署",
         "训推加速",
         "其他地区"
       ],
       "reasons": [
+        "AI Infra：gpu、cuda、distributed systems",
         "端侧部署：embedded",
+        "训推加速：kernel"
+      ],
+      "score": 5,
+      "region": "其他地区",
+      "last_seen": "2026-09-17T07:04:40+00:00",
+      "stale": false
+    },
+    {
+      "title": "Member of Technical Staff - Research, Inference",
+      "url": "https://jobs.ashbyhq.com/modal/73c97bbc-8e27-4c5d-b38b-90b3afdb0d93",
+      "location": "New York",
+      "source_updated": "2026-07-05T19:32:02.659+00:00",
+      "company": "Modal · Ashby",
+      "source": "modal-ashby",
+      "tags": [
+        "训推加速",
+        "其他地区"
+      ],
+      "reasons": [
         "训推加速：inference"
       ],
-      "score": 4,
+      "score": 3,
       "region": "其他地区",
-      "last_seen": "2026-09-17T07:01:55+00:00",
+      "last_seen": "2026-09-17T07:04:40+00:00",
+      "stale": false
+    },
+    {
+      "title": "Data Scientist - Measurement, Experimentation & Causal Inference",
+      "url": "https://www.arbeitnow.co.uk/jobs/companies/sonyinteractiveentertainmentglobal/data-scientist-measurement-experimentation-causal-inference-london-129820",
+      "location": "London",
+      "source_updated": "",
+      "company": "Arbeitnow 聚合",
+      "source": "arbeitnow",
+      "tags": [
+        "训推加速",
+        "其他地区"
+      ],
+      "reasons": [
+        "训推加速：inference"
+      ],
+      "score": 3,
+      "region": "其他地区",
+      "last_seen": "2026-09-17T07:04:40+00:00",
       "stale": false
     },
     {
@@ -243,64 +259,70 @@
       ],
       "score": 4,
       "region": "其他地区",
-      "last_seen": "2026-09-17T07:01:55+00:00",
+      "last_seen": "2026-09-17T07:04:40+00:00",
       "stale": false
     },
     {
-      "title": "Data Scientist - Measurement, Experimentation & Causal Inference",
-      "url": "https://www.arbeitnow.co.uk/jobs/companies/sonyinteractiveentertainmentglobal/data-scientist-measurement-experimentation-causal-inference-london-129820",
+      "title": "Machine Learning Engineer (AI Infrastructure)",
+      "url": "https://www.adzuna.sg/details/5866953952?utm_medium=api&utm_source=9c5d13f7",
+      "location": "Singapore",
+      "source_updated": "2026-09-02T18:50:59Z",
+      "company": "Adzuna · 新加坡",
+      "source": "adzuna-singapore",
+      "tags": [
+        "AI Infra",
+        "训推加速",
+        "其他地区"
+      ],
+      "reasons": [
+        "AI Infra：ai infrastructure",
+        "训推加速：inference"
+      ],
+      "score": 4,
+      "region": "其他地区",
+      "last_seen": "2026-09-17T07:04:40+00:00",
+      "stale": false
+    },
+    {
+      "title": "ML Engineer, AI Infrastructure for Scalable Production",
+      "url": "https://www.adzuna.sg/details/5866941926?utm_medium=api&utm_source=9c5d13f7",
+      "location": "Singapore",
+      "source_updated": "2026-09-02T18:49:16Z",
+      "company": "Adzuna · 新加坡",
+      "source": "adzuna-singapore",
+      "tags": [
+        "AI Infra",
+        "训推加速",
+        "其他地区"
+      ],
+      "reasons": [
+        "AI Infra：ai infrastructure",
+        "训推加速：inference"
+      ],
+      "score": 4,
+      "region": "其他地区",
+      "last_seen": "2026-09-17T07:04:40+00:00",
+      "stale": false
+    },
+    {
+      "title": "Senior/Staff Data Scientist - Measurement, Experimentation & Causal Inference",
+      "url": "https://www.arbeitnow.co.uk/jobs/companies/sonyinteractiveentertainmentglobal/senior-staff-data-scientist-measurement-experimentation-causal-inference-london-316157",
       "location": "London",
       "source_updated": "",
       "company": "Arbeitnow 聚合",
       "source": "arbeitnow",
       "tags": [
+        "端侧部署",
         "训推加速",
         "其他地区"
       ],
       "reasons": [
+        "端侧部署：embedded",
         "训推加速：inference"
       ],
-      "score": 3,
+      "score": 4,
       "region": "其他地区",
-      "last_seen": "2026-09-17T07:01:55+00:00",
-      "stale": false
-    },
-    {
-      "title": "Inference Engineering and Product Lead ",
-      "url": "https://jobs.ashbyhq.com/modal/ead55e1a-873d-4837-8450-95fe8f4c8931",
-      "location": "San Francisco",
-      "source_updated": "2026-09-16T12:05:13.551+00:00",
-      "company": "Modal · Ashby",
-      "source": "modal-ashby",
-      "tags": [
-        "训推加速",
-        "其他地区"
-      ],
-      "reasons": [
-        "训推加速：inference"
-      ],
-      "score": 3,
-      "region": "其他地区",
-      "last_seen": "2026-09-17T07:01:55+00:00",
-      "stale": false
-    },
-    {
-      "title": "Member of Technical Staff - Research, Inference",
-      "url": "https://jobs.ashbyhq.com/modal/73c97bbc-8e27-4c5d-b38b-90b3afdb0d93",
-      "location": "New York",
-      "source_updated": "2026-07-05T19:32:02.659+00:00",
-      "company": "Modal · Ashby",
-      "source": "modal-ashby",
-      "tags": [
-        "训推加速",
-        "其他地区"
-      ],
-      "reasons": [
-        "训推加速：inference"
-      ],
-      "score": 3,
-      "region": "其他地区",
-      "last_seen": "2026-09-17T07:01:55+00:00",
+      "last_seen": "2026-09-17T07:04:40+00:00",
       "stale": false
     }
   ],
