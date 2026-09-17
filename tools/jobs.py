@@ -15,9 +15,17 @@ DATA = ROOT / 'radar/data/jobs.json'
 CONFIG = ROOT / 'radar/job_sources.json'
 
 
-def request(url, payload=None):
-    body = None if payload is None else json.dumps(payload).encode()
-    req = urllib.request.Request(url, data=body, headers={'User-Agent': 'personal-job-radar/1.0', 'Content-Type': 'application/json'})
+def request(url, payload=None, headers=None, form=False):
+    if payload is None:
+        body = None
+    elif form:
+        body = urllib.parse.urlencode(payload).encode()
+    else:
+        body = json.dumps(payload).encode()
+    base = {'User-Agent': 'Mozilla/5.0 personal-job-radar/1.0', 'Accept': 'application/json, text/plain, */*',
+            'Content-Type': 'application/x-www-form-urlencoded' if form else 'application/json'}
+    base.update(headers or {})
+    req = urllib.request.Request(url, data=body, headers=base)
     with urllib.request.urlopen(req, timeout=25) as response:
         return json.load(response)
 
@@ -32,31 +40,68 @@ def plain(value):
     return ' '.join(html.unescape(re.sub('<[^>]+>', ' ', value or '')).split())
 
 
+CN_CITY_TERMS = ['北京', '上海', '杭州', '广州', '南京', '成都', '武汉', '西安', '苏州', '合肥', '天津', '重庆', '长沙', '厦门', '青岛', '珠海', '东莞', '济南', '郑州', '大连', '中国',
+                 'beijing', 'shanghai', 'hangzhou', 'guangzhou', 'nanjing', 'chengdu', 'wuhan', "xi'an", 'xian', 'suzhou', 'hefei', 'tianjin', 'chongqing', 'changsha', 'xiamen', 'qingdao', 'zhuhai', 'dongguan', 'china', 'prc']
+REGION_ORDER = {'深圳': 0, '香港': 1, '国内': 2, '远程': 3, '海外': 4}
+REGION_BONUS = {'深圳': 4, '香港': 3, '国内': 3, '远程': 2, '海外': 0}
+
+
+def region_of(location):
+    loc = (location or '').lower()
+    if 'shenzhen' in loc or '深圳' in loc:
+        return '深圳'
+    if 'hong kong' in loc or '香港' in loc or 'hongkong' in loc:
+        return '香港'
+    if any(term in loc for term in CN_CITY_TERMS):
+        return '国内'
+    if 'remote' in loc or '远程' in loc:
+        return '远程'
+    return '海外'
+
+
+def limit_jobs(jobs, profile):
+    """深圳 → 香港 → 国内 → 远程 → 海外；每家公司在国内最多 max_per_company_cn 条，海外最多 max_per_company 条。"""
+    ordered = sorted(jobs, key=lambda j: (REGION_ORDER.get(j['region'], 9), -j['score'], j['company'], j['title']))
+    limited, counts = [], {}
+    for job in ordered:
+        domestic = job['region'] in ('深圳', '香港', '国内')
+        cap = profile.get('max_per_company_cn', 8) if domestic else profile.get('max_per_company', 3)
+        key = (job['company'], domestic)
+        if counts.get(key, 0) >= cap:
+            continue
+        counts[key] = counts.get(key, 0) + 1
+        limited.append(job)
+    return limited
+
+
+def term_pattern(term):
+    """英文词加词边界；中文词没有空格分词，\w 又把汉字算作单词字符，所以直接子串匹配。"""
+    if re.search(r'[\u4e00-\u9fff]', term):
+        return re.escape(term)
+    return r'(?<!\w)' + re.escape(term) + r'(?!\w)'
+
+
 def match(job, profile):
     title = job['title'].lower()
     text = title + ' ' + job.get('description', '').lower()
     if any(term in title for term in profile.get('exclude_title', [])):
         return None
-    if profile.get('title_focus') and not any(re.search(r'(?<!\w)' + re.escape(term), title) for term in profile['title_focus']):
+    if profile.get('title_focus') and not any(re.search(term_pattern(term) if re.search(r'[\u4e00-\u9fff]', term) else r'(?<!\w)' + re.escape(term), title) for term in profile['title_focus']):
         return None
     # Require technical evidence in the title: company-wide descriptions alone are insufficient.
     if not any(term in title for term in profile['title_terms']):
         return None
     tags, reasons, score = [], [], 0
     for group, terms in profile['directions'].items():
-        hits = [term for term in terms if re.search(r'(?<!\w)' + re.escape(term) + r'(?!\w)', text, re.I)]
+        hits = [term for term in terms if re.search(term_pattern(term), text, re.I)]
         if hits:
             tags.append(group)
             reasons.append(group + '：' + '、'.join(hits[:3]))
             score += 3 if any(term in title for term in hits) else 1
     if not tags:
         return None
-    location = job['location'].lower()
-    region = '深圳' if 'shenzhen' in location or '深圳' in location else ('远程' if 'remote' in location else '其他地区')
-    if region == '深圳':
-        score += 4
-    elif region == '远程':
-        score += 2
+    region = region_of(job['location'])
+    score += REGION_BONUS[region]
     return dict(job, tags=tags + [region], reasons=reasons, score=score, region=region)
 
 
@@ -96,12 +141,32 @@ def fetch_source(source):
                 payload = request(source['url'], {'appliedFacets': {}, 'limit': 20, 'offset': offset, 'searchText': query})
                 postings = payload['jobPostings']
                 for j in postings:
-                    rows.append({'title': j['title'], 'url': source['base'] + j['externalPath'], 'location': j.get('locationsText', ''), 'description': '', 'source_updated': j.get('postedOn', '')})
+                    rows.append({'title': j['title'], 'url': source['base'] + j['externalPath'], 'location': j.get('locationsText', ''), 'description': '', 'source_updated': j.get('postedOn', ''), '_path': j['externalPath']})
                 offset += len(postings)
                 if offset >= payload['total']:
                     break
                 if not postings or offset >= 500:
                     raise ValueError('Incomplete pagination')
+        # 「N Locations」看不出城市；对这类职位取详情，拿到全部地点和描述（最多 60 条）
+        detail_base = source['url'].rsplit('/jobs', 1)[0]
+        seen_paths, fetched = set(), 0
+        for row in rows:
+            path = row.pop('_path', '')
+            if not path or path in seen_paths:
+                continue
+            seen_paths.add(path)
+            if fetched >= 60 or not re.search(r'\d+ Locations', row['location'] or ''):
+                continue
+            fetched += 1
+            try:
+                info = request(detail_base + path).get('jobPostingInfo') or {}
+                places = [info.get('location', '')] + list(info.get('additionalLocations') or [])
+                row['location'] = '; '.join(x for x in places if x) or row['location']
+                row['description'] = plain(info.get('jobDescription', ''))[:3000]
+            except Exception:
+                pass
+        for row in rows:
+            row.pop('_path', None)
     elif source['kind'] == 'apple':
         pattern = re.compile(r'<h3><a[^>]+href="([^"]+/details/[^"]+)"[^>]*>(.*?)</a></h3>', re.I | re.S)
         seen = set()
@@ -187,9 +252,72 @@ def fetch_source(source):
             for j in payload.get('results', []):
                 loc = j.get('location', {}).get('display_name', '') if isinstance(j.get('location'), dict) else ''
                 rows.append({'title': j.get('title', ''), 'url': j.get('redirect_url', ''), 'location': loc or source['where'], 'description': plain(j.get('description', '')), 'source_updated': j.get('created', '')})
+    elif source['kind'] == 'tencent':
+        import time
+        seen = set()
+        for query in source['queries']:
+            params = urllib.parse.urlencode({'timestamp': int(time.time() * 1000), 'keyword': query, 'pageIndex': 1, 'pageSize': 50, 'language': 'zh-cn', 'area': 'cn'})
+            payload = request(source['url'] + '?' + params, headers={'Referer': 'https://careers.tencent.com/'})
+            for j in (payload.get('Data') or {}).get('Posts') or []:
+                url = (j.get('PostURL') or '').replace('http://', 'https://')
+                if not url or url in seen:
+                    continue
+                seen.add(url)
+                rows.append({'title': j.get('RecruitPostName', ''), 'url': url, 'location': j.get('LocationName', ''),
+                             'description': plain((j.get('Responsibility') or '') + ' ' + (j.get('Requirement') or '')), 'source_updated': j.get('LastUpdateTime', '')})
+    elif source['kind'] == 'feishu':
+        host = source['url'].rstrip('/')
+        path = source.get('path', 'experienced')
+        seen = set()
+        for query in source['queries']:
+            payload = request(f"{host}/api/v1/search/job/posts",
+                              {'keyword': query, 'limit': 50, 'offset': 0, 'job_category_id_list': [], 'tag_id_list': [], 'location_code_list': source.get('location_codes', []),
+                               'subject_id_list': [], 'recruitment_id_list': [], 'portal_type': 2, 'job_function_id_list': []},
+                              headers={'portal-platform': '1', 'website-path': path, 'env': 'undefined', 'Referer': f'{host}/{path}/', 'Origin': host})
+            for j in (payload.get('data') or {}).get('job_post_list') or []:
+                jid = j.get('id')
+                if not jid or jid in seen:
+                    continue
+                seen.add(jid)
+                city = (j.get('city_info') or {}).get('name') or (j.get('city_info') or {}).get('en_name') or ''
+                rows.append({'title': j.get('title', ''), 'url': f"{host}/{path}/position/{jid}/detail", 'location': city,
+                             'description': plain((j.get('description') or '') + ' ' + (j.get('requirement') or ''))[:3000], 'source_updated': str(j.get('publish_time') or '')})
+    elif source['kind'] == 'baidu':
+        seen = set()
+        for query in source['queries']:
+            payload = request(source['url'], {'recruitType': 'SOCIAL', 'pageSize': 50, 'keyWord': query, 'curPage': 1, 'projectType': ''}, form=True,
+                              headers={'Referer': 'https://talent.baidu.com/jobs/social-list', 'Origin': 'https://talent.baidu.com'})
+            for j in (payload.get('data') or {}).get('list') or []:
+                pid = j.get('postId')
+                if not pid or pid in seen:
+                    continue
+                seen.add(pid)
+                rows.append({'title': j.get('name', ''), 'url': f"https://talent.baidu.com/jobs/social-detail/{pid}", 'location': j.get('workPlace', ''),
+                             'description': plain((j.get('workContent') or '') + ' ' + (j.get('serviceCondition') or ''))[:3000], 'source_updated': str(j.get('publishDate') or '')})
+    elif source['kind'] == 'linkedin':
+        seen = set()
+        for location in source['locations']:
+            for query in source['queries']:
+                params = urllib.parse.urlencode({'keywords': query, 'location': location, 'start': 0, 'f_TPR': 'r2592000'})
+                try:
+                    raw = request_text(source['url'] + '?' + params)
+                except Exception:
+                    continue
+                for card in re.findall(r'<li>(.*?)</li>', raw, re.S):
+                    href = re.search(r'href="(https://[^"]*?/jobs/view/[^"?]+)', card)
+                    title = re.search(r'base-search-card__title[^>]*>(.*?)</h3>', card, re.S)
+                    company = re.search(r'base-search-card__subtitle[^>]*>(?:\s*<a[^>]*>)?(.*?)</', card, re.S)
+                    place = re.search(r'job-search-card__location[^>]*>(.*?)</span>', card, re.S)
+                    if not href or not title or href.group(1) in seen:
+                        continue
+                    seen.add(href.group(1))
+                    rows.append({'title': plain(title.group(1)), 'url': href.group(1), 'location': plain(place.group(1)) if place else location,
+                                 'description': '', 'source_updated': '', 'company': plain(company.group(1)) if company else ''})
+        if not rows:
+            raise ValueError('LinkedIn guest search returned nothing')
     else:
         raise ValueError('Unsupported source kind')
-    return [dict(j, company=source['name'], source=source['id']) for j in rows]
+    return [dict(j, company=j.get('company') or source['name'], source=source['id']) for j in rows]
 
 
 def collect(config, old, fetcher=fetch_source):
@@ -226,15 +354,10 @@ def collect(config, old, fetcher=fetch_source):
     # until the adapter can refresh them, so transient network failures do not
     # empty the page.
     for previous in old.get('jobs', []):
-        if previous.get('source') in ('ats-jobs', 'liepin-shenzhen') and previous.get('url') not in jobs:
-            jobs[previous['url']] = dict(previous, stale=True)
-    ordered = sorted(jobs.values(), key=lambda j: (j['region'] not in ('深圳', '香港'), j['region'] != '深圳', -j['score'], j['company'], j['title']))
-    limited, counts = [], {}
-    for job in ordered:
-        if counts.get(job['company'], 0) >= config['profile'].get('max_per_company', 3):
-            continue
-        counts[job['company']] = counts.get(job['company'], 0) + 1
-        limited.append(job)
+        if previous.get('source') in ('ats-jobs', 'liepin', 'liepin-shenzhen') and previous.get('url') not in jobs:
+            refreshed = match(dict(previous, description=' '.join(previous.get('reasons', []))), config['profile'])
+            jobs[previous['url']] = dict(previous, stale=True, **({k: refreshed[k] for k in ('region', 'tags', 'score')} if refreshed else {}))
+    limited = limit_jobs(jobs.values(), config['profile'])
     return {'updated': now, 'sources': statuses, 'jobs': limited, 'search_links': config.get('search_links', [])}
 
 
@@ -242,7 +365,7 @@ def render():
     data = json.loads(DATA.read_text()) if DATA.exists() else {}
     esc = html.escape
     parts = [f'<p class="radar-stats">最近尝试更新：{esc(data.get("updated", "尚未运行"))} · 按技术关键词与地点排序，不代表录用概率。</p>']
-    parts.append('<p>经验、学历、薪资、签证与远程可工作地区未作匹配，请查看职位原文。其他地区包含海外及深圳以外城市；多地点职位请展开原文确认。</p>')
+    parts.append('<p>经验、学历、薪资、签证与远程可工作地区未作匹配，请查看职位原文。「国内其他城市」是深圳、香港以外的中国内地城市；多地点职位请展开原文确认。</p>')
     parts.append('<details><summary>招聘源状态</summary><ul>')
     for s in data.get('sources', []):
         state = f'成功 · {s["fetched"]} 条原始岗位' if s['ok'] else '抓取失败，保留上次结果并标记待复核'
@@ -255,7 +378,10 @@ def render():
         parts.append('</ul></details>')
     primary = [j for j in data.get('jobs', []) if j.get('listing_type') != 'headhunter']
     headhunters = [j for j in data.get('jobs', []) if j.get('listing_type') == 'headhunter']
-    groups = [('深圳 / 香港', [j for j in primary if j['region'] in ('深圳', '香港')]), ('远程', [j for j in primary if j['region'] == '远程']), ('其他地区', [j for j in primary if j['region'] == '其他地区'])]
+    groups = [('深圳 / 香港', [j for j in primary if j['region'] in ('深圳', '香港')]),
+              ('国内其他城市', [j for j in primary if j['region'] == '国内']),
+              ('远程', [j for j in primary if j['region'] == '远程']),
+              ('海外', [j for j in primary if j['region'] == '海外'])]
     for label, group in groups:
         if not group: continue
         parts.append(f'<section data-filter-group><h2>{label} <small>({len(group)})</small></h2><ul class="job-list" data-archive>')

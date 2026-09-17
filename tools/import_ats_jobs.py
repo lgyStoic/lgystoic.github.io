@@ -5,7 +5,7 @@ import json
 from datetime import datetime, timezone
 from pathlib import Path
 
-from jobs import CONFIG, DATA, match
+from jobs import CONFIG, DATA, match, limit_jobs
 
 ROOT = Path(__file__).resolve().parent.parent
 
@@ -44,13 +44,7 @@ def main():
             result.pop('description', None)
             merged[url] = dict(result, last_seen=now, stale=False)
             matched += 1
-    ordered = sorted(merged.values(), key=lambda j: (j['region'] not in ('深圳', '香港'), j['region'] != '深圳', -j['score'], j['company'], j['title']))
-    limited, counts = [], {}
-    for job in ordered:
-        if counts.get(job['company'], 0) >= profile.get('max_per_company', 3):
-            continue
-        counts[job['company']] = counts.get(job['company'], 0) + 1
-        limited.append(job)
+    limited = limit_jobs(merged.values(), profile)
     data['jobs'] = limited
     data.setdefault('sources', []).append({'name': 'ats-jobs · 12类ATS', 'ok': True, 'fetched': len(source_rows), 'matched': matched})
     DATA.write_text(json.dumps(data, ensure_ascii=False, indent=2) + '\n')
