@@ -1732,3 +1732,25 @@ main.wrap {
   color: var(--muted);
   font-size: 0.85rem;
 }
+
+.match {
+  display: inline-block;
+  margin-right: 8px;
+  padding: 1px 7px;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  vertical-align: 0.15em;
+  border: 1px solid var(--line);
+  color: var(--muted);
+}
+
+.match-高 {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.match-中 {
+  color: var(--ink-soft);
+}

@@ -40,7 +40,7 @@ jobs:
           if git clone --depth 1 https://github.com/rockbenben/ai-job-search-cn.git /tmp/ai-job-search-cn; then
             LIEPIN_OK=0
             for CITY in "深圳" "北京" "上海" "杭州" "广州"; do
-            for QUERY in "AI Infra" "CUDA 推理" "大模型 推理 加速" "端侧部署"; do
+            for QUERY in "AI Infra" "CUDA 算子" "Triton TensorRT" "大模型 推理 加速" "训练框架 分布式" "扩散模型 视频生成" "端侧部署 量化"; do
               SLUG=$(printf '%s|%s' "$CITY" "$QUERY" | sha256sum | cut -c1-12)
               for ATTEMPT in 1 2 3; do
                 if node /tmp/ai-job-search-cn/.agents/skills/liepin-search/cli/src/cli.ts search -q "$QUERY" -l "$CITY" --limit 42 --format json > "radar/data/liepin/$SLUG.json"; then
