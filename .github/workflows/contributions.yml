@@ -1,0 +1,26 @@
+name: 开源贡献路线
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "20 1 * * 1"
+permissions: {contents: write}
+jobs:
+  roadmap:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: master}
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12"}
+      - name: 分析仓库并生成路线
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python3 tools/contributions.py && python3 tools/build.py
+      - name: 提交结果
+        run: |
+          git config user.name radar-bot
+          git config user.email radar-bot@users.noreply.github.com
+          git add radar/data/contributions.json radar/contributions/index.html sitemap.xml
+          git diff --cached --quiet || git commit -m "roadmap: refresh contribution plan" && git push origin HEAD:master
