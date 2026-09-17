@@ -22,6 +22,12 @@ def request(url, payload=None):
         return json.load(response)
 
 
+def request_text(url):
+    req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0 personal-job-radar/1.0'})
+    with urllib.request.urlopen(req, timeout=25) as response:
+        return response.read().decode('utf-8', 'replace')
+
+
 def plain(value):
     return ' '.join(html.unescape(re.sub('<[^>]+>', ' ', value or '')).split())
 
@@ -123,14 +129,21 @@ def fetch_source(source):
                 rows.append({'title': j.get('title', ''), 'url': 'https://himalayas.app/jobs/' + j.get('slug', ''), 'location': ', '.join(restrictions) or 'Remote', 'description': plain(j.get('excerpt', '')), 'source_updated': j.get('pubDate', '')})
     elif source['kind'] == 'tavily':
         api_key = os.environ.get('BOOLEAN_TAVILY_API_KEY', '').strip()
-        if not api_key:
-            raise ValueError('BOOLEAN_TAVILY_API_KEY 未配置')
         for query in source['queries']:
-            payload = request(source['url'], {'api_key': api_key, 'query': query, 'search_depth': 'advanced', 'max_results': 10, 'include_answer': False})
-            for j in payload.get('results', []):
-                text = plain(j.get('content', ''))
-                location = '深圳 / 香港' if re.search(r'深圳|Shenzhen|香港|Hong Kong', j.get('title', '') + ' ' + text, re.I) else ''
-                rows.append({'title': j.get('title', ''), 'url': j.get('url', ''), 'location': location, 'description': text, 'source_updated': ''})
+            if api_key:
+                payload = request(source['url'], {'api_key': api_key, 'query': query, 'search_depth': 'advanced', 'max_results': 10, 'include_answer': False})
+                results = [(j.get('title', ''), j.get('url', ''), plain(j.get('content', ''))) for j in payload.get('results', [])]
+            else:
+                raw = request_text('https://html.duckduckgo.com/html/?' + urllib.parse.urlencode({'q': query}))
+                results = []
+                for href, title in re.findall(r'class="result__a"[^>]+href="([^"]+)"[^>]*>(.*?)</a>', raw, re.I | re.S):
+                    target = urllib.parse.parse_qs(urllib.parse.urlparse(html.unescape(href)).query).get('uddg', [html.unescape(href)])[0]
+                    results.append((plain(title), target, ''))
+            for title, url, text in results:
+                location = '深圳 / 香港' if re.search(r'深圳|Shenzhen|香港|Hong Kong', title + ' ' + text, re.I) else ''
+                rows.append({'title': title, 'url': url, 'location': location, 'description': text, 'source_updated': ''})
+        if not rows:
+            raise ValueError('Boolean search returned no results')
     elif source['kind'] == 'adzuna':
         app_id, app_key = os.environ.get('ADZUNA_APP_ID', '').strip(), os.environ.get('ADZUNA_APP_KEY', '').strip()
         if not app_id or not app_key:
