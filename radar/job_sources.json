@@ -124,6 +124,28 @@
       "base": "https://career.huawei.com/reccampportal/portal5/",
       "location": "中国 / 深圳及其他城市",
       "title_terms": ["AI", "推理", "训练", "昇腾", "架构", "大模型"]
+    },
+    {
+      "id": "remotive",
+      "name": "Remotive 聚合",
+      "kind": "json",
+      "url": "https://remotive.com/api/remote-jobs?search=inference%20GPU%20machine%20learning",
+      "items": "jobs",
+      "title": "title",
+      "url_field": "url",
+      "location": "candidate_required_location",
+      "description": "description"
+    },
+    {
+      "id": "arbeitnow",
+      "name": "Arbeitnow 聚合",
+      "kind": "json",
+      "url": "https://www.arbeitnow.com/api/job-board-api",
+      "items": "data",
+      "title": "title",
+      "url_field": "url",
+      "location": "location",
+      "description": "description"
     }
   ]
 }

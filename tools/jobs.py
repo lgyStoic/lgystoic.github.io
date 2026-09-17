@@ -80,6 +80,16 @@ def fetch_source(source):
                 continue
             url = href if href.startswith('http') else source['base'] + href
             rows.append({'title': title, 'url': url, 'location': source.get('location', ''), 'description': title, 'source_updated': ''})
+    elif source['kind'] == 'json':
+        payload = request(source['url'])
+        records = payload if isinstance(payload, list) else payload.get(source.get('items', 'jobs'), [])
+        for j in records:
+            title = j.get(source.get('title', 'title'), '')
+            location = j.get(source.get('location', 'location'), '')
+            url = j.get(source.get('url_field', 'url'), '') or j.get('apply_url', '')
+            description = plain(j.get(source.get('description', 'description'), ''))
+            if title and url:
+                rows.append({'title': title, 'url': url, 'location': location if isinstance(location, str) else ', '.join(location or []), 'description': description, 'source_updated': j.get('published_at', '')})
     else:
         raise ValueError('Unsupported source kind')
     return [dict(j, company=source['name'], source=source['id']) for j in rows]
