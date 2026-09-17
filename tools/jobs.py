@@ -75,7 +75,7 @@ def limit_jobs(jobs, profile):
 
 
 def term_pattern(term):
-    """英文词加词边界；中文词没有空格分词，\w 又把汉字算作单词字符，所以直接子串匹配。"""
+    r"""英文词加词边界；中文词没有空格分词，\w 又把汉字算作单词字符，所以直接子串匹配。"""
     if re.search(r'[\u4e00-\u9fff]', term):
         return re.escape(term)
     return r'(?<!\w)' + re.escape(term) + r'(?!\w)'
@@ -101,8 +101,9 @@ def match(job, profile):
     if not tags:
         return None
     region = region_of(job['location'])
+    level = '高' if score >= 6 else ('中' if score >= 3 else '低')
     score += REGION_BONUS[region]
-    return dict(job, tags=tags + [region], reasons=reasons, score=score, region=region)
+    return dict(job, tags=tags + [region, '匹配' + level], reasons=reasons, score=score, region=region, level=level)
 
 
 def fetch_source(source):
@@ -267,24 +268,41 @@ def fetch_source(source):
                              'description': plain((j.get('Responsibility') or '') + ' ' + (j.get('Requirement') or '')), 'source_updated': j.get('LastUpdateTime', '')})
     elif source['kind'] == 'feishu':
         host = source['url'].rstrip('/')
-        path = source.get('path', 'experienced')
-        seen = set()
-        for query in source['queries']:
+        candidates = [source.get('path', 'index')] + [x for x in ('index', 'experienced', 'social', 'socialrecruitment', 'campus') if x != source.get('path', 'index')]
+        ua = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0 Safari/537.36'
+
+        def feishu_search(path, query):
             body = {'keyword': query, 'limit': 50, 'offset': 0, 'job_category_id_list': [], 'tag_id_list': [], 'location_code_list': source.get('location_codes', []),
                     'subject_id_list': [], 'recruitment_id_list': [], 'portal_type': 2, 'job_function_id_list': [], 'portal_entrance': 1}
-            qs = urllib.parse.urlencode({'keyword': query, 'limit': 50, 'offset': 0, 'portal_type': 2, 'portal_entrance': 1})
-            payload = request(f"{host}/api/v1/search/job/posts?{qs}", body,
-                              headers={'portal-platform': '1', 'website-path': path, 'env': 'undefined', 'Accept': 'application/json, text/plain, */*',
-                                       'Accept-Language': 'zh-CN,zh;q=0.9', 'Referer': f'{host}/{path}/position?keywords={urllib.parse.quote(query)}', 'Origin': host,
-                                       'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0 Safari/537.36'})
-            if payload.get('code') not in (None, 0):
-                raise ValueError(f"feishu code={payload.get('code')} {str(payload.get('message', ''))[:80]}")
+            return request(f"{host}/api/v1/search/job/posts", body,
+                           headers={'portal-platform': '1', 'website-path': path, 'env': 'undefined', 'Accept': 'application/json, text/plain, */*',
+                                    'Accept-Language': 'zh-CN,zh;q=0.9', 'Referer': f'{host}/{path}/position', 'Origin': host, 'User-Agent': ua})
+
+        path, first = None, None
+        for candidate in candidates:
+            try:
+                first = feishu_search(candidate, source['queries'][0])
+            except urllib.error.HTTPError as exc:
+                if exc.code in (400, 404):
+                    continue
+                raise
+            if first.get('code') in (None, 0):
+                path = candidate
+                break
+        if path is None:
+            raise ValueError(f"feishu: 没有可用的站点路径（试过 {candidates}），最后返回 {str(first)[:120] if first else '无'}")
+        if path != source.get('path', 'index'):
+            print(f"{source['name']}: 站点路径实际为 {path}")
+        seen = set()
+        for index, query in enumerate(source['queries']):
+            payload = first if index == 0 else feishu_search(path, query)
             for j in (payload.get('data') or {}).get('job_post_list') or []:
                 jid = j.get('id')
                 if not jid or jid in seen:
                     continue
                 seen.add(jid)
-                city = (j.get('city_info') or {}).get('name') or (j.get('city_info') or {}).get('en_name') or ''
+                city_info = j.get('city_info') or {}
+                city = city_info.get('name') or city_info.get('en_name') or ', '.join(c.get('name', '') for c in (j.get('city_list') or []) if isinstance(c, dict)) or source.get('location', '')
                 rows.append({'title': j.get('title', ''), 'url': f"{host}/{path}/position/{jid}/detail", 'location': city,
                              'description': plain((j.get('description') or '') + ' ' + (j.get('requirement') or ''))[:3000], 'source_updated': str(j.get('publish_time') or '')})
     elif source['kind'] == 'baidu':
@@ -294,7 +312,7 @@ def fetch_source(source):
                               headers={'Referer': 'https://talent.baidu.com/jobs/social-list', 'Origin': 'https://talent.baidu.com'})
             records = (payload.get('data') or {}).get('list') or []
             if not records:
-                print(f"百度 {query}: 返回键 {list(payload)[:6]} data 键 {list(payload.get('data') or {})[:6] if isinstance(payload.get('data'), dict) else type(payload.get('data')).__name__}")
+                print(f"百度 {query}: {json.dumps(payload, ensure_ascii=False)[:200]}")
             for j in records:
                 pid = j.get('postId')
                 if not pid or pid in seen:
@@ -405,7 +423,9 @@ def render():
         parts.append(f'<section data-filter-group><h2>{label} <small>({len(group)})</small></h2><ul class="job-list" data-archive>')
         for job in group:
             search = esc(' '.join([job['title'], job['company'], job['location'], *job['tags']]).lower(), quote=True)
-            parts.append(f'<li data-search="{search}" data-tags="{esc("|".join(job["tags"]), quote=True)}"><article><h2><a href="{esc(job["url"], quote=True)}" rel="noopener noreferrer">{esc(job["title"])}</a></h2>')
+            level = job.get('level', '')
+            badge = f'<span class="match match-{esc(level)}">匹配{esc(level)}</span>' if level else ''
+            parts.append(f'<li data-search="{search}" data-tags="{esc("|".join(job["tags"]), quote=True)}"><article><h2>{badge}<a href="{esc(job["url"], quote=True)}" rel="noopener noreferrer">{esc(job["title"])}</a></h2>')
             parts.append(f'<p>{esc(job["company"])} · {esc(job["location"])} · {esc(job["region"])}</p>')
             parts.append(f'<p>{esc("；".join(job["reasons"]))}</p>')
             state = '待复核：本次来源抓取失败' if job.get('stale') else '最近在招聘列表中发现'

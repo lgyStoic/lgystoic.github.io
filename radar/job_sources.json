@@ -14,10 +14,30 @@
       "研发",
       "专家",
       "负责人",
-      "科学家",
-      "实习"
+      "科学家"
     ],
     "directions": {
+      "GPU Kernel": [
+        "cuda",
+        "triton",
+        "cutlass",
+        "cute",
+        "kernel",
+        "算子",
+        "ptx",
+        "tensor core",
+        "gpu 编程",
+        "gpu编程",
+        "gpu 优化",
+        "gpu优化",
+        "高性能算子",
+        "昇腾算子",
+        "cann",
+        "rocm",
+        "nccl",
+        "flash attention",
+        "flashattention"
+      ],
       "AI Infra": [
         "ai infrastructure",
         "ml infrastructure",
@@ -175,7 +195,19 @@
       "产品经理",
       "hr",
       "法务",
-      "财务"
+      "财务",
+      "test",
+      "sdet",
+      "qa",
+      "测试",
+      "intern",
+      "实习",
+      "校招",
+      "campus",
+      "售前",
+      "解决方案",
+      "数据分析",
+      "客服"
     ],
     "max_per_company_cn": 8
   },
@@ -320,16 +352,6 @@
       ]
     },
     {
-      "id": "boolean-tavily",
-      "name": "Boolean Search · Tavily / DuckDuckGo",
-      "kind": "tavily",
-      "url": "https://api.tavily.com/search",
-      "queries": [
-        "(site:boards.greenhouse.io OR site:jobs.lever.co OR site:jobs.ashbyhq.com) (Shenzhen OR 深圳 OR Hong Kong) (AI infrastructure OR CUDA OR inference OR 端侧部署)",
-        "(site:myworkdayjobs.com OR site:jobs.smartrecruiters.com) (Shenzhen OR 深圳 OR Hong Kong) (machine learning systems OR GPU OR model optimization)"
-      ]
-    },
-    {
       "id": "adzuna-singapore",
       "name": "Adzuna · 新加坡",
       "kind": "adzuna",
@@ -343,30 +365,24 @@
       ]
     },
     {
-      "id": "adzuna-malaysia",
-      "name": "Adzuna · 马来西亚",
-      "kind": "adzuna",
-      "country": "my",
-      "where": "Malaysia",
-      "queries": [
-        "AI infrastructure",
-        "GPU CUDA inference",
-        "machine learning systems"
-      ]
-    },
-    {
       "id": "tencent",
       "name": "腾讯招聘",
       "kind": "tencent",
       "url": "https://careers.tencent.com/tencentcareer/api/post/Query",
       "queries": [
         "CUDA",
+        "Triton",
+        "TensorRT",
+        "vLLM",
         "推理加速",
         "大模型训练",
+        "训练框架",
         "AI Infra",
         "分布式训练",
         "算子",
         "视频生成",
+        "扩散模型",
+        "DiT",
         "端侧",
         "GPU",
         "异构计算",
@@ -381,16 +397,20 @@
       "path": "experienced",
       "queries": [
         "CUDA",
+        "Triton",
         "推理",
         "训练框架",
         "AI Infra",
         "算子",
         "视频生成",
+        "扩散模型",
         "端侧",
         "GPU",
         "异构",
-        "大模型系统"
-      ]
+        "大模型系统",
+        "Seed"
+      ],
+      "location": "北京"
     },
     {
       "id": "zhipu",
@@ -403,8 +423,11 @@
         "训练",
         "CUDA",
         "Infra",
-        "算子"
-      ]
+        "算子",
+        "多模态",
+        "视频"
+      ],
+      "location": "北京"
     },
     {
       "id": "moonshot",
@@ -416,8 +439,10 @@
         "推理",
         "训练",
         "Infra",
-        "CUDA"
-      ]
+        "CUDA",
+        "算子"
+      ],
+      "location": "北京"
     },
     {
       "id": "minimax",
@@ -430,8 +455,10 @@
         "训练",
         "Infra",
         "CUDA",
-        "视频"
-      ]
+        "视频",
+        "算子"
+      ],
+      "location": "上海"
     },
     {
       "id": "baidu",
@@ -462,12 +489,17 @@
       ],
       "queries": [
         "CUDA",
+        "Triton kernel",
+        "TensorRT",
+        "vLLM",
         "AI infrastructure",
         "LLM inference",
         "diffusion model",
+        "DiT video generation",
         "GPU kernel",
         "推理加速",
-        "大模型 训练"
+        "大模型 训练",
+        "算子"
       ]
     }
   ]
