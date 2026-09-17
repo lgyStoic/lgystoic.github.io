@@ -1,87 +1,160 @@
 {
-  "updated": "2026-09-17T08:29:56+00:00",
-  "strategy": "针对候选人具备 AI Infra、DiT、端侧部署及加速背景但缺乏高性能 GPU 的现状，核心策略是“以基础设施、跨平台支持和工程质量为切入点，逐步接管核心模块”。候选人应优先选择对 CPU/Mac/边缘设备友好、急需 CI/CD 稳定、内存优化或架构重构的项目。通过承担 issue triage、代码审查、静态分析、测试覆盖率提升和发布管理等高价值但低算力需求的维护工作，建立信任。待获取 GPU 资源后，再平滑过渡到核心算子优化和分布式训练/推理加速。",
+  "updated": "2026-09-17T08:52:11+00:00",
+  "strategy": "候选人目标是成为 AI Infra 和 DiT 领域的 core maintainer。在缺乏高性能 GPU 的现状下，策略应聚焦于：1. 端侧与跨平台支持（Apple Silicon/MLX/Metal、CPU Fallback）；2. 工程质量与基础设施（CI/CD、Docker、静态分析、API 兼容性）；3. 框架前端与调度逻辑（图优化、离线量化、Profiler 数据处理）；4. 积极参与 Issue Triage 与 Bug 复现。通过承担这些具有高维护价值的脏活累活建立信任，逐步接管特定模块，待获取社区算力或自身硬件到位后，再切入 Triton/CUDA kernel 优化。",
   "repos": [
     {
       "repo": "sgl-project/sglang",
-      "fit": "高度契合 AI Infra 和推理加速方向。项目正处于快速扩张期，多后端（Apple Silicon, NPU, XPU）和多模态（Diffusion）支持需求大，非常适合端侧部署和无高端 GPU 的候选人切入。",
-      "current_direction": "根据近期活动推断，核心 roadmap 包括：1. 投机解码的持续演进（DFlash, Spec V2, Triton 验证）；2. 扩展硬件后端（TPU, AMD, XPU, NPU, Apple Silicon）；3. 大规模专家并行（DeepSeek V3/R1/V4）与弹性扩展（elastic-ep）；4. 多模态与 Diffusion 模型支持（FLUX.2）。",
+      "fit": "高。业界顶尖的高性能 serving 框架，涉及大量 Infra 工作，且正在积极扩展多硬件后端。",
+      "current_direction": "根据近期活动推断：扩展多硬件后端（NPU, XPU, Apple Silicon），Rust 核心重构，支持最新模型（DeepSeek, Kimi）及 Speculative Decoding。",
       "maintainer_signals": [
-        "主动接管并修复长期存在的 CI 测试失败问题",
-        "为非 NVIDIA 后端（如 Apple Silicon, NPU）的 PR 提供高质量 Code Review",
-        "规范化 Issue 标签管理，主动复现并分类用户提交的 Bug"
+        "积极合并多硬件支持 PR",
+        "Rust 模块正在快速迭代",
+        "重视 CI 稳定性与依赖管理"
       ],
       "low_compute_options": [
-        "修复和稳定 CI 测试流水线（Issue #17050）",
-        "完善 Apple Silicon (Mac) 后端的测试与文档",
-        "实现 Triton 投机验证的运行时 token 宽度逻辑（PR #39859，可通过 Mock 或 CPU 验证逻辑）",
-        "限制 SafeUnpickler 的标准库全局变量以提升安全性（PR #39858）",
-        "NPU/XPU 相关的代码逻辑审查与接口一致性维护"
+        "Apple Silicon (Mac) 上的 ATen-to-MLX lowering 开发与测试",
+        "Rust 模块的 API parity tests 与 tokenizer cache 逻辑维护",
+        "CI 脚本维护与依赖升级",
+        "Issue triage 与 CPU 环境下的基础逻辑复现"
       ],
       "gpu_options": [
-        "DeepSeek V4/R1 的大规模专家并行（EP）优化",
-        "AMD gfx950 上的 FP8 和 MXFP4 服务端点支持",
-        "elastic-ep 的 CUDA Graph 捕获与扩展（PR #33723, #39834）"
+        "CUDA/ROCm 上的底层 kernel 优化（如 MLA q absorb）",
+        "大规模 Expert Parallelism 部署与调试",
+        "FP8/NVFP4 量化支持"
       ],
       "days_30": [
-        "通读架构文档，认领并修复 2-3 个 CI 相关的 Bug（如 #17050）",
-        "复现并 Triage 至少 10 个新 Issue，补充复现脚本",
-        "提交关于 SafeUnpickler 或前端路由（sgl-router）的改进 PR"
+        "熟悉代码库，修复 Rust 模块或 Apple Silicon 后端的 minor bugs",
+        "完善 API parity tests",
+        "参与 issue triage"
       ],
       "days_60": [
-        "成为 Apple Silicon 或 NPU/XPU 接口层面的活跃 Reviewer",
-        "主导一个非 GPU 核心模块的重构或测试覆盖率提升",
-        "协助维护者进行 Release 前的回归测试"
+        "负责特定非 GPU 模块（如 Rust router 或 MLX 后端）的稳定性",
+        "提交具有实质逻辑改进的 PR",
+        "协助 review 相关代码"
       ],
       "days_90": [
-        "获得 Triage 权限，主导 Issue 模块的日常管理",
-        "参与核心调度或投机解码逻辑的架构讨论与 Review",
-        "独立负责次要版本（Patch Release）的发布流程"
+        "成为该模块的 go-to person",
+        "主导跨平台 CI 的维护",
+        "参与 release 过程中的回归测试",
+        "规划该模块的 roadmap"
       ],
       "risks": [
-        "项目迭代极快，代码冲突频繁，需保持高频同步",
-        "核心性能优化高度依赖高端 GPU 集群，短期内难以直接参与"
+        "迭代速度极快，代码冲突频繁",
+        "核心 GPU 优化难以在无卡环境下验证"
       ],
       "evidence": {
         "url": "https://github.com/sgl-project/sglang",
-        "stars": 36088,
+        "stars": 36089,
         "forks": 8939,
-        "open_issues": 5383,
-        "pushed_at": "2026-09-17T08:25:49Z",
+        "open_issues": 5382,
+        "pushed_at": "2026-09-17T08:45:48Z",
         "issues": [
           {
-            "number": 36470,
-            "title": "[diffusion] feat: enable breakable CUDA graphs for FLUX.2 Klein",
+            "number": 37213,
+            "title": "[XPU] Qwen3.8-flash-next enablement",
             "labels": [
-              "diffusion"
+              "documentation",
+              "quant",
+              "speculative-decoding",
+              "jit-kernel",
+              "unified-radix-cache",
+              "memory-pool"
             ],
-            "url": "https://github.com/sgl-project/sglang/pull/36470",
+            "url": "https://github.com/sgl-project/sglang/pull/37213",
             "is_pr": true
           },
           {
-            "number": 38510,
-            "title": "[XPU] Use sgl-kernel-xpu fused sampling kernels",
+            "number": 39940,
+            "title": "[AMD] Kimi-K3: row-parallel LatentMoE tail (SGLANG_K3_TAIL_SHARD)",
+            "labels": [
+              "documentation"
+            ],
+            "url": "https://github.com/sgl-project/sglang/pull/39940",
+            "is_pr": true
+          },
+          {
+            "number": 39928,
+            "title": "[Qwen4-Exp] Build the offloaded PLE table on the meta device so --ple-offload-embedding never materialises it on the accelerator",
             "labels": [],
-            "url": "https://github.com/sgl-project/sglang/pull/38510",
+            "url": "https://github.com/sgl-project/sglang/pull/39928",
             "is_pr": true
           },
           {
-            "number": 35958,
-            "title": "[npu] decoding procedure optimization on qwen3.5/3.6",
+            "number": 39817,
+            "title": "[Intel GPU] Upgrade PyTorch XPU version to 2.14",
             "labels": [
+              "documentation",
+              "dependencies",
+              "run-ci"
+            ],
+            "url": "https://github.com/sgl-project/sglang/pull/39817",
+            "is_pr": true
+          },
+          {
+            "number": 39932,
+            "title": "[Rust] Fix pinned tokenizer cache lookup and system-DP listener ports",
+            "labels": [
+              "dependencies"
+            ],
+            "url": "https://github.com/sgl-project/sglang/pull/39932",
+            "is_pr": true
+          },
+          {
+            "number": 39564,
+            "title": "[Rust] Add configurable deterministic API parity tests",
+            "labels": [
+              "documentation",
+              "dependencies",
+              "apple-silicon"
+            ],
+            "url": "https://github.com/sgl-project/sglang/pull/39564",
+            "is_pr": true
+          },
+          {
+            "number": 39117,
+            "title": "[DCP] Restore GLM-5.3 Flash decode CP and fix virtual KV addressing",
+            "labels": [
+              "amd",
+              "deepseek",
+              "speculative-decoding",
+              "hicache",
+              "jit-kernel",
+              "memory-pool"
+            ],
+            "url": "https://github.com/sgl-project/sglang/pull/39117",
+            "is_pr": true
+          },
+          {
+            "number": 38798,
+            "title": "dsv4.1: remaining model and runtime integration",
+            "labels": [
+              "documentation",
+              "high priority",
+              "quant",
+              "dependencies",
+              "deepseek",
+              "hicache",
               "npu",
-              "run-ci"
+              "run-ci",
+              "jit-kernel",
+              "bypass-fastfail",
+              "run-ci-extra",
+              "unified-radix-cache",
+              "memory-pool"
             ],
-            "url": "https://github.com/sgl-project/sglang/pull/35958",
+            "url": "https://github.com/sgl-project/sglang/pull/38798",
             "is_pr": true
           },
           {
-            "number": 39859,
-            "title": "Use runtime token widths for Triton speculative verification",
+            "number": 39415,
+            "title": "[NPU] Adapt hicache for K3 hybrid models",
             "labels": [
-              "run-ci"
+              "hicache",
+              "npu",
+              "run-ci",
+              "memory-pool"
             ],
-            "url": "https://github.com/sgl-project/sglang/pull/39859",
+            "url": "https://github.com/sgl-project/sglang/pull/39415",
             "is_pr": true
           },
           {
@@ -94,145 +167,158 @@
             "is_pr": true
           },
           {
-            "number": 33723,
-            "title": "[3/N] elastic-ep: Recapture decode CUDA graphs after scale-up",
-            "labels": [
-              "run-ci",
-              "bypass-fastfail"
-            ],
-            "url": "https://github.com/sgl-project/sglang/pull/33723",
-            "is_pr": true
-          },
-          {
-            "number": 39427,
-            "title": "dsv4(npu): support prefill context parallelism with interleave and zigzag",
-            "labels": [
-              "deepseek",
-              "npu",
-              "run-ci"
-            ],
-            "url": "https://github.com/sgl-project/sglang/pull/39427",
-            "is_pr": true
-          },
-          {
-            "number": 39834,
-            "title": "[elastic-ep] Add orchestrator-safe scale-up bootstrap",
+            "number": 39609,
+            "title": "[NPU] fix dtype error in sampling backend ascend",
             "labels": [],
-            "url": "https://github.com/sgl-project/sglang/pull/39834",
+            "url": "https://github.com/sgl-project/sglang/pull/39609",
             "is_pr": true
           },
           {
-            "number": 39273,
-            "title": "[AMD] [GLM-5.3-Flash] Enable FP8 and MXFP4 serving on gfx950",
-            "labels": [
-              "documentation",
-              "quant",
-              "amd",
-              "deepseek",
-              "speculative-decoding",
-              "run-ci",
-              "apple-silicon",
-              "jit-kernel",
-              "run-ci-extra",
-              "unified-radix-cache",
-              "memory-pool"
-            ],
-            "url": "https://github.com/sgl-project/sglang/pull/39273",
-            "is_pr": true
-          },
-          {
-            "number": 38716,
-            "title": "[Bugfix] Expand MHA prefill graphs and honor agreed cache prefixes",
+            "number": 38831,
+            "title": "[NPU][bugfix] update low latency quantization input and update MXFP8 tests",
             "labels": [
               "run-ci",
-              "bypass-fastfail",
               "unified-radix-cache"
             ],
-            "url": "https://github.com/sgl-project/sglang/pull/38716",
+            "url": "https://github.com/sgl-project/sglang/pull/38831",
             "is_pr": true
           },
           {
-            "number": 39643,
-            "title": "[Spec] Model-agnostic last-stage draft embedding under pipeline parallelism",
-            "labels": [],
-            "url": "https://github.com/sgl-project/sglang/pull/39643",
-            "is_pr": true
-          },
-          {
-            "number": 39634,
-            "title": "[Tracking] Pipeline parallelism x speculative decoding (EAGLE/MTP): converge prefill gate PRs, make the path model-agnostic, decide decode design",
-            "labels": [],
-            "url": "https://github.com/sgl-project/sglang/issues/39634",
-            "is_pr": false
-          },
-          {
-            "number": 38339,
-            "title": "[NPU] add coverage-based precision test selection pipeline",
+            "number": 39790,
+            "title": "[ROCm] feat: enable aiter allreduce fusion for GLM models",
             "labels": [
-              "npu",
+              "amd",
               "run-ci"
             ],
-            "url": "https://github.com/sgl-project/sglang/pull/38339",
+            "url": "https://github.com/sgl-project/sglang/pull/39790",
             "is_pr": true
           },
           {
-            "number": 39881,
-            "title": "[NPU] Fuse MXFP4 W4A8 MoE gmm1 + swiglu + requant into one kernel",
+            "number": 38340,
+            "title": "[ROCm] Fuse the MLA q absorb into the RoPE + KV-write kernel on gfx950",
             "labels": [
-              "npu"
+              "amd",
+              "run-ci"
             ],
-            "url": "https://github.com/sgl-project/sglang/pull/39881",
+            "url": "https://github.com/sgl-project/sglang/pull/38340",
             "is_pr": true
           },
           {
-            "number": 17050,
-            "title": "[Tracking] CI Test Failures and Fixes",
-            "labels": [],
-            "url": "https://github.com/sgl-project/sglang/issues/17050",
-            "is_pr": false
+            "number": 37354,
+            "title": "[Apple Silicon] Add an architecture-independent ATen-to-MLX lowering layer",
+            "labels": [
+              "run-ci",
+              "apple-silicon"
+            ],
+            "url": "https://github.com/sgl-project/sglang/pull/37354",
+            "is_pr": true
+          }
+        ],
+        "releases": [
+          {
+            "name": "v0.5.19",
+            "date": "2026-09-05T02:27:42Z"
+          },
+          {
+            "name": "v0.5.18",
+            "date": "2026-08-22T00:09:15Z"
+          },
+          {
+            "name": "v0.5.17",
+            "date": "2026-08-08T00:19:16Z"
+          }
+        ],
+        "commits": [
+          {
+            "message": "[NPU]Refactor weight processing and add NPUSwigluLimit activation (#38420)",
+            "date": "2026-09-17T08:40:32Z"
+          },
+          {
+            "message": "[AMD][Spec] Enable GDN ReplaySSM target-verify on ROCm (#38184)",
+            "date": "2026-09-17T08:29:14Z"
+          },
+          {
+            "message": "Carry deferred attention operands and reuse multimodal shared memory (#39870)",
+            "date": "2026-09-17T08:17:15Z"
+          },
+          {
+            "message": "Restrict SafeUnpickler standard-library globals (#39858)",
+            "date": "2026-09-17T08:09:55Z"
+          },
+          {
+            "message": "[AMD][Bugfix] Fix vattn_asm HIP error 709 under CUDA graph capture on ROCm 10 (#39513)",
+            "date": "2026-09-17T08:06:04Z"
+          },
+          {
+            "message": "[sgl-router] Render chat prompts with dynamo-render (#38983)",
+            "date": "2026-09-17T07:57:20Z"
+          },
+          {
+            "message": "[HiCache] fix: resolve Mooncake local_hostname per node for runtime attach (#29668)",
+            "date": "2026-09-17T07:51:21Z"
+          },
+          {
+            "message": "[Moe] Fix flashinfer_trtllm silently dropping swiglu_limit clamped SwiGLU activation (#39920)",
+            "date": "2026-09-17T07:25:17Z"
+          },
+          {
+            "message": "[diffusion] chore: remove retired auto-residency workload helpers (#39884)",
+            "date": "2026-09-17T07:16:35Z"
+          },
+          {
+            "message": "[NPU][Diffusion] Optimize SenseNova-U1 batched generation (#39382)",
+            "date": "2026-09-17T07:08:20Z"
+          },
+          {
+            "message": "dsv4.1: Engram module and request history support (#39666)",
+            "date": "2026-09-17T06:49:47Z"
+          },
+          {
+            "message": "Gate mamba extra-buffer predicates on uses_mamba_radix_cache (#37474)",
+            "date": "2026-09-17T06:39:12Z"
           }
         ]
       }
     },
     {
       "repo": "THU-MIG/edge-dit.cpp",
-      "fit": "完美契合 DiT 和端侧部署方向。纯 C/C++ 且主打边缘设备，候选人完全可以在 Mac 或普通 PC 上进行核心开发，无需高端 GPU。",
-      "current_direction": "核心 roadmap 包括：1. 支持更多 DiT 模型（LTX-2.3, MiniMax-H3, FLUX.2）；2. 完善多后端支持（CPU/oneDNN, Vulkan, Metal）；3. 优化内存管理（auto-fit, 分层卸载）；4. 离线量化工具（ed-convert）的演进。",
+      "fit": "极高。完美契合 DiT、端侧部署和 C/C++ 方向，且对无 GPU 极其友好。",
+      "current_direction": "根据近期活动推断：扩展端侧 DiT 模型支持（LTX-2.3, MiniMax-H3），完善离线量化工具（ed-convert），优化内存管理（auto-fit）。",
       "maintainer_signals": [
-        "主导 Metal (Apple Silicon) 或 Vulkan 后端的开发与维护",
-        "完善 Python Bindings 和 C API 的一致性",
-        "主动响应新模型（如 LTX-2.3）支持的 Issue 并推进 PR"
+        "处于 Alpha 阶段，急需跨平台测试与新模型接入",
+        "对工程化贡献极度渴求"
       ],
       "low_compute_options": [
-        "优化 CPU (oneDNN) 或 Metal 后端的推理逻辑",
-        "改进 `ed-convert` 离线量化工具，增加测试用例",
-        "完善 Python Bindings 和 Web Console 的文档与示例",
-        "使用静态分析工具检查 C/C++ 内存泄漏",
-        "隔离特定模型（如 LTX-2.3）的运行时行为（PR #82）"
+        "完善 ed-convert 离线量化工具",
+        "CPU/Metal/Vulkan 后端的算子实现与测试",
+        "新增模型（如 LTX-2.3）的 CPU 推理验证",
+        "Python bindings 和 Web console 的维护",
+        "内存泄漏检查"
       ],
       "gpu_options": [
-        "CUDA 后端的 cuDNN SDPA 算子优化",
-        "RTX 4090 上的分层卸载（Layered offload）性能调优",
-        "多卡 NCCL/MPI 并行执行优化"
+        "CUDA 后端显存分配策略优化",
+        "cuDNN SDPA 集成",
+        "RTX 4090 级别的性能 benchmark"
       ],
       "days_30": [
-        "编译并运行所有 CPU/Metal 测试，修复编译警告",
-        "改进 Python Bindings，添加缺失的 API 测试",
-        "复现并解决 LTX-2.3 相关的基础集成问题"
+        "编译并跑通所有 CPU/Metal 示例",
+        "修复编译警告",
+        "完善 Python bindings 文档",
+        "提交 LTX-2.3 等新模型的初步 CPU 支持"
       ],
       "days_60": [
-        "接管 `ed-convert` 工具的维护，Review 相关的量化 PR",
-        "主导 Metal 或 Vulkan 后端的性能分析与基础优化",
-        "协助解答社区关于模型转换和端侧部署的 Issue"
+        "深入 ed-convert 工具链，优化离线量化逻辑",
+        "承担 Metal/Vulkan 后端的 bug 修复",
+        "开始 review 社区 PR"
       ],
       "days_90": [
-        "成为 Metal/Vulkan 后端或 Python API 的 Core Maintainer",
-        "主导新 DiT 模型（如新版 FLUX/Wan）的端到端接入",
-        "负责项目的 Release 打包与跨平台 CI 维护"
+        "成为端侧部署模块的核心维护者",
+        "主导新模型的端侧适配架构设计",
+        "负责发布前的跨平台稳定性验证"
       ],
       "risks": [
-        "C/C++ 内存管理容易引入段错误，需具备较强的 C++ 调试能力",
-        "项目处于 Alpha 阶段，API 可能频繁变动"
+        "处于早期阶段，API 可能频繁变动",
+        "社区规模较小，需主动推动项目进展"
       ],
       "evidence": {
         "url": "https://github.com/THU-MIG/edge-dit.cpp",
@@ -250,47 +336,96 @@
             "url": "https://github.com/THU-MIG/edge-dit.cpp/issues/82",
             "is_pr": false
           }
+        ],
+        "releases": [],
+        "commits": [
+          {
+            "message": "fix(ltx): isolate model-specific runtime behavior",
+            "date": "2026-09-01T07:45:03Z"
+          },
+          {
+            "message": "perf(ltx): optimize offload and execution paths",
+            "date": "2026-08-31T09:19:11Z"
+          },
+          {
+            "message": "feat(ltx): add LTX-2.3 video and audio pipeline",
+            "date": "2026-08-26T03:17:36Z"
+          },
+          {
+            "message": "docs: merge MiniMax-H3 performance results into README",
+            "date": "2026-08-24T14:36:48Z"
+          },
+          {
+            "message": "fix(flux): derive latent channels for auto-fit",
+            "date": "2026-08-24T01:22:50Z"
+          },
+          {
+            "message": "Merge remote-tracking branch 'origin/main'",
+            "date": "2026-08-18T14:04:10Z"
+          },
+          {
+            "message": "chore(gitignore): allow documentation MP4 assets",
+            "date": "2026-08-18T13:59:45Z"
+          },
+          {
+            "message": "docs(minimax-h3): publish RTX 4090 comparison",
+            "date": "2026-08-18T13:57:08Z"
+          },
+          {
+            "message": "docs(bindings): add Python and web console usage guides",
+            "date": "2026-08-18T13:56:49Z"
+          },
+          {
+            "message": "docs(models): clarify supported pipelines and precision workflows",
+            "date": "2026-08-18T13:56:32Z"
+          },
+          {
+            "message": "docs(cli): document conversion, sampling, and server workflows",
+            "date": "2026-08-18T13:56:24Z"
+          },
+          {
+            "message": "feat(benchmark): add MiniMax-H3 and FLUX.2 manifests",
+            "date": "2026-08-18T13:56:02Z"
+          }
         ]
       }
     },
     {
       "repo": "JeffreyXiang/FlexGEMM",
-      "fit": "契合 AI Infra 和训练/推理加速。虽然是 GPU 算子库，但目前急需跨平台构建、CPU Fallback 和工程化支持，适合通过工程能力切入。",
-      "current_direction": "核心 roadmap 包括：1. 提升跨平台与低显存支持（CPU Fallbacks, Windows/MSVC 构建）；2. 扩展硬件生态（ROCm/AMD, CUDA 13.0, RTX 50 系列）；3. FlexGEMM 2.0 架构改进（Issue #23）。",
+      "fit": "中高。契合 AI Infra 和加速，但强依赖 Triton 和 GPU。",
+      "current_direction": "根据近期活动推断：提升 3D 稀疏卷积性能，扩展硬件支持（ROCm, RTX 50系），增强跨平台编译能力。",
       "maintainer_signals": [
-        "解决跨平台编译问题（如 Windows/MSVC）",
-        "实现并维护 CPU Fallback 机制，降低项目使用门槛",
-        "规范化 Triton autotune 缓存机制"
+        "正在积极处理 CPU fallback 和 Windows 编译问题",
+        "对降低使用门槛有需求"
       ],
       "low_compute_options": [
-        "实现 CUDA kernel 的 CPU fallbacks 以支持低显存环境（PR #29, Issue #30）",
-        "修复 Windows/MSVC 构建中的 C++20 标志和模板消歧义问题（PR #31）",
-        "修复 Triton autotune 缓存键不一致的问题（Issue #26）",
-        "搭建和完善跨平台（Linux/Windows）的 CI 测试流水线"
+        "实现并完善 CPU fallbacks for CUDA kernels 以支持低 VRAM 环境",
+        "修复 Windows/MSVC 构建与 C++20 标志问题",
+        "修复 Triton autotune cache 机制",
+        "完善单元测试"
       ],
       "gpu_options": [
-        "调试 RTX 50 系列 (Blackwell) 上的 CUDA 驱动错误（Issue #32, #13）",
-        "修复多 GPU 训练时的崩溃问题（Issue #14）",
-        "针对 3D 稀疏卷积的 Triton 核心算子深度优化"
+        "修复 RTX 50-series (Blackwell) 上的 device not ready 错误",
+        "排查多卡训练崩溃问题",
+        "Triton kernel 性能调优"
       ],
       "days_30": [
-        "完成 Windows/MSVC 构建修复（PR #31）并合并",
-        "推进 CPU Fallback (PR #29) 的代码完善与单元测试",
-        "梳理 Issue 列表，标记需要特定硬件复现的 Bug"
+        "跑通 CPU fallback 逻辑",
+        "修复 Windows 编译问题",
+        "补充基础单元测试"
       ],
       "days_60": [
-        "接管 CI/CD 流水线，确保每次 PR 都在多平台编译通过",
-        "Review 社区提交的 ROCm/AMD 兼容性 PR",
-        "解决 Triton autotune 缓存相关的工程问题"
+        "完善 Triton autotune cache 机制",
+        "接手部分 issue 的复现与 triage",
+        "优化 Python 前端调度逻辑"
       ],
       "days_90": [
-        "参与 FlexGEMM 2.0 (Issue #23) 的架构设计与工程重构",
-        "成为非 NVIDIA 平台及工程构建模块的 Core Maintainer",
-        "负责发布版本的打包与 PyPI 维护"
+        "负责跨平台编译与 CPU fallback 模块的维护",
+        "协助 review 社区 PR",
+        "参与新版本 release"
       ],
       "risks": [
-        "核心性能优化强依赖高端 GPU 和 Triton 深入理解",
-        "项目规模较小，维护者可能响应较慢，需主动推进"
+        "核心价值在于 GPU 性能，无 GPU 难以触及核心 Triton 算子优化"
       ],
       "evidence": {
         "url": "https://github.com/JeffreyXiang/FlexGEMM",
@@ -369,52 +504,111 @@
             "url": "https://github.com/JeffreyXiang/FlexGEMM/issues/8",
             "is_pr": false
           }
+        ],
+        "releases": [
+          {
+            "name": "FlexGEMM v1.1.0",
+            "date": "2026-04-02T09:05:38Z"
+          },
+          {
+            "name": "FlexGEMM v1.0.0",
+            "date": "2026-01-13T07:22:35Z"
+          }
+        ],
+        "commits": [
+          {
+            "message": "Merge autotune cache on install instead of overwriting",
+            "date": "2026-04-22T07:41:49Z"
+          },
+          {
+            "message": "fix(spconv): respect TRANSPOSE_WEIGHT in split-K fwd wrappers",
+            "date": "2026-04-22T07:36:37Z"
+          },
+          {
+            "message": "Merge pull request #18 from ZJLi2013/rocm",
+            "date": "2026-04-20T07:13:20Z"
+          },
+          {
+            "message": "Disable tf32 input_precision on AMD/ROCm (only ieee supported)",
+            "date": "2026-04-08T02:16:26Z"
+          },
+          {
+            "message": "Fix __syncwarp for ROCm/HIP: AMD wavefront lockstep via wave_barrier",
+            "date": "2026-04-08T01:57:48Z"
+          },
+          {
+            "message": "Merge pull request #9 from JeffreyXiang/dev/sparse_conv",
+            "date": "2026-04-02T08:57:53Z"
+          },
+          {
+            "message": "Fix output pointer calculations by converting indices to int64 in sparse convolution kernels",
+            "date": "2026-03-24T13:07:33Z"
+          },
+          {
+            "message": "Merge remote-tracking branch 'origin/main' into dev/sparse_conv",
+            "date": "2026-03-24T06:44:19Z"
+          },
+          {
+            "message": "Merge pull request #15 from cuzelac/fix/syncwarp-reduce-kernel",
+            "date": "2026-03-11T04:45:03Z"
+          },
+          {
+            "message": "Add -allow-unsupported-compiler for CUDA 13.0+ compatibility",
+            "date": "2026-03-08T09:44:49Z"
+          },
+          {
+            "message": "Add missing __syncwarp() in warp-level reduction",
+            "date": "2026-03-08T09:43:30Z"
+          },
+          {
+            "message": "Merge pull request #11 from gustavomassa/main",
+            "date": "2026-02-02T14:04:11Z"
+          }
         ]
       }
     },
     {
       "repo": "hao-ai-lab/FastVideo",
-      "fit": "高度契合 DiT 和训练/推理加速。项目支持 MLX (Apple Silicon)，为无 NVIDIA GPU 的候选人提供了极佳的切入点。",
-      "current_direction": "核心 roadmap 包括：1. 新模型支持与蒸馏（FastH3, LTX-2.5, Cosmos Predict2.5）；2. Apple Silicon (MLX) 端侧推理优化；3. 性能优化（FP8 动态量化融合，序列并行）；4. Dreamverse 实时生成与多模态路由。",
+      "fit": "高。契合 DiT、视频生成和推理加速，且有 Apple Silicon 支持。",
+      "current_direction": "根据近期活动推断：优化 FastH3 等视频模型的推理速度，支持 MLX 端侧推理，探索 FP8 动态量化与稀疏注意力。",
       "maintainer_signals": [
-        "主导 MLX (Apple Silicon) 相关的推理优化与 Bug 修复",
-        "完善数据预处理流水线和 GGUF 量化支持",
-        "提升 CI 测试的稳定性（如修复 Race condition）"
+        "积极合并 MLX 支持和工程化修复",
+        "重视多模态输入与系统级优化"
       ],
       "low_compute_options": [
-        "完善 FastH3 的 MLX 推理支持与热安全（thermal-safe）逻辑（PR #1863）",
-        "从 vLLM 移植 GGUF 量化层到 FastVideo（PR #1136）",
-        "修复 Dreamverse provider 的 CI 竞争条件测试（PR #1729）",
-        "定义 Dreamverse 的系统 Prompt 和多模态路由逻辑（PR #1855, #1835）",
-        "修复音频解码短于视频帧时的对齐 Bug（PR #1857）"
+        "完善 Apple Silicon (MLX) 上的推理支持与测试",
+        "移植 GGUF 量化层",
+        "修复 Transformers 5 兼容性问题",
+        "优化数据预处理 pipeline",
+        "补充 Dreamverse system prompts 等文档"
       ],
       "gpu_options": [
-        "将 FP8 动态激活量化融合到 Triton kernel 中（PR #1861）",
-        "为 LongCat BSA 细化启用序列并行（SP）（PR #1862）",
-        "优化 PCIe 节点上的 VAE 卸载路径（PR #1836）"
+        "PCIe B200 节点性能优化",
+        "FP8 Triton kernel 融合",
+        "HIP autotune configs 调优",
+        "Sequence Parallelism 调试"
       ],
       "days_30": [
-        "修复 CI 测试的确定性问题（PR #1729）",
-        "推进 MLX 相关的 PR（如 #1863），在 Mac 上进行本地验证",
-        "复现并 Triage 社区关于模型加载和依赖冲突的 Issue"
+        "在 Mac 上跑通 MLX 推理",
+        "修复 Transformers 兼容性 bug",
+        "完善文档与示例"
       ],
       "days_60": [
-        "接管 GGUF 量化层的移植与测试覆盖",
-        "Review 新模型（如 LTX-2.5, Cosmos）的非算子层面的集成代码",
-        "完善 Cookbook 和 Apple Silicon 部署文档"
+        "负责 GGUF 量化层的移植与 CPU/Mac 端验证",
+        "优化数据加载逻辑",
+        "参与 issue triage"
       ],
       "days_90": [
-        "成为 MLX/Mac 部署方向的 Core Maintainer",
-        "主导 Dreamverse 业务逻辑层的架构演进",
-        "协助管理 Release 流程，负责端侧特性的验收"
+        "成为 MLX 后端或数据处理模块的 maintainer",
+        "主导端侧推理的架构优化",
+        "协助 review 核心代码"
       ],
       "risks": [
-        "涉及大量前沿视频模型，需持续跟进最新论文和权重格式",
-        "分布式训练和核心算子优化难以在无 GPU 环境下验证"
+        "视频模型权重极大，即使在 Mac 上测试也需要较大的统一内存"
       ],
       "evidence": {
         "url": "https://github.com/hao-ai-lab/FastVideo",
-        "stars": 4447,
+        "stars": 4448,
         "forks": 466,
         "open_issues": 186,
         "pushed_at": "2026-09-17T02:58:55Z",
@@ -589,48 +783,109 @@
             "url": "https://github.com/hao-ai-lab/FastVideo/pull/1785",
             "is_pr": true
           }
+        ],
+        "releases": [
+          {
+            "name": "Release 0.2.0",
+            "date": "2026-06-04T21:24:02Z"
+          },
+          {
+            "name": "Release 0.1.7",
+            "date": "2026-01-05T21:47:55Z"
+          },
+          {
+            "name": "Release 0.1.6",
+            "date": "2025-08-29T03:57:11Z"
+          }
+        ],
+        "commits": [
+          {
+            "message": "[bugfix] FP8: gate the ROCm _scaled_mm path on CDNA4 (gfx950) instead of the capability tuple (#1859)",
+            "date": "2026-09-17T02:58:55Z"
+          },
+          {
+            "message": "[ci] Make Dreamverse provider race test deterministic (#1729)",
+            "date": "2026-09-15T21:13:56Z"
+          },
+          {
+            "message": "[feat] Support the FastH3 8-Step V2 checkpoint: checkpoint-defined shifts, explicit DMD schedule, new example (#1852)",
+            "date": "2026-09-15T21:13:45Z"
+          },
+          {
+            "message": "[bugfix] fix(cosmos): make AdaLayerNorm autocast device-agnostic (#1818)",
+            "date": "2026-09-15T14:44:51Z"
+          },
+          {
+            "message": "[feat] Add fastvideo serve configs for Wan CUDA models (#1801)",
+            "date": "2026-09-15T01:23:35Z"
+          },
+          {
+            "message": "[bugfix] Add OpenAI-compatible image generation endpoint (#1840)",
+            "date": "2026-09-15T00:55:56Z"
+          },
+          {
+            "message": "[bugfix] Validate image response format before generation (#1841)",
+            "date": "2026-09-15T00:01:40Z"
+          },
+          {
+            "message": "[bugfix]: allow MiniMax H3 frame padding at the 15-second limit",
+            "date": "2026-09-14T23:54:41Z"
+          },
+          {
+            "message": "[bugfix]: respect serialized tensor dtype in parquet dataloader (#1843)",
+            "date": "2026-09-14T23:34:25Z"
+          },
+          {
+            "message": "[docs]: refresh AGENTS.md maps and add Wan SP/I2V and CI test notes (#1845)",
+            "date": "2026-09-14T23:06:53Z"
+          },
+          {
+            "message": "[bugfix]: fix Wan I2V DMD conditioning under sequence parallelism (#1844)",
+            "date": "2026-09-14T22:58:13Z"
+          },
+          {
+            "message": "[feat]: convert the MiniMax H3 text encoder to NVFP4 (#1838)",
+            "date": "2026-09-13T01:48:07Z"
+          }
         ]
       }
     },
     {
       "repo": "thu-ml/TurboDiffusion",
-      "fit": "契合 DiT 和推理加速。虽然主打 GPU 加速，但其工程架构、多卡支持、NPU 扩展及配置管理等外围工作亟需人手。",
-      "current_direction": "根据近期活动推断，核心 roadmap 包括：1. 支持更多视频模型（Wan2.1, Wan2.2）；2. 算子融合与 FP8 优化（LayerNorm/RoPE 融合，RTX 5090 优化）；3. 扩展硬件与部署形态（多卡并行推理，NPU 支持）；4. 离散时间 CM 与蒸馏策略改进。",
+      "fit": "中。契合 DiT 加速，但偏向算法实现与 GPU 强相关。",
+      "current_direction": "根据近期活动推断：视频扩散模型端到端加速，集成 SageAttention/SLA，支持 Wan 2.1/2.2。",
       "maintainer_signals": [
-        "重构和清理模型加载与配置解析逻辑",
-        "搭建多卡推理的脚手架代码（可通过 CPU 模拟多进程验证）",
-        "主动补充缺失的文档和性能 Benchmark 脚本"
+        "处于快速迭代期",
+        "存在较多基础工程问题（如多卡脚本、模型兼容性、文档缺失）"
       ],
       "low_compute_options": [
-        "修复 `load_state_dict` 相关的加载失败 Bug（Issue #122）",
-        "重构并简化 timestep sampler 的逻辑（纯 CPU 可测）",
-        "为 NPU 支持添加基础的设备抽象层（Issue #127）",
-        "完善 README 中的延迟和加速指标文档（PR #139）",
-        "解答社区关于模型兼容性和环境配置的 Issue（Issue #120）"
+        "修复代码重构引入的 bug（如 load_state_dict 失败）",
+        "完善多 GPU 推理脚本的逻辑（无需实际跑满）",
+        "补充训练时间、显存占用等文档",
+        "增加 CPU 上的单帧/小模型测试用例"
       ],
       "gpu_options": [
-        "将 LayerNorm 调制融合到 Triton kernel 并移除 RoPE dtype 转换（PR #133）",
-        "实现并验证多 GPU 并行推理脚本（Issue #128, #5）",
-        "针对 RTX 5090 的 FP8 推理优化（Issue #131）"
+        "RTX 5090 FP8 推理优化",
+        "Triton kernel 融合（如 LayerNorm modulation）",
+        "多卡并行推理性能调优"
       ],
       "days_30": [
-        "修复模型加载 Bug，清理冗余的配置代码",
-        "简化 timestep sampler，补充单元测试",
-        "Triage 社区 Issue，补充缺失的错误日志要求"
+        "梳理项目文档",
+        "修复基础 API bug",
+        "建立 CPU 上的 CI 测试框架"
       ],
       "days_60": [
-        "设计并提交多卡推理的架构方案（脚手架代码）",
-        "Review 社区提交的非核心算子 PR（如 API 封装、文档更新）",
-        "主导 NPU 或其他非 NVIDIA 硬件的接口抽象"
+        "完善多卡调度逻辑与模型兼容性处理",
+        "接手 issue triage",
+        "复现用户反馈的工程问题"
       ],
       "days_90": [
-        "成为项目工程架构和设备抽象层的核心维护者",
-        "负责管理 Issue 列表和 PR Review 流程",
-        "协调新模型（如 Wan 2.2 5B）的接入与发布"
+        "负责项目的工程化底座",
+        "确保代码质量与接口一致性",
+        "参与 release 规划"
       ],
       "risks": [
-        "核心卖点是极致加速，缺乏 GPU 会限制对核心价值的直接贡献",
-        "学术界开源项目，代码规范和 CI 可能不完善，需耐心重构"
+        "核心加速依赖特定 GPU 算子，无卡难以验证核心加速效果"
       ],
       "evidence": {
         "url": "https://github.com/thu-ml/TurboDiffusion",
@@ -744,48 +999,96 @@
             "url": "https://github.com/thu-ml/TurboDiffusion/issues/120",
             "is_pr": false
           }
+        ],
+        "releases": [],
+        "commits": [
+          {
+            "message": "Fix latency and speedup metrics in README (#139)",
+            "date": "2026-08-27T14:12:34Z"
+          },
+          {
+            "message": "Update TurboT2VA (#138)",
+            "date": "2026-08-27T13:29:28Z"
+          },
+          {
+            "message": "update roadmap",
+            "date": "2026-08-05T05:17:08Z"
+          },
+          {
+            "message": "Add vendored TurboT2AV implementation (#137)",
+            "date": "2026-07-16T07:59:53Z"
+          },
+          {
+            "message": "Update README.md",
+            "date": "2026-06-17T06:57:11Z"
+          },
+          {
+            "message": "update",
+            "date": "2026-04-15T14:44:39Z"
+          },
+          {
+            "message": "add discrete-time CM",
+            "date": "2026-04-08T10:08:57Z"
+          },
+          {
+            "message": "improve FSDP robustness",
+            "date": "2026-03-24T03:32:52Z"
+          },
+          {
+            "message": "refine 14B config",
+            "date": "2026-03-06T13:54:46Z"
+          },
+          {
+            "message": "simplify timestep sampler",
+            "date": "2026-03-05T11:57:58Z"
+          },
+          {
+            "message": "fix bug",
+            "date": "2026-03-04T15:44:12Z"
+          },
+          {
+            "message": "fix cfg",
+            "date": "2026-02-20T12:45:49Z"
+          }
         ]
       }
     },
     {
       "repo": "modelscope/DiffSynth-Engine",
-      "fit": "契合 DiT、推理加速和跨平台部署。项目明确支持 macOS (Apple Silicon) 和 NPU，非常适合候选人发挥端侧和架构抽象能力。",
-      "current_direction": "核心 roadmap 包括：1. 扩展新模型支持（Wan2.2-S2V, Qwen-Image-Edit, Flux.2-klein）；2. 昇腾 NPU 生态深度集成（Ulysses SP, MindIE 融合）；3. 性能优化（Ring Parallelism, ODTSR upscaler）；4. 跨平台兼容性修复。",
+      "fit": "高。契合端侧部署与推理加速，支持 Mac。",
+      "current_direction": "根据近期活动推断：支持最新视频/图像模型（Wan2.2, Qwen-Image），扩展 NPU 与 Mac 支持，优化并行策略。",
       "maintainer_signals": [
-        "主导 NPU (Ascend) 平台抽象层的代码 Review 与重构",
-        "修复 macOS 上的特定 Bug，提升 Apple Silicon 体验",
-        "规范化 API 参数传递和依赖版本控制"
+        "积极合并 NPU 和 Mac 相关的修复",
+        "重视架构清理与重构"
       ],
       "low_compute_options": [
-        "审查并重构 NPU transformer 清理逻辑（PR #272, #264）",
-        "修复 Mac Ultra 上加载 LoRA 时的 AttributeError（Issue #224）",
-        "修复 API 参数传递错误和 torch 版本约束（PR #231, #232）",
-        "设计并实现 Batch Inference 的基础逻辑（Issue #235）",
-        "修复 Qwen Image tile mask 权重逻辑（PR #257，可 CPU 验证）"
+        "修复 Mac (Apple Silicon) 上的 LoRA 加载等 bug",
+        "修复 API 参数传递错误",
+        "清理 NPU transformer 冗余代码",
+        "完善 CPU 上的基础 pipeline 测试"
       ],
       "gpu_options": [
-        "将 Ring Parallelism 的 SDPA 后端切换为 Flash Attention（PR #267）",
-        "排查并修复 Ring SP 的性能回退问题（Issue #266）",
-        "为 QwenImageDiT 添加参考图像 KV Cache（PR #237）"
+        "Ring SP 的 Flash Attention 后端优化",
+        "Ascend NPU 上的 Ulysses SP 支持",
+        "Triton 算子性能调优"
       ],
       "days_30": [
-        "修复 Mac 上的 LoRA 加载 Bug，约束 Torch 版本",
-        "参与 NPU 抽象层 PR 的 Code Review，提出架构改进建议",
-        "复现并 Triage 社区关于模型加载和 API 调用的 Issue"
+        "修复 Mac 上的 LoRA 加载问题",
+        "修正 API 参数 bug",
+        "跑通基础测试"
       ],
       "days_60": [
-        "主导 Batch Inference 功能的开发与合并",
-        "成为 NPU/Ascend 平台接入代码的主要 Reviewer",
-        "完善跨平台（Mac/Windows）的自动化测试"
+        "参与架构清理（如 transformer 模块重构）",
+        "完善跨平台 CI",
+        "接手 Mac 用户的 issue triage"
       ],
       "days_90": [
-        "成为跨平台兼容性和 API 层的 Core Maintainer",
-        "主导新模型（如 Flux.2-klein）的非算子层接入",
-        "负责项目的 Release 打包与版本日志撰写"
+        "成为 Mac 后端或前端 Pipeline 的核心维护者",
+        "主导新模型的端侧适配",
+        "负责 review 相关 PR"
       ],
       "risks": [
-        "NPU 相关的 PR 较多，若无 NPU 硬件只能做纯代码逻辑 Review",
-        "多平台支持可能带来复杂的依赖冲突"
+        "涉及多种硬件后端，需注意代码的解耦与抽象"
       ],
       "evidence": {
         "url": "https://github.com/modelscope/DiffSynth-Engine",
@@ -899,56 +1202,125 @@
             "url": "https://github.com/modelscope/DiffSynth-Engine/issues/224",
             "is_pr": false
           }
+        ],
+        "releases": [
+          {
+            "name": "v0.7.0: supports multiple new image models",
+            "date": "2026-01-19T03:32:39Z"
+          },
+          {
+            "name": "v0.6.0: supports Wan2.2-S2V",
+            "date": "2025-09-09T07:20:43Z"
+          },
+          {
+            "name": "v0.5.0: supports Qwen-Image-Edit",
+            "date": "2025-08-27T03:06:29Z"
+          }
+        ],
+        "commits": [
+          {
+            "message": "docs: address review — add 'methods', drop trailing whitespace",
+            "date": "2026-05-27T03:32:16Z"
+          },
+          {
+            "message": "docs: fix typos in README ('buidling', 'varous')",
+            "date": "2026-05-27T02:44:50Z"
+          },
+          {
+            "message": "fix fa2 and fa4 conflict (#241)",
+            "date": "2026-03-27T06:03:21Z"
+          },
+          {
+            "message": "fix: constrain torch version (#232)",
+            "date": "2026-02-12T03:06:44Z"
+          },
+          {
+            "message": "image minimum size set to 16 (#234)",
+            "date": "2026-02-10T02:52:47Z"
+          },
+          {
+            "message": "init flux2 dit on meta device (#233)",
+            "date": "2026-02-04T02:38:44Z"
+          },
+          {
+            "message": "fix api argument error (#231)",
+            "date": "2026-01-29T09:08:39Z"
+          },
+          {
+            "message": "fix odtsr rope (#230)",
+            "date": "2026-01-29T08:43:30Z"
+          },
+          {
+            "message": "【Feature】add qwen image upscaler tool(ODTSR) (#229)",
+            "date": "2026-01-28T07:27:21Z"
+          },
+          {
+            "message": "skip init for speed up z image constructor (#228)",
+            "date": "2026-01-26T09:06:24Z"
+          },
+          {
+            "message": "support flux.2-klein (#227)",
+            "date": "2026-01-23T02:21:32Z"
+          },
+          {
+            "message": "support Z-Image-Omni-Base (#226)",
+            "date": "2026-01-15T05:14:19Z"
+          }
         ]
       }
     },
     {
       "repo": "NVIDIA-NeMo/labs-molt",
-      "fit": "契合 AI Infra 和训练加速。项目代码量小（9k行），架构清晰，强调 Agentic RL，适合通过工程化、周边工具链和内存优化切入。",
-      "current_direction": "核心 roadmap 包括：1. 算法演进（FlashREINFORCE, DeepSeek-V4 FP8 RL）；2. 训练特性增强（LoRA SFT, 动态批处理, Liger layers）；3. 基础设施与周边集成（OrcaRouter, Docker/CI 优化）；4. 修复 MoE 和 VLM 的边界 Bug。",
+      "fit": "中。偏向 RL 框架，但涉及 AI Infra 和大规模调度。",
+      "current_direction": "根据近期活动推断：支持大规模 MoE 模型的 Agentic RL，集成 vLLM 与 Ray，探索 DeepSeek-V4 支持。",
       "maintainer_signals": [
-        "接管 Docker 镜像构建与 CI 流水线",
-        "修复数据处理、Tokenizer 和元数据对齐等工程 Bug",
-        "主导第三方 API（如 OrcaRouter）的集成"
+        "极其重视代码精简和工程规范",
+        "积极维护 CI/CD 与 Docker 镜像"
       ],
       "low_compute_options": [
-        "优化 Dockerfile，支持多架构镜像发布及 BuildKit 缓存管理（PR #123, #125, #127）",
-        "修复 Qwen3.6 SFT 时的元数据形状不匹配 Bug（Issue #90）",
-        "处理 AutoProcessor 返回裸 tokenizer 的 VLM 检查点问题（PR #97）",
-        "集成 OrcaRouter provider 支持（Issue #104）",
-        "限制低精度 logprobs 的 autograd 存储以优化 CPU 内存（PR #119）"
+        "维护 Docker 镜像构建与多架构 CI 脚本",
+        "清理日志与配置（如防止 API key 泄露）",
+        "修复 AutoProcessor 兼容性问题",
+        "在 CPU 上模拟 Ray 调度逻辑进行单元测试"
       ],
       "gpu_options": [
-        "实现 DeepSeek-V4 的 FP8 RL 训练支持（Issue #59）",
-        "修复 MoE 默认配置下 gradient checkpointing 导致的 step 0 崩溃（Issue #60）",
-        "实现并验证动态批处理（Dynamic batching）（PR #52）"
+        "DeepSeek-V4 + FP8 RL 支持",
+        "MoE 梯度检查点 bug 修复",
+        "低精度 log probabilities 的 autograd 显存优化"
       ],
       "days_30": [
-        "接管并完善 Docker/CI 流水线，确保多架构镜像正常发布",
-        "修复 Tokenizer 和元数据形状相关的 2-3 个 Bug",
-        "实现 OrcaRouter 的基础集成"
+        "修复日志泄露问题",
+        "完善 Docker 构建脚本",
+        "修复基础兼容性 bug"
       ],
       "days_60": [
-        "主导 CPU 侧的内存优化（如 logprobs 存储限制）",
-        "Review 社区提交的 LoRA 或 Liger layers PR，确保代码风格一致",
-        "完善 Quickstart 脚本，修复缺失的依赖（如 prepare_math）"
+        "深入 Ray 调度逻辑",
+        "编写 CPU 上的 mock 测试",
+        "接手 CI 系统的维护",
+        "参与 issue triage"
       ],
       "days_90": [
-        "成为项目基础设施（CI/Docker/数据流）的 Core Maintainer",
-        "参与 RL 架构重构的讨论（如 Engine 抽象 PR #92）",
-        "负责日常 Issue Triage 和次要版本的 Release"
+        "成为 CI/CD 与基础架构模块的 maintainer",
+        "确保大规模训练前的工程稳定性",
+        "协助 review 调度层代码"
       ],
       "risks": [
-        "核心 RL 训练极度依赖大规模 GPU 集群，无法直接测试核心训练逻辑",
-        "NVIDIA 官方项目，合入标准可能较高"
+        "核心场景是 1T 级别 MoE 训练，无卡完全无法触及核心业务逻辑"
       ],
       "evidence": {
         "url": "https://github.com/NVIDIA-NeMo/labs-molt",
         "stars": 1109,
         "forks": 104,
-        "open_issues": 17,
+        "open_issues": 18,
         "pushed_at": "2026-09-17T08:17:19Z",
         "issues": [
+          {
+            "number": 128,
+            "title": "fix(logging): keep the W&B API key out of the run config and driver log",
+            "labels": [],
+            "url": "https://github.com/NVIDIA-NeMo/labs-molt/pull/128",
+            "is_pr": true
+          },
           {
             "number": 60,
             "title": "[bug] Every shipped MoE recipe defaults to `ep_size > 1` + `gradient_checkpoint full`, which fails at step 0",
@@ -1048,56 +1420,109 @@
             "labels": [],
             "url": "https://github.com/NVIDIA-NeMo/labs-molt/pull/58",
             "is_pr": true
+          }
+        ],
+        "releases": [
+          {
+            "name": "Release v0.1.8",
+            "date": "2026-09-14T01:35:43Z"
           },
           {
-            "number": 52,
-            "title": "Enable dynamic batching",
-            "labels": [],
-            "url": "https://github.com/NVIDIA-NeMo/labs-molt/pull/52",
-            "is_pr": true
+            "name": "Release v0.1.7",
+            "date": "2026-08-28T03:55:06Z"
+          },
+          {
+            "name": "Release v0.1.6",
+            "date": "2026-08-12T04:40:34Z"
+          }
+        ],
+        "commits": [
+          {
+            "message": "ci: keep the BuildKit cache out of the image repository (#127)",
+            "date": "2026-09-17T08:17:15Z"
+          },
+          {
+            "message": "ci: release the image on demand only, version from version.txt (#126)",
+            "date": "2026-09-17T07:47:48Z"
+          },
+          {
+            "message": "ci: publish the multi-arch image from the CI runners (#125)",
+            "date": "2026-09-17T07:39:19Z"
+          },
+          {
+            "message": "rollout: without partial rollout no rollout spans the weight refit (#124)",
+            "date": "2026-09-17T06:28:17Z"
+          },
+          {
+            "message": "dockerfile: one base image for both architectures (#123)",
+            "date": "2026-09-17T06:19:18Z"
+          },
+          {
+            "message": "Update README.md",
+            "date": "2026-09-17T05:49:03Z"
+          },
+          {
+            "message": "fix(models): recompute log-prob chunks in backward instead of retaini… (#121)",
+            "date": "2026-09-17T01:33:08Z"
+          },
+          {
+            "message": "Build the project image for Grace-Blackwell (GB200/GB300) from the same Dockerfile (#122)",
+            "date": "2026-09-17T01:23:29Z"
+          },
+          {
+            "message": "chore(deps): bump nemo-automodel f7ccd6f7 -> 5c4616c6 (#120)",
+            "date": "2026-09-16T23:52:13Z"
+          },
+          {
+            "message": "fix(experience): split scalar info from singleton batches (#118)",
+            "date": "2026-09-14T12:55:27Z"
+          },
+          {
+            "message": "Bump version from 0.1.8 to 0.1.9",
+            "date": "2026-09-14T01:52:19Z"
+          },
+          {
+            "message": "fix(experience): batch info over the union of sample keys (#117)",
+            "date": "2026-09-14T01:12:45Z"
           }
         ]
       }
     },
     {
       "repo": "RightNow-AI/autokernel",
-      "fit": "契合 AI Infra 和算子加速。项目本质是基于 LLM Agent 的代码生成与验证框架，大量工作集中在 Profiler 解析、AST 处理和跨平台脚手架，非常适合无 GPU 候选人。",
-      "current_direction": "核心 roadmap 包括：1. 扩展硬件支持（XPU, ROCm/AMD, MLX）；2. 丰富算子融合类型（Modulated norm, Gated-residual）；3. 完善 Profiler 与 FX 区域的离线关联；4. 提升 KernelBench 集成与评估能力。",
+      "fit": "高。契合 AI Infra，且有明确的跨平台（MLX）需求。",
+      "current_direction": "根据近期活动推断：扩展硬件支持（XPU, ROCm, MLX），优化 Profiler 数据处理，支持 Tensor Parallelism。",
       "maintainer_signals": [
-        "主导 MLX (Apple Silicon) 后端的脚手架搭建",
-        "修复 Profiler 解析逻辑和调度器的时间预算 Bug",
-        "完善项目的测试覆盖率和 Python 工程规范"
+        "积极合并跨平台支持和基础 bug 修复",
+        "对完善基础设施有强烈需求"
       ],
       "low_compute_options": [
-        "修复 orchestrator 中基于全局时间的预算 Bug，改为 per-kernel 计时（Issue #12, PR #13）",
-        "修复 extract.py 中对 PyTorch profiler 张量形状列表的解析失败（Issue #9, PR #10）",
-        "避免代码中遮蔽 Python 标准库（如 profile 模块）（PR #20）",
-        "搭建 MLX 支持的基础架构和 Prompt 模板（Issue #8）",
-        "实现 Profiler 行与捕获的 FX 区域之间的离线关联（PR #17，纯 CPU 逻辑）"
+        "搭建 MLX (Apple Silicon) 支持的基础架构",
+        "实现 Profiler 结果与 FX regions 的离线关联",
+        "修复 Python 标准库命名冲突",
+        "修复时间预算逻辑与 Shape 解析 bug"
       ],
       "gpu_options": [
-        "实现并验证 Diffusion/Video 模型的 Modulated norm 融合算子（Issue #14）",
-        "排查并修复 H200 上的 bench.py 失败问题（Issue #5）",
-        "实现 Tensor Parallelism 的算子支持与验证（Issue #7）"
+        "H200 上的 benchmark 失败修复",
+        "Triton/CUDA kernel 性能验证",
+        "量化与 Tensor Parallelism 支持"
       ],
       "days_30": [
-        "修复 orchestrator 计时 Bug 和 Profiler 形状解析 Bug",
-        "清理代码库中的 Python 命名空间冲突",
-        "复现并 Triage 社区提交的各类解析错误 Issue"
+        "修复命名冲突、时间预算和 Shape 解析等基础 bug",
+        "梳理 MLX 支持的架构方案"
       ],
       "days_60": [
-        "主导 MLX 后端的 Prompt 设计与基础验证逻辑",
-        "Review 社区提交的 XPU 或 ROCm 兼容性 PR",
-        "完善 KernelBench 的集成测试流水线"
+        "实现 Profiler 数据的离线关联逻辑",
+        "推进 MLX 后端的初步接入",
+        "接手 issue triage"
       ],
       "days_90": [
-        "成为项目工程架构和跨平台（MLX/XPU）支持的 Core Maintainer",
-        "主导 Agent Prompt (program.md) 的优化与迭代",
-        "负责项目的整体 Release 和社区答疑"
+        "成为 MLX 后端或 Profiler 解析模块的 maintainer",
+        "主导跨平台架构设计",
+        "协助 review 核心逻辑"
       ],
       "risks": [
-        "生成的 CUDA/Triton 算子最终需要 GPU 验证，需依赖 CI 或社区协助测试",
-        "高度依赖 LLM API，需自备 API Key 进行本地调试"
+        "核心是生成 GPU kernel，无卡无法验证生成的 kernel 性能"
       ],
       "evidence": {
         "url": "https://github.com/RightNow-AI/autokernel",
@@ -1210,6 +1635,57 @@
             "labels": [],
             "url": "https://github.com/RightNow-AI/autokernel/issues/2",
             "is_pr": false
+          }
+        ],
+        "releases": [],
+        "commits": [
+          {
+            "message": "test hf kernels export",
+            "date": "2026-03-19T03:13:41Z"
+          },
+          {
+            "message": "fix binding indentation",
+            "date": "2026-03-19T03:03:54Z"
+          },
+          {
+            "message": "hf kernels compatibility",
+            "date": "2026-03-18T23:58:43Z"
+          },
+          {
+            "message": "update credits",
+            "date": "2026-03-13T12:50:08Z"
+          },
+          {
+            "message": "update readme",
+            "date": "2026-03-13T12:45:01Z"
+          },
+          {
+            "message": "bugfixes production-ready",
+            "date": "2026-03-13T12:42:15Z"
+          },
+          {
+            "message": "enhanced profiler, hf kernels export",
+            "date": "2026-03-11T23:49:57Z"
+          },
+          {
+            "message": "remove footer discord",
+            "date": "2026-03-11T23:38:21Z"
+          },
+          {
+            "message": "add changelog",
+            "date": "2026-03-11T23:37:23Z"
+          },
+          {
+            "message": "update discord",
+            "date": "2026-03-11T23:36:13Z"
+          },
+          {
+            "message": "add discord",
+            "date": "2026-03-11T23:32:28Z"
+          },
+          {
+            "message": "cuda kernelbench",
+            "date": "2026-03-11T23:32:07Z"
           }
         ]
       }
