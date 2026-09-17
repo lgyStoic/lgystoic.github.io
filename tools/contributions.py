@@ -72,7 +72,7 @@ def main():
     if not result: raise SystemExit('Gemini roadmap generation failed')
     by_name = {r['repo']: r for r in evidence}
     for item in result['repos']:
-        item['evidence'] = {k:v for k,v in by_name.get(item['repo'],{}).items() if k in ('url','stars','forks','open_issues','pushed_at','issues')}
+        item['evidence'] = {k:v for k,v in by_name.get(item['repo'],{}).items() if k in ('url','stars','forks','open_issues','pushed_at','issues','releases','commits')}
     out = {'updated':datetime.now(timezone.utc).isoformat(timespec='seconds'),'strategy':result['strategy'],'repos':result['repos'],'failures':failures}
     DATA.parent.mkdir(parents=True, exist_ok=True)
     DATA.write_text(json.dumps(out,ensure_ascii=False,indent=2)+'\n')
@@ -85,12 +85,26 @@ def render():
     parts=[f'<p class="radar-stats">更新于 {e(d.get("updated",""))} · Gemini 基于 GitHub 当前公开活动整理</p>',f'<p class="lead-p">{e(d.get("strategy",""))}</p>']
     for r in d.get('repos',[]):
         ev=r.get('evidence',{}); url=ev.get('url','#')
-        parts.append(f'<article class="contribution-card"><div class="section-head"><h2><a href="{e(url,quote=True)}" rel="noopener noreferrer">{e(r["repo"])}</a></h2><span>★ {ev.get("stars",0)} · Issue/PR {ev.get("open_issues",0)}</span></div>')
+        parts.append(f'<article class="contribution-card"><div class="section-head"><h2><a href="{e(url,quote=True)}" rel="noopener noreferrer">{e(r["repo"])}</a></h2><span>★ {ev.get("stars",0)} · Fork {ev.get("forks",0)} · Issue/PR {ev.get("open_issues",0)}</span></div>')
+        parts.append(f'<p class="radar-stats">仓库最近推送：{e(ev.get("pushed_at") or "未知")}</p>')
         parts.append(f'<p><b>匹配度：</b>{e(r["fit"])}</p><p><b>当前方向：</b>{e(r["current_direction"])}</p>')
         parts.append('<h3>无 GPU / 低算力可选入口</h3><ul>'+''.join(f'<li>{e(x)}</li>' for x in r.get('low_compute_options',[]))+'</ul>')
         parts.append('<details><summary>需要 GPU 后再考虑</summary><ul>'+''.join(f'<li>{e(x)}</li>' for x in r.get('gpu_options',[]))+'</ul></details>')
         for label,key in [('30 天','days_30'),('60 天','days_60'),('90 天','days_90')]:
             parts.append(f'<h3>{label}</h3><ul>'+''.join(f'<li>{e(x)}</li>' for x in r.get(key,[]))+'</ul>')
+        issues = ev.get('issues', [])
+        releases = ev.get('releases', [])
+        commits = ev.get('commits', [])
+        parts.append('<details class="source-evidence"><summary>GitHub 原始证据：Issue、PR、Release、提交</summary>')
+        if issues:
+            parts.append('<h3>最近更新的开放 Issue / PR</h3><ul>'+''.join(
+                f'<li><a href="{e(x.get("url",""),quote=True)}" rel="noopener noreferrer">#{x.get("number")} · {e(x.get("title",""))}</a>'
+                f' <small>{"PR" if x.get("is_pr") else "Issue"}{(" · "+e("、".join(x.get("labels",[])))) if x.get("labels") else ""}</small></li>' for x in issues[:10])+'</ul>')
+        if releases:
+            parts.append('<h3>近期 Release</h3><ul>'+''.join(f'<li>{e(x.get("name") or "未命名版本")} · {e((x.get("date") or "")[:10])}</li>' for x in releases)+'</ul>')
+        if commits:
+            parts.append('<h3>近期提交方向</h3><ul>'+''.join(f'<li>{e(x.get("message",""))} · {e((x.get("date") or "")[:10])}</li>' for x in commits[:8])+'</ul>')
+        parts.append('</details>')
         parts.append('<details><summary>维护者信号与风险</summary><ul>'+''.join(f'<li>{e(x)}</li>' for x in r.get('maintainer_signals',[])+r.get('risks',[]))+'</ul></details></article>')
     return '\n'.join(parts)
 
