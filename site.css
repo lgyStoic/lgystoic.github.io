@@ -1754,3 +1754,21 @@ main.wrap {
 .match-中 {
   color: var(--ink-soft);
 }
+
+.picks {
+  margin: 18px 0 8px;
+  padding: 14px 18px;
+  border: 1px solid color-mix(in srgb, var(--accent) 35%, var(--line));
+  border-radius: var(--radius);
+  background: var(--accent-soft);
+}
+
+.pick-list {
+  margin-top: 10px;
+  padding-left: 1.3em;
+  line-height: 1.7;
+}
+
+.pick-list li + li {
+  margin-top: 8px;
+}
