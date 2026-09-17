@@ -223,7 +223,7 @@ def render():
     groups = [('深圳 / 香港', [j for j in data.get('jobs', []) if j['region'] in ('深圳', '香港')]), ('远程', [j for j in data.get('jobs', []) if j['region'] == '远程']), ('其他地区', [j for j in data.get('jobs', []) if j['region'] == '其他地区'])]
     for label, group in groups:
         if not group: continue
-        parts.append(f'<h2>{label} <small>({len(group)})</small></h2><ul class="job-list" data-archive>')
+        parts.append(f'<section data-filter-group><h2>{label} <small>({len(group)})</small></h2><ul class="job-list" data-archive>')
         for job in group:
             search = esc(' '.join([job['title'], job['company'], job['location'], *job['tags']]).lower(), quote=True)
             parts.append(f'<li data-search="{search}" data-tags="{esc("|".join(job["tags"]), quote=True)}"><article><h2><a href="{esc(job["url"], quote=True)}" rel="noopener noreferrer">{esc(job["title"])}</a></h2>')
@@ -231,7 +231,7 @@ def render():
             parts.append(f'<p>{esc("；".join(job["reasons"]))}</p>')
             state = '待复核：本次来源抓取失败' if job.get('stale') else '最近在招聘列表中发现'
             parts.append(f'<p class="radar-stats">{state} · {esc(job["last_seen"][:10])}</p></article></li>')
-        parts.append('</ul>')
+        parts.append('</ul></section>')
     parts.append('<p class="empty-state" data-empty hidden>没有符合当前筛选的岗位。</p>')
     if not data.get('jobs'):
         parts.append('<p>暂未发现符合方向的岗位，请查看招聘源状态；不使用示例岗位填充。</p>')

@@ -35,15 +35,15 @@
 })();
 
 (function archive() {
-  const container = document.querySelector("[data-archive]");
-  if (!container) return;
+  const containers = [...document.querySelectorAll("[data-archive]")];
+  if (!containers.length) return;
 
   const input = document.querySelector("[data-search-input]");
   const chips = [...document.querySelectorAll(".tag-chip[data-tag]")];
   const counter = document.querySelector("[data-result-count]");
   const empty = document.querySelector("[data-empty]");
-  const items = [...container.querySelectorAll("li[data-search]")];
-  const groups = [...container.querySelectorAll(".year-group")];
+  const items = containers.flatMap((container) => [...container.querySelectorAll("li[data-search]")]);
+  const groups = [...document.querySelectorAll(".year-group, [data-filter-group]")];
 
   let query = "";
   let tag = new URLSearchParams(location.search).get("tag") || "";

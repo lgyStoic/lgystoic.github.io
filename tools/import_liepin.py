@@ -2,12 +2,33 @@
 """Merge liepin-search skill JSON output into the job radar."""
 import argparse
 import json
+import re
 from datetime import datetime, timezone
 from pathlib import Path
+from urllib.parse import urlparse
 
 from jobs import CONFIG, DATA, match
 
 ROOT = Path(__file__).resolve().parent.parent
+
+
+def is_direct_employer_job(job):
+    """Keep Liepin company postings and reject anonymous headhunter adverts."""
+    url = str(job.get('url') or '')
+    parsed = urlparse(url)
+    company = str(job.get('company') or '').strip()
+    text = ' '.join(str(job.get(k) or '') for k in ('title', 'company', 'compIndustry'))
+    if parsed.hostname not in ('www.liepin.com', 'liepin.com'):
+        return False
+    # Liepin uses /job/<id>.shtml for employer postings and /a/<id>.shtml
+    # for anonymous recruiter/headhunter adverts.
+    if not re.fullmatch(r'/job/\d+\.shtml', parsed.path):
+        return False
+    if not company or company == '猎聘企业未公开':
+        return False
+    if company.startswith('某') or re.search(r'猎头|代招|人才服务|人力资源', text, re.I):
+        return False
+    return True
 
 
 def main():
@@ -24,7 +45,9 @@ def main():
 
     profile = json.loads(CONFIG.read_text())['profile']
     now = datetime.now(timezone.utc).isoformat(timespec='seconds')
-    merged = {j['url']: j for j in data.get('jobs', [])}
+    # A successful refresh replaces the previous Liepin slice. This also lets
+    # tightened quality rules remove old anonymous recruiter rows immediately.
+    merged = {j['url']: j for j in data.get('jobs', []) if j.get('source') != 'liepin-shenzhen'}
     fetched = matched = 0
     for path in files:
         try:
@@ -33,6 +56,8 @@ def main():
             continue
         for j in payload.get('results', []):
             fetched += 1
+            if not is_direct_employer_job(j):
+                continue
             url = j.get('url', '')
             row = {
                 'title': j.get('title', ''),
