@@ -1,0 +1,1219 @@
+{
+  "updated": "2026-09-17T08:29:56+00:00",
+  "strategy": "针对候选人具备 AI Infra、DiT、端侧部署及加速背景但缺乏高性能 GPU 的现状，核心策略是“以基础设施、跨平台支持和工程质量为切入点，逐步接管核心模块”。候选人应优先选择对 CPU/Mac/边缘设备友好、急需 CI/CD 稳定、内存优化或架构重构的项目。通过承担 issue triage、代码审查、静态分析、测试覆盖率提升和发布管理等高价值但低算力需求的维护工作，建立信任。待获取 GPU 资源后，再平滑过渡到核心算子优化和分布式训练/推理加速。",
+  "repos": [
+    {
+      "repo": "sgl-project/sglang",
+      "fit": "高度契合 AI Infra 和推理加速方向。项目正处于快速扩张期，多后端（Apple Silicon, NPU, XPU）和多模态（Diffusion）支持需求大，非常适合端侧部署和无高端 GPU 的候选人切入。",
+      "current_direction": "根据近期活动推断，核心 roadmap 包括：1. 投机解码的持续演进（DFlash, Spec V2, Triton 验证）；2. 扩展硬件后端（TPU, AMD, XPU, NPU, Apple Silicon）；3. 大规模专家并行（DeepSeek V3/R1/V4）与弹性扩展（elastic-ep）；4. 多模态与 Diffusion 模型支持（FLUX.2）。",
+      "maintainer_signals": [
+        "主动接管并修复长期存在的 CI 测试失败问题",
+        "为非 NVIDIA 后端（如 Apple Silicon, NPU）的 PR 提供高质量 Code Review",
+        "规范化 Issue 标签管理，主动复现并分类用户提交的 Bug"
+      ],
+      "low_compute_options": [
+        "修复和稳定 CI 测试流水线（Issue #17050）",
+        "完善 Apple Silicon (Mac) 后端的测试与文档",
+        "实现 Triton 投机验证的运行时 token 宽度逻辑（PR #39859，可通过 Mock 或 CPU 验证逻辑）",
+        "限制 SafeUnpickler 的标准库全局变量以提升安全性（PR #39858）",
+        "NPU/XPU 相关的代码逻辑审查与接口一致性维护"
+      ],
+      "gpu_options": [
+        "DeepSeek V4/R1 的大规模专家并行（EP）优化",
+        "AMD gfx950 上的 FP8 和 MXFP4 服务端点支持",
+        "elastic-ep 的 CUDA Graph 捕获与扩展（PR #33723, #39834）"
+      ],
+      "days_30": [
+        "通读架构文档，认领并修复 2-3 个 CI 相关的 Bug（如 #17050）",
+        "复现并 Triage 至少 10 个新 Issue，补充复现脚本",
+        "提交关于 SafeUnpickler 或前端路由（sgl-router）的改进 PR"
+      ],
+      "days_60": [
+        "成为 Apple Silicon 或 NPU/XPU 接口层面的活跃 Reviewer",
+        "主导一个非 GPU 核心模块的重构或测试覆盖率提升",
+        "协助维护者进行 Release 前的回归测试"
+      ],
+      "days_90": [
+        "获得 Triage 权限，主导 Issue 模块的日常管理",
+        "参与核心调度或投机解码逻辑的架构讨论与 Review",
+        "独立负责次要版本（Patch Release）的发布流程"
+      ],
+      "risks": [
+        "项目迭代极快，代码冲突频繁，需保持高频同步",
+        "核心性能优化高度依赖高端 GPU 集群，短期内难以直接参与"
+      ],
+      "evidence": {
+        "url": "https://github.com/sgl-project/sglang",
+        "stars": 36088,
+        "forks": 8939,
+        "open_issues": 5383,
+        "pushed_at": "2026-09-17T08:25:49Z",
+        "issues": [
+          {
+            "number": 36470,
+            "title": "[diffusion] feat: enable breakable CUDA graphs for FLUX.2 Klein",
+            "labels": [
+              "diffusion"
+            ],
+            "url": "https://github.com/sgl-project/sglang/pull/36470",
+            "is_pr": true
+          },
+          {
+            "number": 38510,
+            "title": "[XPU] Use sgl-kernel-xpu fused sampling kernels",
+            "labels": [],
+            "url": "https://github.com/sgl-project/sglang/pull/38510",
+            "is_pr": true
+          },
+          {
+            "number": 35958,
+            "title": "[npu] decoding procedure optimization on qwen3.5/3.6",
+            "labels": [
+              "npu",
+              "run-ci"
+            ],
+            "url": "https://github.com/sgl-project/sglang/pull/35958",
+            "is_pr": true
+          },
+          {
+            "number": 39859,
+            "title": "Use runtime token widths for Triton speculative verification",
+            "labels": [
+              "run-ci"
+            ],
+            "url": "https://github.com/sgl-project/sglang/pull/39859",
+            "is_pr": true
+          },
+          {
+            "number": 39939,
+            "title": "[Moe] Honor swiglu_limit clamped activation in flashinfer_cutlass runner",
+            "labels": [
+              "quant"
+            ],
+            "url": "https://github.com/sgl-project/sglang/pull/39939",
+            "is_pr": true
+          },
+          {
+            "number": 33723,
+            "title": "[3/N] elastic-ep: Recapture decode CUDA graphs after scale-up",
+            "labels": [
+              "run-ci",
+              "bypass-fastfail"
+            ],
+            "url": "https://github.com/sgl-project/sglang/pull/33723",
+            "is_pr": true
+          },
+          {
+            "number": 39427,
+            "title": "dsv4(npu): support prefill context parallelism with interleave and zigzag",
+            "labels": [
+              "deepseek",
+              "npu",
+              "run-ci"
+            ],
+            "url": "https://github.com/sgl-project/sglang/pull/39427",
+            "is_pr": true
+          },
+          {
+            "number": 39834,
+            "title": "[elastic-ep] Add orchestrator-safe scale-up bootstrap",
+            "labels": [],
+            "url": "https://github.com/sgl-project/sglang/pull/39834",
+            "is_pr": true
+          },
+          {
+            "number": 39273,
+            "title": "[AMD] [GLM-5.3-Flash] Enable FP8 and MXFP4 serving on gfx950",
+            "labels": [
+              "documentation",
+              "quant",
+              "amd",
+              "deepseek",
+              "speculative-decoding",
+              "run-ci",
+              "apple-silicon",
+              "jit-kernel",
+              "run-ci-extra",
+              "unified-radix-cache",
+              "memory-pool"
+            ],
+            "url": "https://github.com/sgl-project/sglang/pull/39273",
+            "is_pr": true
+          },
+          {
+            "number": 38716,
+            "title": "[Bugfix] Expand MHA prefill graphs and honor agreed cache prefixes",
+            "labels": [
+              "run-ci",
+              "bypass-fastfail",
+              "unified-radix-cache"
+            ],
+            "url": "https://github.com/sgl-project/sglang/pull/38716",
+            "is_pr": true
+          },
+          {
+            "number": 39643,
+            "title": "[Spec] Model-agnostic last-stage draft embedding under pipeline parallelism",
+            "labels": [],
+            "url": "https://github.com/sgl-project/sglang/pull/39643",
+            "is_pr": true
+          },
+          {
+            "number": 39634,
+            "title": "[Tracking] Pipeline parallelism x speculative decoding (EAGLE/MTP): converge prefill gate PRs, make the path model-agnostic, decide decode design",
+            "labels": [],
+            "url": "https://github.com/sgl-project/sglang/issues/39634",
+            "is_pr": false
+          },
+          {
+            "number": 38339,
+            "title": "[NPU] add coverage-based precision test selection pipeline",
+            "labels": [
+              "npu",
+              "run-ci"
+            ],
+            "url": "https://github.com/sgl-project/sglang/pull/38339",
+            "is_pr": true
+          },
+          {
+            "number": 39881,
+            "title": "[NPU] Fuse MXFP4 W4A8 MoE gmm1 + swiglu + requant into one kernel",
+            "labels": [
+              "npu"
+            ],
+            "url": "https://github.com/sgl-project/sglang/pull/39881",
+            "is_pr": true
+          },
+          {
+            "number": 17050,
+            "title": "[Tracking] CI Test Failures and Fixes",
+            "labels": [],
+            "url": "https://github.com/sgl-project/sglang/issues/17050",
+            "is_pr": false
+          }
+        ]
+      }
+    },
+    {
+      "repo": "THU-MIG/edge-dit.cpp",
+      "fit": "完美契合 DiT 和端侧部署方向。纯 C/C++ 且主打边缘设备，候选人完全可以在 Mac 或普通 PC 上进行核心开发，无需高端 GPU。",
+      "current_direction": "核心 roadmap 包括：1. 支持更多 DiT 模型（LTX-2.3, MiniMax-H3, FLUX.2）；2. 完善多后端支持（CPU/oneDNN, Vulkan, Metal）；3. 优化内存管理（auto-fit, 分层卸载）；4. 离线量化工具（ed-convert）的演进。",
+      "maintainer_signals": [
+        "主导 Metal (Apple Silicon) 或 Vulkan 后端的开发与维护",
+        "完善 Python Bindings 和 C API 的一致性",
+        "主动响应新模型（如 LTX-2.3）支持的 Issue 并推进 PR"
+      ],
+      "low_compute_options": [
+        "优化 CPU (oneDNN) 或 Metal 后端的推理逻辑",
+        "改进 `ed-convert` 离线量化工具，增加测试用例",
+        "完善 Python Bindings 和 Web Console 的文档与示例",
+        "使用静态分析工具检查 C/C++ 内存泄漏",
+        "隔离特定模型（如 LTX-2.3）的运行时行为（PR #82）"
+      ],
+      "gpu_options": [
+        "CUDA 后端的 cuDNN SDPA 算子优化",
+        "RTX 4090 上的分层卸载（Layered offload）性能调优",
+        "多卡 NCCL/MPI 并行执行优化"
+      ],
+      "days_30": [
+        "编译并运行所有 CPU/Metal 测试，修复编译警告",
+        "改进 Python Bindings，添加缺失的 API 测试",
+        "复现并解决 LTX-2.3 相关的基础集成问题"
+      ],
+      "days_60": [
+        "接管 `ed-convert` 工具的维护，Review 相关的量化 PR",
+        "主导 Metal 或 Vulkan 后端的性能分析与基础优化",
+        "协助解答社区关于模型转换和端侧部署的 Issue"
+      ],
+      "days_90": [
+        "成为 Metal/Vulkan 后端或 Python API 的 Core Maintainer",
+        "主导新 DiT 模型（如新版 FLUX/Wan）的端到端接入",
+        "负责项目的 Release 打包与跨平台 CI 维护"
+      ],
+      "risks": [
+        "C/C++ 内存管理容易引入段错误，需具备较强的 C++ 调试能力",
+        "项目处于 Alpha 阶段，API 可能频繁变动"
+      ],
+      "evidence": {
+        "url": "https://github.com/THU-MIG/edge-dit.cpp",
+        "stars": 49,
+        "forks": 9,
+        "open_issues": 1,
+        "pushed_at": "2026-09-01T07:53:52Z",
+        "issues": [
+          {
+            "number": 82,
+            "title": "[Feature]: LTX2.3",
+            "labels": [
+              "enhancement"
+            ],
+            "url": "https://github.com/THU-MIG/edge-dit.cpp/issues/82",
+            "is_pr": false
+          }
+        ]
+      }
+    },
+    {
+      "repo": "JeffreyXiang/FlexGEMM",
+      "fit": "契合 AI Infra 和训练/推理加速。虽然是 GPU 算子库，但目前急需跨平台构建、CPU Fallback 和工程化支持，适合通过工程能力切入。",
+      "current_direction": "核心 roadmap 包括：1. 提升跨平台与低显存支持（CPU Fallbacks, Windows/MSVC 构建）；2. 扩展硬件生态（ROCm/AMD, CUDA 13.0, RTX 50 系列）；3. FlexGEMM 2.0 架构改进（Issue #23）。",
+      "maintainer_signals": [
+        "解决跨平台编译问题（如 Windows/MSVC）",
+        "实现并维护 CPU Fallback 机制，降低项目使用门槛",
+        "规范化 Triton autotune 缓存机制"
+      ],
+      "low_compute_options": [
+        "实现 CUDA kernel 的 CPU fallbacks 以支持低显存环境（PR #29, Issue #30）",
+        "修复 Windows/MSVC 构建中的 C++20 标志和模板消歧义问题（PR #31）",
+        "修复 Triton autotune 缓存键不一致的问题（Issue #26）",
+        "搭建和完善跨平台（Linux/Windows）的 CI 测试流水线"
+      ],
+      "gpu_options": [
+        "调试 RTX 50 系列 (Blackwell) 上的 CUDA 驱动错误（Issue #32, #13）",
+        "修复多 GPU 训练时的崩溃问题（Issue #14）",
+        "针对 3D 稀疏卷积的 Triton 核心算子深度优化"
+      ],
+      "days_30": [
+        "完成 Windows/MSVC 构建修复（PR #31）并合并",
+        "推进 CPU Fallback (PR #29) 的代码完善与单元测试",
+        "梳理 Issue 列表，标记需要特定硬件复现的 Bug"
+      ],
+      "days_60": [
+        "接管 CI/CD 流水线，确保每次 PR 都在多平台编译通过",
+        "Review 社区提交的 ROCm/AMD 兼容性 PR",
+        "解决 Triton autotune 缓存相关的工程问题"
+      ],
+      "days_90": [
+        "参与 FlexGEMM 2.0 (Issue #23) 的架构设计与工程重构",
+        "成为非 NVIDIA 平台及工程构建模块的 Core Maintainer",
+        "负责发布版本的打包与 PyPI 维护"
+      ],
+      "risks": [
+        "核心性能优化强依赖高端 GPU 和 Triton 深入理解",
+        "项目规模较小，维护者可能响应较慢，需主动推进"
+      ],
+      "evidence": {
+        "url": "https://github.com/JeffreyXiang/FlexGEMM",
+        "stars": 152,
+        "forks": 52,
+        "open_issues": 10,
+        "pushed_at": "2026-06-25T09:58:22Z",
+        "issues": [
+          {
+            "number": 32,
+            "title": "CUDA driver error: device not ready on RTX 50-series (Blackwell, sm_120)",
+            "labels": [],
+            "url": "https://github.com/JeffreyXiang/FlexGEMM/issues/32",
+            "is_pr": false
+          },
+          {
+            "number": 31,
+            "title": "Fix Windows/MSVC build: template disambiguator and C++20 flags",
+            "labels": [],
+            "url": "https://github.com/JeffreyXiang/FlexGEMM/pull/31",
+            "is_pr": true
+          },
+          {
+            "number": 29,
+            "title": "WIP: CPU fallbacks for CUDA kernels",
+            "labels": [],
+            "url": "https://github.com/JeffreyXiang/FlexGEMM/pull/29",
+            "is_pr": true
+          },
+          {
+            "number": 30,
+            "title": "Feature Proposal: CPU fallbacks for CUDA kernels (low VRAM support)",
+            "labels": [],
+            "url": "https://github.com/JeffreyXiang/FlexGEMM/issues/30",
+            "is_pr": false
+          },
+          {
+            "number": 23,
+            "title": "FlexGEMM 2.0：改进计划 (Roadmap)",
+            "labels": [],
+            "url": "https://github.com/JeffreyXiang/FlexGEMM/issues/23",
+            "is_pr": false
+          },
+          {
+            "number": 26,
+            "title": "[dev/all_triton branch] Inconsistent autotune cache keys for kernels wrapped with `@triton.heuristics`",
+            "labels": [],
+            "url": "https://github.com/JeffreyXiang/FlexGEMM/issues/26",
+            "is_pr": false
+          },
+          {
+            "number": 19,
+            "title": "Build error at sparse_neighbor_map.cu",
+            "labels": [],
+            "url": "https://github.com/JeffreyXiang/FlexGEMM/issues/19",
+            "is_pr": false
+          },
+          {
+            "number": 14,
+            "title": "Multi-GPU training crashes with flex_gemm",
+            "labels": [],
+            "url": "https://github.com/JeffreyXiang/FlexGEMM/issues/14",
+            "is_pr": false
+          },
+          {
+            "number": 13,
+            "title": "Silent failure in RTX 5080",
+            "labels": [],
+            "url": "https://github.com/JeffreyXiang/FlexGEMM/issues/13",
+            "is_pr": false
+          },
+          {
+            "number": 8,
+            "title": "cuda 13.0 support",
+            "labels": [],
+            "url": "https://github.com/JeffreyXiang/FlexGEMM/issues/8",
+            "is_pr": false
+          }
+        ]
+      }
+    },
+    {
+      "repo": "hao-ai-lab/FastVideo",
+      "fit": "高度契合 DiT 和训练/推理加速。项目支持 MLX (Apple Silicon)，为无 NVIDIA GPU 的候选人提供了极佳的切入点。",
+      "current_direction": "核心 roadmap 包括：1. 新模型支持与蒸馏（FastH3, LTX-2.5, Cosmos Predict2.5）；2. Apple Silicon (MLX) 端侧推理优化；3. 性能优化（FP8 动态量化融合，序列并行）；4. Dreamverse 实时生成与多模态路由。",
+      "maintainer_signals": [
+        "主导 MLX (Apple Silicon) 相关的推理优化与 Bug 修复",
+        "完善数据预处理流水线和 GGUF 量化支持",
+        "提升 CI 测试的稳定性（如修复 Race condition）"
+      ],
+      "low_compute_options": [
+        "完善 FastH3 的 MLX 推理支持与热安全（thermal-safe）逻辑（PR #1863）",
+        "从 vLLM 移植 GGUF 量化层到 FastVideo（PR #1136）",
+        "修复 Dreamverse provider 的 CI 竞争条件测试（PR #1729）",
+        "定义 Dreamverse 的系统 Prompt 和多模态路由逻辑（PR #1855, #1835）",
+        "修复音频解码短于视频帧时的对齐 Bug（PR #1857）"
+      ],
+      "gpu_options": [
+        "将 FP8 动态激活量化融合到 Triton kernel 中（PR #1861）",
+        "为 LongCat BSA 细化启用序列并行（SP）（PR #1862）",
+        "优化 PCIe 节点上的 VAE 卸载路径（PR #1836）"
+      ],
+      "days_30": [
+        "修复 CI 测试的确定性问题（PR #1729）",
+        "推进 MLX 相关的 PR（如 #1863），在 Mac 上进行本地验证",
+        "复现并 Triage 社区关于模型加载和依赖冲突的 Issue"
+      ],
+      "days_60": [
+        "接管 GGUF 量化层的移植与测试覆盖",
+        "Review 新模型（如 LTX-2.5, Cosmos）的非算子层面的集成代码",
+        "完善 Cookbook 和 Apple Silicon 部署文档"
+      ],
+      "days_90": [
+        "成为 MLX/Mac 部署方向的 Core Maintainer",
+        "主导 Dreamverse 业务逻辑层的架构演进",
+        "协助管理 Release 流程，负责端侧特性的验收"
+      ],
+      "risks": [
+        "涉及大量前沿视频模型，需持续跟进最新论文和权重格式",
+        "分布式训练和核心算子优化难以在无 GPU 环境下验证"
+      ],
+      "evidence": {
+        "url": "https://github.com/hao-ai-lab/FastVideo",
+        "stars": 4447,
+        "forks": 466,
+        "open_issues": 186,
+        "pushed_at": "2026-09-17T02:58:55Z",
+        "issues": [
+          {
+            "number": 1863,
+            "title": "feat(mlx): add FastH3-8-Step-V2 DMD schedule and thermal-safe MLX inference",
+            "labels": [],
+            "url": "https://github.com/hao-ai-lab/FastVideo/pull/1863",
+            "is_pr": true
+          },
+          {
+            "number": 1836,
+            "title": "[perf] FastH3 Preview inference on a PCIe-attached B200 node: 15.0 s to 3.9 s per generation at 4 GPUs, mostly from the VAE offload path",
+            "labels": [
+              "needs-rebase",
+              "type: perf",
+              "scope: inference",
+              "scope: infra",
+              "scope: docs",
+              "scope: model"
+            ],
+            "url": "https://github.com/hao-ai-lab/FastVideo/pull/1836",
+            "is_pr": true
+          },
+          {
+            "number": 1861,
+            "title": "[perf] FP8: fuse the dynamic activation quantization into Triton kernels",
+            "labels": [
+              "needs-rebase",
+              "type: perf",
+              "scope: infra",
+              "scope: docs",
+              "scope: model"
+            ],
+            "url": "https://github.com/hao-ai-lab/FastVideo/pull/1861",
+            "is_pr": true
+          },
+          {
+            "number": 1862,
+            "title": "[bugfix] Enable SP for LongCat BSA refinement",
+            "labels": [
+              "type: bugfix",
+              "scope: inference",
+              "scope: model"
+            ],
+            "url": "https://github.com/hao-ai-lab/FastVideo/pull/1862",
+            "is_pr": true
+          },
+          {
+            "number": 1704,
+            "title": "[new-model] Add LTX-2.5 inference support",
+            "labels": [
+              "type: new-model",
+              "scope: inference",
+              "scope: infra",
+              "scope: docs",
+              "scope: model"
+            ],
+            "url": "https://github.com/hao-ai-lab/FastVideo/pull/1704",
+            "is_pr": true
+          },
+          {
+            "number": 1768,
+            "title": "[feat] Add Cosmos Predict2.5 DFD continuation to DreamVerse",
+            "labels": [
+              "type: feat",
+              "scope: inference",
+              "scope: infra",
+              "scope: docs",
+              "scope: model"
+            ],
+            "url": "https://github.com/hao-ai-lab/FastVideo/pull/1768",
+            "is_pr": true
+          },
+          {
+            "number": 1767,
+            "title": "[new-model] Add Cosmos Predict2.5 distilled T2W and DFD V2W inference",
+            "labels": [
+              "type: new-model",
+              "scope: inference",
+              "scope: infra",
+              "scope: docs",
+              "scope: model"
+            ],
+            "url": "https://github.com/hao-ai-lab/FastVideo/pull/1767",
+            "is_pr": true
+          },
+          {
+            "number": 1858,
+            "title": "[bugfix] Keep the VSA-H3 tile buffer out of the autograd graph",
+            "labels": [
+              "type: bugfix",
+              "scope: attention",
+              "scope: infra"
+            ],
+            "url": "https://github.com/hao-ai-lab/FastVideo/pull/1858",
+            "is_pr": true
+          },
+          {
+            "number": 1860,
+            "title": "[kernel] VSA block-sparse attention: HIP autotune configs for gfx950 (1.22-1.35x on MI355X)",
+            "labels": [
+              "scope: kernel"
+            ],
+            "url": "https://github.com/hao-ai-lab/FastVideo/pull/1860",
+            "is_pr": true
+          },
+          {
+            "number": 1857,
+            "title": "[bugfix] Preserve video frames when decoded audio is shorter",
+            "labels": [
+              "type: bugfix",
+              "scope: inference",
+              "scope: infra"
+            ],
+            "url": "https://github.com/hao-ai-lab/FastVideo/pull/1857",
+            "is_pr": true
+          },
+          {
+            "number": 1136,
+            "title": "Port GGUF quantization layer from vLLM to FastVideo",
+            "labels": [
+              "needs-rebase",
+              "unstale",
+              "scope: inference",
+              "scope: model"
+            ],
+            "url": "https://github.com/hao-ai-lab/FastVideo/pull/1136",
+            "is_pr": true
+          },
+          {
+            "number": 1791,
+            "title": "[bugfix] encoders: keep Qwen2.5-VL importable on transformers 5",
+            "labels": [
+              "type: bugfix",
+              "scope: infra",
+              "scope: model"
+            ],
+            "url": "https://github.com/hao-ai-lab/FastVideo/pull/1791",
+            "is_pr": true
+          },
+          {
+            "number": 1855,
+            "title": "[docs] Define Dreamverse system prompts for T2VA, FL2VA and Ref2VA",
+            "labels": [
+              "type: docs",
+              "scope: docs"
+            ],
+            "url": "https://github.com/hao-ai-lab/FastVideo/pull/1855",
+            "is_pr": true
+          },
+          {
+            "number": 1835,
+            "title": "[feat] Add Dreamverse multimodal inputs and H3 routing",
+            "labels": [
+              "type: feat",
+              "scope: docs"
+            ],
+            "url": "https://github.com/hao-ai-lab/FastVideo/pull/1835",
+            "is_pr": true
+          },
+          {
+            "number": 1785,
+            "title": "[misc]: surface GenerationResult.peak_memory_mb in the MiniMax H3 examples",
+            "labels": [
+              "type: misc",
+              "scope: inference",
+              "scope: infra",
+              "scope: docs"
+            ],
+            "url": "https://github.com/hao-ai-lab/FastVideo/pull/1785",
+            "is_pr": true
+          }
+        ]
+      }
+    },
+    {
+      "repo": "thu-ml/TurboDiffusion",
+      "fit": "契合 DiT 和推理加速。虽然主打 GPU 加速，但其工程架构、多卡支持、NPU 扩展及配置管理等外围工作亟需人手。",
+      "current_direction": "根据近期活动推断，核心 roadmap 包括：1. 支持更多视频模型（Wan2.1, Wan2.2）；2. 算子融合与 FP8 优化（LayerNorm/RoPE 融合，RTX 5090 优化）；3. 扩展硬件与部署形态（多卡并行推理，NPU 支持）；4. 离散时间 CM 与蒸馏策略改进。",
+      "maintainer_signals": [
+        "重构和清理模型加载与配置解析逻辑",
+        "搭建多卡推理的脚手架代码（可通过 CPU 模拟多进程验证）",
+        "主动补充缺失的文档和性能 Benchmark 脚本"
+      ],
+      "low_compute_options": [
+        "修复 `load_state_dict` 相关的加载失败 Bug（Issue #122）",
+        "重构并简化 timestep sampler 的逻辑（纯 CPU 可测）",
+        "为 NPU 支持添加基础的设备抽象层（Issue #127）",
+        "完善 README 中的延迟和加速指标文档（PR #139）",
+        "解答社区关于模型兼容性和环境配置的 Issue（Issue #120）"
+      ],
+      "gpu_options": [
+        "将 LayerNorm 调制融合到 Triton kernel 并移除 RoPE dtype 转换（PR #133）",
+        "实现并验证多 GPU 并行推理脚本（Issue #128, #5）",
+        "针对 RTX 5090 的 FP8 推理优化（Issue #131）"
+      ],
+      "days_30": [
+        "修复模型加载 Bug，清理冗余的配置代码",
+        "简化 timestep sampler，补充单元测试",
+        "Triage 社区 Issue，补充缺失的错误日志要求"
+      ],
+      "days_60": [
+        "设计并提交多卡推理的架构方案（脚手架代码）",
+        "Review 社区提交的非核心算子 PR（如 API 封装、文档更新）",
+        "主导 NPU 或其他非 NVIDIA 硬件的接口抽象"
+      ],
+      "days_90": [
+        "成为项目工程架构和设备抽象层的核心维护者",
+        "负责管理 Issue 列表和 PR Review 流程",
+        "协调新模型（如 Wan 2.2 5B）的接入与发布"
+      ],
+      "risks": [
+        "核心卖点是极致加速，缺乏 GPU 会限制对核心价值的直接贡献",
+        "学术界开源项目，代码规范和 CI 可能不完善，需耐心重构"
+      ],
+      "evidence": {
+        "url": "https://github.com/thu-ml/TurboDiffusion",
+        "stars": 3694,
+        "forks": 277,
+        "open_issues": 79,
+        "pushed_at": "2026-08-27T14:12:34Z",
+        "issues": [
+          {
+            "number": 92,
+            "title": "项目训练时间",
+            "labels": [],
+            "url": "https://github.com/thu-ml/TurboDiffusion/issues/92",
+            "is_pr": false
+          },
+          {
+            "number": 135,
+            "title": "DreamX-World: A General-Purpose Interactive World Model",
+            "labels": [],
+            "url": "https://github.com/thu-ml/TurboDiffusion/issues/135",
+            "is_pr": false
+          },
+          {
+            "number": 133,
+            "title": "Fuse LayerNorm modulation into Triton kernel and remove RoPE dtype casts",
+            "labels": [],
+            "url": "https://github.com/thu-ml/TurboDiffusion/pull/133",
+            "is_pr": true
+          },
+          {
+            "number": 94,
+            "title": "其他视频模型",
+            "labels": [],
+            "url": "https://github.com/thu-ml/TurboDiffusion/issues/94",
+            "is_pr": false
+          },
+          {
+            "number": 131,
+            "title": "请求新增 RTX 5090 平台 FP8 推理优化分支",
+            "labels": [],
+            "url": "https://github.com/thu-ml/TurboDiffusion/issues/131",
+            "is_pr": false
+          },
+          {
+            "number": 37,
+            "title": "wan2.1-vace",
+            "labels": [],
+            "url": "https://github.com/thu-ml/TurboDiffusion/issues/37",
+            "is_pr": false
+          },
+          {
+            "number": 130,
+            "title": "关于merge的一些疑问",
+            "labels": [],
+            "url": "https://github.com/thu-ml/TurboDiffusion/issues/130",
+            "is_pr": false
+          },
+          {
+            "number": 128,
+            "title": "能否支持多卡并行推理呢？",
+            "labels": [],
+            "url": "https://github.com/thu-ml/TurboDiffusion/issues/128",
+            "is_pr": false
+          },
+          {
+            "number": 127,
+            "title": "请问当前支持在NPU安装，推理吗？",
+            "labels": [],
+            "url": "https://github.com/thu-ml/TurboDiffusion/issues/127",
+            "is_pr": false
+          },
+          {
+            "number": 93,
+            "title": "lora微调",
+            "labels": [],
+            "url": "https://github.com/thu-ml/TurboDiffusion/issues/93",
+            "is_pr": false
+          },
+          {
+            "number": 126,
+            "title": "Strategy for applying rCM with Autoregressive Student",
+            "labels": [],
+            "url": "https://github.com/thu-ml/TurboDiffusion/issues/126",
+            "is_pr": false
+          },
+          {
+            "number": 124,
+            "title": "关于wan 2.2 5B模型支持",
+            "labels": [],
+            "url": "https://github.com/thu-ml/TurboDiffusion/issues/124",
+            "is_pr": false
+          },
+          {
+            "number": 5,
+            "title": "有多GPU推理脚本吗？",
+            "labels": [],
+            "url": "https://github.com/thu-ml/TurboDiffusion/issues/5",
+            "is_pr": false
+          },
+          {
+            "number": 122,
+            "title": "net.load_state_dict(state_dict, assign=True) 失败",
+            "labels": [],
+            "url": "https://github.com/thu-ml/TurboDiffusion/issues/122",
+            "is_pr": false
+          },
+          {
+            "number": 120,
+            "title": "hello,请教下关于模型兼容性的问题",
+            "labels": [],
+            "url": "https://github.com/thu-ml/TurboDiffusion/issues/120",
+            "is_pr": false
+          }
+        ]
+      }
+    },
+    {
+      "repo": "modelscope/DiffSynth-Engine",
+      "fit": "契合 DiT、推理加速和跨平台部署。项目明确支持 macOS (Apple Silicon) 和 NPU，非常适合候选人发挥端侧和架构抽象能力。",
+      "current_direction": "核心 roadmap 包括：1. 扩展新模型支持（Wan2.2-S2V, Qwen-Image-Edit, Flux.2-klein）；2. 昇腾 NPU 生态深度集成（Ulysses SP, MindIE 融合）；3. 性能优化（Ring Parallelism, ODTSR upscaler）；4. 跨平台兼容性修复。",
+      "maintainer_signals": [
+        "主导 NPU (Ascend) 平台抽象层的代码 Review 与重构",
+        "修复 macOS 上的特定 Bug，提升 Apple Silicon 体验",
+        "规范化 API 参数传递和依赖版本控制"
+      ],
+      "low_compute_options": [
+        "审查并重构 NPU transformer 清理逻辑（PR #272, #264）",
+        "修复 Mac Ultra 上加载 LoRA 时的 AttributeError（Issue #224）",
+        "修复 API 参数传递错误和 torch 版本约束（PR #231, #232）",
+        "设计并实现 Batch Inference 的基础逻辑（Issue #235）",
+        "修复 Qwen Image tile mask 权重逻辑（PR #257，可 CPU 验证）"
+      ],
+      "gpu_options": [
+        "将 Ring Parallelism 的 SDPA 后端切换为 Flash Attention（PR #267）",
+        "排查并修复 Ring SP 的性能回退问题（Issue #266）",
+        "为 QwenImageDiT 添加参考图像 KV Cache（PR #237）"
+      ],
+      "days_30": [
+        "修复 Mac 上的 LoRA 加载 Bug，约束 Torch 版本",
+        "参与 NPU 抽象层 PR 的 Code Review，提出架构改进建议",
+        "复现并 Triage 社区关于模型加载和 API 调用的 Issue"
+      ],
+      "days_60": [
+        "主导 Batch Inference 功能的开发与合并",
+        "成为 NPU/Ascend 平台接入代码的主要 Reviewer",
+        "完善跨平台（Mac/Windows）的自动化测试"
+      ],
+      "days_90": [
+        "成为跨平台兼容性和 API 层的 Core Maintainer",
+        "主导新模型（如 Flux.2-klein）的非算子层接入",
+        "负责项目的 Release 打包与版本日志撰写"
+      ],
+      "risks": [
+        "NPU 相关的 PR 较多，若无 NPU 硬件只能做纯代码逻辑 Review",
+        "多平台支持可能带来复杂的依赖冲突"
+      ],
+      "evidence": {
+        "url": "https://github.com/modelscope/DiffSynth-Engine",
+        "stars": 432,
+        "forks": 51,
+        "open_issues": 25,
+        "pushed_at": "2026-09-03T11:49:45Z",
+        "issues": [
+          {
+            "number": 272,
+            "title": "Refactor/npu transformer cleanup",
+            "labels": [],
+            "url": "https://github.com/modelscope/DiffSynth-Engine/pull/272",
+            "is_pr": true
+          },
+          {
+            "number": 270,
+            "title": "feat(npu): Ascend platform, Ulysses SP, long-context attention, and fused DiT ops for v1",
+            "labels": [],
+            "url": "https://github.com/modelscope/DiffSynth-Engine/pull/270",
+            "is_pr": true
+          },
+          {
+            "number": 265,
+            "title": "feat(npu): Ascend multi-card Ulysses SP with CFG/FSDP support",
+            "labels": [],
+            "url": "https://github.com/modelscope/DiffSynth-Engine/pull/265",
+            "is_pr": true
+          },
+          {
+            "number": 267,
+            "title": "performance(ring para): change sdpa backend to flash attention",
+            "labels": [],
+            "url": "https://github.com/modelscope/DiffSynth-Engine/pull/267",
+            "is_pr": true
+          },
+          {
+            "number": 266,
+            "title": "performance regression on Ring SP",
+            "labels": [],
+            "url": "https://github.com/modelscope/DiffSynth-Engine/issues/266",
+            "is_pr": false
+          },
+          {
+            "number": 264,
+            "title": "feat(npu): add Ascend platform abstraction and Qwen-Image NPU support",
+            "labels": [],
+            "url": "https://github.com/modelscope/DiffSynth-Engine/pull/264",
+            "is_pr": true
+          },
+          {
+            "number": 259,
+            "title": "feat(npu): add MindIE-SD compile fusion and MINDIE attention backend",
+            "labels": [],
+            "url": "https://github.com/modelscope/DiffSynth-Engine/pull/259",
+            "is_pr": true
+          },
+          {
+            "number": 260,
+            "title": "feat: add extensible Ascend A5 / Ascend 950 runtime support",
+            "labels": [],
+            "url": "https://github.com/modelscope/DiffSynth-Engine/pull/260",
+            "is_pr": true
+          },
+          {
+            "number": 257,
+            "title": "fix: correct qwen image tile mask weights",
+            "labels": [],
+            "url": "https://github.com/modelscope/DiffSynth-Engine/pull/257",
+            "is_pr": true
+          },
+          {
+            "number": 250,
+            "title": "fix(wan_s2v_dit): accept and propagate attn_kwargs (fixes #221)",
+            "labels": [],
+            "url": "https://github.com/modelscope/DiffSynth-Engine/pull/250",
+            "is_pr": true
+          },
+          {
+            "number": 237,
+            "title": "feat: add reference image KV cache for QwenImageDiT",
+            "labels": [],
+            "url": "https://github.com/modelscope/DiffSynth-Engine/pull/237",
+            "is_pr": true
+          },
+          {
+            "number": 238,
+            "title": "It is supported of the model wan2.2-fun-a14b-inp ?",
+            "labels": [],
+            "url": "https://github.com/modelscope/DiffSynth-Engine/issues/238",
+            "is_pr": false
+          },
+          {
+            "number": 235,
+            "title": "Question about batch inference support",
+            "labels": [],
+            "url": "https://github.com/modelscope/DiffSynth-Engine/issues/235",
+            "is_pr": false
+          },
+          {
+            "number": 199,
+            "title": "Pytorch version problem",
+            "labels": [],
+            "url": "https://github.com/modelscope/DiffSynth-Engine/issues/199",
+            "is_pr": false
+          },
+          {
+            "number": 224,
+            "title": "MAC Ultra  pipe.load_lora raise an error  \"AttributeError: QwenImageDiT has no attribute `diffusion_model`\"",
+            "labels": [],
+            "url": "https://github.com/modelscope/DiffSynth-Engine/issues/224",
+            "is_pr": false
+          }
+        ]
+      }
+    },
+    {
+      "repo": "NVIDIA-NeMo/labs-molt",
+      "fit": "契合 AI Infra 和训练加速。项目代码量小（9k行），架构清晰，强调 Agentic RL，适合通过工程化、周边工具链和内存优化切入。",
+      "current_direction": "核心 roadmap 包括：1. 算法演进（FlashREINFORCE, DeepSeek-V4 FP8 RL）；2. 训练特性增强（LoRA SFT, 动态批处理, Liger layers）；3. 基础设施与周边集成（OrcaRouter, Docker/CI 优化）；4. 修复 MoE 和 VLM 的边界 Bug。",
+      "maintainer_signals": [
+        "接管 Docker 镜像构建与 CI 流水线",
+        "修复数据处理、Tokenizer 和元数据对齐等工程 Bug",
+        "主导第三方 API（如 OrcaRouter）的集成"
+      ],
+      "low_compute_options": [
+        "优化 Dockerfile，支持多架构镜像发布及 BuildKit 缓存管理（PR #123, #125, #127）",
+        "修复 Qwen3.6 SFT 时的元数据形状不匹配 Bug（Issue #90）",
+        "处理 AutoProcessor 返回裸 tokenizer 的 VLM 检查点问题（PR #97）",
+        "集成 OrcaRouter provider 支持（Issue #104）",
+        "限制低精度 logprobs 的 autograd 存储以优化 CPU 内存（PR #119）"
+      ],
+      "gpu_options": [
+        "实现 DeepSeek-V4 的 FP8 RL 训练支持（Issue #59）",
+        "修复 MoE 默认配置下 gradient checkpointing 导致的 step 0 崩溃（Issue #60）",
+        "实现并验证动态批处理（Dynamic batching）（PR #52）"
+      ],
+      "days_30": [
+        "接管并完善 Docker/CI 流水线，确保多架构镜像正常发布",
+        "修复 Tokenizer 和元数据形状相关的 2-3 个 Bug",
+        "实现 OrcaRouter 的基础集成"
+      ],
+      "days_60": [
+        "主导 CPU 侧的内存优化（如 logprobs 存储限制）",
+        "Review 社区提交的 LoRA 或 Liger layers PR，确保代码风格一致",
+        "完善 Quickstart 脚本，修复缺失的依赖（如 prepare_math）"
+      ],
+      "days_90": [
+        "成为项目基础设施（CI/Docker/数据流）的 Core Maintainer",
+        "参与 RL 架构重构的讨论（如 Engine 抽象 PR #92）",
+        "负责日常 Issue Triage 和次要版本的 Release"
+      ],
+      "risks": [
+        "核心 RL 训练极度依赖大规模 GPU 集群，无法直接测试核心训练逻辑",
+        "NVIDIA 官方项目，合入标准可能较高"
+      ],
+      "evidence": {
+        "url": "https://github.com/NVIDIA-NeMo/labs-molt",
+        "stars": 1109,
+        "forks": 104,
+        "open_issues": 17,
+        "pushed_at": "2026-09-17T08:17:19Z",
+        "issues": [
+          {
+            "number": 60,
+            "title": "[bug] Every shipped MoE recipe defaults to `ep_size > 1` + `gradient_checkpoint full`, which fails at step 0",
+            "labels": [],
+            "url": "https://github.com/NVIDIA-NeMo/labs-molt/issues/60",
+            "is_pr": false
+          },
+          {
+            "number": 57,
+            "title": "feat(peft): LoRA support for SFT",
+            "labels": [],
+            "url": "https://github.com/NVIDIA-NeMo/labs-molt/pull/57",
+            "is_pr": true
+          },
+          {
+            "number": 119,
+            "title": "perf(models): bound autograd storage for low-precision log probabilities",
+            "labels": [],
+            "url": "https://github.com/NVIDIA-NeMo/labs-molt/pull/119",
+            "is_pr": true
+          },
+          {
+            "number": 90,
+            "title": "[bug] Quickstart Qwen3.6 SFT crash with metadata shape mismatch",
+            "labels": [
+              "bug"
+            ],
+            "url": "https://github.com/NVIDIA-NeMo/labs-molt/issues/90",
+            "is_pr": false
+          },
+          {
+            "number": 104,
+            "title": "[feature] OrcaRouter provider support for Molt",
+            "labels": [],
+            "url": "https://github.com/NVIDIA-NeMo/labs-molt/issues/104",
+            "is_pr": false
+          },
+          {
+            "number": 101,
+            "title": "Please use MOLT/AutoModel with CUDA 13+",
+            "labels": [],
+            "url": "https://github.com/NVIDIA-NeMo/labs-molt/issues/101",
+            "is_pr": false
+          },
+          {
+            "number": 92,
+            "title": "refactor(train): drive SFT/RL training through AutoModel's DeepSpeed-style Engine",
+            "labels": [],
+            "url": "https://github.com/NVIDIA-NeMo/labs-molt/pull/92",
+            "is_pr": true
+          },
+          {
+            "number": 97,
+            "title": "fix(utils): handle AutoProcessor returning a bare tokenizer for VLM checkpoints",
+            "labels": [],
+            "url": "https://github.com/NVIDIA-NeMo/labs-molt/pull/97",
+            "is_pr": true
+          },
+          {
+            "number": 96,
+            "title": "feat(quick_start): Added prepare_math script",
+            "labels": [],
+            "url": "https://github.com/NVIDIA-NeMo/labs-molt/pull/96",
+            "is_pr": true
+          },
+          {
+            "number": 95,
+            "title": "[feature] Quickstart scripts missing prepare_math",
+            "labels": [],
+            "url": "https://github.com/NVIDIA-NeMo/labs-molt/issues/95",
+            "is_pr": false
+          },
+          {
+            "number": 18,
+            "title": "Fix best checkpoints during async evaluation",
+            "labels": [],
+            "url": "https://github.com/NVIDIA-NeMo/labs-molt/pull/18",
+            "is_pr": true
+          },
+          {
+            "number": 59,
+            "title": "[feature] DeepSeekV4 + FP8 RL",
+            "labels": [],
+            "url": "https://github.com/NVIDIA-NeMo/labs-molt/issues/59",
+            "is_pr": false
+          },
+          {
+            "number": 10,
+            "title": "[feature] Roadmap for DeepSeek-V4 RL training support (DSA/MLA kernels, mixed precision, GPU footprint, and the agentic environment path)",
+            "labels": [],
+            "url": "https://github.com/NVIDIA-NeMo/labs-molt/issues/10",
+            "is_pr": false
+          },
+          {
+            "number": 58,
+            "title": "Enable Liger layers",
+            "labels": [],
+            "url": "https://github.com/NVIDIA-NeMo/labs-molt/pull/58",
+            "is_pr": true
+          },
+          {
+            "number": 52,
+            "title": "Enable dynamic batching",
+            "labels": [],
+            "url": "https://github.com/NVIDIA-NeMo/labs-molt/pull/52",
+            "is_pr": true
+          }
+        ]
+      }
+    },
+    {
+      "repo": "RightNow-AI/autokernel",
+      "fit": "契合 AI Infra 和算子加速。项目本质是基于 LLM Agent 的代码生成与验证框架，大量工作集中在 Profiler 解析、AST 处理和跨平台脚手架，非常适合无 GPU 候选人。",
+      "current_direction": "核心 roadmap 包括：1. 扩展硬件支持（XPU, ROCm/AMD, MLX）；2. 丰富算子融合类型（Modulated norm, Gated-residual）；3. 完善 Profiler 与 FX 区域的离线关联；4. 提升 KernelBench 集成与评估能力。",
+      "maintainer_signals": [
+        "主导 MLX (Apple Silicon) 后端的脚手架搭建",
+        "修复 Profiler 解析逻辑和调度器的时间预算 Bug",
+        "完善项目的测试覆盖率和 Python 工程规范"
+      ],
+      "low_compute_options": [
+        "修复 orchestrator 中基于全局时间的预算 Bug，改为 per-kernel 计时（Issue #12, PR #13）",
+        "修复 extract.py 中对 PyTorch profiler 张量形状列表的解析失败（Issue #9, PR #10）",
+        "避免代码中遮蔽 Python 标准库（如 profile 模块）（PR #20）",
+        "搭建 MLX 支持的基础架构和 Prompt 模板（Issue #8）",
+        "实现 Profiler 行与捕获的 FX 区域之间的离线关联（PR #17，纯 CPU 逻辑）"
+      ],
+      "gpu_options": [
+        "实现并验证 Diffusion/Video 模型的 Modulated norm 融合算子（Issue #14）",
+        "排查并修复 H200 上的 bench.py 失败问题（Issue #5）",
+        "实现 Tensor Parallelism 的算子支持与验证（Issue #7）"
+      ],
+      "days_30": [
+        "修复 orchestrator 计时 Bug 和 Profiler 形状解析 Bug",
+        "清理代码库中的 Python 命名空间冲突",
+        "复现并 Triage 社区提交的各类解析错误 Issue"
+      ],
+      "days_60": [
+        "主导 MLX 后端的 Prompt 设计与基础验证逻辑",
+        "Review 社区提交的 XPU 或 ROCm 兼容性 PR",
+        "完善 KernelBench 的集成测试流水线"
+      ],
+      "days_90": [
+        "成为项目工程架构和跨平台（MLX/XPU）支持的 Core Maintainer",
+        "主导 Agent Prompt (program.md) 的优化与迭代",
+        "负责项目的整体 Release 和社区答疑"
+      ],
+      "risks": [
+        "生成的 CUDA/Triton 算子最终需要 GPU 验证，需依赖 CI 或社区协助测试",
+        "高度依赖 LLM API，需自备 API Key 进行本地调试"
+      ],
+      "evidence": {
+        "url": "https://github.com/RightNow-AI/autokernel",
+        "stars": 1557,
+        "forks": 164,
+        "open_issues": 16,
+        "pushed_at": "2026-03-19T03:13:43Z",
+        "issues": [
+          {
+            "number": 20,
+            "title": "fix: avoid shadowing Python stdlib profile module",
+            "labels": [],
+            "url": "https://github.com/RightNow-AI/autokernel/pull/20",
+            "is_pr": true
+          },
+          {
+            "number": 19,
+            "title": "module 'triton.language.math' has no attribute 'tanh'",
+            "labels": [],
+            "url": "https://github.com/RightNow-AI/autokernel/issues/19",
+            "is_pr": false
+          },
+          {
+            "number": 17,
+            "title": "Implement offline correlation between profiler rows and captured FX regions",
+            "labels": [],
+            "url": "https://github.com/RightNow-AI/autokernel/pull/17",
+            "is_pr": true
+          },
+          {
+            "number": 14,
+            "title": "[Feature] Support modulated norm and gated-residual fusion for diffusion/video transformer models",
+            "labels": [],
+            "url": "https://github.com/RightNow-AI/autokernel/issues/14",
+            "is_pr": false
+          },
+          {
+            "number": 12,
+            "title": "orchestrate.py uses global started_at for per-kernel time budget, causing premature termination of later kernels",
+            "labels": [],
+            "url": "https://github.com/RightNow-AI/autokernel/issues/12",
+            "is_pr": false
+          },
+          {
+            "number": 11,
+            "title": "Enhance XPU support for benchmarks, profiling, and verification",
+            "labels": [],
+            "url": "https://github.com/RightNow-AI/autokernel/pull/11",
+            "is_pr": true
+          },
+          {
+            "number": 13,
+            "title": "fix: use per-kernel start time for orchestrator time budget",
+            "labels": [],
+            "url": "https://github.com/RightNow-AI/autokernel/pull/13",
+            "is_pr": true
+          },
+          {
+            "number": 10,
+            "title": "fix: parse PyTorch profiler tensor shape lists in extract.py",
+            "labels": [],
+            "url": "https://github.com/RightNow-AI/autokernel/pull/10",
+            "is_pr": true
+          },
+          {
+            "number": 9,
+            "title": "extract.py: shape parsing fails for PyTorch profiler tensor shape lists",
+            "labels": [],
+            "url": "https://github.com/RightNow-AI/autokernel/issues/9",
+            "is_pr": false
+          },
+          {
+            "number": 5,
+            "title": "bench.py fails on H200s",
+            "labels": [],
+            "url": "https://github.com/RightNow-AI/autokernel/issues/5",
+            "is_pr": false
+          },
+          {
+            "number": 8,
+            "title": "MLX support",
+            "labels": [],
+            "url": "https://github.com/RightNow-AI/autokernel/issues/8",
+            "is_pr": false
+          },
+          {
+            "number": 7,
+            "title": "Tensor Parallelism Support",
+            "labels": [],
+            "url": "https://github.com/RightNow-AI/autokernel/issues/7",
+            "is_pr": false
+          },
+          {
+            "number": 4,
+            "title": "quants support",
+            "labels": [],
+            "url": "https://github.com/RightNow-AI/autokernel/issues/4",
+            "is_pr": false
+          },
+          {
+            "number": 6,
+            "title": "[ROCm] Add AMD MI300X agent optimization support: HIP compat, knowledge base, program playbook",
+            "labels": [],
+            "url": "https://github.com/RightNow-AI/autokernel/pull/6",
+            "is_pr": true
+          },
+          {
+            "number": 2,
+            "title": "Integration with 🤗 kernels 👋",
+            "labels": [],
+            "url": "https://github.com/RightNow-AI/autokernel/issues/2",
+            "is_pr": false
+          }
+        ]
+      }
+    }
+  ],
+  "failures": []
+}
