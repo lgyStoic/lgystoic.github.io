@@ -1,16 +1,22 @@
 {
-  "updated": "2026-09-17T09:09:36+00:00",
+  "updated": "2026-09-17T13:09:39+00:00",
   "sources": [
+    {
+      "name": "Apple",
+      "ok": true,
+      "fetched": 91,
+      "matched": 2
+    },
     {
       "name": "NVIDIA",
       "ok": true,
       "fetched": 199,
-      "matched": 0
+      "matched": 52
     },
     {
       "name": "Anthropic",
       "ok": true,
-      "fetched": 608,
+      "fetched": 604,
       "matched": 0
     },
     {
@@ -40,26 +46,26 @@
     {
       "name": "Remotive 聚合",
       "ok": true,
-      "fetched": 13,
-      "matched": 0
+      "fetched": 15,
+      "matched": 1
     },
     {
       "name": "Arbeitnow 聚合",
       "ok": true,
       "fetched": 250,
-      "matched": 7
+      "matched": 10
     },
     {
       "name": "Job-Hunter · RemoteOK",
       "ok": true,
       "fetched": 99,
-      "matched": 0
+      "matched": 1
     },
     {
       "name": "Job-Hunter · Himalayas",
       "ok": true,
-      "fetched": 72,
-      "matched": 6
+      "fetched": 68,
+      "matched": 11
     },
     {
       "name": "Boolean Search · Tavily / DuckDuckGo",
@@ -70,7 +76,7 @@
       "name": "Adzuna · 新加坡",
       "ok": true,
       "fetched": 150,
-      "matched": 30
+      "matched": 37
     },
     {
       "name": "Adzuna · 马来西亚",
@@ -81,7 +87,7 @@
       "name": "ats-jobs · 12类ATS",
       "ok": true,
       "fetched": 435,
-      "matched": 66
+      "matched": 70
     },
     {
       "name": "job-search-buddy · URL补全",
@@ -93,10 +99,69 @@
       "name": "猎聘 · 深圳",
       "ok": true,
       "fetched": 166,
-      "matched": 1
+      "matched": 4,
+      "direct": 1,
+      "headhunter": 3
     }
   ],
   "jobs": [
+    {
+      "title": "Embedded Software Engineer",
+      "url": "https://jobs.apple.com/zh-cn/details/200615795-3435/embedded-software-engineer?team=SFTWR",
+      "location": "深圳",
+      "source_updated": "",
+      "company": "Apple",
+      "source": "apple-shenzhen",
+      "tags": [
+        "端侧部署",
+        "深圳"
+      ],
+      "reasons": [
+        "端侧部署：embedded"
+      ],
+      "score": 7,
+      "region": "深圳",
+      "last_seen": "2026-09-17T13:09:39+00:00",
+      "stale": false
+    },
+    {
+      "title": "Software Engineering Intern – AI Tools for Hardware Engineering",
+      "url": "https://jobs.apple.com/zh-cn/details/200676912-3435/software-engineering-intern-ai-tools-for-hardware-engineering?team=HRDWR",
+      "location": "深圳",
+      "source_updated": "",
+      "company": "Apple",
+      "source": "apple-shenzhen",
+      "tags": [
+        "AI Infra",
+        "深圳"
+      ],
+      "reasons": [
+        "AI Infra：ai tools"
+      ],
+      "score": 7,
+      "region": "深圳",
+      "last_seen": "2026-09-17T13:09:39+00:00",
+      "stale": false
+    },
+    {
+      "title": "Senior CUDA Test Development Software Engineer, SDET",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/en-US/NVIDIAExternalCareerSite/job/China-Shenzhen/Senior-CUDA-Test-Development-Software-Engineer--SDET_JR2023864-1",
+      "location": "China, Shenzhen",
+      "source_updated": "Posted 28 Days Ago",
+      "company": "NVIDIA",
+      "source": "nvidia",
+      "tags": [
+        "AI Infra",
+        "深圳"
+      ],
+      "reasons": [
+        "AI Infra：cuda"
+      ],
+      "score": 7,
+      "region": "深圳",
+      "last_seen": "2026-09-17T13:09:39+00:00",
+      "stale": false
+    },
     {
       "title": "端侧 AI 算法部署与工程化工程师(A256166)",
       "url": "https://www.liepin.com/job/1983110251.shtml",
@@ -104,6 +169,7 @@
       "source_updated": "2026-06-03",
       "company": "TCL实业控股股份有限公司",
       "source": "liepin-shenzhen",
+      "listing_type": "direct",
       "tags": [
         "端侧部署",
         "深圳"
@@ -113,7 +179,7 @@
       ],
       "score": 7,
       "region": "深圳",
-      "last_seen": "2026-09-17T09:11:46+00:00",
+      "last_seen": "2026-09-17T13:11:37+00:00",
       "stale": false
     },
     {
@@ -132,7 +198,47 @@
       ],
       "score": 7,
       "region": "深圳",
-      "last_seen": "2026-09-17T09:09:36+00:00",
+      "last_seen": "2026-09-17T13:09:39+00:00",
+      "stale": false
+    },
+    {
+      "title": "AI 基建工程师（训练 & 推理效能方向）",
+      "url": "https://www.liepin.com/a/79186087.shtml",
+      "location": "深圳-南山区",
+      "source_updated": "2026-09-17",
+      "company": "某深圳人工智能公司",
+      "source": "liepin-shenzhen",
+      "listing_type": "headhunter",
+      "tags": [
+        "训推加速",
+        "深圳"
+      ],
+      "reasons": [
+        "训推加速：训练"
+      ],
+      "score": 7,
+      "region": "深圳",
+      "last_seen": "2026-09-17T13:11:37+00:00",
+      "stale": false
+    },
+    {
+      "title": "infra&推理研究员（视频生成、清北港大PHD团队）",
+      "url": "https://www.liepin.com/a/79869557.shtml",
+      "location": "深圳-南山区",
+      "source_updated": "2026-09-11",
+      "company": "某深圳计算机软件公司",
+      "source": "liepin-shenzhen",
+      "listing_type": "headhunter",
+      "tags": [
+        "DiT",
+        "深圳"
+      ],
+      "reasons": [
+        "DiT：视频生成"
+      ],
+      "score": 7,
+      "region": "深圳",
+      "last_seen": "2026-09-17T13:11:37+00:00",
       "stale": false
     },
     {
@@ -155,7 +261,7 @@
       ],
       "score": 7,
       "region": "其他地区",
-      "last_seen": "2026-09-17T09:10:54+00:00",
+      "last_seen": "2026-09-17T13:10:51+00:00",
       "stale": false
     },
     {
@@ -178,7 +284,7 @@
       ],
       "score": 7,
       "region": "远程",
-      "last_seen": "2026-09-17T09:10:54+00:00",
+      "last_seen": "2026-09-17T13:10:51+00:00",
       "stale": false
     },
     {
@@ -201,13 +307,55 @@
       ],
       "score": 7,
       "region": "其他地区",
-      "last_seen": "2026-09-17T09:10:54+00:00",
+      "last_seen": "2026-09-17T13:10:51+00:00",
       "stale": false
     },
     {
-      "title": "Senior Embedded Software Engineer – EO/IR Gimbal Systems (m/f/d)",
-      "url": "https://www.arbeitnow.com/jobs/companies/quantum-systems-gmbh/senior-embedded-software-engineer-eo-ir-gimbal-systems-gilching-47901",
-      "location": "Gilching, Bayern, Germany",
+      "title": "Senior Inference Engineer, GPU Kernel Optimization",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/en-US/NVIDIAExternalCareerSite/job/US-CA-Santa-Clara/Senior-Inference-Engineer--GPU-Kernel-Optimization_JR2021962",
+      "location": "4 Locations",
+      "source_updated": "Posted 30+ Days Ago",
+      "company": "NVIDIA",
+      "source": "nvidia",
+      "tags": [
+        "AI Infra",
+        "训推加速",
+        "其他地区"
+      ],
+      "reasons": [
+        "AI Infra：gpu",
+        "训推加速：inference、kernel"
+      ],
+      "score": 6,
+      "region": "其他地区",
+      "last_seen": "2026-09-17T13:09:39+00:00",
+      "stale": false
+    },
+    {
+      "title": "Senior System Software Engineer - Dynamo-Triton Inference Server",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/en-US/NVIDIAExternalCareerSite/job/US-CA-Santa-Clara/Senior-System-Software-Engineer---Dynamo-Triton-Inference-Server_JR2013405",
+      "location": "3 Locations",
+      "source_updated": "Posted 30+ Days Ago",
+      "company": "NVIDIA",
+      "source": "nvidia",
+      "tags": [
+        "AI Infra",
+        "训推加速",
+        "其他地区"
+      ],
+      "reasons": [
+        "AI Infra：triton",
+        "训推加速：inference"
+      ],
+      "score": 6,
+      "region": "其他地区",
+      "last_seen": "2026-09-17T13:09:39+00:00",
+      "stale": false
+    },
+    {
+      "title": "Senior/Staff Data Scientist - Measurement, Experimentation & Causal Inference",
+      "url": "https://www.arbeitnow.co.uk/jobs/companies/sonyinteractiveentertainmentglobal/senior-staff-data-scientist-measurement-experimentation-causal-inference-london-316157",
+      "location": "London",
       "source_updated": "",
       "company": "Arbeitnow 聚合",
       "source": "arbeitnow",
@@ -218,13 +366,13 @@
         "其他地区"
       ],
       "reasons": [
-        "AI Infra：gpu、cuda、distributed systems",
+        "AI Infra：ai tools",
         "端侧部署：embedded",
-        "训推加速：kernel"
+        "训推加速：inference"
       ],
       "score": 5,
       "region": "其他地区",
-      "last_seen": "2026-09-17T09:09:36+00:00",
+      "last_seen": "2026-09-17T13:09:39+00:00",
       "stale": false
     },
     {
@@ -243,7 +391,7 @@
       ],
       "score": 5,
       "region": "远程",
-      "last_seen": "2026-09-17T09:09:36+00:00",
+      "last_seen": "2026-09-17T13:09:39+00:00",
       "stale": false
     },
     {
@@ -266,7 +414,7 @@
       ],
       "score": 5,
       "region": "其他地区",
-      "last_seen": "2026-09-17T09:09:36+00:00",
+      "last_seen": "2026-09-17T13:09:39+00:00",
       "stale": false
     },
     {
@@ -289,7 +437,7 @@
       ],
       "score": 5,
       "region": "其他地区",
-      "last_seen": "2026-09-17T09:09:36+00:00",
+      "last_seen": "2026-09-17T13:09:39+00:00",
       "stale": false
     },
     {
@@ -312,7 +460,7 @@
       ],
       "score": 5,
       "region": "其他地区",
-      "last_seen": "2026-09-17T09:10:54+00:00",
+      "last_seen": "2026-09-17T13:10:51+00:00",
       "stale": false
     },
     {
@@ -335,7 +483,7 @@
       ],
       "score": 5,
       "region": "其他地区",
-      "last_seen": "2026-09-17T09:10:54+00:00",
+      "last_seen": "2026-09-17T13:10:51+00:00",
       "stale": false
     },
     {
@@ -358,7 +506,7 @@
       ],
       "score": 5,
       "region": "其他地区",
-      "last_seen": "2026-09-17T09:10:54+00:00",
+      "last_seen": "2026-09-17T13:10:51+00:00",
       "stale": false
     },
     {
@@ -381,7 +529,7 @@
       ],
       "score": 5,
       "region": "其他地区",
-      "last_seen": "2026-09-17T09:10:54+00:00",
+      "last_seen": "2026-09-17T13:10:51+00:00",
       "stale": false
     },
     {
@@ -402,14 +550,35 @@
       ],
       "score": 4,
       "region": "其他地区",
-      "last_seen": "2026-09-17T09:09:36+00:00",
+      "last_seen": "2026-09-17T13:09:39+00:00",
       "stale": false
     },
     {
-      "title": "Machine Learning Engineer (AI Infrastructure)",
-      "url": "https://www.adzuna.sg/details/5866953952?utm_medium=api&utm_source=9c5d13f7",
+      "title": "Generative AI Engineer (Intern) - SG",
+      "url": "https://www.adzuna.sg/details/5768946981?utm_medium=api&utm_source=9c5d13f7",
       "location": "Singapore",
-      "source_updated": "2026-09-02T18:50:59Z",
+      "source_updated": "2026-06-19T12:26:12Z",
+      "company": "Adzuna · 新加坡",
+      "source": "adzuna-singapore",
+      "tags": [
+        "AI Infra",
+        "DiT",
+        "其他地区"
+      ],
+      "reasons": [
+        "AI Infra：ai engineer",
+        "DiT：diffusion"
+      ],
+      "score": 4,
+      "region": "其他地区",
+      "last_seen": "2026-09-17T13:09:39+00:00",
+      "stale": false
+    },
+    {
+      "title": "ML Engineer, AI Infrastructure for Scalable Production",
+      "url": "https://www.adzuna.sg/details/5866941926?utm_medium=api&utm_source=9c5d13f7",
+      "location": "Singapore",
+      "source_updated": "2026-09-02T18:49:16Z",
       "company": "Adzuna · 新加坡",
       "source": "adzuna-singapore",
       "tags": [
@@ -423,28 +592,7 @@
       ],
       "score": 4,
       "region": "其他地区",
-      "last_seen": "2026-09-17T09:09:36+00:00",
-      "stale": false
-    },
-    {
-      "title": "Senior/Staff Data Scientist - Measurement, Experimentation & Causal Inference",
-      "url": "https://www.arbeitnow.co.uk/jobs/companies/sonyinteractiveentertainmentglobal/senior-staff-data-scientist-measurement-experimentation-causal-inference-london-316157",
-      "location": "London",
-      "source_updated": "",
-      "company": "Arbeitnow 聚合",
-      "source": "arbeitnow",
-      "tags": [
-        "端侧部署",
-        "训推加速",
-        "其他地区"
-      ],
-      "reasons": [
-        "端侧部署：embedded",
-        "训推加速：inference"
-      ],
-      "score": 4,
-      "region": "其他地区",
-      "last_seen": "2026-09-17T09:09:36+00:00",
+      "last_seen": "2026-09-17T13:09:39+00:00",
       "stale": false
     },
     {
@@ -465,7 +613,7 @@
       ],
       "score": 4,
       "region": "其他地区",
-      "last_seen": "2026-09-17T09:09:36+00:00",
+      "last_seen": "2026-09-17T13:09:39+00:00",
       "stale": false
     },
     {
@@ -486,7 +634,28 @@
       ],
       "score": 4,
       "region": "其他地区",
-      "last_seen": "2026-09-17T09:10:54+00:00",
+      "last_seen": "2026-09-17T13:10:51+00:00",
+      "stale": false
+    },
+    {
+      "title": "AI/ML Physical Design Flow Engineer",
+      "url": "https://job-boards.greenhouse.io/tenstorrent/jobs/5098932007",
+      "location": "Austin, Texas, United States; Fort Collins, Colorado, United States; Santa Clara, California, United States",
+      "source_updated": "2026-04-03T14:56:04-04:00",
+      "company": "tenstorrent.com",
+      "source": "ats-jobs",
+      "tags": [
+        "AI Infra",
+        "端侧部署",
+        "其他地区"
+      ],
+      "reasons": [
+        "AI Infra：ai/ml",
+        "端侧部署：edge ai"
+      ],
+      "score": 4,
+      "region": "其他地区",
+      "last_seen": "2026-09-17T13:10:51+00:00",
       "stale": false
     },
     {
@@ -507,28 +676,64 @@
       ],
       "score": 4,
       "region": "其他地区",
-      "last_seen": "2026-09-17T09:10:54+00:00",
+      "last_seen": "2026-09-17T13:10:51+00:00",
       "stale": false
     },
     {
-      "title": "Software Engineer, Acceleration Kernel Development",
-      "url": "https://job-boards.greenhouse.io/tenstorrent/jobs/4155609007",
-      "location": "Toronto, Ontario, Canada",
-      "source_updated": "2024-07-23T14:12:08-04:00",
-      "company": "tenstorrent.com",
-      "source": "ats-jobs",
+      "title": "AI Engineer",
+      "url": "https://www.arbeitnow.fr/jobs/companies/jobgether/ai-engineer-france-492706",
+      "location": "France",
+      "source_updated": "",
+      "company": "Arbeitnow 聚合",
+      "source": "arbeitnow",
       "tags": [
-        "端侧部署",
-        "训推加速",
+        "AI Infra",
         "其他地区"
       ],
       "reasons": [
-        "端侧部署：edge ai",
-        "训推加速：kernel"
+        "AI Infra：ai engineer"
       ],
-      "score": 4,
+      "score": 3,
       "region": "其他地区",
-      "last_seen": "2026-09-17T09:10:54+00:00",
+      "last_seen": "2026-09-17T13:09:39+00:00",
+      "stale": false
+    },
+    {
+      "title": "AI Engineer Data APIs",
+      "url": "https://remoteOK.com/remote-jobs/remote-ai-engineer-data-apis-benzinga-1137224",
+      "location": "",
+      "source_updated": "",
+      "company": "Job-Hunter · RemoteOK",
+      "source": "job-hunter-remoteok",
+      "tags": [
+        "AI Infra",
+        "其他地区"
+      ],
+      "reasons": [
+        "AI Infra：ai engineer"
+      ],
+      "score": 3,
+      "region": "其他地区",
+      "last_seen": "2026-09-17T13:09:39+00:00",
+      "stale": false
+    },
+    {
+      "title": "Senior Independent AI Engineer / Architect",
+      "url": "https://remotive.com/remote-jobs/software-development/senior-independent-ai-engineer-architect-1919266",
+      "location": "Americas, Europe, Israel",
+      "source_updated": "",
+      "company": "Remotive 聚合",
+      "source": "remotive",
+      "tags": [
+        "AI Infra",
+        "其他地区"
+      ],
+      "reasons": [
+        "AI Infra：ai engineer"
+      ],
+      "score": 3,
+      "region": "其他地区",
+      "last_seen": "2026-09-17T13:09:39+00:00",
       "stale": false
     },
     {
@@ -551,7 +756,7 @@
       ],
       "score": 3,
       "region": "其他地区",
-      "last_seen": "2026-09-17T09:10:54+00:00",
+      "last_seen": "2026-09-17T13:10:51+00:00",
       "stale": false
     },
     {
@@ -574,7 +779,7 @@
       ],
       "score": 3,
       "region": "其他地区",
-      "last_seen": "2026-09-17T09:10:54+00:00",
+      "last_seen": "2026-09-17T13:10:51+00:00",
       "stale": false
     },
     {
@@ -597,7 +802,7 @@
       ],
       "score": 3,
       "region": "其他地区",
-      "last_seen": "2026-09-17T09:10:54+00:00",
+      "last_seen": "2026-09-17T13:10:51+00:00",
       "stale": false
     },
     {
@@ -620,28 +825,28 @@
       ],
       "score": 3,
       "region": "其他地区",
-      "last_seen": "2026-09-17T09:10:54+00:00",
+      "last_seen": "2026-09-17T13:10:51+00:00",
       "stale": false
     },
     {
-      "title": "Principal Software Engineer, Kernels",
-      "url": "https://jobs.ashbyhq.com/d-matrix/cbe1d28c-f6f0-4c3c-b24a-d66b36f81847",
+      "title": "Principal Architect, Performance Analysis and Modeling",
+      "url": "https://jobs.ashbyhq.com/d-matrix/122ef1ed-9554-45f0-ac40-3838965ebff1",
       "location": "Santa Clara",
-      "source_updated": "2026-07-15T19:26:20.374+00:00",
+      "source_updated": "2026-08-25T14:47:44.416+00:00",
       "company": "d-matrix.ai",
       "source": "ats-jobs",
       "tags": [
         "AI Infra",
-        "端侧部署",
+        "训推加速",
         "其他地区"
       ],
       "reasons": [
-        "AI Infra：cuda",
-        "端侧部署：embedded"
+        "AI Infra：ai/ml",
+        "训推加速：inference、kernel"
       ],
       "score": 2,
       "region": "其他地区",
-      "last_seen": "2026-09-17T09:10:54+00:00",
+      "last_seen": "2026-09-17T13:10:51+00:00",
       "stale": false
     },
     {
@@ -662,7 +867,7 @@
       ],
       "score": 2,
       "region": "其他地区",
-      "last_seen": "2026-09-17T09:10:54+00:00",
+      "last_seen": "2026-09-17T13:10:51+00:00",
       "stale": false
     },
     {
@@ -683,7 +888,7 @@
       ],
       "score": 2,
       "region": "其他地区",
-      "last_seen": "2026-09-17T09:10:54+00:00",
+      "last_seen": "2026-09-17T13:10:51+00:00",
       "stale": false
     },
     {
@@ -704,7 +909,7 @@
       ],
       "score": 2,
       "region": "其他地区",
-      "last_seen": "2026-09-17T09:10:54+00:00",
+      "last_seen": "2026-09-17T13:10:51+00:00",
       "stale": false
     }
   ],
