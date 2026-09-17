@@ -957,6 +957,36 @@ def analytics_dashboard(site: dict) -> str:
     return f"https://{code}.goatcounter.com" if code else ""
 
 
+# ---------------------------------------------------------------- 评论（giscus）
+
+def render_comments(site: dict) -> str:
+    """giscus 评论区。repo_id / category_id 为空时输出空字符串（页面上不出现评论区）。"""
+    c = site.get("comments") or {}
+    if c.get("provider", "giscus") != "giscus" or not (c.get("repo_id") and c.get("category_id")):
+        return ""
+    return (
+        '    <section class="section comments" id="comments">\n'
+        '      <h2>留言</h2>\n'
+        '      <p class="comments-note">评论存放在本站仓库的 GitHub Discussions 里，需要 GitHub 账号。国内直连不稳的话，先看完再来留。</p>\n'
+        '      <script src="https://giscus.app/client.js"\n'
+        f'        data-repo="{esc(c["repo"])}"\n'
+        f'        data-repo-id="{esc(c["repo_id"])}"\n'
+        f'        data-category="{esc(c.get("category", "Comments"))}"\n'
+        f'        data-category-id="{esc(c["category_id"])}"\n'
+        '        data-mapping="pathname"\n'
+        '        data-strict="1"\n'
+        '        data-reactions-enabled="1"\n'
+        '        data-emit-metadata="0"\n'
+        '        data-input-position="top"\n'
+        '        data-theme="preferred_color_scheme"\n'
+        '        data-lang="zh-CN"\n'
+        '        data-loading="lazy"\n'
+        '        crossorigin="anonymous"\n'
+        '        async></script>\n'
+        '    </section>'
+    )
+
+
 # ---------------------------------------------------------------- 站点公共头部
 
 def page_prefix(rel_path: str) -> str:
@@ -1029,6 +1059,8 @@ def inject_site_chrome(site: dict) -> int:
             blocks["site-name"] = esc(site.get("name", SITE_TITLE))
         if "<!-- build:analytics -->" in text:
             blocks["analytics"] = render_analytics(site)
+        if "<!-- build:comments -->" in text:
+            blocks["comments"] = render_comments(site)
         if blocks:
             inject(page, blocks)
             n += 1

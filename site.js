@@ -12,7 +12,13 @@
 
   const current = () => root.dataset.theme || (prefersDark.matches ? "dark" : "light");
 
+  function syncGiscus(theme) {
+    const frame = document.querySelector("iframe.giscus-frame");
+    if (frame) frame.contentWindow.postMessage({ giscus: { setConfig: { theme } } }, "https://giscus.app");
+  }
+
   function paint() {
+    syncGiscus(current());
     const mode = current();
     if (icon) icon.textContent = mode === "dark" ? "☀" : "☾";
     button.setAttribute("aria-label", mode === "dark" ? "切换到浅色" : "切换到深色");
