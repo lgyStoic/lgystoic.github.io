@@ -372,10 +372,12 @@ def task_prompt(ev, analysis=None, existing=None, need=0):
 10. 全部字段中文输出（title 也要中文），代码、文件名、专有名词保留原文；只有 claim_comment 用英文。
 11. local_repro：一到三行，写清楚在这台没有 GPU 的 MacBook 上怎么复现问题或验证改动（具体命令、环境变量、要跑的测试文件）。写不出来就说明这张卡其实需要 GPU，不要出。以下这些事情的核心在 CUDA 运行时，Mac 上根本跑不到，不要给它们标 CPU / Mac：memory saver（release_memory_occupation / resume_memory_occupation）、CUDA Graph 捕获、LD_PRELOAD 劫持 cudaMalloc、NCCL 通信、显存占用测量、nvidia-smi、CUDA 流调度。
 12. validation 里引用尚不存在、由这张卡新建的文件时注明「新增」；不要把待新建的测试写成已经存在。
+13. 安装脚本、包管理器、系统权限这类环境问题（Homebrew、pip 依赖冲突、macOS xattr / Gatekeeper、CI runner 配置）不是核心贡献，也用不上候选人的专长：不要为它们出卡，除非维护者明确标了 help wanted；即便出卡 priority 也只能是 low。
 
 仓库证据：'''+json.dumps(compact,ensure_ascii=False)
 
 
+ENV_ONLY=re.compile(r'homebrew|\bbrew\b|portable-ruby|install\.sh|xattr|gatekeeper|provenance|安装脚本|环境问题|pip 依赖|conda', re.I)
 GPU_ONLY=re.compile(r'memory.?saver|release_memory_occupation|resume_memory_occupation|LD_PRELOAD|cuda.?graph|\bnccl\b|nvidia-smi|cudaMalloc|torch\.cuda\.|cuda stream|CUDA 流', re.I)
 REVIEW_CAP=2
 
@@ -409,6 +411,10 @@ def valid_tasks(generated,evidence):
             print(f"丢弃实际需要 CUDA 运行时的任务：{task.get('title')}（{GPU_ONLY.search(howto).group(0)}）"); continue
         if cc!='Colab T4' and len((task.get('local_repro') or '').strip())<8:
             print(f"丢弃没有本机复现路径的任务：{task.get('title')}"); continue
+        if ENV_ONLY.search(task.get('title','')+' '+source.get('title','')+' '+task.get('goal','')):
+            if 'help wanted' not in ' '.join(source.get('labels') or []).lower():
+                print(f"丢弃环境 / 安装类任务：{task.get('title')}"); continue
+            task['priority']='low'
         task['source_title']=source['title']
         open_prs=[p for p in source.get('linked_prs',[]) if p.get('state')=='open']
         task['issue_status']={'assignees':source.get('assignees',[]),'comments':source.get('comments',0),'labels':source.get('labels',[]),
