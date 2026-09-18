@@ -40,6 +40,21 @@ def plain(value):
     return ' '.join(html.unescape(re.sub('<[^>]+>', ' ', value or '')).split())
 
 
+def feishu_site_path(host, ua):
+    """飞书招聘门户的根路径会跳到 /<站点>/position；从最终 URL 或页面里的链接读出真实站点路径，读不到返回 None。"""
+    try:
+        req = urllib.request.Request(host + '/', headers={'User-Agent': ua, 'Accept': 'text/html'})
+        with urllib.request.urlopen(req, timeout=25) as response:
+            final, body = response.geturl(), response.read(300000).decode('utf-8', 'replace')
+    except Exception:
+        return None
+    m = re.match(r'https?://[^/]+/([A-Za-z0-9_-]+)/', final)
+    if m and m.group(1) not in ('api', 'static', 'assets', 'login'):
+        return m.group(1)
+    m = re.search(r'href="/([A-Za-z0-9_-]+)/position', body)
+    return m.group(1) if m else None
+
+
 CN_CITY_TERMS = ['北京', '上海', '杭州', '广州', '南京', '成都', '武汉', '西安', '苏州', '合肥', '天津', '重庆', '长沙', '厦门', '青岛', '珠海', '东莞', '济南', '郑州', '大连', '中国',
                  'beijing', 'shanghai', 'hangzhou', 'guangzhou', 'nanjing', 'chengdu', 'wuhan', "xi'an", 'xian', 'suzhou', 'hefei', 'tianjin', 'chongqing', 'changsha', 'xiamen', 'qingdao', 'zhuhai', 'dongguan', 'china', 'prc']
 REGION_ORDER = {'深圳': 0, '香港': 1, '国内': 2, '远程': 3, '海外': 4}
@@ -268,11 +283,13 @@ def fetch_source(source):
                              'description': plain((j.get('Responsibility') or '') + ' ' + (j.get('Requirement') or '')), 'source_updated': j.get('LastUpdateTime', '')})
     elif source['kind'] == 'feishu':
         host = source['url'].rstrip('/')
-        candidates = [source.get('path', 'index')] + [x for x in ('index', 'experienced', 'social', 'socialrecruitment', 'campus') if x != source.get('path', 'index')]
         ua = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0 Safari/537.36'
+        discovered = feishu_site_path(host, ua)
+        candidates = [x for x in (discovered, source.get('path', 'index'), 'index', 'experienced', 'social', 'socialrecruitment', 'campus') if x]
+        candidates = list(dict.fromkeys(candidates))
 
-        def feishu_search(path, query):
-            body = {'keyword': query, 'limit': 50, 'offset': 0, 'job_category_id_list': [], 'tag_id_list': [], 'location_code_list': source.get('location_codes', []),
+        def feishu_search(path, query, offset=0):
+            body = {'keyword': query, 'limit': 50, 'offset': offset, 'job_category_id_list': [], 'tag_id_list': [], 'location_code_list': source.get('location_codes', []),
                     'subject_id_list': [], 'recruitment_id_list': [], 'portal_type': 2, 'job_function_id_list': [], 'portal_entrance': 1}
             return request(f"{host}/api/v1/search/job/posts", body,
                            headers={'portal-platform': '1', 'website-path': path, 'env': 'undefined', 'Accept': 'application/json, text/plain, */*',
@@ -294,9 +311,10 @@ def fetch_source(source):
         if path != source.get('path', 'index'):
             print(f"{source['name']}: 站点路径实际为 {path}")
         seen = set()
-        for index, query in enumerate(source['queries']):
-            payload = first if index == 0 else feishu_search(path, query)
-            for j in (payload.get('data') or {}).get('job_post_list') or []:
+
+        def take(payload):
+            posts = (payload.get('data') or {}).get('job_post_list') or []
+            for j in posts:
                 jid = j.get('id')
                 if not jid or jid in seen:
                     continue
@@ -305,14 +323,32 @@ def fetch_source(source):
                 city = city_info.get('name') or city_info.get('en_name') or ', '.join(c.get('name', '') for c in (j.get('city_list') or []) if isinstance(c, dict)) or source.get('location', '')
                 rows.append({'title': j.get('title', ''), 'url': f"{host}/{path}/position/{jid}/detail", 'location': city,
                              'description': plain((j.get('description') or '') + ' ' + (j.get('requirement') or ''))[:3000], 'source_updated': str(j.get('publish_time') or '')})
+            return len(posts)
+
+        for index, query in enumerate(source['queries']):
+            take(first if index == 0 else feishu_search(path, query))
+        if not rows:
+            # 关键词检索一条不返回（小门户常见）：拉全部岗位，交给后面的画像匹配过滑
+            for offset in range(0, 200, 50):
+                if take(feishu_search(path, '', offset)) < 50:
+                    break
+            print(f"{source['name']}: 关键词检索为空，改为拉取全部岗位 {len(rows)} 条再本地匹配")
     elif source['kind'] == 'baidu':
         seen = set()
         for query in source['queries']:
-            payload = request(source['url'], {'recruitType': 'SOCIAL', 'pageSize': 50, 'keyWord': query, 'curPage': 1, 'projectType': ''}, form=True,
-                              headers={'Referer': 'https://talent.baidu.com/jobs/social-list', 'Origin': 'https://talent.baidu.com'})
-            records = (payload.get('data') or {}).get('list') or []
-            if not records:
-                print(f"百度 {query}: {json.dumps(payload, ensure_ascii=False)[:200]}")
+            records = []
+            for page in range(1, 6):
+                # 官网列表页每页 10 条；pageSize 传大了接口直接回 "Illegal argument : pageSize"
+                payload = request(source['url'], {'recruitType': 'SOCIAL', 'pageSize': 10, 'keyWord': query, 'curPage': page, 'projectType': ''}, form=True,
+                                  headers={'Referer': 'https://talent.baidu.com/jobs/social-list', 'Origin': 'https://talent.baidu.com'})
+                batch = (payload.get('data') or {}).get('list') or []
+                if not batch:
+                    if page == 1:
+                        print(f"百度 {query}: {json.dumps(payload, ensure_ascii=False)[:200]}")
+                    break
+                records += batch
+                if len(batch) < 10:
+                    break
             for j in records:
                 pid = j.get('postId')
                 if not pid or pid in seen:

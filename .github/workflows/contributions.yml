@@ -1,8 +1,15 @@
 name: 开源贡献路线
 on:
   workflow_dispatch:
+    inputs:
+      scope:
+        description: "all = 全部仓库；focus = 只跑重点仓库（sglang-omni、edge-dit.cpp），其余原样保留"
+        type: choice
+        options: [all, focus]
+        default: all
   schedule:
-    - cron: "20 1 * * 1"
+    - cron: "20 1 * * 1"   # 周一：全部仓库
+    - cron: "20 1 * * 4"   # 周四：只刷重点仓库
 permissions: {contents: write}
 concurrency:
   group: contributions
@@ -13,11 +20,24 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       repos: ${{ steps.list.outputs.repos }}
+      scope: ${{ steps.list.outputs.scope }}
     steps:
       - uses: actions/checkout@v4
         with: {ref: master}
       - id: list
-        run: echo "repos=$(python3 tools/contributions.py --list)" >> "$GITHUB_OUTPUT"
+        env:
+          SCHEDULE: ${{ github.event.schedule }}
+          INPUT_SCOPE: ${{ github.event.inputs.scope }}
+        run: |
+          SCOPE=all
+          if [ "$SCHEDULE" = "20 1 * * 4" ] || [ "$INPUT_SCOPE" = "focus" ]; then SCOPE=focus; fi
+          echo "scope=$SCOPE" >> "$GITHUB_OUTPUT"
+          if [ "$SCOPE" = focus ]; then
+            echo "repos=$(python3 tools/contributions.py --list --focus)" >> "$GITHUB_OUTPUT"
+          else
+            echo "repos=$(python3 tools/contributions.py --list)" >> "$GITHUB_OUTPUT"
+          fi
+          echo "scope=$SCOPE"
 
   analyze:
     needs: plan
@@ -69,7 +89,7 @@ jobs:
       - name: 合并并渲染
         run: |
           ls -la results
-          python3 tools/contributions.py --merge results
+          python3 tools/contributions.py --merge results --scope "${{ needs.plan.outputs.scope }}"
           python3 tools/build.py
       - name: 提交结果
         # 运行期间 master 可能有新提交；不 rebase 生成物，而是保留本次数据、回到最新 master 重新渲染再提交，最多三次。
