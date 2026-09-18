@@ -51,6 +51,8 @@ CLAUDE_MODEL = "claude-opus-5"
 GEMINI_MODEL = os.environ.get("GEMINI_MODEL", "gemini-pro-latest")
 GEMINI_FALLBACK_MODEL = os.environ.get("GEMINI_FALLBACK_MODEL", "gemini-flash-latest")
 LAST_MODEL_USED = ""  # 本次运行实际用到的模型，写进当天数据文件
+LAST_GEMINI_ERROR = ""  # 最近一次 Gemini 调用失败的性质：transient（超时/429/5xx，可重试）或 permanent
+GEMINI_TIMEOUT = int(os.environ.get("GEMINI_TIMEOUT", "300"))  # 单次调用读超时（秒），长上下文任务可通过环境变量调大
 
 PRIORITY_ORDER = {"high": 0, "medium": 1, "low": 2}
 
@@ -365,21 +367,32 @@ def _gemini_schema(schema):
 
 
 def call_gemini_json(system: str, user_msg: str, schema: dict, *, label: str = "llm") -> tuple[dict, str] | None:
-    """先用 GEMINI_MODEL，配额/服务错误时降级到 GEMINI_FALLBACK_MODEL。返回 (数据, 实际模型版本)。"""
+    """先用 GEMINI_MODEL；瞬时错误（超时/429/5xx）先重试首选模型，仍失败才降级到 GEMINI_FALLBACK_MODEL。返回 (数据, 实际模型版本)。"""
+    global LAST_GEMINI_ERROR
     api_key = os.environ.get("GEMINI_API_KEY", "").strip()
     if not api_key:
         return None
     models = [GEMINI_MODEL] + ([GEMINI_FALLBACK_MODEL] if GEMINI_FALLBACK_MODEL and GEMINI_FALLBACK_MODEL != GEMINI_MODEL else [])
+    retries = int(os.environ.get("GEMINI_PRIMARY_RETRIES", "1"))
     for i, model in enumerate(models):
-        result = _gemini_once(model, api_key, system, user_msg, schema, label=label)
-        if result is not None:
-            return result
+        attempts = 1 + (retries if i == 0 else 0)
+        for attempt in range(attempts):
+            LAST_GEMINI_ERROR = ""
+            result = _gemini_once(model, api_key, system, user_msg, schema, label=label)
+            if result is not None:
+                return result
+            if LAST_GEMINI_ERROR != "transient" or attempt + 1 >= attempts:
+                break
+            wait = 20 * (attempt + 1)
+            log(f"[{label}] {model} 瞬时错误，{wait}s 后重试首选模型（{attempt + 1}/{retries}）")
+            time.sleep(wait)
         if i + 1 < len(models):
             log(f"[{label}] 降级到 {models[i + 1]}")
     return None
 
 
 def _gemini_once(model: str, api_key: str, system: str, user_msg: str, schema: dict, *, label: str) -> tuple[dict, str] | None:
+    global LAST_GEMINI_ERROR
     body = {
         "systemInstruction": {"parts": [{"text": system}]},
         "contents": [{"role": "user", "parts": [{"text": user_msg}]}],
@@ -397,14 +410,16 @@ def _gemini_once(model: str, api_key: str, system: str, user_msg: str, schema: d
         method="POST",
     )
     try:
-        with urllib.request.urlopen(req, timeout=180) as resp:
+        with urllib.request.urlopen(req, timeout=GEMINI_TIMEOUT) as resp:
             data = json.load(resp)
     except urllib.error.HTTPError as e:
         detail = e.read().decode("utf-8", "replace")[:200]
         log(f"[{label}] Gemini {model} HTTP {e.code}：{detail}")
+        LAST_GEMINI_ERROR = "transient" if e.code == 429 or e.code >= 500 else "permanent"
         return None
     except (urllib.error.URLError, TimeoutError, OSError) as e:
         log(f"[{label}] Gemini {model} 网络错误：{e}")
+        LAST_GEMINI_ERROR = "transient"
         return None
 
     try:
@@ -414,9 +429,11 @@ def _gemini_once(model: str, api_key: str, system: str, user_msg: str, schema: d
         parsed = json.loads(text)
     except (KeyError, IndexError, json.JSONDecodeError) as e:
         log(f"[{label}] Gemini {model} 返回无法解析（{e}；{str(data)[:160]}）")
+        LAST_GEMINI_ERROR = "permanent"
         return None
     if finish not in ("STOP", ""):
         log(f"[{label}] Gemini {model} finishReason={finish}，输出可能被截断")
+        LAST_GEMINI_ERROR = "permanent"
         return None
     version = data.get("modelVersion") or model
     usage = data.get("usageMetadata", {})

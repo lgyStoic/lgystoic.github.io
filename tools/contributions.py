@@ -280,13 +280,26 @@ def _shrink(v, n=1200):
 
 def run_analysis(ev, label):
     """逐章生成，后一章能看到前面章节的结论。任一章失败则整体失败。"""
-    done={}
+    done={}; models={}
     for key, title, schema in CHAPTERS:
         out=radar.call_llm_json('你是资深开源维护者与 AI 系统架构师，擅长读懂陌生仓库并规划切入路径。只依据证据，不编造。',
                                 chapter_prompt(ev, key, title, CHAPTER_BRIEF[key], done), schema, label=f'{label}-{key}')
         if not out: raise RuntimeError(f'GeminiChapterFailed:{key}')
-        done[key]=out
-    return done
+        done[key]=out; models[key]=radar.LAST_MODEL_USED
+    return done, models
+
+
+def summarize_models(models):
+    """把每阶段实际用到的模型压成一句：全一致就一个名字，否则点名哪些阶段降级了。"""
+    names=[m for m in models.values() if m]
+    if not names: return ''
+    main=max(set(names), key=names.count)
+    downgraded=[k for k,m in models.items() if m and m!=main]
+    if not downgraded: return main
+    return main+'（'+'、'.join(f'{STAGE_NAMES.get(k,k)}：{models[k]}' for k in downgraded)+'）'
+
+
+STAGE_NAMES={'positioning':'第一章','codemap':'第二章','runbook':'第三章','community':'第四章','entry':'第五章','tasks':'任务卡'}
 
 
 def task_prompt(ev, analysis=None):
@@ -352,13 +365,15 @@ def analyze_repo(name, opts=None):
     try:
         evidence=collect_repo(name, opts)
         label='contribution-'+name.replace('/','-')
-        analysis=run_analysis(evidence, label)
+        analysis, models=run_analysis(evidence, label)
         generated=radar.call_llm_json('你是资深开源维护者与 AI 系统工程师。把真实 GitHub Issue 变成严谨、可执行、可验证的贡献计划。',task_prompt(evidence, analysis),REPO_SCHEMA,label=label+'-tasks')
         if not generated: raise RuntimeError('GeminiGenerationFailed')
         generated['repo']=name; generated=valid_tasks(generated,evidence)
         generated['analysis']=analysis
         generated['evidence']={k:v for k,v in evidence.items() if k not in ('readme','key_files','code_paths','source_snippets')}
-        generated['model']=radar.LAST_MODEL_USED
+        models['tasks']=radar.LAST_MODEL_USED
+        generated['models']=models
+        generated['model']=summarize_models(models)
         return generated, None
     except Exception as exc:
         detail=type(exc).__name__
@@ -368,19 +383,32 @@ def analyze_repo(name, opts=None):
         return None, {'repo':name,'error':detail}
 
 
+def summarize_global_model(repos):
+    """全站一句话：主力模型 + 有几个仓库的哪些阶段降级了。"""
+    stage_models={}
+    for r in repos:
+        for k,m in (r.get('models') or {'all':r.get('model','')}).items():
+            if m: stage_models.setdefault(m,[]).append((r.get('repo',''),k))
+    if not stage_models: return ''
+    main=max(stage_models, key=lambda m: len(stage_models[m]))
+    others=[(m,v) for m,v in stage_models.items() if m!=main]
+    if not others: return main
+    note='；'.join(f'{len({repo for repo,_ in v})} 个仓库的 {len(v)} 个阶段降级到 {m}' for m,v in others)
+    return f'{main}（{note}）'
+
+
 def assemble(results, names, previous):
     """把各仓库结果按配置顺序拼成 contributions.json；失败的用上次结果并标 stale。"""
     old={x.get('repo'):x for x in previous.get('repos',[])}; repos=[]; failures=[]; models=[]
     for name in names:
         generated, failure = results.get(name, (None, {'repo':name,'error':'NoResult'}))
         if generated:
-            repos.append(generated); models.append(generated.get('model',''))
+            repos.append(generated); models.append(generated)
         else:
             failures.append(failure)
             if name in old:
                 stale=old[name]; stale['stale']=True; repos.append(stale)
-    models=[m for m in models if m]
-    model=models[0] if models and len(set(models))==1 else ' / '.join(dict.fromkeys(models))
+    model=summarize_global_model(models)
     return {'updated':datetime.now(timezone.utc).isoformat(timespec='seconds'),'model':model,'repos':repos,'failures':failures}
 
 
