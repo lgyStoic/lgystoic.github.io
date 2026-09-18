@@ -343,7 +343,7 @@
       "id": "hn-algolia",
       "name": "Hacker News（100+ 分）",
       "kind": "json",
-      "url": "https://hn.algolia.com/api/v1/search_by_date?query=LLM%20OR%20GPU%20OR%20diffusion%20OR%20CUDA&tags=story&numericFilters=points%3E100&hitsPerPage=40",
+      "url": "https://hn.algolia.com/api/v1/search_by_date?tags=story&numericFilters=points%3E100&hitsPerPage=60",
       "json": {
         "items": "hits",
         "title": "title",
@@ -353,8 +353,8 @@
       },
       "category": "industry",
       "weight": 1,
-      "disabled": true,
-      "disabled_reason": "2026-09-18 自动停用：连续 5 天解析出 0 条（前端渲染或反爬）"
+      "require_topic": true,
+      "note": "不带 query：Algolia 会要求所有词同时命中；只取 100+ 分的故事，再用 topic_keywords 过滤"
     }
   ]
 }

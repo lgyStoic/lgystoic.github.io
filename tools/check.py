@@ -85,7 +85,7 @@ def main() -> None:
                 fixed.append(f"自动停用 {s['name']}（连续 {h['fail']} 天失败）")
             elif h["zero"] >= DISABLE_ZERO_AFTER and src is not None and not src.get("disabled"):
                 src["disabled"] = True
-                src["disabled_reason"] = f"{today} 自动停用：连续 {h['zero']} 天解析出 0 条（前端渲染或反爬）"
+                src["disabled_reason"] = f"{today} 自动停用：连续 {h['zero']} 天解析出 0 条（先查 URL 参数和 json/title_pattern 配置，再考虑反爬）"
                 changed = True
                 fixed.append(f"自动停用 {s['name']}（连续 {h['zero']} 天解析 0 条）")
             elif not s.get("ok"):
