@@ -761,7 +761,7 @@ def render_cards(site: dict, notes: list[dict], days: list[dict], events_data: d
     return '    <ul class="card-grid">\n' + "\n".join(cards) + "\n    </ul>"
 
 
-# ---------------------------------------------------------------- 指南 / 推广链接
+# ---------------------------------------------------------------- 指南 / 推荐链接
 
 def load_guides() -> tuple[list[dict], dict]:
     guides = json.loads(GUIDES_JSON.read_text(encoding="utf-8")) if GUIDES_JSON.exists() else []
@@ -801,7 +801,7 @@ def _set_attr(tag: str, name: str, value: str | None) -> str:
 
 
 def apply_affiliate_links(path: Path, links: dict) -> tuple[int, int]:
-    """填充推广链接。空链接的 .offer 整块 hidden；返回 (已填, 已隐藏)。幂等。"""
+    """填充推荐链接。空链接的 .offer 整块 hidden；返回 (已填, 已隐藏)。幂等。"""
     table = links.get("links", {})
     text = path.read_text(encoding="utf-8")
     filled = hidden = 0
@@ -840,13 +840,6 @@ def apply_affiliate_links(path: Path, links: dict) -> tuple[int, int]:
 
     text = _INLINE_AFF_RE.sub(inline, text)
 
-    disclosure = esc(links.get("disclosure", ""))
-    text = re.sub(
-        r'(<p class="disclosure" data-disclosure[^>]*>).*?(</p>)',
-        lambda m: m.group(1) + disclosure + m.group(2),
-        text,
-        flags=re.DOTALL,
-    )
     path.write_text(text, encoding="utf-8")
     return filled, hidden
 
@@ -914,7 +907,7 @@ def build_guides() -> list[dict]:
         g = by_dir.get(page.parent.name)
         if g and "build:jsonld" in page.read_text(encoding="utf-8"):
             inject(page, {"jsonld": render_guide_jsonld(g, page)})
-        print(f"guides/{page.parent.name}: 推广位 {filled} 个已填 · {hidden} 个隐藏")
+        print(f"guides/{page.parent.name}: 推荐位 {filled} 个已填 · {hidden} 个隐藏")
     return guides
 
 

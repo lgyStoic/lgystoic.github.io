@@ -17,8 +17,9 @@ TASK = {'type':'object','properties':{
     'likely_paths':{'type':'array','items':{'type':'string'}},'validation':{'type':'array','items':{'type':'string'}},
     'questions':{'type':'array','items':{'type':'string'}},'risks':{'type':'array','items':{'type':'string'}},
     'skill_fit':{'type':'string'},'engagement':{'type':'string'},'claim_comment':{'type':'string'},'pr_scope':{'type':'string'},'time_estimate':{'type':'string'},
-    'compute_class':{'type':'string'},'kind':{'type':'string'},
-},'required':['title','source_url','source_number','source_title','priority','compute','difficulty','why_core','goal','first_action','implementation_steps','likely_paths','validation','questions','risks','skill_fit','engagement','claim_comment','pr_scope','time_estimate','compute_class','kind']}
+    'compute_class':{'type':'string'},'kind':{'type':'string'},'local_repro':{'type':'string'},
+},'required':['title','source_url','source_number','source_title','priority','compute','difficulty','why_core','goal','first_action','implementation_steps','likely_paths','validation','questions','risks','skill_fit','engagement','claim_comment','pr_scope','time_estimate','compute_class','kind','local_repro']}
+TOPUP_SCHEMA = {'type':'object','properties':{'tasks':{'type':'array','items':TASK}},'required':['tasks']}
 def _arr(): return {'type':'array','items':{'type':'string'}}
 def _objs(*fields): return {'type':'array','items':{'type':'object','properties':{f:{'type':'string'} for f in fields},'required':list(fields)}}
 
@@ -51,7 +52,8 @@ CHAPTER_BRIEF = {
 - problem / users：解决的具体问题、目标用户和典型使用场景。
 - landscape：3–6 个同类项目及差别（只写你有把握的）。
 - capabilities：6–12 条核心能力，where 指出对应目录或文件，maturity 写成熟 / 实验 / 缺失。
-- stack：语言、框架、底层依赖、构建、CI。numbers：从证据里能读出的规模数字（star、目录文件数、提交频率、Release）。""",
+- stack：语言、框架、底层依赖、构建、CI。numbers：从证据里能读出的规模数字（star、目录文件数、提交频率、Release）。
+- maturity 以 README 自己的说法为准：README 标 Experimental / Early / WIP 的后端或能力，就写「实验」，不要拔高成「原生支持」。""",
     'codemap': """- layers：分层描述（入口层 / 调度层 / 执行层 / kernel 层 / 工具层之类），300 字以上。
 - modules：8–16 条，每条 module、path（必须来自目录树或代码路径）、role、entry_points（关键类 / 函数 / 文件，来自源码片段或路径名，不确定写「需验证」）、depends_on、size（文件数量级）、notes。
 - data_flow：400 字以上，一次请求 / 推理 / 训练从入口到输出的完整路径，关键数据结构与调度点。
@@ -60,15 +62,15 @@ CHAPTER_BRIEF = {
 - hotspots：结合提交热点 5–8 条。reading_order：建议阅读顺序，10 步以内，每步一个文件或目录。""",
     'runbook': """- install：在没有 GPU 的 MacBook（Apple Silicon）上安装的具体命令序列，依据 README / pyproject / CMakeLists；哪些依赖要跳过或替换。
 - no_gpu_paths：哪些代码路径能在 CPU / MPS / Metal 上真正执行，哪些只能读代码或用 Colab T4 验证。
-- smoke_test：3–6 条最小可运行示例命令。test_suite：测试框架、目录、怎么只跑 CPU 子集、大概耗时。
+- smoke_test：3–6 条最小可运行示例命令，只写真正会跑推理 / 测试的命令；文档站、Lint 脚本不算冒烟测试。test_suite：测试框架、目录、怎么只跑 CPU 子集、大概耗时。
 - debug_tips：断点、日志开关、环境变量、profiling 入口。ci：CI 用什么、跑哪些、PR 会被什么卡住。pitfalls：常见坑。""",
     'community': """- cadence：提交与 Release 频率（用 commits / releases 证据）。people：主要维护者 3–8 人，role 和 evidence（从提交作者、Issue 指派推断）。
 - process：贡献流程（先 Issue / RFC？CLA / DCO？pre-commit？）。review_style：从 Issue / PR 评论推断的 Review 风格与响应速度。
-- channels：Slack / Discord / 论坛等链接。etiquette：这个社区里得体与不得体的做法。what_they_want：维护者当前最想要的帮助（从 roadmap / help wanted / 评论推断）。""",
+- channels：只填证据（README / CONTRIBUTING / community）里出现过的链接，原文照抄；不要猜 Slack / Discord 的频道名。etiquette：这个社区里得体与不得体的做法。what_they_want：维护者当前最想要的帮助（从 roadmap / help wanted / 评论推断）。""",
     'entry': """- gaps：6–10 条，这个项目当前缺的、且候选人在无 GPU 条件下能补的，每条给 evidence 和 why_you。
 - ownership_target / why_this_target：建议长期负责的模块或方向，为什么既够核心又能无 GPU 起步，通向维护者身份的路径。
 - phase_30 / 60 / 90：每阶段 5–8 条具体可勾选动作（读哪些文件、跑什么、提什么类型 PR、在哪露面、何时申请 triage / reviewer）。
-- first_prs：3–5 个第一批 PR 的题目、范围和为什么安全。signals_of_progress：怎么判断自己在这个项目里站住了。risks：风险与对策各 4–8 条。""",
+- first_prs：3–5 个第一批 PR 的题目、范围和为什么安全。不要假设未证实的 bug（例如「修复潜在的资源泄漏」）：要么绑定一个真实 Issue，要么是补测试 / 文档 / 基准脚本 / 后端对照这类不依赖假设的工作。signals_of_progress：怎么判断自己在这个项目里站住了。risks：风险与对策各 4–8 条。""",
 }
 REPO_SCHEMA = {'type':'object','properties':{
     'repo':{'type':'string'},'fit':{'type':'string'},'current_direction':{'type':'string'},
@@ -220,8 +222,8 @@ def collect_repo(name, opts=None):
                 hits=[]
             seen={i['number'] for i in issues}
             issues+= [i for i in hits if i['number'] not in seen]
-    # 查时间线（认领 / 关联 PR）：重点仓库 60 个，其余 24 个，控制 API 次数
-    linked={i['number']: linked_prs(name, i['number']) for i in issues[:60 if opts.get('focus') else 24]}
+    # 查时间线（认领 / 关联 PR）：重点仓库 120 个，其余 40 个；没查到的 Issue 不进优先候选池
+    linked={i['number']: linked_prs(name, i['number']) for i in issues[:120 if opts.get('focus') else 40]}
     pulls=api(f'repos/{name}/pulls?state=open&sort=updated&direction=desc&per_page=10')
     releases=api(f'repos/{name}/releases?per_page=3'); commits=api(f'repos/{name}/commits?per_page=12')
     try: root=api(f'repos/{name}/contents')
@@ -241,7 +243,7 @@ def collect_repo(name, opts=None):
                    'labels':[x['name'] for x in i.get('labels',[])],'comments':i.get('comments',0),
                    'assignees':[a.get('login') for a in (i.get('assignees') or [])],
                    'created_at':i.get('created_at'),'updated_at':i.get('updated_at'),'url':i['html_url'],
-                   'linked_prs':linked.get(i['number'],[])} for i in issues],
+                   'linked_prs':linked.get(i['number'],[]),'prs_checked':i['number'] in linked} for i in issues],
         'pulls':[{'number':p['number'],'title':p['title'],'url':p['html_url']} for p in pulls],
         'releases':[{'name':r.get('name') or r.get('tag_name'),'date':r.get('published_at')} for r in releases],
         'commits':[{'message':c['commit']['message'].splitlines()[0],'date':c['commit']['author'].get('date'),'url':c.get('html_url')} for c in commits]}
@@ -299,16 +301,56 @@ def summarize_models(models):
     return main+'（'+'、'.join(f'{STAGE_NAMES.get(k,k)}：{models[k]}' for k in downgraded)+'）'
 
 
-STAGE_NAMES={'positioning':'第一章','codemap':'第二章','runbook':'第三章','community':'第四章','entry':'第五章','tasks':'任务卡'}
+STAGE_NAMES={'positioning':'第一章','codemap':'第二章','runbook':'第三章','community':'第四章','entry':'第五章','tasks':'任务卡','tasks-topup':'补卡'}
 
 
-def task_prompt(ev, analysis=None):
-    compact={k:v for k,v in ev.items() if k not in ('stars','forks','open_issues','tree','code_paths','key_files')}
+def is_claimed(issue):
+    """已有人认领：有 assignee，或时间线里挂着 open 状态的 PR。"""
+    return bool(issue.get('assignees')) or any(p.get('state')=='open' for p in issue.get('linked_prs') or [])
+
+
+def candidate_pool(ev):
+    """优先候选池：无人认领、查过时间线且没有 open PR 的 Issue，按更新时间新→旧。"""
+    pool=[i for i in ev.get('issues',[]) if not is_claimed(i) and i.get('prs_checked', True)]
+    return sorted(pool, key=lambda i: str(i.get('updated_at') or ''), reverse=True)
+
+
+def _issue_line(i):
+    tail=f"，PR {'、'.join('#'+str(p.get('number')) for p in i.get('linked_prs',[]) if p.get('state')=='open')}" if any(p.get('state')=='open' for p in i.get('linked_prs',[])) else ''
+    who=f"，指派 {'、'.join(i['assignees'])}" if i.get('assignees') else ''
+    labels=f"，标签 {'/'.join(i.get('labels') or [])}" if i.get('labels') else ''
+    return f"- #{i['number']} {i['title']}（{i.get('comments',0)} 条评论，更新 {str(i.get('updated_at') or '')[:10]}{labels}{who}{tail}）"
+
+
+def task_prompt(ev, analysis=None, existing=None, need=0):
+    pool=candidate_pool(ev); pool_numbers={i['number'] for i in pool}
+    claimed=[i for i in ev.get('issues',[]) if is_claimed(i)]
+    compact={k:v for k,v in ev.items() if k not in ('stars','forks','open_issues','tree','code_paths','key_files','source_snippets')}
+    # 已有人做的 Issue 只留标题和摘要，省 token；候选池保留正文
+    listed={i['number'] for i in pool[:45]}
+    def body_cap(i):
+        return 2200 if i['number'] in listed else (600 if i['number'] in pool_numbers else 300)
+    compact['issues']=[dict(i, body=(i.get('body') or '')[:body_cap(i)]) for i in ev.get('issues',[])]
+    existing=set(existing or [])
+    pool_text='\n'.join(_issue_line(i) for i in pool[:45] if i['number'] not in existing) or '（空）'
+    claimed_text='\n'.join(_issue_line(i) for i in claimed[:25]) or '（空）'
+    round_text=''
+    if existing:
+        round_text=f"""
+
+这是补卡轮：前一轮已经出了这些 Issue 的卡：{'、'.join('#'+str(n) for n in sorted(existing))}，不要重复。请只从下面「优先候选池」里再补最多 {need} 张，全部硬约束照旧；候选池里确实没有合适的就返回空数组。"""
     context=''
     if analysis:
         ent=analysis.get('entry',{}); cm=analysis.get('codemap',{}); rb=analysis.get('runbook',{})
         context='\n\n已完成的项目分析（任务卡要与之一致，优先落在 ownership_target、gaps 和 first_prs 指出的方向）：'+json.dumps({'overview':analysis.get('positioning',{}).get('overview'),'modules':cm.get('modules'),'hotspots':cm.get('hotspots'),'gaps':ent.get('gaps'),'ownership_target':ent.get('ownership_target'),'first_prs':ent.get('first_prs'),'no_gpu_paths':rb.get('no_gpu_paths')},ensure_ascii=False)
-    return PROFILE+context+'''
+    return PROFILE+context+round_text+f'''
+
+优先候选池（无人认领、时间线里没有 open PR，按更新时间新→旧排列；任务卡优先从这里出，尤其是能用上候选人专长、又能在 Mac 上复现的）：
+{pool_text}
+
+已有人在做（有 assignee 或 open PR）：这些最多只能出「去 review / 补测试」的卡，而且全库合计不超过 2 张：
+{claimed_text}
+'''+'''
 
 为下面这个开源仓库生成“可直接开工、并且知道怎么得体介入”的贡献任务卡。
 算力约束再强调一次：**目前没有任何 GPU**。任务必须能在 CPU / Apple Silicon 上开发、复现和验证；最多允许用 Colab 免费 T4 做几十分钟的最终确认。
@@ -328,36 +370,90 @@ def task_prompt(ev, analysis=None):
 8. how_to_engage（仓库级）：3–5 条，基于 CONTRIBUTING 和 README：在哪讨论（community 链接）、PR 前要不要先开 Issue / RFC、CLA / DCO、测试和格式要求、维护者响应节奏。没有依据的不要写。
 9. why_core 解释它如何通向长期维护职责，不写空泛鼓励。recommended_order 使用任务标题给出建议顺序。
 10. 全部字段中文输出（title 也要中文），代码、文件名、专有名词保留原文；只有 claim_comment 用英文。
+11. local_repro：一到三行，写清楚在这台没有 GPU 的 MacBook 上怎么复现问题或验证改动（具体命令、环境变量、要跑的测试文件）。写不出来就说明这张卡其实需要 GPU，不要出。以下这些事情的核心在 CUDA 运行时，Mac 上根本跑不到，不要给它们标 CPU / Mac：memory saver（release_memory_occupation / resume_memory_occupation）、CUDA Graph 捕获、LD_PRELOAD 劫持 cudaMalloc、NCCL 通信、显存占用测量、nvidia-smi、CUDA 流调度。
+12. validation 里引用尚不存在、由这张卡新建的文件时注明「新增」；不要把待新建的测试写成已经存在。
 
 仓库证据：'''+json.dumps(compact,ensure_ascii=False)
 
 
+GPU_ONLY=re.compile(r'memory.?saver|release_memory_occupation|resume_memory_occupation|LD_PRELOAD|cuda.?graph|\bnccl\b|nvidia-smi|cudaMalloc|torch\.cuda\.|cuda stream|CUDA 流', re.I)
+REVIEW_CAP=2
+
+
+def _priority_rank(task):
+    return {'high':0,'高':0,'优先':0,'medium':1,'中':1,'low':2,'低':2}.get(str(task.get('priority','')).lower(),1)
+
+
 def valid_tasks(generated,evidence):
+    """把模型给的卡过一遍硬规则：Issue 必须真实、算力必须无 GPU 可做、review 卡限量。"""
     allowed={i['url']:i for i in evidence.get('issues',[])}; clean=[]; proposals=[]
     proposal_sources={evidence.get('url')} | {c.get('url') for c in evidence.get('commits',[]) if c.get('url')}
     for task in generated.get('tasks',[]):
+        cc=str(task.get('compute_class','')).strip()
+        howto=' '.join([task.get('local_repro','') or '', task.get('first_action','') or '', ' '.join(task.get('implementation_steps') or []), ' '.join(task.get('validation') or [])])
         if str(task.get('kind','')).lower()=='proposal':
             if not evidence.get('young') or task.get('source_url') not in proposal_sources:
                 print(f"丢弃无依据的提案卡：{task.get('title')}"); continue
-            cc=str(task.get('compute_class','')).strip()
             if cc not in ('CPU','Mac','Colab T4'): continue
+            if cc!='Colab T4' and GPU_ONLY.search(howto):
+                print(f"丢弃实际需要 CUDA 运行时的提案卡：{task.get('title')}"); continue
             task['issue_status']={'assignees':[],'comments':0,'labels':['提案'],'updated_at':'','created_at':'','open_prs':[],'proposal':True}
             proposals.append(task); continue
         source=allowed.get(task.get('source_url'))
         if not source or task.get('source_number')!=source['number']: continue
-        cc=str(task.get('compute_class','')).strip()
         if cc not in ('CPU','Mac','Colab T4'):
             print(f"丢弃需要 GPU 的任务：{task.get('title')}（{cc} / {task.get('compute')}）"); continue
         if re.search(r'sm_?\d{2,3}|hopper|blackwell|h100|a100|多卡|multi-?gpu|nvlink', (task.get('title','')+' '+task.get('compute','')), re.I):
             print(f"丢弃硬件绑定任务：{task.get('title')}"); continue
+        if cc!='Colab T4' and GPU_ONLY.search(howto):
+            print(f"丢弃实际需要 CUDA 运行时的任务：{task.get('title')}（{GPU_ONLY.search(howto).group(0)}）"); continue
+        if cc!='Colab T4' and len((task.get('local_repro') or '').strip())<8:
+            print(f"丢弃没有本机复现路径的任务：{task.get('title')}"); continue
         task['source_title']=source['title']
+        open_prs=[p for p in source.get('linked_prs',[]) if p.get('state')=='open']
         task['issue_status']={'assignees':source.get('assignees',[]),'comments':source.get('comments',0),'labels':source.get('labels',[]),
-                              'updated_at':source.get('updated_at'),'created_at':source.get('created_at'),
-                              'open_prs':[p for p in source.get('linked_prs',[]) if p.get('state')=='open']}
+                              'updated_at':source.get('updated_at'),'created_at':source.get('created_at'),'open_prs':open_prs}
+        task['review_only']=bool(source.get('assignees') or open_prs)
         clean.append(task)
+    # 去 review 别人 PR 的卡最多 REVIEW_CAP 张（按优先级留）
+    reviews=sorted([t for t in clean if t.get('review_only')], key=_priority_rank)
+    dropped=reviews[REVIEW_CAP:]
+    for t in dropped: print(f"review 卡超出上限，丢弃：{t.get('title')}")
+    clean=[t for t in clean if t not in dropped]
     limit=12 if evidence.get('focus') else 6
     generated['tasks']=clean[:limit]+proposals[:5]
     return generated
+
+
+def merge_tasks(generated, extra, evidence):
+    """把补卡轮的结果并进来：不重复 source_number，review 卡总数仍受上限约束。"""
+    have={t.get('source_number') for t in generated.get('tasks',[]) if t.get('kind')!='proposal'}
+    reviews=sum(1 for t in generated.get('tasks',[]) if t.get('review_only'))
+    added=0
+    for t in extra.get('tasks',[]):
+        if str(t.get('kind','')).lower()=='proposal' or t.get('source_number') in have: continue
+        if t.get('review_only'):
+            if reviews>=REVIEW_CAP: continue
+            reviews+=1
+        generated['tasks'].append(t); have.add(t.get('source_number')); added+=1
+    limit=12 if evidence.get('focus') else 6
+    issues=[t for t in generated['tasks'] if str(t.get('kind','')).lower()!='proposal'][:limit]; props=[t for t in generated['tasks'] if str(t.get('kind','')).lower()=='proposal']
+    generated['tasks']=issues+props
+    return added
+
+
+CHANNEL_TOKEN=re.compile(r'#[A-Za-z][\w-]{2,}')
+
+
+def scrub_channels(items, corpus):
+    """去掉提到证据里不存在的聊天频道名（#xxx）的条目：模型爱编 Slack 频道。"""
+    kept=[]
+    for item in items or []:
+        text=str(item)
+        if any(tok.lower() not in corpus for tok in CHANNEL_TOKEN.findall(text)):
+            print(f"去掉编造的频道：{text[:60]}"); continue
+        kept.append(item)
+    return kept
 
 
 def analyze_repo(name, opts=None):
@@ -366,12 +462,28 @@ def analyze_repo(name, opts=None):
         evidence=collect_repo(name, opts)
         label='contribution-'+name.replace('/','-')
         analysis, models=run_analysis(evidence, label)
-        generated=radar.call_llm_json('你是资深开源维护者与 AI 系统工程师。把真实 GitHub Issue 变成严谨、可执行、可验证的贡献计划。',task_prompt(evidence, analysis),REPO_SCHEMA,label=label+'-tasks')
+        system='你是资深开源维护者与 AI 系统工程师。把真实 GitHub Issue 变成严谨、可执行、可验证的贡献计划。'
+        generated=radar.call_llm_json(system,task_prompt(evidence, analysis),REPO_SCHEMA,label=label+'-tasks')
         if not generated: raise RuntimeError('GeminiGenerationFailed')
         generated['repo']=name; generated=valid_tasks(generated,evidence)
+        models['tasks']=radar.LAST_MODEL_USED
+        # 重点仓库不满 8 张、普通仓库不满 4 张：只拿剩余候选池再补一轮
+        target=8 if evidence.get('focus') else 4
+        issue_cards=[t for t in generated['tasks'] if str(t.get('kind','')).lower()!='proposal']
+        remaining=[i for i in candidate_pool(evidence) if i['number'] not in {t.get('source_number') for t in issue_cards}]
+        if len(issue_cards)<target and remaining:
+            extra=radar.call_llm_json(system,task_prompt(evidence, analysis, existing=[t.get('source_number') for t in issue_cards], need=target-len(issue_cards)),TOPUP_SCHEMA,label=label+'-tasks-topup')
+            if extra:
+                extra=valid_tasks(dict(extra, tasks=extra.get('tasks',[])), evidence)
+                added=merge_tasks(generated, extra, evidence)
+                models['tasks-topup']=radar.LAST_MODEL_USED
+                print(f"{name}: 补卡轮新增 {added} 张")
+        corpus=' '.join([evidence.get('readme') or '', evidence.get('contributing') or '', ' '.join(evidence.get('community') or [])]).lower()
+        generated['how_to_engage']=scrub_channels(generated.get('how_to_engage'), corpus)
+        if isinstance(analysis.get('community'),dict):
+            analysis['community']['channels']=scrub_channels(analysis['community'].get('channels'), corpus)
         generated['analysis']=analysis
         generated['evidence']={k:v for k,v in evidence.items() if k not in ('readme','key_files','code_paths','source_snippets')}
-        models['tasks']=radar.LAST_MODEL_USED
         generated['models']=models
         generated['model']=summarize_models(models)
         return generated, None
@@ -397,10 +509,14 @@ def summarize_global_model(repos):
     return f'{main}（{note}）'
 
 
-def assemble(results, names, previous):
-    """把各仓库结果按配置顺序拼成 contributions.json；失败的用上次结果并标 stale。"""
+def assemble(results, names, previous, planned=None):
+    """把各仓库结果按配置顺序拼成 contributions.json；失败的用上次结果并标 stale；本轮没计划跑的原样保留。"""
     old={x.get('repo'):x for x in previous.get('repos',[])}; repos=[]; failures=[]; models=[]
+    planned=set(names if planned is None else planned)
     for name in names:
+        if name not in planned:
+            if name in old: repos.append(old[name]); models.append(old[name])
+            continue
         generated, failure = results.get(name, (None, {'repo':name,'error':'NoResult'}))
         if generated:
             repos.append(generated); models.append(generated)
@@ -419,11 +535,14 @@ def main():
     parser.add_argument('--out', help='单仓库结果写到这个 JSON 文件')
     parser.add_argument('--merge', help='把目录下的单仓库 JSON 合并成 contributions.json')
     parser.add_argument('--list', action='store_true', help='输出仓库列表 JSON（CI 矩阵用）')
+    parser.add_argument('--focus', action='store_true', help='配合 --list：只列重点仓库')
+    parser.add_argument('--scope', default='all', choices=['all','focus'], help='配合 --merge：本轮只跑了哪些仓库，其余原样保留')
     args=parser.parse_args()
     entries=[repo_options(e) for e in json.loads(CONFIG.read_text())]
     names=[e['repo'] for e in entries]; options={e['repo']:e for e in entries}
+    focus_names=[e['repo'] for e in entries if e['focus']]
     if args.list:
-        print(json.dumps(names)); return
+        print(json.dumps(focus_names if args.focus else names)); return
     previous=json.loads(DATA.read_text()) if DATA.exists() else {'repos':[]}
     if args.only:
         generated, failure = analyze_repo(args.only, options.get(args.only))
@@ -442,7 +561,7 @@ def main():
                 print(f'读取 {f} 失败：{exc}')
     else:
         results={name: analyze_repo(name, options.get(name)) for name in names}
-    out=assemble(results, names, previous)
+    out=assemble(results, names, previous, planned=focus_names if (args.merge and args.scope=='focus') else None)
     DATA.parent.mkdir(parents=True,exist_ok=True); DATA.write_text(json.dumps(out,ensure_ascii=False,indent=2)+'\n')
     print(f'贡献任务：{len(out["repos"])} 个仓库，{sum(len(x.get("tasks",[])) for x in out["repos"])} 张卡片；失败 {len(out["failures"])}；模型 {out["model"]}')
 
@@ -478,7 +597,7 @@ def task_card(task,index):
 <p class="badges">{status_badges(task)}</p>
 <p><b>用到的专长：</b>{esc(task.get('skill_fit'))}</p><p><b>目标：</b>{esc(task.get('goal'))}</p><p><b>为什么值得长期做：</b>{esc(task.get('why_core'))}</p>
 <div class="engage"><b>怎么介入：</b>{esc(task.get('engagement'))}<br><b>第一个 PR 的边界：</b>{esc(task.get('pr_scope'))}</div>
-<div class="first-action"><b>第一步：</b>{esc(task.get('first_action'))}</div>
+<div class="first-action"><b>第一步：</b>{esc(task.get('first_action'))}</div>{('<div class="first-action"><b>本机怎么复现 / 验证：</b>'+esc(task.get('local_repro'))+'</div>') if task.get('local_repro') else ''}
 <details open><summary>{'Issue 草稿（英文，先开 Issue 讨论）' if str(task.get('kind','')).lower()=='proposal' else '认领留言（英文，可直接贴到 Issue）'}</summary><pre class="claim" data-claim>{esc(claim)}</pre><button type="button" class="btn-sm" data-copy-claim>复制留言</button></details>
 <details><summary>大致实施方案</summary>{list_html(task.get('implementation_steps',[]))}</details><details><summary>可能涉及的目录或文件</summary>{list_html(task.get('likely_paths',[]))}</details>
 <details><summary>验收方式</summary>{list_html(task.get('validation',[]))}</details><details><summary>开工前问题与风险</summary><h3>向维护者确认</h3>{list_html(task.get('questions',[]))}<h3>风险</h3>{list_html(task.get('risks',[]))}</details></article>'''
@@ -569,8 +688,15 @@ def render():
             kernel=any(k in (t.get('skill_fit','')+t.get('title','')).lower() for k in ('cuda','triton','kernel','算子','cutlass','cute','融合','性能'))
             gpu={'CPU':0,'Mac':0,'Colab T4':1}.get(str(t.get('compute_class','')).strip(),2)
             prop=1 if st.get('proposal') else 0
-            picks.append((pr+hard+gpu+prop-(1 if kernel else 0), -(st.get('comments') or 0), r['repo'], t))
+            focus=1 if (r.get('evidence') or {}).get('focus') else 0
+            picks.append((pr+hard+gpu+prop-(1 if kernel else 0)-focus, -(st.get('comments') or 0), r['repo'], t))
     picks.sort(key=lambda x:(x[0],x[1]))
+    # 三张卡来自三个不同仓库
+    seen_repos=set(); distinct=[]
+    for item in picks:
+        if item[2] in seen_repos: continue
+        seen_repos.add(item[2]); distinct.append(item)
+    picks=distinct
     if picks:
         parts.append('<section class="picks"><h2>本周先做这三个</h2><p class="radar-stats">全部可在 MacBook / CPU 上完成（最多用 Colab 免费 T4 做最终确认）；无人认领、没有关联 PR、优先级高且能用上 kernel / 性能专长的排在前面。</p><ol class="pick-list">')
         for _,_,repo,t in picks[:3]:
