@@ -4,22 +4,70 @@ on:
   schedule:
     - cron: "20 1 * * 1"
 permissions: {contents: write}
+concurrency:
+  group: contributions
+  cancel-in-progress: false
+
 jobs:
-  roadmap:
+  plan:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    outputs:
+      repos: ${{ steps.list.outputs.repos }}
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: master}
+      - id: list
+        run: echo "repos=$(python3 tools/contributions.py --list)" >> "$GITHUB_OUTPUT"
+
+  analyze:
+    needs: plan
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    strategy:
+      fail-fast: false
+      max-parallel: 7
+      matrix:
+        repo: ${{ fromJson(needs.plan.outputs.repos) }}
     steps:
       - uses: actions/checkout@v4
         with: {ref: master}
       - uses: actions/setup-python@v5
         with: {python-version: "3.12"}
-      - name: 分析仓库并生成路线
+      - name: 分析 ${{ matrix.repo }}
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           GEMINI_MODEL: gemini-3.1-pro-preview
           GEMINI_FALLBACK_MODEL: gemini-2.5-pro
           GITHUB_TOKEN: ${{ github.token }}
-        run: python3 tools/contributions.py && python3 tools/build.py
+        run: |
+          SLUG=$(echo "${{ matrix.repo }}" | tr '/' '-' | tr -c 'A-Za-z0-9._-\n' '-')
+          python3 tools/contributions.py --only "${{ matrix.repo }}" --out "out/$SLUG.json"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: contrib-${{ strategy.job-index }}
+          path: out/
+          retention-days: 3
+
+  merge:
+    needs: analyze
+    if: always() && needs.plan.result == 'success'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: master}
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12"}
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: contrib-*
+          path: results
+          merge-multiple: true
+      - name: 合并并渲染
+        run: |
+          ls -la results
+          python3 tools/contributions.py --merge results
+          python3 tools/build.py
       - name: 提交结果
         # 运行期间 master 可能有新提交；不 rebase 生成物，而是保留本次数据、回到最新 master 重新渲染再提交，最多三次。
         run: |
@@ -27,6 +75,7 @@ jobs:
           git config user.email radar-bot@users.noreply.github.com
           for attempt in 1 2 3; do
             git add -A
+            git reset -q -- results
             if git diff --cached --quiet; then
               echo "没有变化，跳过提交"
               exit 0
@@ -37,10 +86,10 @@ jobs:
             fi
             echo "推送被拒（master 有新提交），第 ${attempt} 次：保留数据，回到最新 master 重新渲染"
             rm -rf /tmp/keep && mkdir -p /tmp/keep
-            [ -e radar/data/contributions.json ] && cp -r radar/data/contributions.json /tmp/keep/radar__data__contributions.json
+            cp radar/data/contributions.json /tmp/keep/contributions.json
             git fetch origin master
             git reset -q --hard origin/master
-            [ -e /tmp/keep/radar__data__contributions.json ] && rm -rf radar/data/contributions.json && cp -r /tmp/keep/radar__data__contributions.json radar/data/contributions.json
+            cp /tmp/keep/contributions.json radar/data/contributions.json
             python3 tools/build.py
           done
           echo "连续三次都没推上去"
