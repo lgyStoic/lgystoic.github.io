@@ -646,7 +646,7 @@ def render_status(days: list[dict], events_data: dict | None) -> dict[str, str]:
         blocks.append(f'      <li class="check{cls}"><h3>{esc(head)}</h3><ul>{items}</ul></li>')
     checks_html = ('    <ul class="check-list">\n' + "\n".join(blocks) + "\n    </ul>") if blocks else '    <p class="empty-state">还没有巡检报告。</p>'
 
-    # 源健康表：简报 + 活动
+    # 源健康表：简报 + 活动 + 岗位 + 开源贡献
     rows = []
     def add_rows(kind: str, sources: list[dict]):
         for s in sources:
@@ -665,6 +665,18 @@ def render_status(days: list[dict], events_data: dict | None) -> dict[str, str]:
         add_rows("简报", days[0].get("sources", []))
     if events_data:
         add_rows("活动", events_data.get("sources", []))
+    # 岗位与开源贡献也进同一张表：MiniMax 这类源挂了、某个仓库沿用旧结果，都要在这里看得见
+    jobs_path, contrib_path = ROOT / "radar/data/jobs.json", ROOT / "radar/data/contributions.json"
+    jobs_data = json.loads(jobs_path.read_text(encoding="utf-8")) if jobs_path.exists() else None
+    contrib = json.loads(contrib_path.read_text(encoding="utf-8")) if contrib_path.exists() else None
+    if jobs_data:
+        add_rows("岗位", [{"name": s.get("name", ""), "ok": s.get("ok"), "count": s.get("matched", 0), "total": s.get("fetched", 0), "error": s.get("error", "")} for s in jobs_data.get("sources", [])])
+    if contrib:
+        add_rows("开源贡献", [{"name": r.get("repo", ""), "ok": not r.get("stale"), "count": len(r.get("tasks", [])), "total": len(r.get("tasks", [])),
+                            "error": "本轮生成失败，沿用上次结果" if r.get("stale") else ""} for r in contrib.get("repos", [])])
+        for f in contrib.get("failures", []):
+            if f.get("repo") not in {r.get("repo") for r in contrib.get("repos", [])}:
+                add_rows("开源贡献", [{"name": f.get("repo", ""), "ok": False, "count": 0, "total": 0, "error": str(f.get("error", ""))}])
     if rows:
         ok_n = sum(1 for r in rows if "src-ok" in r); bad_n = sum(1 for r in rows if "src-bad" in r)
         table = (
@@ -682,6 +694,11 @@ def render_status(days: list[dict], events_data: dict | None) -> dict[str, str]:
         ai_line = f'    <p class="radar-stats">今日简报：{len(d.get("items", []))} 条 · ' + (f'AI 摘要（{esc(d.get("model", ""))}）' if d.get("ai") else "关键词规则") + "</p>"
     if events_data:
         ai_line += f'\n    <p class="radar-stats">活动清单：{len(events_data.get("events", []))} 条 · ' + (f'AI 抽取（{esc(events_data.get("model", ""))}）' if events_data.get("model") else "规则默认值") + "</p>"
+    if jobs_data:
+        ok_src = sum(1 for x in jobs_data.get("sources", []) if x.get("ok"))
+        ai_line += f'\n    <p class="radar-stats">岗位：{len(jobs_data.get("jobs", []))} 条 · 来源通 {ok_src}/{len(jobs_data.get("sources", []))} · 更新 {esc(fmt_time(jobs_data.get("updated", "")) or jobs_data.get("updated", ""))}</p>'
+    if contrib:
+        ai_line += f'\n    <p class="radar-stats">开源贡献：{len(contrib.get("repos", []))} 个仓库 · {sum(len(r.get("tasks", [])) for r in contrib.get("repos", []))} 张任务卡 · 模型 {esc(contrib.get("model", ""))} · 更新 {esc(fmt_time(contrib.get("updated", "")) or contrib.get("updated", ""))}</p>'
 
     site = load_site()
     dash = analytics_dashboard(site)
