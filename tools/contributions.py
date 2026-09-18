@@ -17,8 +17,8 @@ TASK = {'type':'object','properties':{
     'likely_paths':{'type':'array','items':{'type':'string'}},'validation':{'type':'array','items':{'type':'string'}},
     'questions':{'type':'array','items':{'type':'string'}},'risks':{'type':'array','items':{'type':'string'}},
     'skill_fit':{'type':'string'},'engagement':{'type':'string'},'claim_comment':{'type':'string'},'pr_scope':{'type':'string'},'time_estimate':{'type':'string'},
-    'compute_class':{'type':'string'},
-},'required':['title','source_url','source_number','source_title','priority','compute','difficulty','why_core','goal','first_action','implementation_steps','likely_paths','validation','questions','risks','skill_fit','engagement','claim_comment','pr_scope','time_estimate','compute_class']}
+    'compute_class':{'type':'string'},'kind':{'type':'string'},
+},'required':['title','source_url','source_number','source_title','priority','compute','difficulty','why_core','goal','first_action','implementation_steps','likely_paths','validation','questions','risks','skill_fit','engagement','claim_comment','pr_scope','time_estimate','compute_class','kind']}
 REPO_SCHEMA = {'type':'object','properties':{
     'repo':{'type':'string'},'fit':{'type':'string'},'current_direction':{'type':'string'},
     'recommended_order':{'type':'array','items':{'type':'string'}},'maintainer_path':{'type':'array','items':{'type':'string'}},
@@ -32,6 +32,13 @@ def api(path):
     if token: headers['Authorization']='Bearer '+token
     with urllib.request.urlopen(urllib.request.Request('https://api.github.com/'+path.lstrip('/'),headers=headers),timeout=30) as response:
         return json.load(response)
+
+
+def repo_options(entry):
+    """列表项可以是 "owner/repo" 或 {"repo": ..., "focus": bool, "young": bool}。"""
+    if isinstance(entry, str):
+        return {'repo': entry, 'focus': False, 'young': False}
+    return {'repo': entry['repo'], 'focus': bool(entry.get('focus')), 'young': bool(entry.get('young'))}
 
 
 def linked_prs(name, number):
@@ -57,7 +64,8 @@ def community_links(readme):
     return links[:6]
 
 
-def collect_repo(name):
+def collect_repo(name, opts=None):
+    opts=opts or {}
     meta=api(f'repos/{name}')
     try:
         readme=api(f'repos/{name}/readme'); text=base64.b64decode(readme.get('content','')).decode('utf-8','replace')[:10000]
@@ -77,13 +85,26 @@ def collect_repo(name):
         extra=[]
     seen={i['number'] for i in issues}
     issues+= [i for i in extra if i['number'] not in seen]
-    # 只对最近的 24 个 Issue 查时间线（认领 / 关联 PR），控制 API 次数
-    linked={i['number']: linked_prs(name, i['number']) for i in issues[:24]}
+    if opts.get('focus'):
+        # 重点仓库：再按候选人方向定向搜索，扩大候选池
+        for kw in ('Apple OR MLX OR Metal OR CPU', 'perf OR performance OR latency OR throughput', 'scheduler OR batching OR runtime',
+                   'kernel OR "CUDA graph" OR triton OR fused', 'profiling OR benchmark OR telemetry', 'test OR CI OR flaky', 'roadmap OR tracking OR RFC'):
+            qk=urllib.parse.quote(f'repo:{name} is:issue is:open {kw}')
+            try:
+                hits=api(f'search/issues?q={qk}&sort=updated&order=desc&per_page=20').get('items',[])
+            except Exception:
+                hits=[]
+            seen={i['number'] for i in issues}
+            issues+= [i for i in hits if i['number'] not in seen]
+    # 查时间线（认领 / 关联 PR）：重点仓库 60 个，其余 24 个，控制 API 次数
+    linked={i['number']: linked_prs(name, i['number']) for i in issues[:60 if opts.get('focus') else 24]}
     pulls=api(f'repos/{name}/pulls?state=open&sort=updated&direction=desc&per_page=10')
     releases=api(f'repos/{name}/releases?per_page=3'); commits=api(f'repos/{name}/commits?per_page=12')
     try: root=api(f'repos/{name}/contents')
     except Exception: root=[]
+    young=bool(opts.get('young')) or (meta.get('open_issues_count') or 0) < 5
     return {'repo':name,'url':meta['html_url'],'description':meta.get('description'),'stars':meta.get('stargazers_count'),
+        'focus':bool(opts.get('focus')),'young':young,
         'forks':meta.get('forks_count'),'open_issues':meta.get('open_issues_count'),'pushed_at':meta.get('pushed_at'),
         'default_branch':meta.get('default_branch'),'readme':text,'contributing':contributing,'community':community_links(text),
         'root_paths':[x.get('path') for x in root if x.get('path')][:80],
@@ -109,7 +130,9 @@ def task_prompt(ev):
 硬约束：
 1. 每张卡必须绑定输入 issues 中一个真实、仍开放的 Issue；source_url、source_number、source_title 必须逐字取自输入，禁止虚构。
 2. 介入是否得体是第一优先级：Issue 已有 assignees、或 linked_prs 里有 open 状态的 PR、或 pulls 里明显已覆盖 → 不要推荐去做，最多建议去 review / 补测试；在 engagement 字段写清楚判断依据。
-3. compute_class 只能填 "CPU"、"Mac"、"Colab T4" 三者之一，写明验证路径；任何需要真机 GPU 才能复现或验证的任务直接不要生成。优先能发挥候选人 kernel / 性能专长、且维护者明显关心（评论多、最近更新、有 label）的任务。最多 6 张，宁缺毋滥；没有可靠任务返回空数组。
+3. compute_class 只能填 "CPU"、"Mac"、"Colab T4" 三者之一，写明验证路径；任何需要真机 GPU 才能复现或验证的任务直接不要生成。优先能发挥候选人 kernel / 性能专长、且维护者明显关心（评论多、最近更新、有 label）的任务。普通仓库最多 6 张；focus=true 的重点仓库最多 12 张，要把候选池用足。宁缺毋滥；没有可靠任务返回空数组。
+3a. 每张卡 kind 填 "issue"。[Roadmap] / [Tracking] / [RFC] 这类 Issue 也算：从它正文的未勾选子项里挑一个具体子任务成卡，source 仍是这个 Issue，title 和 claim_comment 里点名子项。
+3b. young=true（年轻仓库，Issue 很少）额外允许 kind="proposal" 的提案卡，最多 5 张：不绑 Issue，依据 README、根目录、最近 commits 提出具体、可验证、维护者大概率想要的改进（补测试、CPU/Metal 后端正确性对照、文档与示例、性能基线脚本、构建与 CI）。提案卡的 source_url 必须是 commits 里某条 commit 的 url 或仓库 url，source_number 填 0，source_title 填该 commit message 或仓库名；engagement 必须写明「先开 Issue 提案，得到回应再动手」；claim_comment 改写成一段英文的 Issue 草稿（第一行是标题）。
 4. 实施步骤具体到调查、代码修改、测试与提交前沟通；likely_paths 只能依据 README、CONTRIBUTING、Issue 正文和根目录推断，不确定就写“需先定位”。
 5. validation 写可执行的验收方式；questions 写开工前应在 Issue 询问维护者的问题。
 6. claim_comment：一段英文、可直接贴到该 Issue 下的认领留言，礼貌、具体、不超过 120 词：说明理解、打算怎么做、需要维护者确认什么、大约多久出 PR。不要提候选人的个人经历。
@@ -122,8 +145,16 @@ def task_prompt(ev):
 
 
 def valid_tasks(generated,evidence):
-    allowed={i['url']:i for i in evidence.get('issues',[])}; clean=[]
+    allowed={i['url']:i for i in evidence.get('issues',[])}; clean=[]; proposals=[]
+    proposal_sources={evidence.get('url')} | {c.get('url') for c in evidence.get('commits',[]) if c.get('url')}
     for task in generated.get('tasks',[]):
+        if str(task.get('kind','')).lower()=='proposal':
+            if not evidence.get('young') or task.get('source_url') not in proposal_sources:
+                print(f"丢弃无依据的提案卡：{task.get('title')}"); continue
+            cc=str(task.get('compute_class','')).strip()
+            if cc not in ('CPU','Mac','Colab T4'): continue
+            task['issue_status']={'assignees':[],'comments':0,'labels':['提案'],'updated_at':'','created_at':'','open_prs':[],'proposal':True}
+            proposals.append(task); continue
         source=allowed.get(task.get('source_url'))
         if not source or task.get('source_number')!=source['number']: continue
         cc=str(task.get('compute_class','')).strip()
@@ -136,14 +167,15 @@ def valid_tasks(generated,evidence):
                               'updated_at':source.get('updated_at'),'created_at':source.get('created_at'),
                               'open_prs':[p for p in source.get('linked_prs',[]) if p.get('state')=='open']}
         clean.append(task)
-    generated['tasks']=clean[:6]
+    limit=12 if evidence.get('focus') else 6
+    generated['tasks']=clean[:limit]+proposals[:5]
     return generated
 
 
-def analyze_repo(name):
+def analyze_repo(name, opts=None):
     """单个仓库：抓证据 → Gemini 出卡 → 校验。返回 (结果 or None, 失败详情 or None)。"""
     try:
-        evidence=collect_repo(name)
+        evidence=collect_repo(name, opts)
         generated=radar.call_llm_json('你是资深开源维护者与 AI 系统工程师。把真实 GitHub Issue 变成严谨、可执行、可验证的贡献计划。',task_prompt(evidence),REPO_SCHEMA,label='contribution-'+name.replace('/','-'))
         if not generated: raise RuntimeError('GeminiGenerationFailed')
         generated['repo']=name; generated=valid_tasks(generated,evidence)
@@ -182,12 +214,13 @@ def main():
     parser.add_argument('--merge', help='把目录下的单仓库 JSON 合并成 contributions.json')
     parser.add_argument('--list', action='store_true', help='输出仓库列表 JSON（CI 矩阵用）')
     args=parser.parse_args()
-    names=json.loads(CONFIG.read_text())
+    entries=[repo_options(e) for e in json.loads(CONFIG.read_text())]
+    names=[e['repo'] for e in entries]; options={e['repo']:e for e in entries}
     if args.list:
         print(json.dumps(names)); return
     previous=json.loads(DATA.read_text()) if DATA.exists() else {'repos':[]}
     if args.only:
-        generated, failure = analyze_repo(args.only)
+        generated, failure = analyze_repo(args.only, options.get(args.only))
         out=Path(args.out or f"/tmp/contrib-{slug(args.only)}.json")
         out.parent.mkdir(parents=True,exist_ok=True)
         out.write_text(json.dumps({'repo':args.only,'result':generated,'failure':failure},ensure_ascii=False))
@@ -202,7 +235,7 @@ def main():
             except Exception as exc:
                 print(f'读取 {f} 失败：{exc}')
     else:
-        results={name: analyze_repo(name) for name in names}
+        results={name: analyze_repo(name, options.get(name)) for name in names}
     out=assemble(results, names, previous)
     DATA.parent.mkdir(parents=True,exist_ok=True); DATA.write_text(json.dumps(out,ensure_ascii=False,indent=2)+'\n')
     print(f'贡献任务：{len(out["repos"])} 个仓库，{sum(len(x.get("tasks",[])) for x in out["repos"])} 张卡片；失败 {len(out["failures"])}；模型 {out["model"]}')
@@ -216,9 +249,10 @@ def list_html(items): return '<ul>'+''.join(f'<li>{esc(x)}</li>' for x in items)
 def status_badges(task):
     st=task.get('issue_status') or {}
     badges=[]
+    if st.get('proposal'): badges.append('<span class="badge warn">提案 · 需先开 Issue</span>')
     if st.get('assignees'): badges.append(f'<span class="badge warn">已指派 {esc(", ".join(st["assignees"]))}</span>')
     if st.get('open_prs'): badges.append(f'<span class="badge warn">已有 PR #{esc(st["open_prs"][0].get("number"))}</span>')
-    if not st.get('assignees') and not st.get('open_prs'): badges.append('<span class="badge ok">无人认领</span>')
+    if not st.get('proposal') and not st.get('assignees') and not st.get('open_prs'): badges.append('<span class="badge ok">无人认领</span>')
     if st.get('comments') is not None: badges.append(f'<span class="badge">{st.get("comments",0)} 条评论</span>')
     for label in (st.get('labels') or [])[:3]: badges.append(f'<span class="badge">{esc(label)}</span>')
     if st.get('updated_at'): badges.append(f'<span class="badge">更新 {esc(st["updated_at"][:10])}</span>')
@@ -229,12 +263,12 @@ def task_card(task,index):
     priority={'high':'优先','medium':'可选','low':'候补'}.get(str(task.get('priority','')).lower(),task.get('priority',''))
     claim=task.get('claim_comment','')
     return f'''<article class="task-card"><div class="task-top"><span class="task-index">任务 {index}</span><span>{esc(priority)} · {esc(task.get('difficulty'))} · <b>{esc(task.get('compute_class') or task.get('compute'))}</b> · {esc(task.get('time_estimate'))}</span></div>
-<h2>{esc(task.get('title'))}</h2><p class="source-link"><a href="{esc(task.get('source_url'),True)}" rel="noopener noreferrer">Issue #{task.get('source_number')} · {esc(task.get('source_title'))} ↗</a></p>
+<h2>{esc(task.get('title'))}</h2><p class="source-link"><a href="{esc(task.get('source_url'),True)}" rel="noopener noreferrer">{('依据：' if str(task.get('kind','')).lower()=='proposal' else 'Issue #'+str(task.get('source_number'))+' · ')}{esc(task.get('source_title'))} ↗</a></p>
 <p class="badges">{status_badges(task)}</p>
 <p><b>用到的专长：</b>{esc(task.get('skill_fit'))}</p><p><b>目标：</b>{esc(task.get('goal'))}</p><p><b>为什么值得长期做：</b>{esc(task.get('why_core'))}</p>
 <div class="engage"><b>怎么介入：</b>{esc(task.get('engagement'))}<br><b>第一个 PR 的边界：</b>{esc(task.get('pr_scope'))}</div>
 <div class="first-action"><b>第一步：</b>{esc(task.get('first_action'))}</div>
-<details open><summary>认领留言（英文，可直接贴到 Issue）</summary><pre class="claim" data-claim>{esc(claim)}</pre><button type="button" class="btn-sm" data-copy-claim>复制留言</button></details>
+<details open><summary>{'Issue 草稿（英文，先开 Issue 讨论）' if str(task.get('kind','')).lower()=='proposal' else '认领留言（英文，可直接贴到 Issue）'}</summary><pre class="claim" data-claim>{esc(claim)}</pre><button type="button" class="btn-sm" data-copy-claim>复制留言</button></details>
 <details><summary>大致实施方案</summary>{list_html(task.get('implementation_steps',[]))}</details><details><summary>可能涉及的目录或文件</summary>{list_html(task.get('likely_paths',[]))}</details>
 <details><summary>验收方式</summary>{list_html(task.get('validation',[]))}</details><details><summary>开工前问题与风险</summary><h3>向维护者确认</h3>{list_html(task.get('questions',[]))}<h3>风险</h3>{list_html(task.get('risks',[]))}</details></article>'''
 
@@ -271,7 +305,8 @@ def render():
             hard={'easy':0,'low':0,'低':0,'简单':0,'medium':1,'中':1,'中等':1}.get(str(t.get('difficulty','')).lower(),2)
             kernel=any(k in (t.get('skill_fit','')+t.get('title','')).lower() for k in ('cuda','triton','kernel','算子','cutlass','cute','融合','性能'))
             gpu={'CPU':0,'Mac':0,'Colab T4':1}.get(str(t.get('compute_class','')).strip(),2)
-            picks.append((pr+hard+gpu-(1 if kernel else 0), -(st.get('comments') or 0), r['repo'], t))
+            prop=1 if st.get('proposal') else 0
+            picks.append((pr+hard+gpu+prop-(1 if kernel else 0), -(st.get('comments') or 0), r['repo'], t))
     picks.sort(key=lambda x:(x[0],x[1]))
     if picks:
         parts.append('<section class="picks"><h2>本周先做这三个</h2><p class="radar-stats">全部可在 MacBook / CPU 上完成（最多用 Colab 免费 T4 做最终确认）；无人认领、没有关联 PR、优先级高且能用上 kernel / 性能专长的排在前面。</p><ol class="pick-list">')
