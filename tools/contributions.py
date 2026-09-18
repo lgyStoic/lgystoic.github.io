@@ -627,7 +627,7 @@ def _check(items):
 
 def _tw(text, size=13):
     """估算文本像素宽：汉字按一个字号，ASCII 按 0.56 字号。"""
-    return sum(size if ord(ch) > 0x2E7F else size*0.56 for ch in str(text or ''))
+    return sum(size if ord(ch) > 0x2E7F else size*0.62 for ch in str(text or ''))
 
 
 def _svg_text(x, y, text, cls='', anchor='middle'):
@@ -696,13 +696,23 @@ def arch_svg(diagram, modules):
             sx,sy,ex,ey=(ax+aw, ay+ah/2, bx, by+bh2/2) if bx>ax else (ax, ay+ah/2, bx+bw, by+bh2/2)
         mx,my=(sx+ex)/2,(sy+ey)/2
         same_layer = not (by > ay+ah-1 or by+bh2 < ay+1)
-        cx,cy=(mx, my-34) if same_layer else (mx, my)
+        adjacent = same_layer and abs(ex-sx) <= gap+2   # 紧挨着的两个框：画一段直的短箭头，不绕弧
+        cx,cy=(mx, my) if (adjacent or not same_layer) else (mx, my-34)
         upward = by+bh2 < ay+1
-        out.append(f'<path d="M{sx:.0f} {sy:.0f} Q{cx:.0f} {cy:.0f} {ex:.0f} {ey:.0f}" class="d-edge{" d-back" if upward else ""}" marker-end="url(#arw)"/>')
+        title=f'<title>{esc(a)} → {esc(b)}{("：" + esc(label)) if label else ""}</title>'
+        out.append(f'<path d="M{sx:.0f} {sy:.0f} Q{cx:.0f} {cy:.0f} {ex:.0f} {ey:.0f}" class="d-edge{" d-back" if upward else ""}" marker-end="url(#arw)">{title}</path>')
         length=((ex-sx)**2+(ey-sy)**2)**0.5
+        if adjacent:
+            continue   # 紧挨的短箭头没地方放字，标签只留在悬停提示里
         if label and length >= 34:
-            lx,ly=(sx+2*cx+ex)/4, (sy+2*cy+ey)/4
-            out.append(_svg_text(lx+8, ly-4 if same_layer else ly+4, label, 'd-elabel', 'start'))
+            boxes=list(pos.values())
+            def inside(x,y): return any(bx_<=x<=bx_+bw_ and by_<=y<=by_+bh__ for bx_,by_,bw_,bh__ in boxes)
+            # 沿曲线找一个不落在方框里的点放标签
+            for t in (0.5, 0.35, 0.65, 0.25, 0.75):
+                lx,ly=(1-t)**2*sx+2*(1-t)*t*cx+t*t*ex, (1-t)**2*sy+2*(1-t)*t*cy+t*t*ey
+                if not inside(lx+8, ly+4): break
+            lx=max(x0, min(lx+8, x1-_tw(label,11)-4)); ly=max(12, ly-4 if same_layer else ly+4)   # 不出画布、不压到左侧层名
+            out.append(_svg_text(lx, ly, label, 'd-elabel', 'start'))
     for n,(x,yy,bw,bh_) in pos.items():
         out.append(f'<g><title>{esc(n)}</title><rect x="{x:.0f}" y="{yy:.0f}" width="{bw:.0f}" height="{bh_}" rx="7" class="d-box"/>{_svg_text(x+bw/2, yy+bh_/2+5, n if _tw(n,fs)<=bw-16 else n[:max(3,int((bw-30)/fs))]+"…", "d-mod")}</g>')
     out.append('</svg>')
