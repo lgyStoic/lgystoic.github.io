@@ -1,0 +1,921 @@
+{
+  "date": "2026-09-18",
+  "generated_at": "2026-09-18T01:37:15+00:00",
+  "ai": true,
+  "model": "gemini-3.1-pro-preview",
+  "sources": [
+    {
+      "id": "openai",
+      "name": "OpenAI",
+      "ok": true,
+      "count": 2,
+      "total": 1208,
+      "error": ""
+    },
+    {
+      "id": "deepmind",
+      "name": "Google DeepMind",
+      "ok": true,
+      "count": 0,
+      "total": 100,
+      "error": ""
+    },
+    {
+      "id": "google-ai",
+      "name": "Google AI Blog",
+      "ok": true,
+      "count": 1,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "qwen",
+      "name": "Qwen",
+      "ok": true,
+      "count": 0,
+      "total": 44,
+      "error": ""
+    },
+    {
+      "id": "hf-blog",
+      "name": "Hugging Face Blog",
+      "ok": true,
+      "count": 0,
+      "total": 862,
+      "error": ""
+    },
+    {
+      "id": "nvidia-dev",
+      "name": "NVIDIA Technical Blog",
+      "ok": true,
+      "count": 0,
+      "total": 100,
+      "error": ""
+    },
+    {
+      "id": "hf-papers",
+      "name": "HF Papers 日榜",
+      "ok": true,
+      "count": 12,
+      "total": 34,
+      "error": ""
+    },
+    {
+      "id": "pytorch",
+      "name": "PyTorch Blog",
+      "ok": true,
+      "count": 1,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "simonw",
+      "name": "Simon Willison",
+      "ok": true,
+      "count": 1,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "lilianweng",
+      "name": "Lil'Log",
+      "ok": true,
+      "count": 0,
+      "total": 53,
+      "error": ""
+    },
+    {
+      "id": "interconnects",
+      "name": "Interconnects",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "raschka",
+      "name": "Sebastian Raschka",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "chiphuyen",
+      "name": "Chip Huyen",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-pytorch",
+      "name": "Release · PyTorch",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-triton",
+      "name": "Release · Triton",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-cutlass",
+      "name": "Release · CUTLASS",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-flash-attention",
+      "name": "Release · FlashAttention",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-vllm",
+      "name": "Release · vLLM",
+      "ok": true,
+      "count": 1,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-sglang",
+      "name": "Release · SGLang",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-tensorrt-llm",
+      "name": "Release · TensorRT-LLM",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-diffusers",
+      "name": "Release · Diffusers",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-cuda-python",
+      "name": "Release · cuda-python",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "gnews-labs-en",
+      "name": "新闻 · Anthropic / Mistral / xAI",
+      "ok": true,
+      "count": 7,
+      "total": 81,
+      "error": ""
+    },
+    {
+      "id": "gnews-labs-cn",
+      "name": "新闻 · 国内模型公司",
+      "ok": true,
+      "count": 11,
+      "total": 100,
+      "error": ""
+    },
+    {
+      "id": "qbitai",
+      "name": "量子位",
+      "ok": true,
+      "count": 2,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "infoq-cn",
+      "name": "InfoQ 中文",
+      "ok": true,
+      "count": 3,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "thonking",
+      "name": "Horace He (thonking)",
+      "ok": true,
+      "count": 0,
+      "total": 6,
+      "error": ""
+    },
+    {
+      "id": "hn-algolia",
+      "name": "Hacker News（100+ 分）",
+      "ok": true,
+      "count": 0,
+      "total": 0,
+      "error": ""
+    }
+  ],
+  "counts": {
+    "high": 9,
+    "medium": 12,
+    "low": 20
+  },
+  "items": [
+    {
+      "id": "daadf0a5b071e441",
+      "title": "Anthropic Launches Claude Code Projects in Beta: Parallel Cloud Sessions That Keep Running After You Close Your Laptop - MarkTechPost",
+      "link": "https://news.google.com/rss/articles/CBMi9AFBVV95cUxOYldva1B5YU0tUlE3RjJsem9SajUzNnF6Rm1peEgyWW1qUDQ2by16SW52cEZHU0pBT0YwMWdfd1FVUXN1cm93S2Vlb2R0NkJNMlBKVkhmWExWTmVCQWV4U05Ed0NMVDdMdzdLY3ZabjNjbEI0MDlEaEdvN0VHaElkQ1lXb2RMTmIwSjhNM295b05VUk1jSHBhQzEtT0hqRlhSU3g5NmlxUTNnVS1yczhld2dpN2xMcExReGs4VFNyUWlSUzJCTTcyaUFLZFNwbDRaUy1yZmE5a1JZRHVfa2FyU3REV1NHZzhjYTdLX3ZxaG1qVTdR0gH0AUFVX3lxTE5iV29rUHlhTS1SUTdGMmx6b1JqNTM2cXpGbWl4SDJZbWpQNDZvLXpJbnZwRkdTSkFPRjAxZ193UVVRc3Vyb3dLZWVvZHQ2Qk0yUEpWSGZYTFZOZUJBZXhTTkR3Q0xUN0x3N0tjdlpuM2NsQjQwOURoR283RUdoSWRDWVdvZExOYjBKOE0zb3lvTlVSTWNIcGFDMS1PSGpGWFJTeDk2aXFRM2dVLXJzOGV3Z2k3bExwTFF4azhUU3JRaVJTMkJNNzJpQUtkU3BsNFpTLXJmYTlrUllEdV9rYXJTdERXU0dnOGNhN0tfdnFobWpVN1E?oc=5",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-09-17T20:45:04+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "Anthropic 推出 Claude Code Projects 测试版，支持后台持续运行的并行云端会话。",
+      "why": "涉及 AI 编程助手的基础设施升级，可能影响开发工作流，值得关注。",
+      "tags": [
+        "Anthropic",
+        "AI Coding",
+        "Cloud Infra"
+      ]
+    },
+    {
+      "id": "f7ec400be704bb28",
+      "title": "v0.30.0rc1: [Bugfix] Isolate supplemental FlashInfer BF16 autotuning (#57285)",
+      "link": "https://github.com/vllm-project/vllm/releases/tag/v0.30.0rc1",
+      "source": "Release · vLLM",
+      "source_id": "rel-vllm",
+      "published": "2026-09-17T10:37:53+00:00",
+      "category": "infra",
+      "priority": "high",
+      "summary": "vLLM 发布 v0.30.0rc1，修复并隔离了 FlashInfer BF16 的自动调优问题。",
+      "why": "涉及主流推理框架的 kernel 级别修复（FlashInfer），直接关系到你的 GPU 优化工作。",
+      "tags": [
+        "vLLM",
+        "FlashInfer",
+        "Kernel Optimization"
+      ]
+    },
+    {
+      "id": "0d2e6c6f1fda7caa",
+      "title": "通义千问重磅开源Qwen2.5，性能超越Llama - Sohu",
+      "link": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxNM2gyWkNmR3ZZbTB2RFJWanVrZEstZ18tLUVzZ0FXZmJGeS1pZTRJbDNXWEIzMUNtcGVKM0lKbkg3dUNNYmIzeDhPd1ZBSUZiWGV2SFNlN2t6TVZBanhrOWU5MzVGRXhMMkJ5QVFjNDhCSzViaWkyTEVxRThxcnBldWJ0cW9fMzVo?oc=5",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-09-17T09:37:42+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "阿里通义千问正式开源 Qwen2.5 大模型，宣称性能超越 Llama。",
+      "why": "基础大模型重要开源，需关注其架构变化对推理和训练系统的影响。",
+      "tags": [
+        "Qwen2.5",
+        "开源模型",
+        "阿里"
+      ]
+    },
+    {
+      "id": "3f969a61bc808d00",
+      "title": "智谱GLM公开国内大模型首个RSI实践：AI在十万卡国产集群上自建推理系统 - 21财经",
+      "link": "https://news.google.com/rss/articles/CBMijwFBVV95cUxOdDVoSXdHRldFaGN5Si1obnpKbjY0NlRyMGZNS05XNUxoNklQNnZWTU9fNG14MXJQam04Z0NlSTZOV1Jnel9reFhqOWJJTkxxanpmN3lGaUF6djlCcUZhdXNJSmt5cTBkSUR1Rm5fd0FiRENyLVZ3anBJa1NBSHJzT01sX1ZJTHd1LTdnZi0xdw?oc=5",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-09-17T08:41:32+00:00",
+      "category": "infra",
+      "priority": "high",
+      "summary": "智谱 GLM 公开递归自我改进实践，AI 在十万卡国产集群上自建推理系统。",
+      "why": "涉及超大规模集群、国产算力及推理系统构建，与你的系统优化工作高度相关。",
+      "tags": [
+        "Zhipu AI",
+        "Inference System",
+        "Cluster Computing"
+      ]
+    },
+    {
+      "id": "ddda9493140676ba",
+      "title": "The Other Half of the Memory Wall: Serving 35B MoEs from SSD with Trained Routing Prediction",
+      "link": "https://huggingface.co/papers/2609.18063",
+      "source": "HF Papers 日榜",
+      "source_id": "hf-papers",
+      "published": "2026-09-15T20:00:00+00:00",
+      "category": "infra",
+      "priority": "high",
+      "summary": "提出 Edge0 流式 MoE 推理引擎，通过训练路由预测实现从 SSD 高效服务 35B MoE 模型。",
+      "why": "涉及大模型推理系统优化和内存墙问题，与你的性能优化工作直接相关。",
+      "tags": [
+        "MoE",
+        "Inference",
+        "SSD Offloading",
+        "System Optimization"
+      ]
+    },
+    {
+      "id": "8b2b2746f5870e9f",
+      "title": "Rethinking Critic Learning in PPO: Understanding and Mitigating Value Flattening",
+      "link": "https://huggingface.co/papers/2609.18708",
+      "source": "HF Papers 日榜",
+      "source_id": "hf-papers",
+      "published": "2026-09-15T20:00:00+00:00",
+      "category": "research",
+      "priority": "high",
+      "summary": "分析并缓解 LLM 强化学习 PPO 算法中 Critic 出现的“价值扁平化”系统性失效问题。",
+      "why": "深入探讨 RLHF 训练稳定性和底层机制，对模型训练优化有直接帮助。",
+      "tags": [
+        "RLHF",
+        "PPO",
+        "Training Optimization"
+      ]
+    },
+    {
+      "id": "822e30b148ff6ea1",
+      "title": "A Zeroth-Order Paradigm for LLM Preference Alignment",
+      "link": "https://huggingface.co/papers/2609.19144",
+      "source": "HF Papers 日榜",
+      "source_id": "hf-papers",
+      "published": "2026-09-15T20:00:00+00:00",
+      "category": "research",
+      "priority": "high",
+      "summary": "提出 ComPO，一种基于比较预言机的零阶 LLM 偏好对齐方法，无需直接优化可微损失。",
+      "why": "零阶优化方法可能带来显存和计算效率的提升，与训练性能优化高度相关。",
+      "tags": [
+        "Preference Alignment",
+        "Zeroth-Order Optimization",
+        "Training Efficiency"
+      ]
+    },
+    {
+      "id": "c090f0dc6dfc2fbd",
+      "title": "Zing-0.5: Toward Playable Worlds with Real-Time Joint Action and Text Control",
+      "link": "https://huggingface.co/papers/2609.17909",
+      "source": "HF Papers 日榜",
+      "source_id": "hf-papers",
+      "published": "2026-09-14T20:00:00+00:00",
+      "category": "research",
+      "priority": "high",
+      "summary": "推出 5B 自回归世界模型 Zing-0.5，支持通过键盘和文本实时控制生成的可玩世界。",
+      "why": "涉及视频/3D生成和世界模型，与你关注的生成模型方向完全契合。",
+      "tags": [
+        "World Model",
+        "Video Generation",
+        "Autoregressive"
+      ]
+    },
+    {
+      "id": "9643a7e46a00a7d6",
+      "title": "Register Tokens for Bounded-State Reasoning in Diffusion Language Models",
+      "link": "https://huggingface.co/papers/2609.16372",
+      "source": "HF Papers 日榜",
+      "source_id": "hf-papers",
+      "published": "2026-09-13T20:00:00+00:00",
+      "category": "research",
+      "priority": "high",
+      "summary": "在扩散语言模型中引入寄存器 token，实现清理上下文后仅依赖固定状态继续推理。",
+      "why": "涉及扩散模型在文本生成的应用及状态压缩，对生成模型架构和推理优化有启发。",
+      "tags": [
+        "Diffusion Models",
+        "LLM Reasoning",
+        "Inference Optimization"
+      ]
+    },
+    {
+      "id": "38cf8e2889b3348d",
+      "title": "刚刚，Claude Code大重构！内部3万Agent管理技术免费开放",
+      "link": "https://www.qbitai.com/2026/09/491711.html",
+      "source": "量子位",
+      "source_id": "qbitai",
+      "published": "2026-09-18T00:34:34+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Claude Code 进行大重构，免费开放其内部 3 万 Agent 管理技术。",
+      "why": "涉及 Agent 管理基础设施，可作为日常开发工具了解。",
+      "tags": [
+        "Claude Code",
+        "Agent",
+        "开发工具"
+      ]
+    },
+    {
+      "id": "715ce399cc716e69",
+      "title": "阶跃发布全新语音大模型 StepAudio 3系列：覆盖语音识别、生成、实时交互与音乐创作",
+      "link": "https://www.infoq.cn/article/paoGkkFVHV3gbhG3GEdC",
+      "source": "InfoQ 中文",
+      "source_id": "infoq-cn",
+      "published": "2026-09-17T15:50:57+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "阶跃星辰发布 StepAudio 3 系列语音大模型，支持语音生成与音乐创作。",
+      "why": "涉及音频生成模型，作为生成模型领域的扩展值得扫一眼。",
+      "tags": [
+        "语音生成",
+        "StepAudio",
+        "阶跃星辰"
+      ]
+    },
+    {
+      "id": "e4bb88ae5fad718c",
+      "title": "让仿真走到设计前端，第叁范式发布国内首款 GPU 原生跨尺度系统级电磁仿真软件",
+      "link": "https://www.infoq.cn/article/UZM5vKcN4CbNkPUS6Aid",
+      "source": "InfoQ 中文",
+      "source_id": "infoq-cn",
+      "published": "2026-09-17T15:43:17+00:00",
+      "category": "infra",
+      "priority": "medium",
+      "summary": "第叁范式发布国内首款 GPU 原生跨尺度系统级电磁仿真软件。",
+      "why": "涉及 GPU 原生计算，可能对 GPU kernel 开发有启发。",
+      "tags": [
+        "GPU",
+        "电磁仿真",
+        "科学计算"
+      ]
+    },
+    {
+      "id": "81b0ff55a528fe6b",
+      "title": "边说话边推理、边聊天边调用工具，谷歌 Gemini 3.8 Live 要攻克语音 Agent 的沉默时刻",
+      "link": "https://www.infoq.cn/article/HWTj56QXAtdSar5YGp32",
+      "source": "InfoQ 中文",
+      "source_id": "infoq-cn",
+      "published": "2026-09-17T15:33:13+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "谷歌推出 Gemini 3.8 Live，优化语音 Agent 的实时推理与工具调用能力。",
+      "why": "涉及多模态实时推理系统，可关注其延迟优化思路。",
+      "tags": [
+        "Gemini",
+        "语音Agent",
+        "实时推理"
+      ]
+    },
+    {
+      "id": "f9b1b6f1f2759355",
+      "title": "Anthropic tries to make Claude stickier with launch of Docs and Slides - Computerworld",
+      "link": "https://news.google.com/rss/articles/CBMivgFBVV95cUxPS2FMQk9DbVQ4NFNjZEVEOWNfUUY1SENGS214U09xREpnTkN5WXdsZWM4bTh1VVd0UzltNVVTb3JuS0FYbjEwVk1YajJ1MEFIQlhFcTdnakQyTWxYdHFnX2dpeDdjclFYUlBuYmp5NUMtMlJQbUkwT0dqQ0F0Rm1FbXc2NjFJN3d4SFc2aUp5QWd2WDVOcHdvVVc5WGlQSTk2WjdNaDZYbW8zT0dmZV9JaWVtQmJMdW43RkIzRlFn?oc=5",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-09-17T14:29:58+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Anthropic 为 Claude 推出 Docs 和 Slides 工具，增强用户粘性。",
+      "why": "头部模型公司的重要产品更新，值得了解其应用生态布局。",
+      "tags": [
+        "Anthropic",
+        "Claude",
+        "Product Release"
+      ]
+    },
+    {
+      "id": "c86a1a22c9863b21",
+      "title": "Anthropic's Guide to Building Effective AI Agents: Key Design Principles - Analytics Insight",
+      "link": "https://news.google.com/rss/articles/CBMixgFBVV95cUxQVnVybkZFOXFhZUZhenpsZGF1V2hXcGx4TlN1SnltWkp4cHlRWGNLcUJWX2l5MThwazFBU291UVhwNnRvZ2FsRGVnR2pFNzNRTEctRnRLaVRGZ3FSMXR3cFZJbEN6ZlN5MGVrOUZPc2lJeVZrNjBfM1pxRl9CQk5WWGFtX2xCRkpCcHVOYnpFMk5zTXd5WEZBOXhGbmdTUFdubHJYeTBxSmptMnZhbkJQQTNNUDkxTFdOQk9hbUJEQVg5UUdmdFHSAdMBQVVfeXFMTWk5QUxMOFBqallVakY3bFl4NFFzaHkyNU9OSjh1U1o3bFI5X1ZvY0JGSURRTTNXaXhrSk4tLXI5S1N3cFF6NVNKWXJ1TTBOMjlWZFh0WEROUzhNQ0NUVmhNaWZPU3ZiVm05NmNlVFVoS3ptWjJKYW1Jd1I1bWxoTUJRczMyMVVGazZCckIwS1JudmMtSDVRa1hwalhEWjZ1UVlIcXVubGFsSEJtckN5aEtMUVhHa2JMdlJzbmhNQzZ0VHpYT3ptc0dxalpKM0xIRTRIZw?oc=5",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-09-17T08:30:00+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "Anthropic 发布构建高效 AI 智能体的指南及关键设计原则。",
+      "why": "官方发布的 Agent 设计原则，对理解上层应用架构有一定参考价值。",
+      "tags": [
+        "Anthropic",
+        "AI Agents",
+        "Design Principles"
+      ]
+    },
+    {
+      "id": "63b328a3c60d14dd",
+      "title": "In-Context Robot Learning with VLM Agents",
+      "link": "https://huggingface.co/papers/2609.19138",
+      "source": "HF Papers 日榜",
+      "source_id": "hf-papers",
+      "published": "2026-09-15T20:00:00+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "研究探讨商业视觉语言模型（如 GPT-6 Astra）在机器人上下文学习中的应用。",
+      "why": "具身智能与VLM结合的研究，虽非核心方向但值得了解多模态应用。",
+      "tags": [
+        "VLM",
+        "Robotics",
+        "In-Context Learning"
+      ]
+    },
+    {
+      "id": "3a3666280d7788c2",
+      "title": "PANORAMA: Panoptic Grounded Captioning via Mask Proposal Selection",
+      "link": "https://huggingface.co/papers/2609.19143",
+      "source": "HF Papers 日榜",
+      "source_id": "hf-papers",
+      "published": "2026-09-15T20:00:00+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "提出 PanoCaps，通过掩码提议选择解决全景接地图像描述任务中的像素级对齐问题。",
+      "why": "涉及视觉语言模型的像素级理解，对多模态生成有一定参考价值。",
+      "tags": [
+        "VLM",
+        "Image Captioning",
+        "Segmentation"
+      ]
+    },
+    {
+      "id": "15185b8d7444ce6f",
+      "title": "LimiX-2: A Contextual Mechanism Network Towards General Structured-Data Intelligence",
+      "link": "https://huggingface.co/papers/2609.17488",
+      "source": "HF Papers 日榜",
+      "source_id": "hf-papers",
+      "published": "2026-09-14T20:00:00+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "推出 LimiX-2 模型，采用上下文机制网络范式处理结构化数据智能。",
+      "why": "结构化数据的新模型架构，非生成模型核心方向，可简单扫一眼。",
+      "tags": [
+        "Structured Data",
+        "Model Architecture"
+      ]
+    },
+    {
+      "id": "6ab5e90aaab7a6eb",
+      "title": "Confidence Comes from Experience: Experiential Confidence Estimation from Reasoning to Agents",
+      "link": "https://huggingface.co/papers/2609.17708",
+      "source": "HF Papers 日榜",
+      "source_id": "hf-papers",
+      "published": "2026-09-14T20:00:00+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "提出 XConf 方法，结合模型积累的经验记录来评估语言模型输出的置信度。",
+      "why": "提升模型可靠性的新思路，偏向推理策略，可作为扩展阅读。",
+      "tags": [
+        "Confidence Estimation",
+        "LLM Reasoning"
+      ]
+    },
+    {
+      "id": "0910d61f173583ef",
+      "title": "EventEgoHands++: Event-based Egocentric 3D Hand Mesh Reconstruction with Real Dataset",
+      "link": "https://huggingface.co/papers/2609.17189",
+      "source": "HF Papers 日榜",
+      "source_id": "hf-papers",
+      "published": "2026-09-14T20:00:00+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "提出基于事件相机的以自我为中心的 3D 手部网格重建方法，解决运动模糊问题。",
+      "why": "涉及 3D 重建技术，但偏向特定传感器应用，可作为 3D 领域的补充阅读。",
+      "tags": [
+        "3D Reconstruction",
+        "Event Camera"
+      ]
+    },
+    {
+      "id": "9f6ef619eccb6dfe",
+      "title": "HypoEvolve: Genetic Algorithms Enable Multi-Agent LLMs to Discover Scientific Hypotheses",
+      "link": "https://huggingface.co/papers/2609.15938",
+      "source": "HF Papers 日榜",
+      "source_id": "hf-papers",
+      "published": "2026-09-13T20:00:00+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "提出 HypoEvolve 框架，结合遗传算法与多智能体 LLM 协作来发现科学假设。",
+      "why": "AI for Science 和多智能体协作的研究，非底层优化，可简单了解。",
+      "tags": [
+        "Multi-Agent",
+        "AI for Science",
+        "Genetic Algorithm"
+      ]
+    },
+    {
+      "id": "37a12c6e47606df9",
+      "title": "智谱唐杰清华开课，爆改课程内容，让学生挑战大模型全链路实操！ - blog.csdn.net",
+      "link": "https://news.google.com/rss/articles/CBMia0FVX3lxTFBSMDFiWHpQX2NOaU9TQ2hCaEY5NEtTREhOSFJORXEzRmRxV3FfOGZBd3hnWDVZbGhqeWctaUNIWVlmTFB4ZGZNbUtuZDZIbVVDU0hhLUYtTnlScWQzVVlJTi1DU29OcVhuZHlz?oc=5",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-09-18T01:10:24+00:00",
+      "category": "industry",
+      "priority": "low",
+      "summary": "智谱唐杰在清华开设大模型课程，引入全链路实操内容。",
+      "why": "课程教学动态，与 GPU 优化或生成模型前沿研究无关。",
+      "tags": [
+        "大模型",
+        "教育",
+        "智谱"
+      ]
+    },
+    {
+      "id": "5a868b432c913ba2",
+      "title": "手握200亿仍融资400亿，智谱加速布局算力，商业模式重估能否赢得大模型竞赛？ - blog.csdn.net",
+      "link": "https://news.google.com/rss/articles/CBMia0FVX3lxTE5ocVF6QWJZTmVtWkd6YkVNdEw3Vk9NY192STYwLV9ENHJFVmVCWXZVR3FHd1E3dEhZdmYzaFp1dW5OSE5MOGNIeDQ0MDBoUVRrczk4RWFEWjhtLWhoTTE1MGc0bkE5OHQ5WE5V?oc=5",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-09-18T01:07:13+00:00",
+      "category": "industry",
+      "priority": "low",
+      "summary": "智谱加速算力布局并进行大额融资，引发对其商业模式的探讨。",
+      "why": "纯商业与融资分析，不涉及具体技术实现。",
+      "tags": [
+        "Zhipu AI",
+        "Funding",
+        "Compute"
+      ]
+    },
+    {
+      "id": "a25ec77076cc2ae9",
+      "title": "PyTorch Day Japan 2026 Comes to Tokyo on December 10",
+      "link": "https://pytorch.org/blog/pytorch-day-japan-2026-comes-to-tokyo",
+      "source": "PyTorch Blog",
+      "source_id": "pytorch",
+      "published": "2026-09-18T00:25:32+00:00",
+      "category": "industry",
+      "priority": "low",
+      "summary": "PyTorch Day Japan 2026 将于 12 月 10 日在东京举行。",
+      "why": "社区活动预告，无实质技术内容。",
+      "tags": [
+        "PyTorch",
+        "Event"
+      ]
+    },
+    {
+      "id": "7bb3c2e455380f19",
+      "title": "How To Write With An LLM",
+      "link": "https://simonwillison.net/2026/Sep/17/how-to-write-with-an-llm",
+      "source": "Simon Willison",
+      "source_id": "simonw",
+      "published": "2026-09-17T23:37:27+00:00",
+      "category": "people",
+      "priority": "low",
+      "summary": "探讨如何使用 LLM 辅助写作，建议仅用于校对而非直接采纳其措辞。",
+      "why": "个人关于 LLM 使用技巧的观点，与底层技术研发无关。",
+      "tags": [
+        "LLM Usage",
+        "Writing"
+      ]
+    },
+    {
+      "id": "df4ade904b04545f",
+      "title": "Making global data easier to explore",
+      "link": "https://blog.google/innovation-and-ai/technology/ai/google-un-data-commons-platform",
+      "source": "Google AI Blog",
+      "source_id": "google-ai",
+      "published": "2026-09-17T20:00:00+00:00",
+      "category": "release",
+      "priority": "low",
+      "summary": "谷歌推出 UN System Data Commons Data 网页，简化全球数据探索。",
+      "why": "泛泛的数据工具发布，与模型训练和底层优化无关。",
+      "tags": [
+        "Google",
+        "Data Commons"
+      ]
+    },
+    {
+      "id": "d0122ec3de671cd9",
+      "title": "Anthropic Tests Claude Money to Bring Bank Accounts Into Claude - Windows Report",
+      "link": "https://news.google.com/rss/articles/CBMilAFBVV95cUxPcjJFNmFPRnI5QjF2QzQzdkpMbS1OU0RZdWs5OWE0UnFfeFhMY0pKVTJaXzB3RGppRDJCMUYtSC1GUnItZE40aFJtZGVLU1hlVWpmaG1OSTIwTVo3T3ZNZzFtYUVQcnpqYk9JRTc0Ql9meFlNWWRwY2tJTkxrdE5TdDkyM1RpWG1zVUhDaVpnR3dkR2sx?oc=5",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-09-17T18:55:02+00:00",
+      "category": "release",
+      "priority": "low",
+      "summary": "Anthropic 测试 Claude Money，尝试将银行账户接入 Claude。",
+      "why": "偏向金融科技的商业功能测试，与底层技术无关。",
+      "tags": [
+        "Anthropic",
+        "FinTech"
+      ]
+    },
+    {
+      "id": "d8ab3f106ed9907b",
+      "title": "How a 27-year-old math geek at Anthropic made the world afraid of AI - The Times of India",
+      "link": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxNb1YyQnN2QmhCVUVOTC01NTl5bnNBTzZhU0NrNnFuN0o0eENDbjFmcmZCTEl6a0J6UkZsWUhmS1NjbFhKWlV1a2hCLUZiWkRjc0pPQjFjYUxVQ3F0dFZZU3FaeHJLUk9GMlQyckFZOENqWm1sRGdsSXF1MlNBTUF1R09mQzdJY1V1VEZ3cWMtUUFZZWxBbHZRci1hWkt6NFpXMXByeWt0MUhubzgwLUN6QS1rNDN0c0dabFpNaFlwanRnN1lCbGdmQ1V4alRZRUg0QzhSMmQwd3VhSTY0VmZPM1BETy11Z9IB6wFBVV95cUxNY0NJSzk0ZXUtc2ZwTDRHM293VUk1YXZ6ZjZ4UUU1X0RkZ1BOcXNFNUw0UkgyQ2xCRXd0bzczOFVTcmQ2RlAySmd6VWFocllnT1Z1YzNVN2JncHF3c3JrODlaMmR0TEc0OE0wUjlIN0FlN2lyUlVaeTQ5RnB1cDhTODBmekJwQmE1Umk4bW1SMDZSVFVQYmtoZW5XMy1lYlpPaHR5VnJtNUlUUFY4ZThlY29pTGhTYzFlWS1wa3FfR3lURTVXRlUyX2Mwb0RWNGNWY3BCT2tZb2prT2RENzhnWHUtUUdmeExoVFdZ?oc=5",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-09-17T12:06:00+00:00",
+      "category": "people",
+      "priority": "low",
+      "summary": "报道 Anthropic 一位 27 岁数学极客对 AI 安全的影响。",
+      "why": "人物八卦与泛泛讨论，无技术价值。",
+      "tags": [
+        "Anthropic",
+        "AI Safety"
+      ]
+    },
+    {
+      "id": "964ae1dd0facf551",
+      "title": "How Cooley is accelerating IPO work with ChatGPT",
+      "link": "https://openai.com/index/cooley-gopublic",
+      "source": "OpenAI",
+      "source_id": "openai",
+      "published": "2026-09-17T12:00:00+00:00",
+      "category": "industry",
+      "priority": "low",
+      "summary": "律所 Cooley 使用 ChatGPT 打造 GO Public 工具以加速 IPO 流程。",
+      "why": "纯商业应用案例，与底层优化和生成模型研发无关，可跳过。",
+      "tags": [
+        "ChatGPT",
+        "Legal AI",
+        "Use Case"
+      ]
+    },
+    {
+      "id": "1eb7a216d7adaa3f",
+      "title": "DoorDash、Airbnb都在用 中国大模型周调用量已近美国3倍 - 新浪财经",
+      "link": "https://news.google.com/rss/articles/CBMipwFBVV95cUxPVldQYi1sa001Tlg3TllOXy1lMWhoRVV4VWxKS3B1a3dDUEFGNGpwQmphMlpKdW03SjJIZlVweVFVWUhGZ09BQVh4Y3ZnX0xzSmUxd1JjUE1PZ1lxZktoOXJyMTc5WHA2YzBMNDhubzVydDFxRXdvZVFuMWJ3TnFyZFJfdmJXSnE1aEVZSXdHMFR2NjJ1RWZrSWt5Q0h2b09naWZOS3JONA?oc=5",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-09-17T11:58:52+00:00",
+      "category": "industry",
+      "priority": "low",
+      "summary": "报道称中国大模型周调用量已接近美国的 3 倍，获多家国际企业使用。",
+      "why": "宏观行业新闻，缺乏具体技术细节，可跳过。",
+      "tags": [
+        "LLM Industry",
+        "China AI"
+      ]
+    },
+    {
+      "id": "c61b05785eb4dcc9",
+      "title": "国产AI出海再结硕果！徐汇企业MiniMax多款产品纳入新加坡国民AI技能培训计划 - 新浪网",
+      "link": "https://news.google.com/rss/articles/CBMif0FVX3lxTFBGZmNoSWllcmFLaTg5QTd6OENWU3didk1aN3Q2b0tlbFh0QVdFSTNWQlRBRmV4VHNKWV96QXQ3b0xjdV9iZ1dpUUNtSTRySmdPal9qWTMxdlhjUC12bEttNkpBRjV6TzhfN2MxYnlfemd4V3AzYlRWdlBrU3J6Ums?oc=5",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-09-17T11:37:00+00:00",
+      "category": "industry",
+      "priority": "low",
+      "summary": "MiniMax 多款产品被纳入新加坡国民 AI 技能培训计划。",
+      "why": "商业出海与合作新闻，无技术价值。",
+      "tags": [
+        "MiniMax",
+        "AI Training",
+        "Business"
+      ]
+    },
+    {
+      "id": "994fa5ed53dfe310",
+      "title": "Anthropic Merges Claude Chat and Cowork, Adds Docs and Slides Tools - Technology Org",
+      "link": "https://news.google.com/rss/articles/CBMijgFBVV95cUxQbEhfM0Y0YWhwOEFtZWJ1VFJLVk50UHNjUmVIelJrUHcwR25UMDA1LUdLcDYtZEJSTkVlQ0RLbVFIa2hWVWN3dWJMa1RzcFNkcE9RX05Pak5rQUFGYW9aQ0JMWXFpLWtYRzY3WVBNRW5CbEZVU3VoQm1fUUpmX0xQRDliQXJmQV9QdlpuajVB?oc=5",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-09-17T11:35:33+00:00",
+      "category": "release",
+      "priority": "low",
+      "summary": "Anthropic 合并 Claude Chat 与 Cowork，并添加 Docs 和 Slides 工具。",
+      "why": "与前述 Anthropic 产品更新新闻重复，可跳过。",
+      "tags": [
+        "Anthropic",
+        "Claude"
+      ]
+    },
+    {
+      "id": "cc859b23c33f3e96",
+      "title": "Kimi发布金融行业AI解决方案 已接入多家头部金融机构 - TradingView",
+      "link": "https://news.google.com/rss/articles/CBMiZkFVX3lxTFB4WDl6bTJqZUlaRVRKRnNSQnRBOF9HUVZZc3dTMkNseUpDblVXUzRnVVFqdW1OMlNXVlI5c25qZ3FuajBhd1RteEtuV0YtQlotZm9JRVZMajIzWFltN3NSNHF2d2Vkdw?oc=5",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-09-17T10:55:00+00:00",
+      "category": "industry",
+      "priority": "low",
+      "summary": "Kimi 推出金融行业 AI 解决方案，已接入多家头部金融机构。",
+      "why": "垂直行业落地新闻，不涉及底层技术或生成模型。",
+      "tags": [
+        "Kimi",
+        "金融",
+        "行业落地"
+      ]
+    },
+    {
+      "id": "cfcf89b5b759d2d4",
+      "title": "央企做了个通用Agent，直接杀进IDC实测前三！",
+      "link": "https://www.qbitai.com/2026/09/491454.html",
+      "source": "量子位",
+      "source_id": "qbitai",
+      "published": "2026-09-17T09:39:19+00:00",
+      "category": "industry",
+      "priority": "low",
+      "summary": "中国电信推出通用 Agent TeleAgent，在 IDC 实测中排名前三。",
+      "why": "偏应用层的 Agent 评测，与 GPU 优化和生成模型无关。",
+      "tags": [
+        "Agent",
+        "中国电信"
+      ]
+    },
+    {
+      "id": "e069e7b1e343c9c9",
+      "title": "智谱 GLM 公开国内大模型首个递归自我改进实践：AI 在十万卡国产集群上自建推理系统 - 新浪财经",
+      "link": "https://news.google.com/rss/articles/CBMif0FVX3lxTFBWM2Y0RFBmZlJ4X0R6RXBsVGV6U1QzUGZzVDBaMnAtY3Rqc3VoSU5HTW1qSnVtWmcxUEp5X3hFdTBfREJSRnlsT2QtNktLcXNoNGRMQUM5YWN1WW9BQmd6dFdTOG9hQlMxMk1US21qRS1hMXpRS05PR3BUQUd0UzQ?oc=5",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-09-17T08:58:00+00:00",
+      "category": "infra",
+      "priority": "low",
+      "summary": "智谱 GLM 在十万卡国产集群上通过 AI 自建推理系统。",
+      "why": "与前述智谱推理系统新闻重复，可跳过。",
+      "tags": [
+        "Zhipu AI",
+        "Inference System"
+      ]
+    },
+    {
+      "id": "7e29ccb7184878ae",
+      "title": "Anthropic runs company on Claude agents while urging AI speed control - CHOSUNBIZ - biz.chosun.com",
+      "link": "https://news.google.com/rss/articles/CBMiekFVX3lxTE9iOGc3ZDU2anpZTGFkc1VieE1WbFRqYW53T2pLR3N0Q0dobTM5Tkd5TGhuTUQyVFNyZTg0NTZWRDA4UEJCeEE4WGN3Tl9VNlFCRnVabFplN3Z1SXZZandMaWVLZWtMblRwc05uRHZTSnBGMzlIcDI2V3FB0gGOAUFVX3lxTE5FNzF3czdyLUZSLXg2M25DZlZKcnZ6b1BVX0Q0dXFQWmhMY3lvZEVFWkJ0bHVhU1RubmhjN2MxYk5MbzI5TWMyMUpoUEZpdVRDa1RWWlNSd1dkN3poWGw1RUdmY2xpRF8wUVhIMGlQWmZYUkt5TVBwVUJVQ0FDaE9wRDF4NkQ0SnNQZDZ3eEE?oc=5",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-09-17T06:45:00+00:00",
+      "category": "industry",
+      "priority": "low",
+      "summary": "Anthropic 在内部使用 Claude 智能体运营公司，同时呼吁控制 AI 发展速度。",
+      "why": "行业八卦与政策呼吁，与技术研发无关。",
+      "tags": [
+        "Anthropic",
+        "AI Agents",
+        "AI Policy"
+      ]
+    },
+    {
+      "id": "93856f4df1eb2848",
+      "title": "AI调用量连续20周超美国，中国大模型靠什么抢市场？ - Sohu",
+      "link": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxNeV83U0ZrWjd3YWZNUDV5a09NSmVwblRjWm5jTUxIai03WElnVHF6M0JOYURXdEZtS1N2S0U5Ujg1Rng4RmswVm9Ya3E3V2VRY1JUbXMyb1hGVXFJRkFxa25TMDltbDlpTFI3RVVVTmlOWjVLNlpEeHJjQ09MOEd3bURfdG5fWl9f?oc=5",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-09-17T01:51:00+00:00",
+      "category": "industry",
+      "priority": "low",
+      "summary": "媒体探讨中国大模型 AI 调用量超越美国背后的市场策略。",
+      "why": "宏观市场分析，缺乏技术深度。",
+      "tags": [
+        "大模型",
+        "市场分析"
+      ]
+    },
+    {
+      "id": "363bbead77de9f9f",
+      "title": "Introducing Astra for Law",
+      "link": "https://openai.com/index/astra-for-law",
+      "source": "OpenAI",
+      "source_id": "openai",
+      "published": "2026-09-17T00:00:00+00:00",
+      "category": "release",
+      "priority": "low",
+      "summary": "OpenAI 推出 Astra for Law，为律所提供定制工作流和机密数据控制。",
+      "why": "垂直领域的商业产品发布，不涉及底层技术或生成模型研究。",
+      "tags": [
+        "OpenAI",
+        "Legal AI",
+        "Product Release"
+      ]
+    },
+    {
+      "id": "58ea01d994d841f2",
+      "title": "国产大模型Kimi 下盘稳适合什么运动问世 美国AI巨头Anthropic被冲击：估值少了9000亿 - 体坛",
+      "link": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE42dzJCUDY0cGRLZUFVS0JsODY4cGI4VU81Tk10LXl0RDhRTkdlRnBwbnlfOGlIR2V4ZEMzS210NVotUHVxVS1TemljeUNHTW94?oc=5",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-09-16T23:42:39+00:00",
+      "category": "industry",
+      "priority": "low",
+      "summary": "媒体炒作 Kimi 问世对美国 AI 巨头 Anthropic 估值造成冲击。",
+      "why": "明显的标题党和营销内容，无技术价值。",
+      "tags": [
+        "Kimi",
+        "行业八卦"
+      ]
+    },
+    {
+      "id": "40a3c6ad8bbc18cd",
+      "title": "网络真钱赌钱_游戏资讯_DeepSeek工程师发长文引爆网络：不得不把才华埋葬在昨天 - 体坛",
+      "link": "https://news.google.com/rss/articles/CBMiV0FVX3lxTE5hMTk3VmtCb2ZXT1d3eGhTUWlJcXdoSWNmN2VXbW9TXzFnMHNhZm9OUXlrU01ZN0oxb0wzSWdwYnRqWHZYVWZLcktEd3dKUnl5UE1Qbkx3Zw?oc=5",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-09-16T19:18:03+00:00",
+      "category": "industry",
+      "priority": "low",
+      "summary": "疑似博彩引流的垃圾新闻，借 DeepSeek 工程师名义炒作。",
+      "why": "垃圾信息，直接跳过。",
+      "tags": [
+        "垃圾新闻",
+        "DeepSeek"
+      ]
+    },
+    {
+      "id": "9b68fe3494cb3f34",
+      "title": "Gaze as Evidence for Common Grounding: A Cross-Corpus Analysis of MapTask and MUNDEX",
+      "link": "https://huggingface.co/papers/2609.18011",
+      "source": "HF Papers 日榜",
+      "source_id": "hf-papers",
+      "published": "2026-09-15T20:00:00+00:00",
+      "category": "research",
+      "priority": "low",
+      "summary": "跨语料库分析视线在协作任务中作为共同理解证据的作用。",
+      "why": "偏向人机交互和认知科学，与底层系统和生成模型无关。",
+      "tags": [
+        "Human-Computer Interaction",
+        "Gaze Analysis"
+      ]
+    }
+  ]
+}

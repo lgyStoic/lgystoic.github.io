@@ -131,7 +131,9 @@
       "link_pattern": "^https://www\\.oschina\\.net/event/\\d+",
       "base": "https://www.oschina.net",
       "default_type": "talk",
-      "default_city": ""
+      "default_city": "",
+      "disabled": true,
+      "disabled_reason": "2026-09-18 自动停用：连续 5 天解析出 0 条（前端渲染或反爬）"
     },
     {
       "id": "juejin-events",
@@ -141,7 +143,9 @@
       "link_pattern": "^https://juejin\\.cn/events/[a-z0-9-]+$",
       "base": "https://juejin.cn",
       "default_type": "talk",
-      "default_city": ""
+      "default_city": "",
+      "disabled": true,
+      "disabled_reason": "2026-09-18 自动停用：连续 5 天解析出 0 条（前端渲染或反爬）"
     },
     {
       "id": "hackathonweekly",
@@ -151,7 +155,9 @@
       "link_pattern": "^https://hackathonweekly\\.com/events?/[A-Za-z0-9_-]+",
       "base": "https://hackathonweekly.com",
       "default_type": "hackathon",
-      "default_city": "深圳"
+      "default_city": "深圳",
+      "disabled": true,
+      "disabled_reason": "2026-09-18 自动停用：连续 5 天解析出 0 条（前端渲染或反爬）"
     },
     {
       "id": "gdg-shenzhen",
