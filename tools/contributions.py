@@ -76,7 +76,7 @@ def collect_repo(name, opts=None):
             c=api(f'repos/{name}/contents/{path}'); contributing=base64.b64decode(c.get('content','')).decode('utf-8','replace')[:5000]; break
         except Exception: continue
     q=urllib.parse.quote(f'repo:{name} is:issue is:open')
-    issues=api(f'search/issues?q={q}&sort=updated&order=desc&per_page=30').get('items',[])
+    issues=api(f'search/issues?q={q}&sort=updated&order=desc&per_page={100 if opts.get("focus") else 30}').get('items',[])
     # 大仓库再补一轮标了 good first issue / help wanted 的
     q2=urllib.parse.quote(f'repo:{name} is:issue is:open label:"good first issue","help wanted"')
     try:
@@ -91,7 +91,7 @@ def collect_repo(name, opts=None):
                    'kernel OR "CUDA graph" OR triton OR fused', 'profiling OR benchmark OR telemetry', 'test OR CI OR flaky', 'roadmap OR tracking OR RFC'):
             qk=urllib.parse.quote(f'repo:{name} is:issue is:open {kw}')
             try:
-                hits=api(f'search/issues?q={qk}&sort=updated&order=desc&per_page=20').get('items',[])
+                hits=api(f'search/issues?q={qk}&sort=comments&order=desc&per_page=20').get('items',[])
             except Exception:
                 hits=[]
             seen={i['number'] for i in issues}
@@ -130,7 +130,7 @@ def task_prompt(ev):
 硬约束：
 1. 每张卡必须绑定输入 issues 中一个真实、仍开放的 Issue；source_url、source_number、source_title 必须逐字取自输入，禁止虚构。
 2. 介入是否得体是第一优先级：Issue 已有 assignees、或 linked_prs 里有 open 状态的 PR、或 pulls 里明显已覆盖 → 不要推荐去做，最多建议去 review / 补测试；在 engagement 字段写清楚判断依据。
-3. compute_class 只能填 "CPU"、"Mac"、"Colab T4" 三者之一，写明验证路径；任何需要真机 GPU 才能复现或验证的任务直接不要生成。优先能发挥候选人 kernel / 性能专长、且维护者明显关心（评论多、最近更新、有 label）的任务。普通仓库最多 6 张；focus=true 的重点仓库最多 12 张，要把候选池用足。宁缺毋滥；没有可靠任务返回空数组。
+3. compute_class 只能填 "CPU"、"Mac"、"Colab T4" 三者之一，写明验证路径；任何需要真机 GPU 才能复现或验证的任务直接不要生成。优先能发挥候选人 kernel / 性能专长、且维护者明显关心（评论多、最近更新、有 label）的任务。普通仓库最多 6 张；focus=true 的重点仓库最多 12 张、候选池够的话不少于 8 张，要把候选池用足（包括 Roadmap / Tracking 子项）。宁缺毋滥；没有可靠任务返回空数组。
 3a. 每张卡 kind 填 "issue"。[Roadmap] / [Tracking] / [RFC] 这类 Issue 也算：从它正文的未勾选子项里挑一个具体子任务成卡，source 仍是这个 Issue，title 和 claim_comment 里点名子项。
 3b. young=true（年轻仓库，Issue 很少）额外允许 kind="proposal" 的提案卡，最多 5 张：不绑 Issue，依据 README、根目录、最近 commits 提出具体、可验证、维护者大概率想要的改进（补测试、CPU/Metal 后端正确性对照、文档与示例、性能基线脚本、构建与 CI）。提案卡的 source_url 必须是 commits 里某条 commit 的 url 或仓库 url，source_number 填 0，source_title 填该 commit message 或仓库名；engagement 必须写明「先开 Issue 提案，得到回应再动手」；claim_comment 改写成一段英文的 Issue 草稿（第一行是标题）。
 4. 实施步骤具体到调查、代码修改、测试与提交前沟通；likely_paths 只能依据 README、CONTRIBUTING、Issue 正文和根目录推断，不确定就写“需先定位”。
@@ -139,7 +139,7 @@ def task_prompt(ev):
 7. pr_scope：一句话说明第一个 PR 该多小、边界在哪；time_estimate：诚实的工时估计，如「2–3 个晚上」。skill_fit：一句话说这张卡用到候选人哪项专长。
 8. how_to_engage（仓库级）：3–5 条，基于 CONTRIBUTING 和 README：在哪讨论（community 链接）、PR 前要不要先开 Issue / RFC、CLA / DCO、测试和格式要求、维护者响应节奏。没有依据的不要写。
 9. why_core 解释它如何通向长期维护职责，不写空泛鼓励。recommended_order 使用任务标题给出建议顺序。
-10. 中文输出，代码、文件名、专有名词保留原文；claim_comment 用英文。
+10. 全部字段中文输出（title 也要中文），代码、文件名、专有名词保留原文；只有 claim_comment 用英文。
 
 仓库证据：'''+json.dumps(compact,ensure_ascii=False)
 
