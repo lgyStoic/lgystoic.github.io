@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """GitHub signals -> Gemini task cards -> project-specific contribution pages."""
-import base64, html, json, os, re, urllib.parse, urllib.request
+import base64, html, json, os, re, urllib.error, urllib.parse, urllib.request
 from datetime import datetime, timezone
 from pathlib import Path
 import radar
@@ -152,7 +152,11 @@ def main():
             generated['evidence']={k:v for k,v in evidence.items() if k!='readme'}
             generated['model']=radar.LAST_MODEL_USED; models.append(radar.LAST_MODEL_USED); repos.append(generated)
         except Exception as exc:
-            failures.append({'repo':name,'error':type(exc).__name__})
+            detail=type(exc).__name__
+            if isinstance(exc, urllib.error.HTTPError): detail=f'HTTP {exc.code} {exc.url[:80]}'
+            elif str(exc): detail=f'{detail}: {str(exc)[:120]}'
+            print(f'仓库失败 {name}: {detail}')
+            failures.append({'repo':name,'error':detail})
             if name in old:
                 stale=old[name]; stale['stale']=True; repos.append(stale)
     model=models[0] if models and len(set(models))==1 else ' / '.join(dict.fromkeys(models))
