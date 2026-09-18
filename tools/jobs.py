@@ -413,8 +413,12 @@ def fetch_source(source):
 def collect(config, old, fetcher=fetch_source):
     now = datetime.now(timezone.utc).isoformat(timespec='seconds')
     jobs, statuses = {}, []
+    for source in config['sources']:
+        if source.get('disabled'):
+            # 停用的源不抓、也不沿用旧数据，但要在状态表里留一行，写明为什么停
+            statuses.append({'name': source['name'], 'ok': True, 'fetched': 0, 'matched': 0, 'disabled': True, 'error': source.get('disabled_reason', '')})
     with concurrent.futures.ThreadPoolExecutor(max_workers=3) as pool:
-        futures = [(s, pool.submit(fetcher, s)) for s in config['sources']]
+        futures = [(s, pool.submit(fetcher, s)) for s in config['sources'] if not s.get('disabled')]
         for source, future in futures:
             try:
                 rows = future.result()

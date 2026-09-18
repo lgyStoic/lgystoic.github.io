@@ -241,6 +241,21 @@
       "name": "Indeed · 远程",
       "scope": "ML infrastructure",
       "url": "https://www.indeed.com/jobs?q=machine+learning+infrastructure+inference&l=Remote"
+    },
+    {
+      "name": "字节跳动 · 社招",
+      "scope": "CUDA / 推理 / 训练框架",
+      "url": "https://jobs.bytedance.com/experienced/position?keywords=CUDA%20%E6%8E%A8%E7%90%86"
+    },
+    {
+      "name": "MiniMax · 猎聘",
+      "scope": "推理 / 训练 / 算子",
+      "url": "https://www.liepin.com/zhaopin/?key=MiniMax%20%E6%8E%A8%E7%90%86"
+    },
+    {
+      "name": "月之暗面 · 猎聘",
+      "scope": "推理 / Infra",
+      "url": "https://www.liepin.com/zhaopin/?key=%E6%9C%88%E4%B9%8B%E6%9A%97%E9%9D%A2%20%E6%8E%A8%E7%90%86"
     }
   ],
   "sources": [
@@ -410,7 +425,9 @@
         "大模型系统",
         "Seed"
       ],
-      "location": "北京"
+      "location": "北京",
+      "disabled": true,
+      "disabled_reason": "2026-09-18 停用：飞书招聘接口对 experienced 站点返回 code -9000003 site not exist，只有 campus（校招）能取到，校招岗位对资深候选人没有意义；社招请用下方手动链接"
     },
     {
       "id": "zhipu",
@@ -442,7 +459,9 @@
         "CUDA",
         "算子"
       ],
-      "location": "北京"
+      "location": "北京",
+      "disabled": true,
+      "disabled_reason": "2026-09-18 停用：social 站点接口返回 code 0 但 0 条岗位，连不带关键词拉全量也是 0；请用下方猎聘链接"
     },
     {
       "id": "minimax",
@@ -458,7 +477,9 @@
         "视频",
         "算子"
       ],
-      "location": "上海"
+      "location": "上海",
+      "disabled": true,
+      "disabled_reason": "2026-09-18 停用：minimax.jobs.feishu.cn 的搜索接口对所有站点路径都返回 HTTP 400，可能已不是飞书招聘门户；请用下方猎聘链接"
     },
     {
       "id": "baidu",
