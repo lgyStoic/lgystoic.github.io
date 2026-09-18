@@ -140,6 +140,8 @@ code {
   width: min(var(--page), 100%);
   margin: 0 auto;
   padding-inline: 22px;
+  /* 长路径、模块名这类没有断点的词在手机上允许折行，不再把页面撑出一条横向滚动 */
+  overflow-wrap: anywhere;
 }
 
 main.wrap {
@@ -953,6 +955,10 @@ main.wrap {
   margin-top: 10px;
 }
 
+:not(pre) > code {
+  overflow-wrap: anywhere;
+}
+
 .src-table {
   width: 100%;
   border-collapse: collapse;
@@ -1701,9 +1707,11 @@ main.wrap {
 .support-method figcaption { margin-top: 5px; color: var(--muted); font-size: 0.78rem; }
 
 @media (max-width: 640px) {
-  .guide-support { grid-template-columns: 1fr; }
-  .support-methods { justify-content: center; }
-  .support-method img { width: min(58vw, 180px); height: auto; }
+  /* 两张二维码并排：各 38vw + 14px 间距，在 360–640px 都放得下，不再把网格撑出屏幕 */
+  .guide-support { grid-template-columns: minmax(0, 1fr); }
+  .guide-support > * { min-width: 0; }
+  .support-methods { justify-content: center; flex-wrap: wrap; }
+  .support-method img { width: min(38vw, 180px); height: auto; }
 }
 
 .comments {

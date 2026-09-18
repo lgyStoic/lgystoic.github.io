@@ -32,7 +32,9 @@ CHAPTERS = [
         'layers':{'type':'string'},'modules':_objs('module','path','role','entry_points','depends_on','size','notes'),
         'data_flow':{'type':'string'},'key_types':_objs('name','path','purpose'),'extension_points':_objs('where','how'),
         'hotspots':_objs('path','why'),'reading_order':_arr(),
-    },'required':['layers','modules','data_flow','key_types','extension_points','hotspots','reading_order']}),
+        'diagram':{'type':'object','properties':{'layers':_objs('name','modules'),'edges':_objs('from','to','label'),'caption':{'type':'string'}},'required':['layers','edges','caption']},
+        'flow':_objs('step','component','path'),
+    },'required':['layers','modules','data_flow','key_types','extension_points','hotspots','reading_order','diagram','flow']}),
     ('runbook', '本地跑起来', {'type':'object','properties':{
         'install':_arr(),'no_gpu_paths':{'type':'string'},'smoke_test':_arr(),'test_suite':{'type':'string'},'debug_tips':_arr(),
         'ci':{'type':'string'},'pitfalls':_arr(),
@@ -59,7 +61,9 @@ CHAPTER_BRIEF = {
 - data_flow：400 字以上，一次请求 / 推理 / 训练从入口到输出的完整路径，关键数据结构与调度点。
 - key_types：8–15 个关键类型或函数，写路径和用途。
 - extension_points：新模型 / 新后端 / 新 kernel / 新调度策略分别在哪接、怎么接。
-- hotspots：结合提交热点 5–8 条。reading_order：建议阅读顺序，10 步以内，每步一个文件或目录。""",
+- hotspots：结合提交热点 5–8 条。reading_order：建议阅读顺序，10 步以内，每步一个文件或目录。
+- diagram：架构图的结构化数据，页面会据此画图。layers 自上而下 3–6 层（如 接入层 / 调度层 / 执行层 / 硬件层），每层的 modules 用逗号分隔列出属于它的模块名，必须与 modules 里的 module 一字不差，每个模块只出现在一层；edges 8–16 条模块间的调用或数据依赖，from / to 用模块名，label 2–6 个字写传的是什么（请求 / Tensor / 配置…），只写有证据的；caption 一句话说明这张图。
+- flow：一次典型请求的 5–9 步，与 data_flow 一致：step 是动作（8 字内），component 是模块名或类名，path 是文件路径（不确定写「需验证」）。""",
     'runbook': """- install：在没有 GPU 的 MacBook（Apple Silicon）上安装的具体命令序列，依据 README / pyproject / CMakeLists；哪些依赖要跳过或替换。
 - no_gpu_paths：哪些代码路径能在 CPU / MPS / Metal 上真正执行，哪些只能读代码或用 Colab T4 验证。
 - smoke_test：3–6 条最小可运行示例命令，只写真正会跑推理 / 测试的命令；文档站、Lint 脚本不算冒烟测试。test_suite：测试框架、目录、怎么只跑 CPU 子集、大概耗时。
@@ -621,6 +625,112 @@ def _check(items):
     return '<ul class="checklist">'+''.join(f'<li><label><input type="checkbox"> {esc(x)}</label></li>' for x in (items or []))+'</ul>'
 
 
+def _tw(text, size=13):
+    """估算文本像素宽：汉字按一个字号，ASCII 按 0.56 字号。"""
+    return sum(size if ord(ch) > 0x2E7F else size*0.56 for ch in str(text or ''))
+
+
+def _svg_text(x, y, text, cls='', anchor='middle'):
+    return f'<text x="{x:.0f}" y="{y:.0f}" text-anchor="{anchor}" class="{cls}">{esc(text)}</text>'
+
+
+def arch_svg(diagram, modules):
+    """分层架构图：每层一行，模块是方框，依赖是带箭头的曲线。没有可用数据返回空串。"""
+    if not isinstance(diagram, dict): return ''
+    known=[m.get('module','') for m in (modules or []) if m.get('module')]
+    placed=set(); layers=[]
+    for layer in diagram.get('layers') or []:
+        names=[n.strip() for n in re.split(r'[,，、;；/]', str(layer.get('modules',''))) if n.strip()]
+        names=[n for n in names if n in known and n not in placed]
+        if not names: continue
+        placed.update(names); layers.append((layer.get('name','') or '', names))
+    rest=[n for n in known if n not in placed]
+    if rest: layers.append(('其他', rest))
+    if len(layers) < 2: return ''
+    neigh={}
+    for e in diagram.get('edges') or []:
+        a,b=str(e.get('from','')).strip(), str(e.get('to','')).strip()
+        if a in placed and b in placed:
+            neigh.setdefault(a,set()).add(b); neigh.setdefault(b,set()).add(a)
+    order={}
+    for li,(lname,names) in enumerate(layers):
+        if li:
+            orig={n:i for i,n in enumerate(names)}   # list.sort 期间 names 是空的，不能在 key 里 index
+            def bary(n):
+                xs=[order[m] for m in neigh.get(n,()) if m in order]
+                return (sum(xs)/len(xs)) if xs else orig[n]
+            names=sorted(names, key=bary); layers[li]=(lname,names)
+        for i,n in enumerate(names): order[n]=i-(len(names)-1)/2
+    W=720; label_w=118; x0=label_w+14; x1=W-14; gap=12; bh=40; fs=13
+    pos={}; bands=[]; y=14
+    for lname, names in layers:
+        rows=[[]]; used=0
+        for n in names:
+            bw=min(max(_tw(n, fs)+26, 96), 250)
+            if used and used+gap+bw > x1-x0: rows.append([]); used=0
+            rows[-1].append((n,bw)); used+= (gap if used else 0)+bw
+        top=y
+        for row in rows:
+            total=sum(bw for _,bw in row)+gap*(len(row)-1); x=x0+((x1-x0)-total)/2
+            for n,bw in row:
+                pos[n]=(x,y+8,bw,bh); x+=bw+gap
+            y+=bh+18
+        bands.append((lname, top, y-10)); y+=30
+    H=y-16
+    out=[f'<svg viewBox="0 0 {W} {H}" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="架构图">',
+         '<defs><marker id="arw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="d-arrow"/></marker></defs>']
+    for i,(lname,top,bottom) in enumerate(bands):
+        out.append(f'<rect x="6" y="{top:.0f}" width="{W-12}" height="{bottom-top:.0f}" rx="8" class="d-band{i%2}"/>')
+        out.append(_svg_text(12, (top+bottom)/2+4, lname[:9], 'd-layer', 'start'))
+    edges=[]
+    for e in diagram.get('edges') or []:
+        a,b=str(e.get('from','')).strip(), str(e.get('to','')).strip()
+        if a in pos and b in pos and a!=b: edges.append((a,b,str(e.get('label',''))[:10]))
+    for a,b,label in edges[:24]:
+        ax,ay,aw,ah=pos[a]; bx,by,bw,bh2=pos[b]
+        if by > ay+ah-1:   # 向下
+            sx,sy,ex,ey=ax+aw/2, ay+ah, bx+bw/2, by
+        elif by+bh2 < ay+1: # 向上
+            sx,sy,ex,ey=ax+aw/2, ay, bx+bw/2, by+bh2
+        else:               # 同一层
+            sx,sy,ex,ey=(ax+aw, ay+ah/2, bx, by+bh2/2) if bx>ax else (ax, ay+ah/2, bx+bw, by+bh2/2)
+        mx,my=(sx+ex)/2,(sy+ey)/2
+        same_layer = not (by > ay+ah-1 or by+bh2 < ay+1)
+        cx,cy=(mx, my-34) if same_layer else (mx, my)
+        upward = by+bh2 < ay+1
+        out.append(f'<path d="M{sx:.0f} {sy:.0f} Q{cx:.0f} {cy:.0f} {ex:.0f} {ey:.0f}" class="d-edge{" d-back" if upward else ""}" marker-end="url(#arw)"/>')
+        length=((ex-sx)**2+(ey-sy)**2)**0.5
+        if label and length >= 34:
+            lx,ly=(sx+2*cx+ex)/4, (sy+2*cy+ey)/4
+            out.append(_svg_text(lx+8, ly-4 if same_layer else ly+4, label, 'd-elabel', 'start'))
+    for n,(x,yy,bw,bh_) in pos.items():
+        out.append(f'<g><title>{esc(n)}</title><rect x="{x:.0f}" y="{yy:.0f}" width="{bw:.0f}" height="{bh_}" rx="7" class="d-box"/>{_svg_text(x+bw/2, yy+bh_/2+5, n if _tw(n,fs)<=bw-16 else n[:max(3,int((bw-30)/fs))]+"…", "d-mod")}</g>')
+    out.append('</svg>')
+    cap=diagram.get('caption') or ''
+    return f'<figure class="diagram"><div class="diagram-wrap arch">{"".join(out)}</div>{("<figcaption>"+esc(cap)+"</figcaption>") if cap else ""}</figure>'
+
+
+def flow_svg(flow):
+    """一次请求的流程图：竖排编号方框，箭头向下。"""
+    steps=[f for f in (flow or []) if isinstance(f, dict) and f.get('step')]
+    if len(steps) < 3: return ''
+    W=640; bh=58; gap=26; H=14+len(steps)*(bh+gap)-gap+14
+    out=[f'<svg viewBox="0 0 {W} {H}" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="调用流程图">',
+         '<defs><marker id="arw2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="d-arrow"/></marker></defs>']
+    y=14
+    for i,f in enumerate(steps):
+        out.append(f'<rect x="40" y="{y}" width="{W-54}" height="{bh}" rx="8" class="d-box"/>')
+        out.append(f'<circle cx="40" cy="{y+bh/2:.0f}" r="14" class="d-num"/>{_svg_text(40, y+bh/2+5, str(i+1), "d-numtext")}')
+        out.append(_svg_text(66, y+23, str(f.get('step',''))[:24], 'd-step', 'start'))
+        comp=str(f.get('component',''))[:40]; path=str(f.get('path',''))[:60]
+        out.append(_svg_text(66, y+44, (comp+('  ·  '+path if path else ''))[:88], 'd-sub', 'start'))
+        if i < len(steps)-1:
+            out.append(f'<path d="M{W/2:.0f} {y+bh} L{W/2:.0f} {y+bh+gap-2}" class="d-edge" marker-end="url(#arw2)"/>')
+        y+=bh+gap
+    out.append('</svg>')
+    return f'<figure class="diagram"><div class="diagram-wrap">{"".join(out)}</div></figure>'
+
+
 def analysis_html(a, ev):
     if not a: return ''
     if 'positioning' not in a:  # 旧版单块结构，直接跳过
@@ -636,9 +746,11 @@ def analysis_html(a, ev):
 <p><b>阶段：</b>{esc(P.get('stage'))}</p><p><b>技术栈：</b>{esc('；'.join(P.get('stack',[])))}</p><p><b>规模：</b>{esc(P.get('numbers'))}</p></section>'''
     mods=''.join(f'<tr><td><b>{esc(m.get("module"))}</b><br><code>{esc(m.get("path"))}</code><br><span class="muted">{esc(m.get("size"))}</span></td><td>{esc(m.get("role"))}<br><span class="muted">入口：{esc(m.get("entry_points"))}</span><br><span class="muted">依赖：{esc(m.get("depends_on"))}</span>{("<br><span class=muted>"+esc(m.get("notes"))+"</span>") if m.get("notes") else ""}</td></tr>' for m in C.get('modules',[]))
     ch2=f'''<section class="analysis" id="ch2"><h2>二、架构与代码地图</h2><p>{esc(C.get('layers'))}</p>
+{arch_svg(C.get('diagram'), C.get('modules'))}
 <div class="table-wrap"><table class="arch"><thead><tr><th>模块 / 路径</th><th>职责 · 入口 · 依赖</th></tr></thead><tbody>{mods}</tbody></table></div>
 <details><summary>目录树（按文件数）</summary><ul class="tree">{tree_html}</ul></details>
 <h3>一次调用怎么流过这些模块</h3><p>{esc(C.get('data_flow'))}</p>
+{flow_svg(C.get('flow'))}
 <h3>关键类型与函数</h3><div class="table-wrap"><table class="arch"><thead><tr><th>名称</th><th>路径</th><th>用途</th></tr></thead><tbody>{_rows(C.get('key_types'),'name','path','purpose')}</tbody></table></div>
 <h3>扩展点</h3>{_kv_list(C.get('extension_points'),'where','how')}
 <h3>最近在动的地方</h3>{_kv_list(C.get('hotspots'),'path','why')}
@@ -665,7 +777,7 @@ def detail_page(repo,updated,global_model):
     ev=repo.get('evidence',{}); tasks=repo.get('tasks',[])
     cards=''.join(task_card(t,i) for i,t in enumerate(tasks,1)) or '<p class="empty-state">当前开放 Issue 中没有足够可靠、适合你设备条件的任务。等待下次更新。</p>'
     stale=' · 本次生成失败，展示上次结果' if repo.get('stale') else ''
-    return f'''<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{esc(repo['repo'])} 贡献任务 | Anaxagore</title><meta name="description" content="{esc(repo['repo'])} 的具体开源贡献任务、Issue 链接与实施方案。"><link rel="canonical" href="https://lgystoic.github.io/radar/contributions/{slug(repo['repo'])}/"><link rel="stylesheet" href="../../../site.css"><style>.repo-hero{{padding-bottom:1.5rem;border-bottom:1px solid var(--line)}}.repo-meta,.task-top{{display:flex;gap:.7rem;flex-wrap:wrap;color:var(--muted)}}.task-card{{margin:1.2rem 0;padding:1.25rem;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface)}}.task-card h2{{margin:.45rem 0}}.task-card details{{margin-top:.8rem}}.task-index{{font-weight:700;color:var(--accent)}}.first-action{{margin:1rem 0;padding:.8rem 1rem;background:var(--bg-tint);border-radius:var(--radius)}}.source-link a{{font-weight:650}}.back-link{{display:inline-block;margin-bottom:1rem}}.badges{{display:flex;flex-wrap:wrap;gap:.4rem;margin:.5rem 0}}.badge{{padding:.1rem .55rem;border:1px solid var(--line);border-radius:999px;font-size:.75rem;color:var(--muted)}}.badge.ok{{border-color:#3a7d44;color:#3a7d44}}.badge.warn{{border-color:var(--accent);color:var(--accent);background:var(--accent-soft)}}.engage{{margin:.8rem 0;padding:.8rem 1rem;border-left:3px solid var(--accent);background:var(--bg-tint);border-radius:0 var(--radius) var(--radius) 0;line-height:1.7}}.claim{{white-space:pre-wrap;font-family:inherit;font-size:.92rem;line-height:1.6;margin:.5rem 0;padding:.8rem 1rem;background:var(--bg-tint);border-radius:var(--radius)}}.analysis h2{{margin-top:2rem}}.analysis h3{{margin-top:1.2rem;font-size:1.02rem}}.analysis p{{line-height:1.8;color:var(--ink-soft)}}.analysis .overview{{font-size:1.02rem;color:var(--ink)}}.arch{{width:100%;border-collapse:collapse;font-size:.9rem}}.arch th,.arch td{{padding:.55rem .6rem;border-top:1px solid var(--line-soft);vertical-align:top;text-align:left;line-height:1.55}}.arch th{{color:var(--muted);font-size:.75rem;font-family:var(--mono)}}.muted{{color:var(--muted);font-size:.85em}}.tree{{list-style:none;padding:0;columns:2;gap:1.5rem;font-size:.85rem}}.tree li{{margin:.3rem 0;break-inside:avoid}}.phases{{display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:1rem;margin-top:1rem}}.phase{{padding:1rem;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface)}}.phase h3{{margin:0 0 .5rem;font-size:.95rem}}.checklist{{list-style:none;padding:0;margin:0}}.checklist li{{margin:.4rem 0;line-height:1.5;font-size:.9rem}}.checklist input{{margin-right:.4rem}}.toc{{margin:1rem 0;padding:.7rem 1rem;border:1px solid var(--line);border-radius:var(--radius);background:var(--bg-tint);font-size:.88rem;line-height:1.8}}.toc a{{color:var(--accent)}}.analysis ol li,.analysis ul li{{margin:.3rem 0;line-height:1.6}}.analysis code{{font-size:.85em}}@media (max-width:560px){{.tree{{columns:1}}}}</style></head><body><!-- build:header --><!-- /build:header --><main class="wrap"><a class="back-link" href="../">← 所有项目</a><section class="repo-hero"><p class="kicker">Contribution Tasks</p><h1>{esc(repo['repo'])}</h1><p>{esc(repo.get('fit'))}</p><p><b>当前方向：</b>{esc(repo.get('current_direction'))}</p><div class="repo-meta"><span>★ {ev.get('stars',0)}</span><span>Fork {ev.get('forks',0)}</span><span>{len(tasks)} 个候选任务</span><span>Gemini：{esc(repo.get('model') or global_model)}</span></div><p class="radar-stats">更新于 {esc(updated)}{stale} · <a href="{esc(ev.get('url','#'),True)}" rel="noopener noreferrer">打开仓库 ↗</a></p></section>{analysis_html(repo.get('analysis'), ev)}<section id="ch6"><h2>六、怎么介入这个项目</h2>{list_html(repo.get('how_to_engage',[]))}{('<p><b>社区入口：</b>'+' · '.join(f'<a href="{esc(u,True)}" rel="noopener noreferrer">{esc(u.split("//",1)[-1][:40])}</a>' for u in ev.get('community',[]))+'</p>') if ev.get('community') else ''}<h2>建议顺序</h2>{list_html(repo.get('recommended_order',[]))}<details><summary>成为长期维护者的路径</summary>{list_html(repo.get('maintainer_path',[]))}</details></section><section class="task-grid" id="ch7"><h2>七、任务卡</h2>{cards}</section></main><footer class="site-footer"><div class="wrap"><span>© 2026 Anaxagore</span><span><a href="../../../about/">关于</a></span></div></footer><script src="../../../site.js" defer></script><script>document.querySelectorAll('[data-copy-claim]').forEach(b=>b.addEventListener('click',()=>{{const t=b.parentElement.querySelector('[data-claim]').textContent;const done=()=>{{b.textContent='已复制';setTimeout(()=>b.textContent='复制留言',1500)}};if(navigator.clipboard)navigator.clipboard.writeText(t).then(done,done);else window.prompt('复制',t)}}))</script></body></html>'''
+    return f'''<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{esc(repo['repo'])} 贡献任务 | Anaxagore</title><meta name="description" content="{esc(repo['repo'])} 的具体开源贡献任务、Issue 链接与实施方案。"><link rel="canonical" href="https://lgystoic.github.io/radar/contributions/{slug(repo['repo'])}/"><link rel="stylesheet" href="../../../site.css"><style>.repo-hero{{padding-bottom:1.5rem;border-bottom:1px solid var(--line)}}.repo-meta,.task-top{{display:flex;gap:.7rem;flex-wrap:wrap;color:var(--muted)}}.task-card{{margin:1.2rem 0;padding:1.25rem;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface)}}.task-card h2{{margin:.45rem 0}}.task-card details{{margin-top:.8rem}}.task-index{{font-weight:700;color:var(--accent)}}.first-action{{margin:1rem 0;padding:.8rem 1rem;background:var(--bg-tint);border-radius:var(--radius)}}.source-link a{{font-weight:650}}.back-link{{display:inline-block;margin-bottom:1rem}}.badges{{display:flex;flex-wrap:wrap;gap:.4rem;margin:.5rem 0}}.badge{{padding:.1rem .55rem;border:1px solid var(--line);border-radius:999px;font-size:.75rem;color:var(--muted)}}.badge.ok{{border-color:#3a7d44;color:#3a7d44}}.badge.warn{{border-color:var(--accent);color:var(--accent);background:var(--accent-soft)}}.engage{{margin:.8rem 0;padding:.8rem 1rem;border-left:3px solid var(--accent);background:var(--bg-tint);border-radius:0 var(--radius) var(--radius) 0;line-height:1.7}}.claim{{white-space:pre-wrap;font-family:inherit;font-size:.92rem;line-height:1.6;margin:.5rem 0;padding:.8rem 1rem;background:var(--bg-tint);border-radius:var(--radius)}}.analysis h2{{margin-top:2rem}}.analysis h3{{margin-top:1.2rem;font-size:1.02rem}}.analysis p{{line-height:1.8;color:var(--ink-soft)}}.analysis .overview{{font-size:1.02rem;color:var(--ink)}}.arch{{width:100%;border-collapse:collapse;font-size:.9rem}}.arch th,.arch td{{padding:.55rem .6rem;border-top:1px solid var(--line-soft);vertical-align:top;text-align:left;line-height:1.55}}.arch th{{color:var(--muted);font-size:.75rem;font-family:var(--mono)}}.muted{{color:var(--muted);font-size:.85em}}.tree{{list-style:none;padding:0;columns:2;gap:1.5rem;font-size:.85rem}}.tree li{{margin:.3rem 0;break-inside:avoid}}.phases{{display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:1rem;margin-top:1rem}}.phase{{padding:1rem;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface)}}.phase h3{{margin:0 0 .5rem;font-size:.95rem}}.checklist{{list-style:none;padding:0;margin:0}}.checklist li{{margin:.4rem 0;line-height:1.5;font-size:.9rem}}.checklist input{{margin-right:.4rem}}.toc{{margin:1rem 0;padding:.7rem 1rem;border:1px solid var(--line);border-radius:var(--radius);background:var(--bg-tint);font-size:.88rem;line-height:1.8}}.toc a{{color:var(--accent)}}.analysis ol li,.analysis ul li{{margin:.3rem 0;line-height:1.6}}.analysis code{{font-size:.85em}}main.wrap{{overflow-wrap:anywhere}}.diagram{{margin:1.2rem 0;max-width:100%;min-width:0}}.diagram-wrap{{overflow-x:auto;max-width:100%;-webkit-overflow-scrolling:touch}}.diagram svg{{display:block;width:100%;height:auto}}.diagram-wrap.arch svg{{min-width:600px}}.diagram figcaption{{margin-top:.5rem;color:var(--muted);font-size:.85rem;line-height:1.6}}.d-band0{{fill:var(--bg-tint)}}.d-band1{{fill:transparent;stroke:var(--line-soft)}}.d-layer{{font:600 12px var(--mono);fill:var(--muted)}}.d-box{{fill:var(--surface);stroke:var(--line);stroke-width:1.2}}.d-mod{{font:600 13px system-ui,sans-serif;fill:var(--ink)}}.d-edge{{fill:none;stroke:var(--accent);stroke-width:1.4;opacity:.85}}.d-back{{stroke-dasharray:5 4;opacity:.6}}.d-arrow{{fill:var(--accent)}}.d-elabel{{font:11px system-ui,sans-serif;fill:var(--ink-soft);paint-order:stroke;stroke:var(--bg);stroke-width:3px}}.d-num{{fill:var(--accent)}}.d-numtext{{font:700 13px var(--mono);fill:#fff}}.d-step{{font:600 14px system-ui,sans-serif;fill:var(--ink)}}.d-sub{{font:12px var(--mono);fill:var(--muted)}}@media (max-width:560px){{.tree{{columns:1}}}}</style></head><body><!-- build:header --><!-- /build:header --><main class="wrap"><a class="back-link" href="../">← 所有项目</a><section class="repo-hero"><p class="kicker">Contribution Tasks</p><h1>{esc(repo['repo'])}</h1><p>{esc(repo.get('fit'))}</p><p><b>当前方向：</b>{esc(repo.get('current_direction'))}</p><div class="repo-meta"><span>★ {ev.get('stars',0)}</span><span>Fork {ev.get('forks',0)}</span><span>{len(tasks)} 个候选任务</span><span>Gemini：{esc(repo.get('model') or global_model)}</span></div><p class="radar-stats">更新于 {esc(updated)}{stale} · <a href="{esc(ev.get('url','#'),True)}" rel="noopener noreferrer">打开仓库 ↗</a></p></section>{analysis_html(repo.get('analysis'), ev)}<section id="ch6"><h2>六、怎么介入这个项目</h2>{list_html(repo.get('how_to_engage',[]))}{('<p><b>社区入口：</b>'+' · '.join(f'<a href="{esc(u,True)}" rel="noopener noreferrer">{esc(u.split("//",1)[-1][:40])}</a>' for u in ev.get('community',[]))+'</p>') if ev.get('community') else ''}<h2>建议顺序</h2>{list_html(repo.get('recommended_order',[]))}<details><summary>成为长期维护者的路径</summary>{list_html(repo.get('maintainer_path',[]))}</details></section><section class="task-grid" id="ch7"><h2>七、任务卡</h2>{cards}</section></main><footer class="site-footer"><div class="wrap"><span>© 2026 Anaxagore</span><span><a href="../../../about/">关于</a></span></div></footer><script src="../../../site.js" defer></script><script>document.querySelectorAll('[data-copy-claim]').forEach(b=>b.addEventListener('click',()=>{{const t=b.parentElement.querySelector('[data-claim]').textContent;const done=()=>{{b.textContent='已复制';setTimeout(()=>b.textContent='复制留言',1500)}};if(navigator.clipboard)navigator.clipboard.writeText(t).then(done,done);else window.prompt('复制',t)}}))</script></body></html>'''
 
 
 def write_detail_pages(data):
