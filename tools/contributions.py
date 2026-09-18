@@ -419,7 +419,12 @@ def main():
     print(f'贡献任务：{len(out["repos"])} 个仓库，{sum(len(x.get("tasks",[])) for x in out["repos"])} 张卡片；失败 {len(out["failures"])}；模型 {out["model"]}')
 
 
-def esc(value,quote=False): return html.escape(str(value or ''),quote=quote)
+def esc(value,quote=False):
+    """转义后再还原 **粗体** 和 `代码` 两种模型爱用的 markdown。"""
+    text=html.escape(str(value or ''),quote=quote)
+    text=re.sub(r'\*\*(.+?)\*\*', r'<b>\1</b>', text)
+    text=re.sub(r'`([^`\n]+?)`', r'<code>\1</code>', text)
+    return text
 def slug(repo): return re.sub(r'[^a-z0-9._-]+','-',repo.lower().replace('/','--')).strip('-')
 def list_html(items): return '<ul>'+''.join(f'<li>{esc(x)}</li>' for x in items)+'</ul>'
 
