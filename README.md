@@ -135,7 +135,7 @@ radar/sources.json  →  tools/radar.py  →  radar/data/<date>.json  →  tools
 
 ## 每日巡检
 
-两层：**自动层**在 GitHub Actions 里（`tools/check.py` 是 radar.yml 的最后一步，`health.yml` 每天 08:40 检查定时运行是否发生、没有就补跑），
+两层：**自动层**在 GitHub Actions 里（`tools/check.py` 是 radar.yml 的最后一步，`health.yml` 每天早上两次兜底检查定时运行是否发生、没有就补跑），
 统计源的连续失败天数、连续失败 ≥ 3 天自动停用、记录 AI 是否退回规则，写 `radar/checks/<日期>.md`，`/status/` 页渲染；
 **判断层**是 agent（Claude 会话，按需），只处理 `radar/data/health.json` 里 `needs_agent` 列出的事，手册在 `.github/agents/daily-check.md`。`tests/fixtures/` 是本地回归用的最小样例：
 `RADAR_FIXTURE_DIR=tests/fixtures python3 tools/radar.py --dry-run --date 2030-01-01`。
