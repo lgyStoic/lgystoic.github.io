@@ -21,8 +21,27 @@ jobs:
           GITHUB_TOKEN: ${{ github.token }}
         run: python3 tools/contributions.py && python3 tools/build.py
       - name: 提交结果
+        # 运行期间 master 可能有新提交；不 rebase 生成物，而是保留本次数据、回到最新 master 重新渲染再提交，最多三次。
         run: |
           git config user.name radar-bot
           git config user.email radar-bot@users.noreply.github.com
-          git add radar/data/contributions.json radar/contributions/ sitemap.xml
-          git diff --cached --quiet || git commit -m "roadmap: refresh contribution plan" && git push origin HEAD:master
+          for attempt in 1 2 3; do
+            git add -A
+            if git diff --cached --quiet; then
+              echo "没有变化，跳过提交"
+              exit 0
+            fi
+            git commit -q -m "roadmap: refresh contribution plan"
+            if git push origin HEAD:master; then
+              exit 0
+            fi
+            echo "推送被拒（master 有新提交），第 ${attempt} 次：保留数据，回到最新 master 重新渲染"
+            rm -rf /tmp/keep && mkdir -p /tmp/keep
+            [ -e radar/data/contributions.json ] && cp -r radar/data/contributions.json /tmp/keep/radar__data__contributions.json
+            git fetch origin master
+            git reset -q --hard origin/master
+            [ -e /tmp/keep/radar__data__contributions.json ] && rm -rf radar/data/contributions.json && cp -r /tmp/keep/radar__data__contributions.json radar/data/contributions.json
+            python3 tools/build.py
+          done
+          echo "连续三次都没推上去"
+          exit 1

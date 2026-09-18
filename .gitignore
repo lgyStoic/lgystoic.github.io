@@ -8,3 +8,8 @@ _site/
 __pycache__/
 *.pyc
 !radar/data/last-run.log
+
+# jobs pipeline scratch (external tool outputs)
+radar/data/liepin/
+radar/data/ats-jobs.json
+radar/data/*.tmp
