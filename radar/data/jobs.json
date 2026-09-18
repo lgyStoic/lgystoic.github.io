@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-18T10:03:01+00:00",
+  "updated": "2026-09-18T10:55:55+00:00",
   "sources": [
     {
       "name": "Apple",
@@ -64,13 +64,14 @@
     {
       "name": "Job-Hunter · Himalayas",
       "ok": true,
-      "fetched": 78,
+      "fetched": 74,
       "matched": 18
     },
     {
       "name": "Adzuna · 新加坡",
-      "ok": false,
-      "error": "HTTP 503 <!DOCTYPE html> <html> <!-- This file is managed by Chef -->     <head>         <meta charset=\"UTF-8\">         <title>Uh oh, something isn't right</title>"
+      "ok": true,
+      "fetched": 150,
+      "matched": 35
     },
     {
       "name": "腾讯招聘",
@@ -80,9 +81,8 @@
     },
     {
       "name": "字节跳动",
-      "ok": true,
-      "fetched": 436,
-      "matched": 89
+      "ok": false,
+      "error": "ValueError: feishu: 没有可用的站点路径：{'experienced': 'code -9000003 site not exist', 'index': 'code -9000003 site not exist', 'social': 'code -9000003 site not exist', 'socialrecr"
     },
     {
       "name": "智谱",
@@ -99,7 +99,7 @@
     {
       "name": "MiniMax",
       "ok": false,
-      "error": "ValueError: feishu: 没有可用的站点路径（试过 ['index', 'experienced', 'social', 'socialrecruitment', 'campus']），最后返回 无"
+      "error": "ValueError: feishu: 没有可用的站点路径：{'index': 'HTTP 400 ', 'experienced': 'HTTP 400 ', 'social': 'HTTP 400 ', 'socialrecruitment': 'HTTP 400 '}"
     },
     {
       "name": "百度",
@@ -110,8 +110,8 @@
     {
       "name": "LinkedIn · 国内城市",
       "ok": true,
-      "fetched": 374,
-      "matched": 72
+      "fetched": 230,
+      "matched": 48
     },
     {
       "name": "ats-jobs · 12类ATS",
@@ -129,9 +129,9 @@
       "name": "猎聘 · 深圳/北京/上海/杭州/广州",
       "ok": true,
       "fetched": 1464,
-      "matched": 761,
+      "matched": 762,
       "direct": 278,
-      "headhunter": 360
+      "headhunter": 359
     }
   ],
   "jobs": [
@@ -160,7 +160,7 @@
       "score": 16,
       "region": "深圳",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -187,7 +187,7 @@
       "score": 14,
       "region": "深圳",
       "level": "高",
-      "last_seen": "2026-09-18T10:03:01+00:00",
+      "last_seen": "2026-09-18T10:55:55+00:00",
       "stale": false
     },
     {
@@ -214,7 +214,7 @@
       "score": 14,
       "region": "深圳",
       "level": "高",
-      "last_seen": "2026-09-18T10:03:01+00:00",
+      "last_seen": "2026-09-18T10:55:55+00:00",
       "stale": false
     },
     {
@@ -241,7 +241,7 @@
       "score": 14,
       "region": "深圳",
       "level": "高",
-      "last_seen": "2026-09-18T10:03:01+00:00",
+      "last_seen": "2026-09-18T10:55:55+00:00",
       "stale": false
     },
     {
@@ -267,7 +267,7 @@
       "score": 13,
       "region": "深圳",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -293,7 +293,7 @@
       "score": 13,
       "region": "深圳",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -313,17 +313,17 @@
         "匹配高"
       ],
       "reasons": [
-        "GPU Kernel：算子",
-        "AI Infra：分布式、算力、llm",
-        "DiT：扩散模型、生成模型、多模态",
-        "端侧部署：量化",
-        "训推加速：推理、训练、加速"
+        "GPU Kernel：kernel、算子",
+        "AI Infra：gpu、分布式、算力",
+        "DiT：dit、扩散模型、生成模型",
+        "端侧部署：端侧、量化、部署",
+        "训推加速：kernel、推理、训练"
       ],
       "score": 13,
       "region": "深圳",
       "level": "高",
       "last_seen": "2026-09-18T10:03:01+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "算子开发Leader（训推底层算子 / 高性能计算方向）",
@@ -348,7 +348,7 @@
       "score": 13,
       "region": "深圳",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -374,7 +374,7 @@
       "score": 13,
       "region": "深圳",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -400,7 +400,7 @@
       "score": 13,
       "region": "深圳",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -426,7 +426,7 @@
       "score": 13,
       "region": "深圳",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -452,7 +452,7 @@
       "score": 13,
       "region": "深圳",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -478,7 +478,7 @@
       "score": 13,
       "region": "深圳",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -507,7 +507,7 @@
       "score": 13,
       "region": "深圳",
       "level": "高",
-      "last_seen": "2026-09-18T10:03:01+00:00",
+      "last_seen": "2026-09-18T10:55:55+00:00",
       "stale": false
     },
     {
@@ -533,7 +533,7 @@
       "score": 13,
       "region": "深圳",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -560,7 +560,7 @@
       "score": 12,
       "region": "深圳",
       "level": "高",
-      "last_seen": "2026-09-18T10:03:01+00:00",
+      "last_seen": "2026-09-18T10:55:55+00:00",
       "stale": false
     },
     {
@@ -587,7 +587,7 @@
       "score": 12,
       "region": "深圳",
       "level": "高",
-      "last_seen": "2026-09-18T10:03:01+00:00",
+      "last_seen": "2026-09-18T10:55:55+00:00",
       "stale": false
     },
     {
@@ -614,7 +614,7 @@
       "score": 12,
       "region": "深圳",
       "level": "高",
-      "last_seen": "2026-09-18T10:03:01+00:00",
+      "last_seen": "2026-09-18T10:55:55+00:00",
       "stale": false
     },
     {
@@ -641,7 +641,7 @@
       "score": 12,
       "region": "深圳",
       "level": "高",
-      "last_seen": "2026-09-18T10:03:01+00:00",
+      "last_seen": "2026-09-18T10:55:55+00:00",
       "stale": false
     },
     {
@@ -668,7 +668,7 @@
       "score": 12,
       "region": "深圳",
       "level": "高",
-      "last_seen": "2026-09-18T10:03:01+00:00",
+      "last_seen": "2026-09-18T10:55:55+00:00",
       "stale": false
     },
     {
@@ -695,7 +695,7 @@
       "score": 12,
       "region": "深圳",
       "level": "高",
-      "last_seen": "2026-09-18T10:03:01+00:00",
+      "last_seen": "2026-09-18T10:55:55+00:00",
       "stale": false
     },
     {
@@ -722,7 +722,7 @@
       "score": 12,
       "region": "深圳",
       "level": "高",
-      "last_seen": "2026-09-18T10:03:01+00:00",
+      "last_seen": "2026-09-18T10:55:55+00:00",
       "stale": false
     },
     {
@@ -741,14 +741,14 @@
       ],
       "reasons": [
         "AI Infra：大模型",
-        "DiT：视频生成、多模态",
-        "训推加速：训练、后训练"
+        "DiT：dit、视频生成、多模态",
+        "训推加速：训练、加速、后训练"
       ],
       "score": 11,
       "region": "深圳",
       "level": "高",
       "last_seen": "2026-09-18T10:03:01+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "算子开发",
@@ -773,7 +773,7 @@
       "score": 11,
       "region": "深圳",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -798,7 +798,7 @@
       "score": 11,
       "region": "深圳",
       "level": "高",
-      "last_seen": "2026-09-18T10:03:01+00:00",
+      "last_seen": "2026-09-18T10:55:55+00:00",
       "stale": false
     },
     {
@@ -823,7 +823,7 @@
       "score": 11,
       "region": "深圳",
       "level": "高",
-      "last_seen": "2026-09-18T10:03:01+00:00",
+      "last_seen": "2026-09-18T10:55:55+00:00",
       "stale": false
     },
     {
@@ -852,7 +852,7 @@
       "score": 11,
       "region": "深圳",
       "level": "高",
-      "last_seen": "2026-09-18T10:03:01+00:00",
+      "last_seen": "2026-09-18T10:55:55+00:00",
       "stale": false
     },
     {
@@ -876,7 +876,7 @@
       "score": 10,
       "region": "深圳",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -899,7 +899,7 @@
       "score": 10,
       "region": "深圳",
       "level": "高",
-      "last_seen": "2026-09-18T10:03:01+00:00",
+      "last_seen": "2026-09-18T10:55:55+00:00",
       "stale": false
     },
     {
@@ -923,7 +923,7 @@
       "score": 10,
       "region": "深圳",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -947,7 +947,7 @@
       "score": 10,
       "region": "深圳",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -971,7 +971,7 @@
       "score": 10,
       "region": "深圳",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -995,7 +995,7 @@
       "score": 10,
       "region": "深圳",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -1019,7 +1019,7 @@
       "score": 10,
       "region": "深圳",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -1043,7 +1043,7 @@
       "score": 10,
       "region": "深圳",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -1067,7 +1067,7 @@
       "score": 10,
       "region": "深圳",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -1090,7 +1090,7 @@
       "score": 10,
       "region": "深圳",
       "level": "高",
-      "last_seen": "2026-09-18T10:03:01+00:00",
+      "last_seen": "2026-09-18T10:55:55+00:00",
       "stale": false
     },
     {
@@ -1113,7 +1113,7 @@
       "score": 10,
       "region": "深圳",
       "level": "高",
-      "last_seen": "2026-09-18T10:03:01+00:00",
+      "last_seen": "2026-09-18T10:55:55+00:00",
       "stale": false
     },
     {
@@ -1136,7 +1136,7 @@
       "score": 10,
       "region": "深圳",
       "level": "高",
-      "last_seen": "2026-09-18T10:03:01+00:00",
+      "last_seen": "2026-09-18T10:55:55+00:00",
       "stale": false
     },
     {
@@ -1159,30 +1159,7 @@
       "score": 10,
       "region": "深圳",
       "level": "高",
-      "last_seen": "2026-09-18T10:03:01+00:00",
-      "stale": false
-    },
-    {
-      "title": "算法专家（多模态/大模型/搜广推） 中国/北京 OTT2系统部 研发族",
-      "url": "https://career.huawei.com/reccampportal/portal5//reccampportal/portal5/social-recruitment-detail.html?jobId=27323&amp;dataSource=1",
-      "location": "中国 / 深圳及其他城市",
-      "source_updated": "",
-      "company": "华为",
-      "source": "huawei-china-ai",
-      "tags": [
-        "AI Infra",
-        "DiT",
-        "深圳",
-        "匹配高"
-      ],
-      "reasons": [
-        "AI Infra：大模型",
-        "DiT：多模态"
-      ],
-      "score": 10,
-      "region": "深圳",
-      "level": "高",
-      "last_seen": "2026-09-18T10:03:01+00:00",
+      "last_seen": "2026-09-18T10:55:55+00:00",
       "stale": false
     },
     {
@@ -1206,7 +1183,7 @@
       "score": 10,
       "region": "深圳",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -1230,7 +1207,7 @@
       "score": 10,
       "region": "深圳",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -1254,7 +1231,7 @@
       "score": 10,
       "region": "深圳",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -1278,7 +1255,7 @@
       "score": 10,
       "region": "深圳",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -1302,7 +1279,7 @@
       "score": 10,
       "region": "深圳",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -1326,7 +1303,7 @@
       "score": 10,
       "region": "深圳",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -1350,7 +1327,7 @@
       "score": 10,
       "region": "深圳",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -1374,7 +1351,7 @@
       "score": 10,
       "region": "深圳",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -1398,7 +1375,7 @@
       "score": 10,
       "region": "深圳",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -1422,7 +1399,7 @@
       "score": 10,
       "region": "深圳",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -1446,7 +1423,7 @@
       "score": 10,
       "region": "深圳",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -1470,7 +1447,7 @@
       "score": 10,
       "region": "深圳",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -1494,7 +1471,7 @@
       "score": 10,
       "region": "深圳",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -1517,7 +1494,7 @@
       "score": 10,
       "region": "深圳",
       "level": "高",
-      "last_seen": "2026-09-18T10:03:01+00:00",
+      "last_seen": "2026-09-18T10:55:55+00:00",
       "stale": false
     },
     {
@@ -1541,7 +1518,7 @@
       "score": 10,
       "region": "深圳",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -1565,7 +1542,7 @@
       "score": 10,
       "region": "深圳",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -1589,7 +1566,7 @@
       "score": 10,
       "region": "深圳",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -1613,7 +1590,7 @@
       "score": 10,
       "region": "深圳",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -1637,7 +1614,7 @@
       "score": 10,
       "region": "深圳",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -1661,7 +1638,7 @@
       "score": 10,
       "region": "深圳",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -1685,7 +1662,7 @@
       "score": 10,
       "region": "深圳",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -1709,7 +1686,7 @@
       "score": 10,
       "region": "深圳",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -1733,7 +1710,7 @@
       "score": 10,
       "region": "深圳",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -1757,7 +1734,7 @@
       "score": 10,
       "region": "深圳",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -1781,7 +1758,7 @@
       "score": 10,
       "region": "深圳",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -1805,7 +1782,7 @@
       "score": 10,
       "region": "深圳",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -1829,7 +1806,7 @@
       "score": 10,
       "region": "深圳",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -1853,7 +1830,7 @@
       "score": 10,
       "region": "深圳",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -1877,7 +1854,7 @@
       "score": 10,
       "region": "深圳",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -1901,7 +1878,7 @@
       "score": 10,
       "region": "深圳",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -1925,7 +1902,7 @@
       "score": 10,
       "region": "深圳",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -1949,7 +1926,7 @@
       "score": 10,
       "region": "深圳",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -1973,7 +1950,7 @@
       "score": 10,
       "region": "深圳",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -1997,7 +1974,7 @@
       "score": 10,
       "region": "深圳",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -2021,7 +1998,7 @@
       "score": 10,
       "region": "深圳",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -2045,7 +2022,7 @@
       "score": 10,
       "region": "深圳",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -2069,7 +2046,7 @@
       "score": 10,
       "region": "深圳",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -2093,7 +2070,7 @@
       "score": 10,
       "region": "深圳",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -2117,7 +2094,7 @@
       "score": 10,
       "region": "深圳",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -2141,7 +2118,7 @@
       "score": 10,
       "region": "深圳",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -2165,7 +2142,7 @@
       "score": 10,
       "region": "深圳",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -2189,7 +2166,7 @@
       "score": 10,
       "region": "深圳",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -2213,7 +2190,7 @@
       "score": 10,
       "region": "深圳",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -2237,7 +2214,7 @@
       "score": 10,
       "region": "深圳",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -2261,7 +2238,7 @@
       "score": 10,
       "region": "深圳",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -2285,7 +2262,7 @@
       "score": 10,
       "region": "深圳",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -2309,7 +2286,7 @@
       "score": 10,
       "region": "深圳",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -2333,7 +2310,7 @@
       "score": 10,
       "region": "深圳",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -2357,7 +2334,7 @@
       "score": 10,
       "region": "深圳",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -2381,7 +2358,7 @@
       "score": 10,
       "region": "深圳",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -2405,7 +2382,7 @@
       "score": 10,
       "region": "深圳",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -2429,7 +2406,7 @@
       "score": 10,
       "region": "深圳",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -2453,7 +2430,7 @@
       "score": 10,
       "region": "深圳",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -2477,7 +2454,7 @@
       "score": 10,
       "region": "深圳",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -2501,7 +2478,7 @@
       "score": 10,
       "region": "深圳",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -2525,7 +2502,7 @@
       "score": 10,
       "region": "深圳",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -2549,7 +2526,7 @@
       "score": 10,
       "region": "深圳",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -2573,7 +2550,7 @@
       "score": 10,
       "region": "深圳",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -2600,7 +2577,7 @@
       "score": 10,
       "region": "深圳",
       "level": "高",
-      "last_seen": "2026-09-18T10:03:01+00:00",
+      "last_seen": "2026-09-18T10:55:55+00:00",
       "stale": false
     },
     {
@@ -2623,7 +2600,7 @@
       "score": 10,
       "region": "深圳",
       "level": "高",
-      "last_seen": "2026-09-18T10:03:01+00:00",
+      "last_seen": "2026-09-18T10:55:55+00:00",
       "stale": false
     },
     {
@@ -2647,7 +2624,7 @@
       "score": 10,
       "region": "深圳",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -2671,7 +2648,7 @@
       "score": 10,
       "region": "深圳",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -2695,7 +2672,7 @@
       "score": 10,
       "region": "深圳",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -2719,7 +2696,7 @@
       "score": 10,
       "region": "深圳",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -2743,7 +2720,7 @@
       "score": 10,
       "region": "深圳",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -2768,7 +2745,7 @@
       "score": 9,
       "region": "深圳",
       "level": "中",
-      "last_seen": "2026-09-18T10:03:01+00:00",
+      "last_seen": "2026-09-18T10:55:55+00:00",
       "stale": false
     },
     {
@@ -2791,7 +2768,7 @@
       "score": 8,
       "region": "深圳",
       "level": "中",
-      "last_seen": "2026-09-18T10:03:01+00:00",
+      "last_seen": "2026-09-18T10:55:55+00:00",
       "stale": false
     },
     {
@@ -2814,8 +2791,35 @@
       "score": 8,
       "region": "深圳",
       "level": "中",
-      "last_seen": "2026-09-18T10:03:01+00:00",
+      "last_seen": "2026-09-18T10:55:55+00:00",
       "stale": false
+    },
+    {
+      "title": "AI分子动力学算法研究员 - AI for Science",
+      "url": "https://jobs.bytedance.com/campus/position/7665964727054993717/detail",
+      "location": "深圳",
+      "source_updated": "1784871604725",
+      "company": "字节跳动",
+      "source": "bytedance",
+      "tags": [
+        "GPU Kernel",
+        "AI Infra",
+        "DiT",
+        "训推加速",
+        "深圳",
+        "匹配中"
+      ],
+      "reasons": [
+        "GPU Kernel：cuda、kernel",
+        "AI Infra：gpu、cuda、机器学习",
+        "DiT：dit、生成模型",
+        "训推加速：kernel"
+      ],
+      "score": 8,
+      "region": "深圳",
+      "level": "中",
+      "last_seen": "2026-09-18T10:03:01+00:00",
+      "stale": true
     },
     {
       "title": "AI Engineer",
@@ -2835,7 +2839,7 @@
       "score": 7,
       "region": "深圳",
       "level": "中",
-      "last_seen": "2026-09-18T10:03:01+00:00",
+      "last_seen": "2026-09-18T10:55:55+00:00",
       "stale": false
     },
     {
@@ -2856,7 +2860,7 @@
       "score": 7,
       "region": "深圳",
       "level": "中",
-      "last_seen": "2026-09-18T10:03:01+00:00",
+      "last_seen": "2026-09-18T10:55:55+00:00",
       "stale": false
     },
     {
@@ -2878,7 +2882,7 @@
       "score": 7,
       "region": "深圳",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -2900,7 +2904,7 @@
       "score": 7,
       "region": "深圳",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -2922,7 +2926,7 @@
       "score": 7,
       "region": "深圳",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -2943,7 +2947,7 @@
       "score": 7,
       "region": "深圳",
       "level": "中",
-      "last_seen": "2026-09-18T10:03:01+00:00",
+      "last_seen": "2026-09-18T10:55:55+00:00",
       "stale": false
     },
     {
@@ -2964,7 +2968,7 @@
       "score": 7,
       "region": "深圳",
       "level": "中",
-      "last_seen": "2026-09-18T10:03:01+00:00",
+      "last_seen": "2026-09-18T10:55:55+00:00",
       "stale": false
     },
     {
@@ -2985,7 +2989,7 @@
       "score": 7,
       "region": "深圳",
       "level": "中",
-      "last_seen": "2026-09-18T10:03:01+00:00",
+      "last_seen": "2026-09-18T10:55:55+00:00",
       "stale": false
     },
     {
@@ -3006,7 +3010,7 @@
       "score": 7,
       "region": "深圳",
       "level": "中",
-      "last_seen": "2026-09-18T10:03:01+00:00",
+      "last_seen": "2026-09-18T10:55:55+00:00",
       "stale": false
     },
     {
@@ -3031,7 +3035,7 @@
       "score": 7,
       "region": "深圳",
       "level": "中",
-      "last_seen": "2026-09-18T10:03:01+00:00",
+      "last_seen": "2026-09-18T10:55:55+00:00",
       "stale": false
     },
     {
@@ -3056,7 +3060,7 @@
       "score": 7,
       "region": "深圳",
       "level": "中",
-      "last_seen": "2026-09-18T10:03:01+00:00",
+      "last_seen": "2026-09-18T10:55:55+00:00",
       "stale": false
     },
     {
@@ -3077,7 +3081,7 @@
       "score": 7,
       "region": "深圳",
       "level": "中",
-      "last_seen": "2026-09-18T10:03:01+00:00",
+      "last_seen": "2026-09-18T10:55:55+00:00",
       "stale": false
     },
     {
@@ -3098,7 +3102,7 @@
       "score": 7,
       "region": "深圳",
       "level": "中",
-      "last_seen": "2026-09-18T10:03:01+00:00",
+      "last_seen": "2026-09-18T10:55:55+00:00",
       "stale": false
     },
     {
@@ -3119,7 +3123,7 @@
       "score": 7,
       "region": "深圳",
       "level": "中",
-      "last_seen": "2026-09-18T10:03:01+00:00",
+      "last_seen": "2026-09-18T10:55:55+00:00",
       "stale": false
     },
     {
@@ -3140,7 +3144,7 @@
       "score": 7,
       "region": "深圳",
       "level": "中",
-      "last_seen": "2026-09-18T10:03:01+00:00",
+      "last_seen": "2026-09-18T10:55:55+00:00",
       "stale": false
     },
     {
@@ -3161,7 +3165,7 @@
       "score": 7,
       "region": "深圳",
       "level": "中",
-      "last_seen": "2026-09-18T10:03:01+00:00",
+      "last_seen": "2026-09-18T10:55:55+00:00",
       "stale": false
     },
     {
@@ -3183,7 +3187,7 @@
       "score": 7,
       "region": "深圳",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -3205,7 +3209,7 @@
       "score": 7,
       "region": "深圳",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -3227,7 +3231,7 @@
       "score": 7,
       "region": "深圳",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -3249,7 +3253,7 @@
       "score": 7,
       "region": "深圳",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -3271,7 +3275,7 @@
       "score": 7,
       "region": "深圳",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -3293,7 +3297,7 @@
       "score": 7,
       "region": "深圳",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -3315,7 +3319,7 @@
       "score": 7,
       "region": "深圳",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -3337,7 +3341,7 @@
       "score": 7,
       "region": "深圳",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -3358,7 +3362,7 @@
       "score": 7,
       "region": "深圳",
       "level": "中",
-      "last_seen": "2026-09-18T10:03:01+00:00",
+      "last_seen": "2026-09-18T10:55:55+00:00",
       "stale": false
     },
     {
@@ -3380,32 +3384,7 @@
       "score": 7,
       "region": "深圳",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
-      "stale": false
-    },
-    {
-      "title": "AI分子动力学算法研究员 - AI for Science",
-      "url": "https://jobs.bytedance.com/campus/position/7665964727054993717/detail",
-      "location": "深圳",
-      "source_updated": "1784871604725",
-      "company": "字节跳动",
-      "source": "bytedance",
-      "tags": [
-        "GPU Kernel",
-        "AI Infra",
-        "DiT",
-        "深圳",
-        "匹配中"
-      ],
-      "reasons": [
-        "GPU Kernel：cuda",
-        "AI Infra：cuda、机器学习",
-        "DiT：生成模型"
-      ],
-      "score": 7,
-      "region": "深圳",
-      "level": "中",
-      "last_seen": "2026-09-18T10:03:01+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -3427,7 +3406,7 @@
       "score": 7,
       "region": "深圳",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -3446,14 +3425,14 @@
       ],
       "reasons": [
         "AI Infra：机器学习",
-        "DiT：多模态",
+        "DiT：dit、多模态",
         "端侧部署：端侧、部署"
       ],
       "score": 7,
       "region": "深圳",
       "level": "中",
       "last_seen": "2026-09-18T10:03:01+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "模型量化工程师",
@@ -3474,7 +3453,7 @@
       "score": 7,
       "region": "深圳",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -3495,7 +3474,7 @@
       "score": 7,
       "region": "深圳",
       "level": "中",
-      "last_seen": "2026-09-18T10:03:01+00:00",
+      "last_seen": "2026-09-18T10:55:55+00:00",
       "stale": false
     },
     {
@@ -3516,7 +3495,7 @@
       "score": 7,
       "region": "深圳",
       "level": "中",
-      "last_seen": "2026-09-18T10:03:01+00:00",
+      "last_seen": "2026-09-18T10:55:55+00:00",
       "stale": false
     },
     {
@@ -3538,7 +3517,7 @@
       "score": 7,
       "region": "深圳",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -3560,7 +3539,7 @@
       "score": 7,
       "region": "深圳",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -3585,7 +3564,7 @@
       "score": 7,
       "region": "深圳",
       "level": "中",
-      "last_seen": "2026-09-18T10:03:01+00:00",
+      "last_seen": "2026-09-18T10:55:55+00:00",
       "stale": false
     },
     {
@@ -3610,7 +3589,7 @@
       "score": 7,
       "region": "深圳",
       "level": "中",
-      "last_seen": "2026-09-18T10:03:01+00:00",
+      "last_seen": "2026-09-18T10:55:55+00:00",
       "stale": false
     },
     {
@@ -3632,14 +3611,14 @@
       "score": 7,
       "region": "深圳",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
       "title": "云原生与集群平台开发/AI Infra/分布式系统开发",
       "url": "https://www.liepin.com/a/78979673.shtml",
       "location": "深圳",
-      "source_updated": "2026-09-17",
+      "source_updated": "2026-09-18",
       "company": "某TOP量化基金",
       "source": "liepin",
       "listing_type": "headhunter",
@@ -3654,14 +3633,14 @@
       "score": 7,
       "region": "深圳",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
       "title": "分布式系统开发- AI /存储/计算/调度/容器/网络",
       "url": "https://www.liepin.com/a/78980945.shtml",
       "location": "深圳",
-      "source_updated": "2026-09-17",
+      "source_updated": "2026-09-18",
       "company": "某TOP量化基金",
       "source": "liepin",
       "listing_type": "headhunter",
@@ -3676,7 +3655,7 @@
       "score": 7,
       "region": "深圳",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -3698,7 +3677,7 @@
       "score": 7,
       "region": "深圳",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -3720,7 +3699,7 @@
       "score": 7,
       "region": "深圳",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -3742,7 +3721,7 @@
       "score": 7,
       "region": "深圳",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -3764,7 +3743,7 @@
       "score": 7,
       "region": "深圳",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -3786,7 +3765,7 @@
       "score": 7,
       "region": "深圳",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -3808,7 +3787,7 @@
       "score": 7,
       "region": "深圳",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -3830,7 +3809,7 @@
       "score": 7,
       "region": "深圳",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -3852,7 +3831,7 @@
       "score": 7,
       "region": "深圳",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -3874,7 +3853,7 @@
       "score": 7,
       "region": "深圳",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -3896,7 +3875,7 @@
       "score": 7,
       "region": "深圳",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -3918,7 +3897,7 @@
       "score": 7,
       "region": "深圳",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -3940,7 +3919,7 @@
       "score": 7,
       "region": "深圳",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -3962,7 +3941,7 @@
       "score": 7,
       "region": "深圳",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -3984,7 +3963,7 @@
       "score": 7,
       "region": "深圳",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -4006,7 +3985,7 @@
       "score": 7,
       "region": "深圳",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -4028,7 +4007,7 @@
       "score": 7,
       "region": "深圳",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -4050,7 +4029,7 @@
       "score": 7,
       "region": "深圳",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -4072,7 +4051,7 @@
       "score": 7,
       "region": "深圳",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -4094,7 +4073,7 @@
       "score": 7,
       "region": "深圳",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -4116,7 +4095,7 @@
       "score": 7,
       "region": "深圳",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -4138,7 +4117,7 @@
       "score": 7,
       "region": "深圳",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -4160,7 +4139,7 @@
       "score": 7,
       "region": "深圳",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -4182,7 +4161,7 @@
       "score": 7,
       "region": "深圳",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -4204,7 +4183,7 @@
       "score": 7,
       "region": "深圳",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -4226,7 +4205,7 @@
       "score": 7,
       "region": "深圳",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -4248,7 +4227,7 @@
       "score": 7,
       "region": "深圳",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -4270,7 +4249,7 @@
       "score": 7,
       "region": "深圳",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -4292,7 +4271,7 @@
       "score": 7,
       "region": "深圳",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -4314,7 +4293,7 @@
       "score": 7,
       "region": "深圳",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -4336,7 +4315,7 @@
       "score": 7,
       "region": "深圳",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -4358,7 +4337,7 @@
       "score": 7,
       "region": "深圳",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -4380,7 +4359,7 @@
       "score": 7,
       "region": "深圳",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -4402,7 +4381,7 @@
       "score": 7,
       "region": "深圳",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -4424,7 +4403,7 @@
       "score": 7,
       "region": "深圳",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -4445,7 +4424,7 @@
       "score": 7,
       "region": "深圳",
       "level": "中",
-      "last_seen": "2026-09-18T10:03:01+00:00",
+      "last_seen": "2026-09-18T10:55:55+00:00",
       "stale": false
     },
     {
@@ -4467,7 +4446,7 @@
       "score": 7,
       "region": "深圳",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -4488,7 +4467,7 @@
       "score": 7,
       "region": "深圳",
       "level": "中",
-      "last_seen": "2026-09-18T10:03:01+00:00",
+      "last_seen": "2026-09-18T10:55:55+00:00",
       "stale": false
     },
     {
@@ -4510,7 +4489,7 @@
       "score": 7,
       "region": "深圳",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -4532,7 +4511,7 @@
       "score": 7,
       "region": "深圳",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -4554,7 +4533,7 @@
       "score": 7,
       "region": "深圳",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -4576,7 +4555,7 @@
       "score": 7,
       "region": "深圳",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -4597,7 +4576,7 @@
       "score": 7,
       "region": "深圳",
       "level": "中",
-      "last_seen": "2026-09-18T10:03:01+00:00",
+      "last_seen": "2026-09-18T10:55:55+00:00",
       "stale": false
     },
     {
@@ -4619,7 +4598,7 @@
       "score": 7,
       "region": "深圳",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -4641,7 +4620,7 @@
       "score": 7,
       "region": "深圳",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -4662,7 +4641,7 @@
       "score": 7,
       "region": "深圳",
       "level": "中",
-      "last_seen": "2026-09-18T10:03:01+00:00",
+      "last_seen": "2026-09-18T10:55:55+00:00",
       "stale": false
     },
     {
@@ -4685,7 +4664,7 @@
       "score": 6,
       "region": "深圳",
       "level": "低",
-      "last_seen": "2026-09-18T10:03:01+00:00",
+      "last_seen": "2026-09-18T10:55:55+00:00",
       "stale": false
     },
     {
@@ -4703,13 +4682,13 @@
       ],
       "reasons": [
         "AI Infra：深度学习",
-        "DiT：扩散模型"
+        "DiT：dit、扩散模型"
       ],
       "score": 6,
       "region": "深圳",
       "level": "低",
       "last_seen": "2026-09-18T10:03:01+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "AI Native开发工程师 - 抖音直播",
@@ -4725,14 +4704,14 @@
         "匹配低"
       ],
       "reasons": [
-        "端侧部署：端侧、移动端",
-        "训推加速：推理"
+        "端侧部署：端侧、移动端、部署",
+        "训推加速：推理、加速、训推"
       ],
       "score": 6,
       "region": "深圳",
       "level": "低",
       "last_seen": "2026-09-18T10:03:01+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "客户端研发工程师（AI全栈方向） - 剪映CapCut",
@@ -4748,14 +4727,14 @@
         "匹配低"
       ],
       "reasons": [
-        "端侧部署：端侧",
-        "训推加速：性能优化"
+        "端侧部署：端侧、部署",
+        "训推加速：加速、性能优化、训推"
       ],
       "score": 6,
       "region": "深圳",
       "level": "低",
       "last_seen": "2026-09-18T10:03:01+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "LLM Data Scientist/Algorithm Engineer (Top Talent Program)",
@@ -4775,7 +4754,7 @@
       "score": 6,
       "region": "香港",
       "level": "中",
-      "last_seen": "2026-09-18T10:03:01+00:00",
+      "last_seen": "2026-09-18T10:55:55+00:00",
       "stale": false
     },
     {
@@ -4796,28 +4775,7 @@
       "score": 6,
       "region": "香港",
       "level": "中",
-      "last_seen": "2026-09-18T10:03:01+00:00",
-      "stale": false
-    },
-    {
-      "title": "Senior AI Engineer",
-      "url": "https://hk.linkedin.com/jobs/view/senior-ai-engineer-at-china-mobile-international-limited-4457698635",
-      "location": "Hong Kong, Hong Kong SAR",
-      "source_updated": "",
-      "company": "China Mobile International Limited",
-      "source": "linkedin-cn",
-      "tags": [
-        "AI Infra",
-        "香港",
-        "匹配中"
-      ],
-      "reasons": [
-        "AI Infra：ai engineer"
-      ],
-      "score": 6,
-      "region": "香港",
-      "level": "中",
-      "last_seen": "2026-09-18T10:03:01+00:00",
+      "last_seen": "2026-09-18T10:55:55+00:00",
       "stale": false
     },
     {
@@ -4838,28 +4796,7 @@
       "score": 6,
       "region": "香港",
       "level": "中",
-      "last_seen": "2026-09-18T10:03:01+00:00",
-      "stale": false
-    },
-    {
-      "title": "Embedded Software Engineer",
-      "url": "https://hk.linkedin.com/jobs/view/embedded-software-engineer-at-hong-kong-center-for-construction-robotics-4442968427",
-      "location": "Hong Kong, Hong Kong SAR",
-      "source_updated": "",
-      "company": "Hong Kong Center for Construction Robotics",
-      "source": "linkedin-cn",
-      "tags": [
-        "端侧部署",
-        "香港",
-        "匹配中"
-      ],
-      "reasons": [
-        "端侧部署：embedded"
-      ],
-      "score": 6,
-      "region": "香港",
-      "level": "中",
-      "last_seen": "2026-09-18T10:03:01+00:00",
+      "last_seen": "2026-09-18T10:55:55+00:00",
       "stale": false
     },
     {
@@ -4880,7 +4817,7 @@
       "score": 6,
       "region": "香港",
       "level": "中",
-      "last_seen": "2026-09-18T10:03:01+00:00",
+      "last_seen": "2026-09-18T10:55:55+00:00",
       "stale": false
     },
     {
@@ -4901,7 +4838,7 @@
       "score": 6,
       "region": "香港",
       "level": "中",
-      "last_seen": "2026-09-18T10:03:01+00:00",
+      "last_seen": "2026-09-18T10:55:55+00:00",
       "stale": false
     },
     {
@@ -4922,7 +4859,7 @@
       "score": 6,
       "region": "香港",
       "level": "中",
-      "last_seen": "2026-09-18T10:03:01+00:00",
+      "last_seen": "2026-09-18T10:55:55+00:00",
       "stale": false
     },
     {
@@ -4943,7 +4880,7 @@
       "score": 6,
       "region": "香港",
       "level": "中",
-      "last_seen": "2026-09-18T10:03:01+00:00",
+      "last_seen": "2026-09-18T10:55:55+00:00",
       "stale": false
     },
     {
@@ -4964,7 +4901,7 @@
       "score": 6,
       "region": "香港",
       "level": "中",
-      "last_seen": "2026-09-18T10:03:01+00:00",
+      "last_seen": "2026-09-18T10:55:55+00:00",
       "stale": false
     },
     {
@@ -4985,7 +4922,7 @@
       "score": 6,
       "region": "香港",
       "level": "中",
-      "last_seen": "2026-09-18T10:03:01+00:00",
+      "last_seen": "2026-09-18T10:55:55+00:00",
       "stale": false
     },
     {
@@ -5006,7 +4943,7 @@
       "score": 6,
       "region": "香港",
       "level": "中",
-      "last_seen": "2026-09-18T10:03:01+00:00",
+      "last_seen": "2026-09-18T10:55:55+00:00",
       "stale": false
     },
     {
@@ -5035,7 +4972,7 @@
       "score": 16,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:03:01+00:00",
+      "last_seen": "2026-09-18T10:55:55+00:00",
       "stale": false
     },
     {
@@ -5063,7 +5000,7 @@
       "score": 15,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -5088,7 +5025,7 @@
       "score": 12,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:03:01+00:00",
+      "last_seen": "2026-09-18T10:55:55+00:00",
       "stale": false
     },
     {
@@ -5114,7 +5051,7 @@
       "score": 12,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -5140,7 +5077,7 @@
       "score": 12,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -5166,7 +5103,7 @@
       "score": 12,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -5192,7 +5129,7 @@
       "score": 12,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -5218,7 +5155,7 @@
       "score": 12,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -5244,7 +5181,7 @@
       "score": 12,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -5270,7 +5207,7 @@
       "score": 12,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -5296,7 +5233,7 @@
       "score": 12,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -5325,7 +5262,7 @@
       "score": 12,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:03:01+00:00",
+      "last_seen": "2026-09-18T10:55:55+00:00",
       "stale": false
     },
     {
@@ -5351,7 +5288,7 @@
       "score": 12,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -5377,7 +5314,7 @@
       "score": 12,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -5403,7 +5340,7 @@
       "score": 12,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -5429,7 +5366,7 @@
       "score": 12,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -5455,7 +5392,7 @@
       "score": 12,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -5481,7 +5418,7 @@
       "score": 12,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -5507,7 +5444,7 @@
       "score": 12,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -5533,7 +5470,7 @@
       "score": 12,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -5559,7 +5496,7 @@
       "score": 12,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -5585,7 +5522,7 @@
       "score": 12,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -5611,7 +5548,7 @@
       "score": 12,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -5637,7 +5574,7 @@
       "score": 12,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -5663,7 +5600,7 @@
       "score": 12,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -5689,7 +5626,7 @@
       "score": 12,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -5715,7 +5652,7 @@
       "score": 12,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -5741,7 +5678,7 @@
       "score": 12,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -5767,7 +5704,7 @@
       "score": 12,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -5793,7 +5730,7 @@
       "score": 12,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -5819,7 +5756,7 @@
       "score": 12,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -5845,7 +5782,7 @@
       "score": 12,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -5871,7 +5808,7 @@
       "score": 12,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -5897,7 +5834,7 @@
       "score": 12,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -5923,7 +5860,7 @@
       "score": 12,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -5949,7 +5886,7 @@
       "score": 12,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -5975,7 +5912,7 @@
       "score": 12,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -6001,7 +5938,7 @@
       "score": 12,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -6027,7 +5964,7 @@
       "score": 12,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -6053,7 +5990,7 @@
       "score": 12,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -6079,7 +6016,7 @@
       "score": 12,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -6105,7 +6042,7 @@
       "score": 12,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -6131,7 +6068,7 @@
       "score": 12,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -6157,7 +6094,7 @@
       "score": 12,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -6183,7 +6120,7 @@
       "score": 12,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -6209,7 +6146,7 @@
       "score": 12,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -6235,7 +6172,7 @@
       "score": 12,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -6261,7 +6198,7 @@
       "score": 12,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -6287,7 +6224,7 @@
       "score": 12,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -6313,7 +6250,7 @@
       "score": 12,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -6339,7 +6276,7 @@
       "score": 12,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -6365,7 +6302,7 @@
       "score": 12,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -6391,7 +6328,7 @@
       "score": 12,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -6418,7 +6355,7 @@
       "score": 11,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:03:01+00:00",
+      "last_seen": "2026-09-18T10:55:55+00:00",
       "stale": false
     },
     {
@@ -6445,7 +6382,7 @@
       "score": 11,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:03:01+00:00",
+      "last_seen": "2026-09-18T10:55:55+00:00",
       "stale": false
     },
     {
@@ -6474,7 +6411,7 @@
       "score": 10,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:03:01+00:00",
+      "last_seen": "2026-09-18T10:55:55+00:00",
       "stale": false
     },
     {
@@ -6500,7 +6437,7 @@
       "score": 10,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -6524,7 +6461,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -6547,7 +6484,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:03:01+00:00",
+      "last_seen": "2026-09-18T10:55:55+00:00",
       "stale": false
     },
     {
@@ -6571,53 +6508,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
-      "stale": false
-    },
-    {
-      "title": "AI算子开发工程师",
-      "url": "https://cn.linkedin.com/jobs/view/ai%E7%AE%97%E5%AD%90%E5%BC%80%E5%8F%91%E5%B7%A5%E7%A8%8B%E5%B8%88-at-enflame-4463923779",
-      "location": "Hangzhou, Zhejiang, China",
-      "source_updated": "",
-      "company": "Enflame",
-      "source": "linkedin-cn",
-      "tags": [
-        "GPU Kernel",
-        "训推加速",
-        "国内",
-        "匹配高"
-      ],
-      "reasons": [
-        "GPU Kernel：算子",
-        "训推加速：算子"
-      ],
-      "score": 9,
-      "region": "国内",
-      "level": "高",
-      "last_seen": "2026-09-18T10:03:01+00:00",
-      "stale": false
-    },
-    {
-      "title": "AI Frameworks Engineer - Model and Kernel Optimization",
-      "url": "https://cn.linkedin.com/jobs/view/ai-frameworks-engineer-model-and-kernel-optimization-at-intel-4452929216",
-      "location": "Shanghai, Shanghai, China",
-      "source_updated": "",
-      "company": "Intel",
-      "source": "linkedin-cn",
-      "tags": [
-        "GPU Kernel",
-        "训推加速",
-        "国内",
-        "匹配高"
-      ],
-      "reasons": [
-        "GPU Kernel：kernel",
-        "训推加速：kernel"
-      ],
-      "score": 9,
-      "region": "国内",
-      "level": "高",
-      "last_seen": "2026-09-18T10:03:01+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -6641,7 +6532,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -6665,7 +6556,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -6689,7 +6580,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -6713,7 +6604,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -6737,7 +6628,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -6761,7 +6652,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -6785,7 +6676,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -6809,7 +6700,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -6833,30 +6724,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
-      "stale": false
-    },
-    {
-      "title": "大模型推理和应用算法开发研究（博士后）",
-      "url": "https://cn.linkedin.com/jobs/view/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%8E%A8%E7%90%86%E5%92%8C%E5%BA%94%E7%94%A8%E7%AE%97%E6%B3%95%E5%BC%80%E5%8F%91%E7%A0%94%E7%A9%B6%EF%BC%88%E5%8D%9A%E5%A3%AB%E5%90%8E%EF%BC%89-at-%E4%B9%8B%E6%B1%9F%E5%AE%9E%E9%AA%8C%E5%AE%A4-zhejiang-lab-4457912428",
-      "location": "Hangzhou, Zhejiang, China",
-      "source_updated": "",
-      "company": "之江实验室 Zhejiang Lab",
-      "source": "linkedin-cn",
-      "tags": [
-        "AI Infra",
-        "训推加速",
-        "国内",
-        "匹配高"
-      ],
-      "reasons": [
-        "AI Infra：大模型",
-        "训推加速：推理"
-      ],
-      "score": 9,
-      "region": "国内",
-      "level": "高",
-      "last_seen": "2026-09-18T10:03:01+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -6880,7 +6748,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -6904,7 +6772,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -6928,7 +6796,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -6952,7 +6820,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -6976,7 +6844,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -7000,7 +6868,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -7024,7 +6892,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -7048,7 +6916,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -7072,7 +6940,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -7096,7 +6964,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -7120,7 +6988,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -7144,7 +7012,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -7168,7 +7036,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -7192,7 +7060,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -7216,7 +7084,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -7240,7 +7108,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -7264,7 +7132,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -7288,7 +7156,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -7312,7 +7180,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -7336,7 +7204,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -7360,7 +7228,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -7384,7 +7252,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -7408,7 +7276,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -7432,7 +7300,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -7456,7 +7324,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -7480,7 +7348,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -7504,7 +7372,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -7528,7 +7396,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -7552,7 +7420,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -7576,7 +7444,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -7600,7 +7468,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -7624,7 +7492,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -7648,7 +7516,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -7672,7 +7540,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -7696,7 +7564,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -7720,7 +7588,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -7744,7 +7612,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -7768,30 +7636,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
-      "stale": false
-    },
-    {
-      "title": "推理部署算法工程师 (MJ000396)",
-      "url": "https://cn.linkedin.com/jobs/view/%E6%8E%A8%E7%90%86%E9%83%A8%E7%BD%B2%E7%AE%97%E6%B3%95%E5%B7%A5%E7%A8%8B%E5%B8%88-mj000396-at-%E6%98%95%E5%8E%9F%E5%8D%8A%E5%AF%BC%E4%BD%93-4468879636",
-      "location": "Hangzhou, Zhejiang, China",
-      "source_updated": "",
-      "company": "昕原半导体",
-      "source": "linkedin-cn",
-      "tags": [
-        "端侧部署",
-        "训推加速",
-        "国内",
-        "匹配高"
-      ],
-      "reasons": [
-        "端侧部署：部署",
-        "训推加速：推理"
-      ],
-      "score": 9,
-      "region": "国内",
-      "level": "高",
-      "last_seen": "2026-09-18T10:03:01+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -7815,7 +7660,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -7839,7 +7684,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -7863,7 +7708,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -7887,7 +7732,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -7911,7 +7756,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -7935,7 +7780,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -7959,7 +7804,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -7983,7 +7828,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -8007,7 +7852,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -8031,7 +7876,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -8055,7 +7900,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -8079,7 +7924,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -8103,7 +7948,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -8127,7 +7972,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -8151,7 +7996,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -8175,7 +8020,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -8199,7 +8044,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -8223,7 +8068,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -8247,7 +8092,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -8271,7 +8116,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -8295,7 +8140,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -8319,7 +8164,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -8343,7 +8188,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -8367,7 +8212,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -8391,7 +8236,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -8415,7 +8260,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -8439,7 +8284,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -8463,7 +8308,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -8487,7 +8332,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -8511,7 +8356,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -8535,7 +8380,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -8559,7 +8404,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -8583,7 +8428,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -8607,7 +8452,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -8631,7 +8476,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -8655,7 +8500,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -8679,7 +8524,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -8703,7 +8548,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -8727,7 +8572,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -8751,7 +8596,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -8775,7 +8620,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -8799,7 +8644,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -8823,7 +8668,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -8847,7 +8692,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -8871,7 +8716,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -8895,7 +8740,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -8919,7 +8764,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -8943,7 +8788,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -8967,7 +8812,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -8991,7 +8836,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -9015,7 +8860,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -9039,7 +8884,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -9063,7 +8908,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -9087,7 +8932,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -9111,7 +8956,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -9135,7 +8980,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -9159,7 +9004,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -9183,7 +9028,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -9207,7 +9052,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -9231,7 +9076,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -9255,7 +9100,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -9279,7 +9124,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -9303,7 +9148,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -9327,7 +9172,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -9351,7 +9196,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -9375,7 +9220,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -9399,7 +9244,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -9423,7 +9268,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -9447,7 +9292,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -9471,7 +9316,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -9495,7 +9340,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -9519,7 +9364,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -9543,7 +9388,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -9567,7 +9412,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -9591,7 +9436,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -9615,7 +9460,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -9639,7 +9484,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -9663,7 +9508,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -9687,7 +9532,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -9711,7 +9556,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -9735,7 +9580,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -9759,7 +9604,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -9783,7 +9628,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -9807,7 +9652,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -9831,7 +9676,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -9855,7 +9700,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -9879,7 +9724,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -9903,7 +9748,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -9927,7 +9772,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -9951,7 +9796,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -9975,7 +9820,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -9999,7 +9844,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -10023,7 +9868,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -10047,7 +9892,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -10071,7 +9916,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -10095,7 +9940,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -10119,7 +9964,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -10143,7 +9988,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -10167,7 +10012,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -10191,31 +10036,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
-      "stale": false
-    },
-    {
-      "title": "编译器技术专家-异构",
-      "url": "https://www.liepin.com/a/77834845.shtml",
-      "location": "上海",
-      "source_updated": "2026-09-03",
-      "company": "某杭州人工智能公司",
-      "source": "liepin",
-      "listing_type": "headhunter",
-      "tags": [
-        "AI Infra",
-        "训推加速",
-        "国内",
-        "匹配高"
-      ],
-      "reasons": [
-        "AI Infra：异构",
-        "训推加速：编译器"
-      ],
-      "score": 9,
-      "region": "国内",
-      "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -10239,7 +10060,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -10263,7 +10084,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -10287,7 +10108,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -10311,7 +10132,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -10335,7 +10156,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -10359,7 +10180,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -10383,7 +10204,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -10407,7 +10228,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -10431,7 +10252,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -10455,7 +10276,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -10479,7 +10300,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -10503,7 +10324,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -10527,7 +10348,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -10551,7 +10372,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -10575,7 +10396,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -10599,7 +10420,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -10623,7 +10444,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -10647,7 +10468,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -10671,7 +10492,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -10695,7 +10516,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -10719,7 +10540,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -10743,7 +10564,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -10767,7 +10588,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -10791,7 +10612,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -10815,7 +10636,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -10839,7 +10660,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -10863,7 +10684,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -10887,7 +10708,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -10911,7 +10732,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -10935,7 +10756,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -10959,7 +10780,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -10983,7 +10804,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -11007,7 +10828,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -11031,7 +10852,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -11055,7 +10876,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -11079,7 +10900,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -11103,7 +10924,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -11127,7 +10948,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -11151,7 +10972,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -11175,7 +10996,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -11199,7 +11020,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -11223,7 +11044,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -11247,7 +11068,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -11270,7 +11091,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:03:01+00:00",
+      "last_seen": "2026-09-18T10:55:55+00:00",
       "stale": false
     },
     {
@@ -11294,7 +11115,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -11318,7 +11139,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -11342,7 +11163,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -11366,7 +11187,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -11390,7 +11211,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -11414,7 +11235,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -11438,7 +11259,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -11462,7 +11283,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -11486,7 +11307,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -11510,7 +11331,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -11534,7 +11355,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -11558,7 +11379,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -11582,7 +11403,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -11606,7 +11427,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -11630,7 +11451,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -11654,7 +11475,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -11678,7 +11499,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -11702,7 +11523,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -11726,7 +11547,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -11750,7 +11571,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -11774,7 +11595,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -11798,7 +11619,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -11822,7 +11643,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -11846,7 +11667,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -11870,7 +11691,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -11894,28 +11715,7 @@
       "score": 9,
       "region": "国内",
       "level": "高",
-      "last_seen": "2026-09-18T10:07:48+00:00",
-      "stale": false
-    },
-    {
-      "title": "Junior Quantitative Researcher - Deep Learning (Time Series)",
-      "url": "https://cn.linkedin.com/jobs/view/junior-quantitative-researcher-deep-learning-time-series-at-akuna-capital-4463169554",
-      "location": "Shanghai, Shanghai, China",
-      "source_updated": "",
-      "company": "Akuna Capital",
-      "source": "linkedin-cn",
-      "tags": [
-        "AI Infra",
-        "国内",
-        "匹配中"
-      ],
-      "reasons": [
-        "AI Infra：deep learning"
-      ],
-      "score": 6,
-      "region": "国内",
-      "level": "中",
-      "last_seen": "2026-09-18T10:03:01+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -11936,7 +11736,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:03:01+00:00",
+      "last_seen": "2026-09-18T10:55:55+00:00",
       "stale": false
     },
     {
@@ -11958,7 +11758,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -11979,7 +11779,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:03:01+00:00",
+      "last_seen": "2026-09-18T10:55:55+00:00",
       "stale": false
     },
     {
@@ -12000,7 +11800,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:03:01+00:00",
+      "last_seen": "2026-09-18T10:55:55+00:00",
       "stale": false
     },
     {
@@ -12022,7 +11822,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -12044,49 +11844,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
-      "stale": false
-    },
-    {
-      "title": "DSL编译器开发工程师",
-      "url": "https://cn.linkedin.com/jobs/view/dsl%E7%BC%96%E8%AF%91%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E7%A8%8B%E5%B8%88-at-enflame-4463918894",
-      "location": "Shanghai, Shanghai, China",
-      "source_updated": "",
-      "company": "Enflame",
-      "source": "linkedin-cn",
-      "tags": [
-        "训推加速",
-        "国内",
-        "匹配中"
-      ],
-      "reasons": [
-        "训推加速：编译器"
-      ],
-      "score": 6,
-      "region": "国内",
-      "level": "中",
-      "last_seen": "2026-09-18T10:03:01+00:00",
-      "stale": false
-    },
-    {
-      "title": "Machine Learning Engineer – HPC",
-      "url": "https://cn.linkedin.com/jobs/view/machine-learning-engineer-%E2%80%93-hpc-at-meshyai-4365141987",
-      "location": "Shanghai, Shanghai, China",
-      "source_updated": "",
-      "company": "MeshyAI",
-      "source": "linkedin-cn",
-      "tags": [
-        "AI Infra",
-        "国内",
-        "匹配中"
-      ],
-      "reasons": [
-        "AI Infra：machine learning、hpc"
-      ],
-      "score": 6,
-      "region": "国内",
-      "level": "中",
-      "last_seen": "2026-09-18T10:03:01+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -12107,7 +11865,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:03:01+00:00",
+      "last_seen": "2026-09-18T10:55:55+00:00",
       "stale": false
     },
     {
@@ -12128,28 +11886,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:03:01+00:00",
-      "stale": false
-    },
-    {
-      "title": "GPU Developer Tools Engineer",
-      "url": "https://cn.linkedin.com/jobs/view/gpu-developer-tools-engineer-at-qualcomm-4324524189",
-      "location": "Shanghai, Shanghai, China",
-      "source_updated": "",
-      "company": "Qualcomm",
-      "source": "linkedin-cn",
-      "tags": [
-        "AI Infra",
-        "国内",
-        "匹配中"
-      ],
-      "reasons": [
-        "AI Infra：gpu"
-      ],
-      "score": 6,
-      "region": "国内",
-      "level": "中",
-      "last_seen": "2026-09-18T10:03:01+00:00",
+      "last_seen": "2026-09-18T10:55:55+00:00",
       "stale": false
     },
     {
@@ -12171,36 +11908,15 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
-      "title": "Agentic AI Engineer, AVP",
-      "url": "https://cn.linkedin.com/jobs/view/agentic-ai-engineer-avp-at-state-street-4459127056",
-      "location": "Hangzhou, Zhejiang, China",
-      "source_updated": "",
-      "company": "State Street",
-      "source": "linkedin-cn",
-      "tags": [
-        "AI Infra",
-        "国内",
-        "匹配中"
-      ],
-      "reasons": [
-        "AI Infra：ai engineer"
-      ],
-      "score": 6,
-      "region": "国内",
-      "level": "中",
-      "last_seen": "2026-09-18T10:03:01+00:00",
-      "stale": false
-    },
-    {
-      "title": "Senior AI Engineer",
-      "url": "https://cn.linkedin.com/jobs/view/senior-ai-engineer-at-virtuos-4460906848",
+      "title": "Machine Learning Engineer",
+      "url": "https://cn.linkedin.com/jobs/view/machine-learning-engineer-at-tower-research-capital-4432064985",
       "location": "Shanghai, Shanghai, China",
       "source_updated": "",
-      "company": "Virtuos",
+      "company": "Tower Research Capital",
       "source": "linkedin-cn",
       "tags": [
         "AI Infra",
@@ -12208,12 +11924,33 @@
         "匹配中"
       ],
       "reasons": [
-        "AI Infra：ai engineer"
+        "AI Infra：machine learning"
       ],
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:03:01+00:00",
+      "last_seen": "2026-09-18T10:55:55+00:00",
+      "stale": false
+    },
+    {
+      "title": "Senior Machine Learning Engineer, ML Infrastructure",
+      "url": "https://cn.linkedin.com/jobs/view/senior-machine-learning-engineer-ml-infrastructure-at-unity-4457149313",
+      "location": "Shanghai, Shanghai, China",
+      "source_updated": "",
+      "company": "Unity",
+      "source": "linkedin-cn",
+      "tags": [
+        "AI Infra",
+        "国内",
+        "匹配中"
+      ],
+      "reasons": [
+        "AI Infra：ml infrastructure、machine learning"
+      ],
+      "score": 6,
+      "region": "国内",
+      "level": "中",
+      "last_seen": "2026-09-18T10:55:55+00:00",
       "stale": false
     },
     {
@@ -12234,7 +11971,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:03:01+00:00",
+      "last_seen": "2026-09-18T10:55:55+00:00",
       "stale": false
     },
     {
@@ -12255,7 +11992,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:03:01+00:00",
+      "last_seen": "2026-09-18T10:55:55+00:00",
       "stale": false
     },
     {
@@ -12276,7 +12013,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:03:01+00:00",
+      "last_seen": "2026-09-18T10:55:55+00:00",
       "stale": false
     },
     {
@@ -12298,7 +12035,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -12320,7 +12057,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -12342,28 +12079,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
-      "stale": false
-    },
-    {
-      "title": "AI量化研究员（博士）",
-      "url": "https://cn.linkedin.com/jobs/view/ai%E9%87%8F%E5%8C%96%E7%A0%94%E7%A9%B6%E5%91%98%EF%BC%88%E5%8D%9A%E5%A3%AB%EF%BC%89-at-%E4%B8%8A%E6%B5%B7%E6%81%92%E7%94%9F%E8%81%9A%E6%BA%90%E6%95%B0%E6%8D%AE%E6%9C%8D%E5%8A%A1%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8-4464953994",
-      "location": "Shanghai, Shanghai, China",
-      "source_updated": "",
-      "company": "上海恒生聚源数据服务有限公司",
-      "source": "linkedin-cn",
-      "tags": [
-        "端侧部署",
-        "国内",
-        "匹配中"
-      ],
-      "reasons": [
-        "端侧部署：量化"
-      ],
-      "score": 6,
-      "region": "国内",
-      "level": "中",
-      "last_seen": "2026-09-18T10:03:01+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -12385,7 +12101,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -12407,7 +12123,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -12429,7 +12145,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -12451,7 +12167,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -12473,7 +12189,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -12495,7 +12211,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -12517,7 +12233,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -12539,7 +12255,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -12561,28 +12277,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
-      "stale": false
-    },
-    {
-      "title": "大模型语料数据生成及质量评估研究（博士后）",
-      "url": "https://cn.linkedin.com/jobs/view/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%AF%AD%E6%96%99%E6%95%B0%E6%8D%AE%E7%94%9F%E6%88%90%E5%8F%8A%E8%B4%A8%E9%87%8F%E8%AF%84%E4%BC%B0%E7%A0%94%E7%A9%B6%EF%BC%88%E5%8D%9A%E5%A3%AB%E5%90%8E%EF%BC%89-at-%E4%B9%8B%E6%B1%9F%E5%AE%9E%E9%AA%8C%E5%AE%A4-zhejiang-lab-4457912323",
-      "location": "Hangzhou, Zhejiang, China",
-      "source_updated": "",
-      "company": "之江实验室 Zhejiang Lab",
-      "source": "linkedin-cn",
-      "tags": [
-        "AI Infra",
-        "国内",
-        "匹配中"
-      ],
-      "reasons": [
-        "AI Infra：大模型"
-      ],
-      "score": 6,
-      "region": "国内",
-      "level": "中",
-      "last_seen": "2026-09-18T10:03:01+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -12604,7 +12299,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -12626,7 +12321,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -12648,7 +12343,29 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
+      "stale": false
+    },
+    {
+      "title": "大模型算法工程师",
+      "url": "https://www.liepin.com/job/1982393419.shtml",
+      "location": "广州",
+      "source_updated": "2026-05-09",
+      "company": "凌度智能",
+      "source": "liepin",
+      "listing_type": "direct",
+      "tags": [
+        "AI Infra",
+        "国内",
+        "匹配中"
+      ],
+      "reasons": [
+        "AI Infra：大模型"
+      ],
+      "score": 6,
+      "region": "国内",
+      "level": "中",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -12670,28 +12387,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
-      "stale": false
-    },
-    {
-      "title": "AI算法专家（多模态⽅向）",
-      "url": "https://cn.linkedin.com/jobs/view/ai%E7%AE%97%E6%B3%95%E4%B8%93%E5%AE%B6%EF%BC%88%E5%A4%9A%E6%A8%A1%E6%80%81%E2%BD%85%E5%90%91%EF%BC%89-at-%E5%8C%97%E4%BA%AC%E5%A4%A9%E6%B3%BD%E6%99%BA%E4%BA%91%E7%A7%91%E6%8A%80%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8-4464732441",
-      "location": "Shanghai, Shanghai, China",
-      "source_updated": "",
-      "company": "北京天泽智云科技有限公司",
-      "source": "linkedin-cn",
-      "tags": [
-        "DiT",
-        "国内",
-        "匹配中"
-      ],
-      "reasons": [
-        "DiT：多模态"
-      ],
-      "score": 6,
-      "region": "国内",
-      "level": "中",
-      "last_seen": "2026-09-18T10:03:01+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -12713,7 +12409,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -12735,7 +12431,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -12757,7 +12453,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -12779,7 +12475,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -12801,28 +12497,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
-      "stale": false
-    },
-    {
-      "title": "AI 基础设施工程师（云原生 / SRE ）- 杭州",
-      "url": "https://cn.linkedin.com/jobs/view/ai-%E5%9F%BA%E7%A1%80%E8%AE%BE%E6%96%BD%E5%B7%A5%E7%A8%8B%E5%B8%88%EF%BC%88%E4%BA%91%E5%8E%9F%E7%94%9F-sre-%EF%BC%89-%E6%9D%AD%E5%B7%9E-at-%E5%8D%8E%E7%BE%8E%E6%B5%A9%E8%81%94%E5%8C%BB%E7%96%97%E7%A7%91%E6%8A%80-%E5%8C%97%E4%BA%AC-%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8-4463097614",
-      "location": "Hangzhou, Zhejiang, China",
-      "source_updated": "",
-      "company": "华美浩联医疗科技(北京)有限公司",
-      "source": "linkedin-cn",
-      "tags": [
-        "AI Infra",
-        "国内",
-        "匹配中"
-      ],
-      "reasons": [
-        "AI Infra：基础设施"
-      ],
-      "score": 6,
-      "region": "国内",
-      "level": "中",
-      "last_seen": "2026-09-18T10:03:01+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -12844,7 +12519,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -12866,7 +12541,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -12888,7 +12563,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -12910,7 +12585,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -12932,7 +12607,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -12954,7 +12629,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -12976,7 +12651,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -12998,7 +12673,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -13020,7 +12695,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -13042,7 +12717,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -13063,7 +12738,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:03:01+00:00",
+      "last_seen": "2026-09-18T10:55:55+00:00",
       "stale": false
     },
     {
@@ -13084,7 +12759,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:03:01+00:00",
+      "last_seen": "2026-09-18T10:55:55+00:00",
       "stale": false
     },
     {
@@ -13106,7 +12781,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -13128,7 +12803,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -13150,7 +12825,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -13172,7 +12847,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -13194,7 +12869,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -13216,7 +12891,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -13238,7 +12913,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -13260,7 +12935,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -13282,7 +12957,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -13304,7 +12979,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -13326,7 +13001,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -13348,7 +13023,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -13370,7 +13045,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -13392,7 +13067,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -13414,7 +13089,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -13436,7 +13111,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -13458,7 +13133,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -13480,7 +13155,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -13502,7 +13177,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -13524,7 +13199,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -13546,7 +13221,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -13568,7 +13243,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -13590,14 +13265,14 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
       "title": "云原生与集群平台开发/AI Infra/分布式系统开发",
       "url": "https://www.liepin.com/a/78979625.shtml",
       "location": "杭州",
-      "source_updated": "2026-09-17",
+      "source_updated": "2026-09-18",
       "company": "某TOP量化基金",
       "source": "liepin",
       "listing_type": "headhunter",
@@ -13612,14 +13287,14 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
       "title": "云原生与集群平台开发/AI Infra/分布式系统开发",
       "url": "https://www.liepin.com/a/78979733.shtml",
       "location": "上海",
-      "source_updated": "2026-09-17",
+      "source_updated": "2026-09-18",
       "company": "某TOP量化基金",
       "source": "liepin",
       "listing_type": "headhunter",
@@ -13634,14 +13309,14 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
       "title": "云原生与集群平台开发/AI Infra/分布式系统开发",
       "url": "https://www.liepin.com/a/78979763.shtml",
       "location": "北京",
-      "source_updated": "2026-09-17",
+      "source_updated": "2026-09-18",
       "company": "某TOP量化基金",
       "source": "liepin",
       "listing_type": "headhunter",
@@ -13656,14 +13331,14 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
       "title": "分布式系统开发- AI /存储/计算/调度/容器/网络",
       "url": "https://www.liepin.com/a/78980877.shtml",
       "location": "杭州",
-      "source_updated": "2026-09-17",
+      "source_updated": "2026-09-18",
       "company": "某TOP量化基金",
       "source": "liepin",
       "listing_type": "headhunter",
@@ -13678,14 +13353,14 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
       "title": "分布式系统开发- AI /存储/计算/调度/容器/网络",
       "url": "https://www.liepin.com/a/78981049.shtml",
       "location": "北京",
-      "source_updated": "2026-09-17",
+      "source_updated": "2026-09-18",
       "company": "某TOP量化基金",
       "source": "liepin",
       "listing_type": "headhunter",
@@ -13700,7 +13375,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -13722,7 +13397,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -13744,7 +13419,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -13766,7 +13441,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -13788,7 +13463,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -13810,7 +13485,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -13832,7 +13507,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -13854,7 +13529,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -13876,7 +13551,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -13898,7 +13573,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -13920,7 +13595,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -13942,7 +13617,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -13964,7 +13639,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -13986,7 +13661,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -14008,7 +13683,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -14030,7 +13705,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -14052,7 +13727,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -14074,7 +13749,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -14096,7 +13771,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -14118,7 +13793,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -14140,7 +13815,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -14162,7 +13837,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -14184,7 +13859,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -14206,7 +13881,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -14228,7 +13903,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -14250,7 +13925,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -14272,7 +13947,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -14294,7 +13969,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -14316,7 +13991,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -14338,7 +14013,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -14360,7 +14035,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -14382,7 +14057,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -14404,7 +14079,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -14426,7 +14101,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -14448,7 +14123,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -14470,7 +14145,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -14492,7 +14167,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -14514,7 +14189,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -14536,7 +14211,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -14558,7 +14233,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -14580,7 +14255,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -14602,7 +14277,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -14624,7 +14299,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -14646,7 +14321,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -14668,7 +14343,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -14690,7 +14365,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -14712,7 +14387,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -14734,7 +14409,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -14756,7 +14431,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -14778,7 +14453,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -14800,7 +14475,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -14822,29 +14497,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
-      "stale": false
-    },
-    {
-      "title": "科学家/资深专家-世界模型方向-北京350万，在世界模型、视频生成、3D 视觉、具身智能等方向有体系化的研究积累和顶会或知名项目经历",
-      "url": "https://www.liepin.com/a/79604141.shtml",
-      "location": "北京-朝阳区",
-      "source_updated": "2026-09-04",
-      "company": "某北京大型计算机软件公司",
-      "source": "liepin",
-      "listing_type": "headhunter",
-      "tags": [
-        "DiT",
-        "国内",
-        "匹配中"
-      ],
-      "reasons": [
-        "DiT：视频生成"
-      ],
-      "score": 6,
-      "region": "国内",
-      "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -14866,7 +14519,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -14888,7 +14541,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -14910,7 +14563,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -14932,7 +14585,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -14954,7 +14607,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -14976,7 +14629,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -14998,7 +14651,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -15020,7 +14673,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -15042,7 +14695,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -15064,7 +14717,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -15086,7 +14739,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -15108,7 +14761,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -15130,7 +14783,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -15152,7 +14805,29 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
+      "stale": false
+    },
+    {
+      "title": "语音大模型后端工程师 （国内头部机器人企业）",
+      "url": "https://www.liepin.com/a/77877497.shtml",
+      "location": "上海",
+      "source_updated": "2026-09-17",
+      "company": "某大型知名智能硬件/消费电子公司",
+      "source": "liepin",
+      "listing_type": "headhunter",
+      "tags": [
+        "AI Infra",
+        "国内",
+        "匹配中"
+      ],
+      "reasons": [
+        "AI Infra：大模型"
+      ],
+      "score": 6,
+      "region": "国内",
+      "level": "中",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -15174,7 +14849,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -15196,7 +14871,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -15218,7 +14893,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -15240,7 +14915,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -15262,7 +14937,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -15284,7 +14959,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -15306,7 +14981,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -15328,7 +15003,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -15350,7 +15025,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -15372,28 +15047,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
-      "stale": false
-    },
-    {
-      "title": "多模态算法专家",
-      "url": "https://cn.linkedin.com/jobs/view/%E5%A4%9A%E6%A8%A1%E6%80%81%E7%AE%97%E6%B3%95%E4%B8%93%E5%AE%B6-4457896218",
-      "location": "Hangzhou, Zhejiang, China",
-      "source_updated": "",
-      "company": "某杭州互联网公司",
-      "source": "linkedin-cn",
-      "tags": [
-        "DiT",
-        "国内",
-        "匹配中"
-      ],
-      "reasons": [
-        "DiT：多模态"
-      ],
-      "score": 6,
-      "region": "国内",
-      "level": "中",
-      "last_seen": "2026-09-18T10:03:01+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -15415,7 +15069,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -15437,7 +15091,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -15459,7 +15113,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -15481,7 +15135,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -15503,7 +15157,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -15525,7 +15179,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -15547,7 +15201,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -15569,7 +15223,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -15591,7 +15245,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -15613,7 +15267,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -15635,7 +15289,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -15657,7 +15311,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -15679,7 +15333,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -15701,7 +15355,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -15723,7 +15377,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -15745,7 +15399,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -15767,7 +15421,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -15789,7 +15443,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -15811,7 +15465,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -15833,7 +15487,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -15855,7 +15509,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -15877,7 +15531,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -15899,7 +15553,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -15921,7 +15575,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -15943,7 +15597,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -15965,7 +15619,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -15987,7 +15641,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -16009,7 +15663,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -16031,7 +15685,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -16053,7 +15707,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -16075,7 +15729,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -16097,28 +15751,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
-      "stale": false
-    },
-    {
-      "title": "大模型算法经理",
-      "url": "https://cn.linkedin.com/jobs/view/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%AE%97%E6%B3%95%E7%BB%8F%E7%90%86-at-%E6%B5%99%E6%B1%9F%E6%B5%99%E5%95%86%E8%9E%8D%E8%B5%84%E7%A7%9F%E8%B5%81%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8-4467153273",
-      "location": "Hangzhou, Zhejiang, China",
-      "source_updated": "",
-      "company": "浙江浙商融资租赁有限公司",
-      "source": "linkedin-cn",
-      "tags": [
-        "AI Infra",
-        "国内",
-        "匹配中"
-      ],
-      "reasons": [
-        "AI Infra：大模型"
-      ],
-      "score": 6,
-      "region": "国内",
-      "level": "中",
-      "last_seen": "2026-09-18T10:03:01+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -16140,7 +15773,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -16162,7 +15795,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -16184,28 +15817,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
-      "stale": false
-    },
-    {
-      "title": "深度强化学习算法工程师",
-      "url": "https://cn.linkedin.com/jobs/view/%E6%B7%B1%E5%BA%A6%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95%E5%B7%A5%E7%A8%8B%E5%B8%88-at-%E6%B7%B1%E5%9C%B3%E5%90%89%E9%98%B3%E6%99%BA%E8%83%BD%E7%A7%91%E6%8A%80%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8-4460783782",
-      "location": "Hangzhou, Zhejiang, China",
-      "source_updated": "",
-      "company": "深圳吉阳智能科技有限公司",
-      "source": "linkedin-cn",
-      "tags": [
-        "训推加速",
-        "国内",
-        "匹配中"
-      ],
-      "reasons": [
-        "训推加速：强化学习"
-      ],
-      "score": 6,
-      "region": "国内",
-      "level": "中",
-      "last_seen": "2026-09-18T10:03:01+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -16226,7 +15838,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:03:01+00:00",
+      "last_seen": "2026-09-18T10:55:55+00:00",
       "stale": false
     },
     {
@@ -16248,28 +15860,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
-      "stale": false
-    },
-    {
-      "title": "LLM后训练算法研究员",
-      "url": "https://cn.linkedin.com/jobs/view/llm%E5%90%8E%E8%AE%AD%E7%BB%83%E7%AE%97%E6%B3%95%E7%A0%94%E7%A9%B6%E5%91%98-at-%E7%A5%A5%E6%81%A9%E8%82%A1%E6%9D%83%E6%8A%95%E8%B5%84%E7%AE%A1%E7%90%86-%E4%B8%8A%E6%B5%B7-%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8-4468881650",
-      "location": "Hangzhou, Zhejiang, China",
-      "source_updated": "",
-      "company": "祥恩股权投资管理(上海)有限公司",
-      "source": "linkedin-cn",
-      "tags": [
-        "训推加速",
-        "国内",
-        "匹配中"
-      ],
-      "reasons": [
-        "训推加速：训练、后训练"
-      ],
-      "score": 6,
-      "region": "国内",
-      "level": "中",
-      "last_seen": "2026-09-18T10:03:01+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -16291,7 +15882,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -16313,7 +15904,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -16335,7 +15926,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -16357,7 +15948,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -16379,7 +15970,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -16401,7 +15992,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -16423,7 +16014,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -16445,28 +16036,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
-      "stale": false
-    },
-    {
-      "title": "LLVM编译器专家",
-      "url": "https://cn.linkedin.com/jobs/view/llvm%E7%BC%96%E8%AF%91%E5%99%A8%E4%B8%93%E5%AE%B6-at-%E8%8B%8F%E5%B7%9E%E4%B8%AD%E6%9D%A5%E5%85%89%E4%BC%8F%E6%96%B0%E6%9D%90%E8%82%A1%E4%BB%BD%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8-4460786902",
-      "location": "Hangzhou, Zhejiang, China",
-      "source_updated": "",
-      "company": "苏州中来光伏新材股份有限公司",
-      "source": "linkedin-cn",
-      "tags": [
-        "训推加速",
-        "国内",
-        "匹配中"
-      ],
-      "reasons": [
-        "训推加速：编译器"
-      ],
-      "score": 6,
-      "region": "国内",
-      "level": "中",
-      "last_seen": "2026-09-18T10:03:01+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -16488,7 +16058,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -16510,50 +16080,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
-      "stale": false
-    },
-    {
-      "title": "AI云平台工程师（推理优化方向）",
-      "url": "https://www.liepin.com/job/1985506221.shtml",
-      "location": "广州-天河区",
-      "source_updated": "2026-09-09",
-      "company": "赛意信息",
-      "source": "liepin",
-      "listing_type": "direct",
-      "tags": [
-        "训推加速",
-        "国内",
-        "匹配中"
-      ],
-      "reasons": [
-        "训推加速：推理"
-      ],
-      "score": 6,
-      "region": "国内",
-      "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
-      "stale": false
-    },
-    {
-      "title": "高性能计算工程师",
-      "url": "https://cn.linkedin.com/jobs/view/%E9%AB%98%E6%80%A7%E8%83%BD%E8%AE%A1%E7%AE%97%E5%B7%A5%E7%A8%8B%E5%B8%88-at-%E8%BF%9B%E8%BF%AD%E6%97%B6%E7%A9%BA%EF%BC%88%E6%9D%AD%E5%B7%9E%EF%BC%89%E7%A7%91%E6%8A%80%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8-4468892442",
-      "location": "Hangzhou, Zhejiang, China",
-      "source_updated": "",
-      "company": "进迭时空（杭州）科技有限公司",
-      "source": "linkedin-cn",
-      "tags": [
-        "AI Infra",
-        "国内",
-        "匹配中"
-      ],
-      "reasons": [
-        "AI Infra：高性能计算"
-      ],
-      "score": 6,
-      "region": "国内",
-      "level": "中",
-      "last_seen": "2026-09-18T10:03:01+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -16575,7 +16102,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -16597,49 +16124,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
-      "stale": false
-    },
-    {
-      "title": "银泰星-AI 系统工程师-产技(J11330)",
-      "url": "https://cn.linkedin.com/jobs/view/%E9%93%B6%E6%B3%B0%E6%98%9F-ai-%E7%B3%BB%E7%BB%9F%E5%B7%A5%E7%A8%8B%E5%B8%88-%E4%BA%A7%E6%8A%80-j11330-at-%E9%93%B6%E6%B3%B0%E5%95%86%E4%B8%9A%E9%9B%86%E5%9B%A2-4460419537",
-      "location": "Hangzhou, Zhejiang, China",
-      "source_updated": "",
-      "company": "银泰商业集团",
-      "source": "linkedin-cn",
-      "tags": [
-        "AI Infra",
-        "国内",
-        "匹配中"
-      ],
-      "reasons": [
-        "AI Infra：ai 系统"
-      ],
-      "score": 6,
-      "region": "国内",
-      "level": "中",
-      "last_seen": "2026-09-18T10:03:01+00:00",
-      "stale": false
-    },
-    {
-      "title": "银泰星-AI 系统工程师-深象(J11329)",
-      "url": "https://cn.linkedin.com/jobs/view/%E9%93%B6%E6%B3%B0%E6%98%9F-ai-%E7%B3%BB%E7%BB%9F%E5%B7%A5%E7%A8%8B%E5%B8%88-%E6%B7%B1%E8%B1%A1-j11329-at-%E9%93%B6%E6%B3%B0%E5%95%86%E4%B8%9A%E9%9B%86%E5%9B%A2-4460430622",
-      "location": "Hangzhou, Zhejiang, China",
-      "source_updated": "",
-      "company": "银泰商业集团",
-      "source": "linkedin-cn",
-      "tags": [
-        "AI Infra",
-        "国内",
-        "匹配中"
-      ],
-      "reasons": [
-        "AI Infra：ai 系统"
-      ],
-      "score": 6,
-      "region": "国内",
-      "level": "中",
-      "last_seen": "2026-09-18T10:03:01+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -16661,7 +16146,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -16683,7 +16168,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -16705,7 +16190,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -16727,7 +16212,7 @@
       "score": 6,
       "region": "国内",
       "level": "中",
-      "last_seen": "2026-09-18T10:07:48+00:00",
+      "last_seen": "2026-09-18T11:00:55+00:00",
       "stale": false
     },
     {
@@ -16754,7 +16239,7 @@
       "score": 10,
       "region": "远程",
       "level": "高",
-      "last_seen": "2026-09-18T10:05:11+00:00",
+      "last_seen": "2026-09-18T10:58:04+00:00",
       "stale": false
     },
     {
@@ -16779,7 +16264,7 @@
       "score": 7,
       "region": "远程",
       "level": "中",
-      "last_seen": "2026-09-18T10:03:01+00:00",
+      "last_seen": "2026-09-18T10:55:55+00:00",
       "stale": false
     },
     {
@@ -16800,7 +16285,7 @@
       "score": 5,
       "region": "远程",
       "level": "中",
-      "last_seen": "2026-09-18T10:03:01+00:00",
+      "last_seen": "2026-09-18T10:55:55+00:00",
       "stale": false
     },
     {
@@ -16821,7 +16306,7 @@
       "score": 5,
       "region": "远程",
       "level": "中",
-      "last_seen": "2026-09-18T10:03:01+00:00",
+      "last_seen": "2026-09-18T10:55:55+00:00",
       "stale": false
     },
     {
@@ -16846,7 +16331,7 @@
       "score": 9,
       "region": "海外",
       "level": "高",
-      "last_seen": "2026-09-18T10:03:01+00:00",
+      "last_seen": "2026-09-18T10:55:55+00:00",
       "stale": false
     },
     {
@@ -16873,7 +16358,7 @@
       "score": 8,
       "region": "海外",
       "level": "高",
-      "last_seen": "2026-09-18T10:03:01+00:00",
+      "last_seen": "2026-09-18T10:55:55+00:00",
       "stale": false
     },
     {
@@ -16900,7 +16385,7 @@
       "score": 8,
       "region": "海外",
       "level": "高",
-      "last_seen": "2026-09-18T10:05:11+00:00",
+      "last_seen": "2026-09-18T10:58:04+00:00",
       "stale": false
     },
     {
@@ -16927,7 +16412,7 @@
       "score": 8,
       "region": "海外",
       "level": "高",
-      "last_seen": "2026-09-18T10:05:11+00:00",
+      "last_seen": "2026-09-18T10:58:04+00:00",
       "stale": false
     },
     {
@@ -16954,7 +16439,7 @@
       "score": 8,
       "region": "海外",
       "level": "高",
-      "last_seen": "2026-09-18T10:05:11+00:00",
+      "last_seen": "2026-09-18T10:58:04+00:00",
       "stale": false
     },
     {
@@ -16981,7 +16466,7 @@
       "score": 8,
       "region": "海外",
       "level": "高",
-      "last_seen": "2026-09-18T10:05:11+00:00",
+      "last_seen": "2026-09-18T10:58:04+00:00",
       "stale": false
     },
     {
@@ -17008,7 +16493,7 @@
       "score": 8,
       "region": "海外",
       "level": "高",
-      "last_seen": "2026-09-18T10:05:11+00:00",
+      "last_seen": "2026-09-18T10:58:04+00:00",
       "stale": false
     },
     {
@@ -17037,7 +16522,7 @@
       "score": 7,
       "region": "海外",
       "level": "高",
-      "last_seen": "2026-09-18T10:03:01+00:00",
+      "last_seen": "2026-09-18T10:55:55+00:00",
       "stale": false
     },
     {
@@ -17064,7 +16549,7 @@
       "score": 6,
       "region": "海外",
       "level": "高",
-      "last_seen": "2026-09-18T10:03:01+00:00",
+      "last_seen": "2026-09-18T10:55:55+00:00",
       "stale": false
     },
     {
@@ -17091,7 +16576,7 @@
       "score": 6,
       "region": "海外",
       "level": "高",
-      "last_seen": "2026-09-18T10:03:01+00:00",
+      "last_seen": "2026-09-18T10:55:55+00:00",
       "stale": false
     },
     {
@@ -17118,7 +16603,7 @@
       "score": 6,
       "region": "海外",
       "level": "高",
-      "last_seen": "2026-09-18T10:05:11+00:00",
+      "last_seen": "2026-09-18T10:58:04+00:00",
       "stale": false
     },
     {
@@ -17145,7 +16630,7 @@
       "score": 6,
       "region": "海外",
       "level": "高",
-      "last_seen": "2026-09-18T10:05:11+00:00",
+      "last_seen": "2026-09-18T10:58:04+00:00",
       "stale": false
     },
     {
@@ -17172,7 +16657,7 @@
       "score": 6,
       "region": "海外",
       "level": "高",
-      "last_seen": "2026-09-18T10:05:11+00:00",
+      "last_seen": "2026-09-18T10:58:04+00:00",
       "stale": false
     },
     {
@@ -17197,7 +16682,7 @@
       "score": 5,
       "region": "海外",
       "level": "中",
-      "last_seen": "2026-09-18T10:03:01+00:00",
+      "last_seen": "2026-09-18T10:55:55+00:00",
       "stale": false
     },
     {
@@ -17222,7 +16707,7 @@
       "score": 5,
       "region": "海外",
       "level": "中",
-      "last_seen": "2026-09-18T10:03:01+00:00",
+      "last_seen": "2026-09-18T10:55:55+00:00",
       "stale": false
     },
     {
@@ -17247,7 +16732,7 @@
       "score": 5,
       "region": "海外",
       "level": "中",
-      "last_seen": "2026-09-18T10:05:11+00:00",
+      "last_seen": "2026-09-18T10:58:04+00:00",
       "stale": false
     },
     {
@@ -17272,7 +16757,7 @@
       "score": 5,
       "region": "海外",
       "level": "中",
-      "last_seen": "2026-09-18T10:05:11+00:00",
+      "last_seen": "2026-09-18T10:58:04+00:00",
       "stale": false
     },
     {
@@ -17297,7 +16782,7 @@
       "score": 5,
       "region": "海外",
       "level": "中",
-      "last_seen": "2026-09-18T10:05:11+00:00",
+      "last_seen": "2026-09-18T10:58:04+00:00",
       "stale": false
     },
     {
@@ -17322,7 +16807,7 @@
       "score": 5,
       "region": "海外",
       "level": "中",
-      "last_seen": "2026-09-18T10:05:11+00:00",
+      "last_seen": "2026-09-18T10:58:04+00:00",
       "stale": false
     },
     {
@@ -17347,7 +16832,7 @@
       "score": 5,
       "region": "海外",
       "level": "中",
-      "last_seen": "2026-09-18T10:05:11+00:00",
+      "last_seen": "2026-09-18T10:58:04+00:00",
       "stale": false
     },
     {
@@ -17365,13 +16850,13 @@
       ],
       "reasons": [
         "AI Infra：ai infrastructure",
-        "端侧部署：embedded、端侧、部署"
+        "端侧部署：embedded"
       ],
       "score": 4,
       "region": "海外",
       "level": "中",
-      "last_seen": "2026-09-18T05:07:48+00:00",
-      "stale": true
+      "last_seen": "2026-09-18T10:55:55+00:00",
+      "stale": false
     },
     {
       "title": "Lead Machine Learning Engineer",
@@ -17388,13 +16873,13 @@
       ],
       "reasons": [
         "AI Infra：machine learning",
-        "训推加速：inference、加速、训推"
+        "训推加速：inference"
       ],
       "score": 4,
       "region": "海外",
       "level": "中",
-      "last_seen": "2026-09-18T05:07:48+00:00",
-      "stale": true
+      "last_seen": "2026-09-18T10:55:55+00:00",
+      "stale": false
     },
     {
       "title": "ML Engineer, AI Infrastructure for Scalable Production",
@@ -17411,13 +16896,13 @@
       ],
       "reasons": [
         "AI Infra：ai infrastructure、machine learning",
-        "训推加速：inference、加速、训推"
+        "训推加速：inference、serving"
       ],
       "score": 4,
       "region": "海外",
       "level": "中",
-      "last_seen": "2026-09-18T05:07:48+00:00",
-      "stale": true
+      "last_seen": "2026-09-18T10:55:55+00:00",
+      "stale": false
     },
     {
       "title": "Sr. Staff, ML Researcher - LLM Algorithmic Optimization",
@@ -17439,7 +16924,7 @@
       "score": 4,
       "region": "海外",
       "level": "中",
-      "last_seen": "2026-09-18T10:05:11+00:00",
+      "last_seen": "2026-09-18T10:58:04+00:00",
       "stale": false
     },
     {
@@ -17462,7 +16947,7 @@
       "score": 4,
       "region": "海外",
       "level": "中",
-      "last_seen": "2026-09-18T10:05:11+00:00",
+      "last_seen": "2026-09-18T10:58:04+00:00",
       "stale": false
     },
     {
@@ -17485,7 +16970,7 @@
       "score": 4,
       "region": "海外",
       "level": "中",
-      "last_seen": "2026-09-18T10:05:11+00:00",
+      "last_seen": "2026-09-18T10:58:04+00:00",
       "stale": false
     },
     {
@@ -17506,7 +16991,7 @@
       "score": 3,
       "region": "海外",
       "level": "中",
-      "last_seen": "2026-09-18T10:03:01+00:00",
+      "last_seen": "2026-09-18T10:55:55+00:00",
       "stale": false
     },
     {
@@ -17527,7 +17012,7 @@
       "score": 3,
       "region": "海外",
       "level": "中",
-      "last_seen": "2026-09-18T10:03:01+00:00",
+      "last_seen": "2026-09-18T10:55:55+00:00",
       "stale": false
     },
     {
@@ -17548,7 +17033,7 @@
       "score": 3,
       "region": "海外",
       "level": "中",
-      "last_seen": "2026-09-18T10:03:01+00:00",
+      "last_seen": "2026-09-18T10:55:55+00:00",
       "stale": false
     },
     {
@@ -17571,7 +17056,7 @@
       "score": 2,
       "region": "海外",
       "level": "低",
-      "last_seen": "2026-09-18T10:05:11+00:00",
+      "last_seen": "2026-09-18T10:58:04+00:00",
       "stale": false
     }
   ],
