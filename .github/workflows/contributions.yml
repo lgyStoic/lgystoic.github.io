@@ -39,9 +39,9 @@ jobs:
           GEMINI_MODEL: gemini-3.1-pro-preview
           GEMINI_FALLBACK_MODEL: gemini-2.5-pro
           GITHUB_TOKEN: ${{ github.token }}
+          REPO: ${{ matrix.repo }}
         run: |
-          SLUG=$(echo "${{ matrix.repo }}" | tr '/' '-' | tr -c 'A-Za-z0-9._-\n' '-')
-          python3 tools/contributions.py --only "${{ matrix.repo }}" --out "out/$SLUG.json"
+          python3 tools/contributions.py --only "$REPO" --out "out/${REPO//\//-}.json"
       - uses: actions/upload-artifact@v4
         with:
           name: contrib-${{ strategy.job-index }}
