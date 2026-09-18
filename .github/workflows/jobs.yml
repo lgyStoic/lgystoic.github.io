@@ -39,20 +39,26 @@ jobs:
           mkdir -p radar/data/liepin
           if git clone --depth 1 https://github.com/rockbenben/ai-job-search-cn.git /tmp/ai-job-search-cn; then
             LIEPIN_OK=0
+            LIEPIN_FAILS=0
             for CITY in "深圳" "北京" "上海" "杭州" "广州"; do
             for QUERY in "AI Infra" "CUDA 算子" "Triton TensorRT" "大模型 推理 加速" "训练框架 分布式" "扩散模型 视频生成" "端侧部署 量化"; do
+              # 连续 4 个查询都失败（猎聘封了 runner 出口或整站不可达）就不再一个个试：每次失败要 40 秒，35 个查询 × 3 次能把 30 分钟的 job 拖死
+              if [ "$LIEPIN_FAILS" -ge 4 ]; then break 2; fi
               SLUG=$(printf '%s|%s' "$CITY" "$QUERY" | sha256sum | cut -c1-12)
+              GOT=0
               for ATTEMPT in 1 2 3; do
-                if node /tmp/ai-job-search-cn/.agents/skills/liepin-search/cli/src/cli.ts search -q "$QUERY" -l "$CITY" --limit 42 --format json > "radar/data/liepin/$SLUG.json"; then
-                  LIEPIN_OK=1
+                if timeout 90 node /tmp/ai-job-search-cn/.agents/skills/liepin-search/cli/src/cli.ts search -q "$QUERY" -l "$CITY" --limit 42 --format json > "radar/data/liepin/$SLUG.json"; then
+                  LIEPIN_OK=1; GOT=1
                   break
                 fi
                 rm -f "radar/data/liepin/$SLUG.json"
                 sleep $((ATTEMPT * 8))
               done
+              if [ "$GOT" = 1 ]; then LIEPIN_FAILS=0; else LIEPIN_FAILS=$((LIEPIN_FAILS + 1)); fi
               sleep 2
             done
             done
+            if [ "$LIEPIN_FAILS" -ge 4 ]; then echo "猎聘连续 ${LIEPIN_FAILS} 个查询失败，本轮放弃猎聘，沿用上次结果"; fi
             if [ "$LIEPIN_OK" = 1 ]; then python3 tools/import_liepin.py; else python3 tools/import_liepin.py --failed; fi
           else
             python3 tools/import_liepin.py --failed
