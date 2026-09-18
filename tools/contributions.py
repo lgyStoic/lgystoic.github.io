@@ -19,14 +19,57 @@ TASK = {'type':'object','properties':{
     'skill_fit':{'type':'string'},'engagement':{'type':'string'},'claim_comment':{'type':'string'},'pr_scope':{'type':'string'},'time_estimate':{'type':'string'},
     'compute_class':{'type':'string'},'kind':{'type':'string'},
 },'required':['title','source_url','source_number','source_title','priority','compute','difficulty','why_core','goal','first_action','implementation_steps','likely_paths','validation','questions','risks','skill_fit','engagement','claim_comment','pr_scope','time_estimate','compute_class','kind']}
-ANALYSIS_SCHEMA = {'type':'object','properties':{
-    'overview':{'type':'string'},'what_it_does':{'type':'array','items':{'type':'string'}},'stack':{'type':'array','items':{'type':'string'}},
-    'architecture':{'type':'array','items':{'type':'object','properties':{'module':{'type':'string'},'path':{'type':'string'},'role':{'type':'string'},'notes':{'type':'string'}},'required':['module','path','role','notes']}},
-    'data_flow':{'type':'string'},'hotspots':{'type':'array','items':{'type':'object','properties':{'path':{'type':'string'},'why':{'type':'string'}},'required':['path','why']}},
-    'build_and_test':{'type':'string'},'maintainers':{'type':'string'},'gaps':{'type':'array','items':{'type':'string'}},
-    'ownership_target':{'type':'string'},'entry_plan':{'type':'object','properties':{'phase_30':{'type':'array','items':{'type':'string'}},'phase_60':{'type':'array','items':{'type':'string'}},'phase_90':{'type':'array','items':{'type':'string'}}},'required':['phase_30','phase_60','phase_90']},
-    'risks':{'type':'array','items':{'type':'string'}},
-},'required':['overview','what_it_does','stack','architecture','data_flow','hotspots','build_and_test','maintainers','gaps','ownership_target','entry_plan','risks']}
+def _arr(): return {'type':'array','items':{'type':'string'}}
+def _objs(*fields): return {'type':'array','items':{'type':'object','properties':{f:{'type':'string'} for f in fields},'required':list(fields)}}
+
+CHAPTERS = [
+    ('positioning', '项目定位', {'type':'object','properties':{
+        'overview':{'type':'string'},'problem':{'type':'string'},'users':{'type':'string'},'landscape':_objs('project','difference'),
+        'stage':{'type':'string'},'capabilities':_objs('capability','where','maturity'),'stack':_arr(),'numbers':{'type':'string'},
+    },'required':['overview','problem','users','landscape','stage','capabilities','stack','numbers']}),
+    ('codemap', '架构与代码地图', {'type':'object','properties':{
+        'layers':{'type':'string'},'modules':_objs('module','path','role','entry_points','depends_on','size','notes'),
+        'data_flow':{'type':'string'},'key_types':_objs('name','path','purpose'),'extension_points':_objs('where','how'),
+        'hotspots':_objs('path','why'),'reading_order':_arr(),
+    },'required':['layers','modules','data_flow','key_types','extension_points','hotspots','reading_order']}),
+    ('runbook', '本地跑起来', {'type':'object','properties':{
+        'install':_arr(),'no_gpu_paths':{'type':'string'},'smoke_test':_arr(),'test_suite':{'type':'string'},'debug_tips':_arr(),
+        'ci':{'type':'string'},'pitfalls':_arr(),
+    },'required':['install','no_gpu_paths','smoke_test','test_suite','debug_tips','ci','pitfalls']}),
+    ('community', '维护者与社区', {'type':'object','properties':{
+        'cadence':{'type':'string'},'people':_objs('who','role','evidence'),'process':{'type':'string'},'review_style':{'type':'string'},
+        'channels':_arr(),'etiquette':_arr(),'what_they_want':_arr(),
+    },'required':['cadence','people','process','review_style','channels','etiquette','what_they_want']}),
+    ('entry', '切入方案', {'type':'object','properties':{
+        'gaps':_objs('gap','evidence','why_you'),'ownership_target':{'type':'string'},'why_this_target':{'type':'string'},
+        'phase_30':_arr(),'phase_60':_arr(),'phase_90':_arr(),'first_prs':_objs('title','scope','why_safe'),
+        'signals_of_progress':_arr(),'risks':_objs('risk','mitigation'),
+    },'required':['gaps','ownership_target','why_this_target','phase_30','phase_60','phase_90','first_prs','signals_of_progress','risks']}),
+]
+CHAPTER_BRIEF = {
+    'positioning': """- overview：400–600 字，这个项目是什么、为什么存在、和同类的关系、现在什么阶段。
+- problem / users：解决的具体问题、目标用户和典型使用场景。
+- landscape：3–6 个同类项目及差别（只写你有把握的）。
+- capabilities：6–12 条核心能力，where 指出对应目录或文件，maturity 写成熟 / 实验 / 缺失。
+- stack：语言、框架、底层依赖、构建、CI。numbers：从证据里能读出的规模数字（star、目录文件数、提交频率、Release）。""",
+    'codemap': """- layers：分层描述（入口层 / 调度层 / 执行层 / kernel 层 / 工具层之类），300 字以上。
+- modules：8–16 条，每条 module、path（必须来自目录树或代码路径）、role、entry_points（关键类 / 函数 / 文件，来自源码片段或路径名，不确定写「需验证」）、depends_on、size（文件数量级）、notes。
+- data_flow：400 字以上，一次请求 / 推理 / 训练从入口到输出的完整路径，关键数据结构与调度点。
+- key_types：8–15 个关键类型或函数，写路径和用途。
+- extension_points：新模型 / 新后端 / 新 kernel / 新调度策略分别在哪接、怎么接。
+- hotspots：结合提交热点 5–8 条。reading_order：建议阅读顺序，10 步以内，每步一个文件或目录。""",
+    'runbook': """- install：在没有 GPU 的 MacBook（Apple Silicon）上安装的具体命令序列，依据 README / pyproject / CMakeLists；哪些依赖要跳过或替换。
+- no_gpu_paths：哪些代码路径能在 CPU / MPS / Metal 上真正执行，哪些只能读代码或用 Colab T4 验证。
+- smoke_test：3–6 条最小可运行示例命令。test_suite：测试框架、目录、怎么只跑 CPU 子集、大概耗时。
+- debug_tips：断点、日志开关、环境变量、profiling 入口。ci：CI 用什么、跑哪些、PR 会被什么卡住。pitfalls：常见坑。""",
+    'community': """- cadence：提交与 Release 频率（用 commits / releases 证据）。people：主要维护者 3–8 人，role 和 evidence（从提交作者、Issue 指派推断）。
+- process：贡献流程（先 Issue / RFC？CLA / DCO？pre-commit？）。review_style：从 Issue / PR 评论推断的 Review 风格与响应速度。
+- channels：Slack / Discord / 论坛等链接。etiquette：这个社区里得体与不得体的做法。what_they_want：维护者当前最想要的帮助（从 roadmap / help wanted / 评论推断）。""",
+    'entry': """- gaps：6–10 条，这个项目当前缺的、且候选人在无 GPU 条件下能补的，每条给 evidence 和 why_you。
+- ownership_target / why_this_target：建议长期负责的模块或方向，为什么既够核心又能无 GPU 起步，通向维护者身份的路径。
+- phase_30 / 60 / 90：每阶段 5–8 条具体可勾选动作（读哪些文件、跑什么、提什么类型 PR、在哪露面、何时申请 triage / reviewer）。
+- first_prs：3–5 个第一批 PR 的题目、范围和为什么安全。signals_of_progress：怎么判断自己在这个项目里站住了。risks：风险与对策各 4–8 条。""",
+}
 REPO_SCHEMA = {'type':'object','properties':{
     'repo':{'type':'string'},'fit':{'type':'string'},'current_direction':{'type':'string'},
     'recommended_order':{'type':'array','items':{'type':'string'}},'maintainer_path':{'type':'array','items':{'type':'string'}},
@@ -118,6 +161,33 @@ def commit_hotspots(name, commits, limit=15):
     return sorted(counts.items(), key=lambda x:-x[1])[:20]
 
 
+def source_snippets(name, code_paths, hotspots, limit=10, chars=3500):
+    """挑关键源码文件的开头（入口 / 调度 / 引擎 / kernel 相关，优先落在热点目录），让模型写出真实的类名和入口。"""
+    hot_dirs=[h[0] for h in hotspots[:8]]
+    def score(path):
+        base=path.rsplit('/',1)[-1].lower()
+        sc=0
+        if any(path.startswith(h) for h in hot_dirs): sc+=3
+        if re.search(r'(__init__|__main__|main|server|engine|scheduler|runtime|executor|pipeline|model_runner|kernel|attention|launch|entrypoint|api|cli)', base): sc+=2
+        if base in ('__init__.py',) and path.count('/')>2: sc-=2
+        sc-=path.count('/')*0.2
+        return -sc
+    picked=[]
+    for path in sorted(code_paths, key=score):
+        if len(picked)>=limit: break
+        if re.search(r'(test|bench|example|docs?/|third_party|vendor)', path): continue
+        picked.append(path)
+    out={}
+    for path in picked:
+        try:
+            c=api(f'repos/{name}/contents/{urllib.parse.quote(path)}')
+            if c.get('encoding')=='base64':
+                out[path]=base64.b64decode(c.get('content','')).decode('utf-8','replace')[:chars]
+        except Exception:
+            continue
+    return out
+
+
 def collect_repo(name, opts=None):
     opts=opts or {}
     meta=api(f'repos/{name}')
@@ -159,10 +229,11 @@ def collect_repo(name, opts=None):
     tree_summary, code_paths = repo_tree(name, meta.get('default_branch') or 'main')
     hotspots=commit_hotspots(name, commits)
     files=key_files(name)
+    snippets=source_snippets(name, code_paths, hotspots)
     young=bool(opts.get('young')) or (meta.get('open_issues_count') or 0) < 5
     return {'repo':name,'url':meta['html_url'],'description':meta.get('description'),'stars':meta.get('stargazers_count'),
         'focus':bool(opts.get('focus')),'young':young,
-        'tree':tree_summary,'code_paths':code_paths,'commit_hotspots':hotspots,'key_files':files,
+        'tree':tree_summary,'code_paths':code_paths,'commit_hotspots':hotspots,'key_files':files,'source_snippets':snippets,
         'forks':meta.get('forks_count'),'open_issues':meta.get('open_issues_count'),'pushed_at':meta.get('pushed_at'),
         'default_branch':meta.get('default_branch'),'readme':text,'contributing':contributing,'community':community_links(text),
         'root_paths':[x.get('path') for x in root if x.get('path')][:80],
@@ -180,36 +251,50 @@ PROFILE = """候选人画像：资深 GPU kernel / 训练性能工程师。擅�
 算力（硬约束）：目前没有任何 GPU，只有一台 MacBook Air（Apple Silicon，16GB）。开发与验证必须在 CPU / Apple Silicon 上完成，最多用 Colab 免费 T4 做几十分钟的最终确认。"""
 
 
-def analysis_prompt(ev):
+def chapter_prompt(ev, key, title, brief, done):
     compact={k:v for k,v in ev.items() if k not in ('issues','pulls','stars','forks','open_issues')}
-    return PROFILE+'''
+    if key in ('positioning','community'):
+        compact={k:v for k,v in compact.items() if k not in ('source_snippets','code_paths')}
+    if key=='community':
+        compact['issues']=[{k:i.get(k) for k in ('number','title','labels','comments','assignees','updated_at')} for i in ev.get('issues',[])[:40]]
+        compact['pulls']=ev.get('pulls',[])
+    prior=''
+    if done:
+        prior='\n\n前面章节已经写好的结论（保持一致，不要重复，可以引用）：'+json.dumps({k:_shrink(v) for k,v in done.items()},ensure_ascii=False)
+    return PROFILE+prior+f'''
 
-请对下面这个开源仓库做一份「先看懂、再切入」的深度分析，写给上面这位候选人看。要求详细、具体、有依据，所有判断都要能对应到给出的证据（README、关键文件、目录树、代码路径、最近提交、提交热点、CONTRIBUTING）。不确定的地方写「需验证」，不要编造不存在的模块。
+请为下面这个开源仓库写「{title}」这一章，读者是上面这位候选人，目的是先彻底看懂这个库，再决定怎么切入。要求详细、具体、每个判断都能对应到证据（README、关键文件、目录树、代码路径、源码片段、最近提交与提交热点、CONTRIBUTING、Issue）。不确定的写「需验证」，绝不编造不存在的文件或类。
 
-各字段要求：
-- overview：300–500 字。这个项目解决什么问题、给谁用、在生态里的位置（和同类项目的差别）、现在处于什么阶段。
-- what_it_does：5–10 条，每条一个核心能力，指出对应的目录或文件。
-- stack：语言、框架、底层依赖、构建系统、CI。
-- architecture：按模块列 6–12 条：module 名、path（来自目录树 / 代码路径）、role（干什么）、notes（关键类型或入口、和其他模块的依赖关系、代码量级）。要能让人照着目录树找到。
-- data_flow：300 字以上，一次请求 / 一次推理 / 一次训练从入口到输出经过哪些模块，关键的数据结构和调度点在哪。
-- hotspots：结合 commit_hotspots 和 commits，指出最近最活跃的 5–8 个路径以及为什么活跃（正在做什么）。
-- build_and_test：怎么在没有 GPU 的 Mac 上把它跑起来（安装、CPU/Mac 后端、测试命令、需要绕开什么），依据 README / CONTRIBUTING / pyproject。
-- maintainers：维护节奏（提交频率、Release 节奏）、主要维护者是谁（从 commits 作者推断）、Review 风格与响应速度（从 Issue 评论和 PR 推断）、社区入口。
-- gaps：5–8 条，这个项目当前明显缺的东西或薄弱环节，并且是候选人在无 GPU 条件下能补的：缺测试、缺 CPU/Mac 后端覆盖、缺文档、缺性能基线、调度逻辑粗糙、构建脆弱等，每条指出依据。
-- ownership_target：一段话，建议候选人长期负责哪个模块或方向，为什么这个位置既够核心又能无 GPU 起步，通向维护者身份的路径是什么。
-- entry_plan：30 / 60 / 90 天三个阶段各 4–6 条具体动作（读哪些文件、跑什么、先提哪类 PR、在哪露面、什么时候申请 triage / reviewer 权限），每条可勾选。
-- risks：这条路的风险（方向被内部团队包办、项目可能停更、Review 慢、CLA 等）和对策。
+本章字段要求：
+{brief}
 
-全部中文，代码、文件名、专有名词保留原文。
+全部中文，代码、文件名、类名、专有名词保留原文。
 
 仓库证据：'''+json.dumps(compact,ensure_ascii=False)
+
+
+def _shrink(v, n=1200):
+    text=json.dumps(v,ensure_ascii=False)
+    return json.loads(text) if len(text)<=n else text[:n]+'…'
+
+
+def run_analysis(ev, label):
+    """逐章生成，后一章能看到前面章节的结论。任一章失败则整体失败。"""
+    done={}
+    for key, title, schema in CHAPTERS:
+        out=radar.call_llm_json('你是资深开源维护者与 AI 系统架构师，擅长读懂陌生仓库并规划切入路径。只依据证据，不编造。',
+                                chapter_prompt(ev, key, title, CHAPTER_BRIEF[key], done), schema, label=f'{label}-{key}')
+        if not out: raise RuntimeError(f'GeminiChapterFailed:{key}')
+        done[key]=out
+    return done
 
 
 def task_prompt(ev, analysis=None):
     compact={k:v for k,v in ev.items() if k not in ('stars','forks','open_issues','tree','code_paths','key_files')}
     context=''
     if analysis:
-        context='\n\n已完成的项目分析（任务卡要与之一致，优先落在 ownership_target 和 gaps 指出的方向）：'+json.dumps({k:analysis.get(k) for k in ('overview','architecture','hotspots','gaps','ownership_target','build_and_test')},ensure_ascii=False)
+        ent=analysis.get('entry',{}); cm=analysis.get('codemap',{}); rb=analysis.get('runbook',{})
+        context='\n\n已完成的项目分析（任务卡要与之一致，优先落在 ownership_target、gaps 和 first_prs 指出的方向）：'+json.dumps({'overview':analysis.get('positioning',{}).get('overview'),'modules':cm.get('modules'),'hotspots':cm.get('hotspots'),'gaps':ent.get('gaps'),'ownership_target':ent.get('ownership_target'),'first_prs':ent.get('first_prs'),'no_gpu_paths':rb.get('no_gpu_paths')},ensure_ascii=False)
     return PROFILE+context+'''
 
 为下面这个开源仓库生成“可直接开工、并且知道怎么得体介入”的贡献任务卡。
@@ -267,13 +352,12 @@ def analyze_repo(name, opts=None):
     try:
         evidence=collect_repo(name, opts)
         label='contribution-'+name.replace('/','-')
-        analysis=radar.call_llm_json('你是资深开源维护者与 AI 系统架构师，擅长读懂一个陌生仓库并规划切入路径。只依据证据，不编造。',analysis_prompt(evidence),ANALYSIS_SCHEMA,label=label+'-analysis')
-        if not analysis: raise RuntimeError('GeminiAnalysisFailed')
+        analysis=run_analysis(evidence, label)
         generated=radar.call_llm_json('你是资深开源维护者与 AI 系统工程师。把真实 GitHub Issue 变成严谨、可执行、可验证的贡献计划。',task_prompt(evidence, analysis),REPO_SCHEMA,label=label+'-tasks')
         if not generated: raise RuntimeError('GeminiGenerationFailed')
         generated['repo']=name; generated=valid_tasks(generated,evidence)
         generated['analysis']=analysis
-        generated['evidence']={k:v for k,v in evidence.items() if k not in ('readme','key_files','code_paths')}
+        generated['evidence']={k:v for k,v in evidence.items() if k not in ('readme','key_files','code_paths','source_snippets')}
         generated['model']=radar.LAST_MODEL_USED
         return generated, None
     except Exception as exc:
@@ -367,31 +451,63 @@ def task_card(task,index):
 <details><summary>验收方式</summary>{list_html(task.get('validation',[]))}</details><details><summary>开工前问题与风险</summary><h3>向维护者确认</h3>{list_html(task.get('questions',[]))}<h3>风险</h3>{list_html(task.get('risks',[]))}</details></article>'''
 
 
+def _rows(items, *cols):
+    return ''.join('<tr>'+''.join(f'<td>{esc(it.get(c))}</td>' for c in cols)+'</tr>' for it in (items or []))
+
+
+def _kv_list(items, a, b):
+    return '<ul>'+''.join(f'<li><b>{esc(it.get(a))}</b>：{esc(it.get(b))}</li>' for it in (items or []))+'</ul>'
+
+
+def _check(items):
+    return '<ul class="checklist">'+''.join(f'<li><label><input type="checkbox"> {esc(x)}</label></li>' for x in (items or []))+'</ul>'
+
+
 def analysis_html(a, ev):
     if not a: return ''
-    arch=''.join(f'<tr><td><b>{esc(m.get("module"))}</b><br><code>{esc(m.get("path"))}</code></td><td>{esc(m.get("role"))}<br><span class="muted">{esc(m.get("notes"))}</span></td></tr>' for m in a.get('architecture',[]))
-    hot=''.join(f'<li><code>{esc(h.get("path"))}</code> — {esc(h.get("why"))}</li>' for h in a.get('hotspots',[]))
-    plan=''.join(f'<div class="phase"><h3>{label}</h3><ul class="checklist">'+''.join(f'<li><label><input type="checkbox"> {esc(x)}</label></li>' for x in a.get('entry_plan',{}).get(key,[]))+'</ul></div>' for key,label in (('phase_30','第 1–30 天：看懂并露面'),('phase_60','第 31–60 天：稳定产出'),('phase_90','第 61–90 天：接管一块')))
+    if 'positioning' not in a:  # 旧版单块结构，直接跳过
+        return ''
+    P,C,R,M,E=(a.get(k,{}) for k in ('positioning','codemap','runbook','community','entry'))
     tree=ev.get('tree') or {}
     tree_html=''.join(f'<li><code>{esc(k)}/</code> <span class="muted">{v.get("files",0)} 个文件</span>'+(f'<br><span class="muted">{esc(", ".join(v.get("children",[])[:14]))}</span>' if v.get('children') else '')+'</li>' for k,v in sorted(tree.items(), key=lambda kv:-kv[1].get('files',0))[:16])
-    return f'''<section class="analysis"><h2>一、这个项目在做什么</h2><p class="overview">{esc(a.get('overview'))}</p>{list_html(a.get('what_it_does',[]))}<p><b>技术栈：</b>{esc('；'.join(a.get('stack',[])))}</p>
-<h2>二、架构</h2><div class="table-wrap"><table class="arch"><thead><tr><th>模块 / 路径</th><th>职责与备注</th></tr></thead><tbody>{arch}</tbody></table></div>
+    toc='<nav class="toc"><b>目录</b> <a href="#ch1">一、项目定位</a> · <a href="#ch2">二、架构与代码地图</a> · <a href="#ch3">三、本地跑起来</a> · <a href="#ch4">四、维护者与社区</a> · <a href="#ch5">五、切入方案</a> · <a href="#ch6">六、怎么介入</a> · <a href="#ch7">七、任务卡</a></nav>'
+    ch1=f'''<section class="analysis" id="ch1"><h2>一、项目定位</h2><p class="overview">{esc(P.get('overview'))}</p>
+<h3>解决什么问题、给谁用</h3><p>{esc(P.get('problem'))}</p><p>{esc(P.get('users'))}</p>
+<h3>同类项目与差别</h3>{_kv_list(P.get('landscape'),'project','difference')}
+<h3>核心能力</h3><div class="table-wrap"><table class="arch"><thead><tr><th>能力</th><th>在哪</th><th>成熟度</th></tr></thead><tbody>{_rows(P.get('capabilities'),'capability','where','maturity')}</tbody></table></div>
+<p><b>阶段：</b>{esc(P.get('stage'))}</p><p><b>技术栈：</b>{esc('；'.join(P.get('stack',[])))}</p><p><b>规模：</b>{esc(P.get('numbers'))}</p></section>'''
+    mods=''.join(f'<tr><td><b>{esc(m.get("module"))}</b><br><code>{esc(m.get("path"))}</code><br><span class="muted">{esc(m.get("size"))}</span></td><td>{esc(m.get("role"))}<br><span class="muted">入口：{esc(m.get("entry_points"))}</span><br><span class="muted">依赖：{esc(m.get("depends_on"))}</span>{("<br><span class=muted>"+esc(m.get("notes"))+"</span>") if m.get("notes") else ""}</td></tr>' for m in C.get('modules',[]))
+    ch2=f'''<section class="analysis" id="ch2"><h2>二、架构与代码地图</h2><p>{esc(C.get('layers'))}</p>
+<div class="table-wrap"><table class="arch"><thead><tr><th>模块 / 路径</th><th>职责 · 入口 · 依赖</th></tr></thead><tbody>{mods}</tbody></table></div>
 <details><summary>目录树（按文件数）</summary><ul class="tree">{tree_html}</ul></details>
-<h3>一次调用怎么流过这些模块</h3><p>{esc(a.get('data_flow'))}</p>
-<h3>最近在动的地方</h3><ul>{hot}</ul>
-<h3>怎么在没有 GPU 的 Mac 上跑起来</h3><p>{esc(a.get('build_and_test'))}</p>
-<h3>维护者与节奏</h3><p>{esc(a.get('maintainers'))}</p>
-<h2>三、切入方案</h2><div class="engage"><b>建议长期负责：</b>{esc(a.get('ownership_target'))}</div>
-<h3>它现在缺什么（你无 GPU 也能补的）</h3>{list_html(a.get('gaps',[]))}
+<h3>一次调用怎么流过这些模块</h3><p>{esc(C.get('data_flow'))}</p>
+<h3>关键类型与函数</h3><div class="table-wrap"><table class="arch"><thead><tr><th>名称</th><th>路径</th><th>用途</th></tr></thead><tbody>{_rows(C.get('key_types'),'name','path','purpose')}</tbody></table></div>
+<h3>扩展点</h3>{_kv_list(C.get('extension_points'),'where','how')}
+<h3>最近在动的地方</h3>{_kv_list(C.get('hotspots'),'path','why')}
+<h3>建议阅读顺序</h3><ol>{''.join(f'<li>{esc(x)}</li>' for x in C.get('reading_order',[]))}</ol></section>'''
+    ch3=f'''<section class="analysis" id="ch3"><h2>三、本地跑起来（没有 GPU 的 Mac）</h2><h3>安装</h3><ol>{''.join(f'<li><code>{esc(x)}</code></li>' for x in R.get('install',[]))}</ol>
+<h3>哪些路径能真跑</h3><p>{esc(R.get('no_gpu_paths'))}</p>
+<h3>最小可运行</h3><ol>{''.join(f'<li><code>{esc(x)}</code></li>' for x in R.get('smoke_test',[]))}</ol>
+<h3>测试</h3><p>{esc(R.get('test_suite'))}</p><h3>调试</h3>{list_html(R.get('debug_tips',[]))}<h3>CI</h3><p>{esc(R.get('ci'))}</p><h3>坑</h3>{list_html(R.get('pitfalls',[]))}</section>'''
+    ch4=f'''<section class="analysis" id="ch4"><h2>四、维护者与社区</h2><p>{esc(M.get('cadence'))}</p>
+<div class="table-wrap"><table class="arch"><thead><tr><th>谁</th><th>角色</th><th>依据</th></tr></thead><tbody>{_rows(M.get('people'),'who','role','evidence')}</tbody></table></div>
+<h3>流程与 Review 风格</h3><p>{esc(M.get('process'))}</p><p>{esc(M.get('review_style'))}</p>
+<h3>渠道</h3>{list_html(M.get('channels',[]))}<h3>这里的规矩</h3>{list_html(M.get('etiquette',[]))}<h3>维护者现在最想要的帮助</h3>{list_html(M.get('what_they_want',[]))}</section>'''
+    plan=''.join(f'<div class="phase"><h3>{label}</h3>{_check(E.get(key,[]))}</div>' for key,label in (('phase_30','第 1–30 天：看懂并露面'),('phase_60','第 31–60 天：稳定产出'),('phase_90','第 61–90 天：接管一块')))
+    ch5=f'''<section class="analysis" id="ch5"><h2>五、切入方案</h2><div class="engage"><b>建议长期负责：</b>{esc(E.get('ownership_target'))}<br>{esc(E.get('why_this_target'))}</div>
+<h3>它现在缺什么（你无 GPU 也能补）</h3><div class="table-wrap"><table class="arch"><thead><tr><th>缺口</th><th>依据</th><th>为什么是你</th></tr></thead><tbody>{_rows(E.get('gaps'),'gap','evidence','why_you')}</tbody></table></div>
 <div class="phases">{plan}</div>
-<details><summary>风险与对策</summary>{list_html(a.get('risks',[]))}</details></section>'''
+<h3>第一批 PR</h3><div class="table-wrap"><table class="arch"><thead><tr><th>题目</th><th>范围</th><th>为什么安全</th></tr></thead><tbody>{_rows(E.get('first_prs'),'title','scope','why_safe')}</tbody></table></div>
+<h3>怎么知道自己站住了</h3>{list_html(E.get('signals_of_progress',[]))}
+<details><summary>风险与对策</summary>{_kv_list(E.get('risks'),'risk','mitigation')}</details></section>'''
+    return toc+ch1+ch2+ch3+ch4+ch5
 
 
 def detail_page(repo,updated,global_model):
     ev=repo.get('evidence',{}); tasks=repo.get('tasks',[])
     cards=''.join(task_card(t,i) for i,t in enumerate(tasks,1)) or '<p class="empty-state">当前开放 Issue 中没有足够可靠、适合你设备条件的任务。等待下次更新。</p>'
     stale=' · 本次生成失败，展示上次结果' if repo.get('stale') else ''
-    return f'''<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{esc(repo['repo'])} 贡献任务 | Anaxagore</title><meta name="description" content="{esc(repo['repo'])} 的具体开源贡献任务、Issue 链接与实施方案。"><link rel="canonical" href="https://lgystoic.github.io/radar/contributions/{slug(repo['repo'])}/"><link rel="stylesheet" href="../../../site.css"><style>.repo-hero{{padding-bottom:1.5rem;border-bottom:1px solid var(--line)}}.repo-meta,.task-top{{display:flex;gap:.7rem;flex-wrap:wrap;color:var(--muted)}}.task-card{{margin:1.2rem 0;padding:1.25rem;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface)}}.task-card h2{{margin:.45rem 0}}.task-card details{{margin-top:.8rem}}.task-index{{font-weight:700;color:var(--accent)}}.first-action{{margin:1rem 0;padding:.8rem 1rem;background:var(--bg-tint);border-radius:var(--radius)}}.source-link a{{font-weight:650}}.back-link{{display:inline-block;margin-bottom:1rem}}.badges{{display:flex;flex-wrap:wrap;gap:.4rem;margin:.5rem 0}}.badge{{padding:.1rem .55rem;border:1px solid var(--line);border-radius:999px;font-size:.75rem;color:var(--muted)}}.badge.ok{{border-color:#3a7d44;color:#3a7d44}}.badge.warn{{border-color:var(--accent);color:var(--accent);background:var(--accent-soft)}}.engage{{margin:.8rem 0;padding:.8rem 1rem;border-left:3px solid var(--accent);background:var(--bg-tint);border-radius:0 var(--radius) var(--radius) 0;line-height:1.7}}.claim{{white-space:pre-wrap;font-family:inherit;font-size:.92rem;line-height:1.6;margin:.5rem 0;padding:.8rem 1rem;background:var(--bg-tint);border-radius:var(--radius)}}.analysis h2{{margin-top:2rem}}.analysis h3{{margin-top:1.2rem;font-size:1.02rem}}.analysis p{{line-height:1.8;color:var(--ink-soft)}}.analysis .overview{{font-size:1.02rem;color:var(--ink)}}.arch{{width:100%;border-collapse:collapse;font-size:.9rem}}.arch th,.arch td{{padding:.55rem .6rem;border-top:1px solid var(--line-soft);vertical-align:top;text-align:left;line-height:1.55}}.arch th{{color:var(--muted);font-size:.75rem;font-family:var(--mono)}}.muted{{color:var(--muted);font-size:.85em}}.tree{{list-style:none;padding:0;columns:2;gap:1.5rem;font-size:.85rem}}.tree li{{margin:.3rem 0;break-inside:avoid}}.phases{{display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:1rem;margin-top:1rem}}.phase{{padding:1rem;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface)}}.phase h3{{margin:0 0 .5rem;font-size:.95rem}}.checklist{{list-style:none;padding:0;margin:0}}.checklist li{{margin:.4rem 0;line-height:1.5;font-size:.9rem}}.checklist input{{margin-right:.4rem}}@media (max-width:560px){{.tree{{columns:1}}}}</style></head><body><!-- build:header --><!-- /build:header --><main class="wrap"><a class="back-link" href="../">← 所有项目</a><section class="repo-hero"><p class="kicker">Contribution Tasks</p><h1>{esc(repo['repo'])}</h1><p>{esc(repo.get('fit'))}</p><p><b>当前方向：</b>{esc(repo.get('current_direction'))}</p><div class="repo-meta"><span>★ {ev.get('stars',0)}</span><span>Fork {ev.get('forks',0)}</span><span>{len(tasks)} 个候选任务</span><span>Gemini：{esc(repo.get('model') or global_model)}</span></div><p class="radar-stats">更新于 {esc(updated)}{stale} · <a href="{esc(ev.get('url','#'),True)}" rel="noopener noreferrer">打开仓库 ↗</a></p></section>{analysis_html(repo.get('analysis'), ev)}<section><h2>四、怎么介入这个项目</h2>{list_html(repo.get('how_to_engage',[]))}{('<p><b>社区入口：</b>'+' · '.join(f'<a href="{esc(u,True)}" rel="noopener noreferrer">{esc(u.split("//",1)[-1][:40])}</a>' for u in ev.get('community',[]))+'</p>') if ev.get('community') else ''}<h2>建议顺序</h2>{list_html(repo.get('recommended_order',[]))}<details><summary>成为长期维护者的路径</summary>{list_html(repo.get('maintainer_path',[]))}</details></section><section class="task-grid"><h2>五、任务卡</h2>{cards}</section></main><footer class="site-footer"><div class="wrap"><span>© 2026 Anaxagore</span><span><a href="../../../about/">关于</a></span></div></footer><script src="../../../site.js" defer></script><script>document.querySelectorAll('[data-copy-claim]').forEach(b=>b.addEventListener('click',()=>{{const t=b.parentElement.querySelector('[data-claim]').textContent;const done=()=>{{b.textContent='已复制';setTimeout(()=>b.textContent='复制留言',1500)}};if(navigator.clipboard)navigator.clipboard.writeText(t).then(done,done);else window.prompt('复制',t)}}))</script></body></html>'''
+    return f'''<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{esc(repo['repo'])} 贡献任务 | Anaxagore</title><meta name="description" content="{esc(repo['repo'])} 的具体开源贡献任务、Issue 链接与实施方案。"><link rel="canonical" href="https://lgystoic.github.io/radar/contributions/{slug(repo['repo'])}/"><link rel="stylesheet" href="../../../site.css"><style>.repo-hero{{padding-bottom:1.5rem;border-bottom:1px solid var(--line)}}.repo-meta,.task-top{{display:flex;gap:.7rem;flex-wrap:wrap;color:var(--muted)}}.task-card{{margin:1.2rem 0;padding:1.25rem;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface)}}.task-card h2{{margin:.45rem 0}}.task-card details{{margin-top:.8rem}}.task-index{{font-weight:700;color:var(--accent)}}.first-action{{margin:1rem 0;padding:.8rem 1rem;background:var(--bg-tint);border-radius:var(--radius)}}.source-link a{{font-weight:650}}.back-link{{display:inline-block;margin-bottom:1rem}}.badges{{display:flex;flex-wrap:wrap;gap:.4rem;margin:.5rem 0}}.badge{{padding:.1rem .55rem;border:1px solid var(--line);border-radius:999px;font-size:.75rem;color:var(--muted)}}.badge.ok{{border-color:#3a7d44;color:#3a7d44}}.badge.warn{{border-color:var(--accent);color:var(--accent);background:var(--accent-soft)}}.engage{{margin:.8rem 0;padding:.8rem 1rem;border-left:3px solid var(--accent);background:var(--bg-tint);border-radius:0 var(--radius) var(--radius) 0;line-height:1.7}}.claim{{white-space:pre-wrap;font-family:inherit;font-size:.92rem;line-height:1.6;margin:.5rem 0;padding:.8rem 1rem;background:var(--bg-tint);border-radius:var(--radius)}}.analysis h2{{margin-top:2rem}}.analysis h3{{margin-top:1.2rem;font-size:1.02rem}}.analysis p{{line-height:1.8;color:var(--ink-soft)}}.analysis .overview{{font-size:1.02rem;color:var(--ink)}}.arch{{width:100%;border-collapse:collapse;font-size:.9rem}}.arch th,.arch td{{padding:.55rem .6rem;border-top:1px solid var(--line-soft);vertical-align:top;text-align:left;line-height:1.55}}.arch th{{color:var(--muted);font-size:.75rem;font-family:var(--mono)}}.muted{{color:var(--muted);font-size:.85em}}.tree{{list-style:none;padding:0;columns:2;gap:1.5rem;font-size:.85rem}}.tree li{{margin:.3rem 0;break-inside:avoid}}.phases{{display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:1rem;margin-top:1rem}}.phase{{padding:1rem;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface)}}.phase h3{{margin:0 0 .5rem;font-size:.95rem}}.checklist{{list-style:none;padding:0;margin:0}}.checklist li{{margin:.4rem 0;line-height:1.5;font-size:.9rem}}.checklist input{{margin-right:.4rem}}.toc{{margin:1rem 0;padding:.7rem 1rem;border:1px solid var(--line);border-radius:var(--radius);background:var(--bg-tint);font-size:.88rem;line-height:1.8}}.toc a{{color:var(--accent)}}.analysis ol li,.analysis ul li{{margin:.3rem 0;line-height:1.6}}.analysis code{{font-size:.85em}}@media (max-width:560px){{.tree{{columns:1}}}}</style></head><body><!-- build:header --><!-- /build:header --><main class="wrap"><a class="back-link" href="../">← 所有项目</a><section class="repo-hero"><p class="kicker">Contribution Tasks</p><h1>{esc(repo['repo'])}</h1><p>{esc(repo.get('fit'))}</p><p><b>当前方向：</b>{esc(repo.get('current_direction'))}</p><div class="repo-meta"><span>★ {ev.get('stars',0)}</span><span>Fork {ev.get('forks',0)}</span><span>{len(tasks)} 个候选任务</span><span>Gemini：{esc(repo.get('model') or global_model)}</span></div><p class="radar-stats">更新于 {esc(updated)}{stale} · <a href="{esc(ev.get('url','#'),True)}" rel="noopener noreferrer">打开仓库 ↗</a></p></section>{analysis_html(repo.get('analysis'), ev)}<section id="ch6"><h2>六、怎么介入这个项目</h2>{list_html(repo.get('how_to_engage',[]))}{('<p><b>社区入口：</b>'+' · '.join(f'<a href="{esc(u,True)}" rel="noopener noreferrer">{esc(u.split("//",1)[-1][:40])}</a>' for u in ev.get('community',[]))+'</p>') if ev.get('community') else ''}<h2>建议顺序</h2>{list_html(repo.get('recommended_order',[]))}<details><summary>成为长期维护者的路径</summary>{list_html(repo.get('maintainer_path',[]))}</details></section><section class="task-grid" id="ch7"><h2>七、任务卡</h2>{cards}</section></main><footer class="site-footer"><div class="wrap"><span>© 2026 Anaxagore</span><span><a href="../../../about/">关于</a></span></div></footer><script src="../../../site.js" defer></script><script>document.querySelectorAll('[data-copy-claim]').forEach(b=>b.addEventListener('click',()=>{{const t=b.parentElement.querySelector('[data-claim]').textContent;const done=()=>{{b.textContent='已复制';setTimeout(()=>b.textContent='复制留言',1500)}};if(navigator.clipboard)navigator.clipboard.writeText(t).then(done,done);else window.prompt('复制',t)}}))</script></body></html>'''
 
 
 def write_detail_pages(data):
@@ -430,8 +546,9 @@ def render():
     parts.append('<div class="contribution-grid">')
     for r in d.get('repos',[]):
         ev=r.get('evidence',{}); tasks=r.get('tasks',[]); preview=''.join(f'<li>{esc(t.get("title"))}</li>' for t in tasks[:3])
-        blurb=(r.get('analysis') or {}).get('overview') or r.get('fit') or ''
-        parts.append(f'<article class="contribution-card"><p class="kicker">{len(tasks)} 个候选任务</p><h2><a href="./{slug(r["repo"])}/">{esc(r["repo"])}</a></h2><p>{esc(blurb[:180])}{"…" if len(blurb)>180 else ""}</p><p class="radar-stats">{esc(((r.get("analysis") or {}).get("ownership_target") or "")[:90])}</p><p class="radar-stats">★ {ev.get("stars",0)} · 最近推送 {(ev.get("pushed_at") or "未知")[:10]}</p><ul>{preview}</ul><p><a href="./{slug(r["repo"])}/">查看任务卡与实施方案 →</a></p></article>')
+        an=r.get('analysis') or {}
+        blurb=(an.get('positioning') or {}).get('overview') or an.get('overview') or r.get('fit') or ''
+        parts.append(f'<article class="contribution-card"><p class="kicker">{len(tasks)} 个候选任务</p><h2><a href="./{slug(r["repo"])}/">{esc(r["repo"])}</a></h2><p>{esc(blurb[:180])}{"…" if len(blurb)>180 else ""}</p><p class="radar-stats">{esc((((r.get("analysis") or {}).get("entry") or {}).get("ownership_target") or "")[:90])}</p><p class="radar-stats">★ {ev.get("stars",0)} · 最近推送 {(ev.get("pushed_at") or "未知")[:10]}</p><ul>{preview}</ul><p><a href="./{slug(r["repo"])}/">查看任务卡与实施方案 →</a></p></article>')
     parts.append('</div>'); return '\n'.join(parts)
 
 
