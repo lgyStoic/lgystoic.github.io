@@ -651,7 +651,9 @@ def render_status(days: list[dict], events_data: dict | None) -> dict[str, str]:
     def add_rows(kind: str, sources: list[dict]):
         for s in sources:
             total = s.get("total", s.get("count", 0))
-            if not s.get("ok"):
+            if s.get("disabled"):
+                state, label = "warn", "已停用"
+            elif not s.get("ok"):
                 state, label = "bad", "失败"
             elif total == 0:
                 state, label = "warn", "解析 0 条"
@@ -670,7 +672,7 @@ def render_status(days: list[dict], events_data: dict | None) -> dict[str, str]:
     jobs_data = json.loads(jobs_path.read_text(encoding="utf-8")) if jobs_path.exists() else None
     contrib = json.loads(contrib_path.read_text(encoding="utf-8")) if contrib_path.exists() else None
     if jobs_data:
-        add_rows("岗位", [{"name": s.get("name", ""), "ok": s.get("ok"), "count": s.get("matched", 0), "total": s.get("fetched", 0), "error": s.get("error", "")} for s in jobs_data.get("sources", [])])
+        add_rows("岗位", [{"name": s.get("name", ""), "ok": s.get("ok"), "disabled": s.get("disabled", False), "count": s.get("matched", 0), "total": s.get("fetched", 0), "error": s.get("error", "")} for s in jobs_data.get("sources", [])])
     if contrib:
         add_rows("开源贡献", [{"name": r.get("repo", ""), "ok": not r.get("stale"), "count": len(r.get("tasks", [])), "total": len(r.get("tasks", [])),
                             "error": "本轮生成失败，沿用上次结果" if r.get("stale") else ""} for r in contrib.get("repos", [])])
