@@ -387,7 +387,7 @@ def _gemini_once(model: str, api_key: str, system: str, user_msg: str, schema: d
             "responseMimeType": "application/json",
             "responseSchema": _gemini_schema(schema),
             "temperature": 0.2,
-            "maxOutputTokens": 16384,
+            "maxOutputTokens": int(os.environ.get("GEMINI_MAX_OUTPUT_TOKENS", "16384")),
         },
     }
     req = urllib.request.Request(
