@@ -40,6 +40,23 @@ def plain(value):
     return ' '.join(html.unescape(re.sub('<[^>]+>', ' ', value or '')).split())
 
 
+def feishu_csrf(host, path, ua):
+    """部分飞书招聘门户（如字节社招）要求先 GET /api/v1/csrf/token 拿 cookie，再把令牌放进 x-csrf-token；拿不到就返回空字典照常请求。"""
+    import http.cookiejar
+    jar = http.cookiejar.CookieJar()
+    opener = urllib.request.build_opener(urllib.request.HTTPCookieProcessor(jar))
+    try:
+        req = urllib.request.Request(f"{host}/api/v1/csrf/token", headers={'User-Agent': ua, 'website-path': path, 'portal-platform': '1', 'Referer': f'{host}/{path}/position', 'Origin': host, 'Accept': 'application/json'})
+        with opener.open(req, timeout=25) as response:
+            response.read()
+    except Exception:
+        return {}
+    token = next((c.value for c in jar if 'csrf' in c.name.lower()), None)
+    if not token:
+        return {}
+    return {'x-csrf-token': token, 'Cookie': '; '.join(f'{c.name}={c.value}' for c in jar)}
+
+
 def feishu_site_path(host, ua):
     """飞书招聘门户的根路径会跳到 /<站点>/position；从最终 URL 或页面里的链接读出真实站点路径，读不到返回 None。"""
     try:
@@ -285,29 +302,40 @@ def fetch_source(source):
         host = source['url'].rstrip('/')
         ua = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0 Safari/537.36'
         discovered = feishu_site_path(host, ua)
-        candidates = [x for x in (discovered, source.get('path', 'index'), 'index', 'experienced', 'social', 'socialrecruitment', 'campus') if x]
-        candidates = list(dict.fromkeys(candidates))
+        configured = source.get('path', 'index')
+        # 校招门户（campus）只在明确配置时才碰：社招源掉到校招站点会把一堆校招岗位当成社招
+        generic = [x for x in ('index', 'experienced', 'social', 'socialrecruitment') if x != 'campus' or configured == 'campus']
+        candidates = list(dict.fromkeys(x for x in [discovered, configured] + generic if x))
+        csrf_cache = {}
 
         def feishu_search(path, query, offset=0):
+            if path not in csrf_cache:
+                csrf_cache[path] = feishu_csrf(host, path, ua)
             body = {'keyword': query, 'limit': 50, 'offset': offset, 'job_category_id_list': [], 'tag_id_list': [], 'location_code_list': source.get('location_codes', []),
-                    'subject_id_list': [], 'recruitment_id_list': [], 'portal_type': 2, 'job_function_id_list': [], 'portal_entrance': 1}
-            return request(f"{host}/api/v1/search/job/posts", body,
-                           headers={'portal-platform': '1', 'website-path': path, 'env': 'undefined', 'Accept': 'application/json, text/plain, */*',
-                                    'Accept-Language': 'zh-CN,zh;q=0.9', 'Referer': f'{host}/{path}/position', 'Origin': host, 'User-Agent': ua})
+                    'subject_id_list': [], 'recruitment_id_list': [], 'portal_type': 2, 'job_function_id_list': [], 'storefront_id_list': [], 'portal_entrance': 1}
+            headers = {'portal-platform': '1', 'website-path': path, 'env': 'undefined', 'Accept': 'application/json, text/plain, */*',
+                       'Accept-Language': 'zh-CN,zh;q=0.9', 'Referer': f'{host}/{path}/position', 'Origin': host, 'User-Agent': ua}
+            headers.update(csrf_cache[path])
+            return request(f"{host}/api/v1/search/job/posts", body, headers=headers)
 
-        path, first = None, None
+        path, first, tried = None, None, {}
         for candidate in candidates:
             try:
                 first = feishu_search(candidate, source['queries'][0])
             except urllib.error.HTTPError as exc:
-                if exc.code in (400, 404):
+                tried[candidate] = f"HTTP {exc.code} {exc.read().decode('utf-8', 'replace')[:80]}"
+                if exc.code in (400, 403, 404):
                     continue
                 raise
             if first.get('code') in (None, 0):
                 path = candidate
+                tried[candidate] = f"可用，首个关键词 {len((first.get('data') or {}).get('job_post_list') or [])} 条"
                 break
+            tried[candidate] = f"code {first.get('code')} {str(first.get('message') or first.get('msg') or '')[:60]}"
         if path is None:
-            raise ValueError(f"feishu: 没有可用的站点路径（试过 {candidates}），最后返回 {str(first)[:120] if first else '无'}")
+            raise ValueError(f"feishu: 没有可用的站点路径：{tried}")
+        if discovered and path != discovered:
+            print(f"{source['name']}: 根路径跳到 {discovered}，实际可用 {path}；探测记录 {tried}")
         if path != source.get('path', 'index'):
             print(f"{source['name']}: 站点路径实际为 {path}")
         seen = set()

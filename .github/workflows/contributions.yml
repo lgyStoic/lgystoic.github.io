@@ -7,6 +7,10 @@ on:
         type: choice
         options: [all, focus]
         default: all
+      reuse_run_id:
+        description: "只重做合并：填一个已跑完分析的 run id，直接用它的产物合并渲染，不再调用 Gemini"
+        type: string
+        default: ""
   schedule:
     - cron: "20 1 * * 1"   # 周一：全部仓库
     - cron: "20 1 * * 4"   # 周四：只刷重点仓库
@@ -21,6 +25,7 @@ jobs:
     outputs:
       repos: ${{ steps.list.outputs.repos }}
       scope: ${{ steps.list.outputs.scope }}
+      reuse: ${{ steps.list.outputs.reuse }}
     steps:
       - uses: actions/checkout@v4
         with: {ref: master}
@@ -28,7 +33,9 @@ jobs:
         env:
           SCHEDULE: ${{ github.event.schedule }}
           INPUT_SCOPE: ${{ github.event.inputs.scope }}
+          REUSE: ${{ github.event.inputs.reuse_run_id }}
         run: |
+          echo "reuse=$REUSE" >> "$GITHUB_OUTPUT"
           SCOPE=all
           if [ "$SCHEDULE" = "20 1 * * 4" ] || [ "$INPUT_SCOPE" = "focus" ]; then SCOPE=focus; fi
           echo "scope=$SCOPE" >> "$GITHUB_OUTPUT"
@@ -41,6 +48,7 @@ jobs:
 
   analyze:
     needs: plan
+    if: needs.plan.outputs.reuse == ''
     runs-on: ubuntu-latest
     timeout-minutes: 45
     strategy:
@@ -72,7 +80,7 @@ jobs:
           retention-days: 3
 
   merge:
-    needs: analyze
+    needs: [plan, analyze]
     if: always() && needs.plan.result == 'success'
     runs-on: ubuntu-latest
     timeout-minutes: 15
@@ -86,10 +94,13 @@ jobs:
           pattern: contrib-*
           path: results
           merge-multiple: true
+          run-id: ${{ needs.plan.outputs.reuse || github.run_id }}
+          github-token: ${{ github.token }}
       - name: 合并并渲染
         run: |
           ls -la results
-          python3 tools/contributions.py --merge results --scope "${{ needs.plan.outputs.scope }}"
+          SCOPE="${{ needs.plan.outputs.scope }}"
+          python3 tools/contributions.py --merge results --scope "${SCOPE:-all}"
           python3 tools/build.py
       - name: 提交结果
         # 运行期间 master 可能有新提交；不 rebase 生成物，而是保留本次数据、回到最新 master 重新渲染再提交，最多三次。
