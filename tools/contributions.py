@@ -17,7 +17,8 @@ TASK = {'type':'object','properties':{
     'likely_paths':{'type':'array','items':{'type':'string'}},'validation':{'type':'array','items':{'type':'string'}},
     'questions':{'type':'array','items':{'type':'string'}},'risks':{'type':'array','items':{'type':'string'}},
     'skill_fit':{'type':'string'},'engagement':{'type':'string'},'claim_comment':{'type':'string'},'pr_scope':{'type':'string'},'time_estimate':{'type':'string'},
-},'required':['title','source_url','source_number','source_title','priority','compute','difficulty','why_core','goal','first_action','implementation_steps','likely_paths','validation','questions','risks','skill_fit','engagement','claim_comment','pr_scope','time_estimate']}
+    'compute_class':{'type':'string'},
+},'required':['title','source_url','source_number','source_title','priority','compute','difficulty','why_core','goal','first_action','implementation_steps','likely_paths','validation','questions','risks','skill_fit','engagement','claim_comment','pr_scope','time_estimate','compute_class']}
 REPO_SCHEMA = {'type':'object','properties':{
     'repo':{'type':'string'},'fit':{'type':'string'},'current_direction':{'type':'string'},
     'recommended_order':{'type':'array','items':{'type':'string'}},'maintainer_path':{'type':'array','items':{'type':'string'}},
@@ -101,12 +102,14 @@ def task_prompt(ev):
     return '''为下面这个开源仓库生成“可直接开工、并且知道怎么得体介入”的贡献任务卡。
 
 候选人画像：资深 GPU kernel / 训练性能工程师。擅长 CUDA、Triton、CuTe/CUTLASS、PyTorch 内核与算子融合、分布式训练性能、扩散模型（DiT / 视频生成）推理加速、端侧部署（TensorRT、量化）。
-算力：日常只有一台 MacBook；需要 GPU 时可以按小时租 4090 / A100，或用 Colab 免费 T4。所以「需要单卡 GPU 几小时」是可接受的，「需要多机多卡长时间训练」不可接受。
+算力（硬约束，最重要）：**目前没有任何 GPU**，手头只有一台 MacBook Air（Apple Silicon，16GB）。任务必须能在 CPU / Apple Silicon 上开发、复现和验证；最多允许用 Colab 免费 T4 做几十分钟的最终确认。
+因此不要推荐：需要特定架构（SM120 / Hopper / Blackwell）才能复现的 bug、需要 A100 / H100 或多卡的性能问题、需要长时间训练的任务。
+仍然能发挥专长的方向：算子的数值正确性与 CPU 参考实现、Triton 代码生成与编译期问题（Triton 解释器模式 TRITON_INTERPRET=1 可在 CPU 跑）、CUDA 代码审阅与编译期修复（Colab 上 nvcc 可验证）、性能建模与 roofline 分析、调度器 / 内存管理 / 权重加载等纯逻辑层、构建系统与多后端适配、文档和测试基建。
 
 硬约束：
 1. 每张卡必须绑定输入 issues 中一个真实、仍开放的 Issue；source_url、source_number、source_title 必须逐字取自输入，禁止虚构。
 2. 介入是否得体是第一优先级：Issue 已有 assignees、或 linked_prs 里有 open 状态的 PR、或 pulls 里明显已覆盖 → 不要推荐去做，最多建议去 review / 补测试；在 engagement 字段写清楚判断依据。
-3. 优先能发挥候选人 kernel / 性能专长、且维护者明显关心（评论多、最近更新、有 label）的任务。最多 6 张，宁缺毋滥；没有可靠任务返回空数组。
+3. compute_class 只能填 "CPU"、"Mac"、"Colab T4" 三者之一，写明验证路径；任何需要真机 GPU 才能复现或验证的任务直接不要生成。优先能发挥候选人 kernel / 性能专长、且维护者明显关心（评论多、最近更新、有 label）的任务。最多 6 张，宁缺毋滥；没有可靠任务返回空数组。
 4. 实施步骤具体到调查、代码修改、测试与提交前沟通；likely_paths 只能依据 README、CONTRIBUTING、Issue 正文和根目录推断，不确定就写“需先定位”。
 5. validation 写可执行的验收方式；questions 写开工前应在 Issue 询问维护者的问题。
 6. claim_comment：一段英文、可直接贴到该 Issue 下的认领留言，礼貌、具体、不超过 120 词：说明理解、打算怎么做、需要维护者确认什么、大约多久出 PR。不要提候选人的个人经历。
@@ -123,6 +126,11 @@ def valid_tasks(generated,evidence):
     for task in generated.get('tasks',[]):
         source=allowed.get(task.get('source_url'))
         if not source or task.get('source_number')!=source['number']: continue
+        cc=str(task.get('compute_class','')).strip()
+        if cc not in ('CPU','Mac','Colab T4'):
+            print(f"丢弃需要 GPU 的任务：{task.get('title')}（{cc} / {task.get('compute')}）"); continue
+        if re.search(r'sm_?\d{2,3}|hopper|blackwell|h100|a100|多卡|multi-?gpu|nvlink', (task.get('title','')+' '+task.get('compute','')), re.I):
+            print(f"丢弃硬件绑定任务：{task.get('title')}"); continue
         task['source_title']=source['title']
         task['issue_status']={'assignees':source.get('assignees',[]),'comments':source.get('comments',0),'labels':source.get('labels',[]),
                               'updated_at':source.get('updated_at'),'created_at':source.get('created_at'),
@@ -173,7 +181,7 @@ def status_badges(task):
 def task_card(task,index):
     priority={'high':'优先','medium':'可选','low':'候补'}.get(str(task.get('priority','')).lower(),task.get('priority',''))
     claim=task.get('claim_comment','')
-    return f'''<article class="task-card"><div class="task-top"><span class="task-index">任务 {index}</span><span>{esc(priority)} · {esc(task.get('difficulty'))} · {esc(task.get('compute'))} · {esc(task.get('time_estimate'))}</span></div>
+    return f'''<article class="task-card"><div class="task-top"><span class="task-index">任务 {index}</span><span>{esc(priority)} · {esc(task.get('difficulty'))} · <b>{esc(task.get('compute_class') or task.get('compute'))}</b> · {esc(task.get('time_estimate'))}</span></div>
 <h2>{esc(task.get('title'))}</h2><p class="source-link"><a href="{esc(task.get('source_url'),True)}" rel="noopener noreferrer">Issue #{task.get('source_number')} · {esc(task.get('source_title'))} ↗</a></p>
 <p class="badges">{status_badges(task)}</p>
 <p><b>用到的专长：</b>{esc(task.get('skill_fit'))}</p><p><b>目标：</b>{esc(task.get('goal'))}</p><p><b>为什么值得长期做：</b>{esc(task.get('why_core'))}</p>
@@ -215,10 +223,11 @@ def render():
             pr={'high':0,'高':0,'medium':1,'中':1}.get(str(t.get('priority','')).lower(),2)
             hard={'easy':0,'low':0,'低':0,'简单':0,'medium':1,'中':1,'中等':1}.get(str(t.get('difficulty','')).lower(),2)
             kernel=any(k in (t.get('skill_fit','')+t.get('title','')).lower() for k in ('cuda','triton','kernel','算子','cutlass','cute','融合','性能'))
-            picks.append((pr+hard-(1 if kernel else 0), -(st.get('comments') or 0), r['repo'], t))
+            gpu={'CPU':0,'Mac':0,'Colab T4':1}.get(str(t.get('compute_class','')).strip(),2)
+            picks.append((pr+hard+gpu-(1 if kernel else 0), -(st.get('comments') or 0), r['repo'], t))
     picks.sort(key=lambda x:(x[0],x[1]))
     if picks:
-        parts.append('<section class="picks"><h2>本周先做这三个</h2><p class="radar-stats">无人认领、没有关联 PR、优先级高且能用上 kernel / 性能专长的任务排在前面。</p><ol class="pick-list">')
+        parts.append('<section class="picks"><h2>本周先做这三个</h2><p class="radar-stats">全部可在 MacBook / CPU 上完成（最多用 Colab 免费 T4 做最终确认）；无人认领、没有关联 PR、优先级高且能用上 kernel / 性能专长的排在前面。</p><ol class="pick-list">')
         for _,_,repo,t in picks[:3]:
             parts.append(f'<li><a href="./{slug(repo)}/">{esc(repo)}</a> · <a href="{esc(t.get("source_url"),True)}" rel="noopener noreferrer">#{t.get("source_number")}</a> {esc(t.get("title"))}<br><span class="radar-stats">{esc(t.get("difficulty"))} · {esc(t.get("compute"))} · {esc(t.get("time_estimate"))} · {esc(t.get("skill_fit"))}</span></li>')
         parts.append('</ol></section>')
