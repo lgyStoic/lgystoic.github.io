@@ -6,7 +6,7 @@
 
 | 层 | 谁 | 干什么 | 依赖 |
 |---|---|---|---|
-| **自动层** | GitHub Actions（`tools/check.py`，radar.yml 最后一步；`health.yml` 08:40 兜底补跑） | 统计每个源连续失败 / 0 条天数；连续失败 ≥ 3 天自动停用；记录 AI 是否退回规则、定时是否触发；写当天报告 `radar/checks/<日期>.md`；把需要判断的事列进 `radar/data/health.json` 的 `needs_agent` | 只依赖 GitHub，不依赖任何 Claude 会话 |
+| **自动层** | GitHub Actions（`tools/check.py`，radar.yml 最后一步；`health.yml` 每天早上两次兜底补跑） | 统计每个源连续失败 / 0 条天数；连续失败 ≥ 3 天自动停用；记录 AI 是否退回规则、定时是否触发；写当天报告 `radar/checks/<日期>.md`；把需要判断的事列进 `radar/data/health.json` 的 `needs_agent` | 只依赖 GitHub，不依赖任何 Claude 会话 |
 | **判断层** | agent（Claude 会话，按需或定时；将来也可能是 Codex） | 只处理 `needs_agent` 里的事：源改版要改解析、抽取明显错、要不要加/换源 | 本手册 |
 
 自动层每天都在；判断层只在 `health.json` 的 `needs_agent` 非空时才有事做，空的话直接回复「无事」结束。

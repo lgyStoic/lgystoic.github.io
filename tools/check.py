@@ -135,7 +135,7 @@ def main() -> None:
     ev_undated = len(undated)
     run_kind = {"schedule": "定时 ✓", "workflow_dispatch": "手动", "push": "触发文件"}.get(run.get("event", ""), run.get("event", "?"))
     if reason == "schedule_missed":
-        run_kind = "定时 ✗（08:40 补跑）"
+        run_kind = "定时 ✗（兜底补跑）"
     model = day.get("model") or "规则"
     lines = [
         f"📅 {today} 巡检（自动）",
