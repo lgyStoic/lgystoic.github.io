@@ -1,6 +1,9 @@
 [
   "sgl-project/sglang",
-  "sgl-project/sglang-omni",
+  {
+    "repo": "sgl-project/sglang-omni",
+    "focus": true
+  },
   "vllm-project/vllm",
   "flashinfer-ai/flashinfer",
   "Dao-AILab/flash-attention",
@@ -12,5 +15,9 @@
   "JeffreyXiang/FlexGEMM",
   "NVIDIA-NeMo/labs-molt",
   "RightNow-AI/autokernel",
-  "THU-MIG/edge-dit.cpp"
+  {
+    "repo": "THU-MIG/edge-dit.cpp",
+    "focus": true,
+    "young": true
+  }
 ]
