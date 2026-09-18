@@ -140,29 +140,72 @@ def valid_tasks(generated,evidence):
     return generated
 
 
-def main():
-    names=json.loads(CONFIG.read_text()); previous=json.loads(DATA.read_text()) if DATA.exists() else {'repos':[]}
+def analyze_repo(name):
+    """单个仓库：抓证据 → Gemini 出卡 → 校验。返回 (结果 or None, 失败详情 or None)。"""
+    try:
+        evidence=collect_repo(name)
+        generated=radar.call_llm_json('你是资深开源维护者与 AI 系统工程师。把真实 GitHub Issue 变成严谨、可执行、可验证的贡献计划。',task_prompt(evidence),REPO_SCHEMA,label='contribution-'+name.replace('/','-'))
+        if not generated: raise RuntimeError('GeminiGenerationFailed')
+        generated['repo']=name; generated=valid_tasks(generated,evidence)
+        generated['evidence']={k:v for k,v in evidence.items() if k!='readme'}
+        generated['model']=radar.LAST_MODEL_USED
+        return generated, None
+    except Exception as exc:
+        detail=type(exc).__name__
+        if isinstance(exc, urllib.error.HTTPError): detail=f'HTTP {exc.code} {exc.url[:80]}'
+        elif str(exc): detail=f'{detail}: {str(exc)[:120]}'
+        print(f'仓库失败 {name}: {detail}')
+        return None, {'repo':name,'error':detail}
+
+
+def assemble(results, names, previous):
+    """把各仓库结果按配置顺序拼成 contributions.json；失败的用上次结果并标 stale。"""
     old={x.get('repo'):x for x in previous.get('repos',[])}; repos=[]; failures=[]; models=[]
     for name in names:
-        try:
-            evidence=collect_repo(name)
-            generated=radar.call_llm_json('你是资深开源维护者与 AI 系统工程师。把真实 GitHub Issue 变成严谨、可执行、可验证的贡献计划。',task_prompt(evidence),REPO_SCHEMA,label='contribution-'+name.replace('/','-'))
-            if not generated: raise RuntimeError('GeminiGenerationFailed')
-            generated['repo']=name; generated=valid_tasks(generated,evidence)
-            generated['evidence']={k:v for k,v in evidence.items() if k!='readme'}
-            generated['model']=radar.LAST_MODEL_USED; models.append(radar.LAST_MODEL_USED); repos.append(generated)
-        except Exception as exc:
-            detail=type(exc).__name__
-            if isinstance(exc, urllib.error.HTTPError): detail=f'HTTP {exc.code} {exc.url[:80]}'
-            elif str(exc): detail=f'{detail}: {str(exc)[:120]}'
-            print(f'仓库失败 {name}: {detail}')
-            failures.append({'repo':name,'error':detail})
+        generated, failure = results.get(name, (None, {'repo':name,'error':'NoResult'}))
+        if generated:
+            repos.append(generated); models.append(generated.get('model',''))
+        else:
+            failures.append(failure)
             if name in old:
                 stale=old[name]; stale['stale']=True; repos.append(stale)
+    models=[m for m in models if m]
     model=models[0] if models and len(set(models))==1 else ' / '.join(dict.fromkeys(models))
-    out={'updated':datetime.now(timezone.utc).isoformat(timespec='seconds'),'model':model,'repos':repos,'failures':failures}
+    return {'updated':datetime.now(timezone.utc).isoformat(timespec='seconds'),'model':model,'repos':repos,'failures':failures}
+
+
+def main():
+    import argparse
+    parser=argparse.ArgumentParser()
+    parser.add_argument('--only', help='只分析这一个仓库（CI 矩阵用）')
+    parser.add_argument('--out', help='单仓库结果写到这个 JSON 文件')
+    parser.add_argument('--merge', help='把目录下的单仓库 JSON 合并成 contributions.json')
+    parser.add_argument('--list', action='store_true', help='输出仓库列表 JSON（CI 矩阵用）')
+    args=parser.parse_args()
+    names=json.loads(CONFIG.read_text())
+    if args.list:
+        print(json.dumps(names)); return
+    previous=json.loads(DATA.read_text()) if DATA.exists() else {'repos':[]}
+    if args.only:
+        generated, failure = analyze_repo(args.only)
+        out=Path(args.out or f"/tmp/contrib-{slug(args.only)}.json")
+        out.parent.mkdir(parents=True,exist_ok=True)
+        out.write_text(json.dumps({'repo':args.only,'result':generated,'failure':failure},ensure_ascii=False))
+        print(f"{args.only}: {'ok, '+str(len(generated.get('tasks',[])))+' 张卡' if generated else '失败'}")
+        return
+    if args.merge:
+        results={}
+        for f in Path(args.merge).rglob('*.json'):
+            try:
+                d=json.loads(f.read_text())
+                if d.get('repo'): results[d['repo']]=(d.get('result'), d.get('failure'))
+            except Exception as exc:
+                print(f'读取 {f} 失败：{exc}')
+    else:
+        results={name: analyze_repo(name) for name in names}
+    out=assemble(results, names, previous)
     DATA.parent.mkdir(parents=True,exist_ok=True); DATA.write_text(json.dumps(out,ensure_ascii=False,indent=2)+'\n')
-    print(f'贡献任务：{len(repos)} 个仓库，{sum(len(x.get("tasks",[])) for x in repos)} 张卡片；失败 {len(failures)}；模型 {model}')
+    print(f'贡献任务：{len(out["repos"])} 个仓库，{sum(len(x.get("tasks",[])) for x in out["repos"])} 张卡片；失败 {len(out["failures"])}；模型 {out["model"]}')
 
 
 def esc(value,quote=False): return html.escape(str(value or ''),quote=quote)
