@@ -32,7 +32,10 @@
         if (t === "dark" || t === "light") document.documentElement.dataset.theme = t;
       } catch (e) {}
     </script>
-  </head>
+      <!-- build:jsonld -->
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "用 VLM 把家庭摄像头压成状态序列：一个看护记录系统的设计", "description": "三个家用摄像头接一个视觉模型，把连续画面变成可查询的状态序列。记录其中的取舍：帧差闸门如何把模型调用压到接近零、输出格式为什么不用 JSON、状态机为什么必须忽略 unknown，以及门口那一路为什么从轮询改成边沿触发。", "url": "https://lgystoic.github.io/notes/home-camera-vlm-pipeline/", "mainEntityOfPage": "https://lgystoic.github.io/notes/home-camera-vlm-pipeline/", "inLanguage": "zh-CN", "dateModified": "2026-09-19", "datePublished": "2026-09-19", "keywords": "VLM, System Design, 成本优化, 状态机, 家庭自动化", "isBasedOn": "ruirui-tracker / 自建家庭视觉管线", "author": {"@type": "Person", "name": "Anaxagore", "url": "https://lgystoic.github.io/about/"}, "publisher": {"@type": "Person", "name": "Anaxagore", "url": "https://lgystoic.github.io/"}, "image": "https://lgystoic.github.io/assets/og/notes.png"}</script>
+    <!-- /build:jsonld -->
+</head>
   <body>
     <!-- build:header -->
     <header class="site-header">

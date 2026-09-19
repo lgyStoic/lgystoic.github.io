@@ -15,6 +15,7 @@
 | 开源贡献路线 | 看 | `/radar/contributions/` | [contributions.md](contributions.md) |
 | 收件箱 · 小红书文稿 | 做 | 私有仓库 | [inbox.md](inbox.md) |
 | 运行状态 · 巡检 | 做 | `/status/` | [status.md](status.md) |
+| GEO（AI 搜索引用） | — | 全站 | [geo.md](geo.md) |
 
 每份文档的固定章节：目标与非目标 → 用户与约束 → 功能清单 → 数据管线 → 数据模型 → 规则 → 渲染 → 配置 → 验证与排查 → 已知问题 → 待办 → 常见改动去哪改。
 

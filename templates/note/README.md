@@ -34,8 +34,8 @@ cp -R templates/note notes/my-new-note
 模板里这几段是站点框架的接口，删掉就没有统一页头、深浅色开关和访问统计：
 
 - `<link rel="stylesheet" href="../../site.css" />` 和 `<head>` 里那段读 `localStorage.theme` 的脚本
-- `<!-- build:header -->` / `<!-- build:site-name -->` / `<!-- build:comments -->` / `<!-- build:analytics -->`
-  四对标记，内容由 `tools/build.py` 注入，标记之外随便改
+- `<!-- build:header -->` / `<!-- build:site-name -->` / `<!-- build:jsonld -->` / `<!-- build:comments -->` / `<!-- build:analytics -->`
+  五对标记，内容由 `tools/build.py` 注入（jsonld 的结构化数据来自 `notes.json`），标记之外随便改
 - `<script src="../../site.js" defer></script>`
 
 ## 发布

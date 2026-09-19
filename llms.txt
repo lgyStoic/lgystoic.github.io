@@ -1,0 +1,75 @@
+# Anaxagore
+
+> 一个跑在 GitHub 上的个人平台：记我写的和读的，看机器替我盯着的世界，做定时替我跑的小工具。
+
+作者 Anaxagore（GitHub：lgyStoic），深圳，方向：GPU kernel 与训练性能优化、生成模型（DiT / 视频生成）推理加速、端侧部署。站点全部中文，纯静态，托管在 GitHub Pages；所有列表页预渲染，`radar/data/*.json` 是公开数据接口。
+引用时请写「Anaxagore（lgystoic.github.io）」并附页面链接；雷达与活动摘要由模型生成，事实以链接原文为准。
+
+## 上手指南（教程）
+
+- [离职后如何租一台电脑过渡](https://lgystoic.github.io/guides/pc/): 短租实体机 / 云电脑 / 按小时 GPU / 二手，四条路线怎么选，以及我在芝麻租赁按月租 MacBook 的流程。（更新 2026-09-14）
+- [代理软件的购买与使用](https://lgystoic.github.io/guides/proxy/): 选一个套餐，装 Clash Verge Rev，十分钟让电脑能访问海外服务。（更新 2026-09-14）
+- [注册并订阅 ChatGPT](https://lgystoic.github.io/guides/chatgpt/): 一张 Visa 信用卡 + 一个海外区 Google 账号，在 Play 商店里内购订阅 Plus，不碰海外手机号。（更新 2026-09-14）
+
+## 笔记
+
+- [用 VLM 把家庭摄像头压成状态序列：一个看护记录系统的设计](https://lgystoic.github.io/notes/home-camera-vlm-pipeline/): 三个家用摄像头接一个视觉模型，把连续画面变成可查询的状态序列。记录其中的取舍：帧差闸门如何把模型调用压到接近零、输出格式为什么不用 JSON、状态机为什么必须忽略 unknown，以及门口那一路为什么从轮询改成边沿触发。（更新 2026-09-19）
+- [深圳地铁 200 米内住宅画像：南山 / 宝安 / 光明](https://lgystoic.github.io/notes/2026-08-17-metro200m-residential-profile/): 对南山、宝安、光明三区地铁 200 米内 461 个地块做住宅粗筛，并深挖 120 个候选盘的户数、车位、户型、回迁房与学位风险。（更新 2026-08-18）
+- [Ring Collectives](https://lgystoic.github.io/notes/ring-collectives/): Interactive visual explanation of ring all-reduce, reduce-scatter, all-gather, all-to-all, and NCCL bus bandwidth factors.（更新 2026-08-13）
+- [深圳离地铁站直线 200 米内的小区全清单](https://lgystoic.github.io/notes/2026-08-10-shenzhen-metro-200m/): 用 OSM 数据穷举深圳地铁出入口 200 米内的小区清单，覆盖 1150 个地块、261 个站点，并提供分区 CSV/JSON 下载。（更新 2026-08-10）
+- [SwiGLU MLP 的前向原理、反向链条与优化思路](https://lgystoic.github.io/notes/swiglu-mlp-forward-backward-optimization/): 从前向 shape 到反向 4 个 GEMM + 1 组逐元素，解释 dout 不落 HBM 的 CuTe 融合优化。（更新 2026-06-11）
+- [SwiGLU MLP Drop-H 技术报告](https://lgystoic.github.io/notes/swiglu-mlp-drop-h/): B200 上 SwiGLU MLP drop-h 方案的公式、实现、性能与显存取舍。（更新 2026-06-05）
+- [PyTorch Autograd 学习笔记](https://lgystoic.github.io/notes/pytorch-autograd-notes/): 从 Tensor 底层结构到 grad_fn、saved tensors、version counter、no_grad、inference_mode 和自定义 Function 的 autograd 知识地图。（更新 2026-06-03）
+- [Kernel Design Agents：KernelWiki 与 ncu-report-skill 拆解](https://lgystoic.github.io/notes/kernel-design-agents-skills/): 拆解 KDA 仓库中 KernelWiki 知识库和 ncu-report-skill profiling 工作流，整理它们如何服务 agentic kernel 优化循环。（更新 2026-06-01）
+- [Fused SwiGLU Wide Packed Save-Factors](https://lgystoic.github.io/notes/swiglu-packed-save-factors/): B200 上 packed W1 + save-factors SwiGLU 融合实现笔记，覆盖 pack layout、CTA tile、forward/backward 数据流和显存收益。（更新 2026-06-01）
+- [从噪声到数据：Flow Matching 与扩散模型中文地图](https://lgystoic.github.io/notes/mit-6s184-flow-diffusion/): 基于 MIT 6.S184 讲义整理，覆盖生成即采样、ODE/SDE、Flow Matching、Score Matching、Classifier-Free Guidance、潜空间生成器和离散扩散语言模型。（更新 2026-05-30）
+
+## 每日 AI 信息雷达
+
+- [雷达首页与往期](https://lgystoic.github.io/radar/)
+- [RSS](https://lgystoic.github.io/radar/feed.xml)
+- [2026-09-18](https://lgystoic.github.io/radar/2026-09-18/): 41 条，必看：Anthropic Launches Claude Code Projects in Beta: Parallel Cloud Sessions That Keep Running After You Close Your Laptop - MarkTechPost；v0.30.0rc1: [Bugfix] Isolate supplemental FlashInfer BF16 autotuni
+- [2026-09-17](https://lgystoic.github.io/radar/2026-09-17/): 103 条，必看：TensorRT Edge-LLM Completes the MLPerf Edge Agentic Benchmark 6.4x Faster on Jetson AGX Thor；Open Research, Tooling & Optimization at PyTorch Conference North America 2026；Low Precision Flash Attentio
+- [2026-09-16](https://lgystoic.github.io/radar/2026-09-16/): 65 条，必看：How NVIDIA Groq 3 LPX Deterministic Execution Drives Power-Efficient High-Interactivity Inference on NVIDIA Vera Rubin；Introducing Gemini 3.8 Live and 3.8 Live Extended Thinking；Dense vs. MoE Models: 
+- [2026-09-15](https://lgystoic.github.io/radar/2026-09-15/): 40 条，必看：v12.9.8: Prepare cuda-bindings 12.9.8 release (#2814)；Accelerating Dropless MoE Training in JAX with NVIDIA Transformer Engine；中国AI大模型调用量连续二十周领跑：DeepSeek V4.1 Flash上线三天升至第六，智谱GLM 5.3、MiniMax M3跌出榜单 - 
+- [2026-09-14](https://lgystoic.github.io/radar/2026-09-14/): 166 条，必看：中国AI大模型调用量连续二十周领跑：DeepSeek V4.1 Flash上线三天升至第六，智谱GLM 5.3、MiniMax M3跌出榜单 - 新浪财经；中国AI大模型调用量连续二十周领跑：DeepSeek V4.1 Flash上线三天升至第六，智谱GLM 5.3、MiniMax M3跌出榜单 - 每日经济新闻；新一代全模态视频生成模型“MiniMax H3”在赣江新区首发 - 凤凰网江西；De
+
+## 活动清单
+
+- [深圳 / 广州 / 香港及线上的 AI 活动](https://lgystoic.github.io/radar/events/): 目前即将发生 80 个，页面内含 schema.org Event 数据
+
+## 工作机会
+
+- [AI Infra / GPU Kernel / DiT / 端侧部署 岗位聚合](https://lgystoic.github.io/radar/jobs/): 深圳优先，其次香港与国内，每日更新，附匹配理由
+
+## 开源贡献路线
+
+- [总览](https://lgystoic.github.io/radar/contributions/): 14 个 AI 推理 / kernel 仓库的五章分析（定位、架构、本地运行、社区、切入）与可认领任务卡
+- [sgl-project/sglang](https://lgystoic.github.io/radar/contributions/sgl-project--sglang/): SGLang 是一个专为大语言模型（LLM）和多模态/扩散模型设计的高性能推理与服务框架。它的核心愿景是通过极致的底层优化（如 RadixAttention 前缀缓存、零开销 CPU 调度器、Prefill-Decode 分离）来解决大规模
+- [sgl-project/sglang-omni](https://lgystoic.github.io/radar/contributions/sgl-project--sglang-omni/): SGLang-Omni 是一个专为音频模型（TTS、ASR）和统一多模态（Omni）模型设计的高性能多阶段推理服务框架。传统的大语言模型（LLM）服务框架通常假设推理过程是同构的自回归（AR）解码，而现代 Omni 模型（如 Qwen3-O
+- [vllm-project/vllm](https://lgystoic.github.io/radar/contributions/vllm-project--vllm/): vLLM 是目前开源社区事实上的大模型（LLM）推理与服务引擎标准。它的核心价值在于通过 PagedAttention 技术解决了自回归生成中 KV Cache 显存碎片化的问题，并结合 Continuous Batching 极大提升了 
+- [flashinfer-ai/flashinfer](https://lgystoic.github.io/radar/contributions/flashinfer-ai--flashinfer/): FlashInfer 是一个专为大语言模型（LLM）推理服务设计的高性能 GPU 算子库（Kernel Library）。它的核心定位是连接底层前沿硬件（如 Hopper、Blackwell 架构）与上层推理框架（如 vLLM、SGLang
+- [Dao-AILab/flash-attention](https://lgystoic.github.io/radar/contributions/dao-ailab--flash-attention/): FlashAttention 是当前 AI 基础设施中最核心的底层算子库，旨在通过 IO-Awareness 解决 Transformer 长序列 Attention 计算的显存墙（二次复杂度 OOM）与内存带宽瓶颈。它已被广泛集成到 Py
+- [tile-ai/tilelang](https://lgystoic.github.io/radar/contributions/tile-ai--tilelang/): TileLang 是一个基于 Python 语法的领域特定语言（DSL），旨在简化高性能 GPU/CPU/加速器内核（如 GEMM、FlashAttention、LinearAttention 等）的开发。它构建在 Apache TVM 的
+- [huggingface/diffusers](https://lgystoic.github.io/radar/contributions/huggingface--diffusers/): 🤗 Diffusers 是 Hugging Face 官方维护的扩散模型（图像、视频、音频）核心库。对于你这样一位资深 GPU/训练性能工程师来说，首先需要建立一个关键认知：该项目的核心设计哲学是「易用性高于性能（usability ove
+- [hao-ai-lab/FastVideo](https://lgystoic.github.io/radar/contributions/hao-ai-lab--fastvideo/): FastVideo 是一个专注于视频生成模型（DiT）加速的端到端统一推理与后训练框架。它的核心价值在于将前沿的视频生成大模型（如 Wan2.1/2.2、MiniMax-H3）通过稀疏注意力（VSA）、分布匹配蒸馏（DMD2）和量化（Att
+- [thu-ml/TurboDiffusion](https://lgystoic.github.io/radar/contributions/thu-ml--turbodiffusion/): TurboDiffusion 是清华大学 thu-ml 实验室开源的视频扩散模型（VDM）端到端推理加速框架。其核心目标是通过算法与底层的协同优化，将 Wan2.1/Wan2.2 等百亿参数级视频生成模型的推理延迟降低 100-200 倍（
+- [modelscope/DiffSynth-Engine](https://lgystoic.github.io/radar/contributions/modelscope--diffsynth-engine/): DiffSynth-Engine 是由 MuseAI 与 ModelScope 联合开源的高性能扩散模型推理引擎。它的核心设计理念是「去重依赖」与「极致显存管理」，通过彻底重写 Sampler 和 Scheduler 等核心组件，移除了对 
+- [JeffreyXiang/FlexGEMM](https://lgystoic.github.io/radar/contributions/jeffreyxiang--flexgemm/): FlexGEMM 是一个专为 3D 稀疏卷积（Sparse Convolutions）设计的高性能、跨平台底层算子库。其核心架构采用了「混合编程」范式：利用自定义 CUDA/C++ 扩展（如 `hash.cu`, `subm_neighbo
+- [NVIDIA-NeMo/labs-molt](https://lgystoic.github.io/radar/contributions/nvidia-nemo--labs-molt/): Molt 是 NVIDIA-NeMo 团队开源的一个专为研究设计的 Agentic-first 强化学习（RL）框架。它的核心架构非常精简（RL 核心代码仅约 9.2K 行），基于三大组件构建：Ray 负责分布式调度与异步队列，vLLM 负
+- [RightNow-AI/autokernel](https://lgystoic.github.io/radar/contributions/rightnow-ai--autokernel/): `autokernel` 是一个受 Karpathy `autoresearch` 启发的 GPU kernel 自动化优化框架。它的核心理念是将 AI Agent 引入到底层算子优化中，通过“修改代码-运行基准测试-保留或回退”的无限循环
+- [THU-MIG/edge-dit.cpp](https://lgystoic.github.io/radar/contributions/thu-mig--edge-dit.cpp/): edge-dit.cpp 是一个专为 Diffusion Transformers (DiT) 设计的轻量级原生 C/C++ 推理引擎，基于 ggml 构建。它的核心使命是让极度消耗显存的现代 DiT 模型（如 FLUX、Wan 2.1、M
+
+## 公开数据（JSON）
+
+- https://lgystoic.github.io/radar/data/<YYYY-MM-DD>.json 每日雷达条目（title, link, priority, summary, why, tags）
+- https://lgystoic.github.io/radar/data/events.json 活动（start, end, city, online, fee, organizer, summary）
+- https://lgystoic.github.io/radar/data/jobs.json 岗位（title, company, location, region, level, tags, reasons）
+- https://lgystoic.github.io/radar/data/contributions.json 开源贡献分析与任务卡
+
+## 其他
+
+- [关于](https://lgystoic.github.io/about/)
+- [运行状态](https://lgystoic.github.io/status/)
+- [站点地图](https://lgystoic.github.io/sitemap.xml)
+- [笔记 RSS](https://lgystoic.github.io/feed.xml)

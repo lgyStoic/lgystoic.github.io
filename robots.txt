@@ -3,4 +3,81 @@ Allow: /
 Disallow: /radar/data/
 Disallow: /templates/
 
+# AI 搜索与大模型爬虫：明确允许（站点说明见 /llms.txt）
+User-agent: GPTBot
+Allow: /
+Disallow: /templates/
+
+User-agent: OAI-SearchBot
+Allow: /
+Disallow: /templates/
+
+User-agent: ChatGPT-User
+Allow: /
+Disallow: /templates/
+
+User-agent: ClaudeBot
+Allow: /
+Disallow: /templates/
+
+User-agent: Claude-SearchBot
+Allow: /
+Disallow: /templates/
+
+User-agent: Claude-User
+Allow: /
+Disallow: /templates/
+
+User-agent: anthropic-ai
+Allow: /
+Disallow: /templates/
+
+User-agent: PerplexityBot
+Allow: /
+Disallow: /templates/
+
+User-agent: Perplexity-User
+Allow: /
+Disallow: /templates/
+
+User-agent: Google-Extended
+Allow: /
+Disallow: /templates/
+
+User-agent: Applebot-Extended
+Allow: /
+Disallow: /templates/
+
+User-agent: Bytespider
+Allow: /
+Disallow: /templates/
+
+User-agent: DuckAssistBot
+Allow: /
+Disallow: /templates/
+
+User-agent: Amazonbot
+Allow: /
+Disallow: /templates/
+
+User-agent: CCBot
+Allow: /
+Disallow: /templates/
+
+User-agent: cohere-ai
+Allow: /
+Disallow: /templates/
+
+User-agent: MistralAI-User
+Allow: /
+Disallow: /templates/
+
+User-agent: YouBot
+Allow: /
+Disallow: /templates/
+
+User-agent: Meta-ExternalAgent
+Allow: /
+Disallow: /templates/
+
 Sitemap: https://lgystoic.github.io/sitemap.xml
