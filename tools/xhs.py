@@ -233,7 +233,7 @@ def clean_post(p: dict) -> dict:
     body = LABEL_RE.sub('', body)
     body = URL_RE.sub('', body)
     body = re.sub(r'\n{3,}', '\n\n', body).strip()
-    body = re.sub(r'[，,、\s]*关注不迷路[！!。]?', '，关注我', body)  # 模型偶尔无视禁令，兜底替换
+    body = body.replace('关注不迷路', '关注我')  # 模型偶尔无视禁令，兜底替换
     body = re.sub(r'(点赞)?关注走一波[！!。]?', '关注我', body)
     p['body'] = body
     title = re.sub(r'\s+', ' ', URL_RE.sub('', LABEL_RE.sub('', p.get('title', '')))).strip()
