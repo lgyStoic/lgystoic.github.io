@@ -507,18 +507,22 @@
         "title": "{id}",
         "link": "https://huggingface.co/{id}",
         "description": "{pipeline_tag} · likes {likes} · trending {trendingScore}",
-        "published": "createdAt"
+        "published": "createdAt",
+        "min_number": {
+          "field": "likes",
+          "value": 100
+        }
       },
       "category": "trend",
       "weight": 2,
       "window_hours": 336,
-      "note": "HF Trending 榜里 14 天内新建的模型；老模型再热也不进（接口只有 createdAt，没有发布事件）"
+      "note": "HF Trending 榜里 14 天内新建的模型；老模型再热也不进（接口只有 createdAt，没有发布事件）；likes<100 的社区量化/合并版不进"
     },
     {
       "id": "gh-new-stars",
       "name": "GitHub 新星仓库",
       "kind": "json",
-      "url": "https://api.github.com/search/repositories?q=created:%3E{today-30d}+stars:%3E150+llm+OR+cuda+OR+inference+OR+diffusion+OR+gpu+OR+transformer&sort=stars&order=desc&per_page=25",
+      "url": "https://api.github.com/search/repositories?q=created:%3E{today-30d}+stars:%3E500+llm+OR+cuda+OR+inference+OR+diffusion+OR+gpu+OR+transformer&sort=stars&order=desc&per_page=15",
       "json": {
         "items": "items",
         "title": "{full_name}",
@@ -530,7 +534,7 @@
       "weight": 1,
       "require_topic": true,
       "window_hours": 720,
-      "note": "30 天内新建且 150+ star 的仓库，按 star 排；{today-30d} 由 expand_url 换成日期。GitHub Trending RSS 没有日期，会把一年前的老仓库当新闻，已弃用"
+      "note": "30 天内新建且 500+ star 的仓库，按 star 排；{today-30d} 由 expand_url 换成日期。GitHub Trending RSS 没有日期，会把一年前的老仓库当新闻，已弃用"
     }
   ]
 }
