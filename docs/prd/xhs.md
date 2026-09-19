@@ -4,7 +4,7 @@
 
 ## 1. 目标与非目标
 
-**目标**：把当天雷达里 high / medium 的条目，变成可直接修改后发布的小红书内容——每条一张 3:4 封面卡片（学习卡片）+ 一段 350–700 字草稿；封面上的配图由 Gemini 生图模型生成，生不出来就退回纯排版卡片。
+**目标**：把当天雷达里 high / medium 的条目，变成可直接修改后发布的小红书内容，并服务账号涨粉（目标 1000 粉）：每条正文末尾有绑定系列定位的关注引导，封面页眉「每天一张」、页脚「关注看每日更新 · 收藏回头翻」，标签首个固定 `#AIInfra学习卡片` 做系列聚合——每条一张 3:4 封面卡片（学习卡片）+ 一段 350–700 字草稿；封面上的配图由 Gemini 生图模型生成，生不出来就退回纯排版卡片。
 
 **非目标**：不自动发布；不做多图轮播（先只做首图）；不在公开站展示这些文稿。
 
@@ -20,7 +20,7 @@
 | 功能 | 说明 |
 |---|---|
 | 选条目 | `radar/data/<日期>.json` 里 priority ∈ {high, medium} 的前 20 条 |
-| 写文稿 | 一次 `call_llm_json` 生成全部：`headline`（12–24 字，封面用）、`takeaways`（2–4 条 ≤40 字，封面用）、`title`（小红书标题 ≤20 字）、`body`（300–600 字，短段落空行分隔，禁小节标签、禁 URL、第一句要有钩子、第一人称）、`tags`（3–5 个话题词）、`image_prompt`（英文极简扁平插画，禁文字/logo）。`clean_post` 再兜底清掉泄漏的「标题：/开头：」标签与 URL，标签去空格、截 5 个，title 截 20 字 |
+| 写文稿 | 一次 `call_llm_json` 生成全部：`headline`（12–24 字，封面用）、`takeaways`（2–4 条 ≤40 字，封面用）、`title`（小红书标题 ≤20 字）、`body`（300–600 字，短段落空行分隔，禁小节标签、禁 URL、第一句要有钩子、第一人称）、`tags`（3–5 个话题词，首个固定系列词 `AIInfra学习卡片`）、`image_prompt`（英文极简扁平插画，禁文字/logo）。`clean_post` 再兜底清掉泄漏的「标题：/开头：」标签与 URL，标签去空格、截 5 个，title 截 20 字 |
 | 配图 | 前 `XHS_IMAGES`（默认 4）条调用生图：按 `GEMINI_IMAGE_MODEL`（逗号分隔，默认 `gemini-3.1-flash-image,gemini-2.5-flash-image`）依次调 `generateContent`（`responseModalities: [IMAGE, TEXT]`，读 `inlineData`）；可选再试 `GEMINI_IMAGEN_MODEL` 的 `:predict`（账号无 Imagen 时留空）；都失败返回 None |
 | 封面卡片 | 1080×1440 HTML（页眉「Anaxagore · AI 信息学习卡片 · 日期 · 序号」→ 560px 配图区 → 标题 → 编号要点 ≤4 → 页脚来源域名 + `lgystoic.github.io/radar/<日期>/`），Playwright Chromium 截 JPEG（质量 86，约 100–300 KB） |
 | 写入 | 本地 `radar/data/xhs/<日期>/<id>.jpg` 与 `radar/data/xhs-<日期>.md`；私有仓库 `posts/<日期>/<id>.jpg` + `posts/<日期>.md`。md 每条：封面 → **标题** → **正文** → `#标签` 一行（复制即发）→ 原文名 + 链接（单独给人决定是否放评论区）→ 折叠的封面要点 |
@@ -92,7 +92,7 @@ radar/data/<日期>.json ─筛 high/medium 前20─▶ call_llm_json(SYSTEM, SC
 
 | 想做什么 | 改哪里 |
 |---|---|
-| 改文稿风格 / 字数 / 段落规则 | `SYSTEM`（body 的 8 条硬性要求，第 8 条防编造细节与虚构经历）；兜底清洗在 `clean_post` |
+| 改文稿风格 / 字数 / 段落规则 | `SYSTEM`（body 的 9 条硬性要求：第 8 条防编造，第 9 条关注引导——绑定「每天一张 AI infra 学习卡片」的账号定位，措辞每条不同，禁模板话）；系列标签常量 `SERIES_TAG`；兜底清洗在 `clean_post` |
 | 改配图风格 | `SYSTEM` 里 image_prompt 段；兜底提示词在 `main()` |
 | 改卡片版式 / 颜色 | `CARD_CSS`、`card_html` |
 | 多生几张图 | 工作流输入 `images` 或 `XHS_IMAGES` |
