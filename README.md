@@ -74,10 +74,12 @@ cp -R templates/note notes/my-new-note
 python3 tools/build.py
 ```
 
-4. 提交推送：
+4. 走分支 + PR 合并（内容改动也一样，不直接推 master，见 `docs/prd/site.md` §2）：
 
 ```bash
-git add . && git commit -m "Add my new note" && git push origin master
+git checkout -b notes/my-new-note
+git add -A && git commit -m "notes: 新增 xxx"
+git push -u origin notes/my-new-note   # 然后开 PR，squash 合到 master
 ```
 
 > 脚本只改写页面里 `<!-- build:xxx -->` 到 `<!-- /build:xxx -->` 之间的内容，
