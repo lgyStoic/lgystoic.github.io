@@ -24,6 +24,7 @@ tools/contributions.py    开源贡献：采集→五章→任务卡→校验→
 tools/inbox.py tools/xhs.py 私有收件箱、小红书文稿（写私有仓库）
 tools/check.py            自检（源健康、自动停用、巡检报告）
 tools/prd_index.py        生成 docs/prd/index.html
+tools/indexnow.py         radar.yml 推送后把当天变化页面推给 Bing IndexNow（密钥 site.json.seo.indexnow_key + 根目录 <key>.txt）
 radar/{sources,event_sources,job_sources,contribution_repos,ats_companies}.json  配置
 radar/data/               数据（<日期>.json, events.json, jobs.json, contributions.json, health.json, last-run.json, seen.json）
 radar/checks/*.md         巡检报告

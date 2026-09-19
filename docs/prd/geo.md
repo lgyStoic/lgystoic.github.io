@@ -22,6 +22,7 @@
 | 开源贡献仓库页 | `TechArticle` + `about: SoftwareSourceCode` | `contributions.detail_page` |
 | 指南页 FAQ | 「不通时先查这四项」表格 → `FAQPage`（问题自动加「怎么办？」） | `render_guide_jsonld` |
 | 站长验证 | `site.json.seo.verification`（bing / google / baidu / sogou / shenma），非空即注入首页 head；拿到百度验证码只需填一行 | `render_verification` |
+| IndexNow | 每天雷达推送成功后，把 sitemap 里当天有变化的页面 + 首页 + llms.txt 推给 Bing（ChatGPT / Perplexity / Kimi 的召回来源）；密钥在 `site.json.seo.indexnow_key`，根目录同名 txt；手动触发 radar.yml 时 reason 填 `indexnow-all` 可全量提交 | `tools/indexnow.py` |
 | 每月提醒 | 每月 1 日的巡检报告「待人决定」里列站外清单 | `check.py` |
 | 基础 SEO | canonical、OG 卡片、sitemap（含 lastmod）、RSS ×2、长尾标题 | 各页 head、`write_sitemap` |
 
@@ -39,7 +40,7 @@
 
 ## 4. 站外（人做，按优先级）
 
-1. **Bing Webmaster**：sitemap 已提交；新页面用「URL 提交」手动推一次（ChatGPT / Perplexity / Kimi 的召回主要靠它）。
+1. **Bing**：已由 IndexNow 自动推送，不必手动提交；Bing Webmaster 只用来看收录数。
 2. **Google Search Console**：同上；Gemini 与 AI Overview 走这里。
 3. **百度站长**：github.io 域名收录慢但可做；把验证码填进 `site.json.seo.verification.baidu`，构建后提交 sitemap。豆包 / 文心 / DeepSeek 联网主要靠它。买了域名后优先级提高。
 4. **被引用**：GitHub 仓库 README 与 About 写站点地址；在 LinuxDo、V2EX、知乎回答里作为来源链接出现（文案在 `.github/promo/`）；把「深圳地铁 200 米小区清单」这类数据型笔记投到相关社区，数据页最容易被 AI 搜索当来源。
