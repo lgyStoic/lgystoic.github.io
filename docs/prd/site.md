@@ -90,5 +90,6 @@ python3 -m http.server 8765       # 本地预览
 | 改导航顺序或名字 | `site.json.nav`、各模块的 `nav_label` |
 | 改配色 / 字体 / 断点 | `site.css` 顶部的 `:root` 变量与 `@media` |
 | 改统计或评论 | `site.json.analytics / comments` |
-| 改 SEO 验证码、OG 图 | 各页 `<head>`；`assets/og/` |
+| 改站长验证码 | `site.json.seo.verification`（bing / google / baidu / sogou / shenma），build 注入首页 |
+| 改 OG 图 | `assets/og/`；各页 `<head>` |
 | 改机器人推送策略 | 各 workflow 的「提交结果」步骤（四个工作流写法一致，改一处要同步） |

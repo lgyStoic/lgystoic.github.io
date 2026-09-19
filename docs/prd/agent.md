@@ -15,7 +15,7 @@
 ## 1. 仓库地图
 
 ```
-site.json                 模块注册表（nav、modules[]、analytics、comments）
+site.json                 模块注册表（nav、modules[]、analytics、comments、seo.verification）
 tools/build.py            全站构建：注入 <!-- build:NAME --> 块、sitemap、feed、状态页、指南处理
 tools/radar.py            雷达 + 共用 LLM 层（call_llm_json/call_gemini_json/_gemini_once）
 tools/events.py           活动清单
