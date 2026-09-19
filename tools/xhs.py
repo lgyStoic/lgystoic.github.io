@@ -35,12 +35,18 @@ SYSTEM = '''你是一个在小红书分享 AI infra 学习笔记的工程师。�
   1. 不要出现任何小节标签（禁止写“标题：”“开头：”“发生了什么：”“为什么值得学：”“结尾：”之类）。
   2. 短段落，每段 1–3 句，段落之间空一行；可以用 1–3 个 emoji 做段首符号，不要多。
   3. 第一句要能让人停下来（一个具体的数字、变化或反常识点），不要“各位同学”“大家好”这类开场。
-  4. 内容顺序自然衔接：发生了什么 → 为什么对做 infra 的人重要 → 学到的具体技术点（可分行列出）→ 一句自己的看法或接下来想试的方向 → 一个开放式提问。
+  4. 内容顺序自然衔接：发生了什么 → 为什么对做 infra 的人重要 → 学到的具体技术点（可分行列出）→ 一句自己的看法或接下来想试的方向 → 一个开放式提问 → 最后一段是关注引导（见第 9 条）。
   5. 用第一人称、口语化但准确，像发给同行的笔记，不像新闻稿。
+  9. 关注引导：正文最后单独一段，1–2 句，把「关注」和这个账号的固定价值绑定——我每天从几十条 AI infra 新闻里挑出值得学的做成一张学习卡片。要自然、具体、不卑微，每条措辞都不一样，参考风格（不要照抄）：
+     - 「这类推理系统的更新我每天会挑一条拆开讲，想跟着补 infra 知识的可以关注一下，明天见。」
+     - 「每天一张 AI infra 学习卡片，先收藏，等你真要上手时回来翻。」
+     - 「如果你也在做训练/推理加速，关注我，这个系列每天更新，评论区一起把细节聊透。」
+     - 「觉得有用的话收藏 + 关注，下一张卡片讲 <与本条相关的方向>。」（只在你确实能从输入其他条目推断出方向时使用）
+     禁止：「求关注」「点赞关注走一波」「关注不迷路」这类模板话；不要承诺抽奖、资料包。
   8. 技术点只能来自输入条目的 title / summary / why，输入没写的细节（性能数字、实现方式、显存/吞吐变化）一律不补；不要虚构自己的团队、项目、经历，「接下来想试」只能写成个人打算，不要写“我们的流程里”。
   6. 不要放任何 URL（小红书会限流），需要提来源就写名称，如“来源：SGLang 官方 release notes”。
   7. 正文末尾不要放话题标签，标签单独放 tags。
-- tags：3–5 个小红书话题词，不带 #，如 "AI Infra"、"大模型推理"、"CUDA"。
+- tags：3–5 个小红书话题词，不带 #。第一个固定为 "AIInfra学习卡片"（系列聚合词，每条都要），其余按内容选，如 "大模型推理"、"CUDA"、"SGLang"。
 - image_prompt：给生图模型的英文提示词，描述一张与主题相关的极简扁平插画（几何形状、电路、芯片、数据流、显卡、网络拓扑等意象），暖色调米白背景配赭红点缀，构图居中，明确写 "no text, no letters, no logos"，40 词以内。'''
 API = 'https://generativelanguage.googleapis.com/v1beta'
 
@@ -110,6 +116,7 @@ def gemini_image(prompt: str, key: str) -> bytes | None:
     return None
 
 
+SERIES_TAG = 'AIInfra学习卡片'
 LABEL_RE = re.compile(r'^[ \t\*#]*(标题|开头|发生了什么|为什么值得学|我会怎么验证/实践|我会怎么验证|实践|结尾提问|结尾|信息来源)\s*[:：]\s*\**\s*', re.M)
 URL_RE = re.compile(r'https?://\S+')
 
@@ -122,7 +129,9 @@ def clean_post(p: dict) -> dict:
     body = re.sub(r'\n{3,}', '\n\n', body).strip()
     p['body'] = body
     p['title'] = URL_RE.sub('', LABEL_RE.sub('', p.get('title', ''))).strip()[:20]
-    p['tags'] = [re.sub(r'[\s#]+', '', t) for t in p.get('tags', []) if re.sub(r'[\s#]+', '', t)][:5]
+    tags = [re.sub(r'[\s#]+', '', t) for t in p.get('tags', []) if re.sub(r'[\s#]+', '', t)]
+    tags = [SERIES_TAG] + [t for t in tags if t != SERIES_TAG]
+    p['tags'] = tags[:5]
     return p
 
 
@@ -140,7 +149,7 @@ h1{font-size:60px;line-height:1.25;font-weight:800;letter-spacing:-.01em}
 ol{list-style:none;display:flex;flex-direction:column;gap:22px}
 li{display:flex;gap:20px;font-size:32px;line-height:1.45;color:#3d3e3c}
 li i{flex:0 0 46px;height:46px;border-radius:50%;background:#9a3412;color:#fff;font:700 24px/46px sans-serif;text-align:center;font-style:normal;margin-top:2px}
-.foot{margin-top:auto;display:flex;justify-content:space-between;align-items:flex-end;font-size:24px;color:#78746c;border-top:2px solid #e6e2d9;padding-top:28px}
+.foot{margin-top:auto;display:flex;justify-content:space-between;align-items:flex-end;font-size:24px;line-height:1.5;color:#78746c;border-top:2px solid #e6e2d9;padding-top:28px}
 .foot b{color:#1b1b1a;font-size:26px}
 '''
 
@@ -151,11 +160,11 @@ def card_html(index: int, post: dict, src: dict, date: str, art_b64: str | None)
     items = ''.join(f'<li><i>{i}</i><span>{e(t)}</span></li>' for i, t in enumerate(post.get('takeaways', [])[:4], 1))
     domain = re.sub(r'^https?://(www\.)?', '', src.get('link', '')).split('/')[0]
     return f'''<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><style>{CARD_CSS}</style></head><body><div class="card">
-<div class="kicker"><span><b>Anaxagore</b> · AI 信息学习卡片</span><span>{e(date)} · {index:02d}</span></div>
+<div class="kicker"><span><b>Anaxagore</b> · AI 信息学习卡片 · 每天一张</span><span>{e(date)} · {index:02d}</span></div>
 <div class="art">{art}</div>
 <h1>{e(post.get('headline', ''))}</h1>
 <ol>{items}</ol>
-<div class="foot"><span>来源 · {e(domain)}</span><b>lgystoic.github.io/radar/{e(date)}/</b></div>
+<div class="foot"><span>来源 · {e(domain)}<br>关注看每日更新 · 收藏回头翻</span><b>lgystoic.github.io/radar/{e(date)}/</b></div>
 </div></body></html>'''
 
 
