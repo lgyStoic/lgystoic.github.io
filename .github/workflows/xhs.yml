@@ -3,22 +3,42 @@ on:
   workflow_dispatch:
     inputs:
       date: {description: 生成日期 YYYY-MM-DD（留空为今天）, required: false, default: ""}
+      images: {description: 生成封面图的条数（0 关闭生图）, required: false, default: "4"}
+      list_models: {description: 只列出可用的生图模型（排查用）, type: boolean, default: false}
   schedule:
     - cron: "10 1 * * *"
 permissions: {contents: read}
 jobs:
   xhs:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
         with: {ref: master}
       - uses: actions/setup-python@v5
         with: {python-version: "3.12"}
+      - name: 列出生图模型
+        if: ${{ inputs.list_models }}
+        env: {GEMINI_API_KEY: "${{ secrets.GEMINI_API_KEY }}"}
+        run: python3 tools/xhs.py --list-image-models
+      - name: 安装封面渲染依赖（Playwright + 中文字体）
+        if: ${{ !inputs.list_models }}
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq fonts-noto-cjk >/dev/null
+          pip install -q playwright
+          python -m playwright install --with-deps chromium
       - name: 生成并写入私有仓库
+        if: ${{ !inputs.list_models }}
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           INBOX_TOKEN: ${{ secrets.INBOX_TOKEN }}
           INBOX_REPO: ${{ vars.INBOX_REPO || 'lgyStoic/radar-inbox' }}
           RADAR_DATE: ${{ inputs.date }}
+          XHS_IMAGES: ${{ inputs.images || '4' }}
+          GEMINI_IMAGE_MODEL: ${{ vars.GEMINI_IMAGE_MODEL || 'gemini-2.5-flash-image' }}
+          GEMINI_IMAGEN_MODEL: ${{ vars.GEMINI_IMAGEN_MODEL || 'imagen-4.0-generate-001' }}
         run: RADAR_DATE="${RADAR_DATE:-$(TZ=Asia/Shanghai date +%F)}" python3 tools/xhs.py
+      - name: 封面图留档（7 天）
+        if: ${{ !inputs.list_models && hashFiles('radar/data/xhs/**/*.jpg') != '' }}
+        uses: actions/upload-artifact@v4
+        with: {name: xhs-cards, path: radar/data/xhs/, retention-days: 7}

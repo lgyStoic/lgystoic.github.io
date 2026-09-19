@@ -21,7 +21,7 @@ tools/radar.py            雷达 + 共用 LLM 层（call_llm_json/call_gemini_js
 tools/events.py           活动清单
 tools/jobs.py             岗位主抓取；import_liepin.py / import_ats_jobs.py / jobbuddy_enrich.py / jobs_ai.py 适配器
 tools/contributions.py    开源贡献：采集→五章→任务卡→校验→渲染（含 arch_svg/flow_svg）
-tools/inbox.py tools/xhs.py 私有收件箱、小红书文稿（写私有仓库）
+tools/inbox.py tools/xhs.py 私有收件箱、小红书文稿 + 封面卡片（写私有仓库 digest/ posts/）
 tools/check.py            自检（源健康、自动停用、巡检报告）
 tools/prd_index.py        生成 docs/prd/index.html
 tools/check_mobile.py     Playwright 手机宽度溢出检查
@@ -69,7 +69,8 @@ python3 tools/check_mobile.py --all    # 手机宽度溢出检查（需 pip inst
 | 活动 | `events.py main` | `event_sources.json`（site.cities/keep_past_days/max_*；kind rss,json,ics,page,yaml,wechat） | `events.json` | radar.yml 第二步 | `collect, fetch_detail, enrich_events, to_event` | `[events]`, `[events-ai]` |
 | 岗位 | `jobs.py main` → 适配器 → `jobs_ai.py` | `job_sources.json`（profile.directions/title_terms/exclude_title/max_per_company(_cn)；sources kind 12 种；disabled+disabled_reason；search_links） | `jobs.json` | jobs.yml 00:35 UTC | `match, region_of, limit_jobs, fetch_source(feishu_csrf, feishu_site_path), collect` | `源失败`, `岗位：N；来源成功`, `猎聘：`, `jobs-ai：` |
 | 开源贡献 | `contributions.py main` | `contribution_repos.json`（str 或 {repo,focus,young}） | `contributions.json` | contributions.yml 周一/周四 01:20 UTC；inputs scope, reuse_run_id | `collect_repo, run_analysis, task_prompt, valid_tasks, merge_tasks, scrub_channels, assemble, render, arch_svg, flow_svg` | `[contribution-<owner>-<repo>-<stage>]`, `丢弃…`, `降级到` |
-| 收件箱/文稿 | `inbox.py`, `xhs.py` | env INBOX_TOKEN, INBOX_REPO | 私有仓库 digest/, posts/, state.json | radar.yml 第三步；xhs.yml 01:10 UTC | `fetch_comments, enrich, render_day_md` | `[inbox]`, `[xhs]` |
+| 收件箱 | `inbox.py` | env INBOX_TOKEN, INBOX_REPO | 私有仓库 digest/, state.json | radar.yml 第三步 | `fetch_comments, enrich, render_day_md` | `[inbox]` |
+| 学习卡片/文稿 | `xhs.py main` | env XHS_IMAGES(4), GEMINI_IMAGE_MODEL, GEMINI_IMAGEN_MODEL；xhs.yml inputs date, images, list_models | 私有仓库 posts/<日期>.md, posts/<日期>/<id>.jpg（本地 radar/data/xhs/ 已 gitignore） | xhs.yml 01:10 UTC | `gemini_image, card_html, render_cards, gh_put` | `[xhs] 配图：`, `[xhs] 封面图 N 张`, `[xhs] 渲染封面失败` |
 | 巡检 | `check.py` | `DISABLE_AFTER=3`, `DISABLE_ZERO_AFTER` | `health.json`, `radar/checks/*.md`, `last-run.json` | radar.yml 末步；health.yml 00:35/02:20 UTC | `main` | 报告 ≤8 行 |
 | 笔记 | `build.py` | `notes/notes.json` | — | — | `render_latest, render_archive, render_tag_filters` | — |
 | 指南 | `build.py build_guides` | `guides/guides.json`, `guides/links.json` | — | — | `apply_affiliate_links, apply_guide_support, render_guide_jsonld` | `guides/<id>: 推荐位 N 个已填` |
