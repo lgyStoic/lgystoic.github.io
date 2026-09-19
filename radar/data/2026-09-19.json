@@ -1,15 +1,15 @@
 {
   "date": "2026-09-19",
-  "generated_at": "2026-09-19T02:00:01+00:00",
+  "generated_at": "2026-09-19T07:28:20+00:00",
   "ai": true,
-  "model": "gemini-3.1-pro-preview",
+  "model": "gemini-3.8-flash",
   "sources": [
     {
       "id": "openai",
       "name": "OpenAI",
       "ok": true,
-      "count": 0,
-      "total": 1209,
+      "count": 1,
+      "total": 1210,
       "error": ""
     },
     {
@@ -71,10 +71,10 @@
     {
       "id": "simonw",
       "name": "Simon Willison",
-      "ok": true,
-      "count": 2,
-      "total": 30,
-      "error": ""
+      "ok": false,
+      "count": 0,
+      "total": 0,
+      "error": "HTTP Error 500: Internal Server Error"
     },
     {
       "id": "lilianweng",
@@ -184,15 +184,15 @@
       "id": "gnews-labs-en",
       "name": "新闻 · Anthropic / Mistral / xAI",
       "ok": true,
-      "count": 20,
-      "total": 69,
+      "count": 32,
+      "total": 95,
       "error": ""
     },
     {
       "id": "gnews-labs-cn",
       "name": "新闻 · 国内模型公司",
       "ok": true,
-      "count": 24,
+      "count": 28,
       "total": 100,
       "error": ""
     },
@@ -208,7 +208,7 @@
       "id": "infoq-cn",
       "name": "InfoQ 中文",
       "ok": true,
-      "count": 4,
+      "count": 6,
       "total": 20,
       "error": ""
     },
@@ -224,17 +224,358 @@
       "id": "hn-algolia",
       "name": "Hacker News（100+ 分）",
       "ok": true,
-      "count": 9,
+      "count": 7,
       "total": 60,
+      "error": ""
+    },
+    {
+      "id": "x-karpathy",
+      "name": "X · Andrej Karpathy",
+      "ok": false,
+      "count": 0,
+      "total": 0,
+      "error": "<urlopen error [Errno 111] Connection refused>"
+    },
+    {
+      "id": "x-_akhaliq",
+      "name": "X · AK（论文速递）",
+      "ok": false,
+      "count": 0,
+      "total": 0,
+      "error": "<urlopen error [Errno 111] Connection refused>"
+    },
+    {
+      "id": "x-tri_dao",
+      "name": "X · Tri Dao",
+      "ok": false,
+      "count": 0,
+      "total": 0,
+      "error": "<urlopen error [Errno 111] Connection refused>"
+    },
+    {
+      "id": "x-soumithchintala",
+      "name": "X · Soumith Chintala",
+      "ok": false,
+      "count": 0,
+      "total": 0,
+      "error": "<urlopen error [Errno 111] Connection refused>"
+    },
+    {
+      "id": "x-chhillee",
+      "name": "X · Horace He",
+      "ok": false,
+      "count": 0,
+      "total": 0,
+      "error": "<urlopen error [Errno 111] Connection refused>"
+    },
+    {
+      "id": "x-tim_dettmers",
+      "name": "X · Tim Dettmers",
+      "ok": false,
+      "count": 0,
+      "total": 0,
+      "error": "<urlopen error [Errno 111] Connection refused>"
+    },
+    {
+      "id": "x-giffmana",
+      "name": "X · Lucas Beyer",
+      "ok": false,
+      "count": 0,
+      "total": 0,
+      "error": "<urlopen error [Errno 111] Connection refused>"
+    },
+    {
+      "id": "x-drjimfan",
+      "name": "X · Jim Fan",
+      "ok": false,
+      "count": 0,
+      "total": 0,
+      "error": "<urlopen error [Errno 111] Connection refused>"
+    },
+    {
+      "id": "x-jeremyphoward",
+      "name": "X · Jeremy Howard",
+      "ok": false,
+      "count": 0,
+      "total": 0,
+      "error": "<urlopen error [Errno 111] Connection refused>"
+    },
+    {
+      "id": "x-swyx",
+      "name": "X · swyx",
+      "ok": false,
+      "count": 0,
+      "total": 0,
+      "error": "<urlopen error [Errno 111] Connection refused>"
+    },
+    {
+      "id": "x-stasbekman",
+      "name": "X · Stas Bekman",
+      "ok": false,
+      "count": 0,
+      "total": 0,
+      "error": "<urlopen error [Errno 111] Connection refused>"
+    },
+    {
+      "id": "x-yuchenj_uw",
+      "name": "X · Yuchen Jin",
+      "ok": false,
+      "count": 0,
+      "total": 0,
+      "error": "<urlopen error [Errno 111] Connection refused>"
+    },
+    {
+      "id": "x-clementdelangue",
+      "name": "X · Clem Delangue",
+      "ok": false,
+      "count": 0,
+      "total": 0,
+      "error": "<urlopen error [Errno 111] Connection refused>"
+    },
+    {
+      "id": "x-thom_wolf",
+      "name": "X · Thomas Wolf",
+      "ok": false,
+      "count": 0,
+      "total": 0,
+      "error": "<urlopen error [Errno 111] Connection refused>"
+    },
+    {
+      "id": "x-jeffdean",
+      "name": "X · Jeff Dean",
+      "ok": false,
+      "count": 0,
+      "total": 0,
+      "error": "<urlopen error [Errno 111] Connection refused>"
+    },
+    {
+      "id": "x-hardmaru",
+      "name": "X · hardmaru",
+      "ok": false,
+      "count": 0,
+      "total": 0,
+      "error": "<urlopen error [Errno 111] Connection refused>"
+    },
+    {
+      "id": "x-vllm_project",
+      "name": "X · vLLM",
+      "ok": false,
+      "count": 0,
+      "total": 0,
+      "error": "<urlopen error [Errno 111] Connection refused>"
+    },
+    {
+      "id": "x-lmsysorg",
+      "name": "X · LMSYS / SGLang",
+      "ok": false,
+      "count": 0,
+      "total": 0,
+      "error": "<urlopen error [Errno 111] Connection refused>"
+    },
+    {
+      "id": "x-pytorch",
+      "name": "X · PyTorch",
+      "ok": false,
+      "count": 0,
+      "total": 0,
+      "error": "<urlopen error [Errno 111] Connection refused>"
+    },
+    {
+      "id": "x-nvidiaaidev",
+      "name": "X · NVIDIA AI Developer",
+      "ok": false,
+      "count": 0,
+      "total": 0,
+      "error": "<urlopen error [Errno 111] Connection refused>"
+    },
+    {
+      "id": "x-huggingface",
+      "name": "X · Hugging Face",
+      "ok": false,
+      "count": 0,
+      "total": 0,
+      "error": "<urlopen error [Errno 111] Connection refused>"
+    },
+    {
+      "id": "karpathy-blog",
+      "name": "Andrej Karpathy 博客",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "eugeneyan",
+      "name": "Eugene Yan",
+      "ok": true,
+      "count": 0,
+      "total": 212,
+      "error": ""
+    },
+    {
+      "id": "importai",
+      "name": "Import AI（Jack Clark）",
+      "ok": false,
+      "count": 0,
+      "total": 0,
+      "error": "HTTP Error 403: Forbidden"
+    },
+    {
+      "id": "latentspace",
+      "name": "Latent Space",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "semianalysis",
+      "name": "SemiAnalysis",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "meta-ai",
+      "name": "Meta AI Blog",
+      "ok": false,
+      "count": 0,
+      "total": 0,
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "id": "vllm-blog",
+      "name": "vLLM Blog",
+      "ok": false,
+      "count": 0,
+      "total": 0,
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "id": "lmsys-blog",
+      "name": "LMSYS / SGLang Blog",
+      "ok": false,
+      "count": 0,
+      "total": 0,
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "id": "anthropic-news",
+      "name": "Anthropic",
+      "ok": false,
+      "count": 0,
+      "total": 0,
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "id": "mistral-news",
+      "name": "Mistral AI",
+      "ok": false,
+      "count": 0,
+      "total": 0,
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "id": "hf-trending-models",
+      "name": "HF 热门模型",
+      "ok": false,
+      "count": 0,
+      "total": 0,
+      "error": "HTTP Error 400: Bad Request"
+    },
+    {
+      "id": "hf-trending-spaces",
+      "name": "HF 热门 Spaces",
+      "ok": false,
+      "count": 0,
+      "total": 0,
+      "error": "HTTP Error 400: Bad Request"
+    },
+    {
+      "id": "gh-trending-all",
+      "name": "GitHub Trending · 全部",
+      "ok": true,
+      "count": 9,
+      "total": 17,
+      "error": ""
+    },
+    {
+      "id": "gh-trending-python",
+      "name": "GitHub Trending · Python",
+      "ok": true,
+      "count": 5,
+      "total": 17,
+      "error": ""
+    },
+    {
+      "id": "gh-trending-cuda",
+      "name": "GitHub Trending · CUDA",
+      "ok": true,
+      "count": 13,
+      "total": 13,
       "error": ""
     }
   ],
   "counts": {
-    "high": 12,
-    "medium": 16,
-    "low": 58
+    "high": 19,
+    "medium": 30,
+    "low": 87
   },
   "items": [
+    {
+      "id": "d90f46f1e1f77d42",
+      "title": "从算子调优到推理自治：构建 MaaS 场景下的 AI Inference 自动优化闭环｜QCon上海",
+      "link": "https://www.infoq.cn/article/G4tlQvg2IsabE0v1RDOE",
+      "source": "InfoQ 中文",
+      "source_id": "infoq-cn",
+      "published": "2026-09-19T10:00:00+00:00",
+      "category": "infra",
+      "priority": "high",
+      "summary": "QCon技术分享探讨MaaS场景下从算子自动调优到推理自适应优化的闭环方案。",
+      "why": "算子调优与推理性能优化直击核心技术栈，强烈推荐。",
+      "tags": [
+        "算子调优",
+        "推理优化",
+        "Kernel",
+        "MaaS"
+      ]
+    },
+    {
+      "id": "25969867aa903909",
+      "title": "涨价！智谱上线GLM-5.3-FlashX 定价提升至原版本的2.5倍 - finance.eastmoney.com",
+      "link": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE9mT2dvVjU4NmVSMko4Vm5aRUFGNTE0RmN3TjF4QVUxcmprNjlPRG40Tl9rbUZDZFlGZWJfZDAtMG5HOVp1SVVxWEJILWdwWHNPTHpjdFY0cW5kakNMeFU3dGVJYWw?oc=5",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-09-18T23:38:07+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "智谱上线GLM-5.3-FlashX模型，API定价提升至原版的2.5倍。",
+      "why": "国产旗舰推理系列新版本上线及定价变化。",
+      "tags": [
+        "GLM-5.3",
+        "智谱AI",
+        "模型发布"
+      ]
+    },
+    {
+      "id": "7c7e4e2564c2df06",
+      "title": "How OpenAI Used Its Own LLMs to Design Its Jalapeño Chip",
+      "link": "https://news.ycombinator.com/item?id=49761432",
+      "source": "Hacker News（100+ 分）",
+      "source_id": "hn-algolia",
+      "published": "2026-09-18T23:04:17+00:00",
+      "category": "infra",
+      "priority": "high",
+      "summary": "揭秘OpenAI如何利用自研LLM参与设计其代号为Jalapeño的定制AI芯片。",
+      "why": "头部机构定制芯片硬件架构探索，硬件协同必看。",
+      "tags": [
+        "OpenAI",
+        "AI芯片",
+        "硬件协同",
+        "Jalapeño"
+      ]
+    },
     {
       "id": "d1deb1aedf14b815",
       "title": "v0.5.20",
@@ -244,13 +585,13 @@
       "published": "2026-09-18T22:41:33+00:00",
       "category": "infra",
       "priority": "high",
-      "summary": "SGLang 发布 v0.5.20，支持多款新模型及 RL rollout 的采样掩码。",
-      "why": "SGLang 是重要推理系统，新增模型与 RL 支持直接影响推理优化工作。",
+      "summary": "SGLang v0.5.20 发布，支持多款新模型、FastH3/VDN-H3 扩散模型及 RL 采样掩码。",
+      "why": "高频使用的推理引擎大版本，包含扩散模型蒸馏推理支持与 RL 算子优化。",
       "tags": [
         "SGLang",
-        "Release",
-        "Inference",
-        "RL"
+        "推理系统",
+        "扩散模型",
+        "开源Release"
       ]
     },
     {
@@ -262,83 +603,85 @@
       "published": "2026-09-18T19:04:50+00:00",
       "category": "infra",
       "priority": "high",
-      "summary": "NVIDIA 推出 AIPerf，用于大规模基准测试 LLM 推理性能。",
-      "why": "直接涉及推理系统性能评估，对优化工作有重要参考价值。",
+      "summary": "NVIDIA 推出 AIPerf 用于大规模 LLM 推理性能基准测试与评估。",
+      "why": "涉及大规模推理 benchmark 工具，对推理系统调优直接相关。",
       "tags": [
         "NVIDIA",
-        "LLM Inference",
+        "推理系统",
         "Benchmark",
-        "AIPerf"
+        "LLM"
       ]
     },
     {
       "id": "00f7704143202079",
-      "title": "智谱唐杰披露首个RSI进展：AI在十万卡集群上自主优化，不到两周吞吐量提升至3倍 - 新浪财经",
+      "title": "智谱唐杰披露首个RSI进展：AI在十万卡集群上自主优化，不到两周吞吐量提升至3倍 - 新浪财经_金融信息服务商",
       "link": "https://news.google.com/rss/articles/CBMipwFBVV95cUxQSUpxMmJSODc0SmdzMWp1MEE2c3QwdldBdjAza0t2RXhCeHh2TEdVMjZRVkIyY1NhXzlfQ1YtbWducWVUYkZDMmlnV0Y4VkVLV25LbmFoNEcwYm5vNFpIVWpnRVdlOHBJU0pZMW1OTDFMSGwzYUNnQ2xkWTRPcll5WlBkbUdjS3dTY1lrd0VxUXplUk5IcjdhUWR5RjdDWFNaaHMyTUZraw?oc=5",
       "source": "新闻 · 国内模型公司",
       "source_id": "gnews-labs-cn",
       "published": "2026-09-18T12:24:52+00:00",
       "category": "infra",
       "priority": "high",
-      "summary": "智谱唐杰披露AI在十万卡集群上自主优化，两周内吞吐量提升至3倍。",
-      "why": "涉及超大规模集群训练与吞吐量优化，直接命中你的性能优化方向。",
+      "summary": "智谱披露十万卡集群RSI进展，AI自主优化使吞吐量两周内提升至3倍。",
+      "why": "大规模集群训练/推理吞吐优化，与工作强相关。",
       "tags": [
-        "智谱",
         "十万卡集群",
-        "吞吐量优化",
-        "RSI"
-      ]
-    },
-    {
-      "id": "20e6af3407943089",
-      "title": "端到端整体吞吐提升​|智谱|glm-5.3-flash|国产ai加速器|推理系统 - 手机新浪网",
-      "link": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE1KSndnUFlOcjhCV2JSSkRERVZrWlM3dDVMWW01ZElIa2pWeUNQUFVrdk1pNDlidklKY1pFV1M0WElyMU9MeGxjQjhBRFVSekF1MjU5bElERjZybGZraEE3ajZvSQ?oc=5",
-      "source": "新闻 · 国内模型公司",
-      "source_id": "gnews-labs-cn",
-      "published": "2026-09-18T10:41:00+00:00",
-      "category": "infra",
-      "priority": "high",
-      "summary": "智谱 GLM-5.3-Flash 在国产 AI 加速器上实现端到端推理吞吐提升。",
-      "why": "涉及推理系统优化和国产硬件适配，与你的性能优化工作直接相关。",
-      "tags": [
-        "推理系统",
         "性能优化",
-        "国产硬件"
+        "吞吐量",
+        "智谱AI"
       ]
     },
     {
       "id": "9b41943813799a05",
-      "title": "智谱发布 GLM-5.3-FlashX:速度飙至200tokens/s，国产算力再提速 - AIBase",
+      "title": "智谱发布 GLM-5.3-FlashX:速度飙至200tokens/s，国产算力再提速 - news.aibase.com",
       "link": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE15UHZRX01DaTk4a0o3WVBKMTQ3dEZFOGdpWVV5eFptd3RmZ0Zzb244SHloVEEydUF2VFVXLWhCMEhFTlgwQmhjZ2NWWUhJQQ?oc=5",
       "source": "新闻 · 国内模型公司",
       "source_id": "gnews-labs-cn",
       "published": "2026-09-18T06:00:00+00:00",
       "category": "release",
       "priority": "high",
-      "summary": "智谱发布GLM-5.3-FlashX，推理速度飙升至200 tokens/s。",
-      "why": "涉及国产算力上的极致推理速度优化，对性能优化工作有参考价值。",
+      "summary": "智谱发布GLM-5.3-FlashX，国产硬件推理速度达到200 tokens/s。",
+      "why": "国产芯片推理吞吐标杆发布，直接关乎性能优化。",
       "tags": [
-        "智谱",
-        "GLM",
-        "推理优化",
+        "GLM-5.3-FlashX",
+        "模型发布",
+        "推理性能",
         "国产算力"
       ]
     },
     {
+      "id": "21f9c2cd098f478b",
+      "title": "智谱唐杰突发长文曝RSI进展：Agent优化10万卡集群吞吐暴涨200%，AI造AI还远吗？ - 新浪新闻_手机新浪网",
+      "link": "https://news.google.com/rss/articles/CBMisAFBVV95cUxOcm9YTXJBdENxTG43UndpQTF0WWpFOC1EVUNIWkI0QS16TlYzcUdGSVJnaU94ZzBRYWdVYlBQcnE2SjRpQVZLSjU0OFVoeUs3c0pwUEJITnUybkxhWUlpSldSM2YtbHRFVEZDYXV4MnJUbW1QOHRYRDNoMWRPUzJWYjNYbHVDdmt2cHJNdndpWVk2VkNIc20wWXJINUJtVVpzWEd0OHB1RE92TWNIZ0tvRQ?oc=5",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-09-18T05:44:51+00:00",
+      "category": "infra",
+      "priority": "high",
+      "summary": "智谱唐杰披露RSI进展，称利用Agent优化10万卡集群使吞吐提升200%。",
+      "why": "十万卡集群调度与吞吐优化实操，强相关必读。",
+      "tags": [
+        "智谱AI",
+        "集群吞吐",
+        "GPU优化",
+        "RSI"
+      ]
+    },
+    {
       "id": "59fe880a327e3df6",
-      "title": "Qwen3.8-Omni-Flash 发布，阿里通义把多模态押在了“干活”上 - OSCHINA - 开源 × AI · 开发者生态社区 - oschina.net",
+      "title": "Qwen3.8-Omni-Flash 发布，阿里通义把多模态押在了“干活”上 - OSCHINA - 开源 × AI · 开发者生态社区 - OSCHINA",
       "link": "https://news.google.com/rss/articles/CBMiZkFVX3lxTFBneGxTWlJDQmpuLXpkVkFXR0FHWjNrTjdaRjRpeGRJSXM4a0c5YWh4TkN6Yk1IU3Y1ZXY4NTFlb2NWVEpFYkI2TURaMHdERlp3YTUxNDNrWFdubVEwQkpDdl9qUnBzdw?oc=5",
       "source": "新闻 · 国内模型公司",
       "source_id": "gnews-labs-cn",
       "published": "2026-09-18T03:43:33+00:00",
       "category": "release",
       "priority": "high",
-      "summary": "阿里通义发布多模态模型 Qwen3.8-Omni-Flash，主打实用场景。",
-      "why": "头部多模态模型发布，可能涉及新的架构或训练策略，值得关注。",
+      "summary": "阿里通义开源发布多模态模型Qwen3.8-Omni-Flash，强化实用落地场景。",
+      "why": "阿里主流轻量全模态模型新发布，值得关注。",
       "tags": [
         "Qwen",
-        "多模态",
-        "模型发布"
+        "Omni",
+        "模型发布",
+        "多模态"
       ]
     },
     {
@@ -350,30 +693,13 @@
       "published": "2026-09-18T03:14:53+00:00",
       "category": "infra",
       "priority": "high",
-      "summary": "TensorRT-LLM 发布 v1.3.0rc27，披露了多 GPU 投机解码及 NVFP4 推理的已知问题。",
-      "why": "TRT-LLM 是核心推理引擎，涉及多卡与量化推理的 bug 直接影响工作。",
+      "summary": "TensorRT-LLM 发布 v1.3.0rc27，披露 NVFP4 在 B200 上的精度异常及 Triton MoE 挂起问题。",
+      "why": "直接涉及 Blackwell B200 NVFP4 算子精度与 MoE 多卡推理核心已知缺陷。",
       "tags": [
         "TensorRT-LLM",
-        "Release",
-        "Inference",
-        "GPU"
-      ]
-    },
-    {
-      "id": "d90420a9f56c9565",
-      "title": "Bend – a language that blocks AI mistakes via proof and runs on GPUs",
-      "link": "https://news.ycombinator.com/item?id=49746163",
-      "source": "Hacker News（100+ 分）",
-      "source_id": "hn-algolia",
-      "published": "2026-09-17T20:36:13+00:00",
-      "category": "infra",
-      "priority": "high",
-      "summary": "Bend 是一种通过证明阻止 AI 错误并在 GPU 上运行的新编程语言。",
-      "why": "涉及 GPU 运行和新语言编译器，可能对 Kernel 编写有启发。",
-      "tags": [
-        "GPU",
-        "编译器",
-        "编程语言"
+        "NVFP4",
+        "B200",
+        "GPU算子"
       ]
     },
     {
@@ -394,23 +720,6 @@
       ]
     },
     {
-      "id": "e721d4ae0d1f3004",
-      "title": "FAMOS: Feed-Forward 3D Articulation Modeling from Sparse Observations",
-      "link": "https://huggingface.co/papers/2609.20817",
-      "source": "HF Papers 日榜",
-      "source_id": "hf-papers",
-      "published": "2026-09-16T20:00:00+00:00",
-      "category": "research",
-      "priority": "high",
-      "summary": "提出 FAMOS 模型，从稀疏点云前向预测 3D 铰接物体的分割与关节参数。",
-      "why": "涉及 3D 生成与建模，符合其关注的 3D 生成模型方向。",
-      "tags": [
-        "3D Modeling",
-        "Point Cloud",
-        "FAMOS"
-      ]
-    },
-    {
       "id": "67d6a5e6442bc084",
       "title": "DeepSeek-V4.1-Flash: Pushing the Limits of KV Cache Compression",
       "link": "https://huggingface.co/papers/2609.19969",
@@ -419,13 +728,13 @@
       "published": "2026-09-16T20:00:00+00:00",
       "category": "research",
       "priority": "high",
-      "summary": "DeepSeek 发布 V4.1-Flash，支持百万上下文并大幅压缩 KV Cache。",
-      "why": "直接涉及 KV Cache 压缩与长上下文推理优化，高度契合其工作。",
+      "summary": "DeepSeek 推出 V4.1-Flash，结合因果编解码架构与百万上下文极限 KV 压缩技术。",
+      "why": "直击长文本 KV 缓存与 HBM 吞吐瓶颈，对系统优化和算子极为关键。",
       "tags": [
-        "DeepSeek",
         "KV Cache",
+        "系统优化",
         "MoE",
-        "Inference Optimization"
+        "DeepSeek"
       ]
     },
     {
@@ -437,29 +746,173 @@
       "published": "2026-09-16T20:00:00+00:00",
       "category": "research",
       "priority": "high",
-      "summary": "提出 Video DeltaNet，结合局部 Softmax 与双向线性记忆优化视频生成注意力。",
-      "why": "针对视频生成模型的注意力机制优化，完美契合其关注领域。",
+      "summary": "Video DeltaNet 结合局部 Softmax 与逐帧线性记忆，打造直播级视频扩散生成注意力。",
+      "why": "视频扩散模型中的混合注意力与线性算子优化，强相关度。",
       "tags": [
-        "Video Generation",
-        "Attention Mechanism",
-        "Video DeltaNet"
+        "视频生成",
+        "扩散模型",
+        "线性注意力",
+        "Kernel优化"
       ]
     },
     {
-      "id": "523a50e050f45cc6",
-      "title": "Anthropic, Accenture to invest $2 billion in AI model evaluation as safety concerns rise - TradingView",
-      "link": "https://news.google.com/rss/articles/CBMi7AFBVV95cUxNNDh6ZUNDbjVOeHRWT3BNRHR3VzIxQTRveHJvOE1vU3dEaUlaWkpKODFndVl4ZXc5a0c1NllueEE4TlE4ZnY5Q3M3czR6UE1NSzBRTEF4bFgzRWdScGlUR3g4eGd6anZZZlg5dnRVSU5MZVczWTJmaE1HWTJqQjlhVFdGTkU4X01VM0VmcWhxYlQ5V0loNng0UFRVY2JVd0N1VUg3dW1EcXhvZTg0SjNhcktpVzlNeGVzQzlfb2d0dXU5azVxUjRBdU44b2lISnhheklMOWpDa1lSREl3UXJFRjlWdGxyUFNhbVJHRA?oc=5",
+      "id": "b01295803dfe9891",
+      "title": "unslothai/unsloth",
+      "link": "https://github.com/unslothai/unsloth",
+      "source": "GitHub Trending · Python",
+      "source_id": "gh-trending-python",
+      "published": "",
+      "category": "infra",
+      "priority": "high",
+      "summary": "Unsloth推出新版桌面客户端，支持微调FLUX扩散模型及多种LLM。",
+      "why": "涵盖FLUX生成模型训练与显存加速优化，直接贴合方向。",
+      "tags": [
+        "Unsloth",
+        "FLUX",
+        "扩散模型",
+        "模型训练"
+      ]
+    },
+    {
+      "id": "bec0db5d091684a8",
+      "title": "deepseek-ai/DeepEP",
+      "link": "https://github.com/deepseek-ai/DeepEP",
+      "source": "GitHub Trending · CUDA",
+      "source_id": "gh-trending-cuda",
+      "published": "",
+      "category": "infra",
+      "priority": "high",
+      "summary": "DeepSeek开源专为MoE架构优化的专家并行通信算子库DeepEP。",
+      "why": "核心训练通信优化库，直接影响多卡大模型吞吐性能。",
+      "tags": [
+        "DeepSeek",
+        "DeepEP",
+        "CUDA",
+        "通信优化"
+      ]
+    },
+    {
+      "id": "55ff6375d410d5e7",
+      "title": "flashinfer-ai/flashinfer",
+      "link": "https://github.com/flashinfer-ai/flashinfer",
+      "source": "GitHub Trending · CUDA",
+      "source_id": "gh-trending-cuda",
+      "published": "",
+      "category": "infra",
+      "priority": "high",
+      "summary": "FlashInfer开源针对LLM推理Serving的高吞吐算子与Attention加速库。",
+      "why": "一线GPU Kernel库，对算子调度与显存优化极具参考价值。",
+      "tags": [
+        "FlashInfer",
+        "GPU Kernel",
+        "CUDA",
+        "Attention"
+      ]
+    },
+    {
+      "id": "53553b8ab5296648",
+      "title": "karpathy/llm.c",
+      "link": "https://github.com/karpathy/llm.c",
+      "source": "GitHub Trending · CUDA",
+      "source_id": "gh-trending-cuda",
+      "published": "",
+      "category": "infra",
+      "priority": "high",
+      "summary": "Karpathy维护的纯C/CUDA极简LLM训练仓库llm.c持续引入高性能优化。",
+      "why": "无依赖手写CUDA训练Kernel与显存分配的标准教科书。",
+      "tags": [
+        "llm.c",
+        "CUDA",
+        "训练优化",
+        "Kernel"
+      ]
+    },
+    {
+      "id": "e97cc80ff2669899",
+      "title": "thu-ml/SageAttention",
+      "link": "https://github.com/thu-ml/SageAttention",
+      "source": "GitHub Trending · CUDA",
+      "source_id": "gh-trending-cuda",
+      "published": "",
+      "category": "research",
+      "priority": "high",
+      "summary": "清华开源SageAttention量化内核，比FlashAttention快2至5倍且覆盖图生视频。",
+      "why": "大幅提升视频扩散模型推理效率的顶尖Kernel，必读。",
+      "tags": [
+        "SageAttention",
+        "Attention",
+        "视频生成",
+        "CUDA Kernel"
+      ]
+    },
+    {
+      "id": "c2135254ba6f9add",
+      "title": "thu-ml/SpargeAttn",
+      "link": "https://github.com/thu-ml/SpargeAttn",
+      "source": "GitHub Trending · CUDA",
+      "source_id": "gh-trending-cuda",
+      "published": "",
+      "category": "research",
+      "priority": "high",
+      "summary": "清华入选ICML 2025的SpargeAttn免训练稀疏注意力开源，加速长序列推理。",
+      "why": "免训练稀疏注意力算子实现，与长上下文和生成模型强相关。",
+      "tags": [
+        "SpargeAttn",
+        "稀疏注意力",
+        "CUDA Kernel",
+        "推理加速"
+      ]
+    },
+    {
+      "id": "0005d395cd100821",
+      "title": "单个机柜到底能跑多少个 Agent？答案不在 GPU 身上",
+      "link": "https://www.infoq.cn/article/brH7TRcHB9evl32KQJkY",
+      "source": "InfoQ 中文",
+      "source_id": "infoq-cn",
+      "published": "2026-09-19T10:55:19+00:00",
+      "category": "infra",
+      "priority": "medium",
+      "summary": "探讨机柜维度Agent运行密度的瓶颈分析，指出限制往往不在GPU本身。",
+      "why": "剖析系统层面的非GPU瓶颈，扩展架构视野。",
+      "tags": [
+        "系统架构",
+        "机柜密度",
+        "Infra",
+        "Agent"
+      ]
+    },
+    {
+      "id": "620fec1efd674bd1",
+      "title": "Anthropic weighs new model to counter OpenAI’s Astra days after CEO calls for AI slowdown - Storyboard18",
+      "link": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxPVWpZN2Y3a0NnTDZUb3JmNVJ1Q0tUR0o3UGdnSldsUC1HOVNmU1d2TTd5RXgxWEU3V2o2WkdBRUJjb0hkTU9DZFpFa2k4NkRpUE1pUlZQWFpPbk4zZDR1dmpObjdjYnNpU21VVjVmZzJGR3FsampXT0VHOTZzWGgwX1ZQRlF4UnpCc2owRjdJeVk1X3dyREIyN2NwWmlVQ1g1a3JQVHptVjdtSjd3aTB4RGZhbmgxNmVYTzJnNUpzZlF2RS1iMzg3b3pYcTNjNFJkYU13ZnpOZ9IB1wFBVV95cUxPVWpZN2Y3a0NnTDZUb3JmNVJ1Q0tUR0o3UGdnSldsUC1HOVNmU1d2TTd5RXgxWEU3V2o2WkdBRUJjb0hkTU9DZFpFa2k4NkRpUE1pUlZQWFpPbk4zZDR1dmpObjdjYnNpU21VVjVmZzJGR3FsampXT0VHOTZzWGgwX1ZQRlF4UnpCc2owRjdJeVk1X3dyREIyN2NwWmlVQ1g1a3JQVHptVjdtSjd3aTB4RGZhbmgxNmVYTzJnNUpzZlF2RS1iMzg3b3pYcTNjNFJkYU13ZnpOZw?oc=5",
       "source": "新闻 · Anthropic / Mistral / xAI",
       "source_id": "gnews-labs-en",
-      "published": "2026-09-18T22:00:41+00:00",
+      "published": "2026-09-19T06:01:02+00:00",
       "category": "industry",
       "priority": "medium",
-      "summary": "Anthropic与埃森哲投资20亿美元用于AI模型评估与安全。",
-      "why": "了解头部AI公司在模型安全与评估上的大额投入动态。",
+      "summary": "据传Anthropic正权衡推出新模型以抗衡OpenAI的Astra。",
+      "why": "前沿模型动态传闻，尚无具体架构与发布细节。",
       "tags": [
         "Anthropic",
-        "模型评估",
-        "行业动态"
+        "OpenAI",
+        "大模型"
+      ]
+    },
+    {
+      "id": "5b7410bc7733824a",
+      "title": "Exclusive-Anthropic considers releasing new AI model ahead of IPO, sources say By Reuters - Investing.com",
+      "link": "https://news.google.com/rss/articles/CBMizgFBVV95cUxPSHZhUU5zd011TV9uZ0VyM3UzM0M5QkxvMFpzQTlyUE90eXoyaE05Zmk4Y0p3TDRjX0d1Z3YwQjVGYW1qUnRHaUdLblFiNmZEWFZxMjVoekY3VUFqeGNUREVWRHNnc1AxV3dfNG9lcVIwYXhsdWdObUh2eFhraWtwQnN2RTE4TVVTZFBOSzNza1hsSXhpMDdnMGpCb0pxSVlURWdyQ2R0QTNUTmtfWW5WVmJHTWFvSEQ4cVJWMWFOWFBhNDdLeURIcnNVc3VSUQ?oc=5",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-09-19T00:45:13+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "路透社独家报道 Anthropic 考虑在 IPO 之前发布全新前沿 AI 模型。",
+      "why": "涉及 Anthropic 旗舰模型发布时间线与商业动作。",
+      "tags": [
+        "Anthropic",
+        "IPO",
+        "商业动态"
       ]
     },
     {
@@ -471,12 +924,12 @@
       "published": "2026-09-18T21:15:44+00:00",
       "category": "infra",
       "priority": "medium",
-      "summary": "vLLM 发布 v0.30.0rc2，修复了通知请求的接收报告问题。",
-      "why": "vLLM 是核心推理框架，版本更新值得扫一眼。",
+      "summary": "vLLM 发布 v0.30.0rc2，修复 NIXL 仅通知请求接收报告相关的 Bug。",
+      "why": "主流推理引擎候选发布版，包含底层通信相关 bugfix。",
       "tags": [
         "vLLM",
-        "Release",
-        "Inference"
+        "推理引擎",
+        "Bugfix"
       ]
     },
     {
@@ -488,12 +941,13 @@
       "published": "2026-09-18T17:38:34+00:00",
       "category": "release",
       "priority": "medium",
-      "summary": "xAI 发布 Grok Voice Transcribe 2.0。",
-      "why": "知名公司的新模型发布，值得简单关注。",
+      "summary": "xAI 正式推出 Grok Voice Transcribe 2.0 语音转录功能。",
+      "why": "语音模型落地发布，可了解头部厂商多模态进展。",
       "tags": [
         "xAI",
-        "Grok",
-        "Voice Transcribe"
+        "语音转录",
+        "多模态",
+        "产品发布"
       ]
     },
     {
@@ -505,12 +959,31 @@
       "published": "2026-09-18T17:00:25+00:00",
       "category": "industry",
       "priority": "medium",
-      "summary": "Anthropic 大量使用 Claude 辅助 AI 研发，展示了 AI 自动化研发的潜力。",
-      "why": "头部公司的研发范式演进，值得了解其对基础设施的潜在影响。",
+      "summary": "梳理Anthropic使用Claude辅助研发与3万Agent运行的RSI技术路线。",
+      "why": "了解头部实验室AI造AI机制与工程自动化动向。",
       "tags": [
         "Anthropic",
-        "AI研发",
+        "Claude",
+        "RSI",
         "Agent"
+      ]
+    },
+    {
+      "id": "544bcd814c2d408d",
+      "title": "突发！MiniMax Code CLI 开源了 - 新浪财经",
+      "link": "https://news.google.com/rss/articles/CBMieEFVX3lxTE1HbjhYemtvaE1JMVdUM0g0UEVBbXY2d3ljWkF1c2JIQVNwUHJFTHE4TWVNWnpTWXRHX3E3N19mbXJQNDZuOHQ3bFVMVXVGQUpYRlpvS1MzTlEwd1RTS2xYem5RZlBVQ2hVeFE1bThTS0t6b3NUX0Z2Mw?oc=5",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-09-18T15:18:00+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "MiniMax正式开源代码助手终端工具Code CLI。",
+      "why": "开源开发者终端工具，可顺手一试日常使用。",
+      "tags": [
+        "MiniMax",
+        "开源",
+        "CLI",
+        "代码生成"
       ]
     },
     {
@@ -532,19 +1005,19 @@
     },
     {
       "id": "ade0c4c725a6e20b",
-      "title": "Anthropic and OpenAI Seek Small AI Data Centers to Accelerate Deployment of 20 to 30 MW Compute - TradingKey",
+      "title": "Anthropic and OpenAI Seek Small AI Data Centers to Accelerate Deployment of 20 to 30 MW Compute - tradingkey.com",
       "link": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxQOHVKb2VHaTZrZDYxZGdKcnltT2Q4Q2UzU1c4ZmwzVHg3ZnRSUHcxTHhoRlBlTzJFeGo1Rjd2Z3E4SW1vdW5tMHNINC0xdG5Kd19LNkpydTlwcGpHMDUxTVNrM3RscWF3MGFjOERBRTFwRjkzUlk3dzduOXFZZldZV3lxNmZ6NWtieVBZXzdNNnYzWFVzbVl6d2pkZ0tpZnF1emFxOHZsM3QzSDJTN0VOVE9KblhXUHBWSlMw?oc=5",
       "source": "新闻 · Anthropic / Mistral / xAI",
       "source_id": "gnews-labs-en",
       "published": "2026-09-18T13:12:10+00:00",
       "category": "infra",
       "priority": "medium",
-      "summary": "Anthropic和OpenAI寻求20-30MW的小型数据中心以加速部署。",
-      "why": "了解头部公司在算力基础设施和集群部署上的新动向。",
+      "summary": "Anthropic与OpenAI寻求20-30MW小型AI数据中心以加快算力部署。",
+      "why": "涉及前沿集群供电与算力布局，可扫一眼。",
       "tags": [
         "数据中心",
-        "算力",
-        "OpenAI"
+        "算力集群",
+        "供电"
       ]
     },
     {
@@ -556,12 +1029,48 @@
       "published": "2026-09-18T12:52:03+00:00",
       "category": "release",
       "priority": "medium",
-      "summary": "MiniMax以MIT协议开源Code CLI v0.4.12。",
-      "why": "开发者工具开源，可简单了解其开发工作流生态。",
+      "summary": "MiniMax开源Code CLI v0.4.12，基于MIT协议开放源码。",
+      "why": "国内模型配套终端工具开源，可作工程参考。",
       "tags": [
         "MiniMax",
+        "CLI",
         "开源",
         "开发者工具"
+      ]
+    },
+    {
+      "id": "20e6af3407943089",
+      "title": "端到端整体吞吐提升​|智谱|glm-5.3-flash|国产ai加速器|推理系统 - 手机新浪网",
+      "link": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE1KSndnUFlOcjhCV2JSSkRERVZrWlM3dDVMWW01ZElIa2pWeUNQUFVrdk1pNDlidklKY1pFV1M0WElyMU9MeGxjQjhBRFVSekF1MjU5bElERjZybGZraEE3ajZvSQ?oc=5",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-09-18T10:41:00+00:00",
+      "category": "infra",
+      "priority": "medium",
+      "summary": "智谱展示GLM-5.3-Flash在国产AI加速器推理系统上的端到端吞吐提升方案。",
+      "why": "国产加速卡端到端推理优化实践，具备参考价值。",
+      "tags": [
+        "推理系统",
+        "吞吐优化",
+        "国产算力",
+        "GLM"
+      ]
+    },
+    {
+      "id": "e30c69179369b618",
+      "title": "智谱完成50亿美元融资 GLM-5.3-FlashX上线 遭欧洲顶尖AI模型套壳 - 新浪财经",
+      "link": "https://news.google.com/rss/articles/CBMifkFVX3lxTFBkOC1oZllnbWpJX1huTDNpNU55VXlodzZ4U29RQzYxVUVPRVg0SldCTHc3c2p1WlhXemRzLXhIN2ZLZHBpSUwwRG1UVlF1UU9ZRzhLWmtmR1JsV2RlNE9SaVk5bjEwSGRaU3dZdkRVODdJNEZLc3MzUnYxSUY0UQ?oc=5",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-09-18T10:21:00+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "智谱完成50亿美元融资，上线GLM-5.3-FlashX并被曝遭欧洲模型套壳。",
+      "why": "头部模型公司融资与动态概览，值得了解。",
+      "tags": [
+        "智谱AI",
+        "融资",
+        "大模型"
       ]
     },
     {
@@ -573,12 +1082,13 @@
       "published": "2026-09-18T10:00:00+00:00",
       "category": "research",
       "priority": "medium",
-      "summary": "AReaL 2.0 提出构建 Agent 在线强化学习闭环，使其能力持续提升。",
-      "why": "涉及强化学习在 Agent 上的应用，可扫一眼其系统设计。",
+      "summary": "QCon分享介绍AReaL 2.0框架，构建基于在线强化学习的Agent持续迭代闭环。",
+      "why": "RL在智能体上的工程落地系统，算法工程可扫一眼。",
       "tags": [
-        "Agent",
         "强化学习",
-        "系统设计"
+        "RL",
+        "Agent",
+        "在线学习"
       ]
     },
     {
@@ -590,12 +1100,13 @@
       "published": "2026-09-18T06:48:00+00:00",
       "category": "infra",
       "priority": "medium",
-      "summary": "深度解读智谱为何在Infra层布局RSI（AI自主优化）。",
-      "why": "深度解析十万卡集群的Infra优化逻辑，值得一读。",
+      "summary": "深度解读智谱在基础设施层推进递归自我改进（RSI）的技术考量。",
+      "why": "探讨集群与Infra自动化优化，契合系统背景。",
       "tags": [
+        "智谱AI",
         "Infra",
-        "智谱",
-        "性能优化"
+        "集群优化",
+        "RSI"
       ]
     },
     {
@@ -607,12 +1118,48 @@
       "published": "2026-09-18T06:28:00+00:00",
       "category": "industry",
       "priority": "medium",
-      "summary": "拆解智谱50亿美元融资背后的技术布局与算力账本。",
-      "why": "了解国内头部模型公司在算力囤积与技术路线上的宏观规划。",
+      "summary": "剖析智谱完成50亿美元融资背后的技术研发与算力基础设施投入。",
+      "why": "分析大模型算力成本与Infra投资结构。",
       "tags": [
-        "智谱",
-        "算力",
-        "行业动态"
+        "智谱AI",
+        "算力成本",
+        "Infra",
+        "行业分析"
+      ]
+    },
+    {
+      "id": "85c0cbd242fe077b",
+      "title": "Anthropic says its model Claude is helping to build the next version of itself - ValleyCentral.com",
+      "link": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxQeVlGbG50WUhMRGhmbGZsWWlNblU1cTlzQ0t1LWdRM1pjTzN5OGtsVFJQTEEtd01GM1o5QVdfNExiSWE0Zmlsc09YVGJTWFdkaGVKaEducEJ0anRyX3JGVVo0RlNxNWE1dElsYjlxemdXdDhLX3podTJxcVF5TnctQW9LOTh4Z2k0Nk5IUFdqOWR3b1RTUG1SMTd3cnMtZUZaNlJYc1lHNjc5TllTQXBXenR1X2Y3MUdQTXZmTDRBSkxRYzdnWUhFM3NSV1FLaG1YcWlfamJhb2xpaGRhZHFn0gHfAUFVX3lxTFB5WUZsbnRZSExEaGZsZmxZaU1uVTVxOXNDS3UtZ1EzWmNPM3k4a2xUUlBMQS13TUYzWjlBV180TGJJYTRmaWxzT1hUYlNYV2RoZUpoR25wQnRqdHJfckZVWjRGU3E1YTV0SWxiOXF6Z1d0OEtfemh1MnFxUXlOdy1Bb0s5OHhnaTQ2TkhQV2o5ZHdvVFNQbVIxN3dycy1lRlo2UlhzWUc2NzlOWVNBcFd6dHVfZjcxR1BNdmZMNEFKTFFjN2dZSEUzc1JXUUtobVhxaV9qYmFvbGloZGFkcWc?oc=5",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-09-17T20:55:44+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "Anthropic透露正在使用当前Claude模型辅助开发其下一代模型。",
+      "why": "自举训练（self-improving）趋势值得留意。",
+      "tags": [
+        "Claude",
+        "Anthropic",
+        "模型自进化"
+      ]
+    },
+    {
+      "id": "d90420a9f56c9565",
+      "title": "Bend – a language that blocks AI mistakes via proof and runs on GPUs",
+      "link": "https://news.ycombinator.com/item?id=49746163",
+      "source": "Hacker News（100+ 分）",
+      "source_id": "hn-algolia",
+      "published": "2026-09-17T20:36:13+00:00",
+      "category": "infra",
+      "priority": "medium",
+      "summary": "Bend推出基于形式化证明防错并原生支持GPU并行运行的编程语言。",
+      "why": "新型GPU并行语言与编译器探索，值得技术扫视。",
+      "tags": [
+        "Bend",
+        "GPU编程",
+        "编译器",
+        "形式化验证"
       ]
     },
     {
@@ -633,6 +1180,24 @@
       ]
     },
     {
+      "id": "e721d4ae0d1f3004",
+      "title": "FAMOS: Feed-Forward 3D Articulation Modeling from Sparse Observations",
+      "link": "https://huggingface.co/papers/2609.20817",
+      "source": "HF Papers 日榜",
+      "source_id": "hf-papers",
+      "published": "2026-09-16T20:00:00+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "FAMOS 提出基于稀疏点云的前向模型，预测铰接物体的部件分割与关节参数。",
+      "why": "属于 3D 物体结构与关节建模，涉及前向推理架构。",
+      "tags": [
+        "3D生成",
+        "铰接建模",
+        "点云",
+        "Transformer"
+      ]
+    },
+    {
       "id": "fea4b23eaeab92da",
       "title": "When EOS Tokens Disagree: Understanding Length Inflation in On-Policy Distillation",
       "link": "https://huggingface.co/papers/2609.20511",
@@ -641,11 +1206,12 @@
       "published": "2026-09-16T20:00:00+00:00",
       "category": "research",
       "priority": "medium",
-      "summary": "研究同策略蒸馏中因 EOS token 不匹配导致的生成长度膨胀问题。",
-      "why": "涉及模型训练与蒸馏细节，对训练优化有一定启发。",
+      "summary": "论文揭示在线蒸馏中学生与教师模型 EOS Token 不一致导致长度膨胀的问题。",
+      "why": "探讨蒸馏训练中的收敛与生成长度异常，对训练后处理有参考价值。",
       "tags": [
-        "Model Distillation",
-        "LLM Training",
+        "蒸馏",
+        "训练调优",
+        "LLM",
         "EOS Token"
       ]
     },
@@ -658,12 +1224,13 @@
       "published": "2026-09-16T20:00:00+00:00",
       "category": "research",
       "priority": "medium",
-      "summary": "提出 RetireOPD，通过解耦教师模型与强化学习联合训练来优化智能体。",
-      "why": "涉及强化学习与模型蒸馏训练，可作为训练策略的参考。",
+      "summary": "RetireOPD 提出自退出在线策略蒸馏框架，改善智能体强化学习中的教师依赖问题。",
+      "why": "RL 训练与自蒸馏训练技巧，可参考训练策略优化设计。",
       "tags": [
-        "Reinforcement Learning",
-        "Distillation",
-        "Agents"
+        "强化学习",
+        "在线蒸馏",
+        "Agent",
+        "训练方法"
       ]
     },
     {
@@ -675,12 +1242,12 @@
       "published": "2026-09-16T20:00:00+00:00",
       "category": "research",
       "priority": "medium",
-      "summary": "提出 JEPA-Anything，基于正交预测分解的跨领域通用世界模型学习框架。",
-      "why": "涉及世界模型与预测架构，值得关注生成模型前沿演进。",
+      "summary": "JEPA-Anything 扩展正交预测分解框架，实现跨视觉与物理等多领域的预测世界模型。",
+      "why": "非自回归世界建模方案，涉猎多领域预测表示学习。",
       "tags": [
-        "World Model",
         "JEPA",
-        "Predictive Modeling"
+        "世界模型",
+        "表征学习"
       ]
     },
     {
@@ -692,29 +1259,288 @@
       "published": "2026-09-15T20:00:00+00:00",
       "category": "research",
       "priority": "medium",
-      "summary": "评估全模态生成模型 MiniMax-H3 在物理世界推理方面的能力。",
-      "why": "涉及多模态生成模型评估，可作为了解前沿生成模型的参考。",
+      "summary": "论文提出四维评估框架，评测全模态生成模型 MiniMax-H3 的物理世界推理能力。",
+      "why": "关注音视频联合生成架构的物理世界建模能力评估。",
       "tags": [
-        "Omni-Modal",
-        "Generative Model",
+        "多模态生成",
+        "视频生成",
+        "评测",
         "MiniMax-H3"
       ]
     },
     {
-      "id": "18b1d79514e6e467",
-      "title": "CERA-MoA: Co-Evolving Routing Mechanisms with Continually Learning LLM Agents",
-      "link": "https://huggingface.co/papers/2609.18779",
-      "source": "HF Papers 日榜",
-      "source_id": "hf-papers",
-      "published": "2026-09-15T20:00:00+00:00",
-      "category": "research",
+      "id": "dc61fcee9612031e",
+      "title": "supermemoryai/supermemory",
+      "link": "https://github.com/supermemoryai/supermemory",
+      "source": "GitHub Trending · 全部",
+      "source_id": "gh-trending-all",
+      "published": "",
+      "category": "infra",
       "priority": "medium",
-      "summary": "提出 CERA-MoA，使动态路由与持续学习的 LLM 智能体策略协同进化。",
-      "why": "涉及 MoA 路由机制与训练，对模型架构优化有一定参考价值。",
+      "summary": "Supermemory开源声称在长文本基准霸榜的本地化上下文记忆引擎。",
+      "why": "上下文压缩与长序列检索机制可作为系统设计参考。",
       "tags": [
-        "MoA",
-        "Routing",
-        "Continual Learning"
+        "Supermemory",
+        "长上下文",
+        "记忆引擎"
+      ]
+    },
+    {
+      "id": "3aaddaf2659e5139",
+      "title": "microsoft/agent-lightning",
+      "link": "https://github.com/microsoft/agent-lightning",
+      "source": "GitHub Trending · Python",
+      "source_id": "gh-trending-python",
+      "published": "",
+      "category": "infra",
+      "priority": "medium",
+      "summary": "微软开源仅3500行核心代码的轻量级Agent后训练RL框架Agent Lightning。",
+      "why": "极简RL后训练调度基础设施，对训练系统设计有启发。",
+      "tags": [
+        "Microsoft",
+        "强化学习",
+        "训练系统"
+      ]
+    },
+    {
+      "id": "084df6be81b43189",
+      "title": "NVlabs/instant-ngp",
+      "link": "https://github.com/NVlabs/instant-ngp",
+      "source": "GitHub Trending · CUDA",
+      "source_id": "gh-trending-cuda",
+      "published": "",
+      "category": "infra",
+      "priority": "medium",
+      "summary": "NVIDIA经典神经图形基元库instant-ngp持续活跃，实现毫秒级NeRF训练。",
+      "why": "3D生成与极端CUDA Kernel工程优化的经典参考样本。",
+      "tags": [
+        "instant-ngp",
+        "NeRF",
+        "3D生成",
+        "CUDA"
+      ]
+    },
+    {
+      "id": "e48537a95e24548d",
+      "title": "BBuf/how-to-optim-algorithm-in-cuda",
+      "link": "https://github.com/BBuf/how-to-optim-algorithm-in-cuda",
+      "source": "GitHub Trending · CUDA",
+      "source_id": "gh-trending-cuda",
+      "published": "",
+      "category": "infra",
+      "priority": "medium",
+      "summary": "开源教程how-to-optim-algorithm-in-cuda系统总结CUDA算子算法调优技巧。",
+      "why": "覆盖常见GEMM等算子优化实战技巧，适合日常参考。",
+      "tags": [
+        "CUDA",
+        "算子优化",
+        "性能调优"
+      ]
+    },
+    {
+      "id": "179d92016111598b",
+      "title": "NVIDIA/nccl-tests",
+      "link": "https://github.com/NVIDIA/nccl-tests",
+      "source": "GitHub Trending · CUDA",
+      "source_id": "gh-trending-cuda",
+      "published": "",
+      "category": "infra",
+      "priority": "medium",
+      "summary": "NVIDIA官方发布与更新nccl-tests多GPU节点间集合通信基准测试套件。",
+      "why": "定位大规模分布式训练通信瓶颈的必备工具。",
+      "tags": [
+        "NVIDIA",
+        "NCCL",
+        "分布式训练",
+        "性能基准"
+      ]
+    },
+    {
+      "id": "059182e2ce91ba5d",
+      "title": "NVIDIA/CUDALibrarySamples",
+      "link": "https://github.com/NVIDIA/CUDALibrarySamples",
+      "source": "GitHub Trending · CUDA",
+      "source_id": "gh-trending-cuda",
+      "published": "",
+      "category": "infra",
+      "priority": "medium",
+      "summary": "NVIDIA官方更新CUDALibrarySamples，提供核心加速库最新参考示例。",
+      "why": "了解cuBLAS、cuDNN等底层官方最佳实践的权威样本库。",
+      "tags": [
+        "NVIDIA",
+        "CUDA",
+        "cuBLAS",
+        "性能优化"
+      ]
+    },
+    {
+      "id": "6c53628686ad3b91",
+      "title": "NVIDIA/cuCollections",
+      "link": "https://github.com/NVIDIA/cuCollections",
+      "source": "GitHub Trending · CUDA",
+      "source_id": "gh-trending-cuda",
+      "published": "",
+      "category": "infra",
+      "priority": "medium",
+      "summary": "NVIDIA 开源的 cuCollections 库登上趋势榜，包含 GPU 端高效并发数据结构。",
+      "why": "包含 GPU 并发哈希表等核心实现，对编写高性能 CUDA kernel 有参考价值。",
+      "tags": [
+        "CUDA",
+        "GPU Kernel",
+        "NVIDIA"
+      ]
+    },
+    {
+      "id": "393a06f3dd106787",
+      "title": "Anthropic weighs new AI model to counter OpenAI's GPT-6 Astra - NewsBytes",
+      "link": "https://news.google.com/rss/articles/CBMirgFBVV95cUxQUmNJTEM2MnVvZEQ2aUVnWFhkZ21COEJSRnBHSUpXTmtpM2psc215R0lDXzBnVTdmNjQ4N3lhaF9UODVpTngzcVdwekx3ZFJnVFRzQmx6bUc4UldzeTkxQ0ZHWmpqOU0tM01lb3QtUi1TNVNwME5yUUhEaXN1c1hnSmMyYmF3T0Q5Wl9vV1FtcF9OaHEzektZN1VwVFdDQ3dzay1Gem1scng5bnJ0S1E?oc=5",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-09-19T06:08:03+00:00",
+      "category": "industry",
+      "priority": "low",
+      "summary": "传言Anthropic筹备新AI模型正面竞争GPT-6 Astra。",
+      "why": "重复传闻，无实质技术细节。",
+      "tags": [
+        "Anthropic",
+        "大模型",
+        "竞争"
+      ]
+    },
+    {
+      "id": "5b4d221975572eab",
+      "title": "Anthropic To Release A New Powerful AI Model To Compete With OpenAI’s GPT-6 Astra - Times Now",
+      "link": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxQUGlPSDFlWnc2SThHQl8ycGZSNlBWSmUzUXBKcjdsOWt3SGVrVmNXWHlwWDBEaDdNZjRUZHJxalRiTGJZOGJkUE5YdGdFNmZHRXFXbzdkN3VSaEt0NmlMZWxJZUNnVVpEeW4wS193Uk9MTUYzSmUyZ3hROTJ6dERtekFjRWtQT1RZWWNKeWpOcjhUS3lad1U1N0w1UWZlb0dTQUJrMGdtcVJFa0M5Qldzb1VscUo4TnBNTkNuMFJmMExxSTdYWC1SQ9IBzgFBVV95cUxPaGNuQ2tUMjFXd1VpZFFvbUVkVkhESk9mdUVFS2lpZGlsN3pEbGdVQ2hYNFk0S0tNdjFYeXRzeEZPOTJFYXhYTEFBY0E5aXJDMHJoSlJQdnpWRmpjeDJ5NWZTTmwxZlhtbVZDRHJ0MUNEUFhpMEliUkVCdElOZjBJbks2WVZBXzlGRWYtbjhBZ1ZmeG4ydUwzMzFoV0h0eXF2eGlfNHZJTkdDd2NiQmY4TDBZQWdDbkhKV1A1Q3dxZjN3U3R1RXpYVzB2ZkhRUQ?oc=5",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-09-19T05:23:08+00:00",
+      "category": "industry",
+      "priority": "low",
+      "summary": "外媒称Anthropic计划发布新模型对抗OpenAI GPT-6 Astra。",
+      "why": "重复传闻，未见具体权重或架构信息。",
+      "tags": [
+        "Anthropic",
+        "GPT-6",
+        "大模型"
+      ]
+    },
+    {
+      "id": "e3e5840526047528",
+      "title": "New Anthropic Model Coming? Anthropic Weighs New AI Launch to Counter OpenAI Competitor Amid Preparations - LatestLY",
+      "link": "https://news.google.com/rss/articles/CBMi_wFBVV95cUxQUVFwMDhrazhoZHRwXzBLUG9PaWpQWHJTaEprd1BVUl9vNWMxaGYyV1JHQ0UxdDFCSTZvN09aR0prU1ZrYUZJNl82c3E1QXJsOFR5ZFhWeUJyaUN5N2RRVVpEbUZ3a29WRks3aTV2enRfQ05yNUVKMlJ0UmI3bkZfSllBZzR2Z0d6WVJGSDktR2N4Z3V4a2FheGktdWdTcTB2bjhuMWE1ZXpHNU53NjJRMWpoSkdYNTY2OG9TY3dweVNsbWlnMVY0RDU1NXN0M1NqX3M4RllkdFBHbTU1cmd1RGloT01ValNBSVppbkktelVJMG03RjF6NkZnVmdFbEHSAYQCQVVfeXFMTjJ2bTN5Uk43THFFZHhSbE11QmxDYXY4d3JzTE14MmwxdTlRY1ZTbHY0cDFVSzVuUnFMR1c5RDJyS2ZQQ2xnRXd0YUlLQ3NhUThWdm9RdllJemZ0UlZFamJQRVY2WGNDckoxWWR5Qklxc0FvTmNYT1BDWHA0clduZzNMZVZOR293UDFqdWpmX1BYUTVMWGVtV19ic1k5T1BPbjNOQUt2cUEzOVRqM0lXV01nUEtUUmtXMWJIbDRyX1ZxMFJhVGVQdUI1NHVPbU5vSTdFdU1NYTJ5amZsY05BTDF5TTE5NGlFZVFyU29DRzhYWXJ0bnNjZDVFWjZpRXVhMnZMeVo?oc=5",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-09-19T05:16:31+00:00",
+      "category": "industry",
+      "priority": "low",
+      "summary": "传Anthropic正权衡推出新模型以应对OpenAI竞争。",
+      "why": "重复传闻，缺乏具体模型细节。",
+      "tags": [
+        "Anthropic",
+        "OpenAI",
+        "大模型"
+      ]
+    },
+    {
+      "id": "4008e439ad47446d",
+      "title": "Anthropic partners with Accenture to embed independent AI safety evaluators - Storyboard18",
+      "link": "https://news.google.com/rss/articles/CBMiywFBVV95cUxOTjUwMVRySHZzLWtXTzJxcnJRYkxCVlFzR0xUOXdWXzYxdWdEUW9OS2g3bi1RWC15a09jRVVTbXVXemFyQy1OeDBOaVpCU0NXOV9PdGNTSXBjeHRSejhnNDQzcDluaEFON3BmdTJnZTN1OF8xU3RMZ3d2NkhaZjhaNDdaVGgzRzd0YldtbEVyZ0JrYW5RcEdlNUMyd001WDkyUWYyaFEyME84QVB1a0xnWlFNdEY5QU9KOTZuTy15UjhrNjhhTlYzTTlRNNIB0AFBVV95cUxQOTRkc05UTUJNWGhSdDh3cDZRejdYenNnM0ZLRUVNbDN1dGh2eWdNb0JldnNtMzA0akx2QmhQOU1LMEQ2Q3llQ09GWk5jNnI1RmJ6SU1BOFdiQVh2TkluMmppd3YzMlRCbEhMcko0WlZRWFVWNHY1MkNvbGpmM1g4Z004QmlYZ2ZBMWpBRUlHRE5ialljMXlSU2k5TXdMMkpJeUFPejJvSEptSlJBa28tNVdoT2Ryd2NDQnRHbWk3bG5NdW1ObkhJX28tdUhXdUc5?oc=5",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-09-19T04:51:02+00:00",
+      "category": "industry",
+      "priority": "low",
+      "summary": "Anthropic联手Accenture嵌入独立AI安全评估员。",
+      "why": "重复报道，安全合规相关业务。",
+      "tags": [
+        "Anthropic",
+        "AI安全",
+        "评测"
+      ]
+    },
+    {
+      "id": "ef71afd421d951e2",
+      "title": "头部大模型“抢滩”金融高价值场景 - 21财经",
+      "link": "https://news.google.com/rss/articles/CBMijwFBVV95cUxOQ2swbEpCdEJTbE5fd3lxVUEycXBYLUJOUDlfTWt6NE9RazNqZmVuWXBTVWtROWdzZlA1MXNXVWxmVmtBOWFYeVZDczhKMFRROHlMMXF1LVZYTW9fSThab19NbmdEWm5rbzVGOTdDenl3aVQyMDhncW1PN0VHOG56ZGNaUEJxanR6WVByeVNVOA?oc=5",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-09-19T04:02:00+00:00",
+      "category": "industry",
+      "priority": "low",
+      "summary": "国内头部大模型加速渗透金融等高价值垂直应用场景。",
+      "why": "泛泛的行业落地报道，无技术深度。",
+      "tags": [
+        "金融应用",
+        "行业动态",
+        "大模型"
+      ]
+    },
+    {
+      "id": "d0fe1858fed95974",
+      "title": "Anthropic Partners with Accenture to Launch Embedded Evaluation Program - weex.com",
+      "link": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxQUWlqeWtRR0J4U2F1VVVYTE92MFJQOF9XWnowQU9KOWVNTURHS0kxX0V1QldidEttSFQ4UUZPM1hrd19tb28yR0lwaWJIQXV6TWREMVdMR0lXWW5WdDBHblZodGpIOU5lT0lqWElOZWVySEFlZG5Fb1RQbDNicjRVMm5VUXljWVF4bEMyaG5fTWl6ODBmSnFyd1BDcS1xbExsYVpTeXlSYVo4Y0VvQXgzb1k3d2lzN2s5ZC1kU1ptM0o1VFNwUmw0Uw?oc=5",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-09-19T03:33:21+00:00",
+      "category": "industry",
+      "priority": "low",
+      "summary": "Anthropic与Accenture启动内嵌评估计划合作。",
+      "why": "重复报道，非底层优化重点。",
+      "tags": [
+        "Anthropic",
+        "Accenture",
+        "评测"
+      ]
+    },
+    {
+      "id": "5edc138479bda9e5",
+      "title": "Anthropic Weighs New AI Model as OpenAI Gains Ground With GPT-6 Astra | Ukraine news - #Mezha - mezha.net",
+      "link": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE9tT19qc2ItSG55RURGci15U1JhbV96c0EweDRiSDZjWEdNUU5fYjl5Mk5GMGFfSE52aGY4LXBpajZZR1h6bGpUMEdCWXRNWjhKeDB5Q2ZSVlhXc3piUThucHBVcVliX3FJ?oc=5",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-09-19T03:20:19+00:00",
+      "category": "industry",
+      "priority": "low",
+      "summary": "外媒报道 Anthropic 评估发布新模型以应对 OpenAI GPT-6 Astra 的市场压力。",
+      "why": "行业传闻与竞争动态，无技术实质内容。",
+      "tags": [
+        "Anthropic",
+        "OpenAI",
+        "行业动态"
+      ]
+    },
+    {
+      "id": "fdc90801ade0576c",
+      "title": "Anthropic, Accenture to invest $2 billion in AI model evaluation as safety concerns rise - ET CIO",
+      "link": "https://news.google.com/rss/articles/CBMiwgJBVV95cUxOVzZiWjhUdUpNU2w0d2Nqbm5zUjRXYUhqZEVGWUVVczVZdnJXcmR3QjJDNHctWUlRRWNxLUJ3TE1qTDkxMXBkeFdJSmdPMjNoQ3NUOEdOVllaZ2ZxRF9lVVBIRnZBblduajlJeVhnQW0ycVRnTkh4UUtmcW4xX05XTUZaT2U2X1JhVHg3VFo0cnEwQ2hKNzBlTnd5YnRva2Z3S0FyTXNUdkRWMGh6ZjZOUTdFWi1xOTN3MlhRaTNzY3dUM1FlTTByQXNTSnJ1MEh4WDBkTzZiamZ0ek5OUDRXR1VyaUJtclVzV29UVVNab2R1LW1QbWFMelpKam1VNHlxQUpRd3ZmbnNjRnRuSUFPSkpGNENsakdadWhxR0hNUWJrTnRuRW9IZUJyWXBnbDlzcloxakh6WW0zYnVmbFJPZXFB0gH_AUFVX3lxTE1Wel82dlk0WVpsNWF4ZF9aVWwwbmZKb2YzaS1hUWkyZV9fZGN5SmpHOEpDX3MxeDdPQjVnOS15VHJMZjJTSmNGQUF1cUhoakNNMDZXaXo3X2djZE51UTBvU1pmRkFrdFc4cUhGYmRLeVY1Y1NSVTdCWnI3enNEU210NFdId1V6Nk9VNDljNWM1Vmd5WENTTWN6b1B4SUljOGRVZG1uUnZ0Mk1BTW5BeWktNURxN1l6ZWlXOEVfbnN4ZWJ1aXhjMGZBLVRWSEkyaXVpT1JYaTl6aTNra01ybTJSelZEaXFzeGNPSHk3ejlUZHMxQVUtaFZTOVFMckJzbw?oc=5",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-09-19T03:18:29+00:00",
+      "category": "industry",
+      "priority": "low",
+      "summary": "Anthropic与Accenture达成20亿美元AI安全评估投资协议。",
+      "why": "重复报道，业务合作方向。",
+      "tags": [
+        "Anthropic",
+        "Accenture",
+        "AI安全"
+      ]
+    },
+    {
+      "id": "e3d8aae25d923e46",
+      "title": "MiniMax Code CLI正式开源 - Sohu",
+      "link": "https://news.google.com/rss/articles/CBMijAFBVV95cUxQMUwwVVRwWnFja0VwZElsUFNwTnlYRGIwbnUxTEpQcjJWSndDT3dHSWZKekRfTWx3dW9CSWZfUk9UWXc4LUY4RmlkeHJuT04zeFQ0am13aDFpTVFHUVo5dmpEY3NSQTRIUkNxNWMxV3BsSFZ2QU5uTWZMOFl2NElPS0NvXzJpUy1kbU05ZA?oc=5",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-09-19T02:24:17+00:00",
+      "category": "release",
+      "priority": "low",
+      "summary": "MiniMax Code CLI正式开源。",
+      "why": "重复内容，详见版本发布新闻。",
+      "tags": [
+        "MiniMax",
+        "开源",
+        "CLI"
       ]
     },
     {
@@ -726,27 +1552,12 @@
       "published": "2026-09-19T01:19:07+00:00",
       "category": "industry",
       "priority": "low",
-      "summary": "传Anthropic正考虑发布新AI模型以应对OpenAI的竞争。",
-      "why": "仅为传闻和泛泛讨论，无实际技术发布。",
+      "summary": "路透称Anthropic正权衡推出新模型应对OpenAI竞争。",
+      "why": "重复传闻，无技术细节。",
       "tags": [
         "Anthropic",
-        "行业动态"
-      ]
-    },
-    {
-      "id": "5b7410bc7733824a",
-      "title": "Exclusive-Anthropic considers releasing new AI model ahead of IPO, sources say By Reuters - Investing.com",
-      "link": "https://news.google.com/rss/articles/CBMizgFBVV95cUxPSHZhUU5zd011TV9uZ0VyM3UzM0M5QkxvMFpzQTlyUE90eXoyaE05Zmk4Y0p3TDRjX0d1Z3YwQjVGYW1qUnRHaUdLblFiNmZEWFZxMjVoekY3VUFqeGNUREVWRHNnc1AxV3dfNG9lcVIwYXhsdWdObUh2eFhraWtwQnN2RTE4TVVTZFBOSzNza1hsSXhpMDdnMGpCb0pxSVlURWdyQ2R0QTNUTmtfWW5WVmJHTWFvSEQ4cVJWMWFOWFBhNDdLeURIcnNVc3VSUQ?oc=5",
-      "source": "新闻 · Anthropic / Mistral / xAI",
-      "source_id": "gnews-labs-en",
-      "published": "2026-09-19T00:45:00+00:00",
-      "category": "industry",
-      "priority": "low",
-      "summary": "消息称 Anthropic 考虑在 IPO 前发布新 AI 模型。",
-      "why": "商业八卦与传闻，与技术无关。",
-      "tags": [
-        "Anthropic",
-        "IPO"
+        "OpenAI",
+        "大模型"
       ]
     },
     {
@@ -758,27 +1569,29 @@
       "published": "2026-09-18T23:57:27+00:00",
       "category": "industry",
       "priority": "low",
-      "summary": "Anthropic聘请埃森哲作为嵌入式AI评估员。",
-      "why": "重复报道，商业合作新闻。",
+      "summary": "Anthropic选定Accenture作为内嵌安全评测合作伙伴。",
+      "why": "重复报道，商业评测业务。",
       "tags": [
         "Anthropic",
-        "AI评估"
+        "Accenture",
+        "评测"
       ]
     },
     {
-      "id": "25969867aa903909",
-      "title": "涨价！智谱上线GLM-5.3-FlashX 定价提升至原版本的2.5倍 - 东方财富",
-      "link": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE9mT2dvVjU4NmVSMko4Vm5aRUFGNTE0RmN3TjF4QVUxcmprNjlPRG40Tl9rbUZDZFlGZWJfZDAtMG5HOVp1SVVxWEJILWdwWHNPTHpjdFY0cW5kakNMeFU3dGVJYWw?oc=5",
-      "source": "新闻 · 国内模型公司",
-      "source_id": "gnews-labs-cn",
-      "published": "2026-09-18T23:38:07+00:00",
-      "category": "release",
+      "id": "e1ce769b60fbf902",
+      "title": "Anthropic partners with Accenture on embedded evaluation; Expected to invest USD 1 billion each over next five years - indiagazette.com",
+      "link": "https://news.google.com/rss/articles/CBMi8AFBVV95cUxNdTNsR21LdHNpcmtWbnNuVHJQaGNTLWN0MVU3NkM4M0RvUWo4QS1ENFV4bWJmNFR5cnpjUnBocHRkV05lQnU4blJ0bzQtSHR5ZEtqUkw3dEVZd01BcUhwSktLWWdQY2wzdk0weWh3TjJtTjFmQ250cmYtTExOMXF4SVVsWEZsOFlNRkpyTEFhOTRhOExtdk5DOXhyYk1CeTAzR044QUt2SHpvZVpvZ0pTOEd1b2NuU1dfdGtURmlFUEctS3hCUi1tc0lqdVo0cUI5Nldwc1A5TUJiUXRzSTM5SkVZbDBCSGNmVlB2NEZ3ano?oc=5",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-09-18T23:28:00+00:00",
+      "category": "industry",
       "priority": "low",
-      "summary": "智谱上线GLM-5.3-FlashX模型，速度提升且价格上涨。",
-      "why": "重复报道，可跳过。",
+      "summary": "Anthropic与Accenture合作评估项目，预计五年内各投10亿美元。",
+      "why": "重复报道，偏商业合作。",
       "tags": [
-        "智谱",
-        "GLM"
+        "Anthropic",
+        "Accenture",
+        "评测"
       ]
     },
     {
@@ -790,11 +1603,29 @@
       "published": "2026-09-18T23:08:00+00:00",
       "category": "industry",
       "priority": "low",
-      "summary": "Anthropic 称 Claude 正在协助构建下一代模型。",
-      "why": "重复新闻，无具体技术细节。",
+      "summary": "地方媒体转载 Anthropic 运用 Claude 模型构建下一代版本的声明。",
+      "why": "重复，同事件新闻转载报道。",
       "tags": [
         "Anthropic",
-        "Claude"
+        "Claude",
+        "新闻报道"
+      ]
+    },
+    {
+      "id": "523a50e050f45cc6",
+      "title": "Anthropic, Accenture to invest $2 billion in AI model evaluation as safety concerns rise - TradingView",
+      "link": "https://news.google.com/rss/articles/CBMi7AFBVV95cUxNNDh6ZUNDbjVOeHRWT3BNRHR3VzIxQTRveHJvOE1vU3dEaUlaWkpKODFndVl4ZXc5a0c1NllueEE4TlE4ZnY5Q3M3czR6UE1NSzBRTEF4bFgzRWdScGlUR3g4eGd6anZZZlg5dnRVSU5MZVczWTJmaE1HWTJqQjlhVFdGTkU4X01VM0VmcWhxYlQ5V0loNng0UFRVY2JVd0N1VUg3dW1EcXhvZTg0SjNhcktpVzlNeGVzQzlfb2d0dXU5azVxUjRBdU44b2lISnhheklMOWpDa1lSREl3UXJFRjlWdGxyUFNhbVJHRA?oc=5",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-09-18T22:00:41+00:00",
+      "category": "industry",
+      "priority": "low",
+      "summary": "Anthropic与Accenture计划未来5年各投10亿美元用于AI模型独立评估。",
+      "why": "非底层系统与生成模型技术，偏企业合作。",
+      "tags": [
+        "Anthropic",
+        "Accenture",
+        "AI安全"
       ]
     },
     {
@@ -806,11 +1637,29 @@
       "published": "2026-09-18T21:37:20+00:00",
       "category": "industry",
       "priority": "low",
-      "summary": "Anthropic与埃森哲投资20亿美元用于AI模型评估。",
-      "why": "重复报道，可跳过。",
+      "summary": "Anthropic与Accenture未来5年各注资10亿美元构建AI评估体系。",
+      "why": "重复报道，偏商业合作与安全评估。",
       "tags": [
         "Anthropic",
-        "投资"
+        "商业合作",
+        "评测"
+      ]
+    },
+    {
+      "id": "614e394b32546014",
+      "title": "Anthropic plans November IPO amid tech firm public offering trend: WSJ - Crypto Briefing",
+      "link": "https://news.google.com/rss/articles/CBMingFBVV95cUxQblNFUmxUYzNwbGVKSGlaaDlsRzI3c2Q2UWdUdklNeGlkZjJiSW81WXcwYXlLd29DU21QTGphcGkya2paNXVaeWJac2ZWUk5GSFRmenRCcHUxeWFtRGdiSzhWZ1N3anY1Rl96eGxReng4NHBKcnhYRG5jYU1VNV9uSFZRRk5obzE0eEJKLTVZWF96cVV2MENJMkZZSFo2UQ?oc=5",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-09-18T21:35:37+00:00",
+      "category": "industry",
+      "priority": "low",
+      "summary": "华尔街日报称Anthropic计划于今年11月推进IPO上市。",
+      "why": "二级市场资本动态，与技术研发无关。",
+      "tags": [
+        "Anthropic",
+        "IPO",
+        "商业"
       ]
     },
     {
@@ -822,11 +1671,12 @@
       "published": "2026-09-18T21:35:00+00:00",
       "category": "industry",
       "priority": "low",
-      "summary": "Anthropic与埃森哲投资20亿美元用于AI模型评估。",
-      "why": "重复报道，可跳过。",
+      "summary": "Anthropic与Accenture承诺20亿美元引入独立AI评估员。",
+      "why": "重复报道，偏合规评测。",
       "tags": [
         "Anthropic",
-        "投资"
+        "Accenture",
+        "评测"
       ]
     },
     {
@@ -838,12 +1688,12 @@
       "published": "2026-09-18T21:19:18+00:00",
       "category": "industry",
       "priority": "low",
-      "summary": "Anthropic 与埃森哲将投资 20 亿美元用于 AI 模型评估。",
-      "why": "商业投资新闻，与底层技术无关。",
+      "summary": "Anthropic 与埃森哲计划投资 20 亿美元推进 AI 模型安全与能力评测。",
+      "why": "商业合作与投融资新闻，与系统及模型算法优化无关。",
       "tags": [
         "Anthropic",
-        "Accenture",
-        "Investment"
+        "投资",
+        "商业合作"
       ]
     },
     {
@@ -855,11 +1705,12 @@
       "published": "2026-09-18T21:15:48+00:00",
       "category": "industry",
       "priority": "low",
-      "summary": "DeepSeek被用于操控上千虚假社交账号。",
-      "why": "模型滥用事件，与底层技术无关。",
+      "summary": "DeepSeek被曝在以色列被用于操控上千虚假社交账号。",
+      "why": "政治安全类新闻，与技术开发无关。",
       "tags": [
         "DeepSeek",
-        "安全"
+        "网络安全",
+        "行业动态"
       ]
     },
     {
@@ -871,11 +1722,12 @@
       "published": "2026-09-18T21:07:05+00:00",
       "category": "industry",
       "priority": "low",
-      "summary": "Anthropic 表示 Claude 正在协助构建下一代模型。",
-      "why": "泛泛的行业新闻，无具体技术细节。",
+      "summary": "媒体报道 Anthropic 表示正在使用 Claude 辅助构建其下一代新模型。",
+      "why": "泛泛的新闻报道，缺乏具体技术架构细节。",
       "tags": [
         "Anthropic",
-        "Claude"
+        "Claude",
+        "模型迭代"
       ]
     },
     {
@@ -887,11 +1739,12 @@
       "published": "2026-09-18T21:02:42+00:00",
       "category": "industry",
       "priority": "low",
-      "summary": "Anthropic与埃森哲投资20亿美元用于AI模型评估。",
-      "why": "重复报道，可跳过。",
+      "summary": "Anthropic与Accenture将投资20亿美元进行AI模型安全评估。",
+      "why": "重复报道，偏商业合作。",
       "tags": [
         "Anthropic",
-        "投资"
+        "Accenture",
+        "AI安全"
       ]
     },
     {
@@ -901,13 +1754,14 @@
       "source": "Hacker News（100+ 分）",
       "source_id": "hn-algolia",
       "published": "2026-09-18T21:00:32+00:00",
-      "category": "release",
+      "category": "infra",
       "priority": "low",
-      "summary": "Claude Code 更新，支持在缺少 Claude.md 时读取 AGENTS.md。",
-      "why": "工具的微小功能更新，无需关注。",
+      "summary": "Claude Code支持在未检测到Claude.md时自动读取AGENTS.md配置。",
+      "why": "终端Agent使用细节，与底层算子及生成模型无关。",
       "tags": [
-        "Claude",
-        "开发工具"
+        "Claude Code",
+        "Agent",
+        "CLI"
       ]
     },
     {
@@ -951,11 +1805,12 @@
       "published": "2026-09-18T18:23:00+00:00",
       "category": "industry",
       "priority": "low",
-      "summary": "Anthropic 称 Claude 正在帮助构建其下一代版本。",
-      "why": "重复新闻，无具体技术细节。",
+      "summary": "The Hill 报道 Anthropic 借助现有 Claude 构建下一代 AI 模型。",
+      "why": "重复，同事件新闻转载报道。",
       "tags": [
         "Anthropic",
-        "Claude"
+        "Claude",
+        "新闻报道"
       ]
     },
     {
@@ -967,11 +1822,11 @@
       "published": "2026-09-18T18:08:32+00:00",
       "category": "industry",
       "priority": "low",
-      "summary": "边境执法人员可无证搜查手机。",
-      "why": "非 AI 领域的新闻，完全无关。",
+      "summary": "美边境官员被曝可在无搜查令情况下随意搜查出入境人员手机。",
+      "why": "政策与个人隐私新闻，与AI底层技术完全无关。",
       "tags": [
-        "隐私",
-        "法律"
+        "数据隐私",
+        "政策法规"
       ]
     },
     {
@@ -983,11 +1838,29 @@
       "published": "2026-09-18T18:00:00+00:00",
       "category": "infra",
       "priority": "low",
-      "summary": "Grab 推出 LLM-Kit 框架以加速 AI 智能体的生产与部署。",
-      "why": "偏应用层的 Agent 框架，与底层训练关系不大。",
+      "summary": "Grab推出智能体开发与生产部署框架LLM-Kit。",
+      "why": "业务应用层Agent框架，与底层性能无关。",
       "tags": [
-        "Agent",
-        "部署框架"
+        "Agent框架",
+        "Grab",
+        "部署系统"
+      ]
+    },
+    {
+      "id": "2a217d9accd21c6e",
+      "title": "Anthropic Wet Lab Confirmed: Claude Maker Now Runs Physical Biology Experiments - Tech My Money",
+      "link": "https://news.google.com/rss/articles/CBMitAFBVV95cUxQVmNRZEhPMUxaWUxtUzZJck5RclhNZGFGaTJlbnFHc1pMaWJoU2ZGa0NXTzFocTZLcGo5U09ra1IzclRKTjVvN2lCVTA3cXoyRjhDVUdqSjJkZFQxTlVsd29ZTWR0RGF1bFJGTEtIRmEyZzFqMnFTMjBfSWs3ZFZrWlZvbDl2Y29veHcwV0ttYURiYkRvZ1Vpa09BR3RxaERxMFQwdUVuTmM4YlVxY00wX3Y1V2rSAbQBQVVfeXFMUFZjUWRITzFMWllMbVM2SXJOUXJYTWRhRmkyZW5xR3NaTGliaFNmRmtDV08xaHE2S3BqOVNPa2tSM3JUSk41bzdpQlUwN3F6MkY4Q1VHakoyZGRUMU5VbHdvWU1kdERhdWxSRkxLSEZhMmcxajJxUzIwX0lrN2RWa1pWb2w5dmNvb3h3MFdLbWFEYmJEb2dVaWtPQUd0cWhEcTBUMHVFbk5jOGJVcWNNMF92NVdq?oc=5",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-09-18T16:21:40+00:00",
+      "category": "research",
+      "priority": "low",
+      "summary": "Anthropic确认设立湿实验室，开始通过Claude开展物理生物实验。",
+      "why": "AI for Science方向，与算子优化无关。",
+      "tags": [
+        "Anthropic",
+        "AI制药",
+        "湿实验"
       ]
     },
     {
@@ -999,12 +1872,12 @@
       "published": "2026-09-18T15:53:51+00:00",
       "category": "release",
       "priority": "low",
-      "summary": "OPPO 发布 ColorOS 17，将手机操作系统向 AgentOS 演进。",
-      "why": "手机端侧应用发布，与底层训练和生成模型无关。",
+      "summary": "OPPO发布ColorOS 17，将手机操作系统向AgentOS演进。",
+      "why": "终端操作系统与消费级应用，与训练推理无关。",
       "tags": [
-        "端侧AI",
         "OPPO",
-        "AgentOS"
+        "ColorOS",
+        "端侧AI"
       ]
     },
     {
@@ -1016,27 +1889,12 @@
       "published": "2026-09-18T15:35:02+00:00",
       "category": "industry",
       "priority": "low",
-      "summary": "黑客利用Claude访问OpenAI员工账户。",
-      "why": "安全事件，与模型训练和优化无关。",
+      "summary": "黑客利用Claude成功获取OpenAI员工账户权限引发安全关注。",
+      "why": "网络安全漏洞事件，非底层性能相关。",
       "tags": [
         "安全",
-        "黑客"
-      ]
-    },
-    {
-      "id": "544bcd814c2d408d",
-      "title": "突发！MiniMax Code CLI 开源了 - 新浪财经",
-      "link": "https://news.google.com/rss/articles/CBMieEFVX3lxTE1HbjhYemtvaE1JMVdUM0g0UEVBbXY2d3ljWkF1c2JIQVNwUHJFTHE4TWVNWnpTWXRHX3E3N19mbXJQNDZuOHQ3bFVMVXVGQUpYRlpvS1MzTlEwd1RTS2xYem5RZlBVQ2hVeFE1bThTS0t6b3NUX0Z2Mw?oc=5",
-      "source": "新闻 · 国内模型公司",
-      "source_id": "gnews-labs-cn",
-      "published": "2026-09-18T15:18:00+00:00",
-      "category": "release",
-      "priority": "low",
-      "summary": "MiniMax开源Code CLI工具。",
-      "why": "重复报道，可跳过。",
-      "tags": [
-        "MiniMax",
-        "开源"
+        "Claude",
+        "OpenAI"
       ]
     },
     {
@@ -1048,11 +1906,11 @@
       "published": "2026-09-18T14:00:00+00:00",
       "category": "industry",
       "priority": "low",
-      "summary": "谷歌 AI 与经济团队加入新专家。",
-      "why": "泛泛的团队人事变动，与性能优化或生成模型无关。",
+      "summary": "Google 宣布新专家加入其 AI 与经济学研究团队。",
+      "why": "团队人事动态，无技术实质内容。",
       "tags": [
         "Google",
-        "AI & Economy"
+        "团队动态"
       ]
     },
     {
@@ -1064,11 +1922,29 @@
       "published": "2026-09-18T13:58:29+00:00",
       "category": "people",
       "priority": "low",
-      "summary": "微软AI主管向Anthropic发出直率的信息。",
-      "why": "行业八卦，与技术无关。",
+      "summary": "微软AI负责人向Anthropic公开发声表达不同立场。",
+      "why": "高管口水战与观点争论，无技术参考价值。",
       "tags": [
         "Microsoft",
-        "Anthropic"
+        "Anthropic",
+        "观点讨论"
+      ]
+    },
+    {
+      "id": "c4586ac0a2c27f47",
+      "title": "智谱ZCode就代码库数据上传致歉：已修复，将开源代码库接受第三方审查 - 凤凰网科技",
+      "link": "https://news.google.com/rss/articles/CBMiTEFVX3lxTE9FVGpwR1Z2TVcwT2lOTXZJOEtScTRETDM1Z1NWUGxtTS14ZWNHSjYxTjhWUzlpUUhTMFBPMVFvc05Rcm93dlpHN1FEWUc?oc=5",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-09-18T13:23:37+00:00",
+      "category": "industry",
+      "priority": "low",
+      "summary": "智谱就ZCode代码上传事件致歉，称已修复并承诺开源代码审查。",
+      "why": "代码工具隐私争议，与底层技术无关。",
+      "tags": [
+        "智谱AI",
+        "ZCode",
+        "安全隐私"
       ]
     },
     {
@@ -1077,14 +1953,15 @@
       "link": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE1SdndrOERtU1J3TXdZazh0eXBwUFQ0a3RaZTgyYUVuRmRERkl4TG5Genl5WWNfdTZKTFJqb3hyNkRfTVlWZks1MDVVSVV3OFpCbzByUmxTVUVlREVLU3d1UzJKUzg?oc=5",
       "source": "新闻 · 国内模型公司",
       "source_id": "gnews-labs-cn",
-      "published": "2026-09-18T13:08:14+00:00",
-      "category": "release",
+      "published": "2026-09-18T13:08:00+00:00",
+      "category": "industry",
       "priority": "low",
-      "summary": "智谱推出新模型GLM-5.3-FlashX。",
-      "why": "重复报道，可跳过。",
+      "summary": "周报汇总：智谱推新模型、英伟达预测2027年芯片销量翻倍等。",
+      "why": "新闻合集，GLM-5.3-FlashX已在单条报道。",
       "tags": [
+        "行业周报",
         "智谱",
-        "GLM"
+        "英伟达"
       ]
     },
     {
@@ -1096,11 +1973,29 @@
       "published": "2026-09-18T13:00:00+00:00",
       "category": "industry",
       "priority": "low",
-      "summary": "谷歌与设计师合作探索时尚领域的未来。",
-      "why": "营销与跨界合作，与底层技术无关。",
+      "summary": "Google 宣布与时尚设计师合作探索 AI 在时尚领域的应用。",
+      "why": "品牌营销宣传，与底层算力及生成算法无关。",
       "tags": [
         "Google",
-        "Fashion"
+        "时尚",
+        "营销"
+      ]
+    },
+    {
+      "id": "559b0cf1119746d2",
+      "title": "Introducing the Australian Youth Safety Blueprint",
+      "link": "https://openai.com/index/australian-youth-safety-blueprint",
+      "source": "OpenAI",
+      "source_id": "openai",
+      "published": "2026-09-18T12:00:00+00:00",
+      "category": "industry",
+      "priority": "low",
+      "summary": "OpenAI 推出针对澳大利亚青少年的 AI 安全蓝图。",
+      "why": "政策合规与安全公关内容，与系统及模型技术无关。",
+      "tags": [
+        "AI安全",
+        "合规",
+        "OpenAI"
       ]
     },
     {
@@ -1110,13 +2005,14 @@
       "source": "新闻 · Anthropic / Mistral / xAI",
       "source_id": "gnews-labs-en",
       "published": "2026-09-18T11:58:29+00:00",
-      "category": "industry",
+      "category": "research",
       "priority": "low",
-      "summary": "研究人员利用Claude在72小时内发现OpenAI的安全漏洞。",
-      "why": "偏网络安全应用，与底层优化无关。",
+      "summary": "研究人员在72小时内利用Claude挖掘出OpenAI系统安全漏洞。",
+      "why": "应用层安全挖掘，非算子或生成模型技术。",
       "tags": [
-        "安全",
-        "Claude"
+        "网络安全",
+        "Claude",
+        "OpenAI"
       ]
     },
     {
@@ -1145,12 +2041,12 @@
       "published": "2026-09-18T11:08:00+00:00",
       "category": "industry",
       "priority": "low",
-      "summary": "智谱就Zcode工具未经授权上传代码事件致歉，承诺不保存数据并开源软件。",
-      "why": "隐私与公关事件，与性能优化无关。",
+      "summary": "智谱就ZCode数据上传致歉，承诺不保留数据并开源客户端。",
+      "why": "重复新闻，产品隐私公关事件可跳过。",
       "tags": [
-        "智谱",
-        "隐私安全",
-        "Zcode"
+        "智谱AI",
+        "ZCode",
+        "开源"
       ]
     },
     {
@@ -1160,13 +2056,14 @@
       "source": "新闻 · Anthropic / Mistral / xAI",
       "source_id": "gnews-labs-en",
       "published": "2026-09-18T11:00:00+00:00",
-      "category": "industry",
+      "category": "people",
       "priority": "low",
-      "summary": "微软挑战Anthropic关于AI意识的探讨方法。",
-      "why": "偏哲学与伦理讨论，不涉及具体技术。",
+      "summary": "微软AI高管就AI意识争论对Anthropic方案提出质疑。",
+      "why": "哲学与安全性争鸣，脱离实际工程落地。",
       "tags": [
-        "AI意识",
-        "伦理"
+        "微软",
+        "Anthropic",
+        "AI安全"
       ]
     },
     {
@@ -1178,27 +2075,12 @@
       "published": "2026-09-18T10:35:28+00:00",
       "category": "industry",
       "priority": "low",
-      "summary": "智谱 ZCode 被曝静默上传用户的 Git 历史记录。",
-      "why": "重复的隐私事件报道，前文已提及。",
+      "summary": "社区指出智谱GLM代码助手ZCode存在静默上传用户Git历史的行为。",
+      "why": "开发工具隐私风险，无GPU或训练架构价值。",
       "tags": [
         "ZCode",
-        "隐私"
-      ]
-    },
-    {
-      "id": "e30c69179369b618",
-      "title": "智谱完成50亿美元融资 GLM-5.3-FlashX上线 遭欧洲顶尖AI模型套壳 - 新浪财经",
-      "link": "https://news.google.com/rss/articles/CBMifkFVX3lxTFBkOC1oZllnbWpJX1huTDNpNU55VXlodzZ4U29RQzYxVUVPRVg0SldCTHc3c2p1WlhXemRzLXhIN2ZLZHBpSUwwRG1UVlF1UU9ZRzhLWmtmR1JsV2RlNE9SaVk5bjEwSGRaU3dZdkRVODdJNEZLc3MzUnYxSUY0UQ?oc=5",
-      "source": "新闻 · 国内模型公司",
-      "source_id": "gnews-labs-cn",
-      "published": "2026-09-18T10:21:00+00:00",
-      "category": "release",
-      "priority": "low",
-      "summary": "智谱完成50亿美元融资并上线GLM-5.3-FlashX。",
-      "why": "重复报道，可跳过。",
-      "tags": [
-        "智谱",
-        "融资"
+        "代码助手",
+        "隐私安全"
       ]
     },
     {
@@ -1210,27 +2092,29 @@
       "published": "2026-09-18T10:16:10+00:00",
       "category": "industry",
       "priority": "low",
-      "summary": "分析月之暗面递交招股书后的业务与商业挑战。",
-      "why": "偏商业与资本分析，与技术无关。",
+      "summary": "分析月之暗面递表上市后的商业化表现与产品估值预期。",
+      "why": "商业与资本层面评论，与研发无关。",
       "tags": [
         "月之暗面",
-        "商业"
+        "Kimi",
+        "IPO"
       ]
     },
     {
       "id": "9eb5ac18fe1acb7b",
-      "title": "OpenAI, Anthropic eye 20-30 MW AI clusters in UK, Nordics for expansion - cryptobriefing.com",
+      "title": "OpenAI, Anthropic eye 20-30 MW AI clusters in UK, Nordics for expansion - Crypto Briefing",
       "link": "https://news.google.com/rss/articles/CBMingFBVV95cUxPaV9KclVaOEhKNjJMNHluQUdzZXp2MUN5UUI2ZjVtcUQ5TDdFaDRsZVgzQTJiakJiZFZTWVdQWFY2OFp3RlhFOW9IemNTY0xOSVROU1p0VGZnT1BsS09lRnprb1JXMGxPSzgzQ1kxM21BVHNmNzI2cG01eGtaY0FwRV9CRVlWQjZZa3NOODBHOTN3Zm1IV1g2WXNMMjFEQQ?oc=5",
       "source": "新闻 · Anthropic / Mistral / xAI",
       "source_id": "gnews-labs-en",
       "published": "2026-09-18T10:02:30+00:00",
       "category": "infra",
       "priority": "low",
-      "summary": "OpenAI和Anthropic在英国和北欧寻找20-30MW的AI集群。",
-      "why": "重复报道，可跳过。",
+      "summary": "OpenAI与Anthropic计划在英国及北欧布局20至30MW AI算力集群。",
+      "why": "重复报道，偏算力基建选址规划。",
       "tags": [
         "数据中心",
-        "算力"
+        "算力集群",
+        "基础设施"
       ]
     },
     {
@@ -1242,11 +2126,12 @@
       "published": "2026-09-18T09:41:00+00:00",
       "category": "industry",
       "priority": "low",
-      "summary": "智谱与MiniMax相关概念股大涨。",
-      "why": "股市动态，与技术无关。",
+      "summary": "港股智谱收涨5.4%，MINIMAX-W收涨18.92%。",
+      "why": "股市二级市场波动，与技术无关。",
       "tags": [
-        "股市",
-        "行业动态"
+        "智谱AI",
+        "MiniMax",
+        "二级市场"
       ]
     },
     {
@@ -1274,11 +2159,12 @@
       "published": "2026-09-18T09:01:45+00:00",
       "category": "industry",
       "priority": "low",
-      "summary": "美国机构使用中国AI模型引发华盛顿技术威胁警告。",
-      "why": "政治与合规新闻，与底层技术优化无关。",
+      "summary": "媒体报道美国某政府机构曾使用中国AI模型引发技术威胁讨论。",
+      "why": "地缘政治与政策舆情，无关技术。",
       "tags": [
-        "合规",
-        "行业动态"
+        "地缘政治",
+        "政策",
+        "模型应用"
       ]
     },
     {
@@ -1290,11 +2176,12 @@
       "published": "2026-09-18T08:52:00+00:00",
       "category": "industry",
       "priority": "low",
-      "summary": "MiniMax多款产品纳入新加坡国民AI技能培训计划。",
-      "why": "商业合作新闻，与技术研发无关。",
+      "summary": "MiniMax多款产品被纳入新加坡国民AI技能培训计划。",
+      "why": "业务出海拓展动态，无技术参考价值。",
       "tags": [
         "MiniMax",
-        "商业"
+        "海外应用",
+        "行业动态"
       ]
     },
     {
@@ -1306,10 +2193,10 @@
       "published": "2026-09-18T08:47:00+00:00",
       "category": "industry",
       "priority": "low",
-      "summary": "中国大模型在海外市场受到欢迎。",
-      "why": "泛泛的行业营销文章，无具体技术细节。",
+      "summary": "盘点中国大模型在沙特和新加坡等海外市场的落地与应用情况。",
+      "why": "泛行业出海盘点，无技术干货。",
       "tags": [
-        "出海",
+        "大模型出海",
         "行业动态"
       ]
     },
@@ -1322,11 +2209,12 @@
       "published": "2026-09-18T07:29:00+00:00",
       "category": "industry",
       "priority": "low",
-      "summary": "某欧洲大模型因宣传未提及基于中国开源模型而引发争议。",
-      "why": "行业八卦，无实质技术价值。",
+      "summary": "欧洲宣称自研的模型被曝实为套壳国内模型引发行业热议。",
+      "why": "行业八卦争议，无技术价值。",
       "tags": [
-        "行业八卦",
-        "开源模型"
+        "开源大模型",
+        "套壳争议",
+        "行业动态"
       ]
     },
     {
@@ -1336,29 +2224,31 @@
       "source": "新闻 · 国内模型公司",
       "source_id": "gnews-labs-cn",
       "published": "2026-09-18T07:25:00+00:00",
-      "category": "release",
+      "category": "industry",
       "priority": "low",
-      "summary": "智谱发布新版本模型并宣布涨价。",
-      "why": "重复报道，可跳过。",
+      "summary": "证券时报报道大模型概念股大涨且新版本宣布涨价。",
+      "why": "重复商业行情分析，可跳过。",
       "tags": [
-        "智谱",
-        "商业"
+        "大模型",
+        "二级市场",
+        "商业化"
       ]
     },
     {
       "id": "c5c414cdab083f26",
-      "title": "Anthropic says Claude is helping build its own successor - thenews.com.pk",
+      "title": "Anthropic says Claude is helping build its own successor - The News International",
       "link": "https://news.google.com/rss/articles/CBMinwFBVV95cUxNOXZvOFRqdlNHMWtPVFlhcmlaWDQ0ZXBiaTJaWG9uZFNJRWRpY0wxTFRheEprQnNrRGpiUGZ0emZISGVNR3U4N05qb1M3dGVpUklCTENMY2F6djlfX2JOdWlpTExUVVRiZXpic2thY2RxRmVacS1QUThKVUx3cEJkdENkMXNlUmhDUVFOeDZJTlk0SVdpSjgtMlI5dmI5YU3SAZsBQVVfeXFMTzNCZTg5dHNzVnQ0bzdSaldicDRPQ1l0bUppek9CanpJS1lpWnFiOGNmNU1YVUY0SnhObDdvT1JtV2VvOVpMN3pyR3pUeDZWbWMwMDUtSENWU0NIR0RVRDVxT1M5TnRwQ0FXRmNrZlNYT25zb19RbHk1blJpemFOdjAzZlhwV1FBS2pWaEFsUEdrR1E5RlhLYUluX1U?oc=5",
       "source": "新闻 · Anthropic / Mistral / xAI",
       "source_id": "gnews-labs-en",
       "published": "2026-09-18T07:19:00+00:00",
       "category": "industry",
       "priority": "low",
-      "summary": "Anthropic表示Claude正在帮助构建其下一代模型。",
-      "why": "营销话术，缺乏具体技术细节。",
+      "summary": "Anthropic表示Claude正在参与构建其继任模型。",
+      "why": "重复报道，自我迭代观点。",
       "tags": [
+        "Claude",
         "Anthropic",
-        "Claude"
+        "模型迭代"
       ]
     },
     {
@@ -1395,6 +2285,23 @@
       ]
     },
     {
+      "id": "59c8279e7b7844ad",
+      "title": "“大模型第一股”，股价大涨！宣布新版本涨价 - 新浪财经",
+      "link": "https://news.google.com/rss/articles/CBMidkFVX3lxTE5kN2s0TVZmMXF5Rk1BTUh5ZEdTOXJDcVQwNEtpdFMzSGJqZ2RFTThyLW5xWXlNNVNObGxCdmt5NW9rRmo5NFNRRHNSN2lNTmdqS3JyZTlicFJMR3NKNHljdS02dHhXX0NGa2Zwck00UjFIMG9oVWc?oc=5",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-09-18T06:54:00+00:00",
+      "category": "industry",
+      "priority": "low",
+      "summary": "报道智谱股价大涨且新版本宣布提价相关消息。",
+      "why": "重复新闻，二级市场表现可跳过。",
+      "tags": [
+        "智谱AI",
+        "二级市场",
+        "商业化"
+      ]
+    },
+    {
       "id": "1cad0dc6cff79f19",
       "title": "月之暗面杨植麟：从摇滚青年到AI新星 - 手机新浪网",
       "link": "https://news.google.com/rss/articles/CBMif0FVX3lxTFBGeUZGdHE4NC1tUUE2Ykkxd2s1ZU9mYUFlSUIyVjVWT3dpbEhGSDNia0o3OEE3b2ZIcEJfY2lBRlcyZXdhTmNzNmZJR0FSQjV3NUdkQWF3MDB6Q3Z4NGFINnZzdWRaZFRlY2NqZ3gtbWFxOUFmLWswLXlhVE40MW8?oc=5",
@@ -1403,11 +2310,12 @@
       "published": "2026-09-18T04:30:55+00:00",
       "category": "people",
       "priority": "low",
-      "summary": "月之暗面创始人杨植麟的人物报道。",
-      "why": "个人背景故事，无技术增量信息。",
+      "summary": "人物特写介绍月之暗面创始人杨植麟的成长经历。",
+      "why": "泛人物公关稿，无技术参考价值。",
       "tags": [
         "月之暗面",
-        "人物"
+        "杨植麟",
+        "人物特写"
       ]
     },
     {
@@ -1419,12 +2327,12 @@
       "published": "2026-09-18T03:44:00+00:00",
       "category": "industry",
       "priority": "low",
-      "summary": "港股大模型公司 MiniMax 和智谱股价显著上涨。",
-      "why": "纯股市动态，与技术研发无关，可跳过。",
+      "summary": "港股大模型板块走强，MiniMax与智谱股价均录得上涨。",
+      "why": "重复股市快讯，与工程开发无关。",
       "tags": [
-        "股市",
         "MiniMax",
-        "智谱"
+        "智谱AI",
+        "港股"
       ]
     },
     {
@@ -1445,6 +2353,23 @@
       ]
     },
     {
+      "id": "9576c671e820b9e9",
+      "title": "大涨超7%！MiniMax，“出海”新进展|Skill|中国基金报|阿拉伯语|新加坡|Google AI_手机新浪网 - 新浪财经_金融信息服务商",
+      "link": "https://news.google.com/rss/articles/CBMi2wJBVV95cUxQVlNHa2EtQ0cxU3k3SEd6b2RDWFdKZ1hmZGNRNlNtc0xXS25Xc1dsSXVSb3R1Uno4d0ZTUVY5ODJqQUFwZkxhYW9sVEY2NmlEWHp1Vk41SF9USjRtNEhxczdteXB3dEVPcDBVZmktNUxiV25xbTJLYW1vcF92VWRydFpkNTZaY3Nrd05nelhPVFFCX3VxNzlRMTRTMTZlRXM5T2h1TC1STlA4M3VWek5ZYzd1X01kdGhKSmN4OG03bUF1SHhYNnRFVTFGY055OUhjUE4tMWpZbm1mWjhreWxmXzJ4MzFla1JIQUFXcG9DQjM2S3AwUzRjX0F5LUxtVFVWa0lsRDhlTVpuRjlKdGlQWUhqTEJZcjFRYWFpbkV2Tm5tQjl2MXBQTnZ0UWJRWEtmMUh6RTZqUFpQdkNoc3VhSzN5V25IYndTWkN3QWJXU2E3d3p0LVlyaVppaw?oc=5",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-09-18T00:44:15+00:00",
+      "category": "industry",
+      "priority": "low",
+      "summary": "MiniMax出海取得新进展并带动股价上涨超7%。",
+      "why": "重复出海与股价动态，可跳过。",
+      "tags": [
+        "MiniMax",
+        "出海",
+        "二级市场"
+      ]
+    },
+    {
       "id": "6067e51f15aeacd2",
       "title": "How to Write with an LLM",
       "link": "https://news.ycombinator.com/item?id=49747070",
@@ -1453,11 +2378,29 @@
       "published": "2026-09-17T21:48:38+00:00",
       "category": "people",
       "priority": "low",
-      "summary": "探讨如何使用大语言模型辅助写作的经验分享。",
-      "why": "偏向终端用户的使用技巧，与底层技术无关。",
+      "summary": "一篇系统介绍如何利用LLM辅助日常文章构思与写作的方法博客。",
+      "why": "面向普通用户的提示词技巧，可直接跳过。",
       "tags": [
-        "LLM应用",
-        "写作"
+        "LLM",
+        "Prompt",
+        "写作辅助"
+      ]
+    },
+    {
+      "id": "100c43f972e17b56",
+      "title": "国产大模型Kimi 1JMJAPPPM问世 美国AI巨头Anthropic被冲击：估值少了9000亿 - 体坛加",
+      "link": "https://news.google.com/rss/articles/CBMiWkFVX3lxTFBwaHVEMWJXNnRFQ3V3aUE0UTU2NWdVVDhGbDZMWWwyelpERXdQVFZOVmZiMDc5NFJZazE0QU0tSlpyU19uTGFRQWF5cFZZbUd2QzBoMjI3WGttQQ?oc=5",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-09-17T21:28:09+00:00",
+      "category": "industry",
+      "priority": "low",
+      "summary": "媒体报道Kimi新动态及其对Anthropic估值冲击的传闻。",
+      "why": "杂音媒体夸张报道，信息失真可忽略。",
+      "tags": [
+        "月之暗面",
+        "Kimi",
+        "行业传闻"
       ]
     },
     {
@@ -1533,12 +2476,12 @@
       "published": "2026-09-16T20:00:00+00:00",
       "category": "research",
       "priority": "low",
-      "summary": "提出 SELF-INDEX，使检索索引能根据检索环境自我演进。",
-      "why": "属于信息检索和 RAG 领域，与他的核心方向不符。",
+      "summary": "论文提出 SELF-INDEX 框架，实现面向检索环境的自演化搜索索引构建。",
+      "why": "偏向检索增强（RAG）和传统索引，非当前核心方向。",
       "tags": [
-        "Information Retrieval",
-        "RAG",
-        "LLM Agents"
+        "信息检索",
+        "索引",
+        "RAG"
       ]
     },
     {
@@ -1550,10 +2493,11 @@
       "published": "2026-09-16T20:00:00+00:00",
       "category": "research",
       "priority": "low",
-      "summary": "提出 WeVisDoc 两阶段数据中心框架，用于鲁棒的端到端文档解析。",
-      "why": "属于文档解析与 OCR 领域，与底层优化或生成模型无关。",
+      "summary": "WeVisDoc 提出两阶段数据中心框架以提升端到端文档解析的鲁棒性。",
+      "why": "聚焦文档图像解析工程与数据合成，偏离关注重点。",
       "tags": [
-        "Document Parsing",
+        "文档解析",
+        "数据合成",
         "OCR"
       ]
     },
@@ -1566,12 +2510,12 @@
       "published": "2026-09-16T20:00:00+00:00",
       "category": "research",
       "priority": "low",
-      "summary": "提出 VA-Bench，通过视觉演示和主动感知评估具身空间智能。",
-      "why": "偏向具身智能评估，与底层优化或生成模型关联较弱。",
+      "summary": "VABench 提出基于纯视觉输入的主动感知与度量控制具身空间智能基准。",
+      "why": "机械臂具身操作评测集，非核心软硬件或生成算法主题。",
       "tags": [
-        "Embodied AI",
-        "Benchmark",
-        "Spatial Intelligence"
+        "具身智能",
+        "空间智能",
+        "Benchmark"
       ]
     },
     {
@@ -1583,11 +2527,12 @@
       "published": "2026-09-16T20:00:00+00:00",
       "category": "research",
       "priority": "low",
-      "summary": "提出 SoL-Pi，通过递归扩展自动研究循环来提升代码智能体效率。",
-      "why": "偏向代码智能体与自我改进机制，与底层性能优化无关。",
+      "summary": "SoL-Pi 递归扩展自动研究闭环，优化代码智能体的 Harness 层与 Token 效率。",
+      "why": "偏向代码智能体自动化 Harness 框架，缺乏底层算力亮点。",
       "tags": [
-        "Coding Agents",
-        "Auto-Research"
+        "代码智能体",
+        "自演化",
+        "Agent Harness"
       ]
     },
     {
@@ -1599,11 +2544,29 @@
       "published": "2026-09-16T20:00:00+00:00",
       "category": "research",
       "priority": "low",
-      "summary": "对代码智能体的 Harness 设计（规划、动作空间、上下文管理）进行实证研究。",
-      "why": "偏向代码智能体工程设计，与底层系统或生成模型无关。",
+      "summary": "论文对代码智能体 Harness 的规划、动作空间及上下文管理开展实证消融实验。",
+      "why": "代码 Agent 系统实验对比，与 GPU 训练及生成模型无关。",
       "tags": [
-        "Coding Agents",
-        "Harness Design"
+        "代码智能体",
+        "Harness",
+        "实证研究"
+      ]
+    },
+    {
+      "id": "18b1d79514e6e467",
+      "title": "CERA-MoA: Co-Evolving Routing Mechanisms with Continually Learning LLM Agents",
+      "link": "https://huggingface.co/papers/2609.18779",
+      "source": "HF Papers 日榜",
+      "source_id": "hf-papers",
+      "published": "2026-09-15T20:00:00+00:00",
+      "category": "research",
+      "priority": "low",
+      "summary": "CERA-MoA 提出协同演化强化学习框架，动态优化混合多智能体中的路由与策略。",
+      "why": "多 Agent 路由协作算法，无 GPU 底层调优内容。",
+      "tags": [
+        "MoA",
+        "强化学习",
+        "多智能体"
       ]
     },
     {
@@ -1615,12 +2578,12 @@
       "published": "2026-09-14T20:00:00+00:00",
       "category": "research",
       "priority": "low",
-      "summary": "提出多智能体模拟框架 Fuse，用于评估 LLM 的社交推理能力。",
-      "why": "偏向应用层面的社交推理评估，与底层优化或生成模型无关。",
+      "summary": "论文提出 Fuse 多智能体框架，用于可验证的 LLM 社交推理能力评估。",
+      "why": "属于上层智能体社交评测，偏离底层性能与生成模型方向。",
       "tags": [
-        "LLM",
-        "Social Reasoning",
-        "Multi-agent"
+        "Agent",
+        "社交推理",
+        "评测"
       ]
     },
     {
@@ -1632,11 +2595,12 @@
       "published": "2026-09-14T20:00:00+00:00",
       "category": "research",
       "priority": "low",
-      "summary": "提出免训练的 EvoSkill-GUI 框架，让 GUI 智能体在执行中修正技能。",
-      "why": "偏向 GUI 智能体应用层，与底层系统或生成模型无关。",
+      "summary": "EvoSkill-GUI 提出无需训练的技能演化框架，应对动态界面的 GUI Agent 任务。",
+      "why": "GUI 自动化与 Prompt/Skill 工程，与底层算力和生成模型无关。",
       "tags": [
-        "GUI Agents",
-        "Skill Evolution"
+        "GUI Agent",
+        "免训练",
+        "智能体"
       ]
     },
     {
@@ -1648,12 +2612,250 @@
       "published": "2026-09-14T20:00:00+00:00",
       "category": "research",
       "priority": "low",
-      "summary": "提出 RiskChainBench，用于评估模型恢复混淆信息及网页调查的能力。",
-      "why": "属于安全与内容风控基准测试，与性能优化无关。",
+      "summary": "RiskChainBench 针对平台混淆信息还原与证据溯源构建多模态测试基准。",
+      "why": "网络黑灰产内容风控基准，与系统及生成模型无关。",
       "tags": [
-        "Benchmark",
-        "Security",
-        "VLM"
+        "安全基准",
+        "多模态",
+        "评测"
+      ]
+    },
+    {
+      "id": "6426decba2ef7b96",
+      "title": "cloudflare/security-audit-skill",
+      "link": "https://github.com/cloudflare/security-audit-skill",
+      "source": "GitHub Trending · 全部",
+      "source_id": "gh-trending-all",
+      "published": "",
+      "category": "infra",
+      "priority": "low",
+      "summary": "Cloudflare开源用于驱动Agent进行多阶段独立安全审计的Skill套件。",
+      "why": "应用层安全编排，与GPU加速和模型训练无关。",
+      "tags": [
+        "Cloudflare",
+        "Agent",
+        "安全审计"
+      ]
+    },
+    {
+      "id": "9c241fb43bc9a659",
+      "title": "anthropics/claude-code",
+      "link": "https://github.com/anthropics/claude-code",
+      "source": "GitHub Trending · 全部",
+      "source_id": "gh-trending-all",
+      "published": "",
+      "category": "release",
+      "priority": "low",
+      "summary": "Anthropic的终端Coding Agent工具Claude Code在GitHub持续霸榜。",
+      "why": "通用编码辅助工具，非系统算子或生成架构更新。",
+      "tags": [
+        "Anthropic",
+        "Claude Code",
+        "开发者工具"
+      ]
+    },
+    {
+      "id": "f7cfdfd7bcc39abd",
+      "title": "alibaba/open-code-review",
+      "link": "https://github.com/alibaba/open-code-review",
+      "source": "GitHub Trending · 全部",
+      "source_id": "gh-trending-all",
+      "published": "",
+      "category": "release",
+      "priority": "low",
+      "summary": "阿里巴巴开源基于规则引擎加LLM Agent架构的规模化代码评审CLI。",
+      "why": "工程规范治理工具，与底层性能及生成模型无关。",
+      "tags": [
+        "Alibaba",
+        "Code Review",
+        "CLI"
+      ]
+    },
+    {
+      "id": "4003eac764e90cd4",
+      "title": "affaan-m/ECC",
+      "link": "https://github.com/affaan-m/ECC",
+      "source": "GitHub Trending · 全部",
+      "source_id": "gh-trending-all",
+      "published": "",
+      "category": "infra",
+      "priority": "low",
+      "summary": "开源项目ECC针对Claude Code等Agent推出性能与上下文调度增强库。",
+      "why": "提示词与记忆工程层面的优化，非底层系统。",
+      "tags": [
+        "Agent",
+        "Claude Code",
+        "性能优化"
+      ]
+    },
+    {
+      "id": "3380d82823eef206",
+      "title": "Tencent/BrowserSkill",
+      "link": "https://github.com/Tencent/BrowserSkill",
+      "source": "GitHub Trending · 全部",
+      "source_id": "gh-trending-all",
+      "published": "",
+      "category": "infra",
+      "priority": "low",
+      "summary": "腾讯开源BrowserSkill，允许各类Agent免中断复用用户已登录浏览器。",
+      "why": "Agent桌面交互插件，与核心研发方向无关。",
+      "tags": [
+        "Tencent",
+        "BrowserSkill",
+        "Agent"
+      ]
+    },
+    {
+      "id": "2e74d0228d63bddb",
+      "title": "addyosmani/agent-skills",
+      "link": "https://github.com/addyosmani/agent-skills",
+      "source": "GitHub Trending · 全部",
+      "source_id": "gh-trending-all",
+      "published": "",
+      "category": "infra",
+      "priority": "low",
+      "summary": "Addy Osmani开源将高级工程师规范封装为Agent工作流的技能套件。",
+      "why": "软件工程流程Prompt模板，可跳过。",
+      "tags": [
+        "Agent Skills",
+        "软件工程",
+        "工作流"
+      ]
+    },
+    {
+      "id": "0c335dd5f7629547",
+      "title": "TencentCloud/Octop",
+      "link": "https://github.com/TencentCloud/Octop",
+      "source": "GitHub Trending · 全部",
+      "source_id": "gh-trending-all",
+      "published": "",
+      "category": "release",
+      "priority": "low",
+      "summary": "腾讯云开源支持单进程多Agent协同的本地自部署个人AI助手Octop。",
+      "why": "上层多智能体框架，偏向日常办公助手应用。",
+      "tags": [
+        "腾讯云",
+        "Octop",
+        "多智能体"
+      ]
+    },
+    {
+      "id": "c57da82c6b7f964b",
+      "title": "coder/coder",
+      "link": "https://github.com/coder/coder",
+      "source": "GitHub Trending · 全部",
+      "source_id": "gh-trending-all",
+      "published": "",
+      "category": "infra",
+      "priority": "low",
+      "summary": "Coder开源集成Terraform与AI Agent运行环境的自托管云开发空间系统。",
+      "why": "云开发环境运维平台，与模型优化无关。",
+      "tags": [
+        "Coder",
+        "云原生",
+        "开发环境"
+      ]
+    },
+    {
+      "id": "9565fb051f02e687",
+      "title": "jinchenma94/bazi-skill",
+      "link": "https://github.com/jinchenma94/bazi-skill",
+      "source": "GitHub Trending · Python",
+      "source_id": "gh-trending-python",
+      "published": "",
+      "category": "infra",
+      "priority": "low",
+      "summary": "开发者开源基于Claude Code环境的四柱八字命理排盘分析Skill。",
+      "why": "娱乐性插件，与工作方向完全无关。",
+      "tags": [
+        "Claude Code",
+        "八字排盘",
+        "娱乐工具"
+      ]
+    },
+    {
+      "id": "c8b9ca13c520d074",
+      "title": "NVIDIA/SkillSpector",
+      "link": "https://github.com/NVIDIA/SkillSpector",
+      "source": "GitHub Trending · Python",
+      "source_id": "gh-trending-python",
+      "published": "",
+      "category": "infra",
+      "priority": "low",
+      "summary": "NVIDIA开源SkillSpector，用于静态检测AI Agent Skill的安全风险与注入。",
+      "why": "Agent生态供应链安全工具，非算子或加速库。",
+      "tags": [
+        "NVIDIA",
+        "SkillSpector",
+        "安全检测"
+      ]
+    },
+    {
+      "id": "c69049587bfe662a",
+      "title": "PaddlePaddle/PaddleOCR",
+      "link": "https://github.com/PaddlePaddle/PaddleOCR",
+      "source": "GitHub Trending · Python",
+      "source_id": "gh-trending-python",
+      "published": "",
+      "category": "infra",
+      "priority": "low",
+      "summary": "百度飞桨PaddleOCR多语言文档解析工具集持续在Trending榜单活跃。",
+      "why": "成熟通用OCR工具，无近期关键底层架构变化。",
+      "tags": [
+        "PaddlePaddle",
+        "OCR",
+        "文档解析"
+      ]
+    },
+    {
+      "id": "c8def16dd85fab79",
+      "title": "NVIDIA/cuopt",
+      "link": "https://github.com/NVIDIA/cuopt",
+      "source": "GitHub Trending · CUDA",
+      "source_id": "gh-trending-cuda",
+      "published": "",
+      "category": "infra",
+      "priority": "low",
+      "summary": "NVIDIA开源基于GPU加速运筹规划与路由求解的cuOpt决策优化套件。",
+      "why": "传统运筹优化引擎，非深度学习或生成模型范畴。",
+      "tags": [
+        "NVIDIA",
+        "cuOpt",
+        "运筹优化"
+      ]
+    },
+    {
+      "id": "6e0e44a73edea099",
+      "title": "pyscf/gpu4pyscf",
+      "link": "https://github.com/pyscf/gpu4pyscf",
+      "source": "GitHub Trending · CUDA",
+      "source_id": "gh-trending-cuda",
+      "published": "",
+      "category": "infra",
+      "priority": "low",
+      "summary": "开源项目gpu4pyscf为PySCF量子化学计算套件提供NVIDIA GPU算力加速。",
+      "why": "科学计算专属加速插件，与AI训练或生成模型无关。",
+      "tags": [
+        "PySCF",
+        "量子化学",
+        "GPU加速"
+      ]
+    },
+    {
+      "id": "00aaac6d08010401",
+      "title": "NVIDIA/cudf-spark-jni",
+      "link": "https://github.com/NVIDIA/cudf-spark-jni",
+      "source": "GitHub Trending · CUDA",
+      "source_id": "gh-trending-cuda",
+      "published": "",
+      "category": "infra",
+      "priority": "low",
+      "summary": "NVIDIA cuDF 提供针对 Apache Spark 的 JNI 插件，用于大数据 GPU 加速。",
+      "why": "偏大数据 ETL 处理，与模型训练及生成模型 kernel 优化关联不大。",
+      "tags": [
+        "cuDF",
+        "Spark",
+        "GPU加速"
       ]
     }
   ]
