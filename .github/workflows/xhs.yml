@@ -4,7 +4,7 @@ on:
     inputs:
       date: {description: 生成日期 YYYY-MM-DD（留空为今天）, required: false, default: ""}
       images: {description: 生成封面图的条数（0 关闭生图）, required: false, default: "4"}
-      list_models: {description: 只列出可用的生图模型（排查用）, type: boolean, default: false}
+      list_models: {description: 只列出账号可用的全部模型与别名指向（排查用）, type: boolean, default: false}
   schedule:
     - cron: "10 1 * * *"
 permissions: {contents: read}
@@ -17,10 +17,10 @@ jobs:
         with: {ref: master}
       - uses: actions/setup-python@v5
         with: {python-version: "3.12"}
-      - name: 列出生图模型
+      - name: 列出可用模型
         if: ${{ inputs.list_models }}
         env: {GEMINI_API_KEY: "${{ secrets.GEMINI_API_KEY }}"}
-        run: python3 tools/xhs.py --list-image-models
+        run: python3 tools/xhs.py --list-models
       - name: 安装封面渲染依赖（Playwright + 中文字体）
         if: ${{ !inputs.list_models }}
         run: |

@@ -51,13 +51,20 @@ def _gemini_post(path, body, key, timeout=120):
     with urllib.request.urlopen(req, timeout=timeout) as r: return json.load(r)
 
 
-def list_image_models(key):
+def list_image_models(key, everything=False):
+    """列账号可用模型；默认只列生图相关，everything=True 列全部（含别名解析）。"""
     with urllib.request.urlopen(urllib.request.Request(f'{API}/models?pageSize=200', headers={'x-goog-api-key': key}), timeout=30) as r:
         models = json.load(r).get('models', [])
-    for m in models:
+    for m in sorted(models, key=lambda m: m.get('name', '')):
         name = m.get('name', '').replace('models/', '')
-        if 'image' in name or 'imagen' in name:
-            print(f"{name:45s} {','.join(m.get('supportedGenerationMethods', []))}")
+        if everything or 'image' in name or 'imagen' in name:
+            print(f"{name:45s} {m.get('version', ''):16s} {','.join(m.get('supportedGenerationMethods', []))}")
+    if everything:
+        for alias in ('gemini-pro-latest', 'gemini-flash-latest'):
+            try:
+                with urllib.request.urlopen(urllib.request.Request(f'{API}/models/{alias}', headers={'x-goog-api-key': key}), timeout=30) as r:
+                    m = json.load(r); print(f"别名 {alias} → version={m.get('version')} displayName={m.get('displayName')}")
+            except Exception as e: print(f'别名 {alias} 查询失败：{e}')
 
 
 def gemini_image(prompt: str, key: str) -> bytes | None:
@@ -146,9 +153,9 @@ def render_cards(jobs: list[tuple[str, str]], out_dir: Path) -> list[Path]:
 
 def main():
     key = os.environ.get('GEMINI_API_KEY', '').strip()
-    if '--list-image-models' in sys.argv:
+    if '--list-image-models' in sys.argv or '--list-models' in sys.argv:
         if not key: raise SystemExit('需要 GEMINI_API_KEY')
-        list_image_models(key); return
+        list_image_models(key, everything='--list-models' in sys.argv); return
     date = os.environ.get('RADAR_DATE') or datetime.now().strftime('%Y-%m-%d')
     src = DATA / f'{date}.json'
     if not src.exists(): raise SystemExit(f'没有 {src}')
