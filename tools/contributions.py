@@ -710,7 +710,7 @@ def arch_svg(diagram, modules):
             # 沿曲线找一个不落在方框里的点放标签
             for t in (0.5, 0.35, 0.65, 0.25, 0.75):
                 lx,ly=(1-t)**2*sx+2*(1-t)*t*cx+t*t*ex, (1-t)**2*sy+2*(1-t)*t*cy+t*t*ey
-                if not inside(lx+8, ly+4): break
+                if not inside(lx+8, ly+4) and not inside(lx+8+_tw(label,11), ly+4): break   # 标签首尾都不落在方框里
             lx=max(x0, min(lx+8, x1-_tw(label,11)-4)); ly=max(12, ly-4 if same_layer else ly+4)   # 不出画布、不压到左侧层名
             out.append(_svg_text(lx, ly, label, 'd-elabel', 'start'))
     for n,(x,yy,bw,bh_) in pos.items():
