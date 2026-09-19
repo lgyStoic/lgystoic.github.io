@@ -88,7 +88,7 @@ plan ──► analyze (matrix, 每仓库一个 job, max-parallel 7) ──► m
 | 手动 `scope=all/focus` | 同上 |
 | 手动 `reuse_run_id=<run id>` | 不调用 Gemini，直接用那次 run 上传的产物重新合并、渲染（改渲染器 / 合并失败后重做用；产物保留 3 天） |
 
-- analyze 环境：`GEMINI_MODEL=gemini-3.1-pro-preview`、`GEMINI_FALLBACK_MODEL=gemini-flash-latest`（均可用仓库变量覆盖）、`GEMINI_MAX_OUTPUT_TOKENS=32768`、`GEMINI_TIMEOUT=600`、`GEMINI_PRIMARY_RETRIES=2`、job 超时 45 分钟。
+- analyze 环境：`GEMINI_MODEL=gemini-flash-latest`、`GEMINI_FALLBACK_MODEL=gemini-pro-latest`（均可用仓库变量覆盖；2026-09-19 起与全站一致首选 Flash）、`GEMINI_MAX_OUTPUT_TOKENS=32768`、`GEMINI_TIMEOUT=600`、`GEMINI_PRIMARY_RETRIES=2`、job 超时 45 分钟。
 - merge：下载 `contrib-*` 产物 → `--merge results --scope <scope>` → `build.py` → 提交。推送被拒时保留 `contributions.json`、回到最新 master 重新渲染，最多三次（不 rebase 生成物）。
 - `merge` 必须 `needs: [plan, analyze]`，否则拿不到 plan 的 outputs。
 
