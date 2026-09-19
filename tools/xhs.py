@@ -104,6 +104,23 @@ def rank_posts(posts: list[dict], byid: dict) -> list[dict]:
     return posts
 
 
+TITLE_SCHEMA = {'type':'object','properties':{'titles':{'type':'array','items':{'type':'object','properties':{'id':{'type':'string'},'title':{'type':'string'}},'required':['id','title'],'additionalProperties':False}}},'required':['titles'],'additionalProperties':False}
+
+
+def shorten_titles(posts: list[dict], limit: int = 20) -> None:
+    """小红书标题上限 20 字（中英文数字每个算 1 字）。超长的攒一批让模型改到 ≤18 字，保留信息量，emoji 最多 1 个。"""
+    long_ = [p for p in posts if len(p.get('title', '')) > limit]
+    if not long_: return
+    prompt = json.dumps([{'id': p['id'], 'title': p['title'], 'headline': p.get('headline', '')} for p in long_], ensure_ascii=False)
+    r = call_llm_json('把下面每条小红书标题改写到 18 个字符以内（中文、英文字母、数字、标点、emoji 每个都算 1 个字符）。保留最有信息量的名词和数字，去掉修饰词；emoji 最多保留 1 个放开头；不要标题党；不改事实。', prompt, TITLE_SCHEMA, label='xhs-title') or {}
+    new = {t['id']: t['title'].strip() for t in r.get('titles', []) if t.get('id')}
+    for p in long_:
+        t = new.get(p['id'])
+        if t and len(t) <= limit: p['title'] = t
+        else: log(f'[xhs] 标题仍超 {limit} 字，发布前请手改：{p["title"]}')
+    log(f'[xhs] 改短标题 {sum(1 for p in long_ if len(p["title"]) <= limit)}/{len(long_)} 条')
+
+
 def episode_number(repo: str, token: str, kind: str, date: str) -> int | None:
     """第几期 = 私有仓库该目录下 md 数（含今天）。没有 token 返回 None。"""
     if not token: return None
@@ -216,11 +233,12 @@ def clean_post(p: dict) -> dict:
     body = LABEL_RE.sub('', body)
     body = URL_RE.sub('', body)
     body = re.sub(r'\n{3,}', '\n\n', body).strip()
+    body = body.replace('关注不迷路', '关注我')  # 模型偶尔无视禁令，兜底替换
+    body = re.sub(r'(点赞)?关注走一波[！!。]?', '关注我', body)
     p['body'] = body
     title = re.sub(r'\s+', ' ', URL_RE.sub('', LABEL_RE.sub('', p.get('title', '')))).strip()
     if len(title) > 20:
         title = re.sub(r'(?<=[^\x00-\x7f])\s+|\s+(?=[^\x00-\x7f])', '', title)  # 只去中文旁的空格，英文词间保留
-        if len(title) > 20: log(f'[xhs] 标题超 20 字（{len(title)}），发布前请手改：{title}')
     p['title'] = title
     tags = [re.sub(r'[\s#]+', '', t) for t in p.get('tags', []) if re.sub(r'[\s#]+', '', t)]
     tags = [SERIES_TAG] + [t for t in tags if t != SERIES_TAG]
@@ -323,6 +341,7 @@ def run_cards(date: str, key: str):
     if not result: raise SystemExit('Gemini 未返回文稿')
     byid = {x['id']: x for x in items}
     posts = [clean_post(p) for p in result.get('posts', []) if p.get('id') in byid]
+    shorten_titles(posts)
     posts = rank_posts(posts, byid)  # 按小红书发布价值排序，前几条就是今天该发的
     token, repo = os.environ.get('INBOX_TOKEN', '').strip(), os.environ.get('INBOX_REPO', 'lgyStoic/radar-inbox')
     episode = episode_number(repo, token, 'cards', date)
@@ -387,6 +406,7 @@ def run_jobs(date: str, key: str):
     result = call_llm_json(JOBS_SYSTEM, prompt, JOBS_SCHEMA, label='xhs-jobs')
     if not result: raise SystemExit('Gemini 未返回岗位文稿')
     post = clean_post(dict(result)); post['id'] = 'cover'
+    shorten_titles([post])
     post['tags'] = [JOBS_TAG] + [t for t in post['tags'] if t not in (JOBS_TAG, SERIES_TAG)][:4]
     post['highlights'] = [h for h in result.get('highlights', []) if h.strip()][:6]
     art = gemini_image(post.get('image_prompt') or 'minimal flat illustration of a city skyline made of circuit traces and GPU chips, warm off-white background, rust accent, no text, no letters, no logos', key) if key else None
