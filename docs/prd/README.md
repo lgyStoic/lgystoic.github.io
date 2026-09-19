@@ -10,6 +10,7 @@
 | 笔记 | 记 | `/notes/` | [notes.md](notes.md) |
 | 上手指南 | 记 | `/guides/` | [guides.md](guides.md) |
 | 每日雷达 | 看 | `/radar/` | [radar.md](radar.md) |
+| 专题追踪 | 看 | `/radar/tracks/` | [tracks.md](tracks.md) |
 | 活动清单 | 看 | `/radar/events/` | [events.md](events.md) |
 | 工作机会 | 看 | `/radar/jobs/` | [jobs.md](jobs.md) |
 | 开源贡献路线 | 看 | `/radar/contributions/` | [contributions.md](contributions.md) |

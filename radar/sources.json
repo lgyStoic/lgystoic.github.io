@@ -535,6 +535,117 @@
       "require_topic": true,
       "window_hours": 720,
       "note": "30 天内新建且 500+ star 的仓库，按 star 排；{today-30d} 由 expand_url 换成日期。GitHub Trending RSS 没有日期，会把一年前的老仓库当新闻，已弃用"
+    },
+    {
+      "id": "hf-t2v",
+      "name": "HF 热榜 · 文生视频",
+      "kind": "json",
+      "url": "https://huggingface.co/api/models?pipeline_tag=text-to-video&sort=trendingScore&direction=-1&limit=20",
+      "json": {
+        "title": "{id}",
+        "link": "https://huggingface.co/{id}",
+        "description": "text-to-video · likes {likes} · trending {trendingScore}",
+        "published": "createdAt",
+        "min_number": {
+          "field": "likes",
+          "value": 10
+        }
+      },
+      "category": "trend",
+      "track": "video",
+      "weight": 2,
+      "window_hours": 336,
+      "note": "专题源：14 天内新建、likes≥10 的 text-to-video 模型"
+    },
+    {
+      "id": "hf-i2v",
+      "name": "HF 热榜 · 图生视频",
+      "kind": "json",
+      "url": "https://huggingface.co/api/models?pipeline_tag=image-to-video&sort=trendingScore&direction=-1&limit=20",
+      "json": {
+        "title": "{id}",
+        "link": "https://huggingface.co/{id}",
+        "description": "image-to-video · likes {likes} · trending {trendingScore}",
+        "published": "createdAt",
+        "min_number": {
+          "field": "likes",
+          "value": 10
+        }
+      },
+      "category": "trend",
+      "track": "video",
+      "weight": 2,
+      "window_hours": 336
+    },
+    {
+      "id": "gnews-video-en",
+      "name": "新闻 · 视频生成（英文）",
+      "url": "https://news.google.com/rss/search?q=%28%22video+generation%22+OR+%22text-to-video%22+OR+%22Sora+2%22+OR+%22Veo+3%22+OR+%22Wan+2%22+OR+%22Kling+AI%22%29+when%3A2d&hl=en-US&gl=US&ceid=US:en",
+      "category": "release",
+      "weight": 1,
+      "track_required": true,
+      "note": "专题源：只保留命中视频专题关键词的条目（Sora 会撞上地名，靠 track_required 过滤）"
+    },
+    {
+      "id": "gnews-video-cn",
+      "name": "新闻 · 视频生成（中文）",
+      "url": "https://news.google.com/rss/search?q=%28%E8%A7%86%E9%A2%91%E7%94%9F%E6%88%90+OR+%E5%8F%AF%E7%81%B5+OR+%E6%B5%B7%E8%9E%BA%E8%A7%86%E9%A2%91+OR+%E9%80%9A%E4%B9%89%E4%B8%87%E7%9B%B8+OR+Seedance+OR+Vidu%29+when%3A2d&hl=zh-CN&gl=CN&ceid=CN:zh-Hans",
+      "category": "release",
+      "weight": 1,
+      "track_required": true
+    },
+    {
+      "id": "gnews-world-en",
+      "name": "新闻 · 世界模型（英文）",
+      "url": "https://news.google.com/rss/search?q=%28%22world+model%22+OR+%22Genie+3%22+OR+%22Cosmos%22+OR+V-JEPA+OR+%22interactive+video%22%29+AI+when%3A3d&hl=en-US&gl=US&ceid=US:en",
+      "category": "research",
+      "weight": 1,
+      "track_required": true
+    },
+    {
+      "id": "gnews-world-cn",
+      "name": "新闻 · 世界模型（中文）",
+      "url": "https://news.google.com/rss/search?q=%E4%B8%96%E7%95%8C%E6%A8%A1%E5%9E%8B+when%3A3d&hl=zh-CN&gl=CN&ceid=CN:zh-Hans",
+      "category": "research",
+      "weight": 1,
+      "track_required": true,
+      "note": "3 天能有 100 条，靠 track_required + 跨源同题去重收敛"
+    },
+    {
+      "id": "gh-new-video-world",
+      "name": "GitHub 新仓库 · 视频 / 世界模型",
+      "kind": "json",
+      "url": "https://api.github.com/search/repositories?q=created:%3E{today-30d}+stars:%3E50+%22video+generation%22+OR+%22world+model%22+OR+text-to-video+OR+image-to-video&sort=stars&order=desc&per_page=20",
+      "json": {
+        "items": "items",
+        "title": "{full_name}",
+        "link": "html_url",
+        "description": "{description} · ⭐ {stargazers_count}",
+        "published": "created_at"
+      },
+      "category": "trend",
+      "weight": 1,
+      "track_required": true,
+      "window_hours": 720
+    },
+    {
+      "id": "arxiv-cscv",
+      "name": "arXiv cs.CV（专题）",
+      "url": "https://rss.arxiv.org/rss/cs.CV",
+      "category": "research",
+      "weight": 1,
+      "track_required": true,
+      "window_hours": 48,
+      "note": "每日几百篇，只保留命中专题关键词的；周末为空是正常的"
+    },
+    {
+      "id": "arxiv-csro",
+      "name": "arXiv cs.RO（专题）",
+      "url": "https://rss.arxiv.org/rss/cs.RO",
+      "category": "research",
+      "weight": 1,
+      "track_required": true,
+      "window_hours": 48
     }
   ]
 }

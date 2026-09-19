@@ -21,7 +21,8 @@ tools/radar.py            雷达 + 共用 LLM 层（call_llm_json/call_gemini_js
 tools/events.py           活动清单
 tools/jobs.py             岗位主抓取；import_liepin.py / import_ats_jobs.py / jobbuddy_enrich.py / jobs_ai.py 适配器
 tools/contributions.py    开源贡献：采集→五章→任务卡→校验→渲染（含 arch_svg/flow_svg）
-tools/inbox.py tools/xhs.py 私有收件箱、小红书文稿 + 封面卡片（写私有仓库 digest/ posts/）
+tools/tracks.py           专题追踪：累积时间线 / 主体线程 / 周综述 / 现状表 → radar/data/tracks/
+tools/inbox.py tools/xhs.py 私有收件箱、小红书文稿 + 封面卡片（写私有仓库 digest/ posts/；xhs --jobs 岗位周报、--tracks 专题周报）
 tools/check.py            自检（源健康、自动停用、巡检报告）
 tools/prd_index.py        生成 docs/prd/index.html
 tools/probe.py            源探针：试抓 URL 打印状态/条数（Actions 里用 probe.yml）
@@ -68,12 +69,13 @@ AI 模型：`call_llm_json` 走 Claude（有 key）否则 Gemini；模型名由�
 
 | 模块 | 入口 | 配置 | 数据 | 工作流 | 关键函数 | 日志标签 |
 |---|---|---|---|---|---|---|
-| 雷达 | `radar.py main` | `radar/sources.json`（site/categories/rules/sources；源字段 kind,json,urls(镜像),link_host,weight,window_hours,title_pattern,require_topic,disabled；X 抓不到，人物走 Bluesky RSS；趋势源必须带创建日期；URL 支持 {today-Nd}；加源前跑 probe.yml） | `radar/data/<日期>.json`, `seen.json` | radar.yml 23:50/00:20/02:05 UTC + guard | `collect, score_item, dedupe_titles, enrich_with_ai, finalize` | `[radar]`, `[radar-ai]` |
+| 雷达 | `radar.py main` | `radar/sources.json`（site/categories/rules/sources；源字段 kind,json,urls(镜像),link_host,weight,window_hours,title_pattern,require_topic,disabled；X 抓不到，人物走 Bluesky RSS；趋势源必须带创建日期；URL 支持 {today-Nd}；加源前跑 probe.yml） | `radar/data/<日期>.json`, `seen.json` | radar.yml 23:50/00:20/02:05 UTC + guard | `collect(match_tracks), score_item, dedupe_titles, enrich_with_ai, finalize` | `[radar]`, `[radar-ai]` |
+| 专题 | `tracks.py main`（雷达后）；打标在 `radar.py match_tracks` | `radar/tracks.json`（id,name,blurb,keywords,weekly_post）；sources 源字段 track / track_required | `radar/data/tracks/<id>.json`（entries,threads,digest,sota） | radar.yml 第三步；reason=tracks-digest 强制重写综述 | `match_tracks, build_track, extract_entities, write_digest; build.py write_track_pages` | `[tracks]` |
 | 活动 | `events.py main` | `event_sources.json`（site.cities/keep_past_days/max_*；kind rss,json,ics,page,yaml,wechat） | `events.json` | radar.yml 第二步 | `collect, fetch_detail, enrich_events, to_event` | `[events]`, `[events-ai]` |
 | 岗位 | `jobs.py main` → 适配器 → `jobs_ai.py` | `job_sources.json`（profile.directions/title_terms/exclude_title/max_per_company(_cn)；sources kind 12 种；disabled+disabled_reason；search_links） | `jobs.json` | jobs.yml 00:35 UTC | `match, region_of, limit_jobs, fetch_source(feishu_csrf, feishu_site_path), collect` | `源失败`, `岗位：N；来源成功`, `猎聘：`, `jobs-ai：` |
 | 开源贡献 | `contributions.py main` | `contribution_repos.json`（str 或 {repo,focus,young}） | `contributions.json` | contributions.yml 周一/周四 01:20 UTC；inputs scope, reuse_run_id | `collect_repo, run_analysis, task_prompt, valid_tasks, merge_tasks, scrub_channels, assemble, render, arch_svg, flow_svg` | `[contribution-<owner>-<repo>-<stage>]`, `丢弃…`, `降级到` |
 | 收件箱 | `inbox.py` | env INBOX_TOKEN, INBOX_REPO | 私有仓库 digest/, state.json | radar.yml 第三步 | `fetch_comments, enrich, render_day_md` | `[inbox]` |
-| 小红书文稿 | `xhs.py run_cards / run_jobs(--jobs)` | env XHS_IMAGES(4), XHS_JOBS_REGION, GEMINI_IMAGE_MODEL；xhs.yml inputs date, images, mode, jobs_region, preview, list_models | 私有仓库 posts/cards/<日期>.md+/<id>.jpg、posts/jobs/<日期>.md+/cover.jpg、posts/README.md（本地 radar/data/xhs* 已 gitignore） | xhs.yml 01:10 UTC 每日卡片；周一 01:40 UTC 岗位周报 | `rank_posts(0.5 量表+0.3 热度+0.2 优先级), episode_number, pick_jobs, clean_post, gemini_image, card_html, render_cards, publish, update_index` | `[xhs] 配图：`, `[xhs] 封面图 N 张`, `[xhs] 岗位周报`, `[xhs] 标题超 20 字` |
+| 小红书文稿 | `xhs.py run_cards / run_jobs(--jobs)` | env XHS_IMAGES(4), XHS_JOBS_REGION, GEMINI_IMAGE_MODEL；xhs.yml inputs date, images, mode, jobs_region, preview, list_models | 私有仓库 posts/cards/<日期>.md+/<id>.jpg、posts/jobs/<日期>.md+/cover.jpg、posts/README.md（本地 radar/data/xhs* 已 gitignore） | xhs.yml 01:10 UTC 每日卡片；周一 01:40 岗位周报；周三 01:40 专题周报 | `rank_posts(0.5 量表+0.3 热度+0.2 优先级), episode_number, pick_jobs, clean_post, gemini_image, card_html, render_cards, publish, update_index` | `[xhs] 配图：`, `[xhs] 封面图 N 张`, `[xhs] 岗位周报`, `[xhs] 标题超 20 字` |
 | 巡检 | `check.py` | `DISABLE_AFTER=3`, `DISABLE_ZERO_AFTER` | `health.json`, `radar/checks/*.md`, `last-run.json` | radar.yml 末步；health.yml 00:35/02:20 UTC | `main` | 报告 ≤8 行 |
 | 笔记 | `build.py` | `notes/notes.json` | — | — | `render_latest, render_archive, render_tag_filters` | — |
 | 指南 | `build.py build_guides` | `guides/guides.json`, `guides/links.json` | — | — | `apply_affiliate_links, apply_guide_support, render_guide_jsonld` | `guides/<id>: 推荐位 N 个已填` |

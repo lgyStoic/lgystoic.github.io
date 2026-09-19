@@ -1,0 +1,110 @@
+{
+ "id": "world",
+ "name": "世界模型",
+ "blurb": "可交互的生成式世界模拟：Genie、Cosmos、V-JEPA、Dreamer、GameNGen、Oasis、Matrix-Game、HunyuanWorld 等，以及动作条件视频生成、4D 生成与具身仿真。",
+ "updated": "2026-09-19T09:09:26+00:00",
+ "entries": [
+  {
+   "id": "7e7ad59df36b163f",
+   "date": "2026-09-19",
+   "title": "JEPA-Anything: Learning Predictive Models across Different Worlds",
+   "link": "https://huggingface.co/papers/2609.20800",
+   "source": "HF Papers 日榜",
+   "priority": "medium",
+   "summary": "论文提出 JEPA-Anything，将正交预测因子分解扩展至跨物理与视觉的世界模型构建。",
+   "why": "涉及世界模型表示学习与自监督架构，值得关注潜在生成范式。",
+   "tags": [
+    "世界模型",
+    "JEPA",
+    "表征学习"
+   ],
+   "entity": "JEPA-Anything",
+   "kind": "news"
+  },
+  {
+   "id": "c090f0dc6dfc2fbd",
+   "date": "2026-09-18",
+   "title": "Zing-0.5: Toward Playable Worlds with Real-Time Joint Action and Text Control",
+   "link": "https://huggingface.co/papers/2609.17909",
+   "source": "HF Papers 日榜",
+   "priority": "high",
+   "summary": "推出 5B 自回归世界模型 Zing-0.5，支持通过键盘和文本实时控制生成的可玩世界。",
+   "why": "涉及视频/3D生成和世界模型，与你关注的生成模型方向完全契合。",
+   "tags": [
+    "World Model",
+    "Video Generation",
+    "Autoregressive"
+   ],
+   "entity": "Zing-0.5",
+   "kind": "news"
+  },
+  {
+   "id": "78cff9531e6d3b2a",
+   "date": "2026-09-16",
+   "title": "AlayaVista: Streaming World Modeling from Panoramic States to Perspective Video",
+   "link": "https://huggingface.co/papers/2609.14462",
+   "source": "HF Papers 日榜",
+   "priority": "high",
+   "summary": "提出 AlayaVista，一种解耦全景世界演化与透视观察的流式视频世界模型。",
+   "why": "视频生成与世界模型前沿研究，值得关注。",
+   "tags": [
+    "World Model",
+    "Video Generation"
+   ],
+   "entity": "AlayaVista",
+   "kind": "news"
+  },
+  {
+   "id": "f779c7312a5685b3",
+   "date": "2026-09-14",
+   "title": "World in World: Explore the World with World Models",
+   "link": "https://huggingface.co/papers/2609.11548",
+   "source": "HF Papers 日榜",
+   "priority": "high",
+   "summary": "World in World 提出免训练推理接口，支持从新视角对自回归视频世界模型进行长时间探索。",
+   "why": "面向视频世界模型的长序列视点可控生成，直击当前核心痛点。",
+   "tags": [
+    "视频生成",
+    "世界模型",
+    "推理优化",
+    "视点控制"
+   ],
+   "entity": "World in World",
+   "kind": "news"
+  },
+  {
+   "id": "d089b3b20144fd24",
+   "date": "2026-09-14",
+   "title": "Recursive Code World Models: Building Complex Worlds through Recursive Scene Programs",
+   "link": "https://huggingface.co/papers/2609.11499",
+   "source": "HF Papers 日榜",
+   "priority": "medium",
+   "summary": "RCWM 结合递归场景程序与全局局部解算器，实现从单张参考图递归生成复杂 3D 世界。",
+   "why": "将代码程序与世界模型结合生成 3D 场景，值得关注机制演进。",
+   "tags": [
+    "3D生成",
+    "世界模型",
+    "神经代码"
+   ],
+   "entity": "Recursive Code World",
+   "kind": "news"
+  }
+ ],
+ "threads": {
+  "JEPA-Anything": [
+   "7e7ad59df36b163f"
+  ],
+  "Zing-0.5": [
+   "c090f0dc6dfc2fbd"
+  ],
+  "AlayaVista": [
+   "78cff9531e6d3b2a"
+  ],
+  "World in World": [
+   "f779c7312a5685b3"
+  ],
+  "Recursive Code World": [
+   "d089b3b20144fd24"
+  ]
+ }
+}
