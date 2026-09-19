@@ -34,7 +34,7 @@ posts/
 | 功能 | 说明 |
 |---|---|
 | 选条目 | `radar/data/<日期>.json` 里 priority ∈ {high, medium} 的前 20 条 |
-| 写文稿 | 一次 `call_llm_json` 生成全部：`headline`（12–24 字，封面用）、`takeaways`（2–4 条 ≤40 字，封面用）、`title`（小红书标题 ≤20 字）、`body`（300–600 字，短段落空行分隔，禁小节标签、禁 URL、第一句要有钩子、第一人称）、`tags`（3–5 个话题词，首个固定系列词 `AIInfra学习卡片`）、`image_prompt`（英文极简扁平插画，禁文字/logo）。`clean_post` 再兜底清掉泄漏的「标题：/开头：」标签与 URL，标签去空格、截 5 个，title 截 20 字 |
+| 写文稿 | 一次 `call_llm_json` 生成全部：`headline`（12–24 字，封面用）、`takeaways`（2–4 条 ≤40 字，封面用）、`title`（小红书标题 ≤20 字）、`body`（300–600 字，短段落空行分隔，禁小节标签、禁 URL、第一句要有钩子、第一人称）、`tags`（3–5 个话题词，首个固定系列词 `AIInfra学习卡片`）、`image_prompt`（英文极简扁平插画，禁文字/logo）。`clean_post` 再兜底清掉泄漏的「标题：/开头：」标签与 URL、替换「关注不迷路」类模板话，标签去空格、截 5 个；`shorten_titles` 把超 20 字的标题攒一批让模型改到 ≤18 字（改不下来的打日志留人改） |
 | 排序 | `rank_posts`：文稿生成后再调一次 Gemini（`RANK_SYSTEM`），同批 20 条各给 4 维 1–5 分（受众广度 / 钩子强度 / 可讨论性 / 收藏价值）+ 一句理由；最终分 = 0.5 × 量表归一 + 0.3 × 客观热度（`objective_heat`：雷达优先级、类别、大厂/明星模型名 `BRAND_RE`、标题含数字）+ 0.2 × 雷达优先级。模型失败退回 0.6 热度 + 0.4 优先级。按最终分排序，前 3 条标「🔥 今日必发」，md 开头附评分表 |
 | 期数 | `episode_number`：私有仓库 `posts/<kind>/` 的 md 数（含今天）= 第 N 天 / 第 N 期，写进封面页眉与 md 标题，提示词可用于关注引导 |
 | 配图 | 排序后的前 `XHS_IMAGES`（默认 4）条调用生图：按 `GEMINI_IMAGE_MODEL`（逗号分隔，默认 `gemini-3.1-flash-image,gemini-2.5-flash-image`）依次调 `generateContent`（`responseModalities: [IMAGE, TEXT]`，读 `inlineData`）；可选再试 `GEMINI_IMAGEN_MODEL` 的 `:predict`（账号无 Imagen 时留空）；都失败返回 None |
