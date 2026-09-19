@@ -35,7 +35,9 @@ posts/
 |---|---|
 | 选条目 | `radar/data/<日期>.json` 里 priority ∈ {high, medium} 的前 20 条 |
 | 写文稿 | 一次 `call_llm_json` 生成全部：`headline`（12–24 字，封面用）、`takeaways`（2–4 条 ≤40 字，封面用）、`title`（小红书标题 ≤20 字）、`body`（300–600 字，短段落空行分隔，禁小节标签、禁 URL、第一句要有钩子、第一人称）、`tags`（3–5 个话题词，首个固定系列词 `AIInfra学习卡片`）、`image_prompt`（英文极简扁平插画，禁文字/logo）。`clean_post` 再兜底清掉泄漏的「标题：/开头：」标签与 URL，标签去空格、截 5 个，title 截 20 字 |
-| 配图 | 前 `XHS_IMAGES`（默认 4）条调用生图：按 `GEMINI_IMAGE_MODEL`（逗号分隔，默认 `gemini-3.1-flash-image,gemini-2.5-flash-image`）依次调 `generateContent`（`responseModalities: [IMAGE, TEXT]`，读 `inlineData`）；可选再试 `GEMINI_IMAGEN_MODEL` 的 `:predict`（账号无 Imagen 时留空）；都失败返回 None |
+| 排序 | `rank_posts`：文稿生成后再调一次 Gemini（`RANK_SYSTEM`），同批 20 条各给 4 维 1–5 分（受众广度 / 钩子强度 / 可讨论性 / 收藏价值）+ 一句理由；最终分 = 0.5 × 量表归一 + 0.3 × 客观热度（`objective_heat`：雷达优先级、类别、大厂/明星模型名 `BRAND_RE`、标题含数字）+ 0.2 × 雷达优先级。模型失败退回 0.6 热度 + 0.4 优先级。按最终分排序，前 3 条标「🔥 今日必发」，md 开头附评分表 |
+| 期数 | `episode_number`：私有仓库 `posts/<kind>/` 的 md 数（含今天）= 第 N 天 / 第 N 期，写进封面页眉与 md 标题，提示词可用于关注引导 |
+| 配图 | 排序后的前 `XHS_IMAGES`（默认 4）条调用生图：按 `GEMINI_IMAGE_MODEL`（逗号分隔，默认 `gemini-3.1-flash-image,gemini-2.5-flash-image`）依次调 `generateContent`（`responseModalities: [IMAGE, TEXT]`，读 `inlineData`）；可选再试 `GEMINI_IMAGEN_MODEL` 的 `:predict`（账号无 Imagen 时留空）；都失败返回 None |
 | 封面卡片 | 1080×1440 HTML（页眉「Anaxagore · AI 信息学习卡片 · 日期 · 序号」→ 560px 配图区 → 标题 → 编号要点 ≤4 → 页脚来源域名 + `lgystoic.github.io/radar/<日期>/`），Playwright Chromium 截 JPEG（质量 86，约 100–300 KB） |
 | 写入 | 本地 `radar/data/xhs/<日期>/<id>.jpg` 与 `radar/data/xhs-<日期>.md`；私有仓库 `posts/<日期>/<id>.jpg` + `posts/<日期>.md`。md 每条：封面 → **标题** → **正文** → `#标签` 一行（复制即发）→ 原文名 + 链接（单独给人决定是否放评论区）→ 折叠的封面要点 |
 | 排查 | `--list-models` / `--list-image-models` 列账号可用模型；工作流勾 `list_models`。勾 `preview` 把第 1 条标题正文打到日志（检查文风，日志公开可见，文稿本身不敏感） |
@@ -72,7 +74,8 @@ radar/data/<日期>.json ─筛 high/medium 前20─▶ call_llm_json(SYSTEM, SC
 
 ## 6. 规则
 
-- 卡片顺序 = 雷达顺序（分数高的在前），序号从 01 起；只给前 N 条生图，其余卡片不渲染（节省时间，md 仍有全部草稿）。
+- 卡片顺序 = 小红书发布价值排序（`rank_posts`），不是雷达顺序；序号从 01 起；只给前 N 条生图，其余卡片不渲染（md 仍有全部草稿）。
+- 排序权重 0.5 / 0.3 / 0.2 是初始拍脑袋值：等站长回填几周实际的赞 / 收藏 / 关注数据后再校准（待办 5）。
 - 生图提示词由模型给（英文），为空时用 headline 兜底拼一句；两条模型都失败只记日志。
 - 配图 `object-fit: cover` 填满 560px 区域，因此提示词要求 1:1 或近方构图、无文字。
 - 中文字体依赖 `fonts-noto-cjk`（Actions 里 apt 安装），本地缺字体会出方块但不报错。
@@ -96,7 +99,7 @@ radar/data/<日期>.json ─筛 high/medium 前20─▶ call_llm_json(SYSTEM, SC
 
 ## 9. 验证与排查
 
-- 日志：`[xhs] 配图：<模型>`（生图成功）、`[xhs] <模型> HTTP 404/400：…`（模型名不对或未开放，用 `--list-image-models` 看真实名字，再改仓库变量）、`[xhs] 封面图 N 张（其中 M 张带生图配图）`、`[xhs] 渲染封面失败：…`、`[xhs] 生成 N 条文稿、K 张封面，写入 <repo>`。
+- 日志：`[xhs-rank] Gemini 完成`（排序调用）、`[xhs] 今日必发：A / B / C`、`[xhs] 配图：<模型>`（生图成功）、`[xhs] <模型> HTTP 404/400：…`（模型名不对或未开放，用 `--list-image-models` 看真实名字，再改仓库变量）、`[xhs] 封面图 N 张（其中 M 张带生图配图）`、`[xhs] 渲染封面失败：…`、`[xhs] 生成 N 条文稿、K 张封面，写入 <repo>`。
 - 想看图：Actions 该次运行的 artifact `xhs-cards`，或私有仓库 `posts/<日期>/`。
 - 生图配额：Gemini 生图按张计费/限流，默认只做 4 张；配额报错（429）会自动退回无图卡片。
 
@@ -113,6 +116,7 @@ radar/data/<日期>.json ─筛 high/medium 前20─▶ call_llm_json(SYSTEM, SC
 2. 让 Gemini 用配图评估一次「是否含文字 / 是否离题」，不合格重生一次。
 3. 知乎 / 即刻版本文稿。
 4. 岗位周报按地区轮换（国内 / 海外远程交替），或一周两期。
+5. 发布数据回填：私有仓库 `posts/stats.md`（日期、序号、赞、收藏、关注增量）→ 用它校准排序权重与量表提示词。
 
 ## 12. 常见改动去哪改
 
@@ -126,3 +130,4 @@ radar/data/<日期>.json ─筛 high/medium 前20─▶ call_llm_json(SYSTEM, SC
 | 换私有仓库 / 路径 | `INBOX_REPO`；路径在 `out_paths`，写入在 `publish` |
 | 改岗位筛选（条数 / 每家上限 / 匿名规则） | `pick_jobs`、`ANON_RE` |
 | 改岗位文案规则 | `JOBS_SYSTEM` |
+| 改发布排序量表 / 权重 | `RANK_SYSTEM`、`rank_posts` 里的 0.5/0.3/0.2、`BRAND_RE`、`CAT_HEAT` |
