@@ -109,7 +109,7 @@ def gemini_image(prompt: str, key: str) -> bytes | None:
     return None
 
 
-LABEL_RE = re.compile(r'^\s*[\*#]*\s*(标题|开头|发生了什么|为什么值得学|我会怎么验证/实践|我会怎么验证|实践|结尾提问|结尾|信息来源)\s*[:：]\s*\**\s*', re.M)
+LABEL_RE = re.compile(r'^[ \t\*#]*(标题|开头|发生了什么|为什么值得学|我会怎么验证/实践|我会怎么验证|实践|结尾提问|结尾|信息来源)\s*[:：]\s*\**\s*', re.M)
 URL_RE = re.compile(r'https?://\S+')
 
 
