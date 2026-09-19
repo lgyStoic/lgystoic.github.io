@@ -5,7 +5,7 @@
 ## 0. 不变量（违反任何一条即回退）
 
 - 纯静态；无框架、无构建依赖；页面不加载第三方脚本（例外：GoatCounter `gc.zgo.at`、giscus）。
-- 页面在 340/360/390/430px 视口 `document.documentElement.scrollWidth <= 视口宽`。验证用 Playwright（`/opt/pw-browsers/chromium-1194/chrome-linux/chrome`），不用桌面 Chrome 窄窗口截图。
+- 页面在 340/360/390/430px 视口 `document.documentElement.scrollWidth <= 视口宽`。验证用 `python3 tools/check_mobile.py <页面…>`（Playwright；`--all` 全站），不用桌面 Chrome 窄窗口截图。
 - `radar/data/*.json` 公开 → 无密钥、无私密内容。私密只进 `lgyStoic/radar-inbox`。
 - 所有模型调用经 `tools/radar.py:call_llm_json`；没有 key 必须退回规则而不是失败。
 - 单个源/仓库失败不得让整轮失败；失败沿用上次结果并标 `stale`/写 `sources[].error`。
@@ -24,6 +24,7 @@ tools/contributions.py    开源贡献：采集→五章→任务卡→校验→
 tools/inbox.py tools/xhs.py 私有收件箱、小红书文稿（写私有仓库）
 tools/check.py            自检（源健康、自动停用、巡检报告）
 tools/prd_index.py        生成 docs/prd/index.html
+tools/check_mobile.py     Playwright 手机宽度溢出检查
 tools/indexnow.py         radar.yml 推送后把当天变化页面推给 Bing IndexNow（密钥 site.json.seo.indexnow_key + 根目录 <key>.txt）
 radar/{sources,event_sources,job_sources,contribution_repos,ats_companies}.json  配置
 radar/data/               数据（<日期>.json, events.json, jobs.json, contributions.json, health.json, last-run.json, seen.json）
@@ -33,6 +34,7 @@ guides/{guides,links}.json 指南篇目、推荐链接注册表
 .github/workflows/{radar,health,jobs,contributions,xhs}.yml
 .github/agents/daily-check.md  判断层手册（边界）
 docs/prd/*.md             本目录
+docs/tasks/*.md           进行中的任务说明（自包含，先读 agent.md 再读它）
 tests/test_jobs.py        唯一单测
 ```
 
@@ -45,6 +47,7 @@ python3 tools/radar.py --dry-run       # RADAR_FIXTURE_DIR=tests/fixtures 可离
 python3 tools/events.py --dry-run
 python3 tools/contributions.py --list [--focus] | --only owner/repo --out f.json | --merge dir [--scope focus]
 python3 tools/prd_index.py             # 重生成人读版总览
+python3 tools/check_mobile.py --all    # 手机宽度溢出检查（需 pip install playwright）
 ```
 
 环境限制（Claude Code 沙箱）：能访问 api.github.com（仅本仓库）、raw.githubusercontent.com、PyPI；访问不到国内招聘站、hn.algolia.com、Azure blob（Actions 产物）。这类问题只能通过修改后在 Actions 跑一次、读日志验证。
