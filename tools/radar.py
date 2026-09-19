@@ -8,8 +8,8 @@
 
 环境变量：
     ANTHROPIC_API_KEY   有则调用 Claude 做优先级判断和中文摘要（优先）。
-    GEMINI_API_KEY      没有 Anthropic key 时改用 Gemini。默认 gemini-pro-latest（最强的 Pro 线），
-                        遇到配额或服务错误自动降级到 gemini-flash-latest；可用 GEMINI_MODEL /
+    GEMINI_API_KEY      没有 Anthropic key 时改用 Gemini。默认 gemini-pro-latest（Pro 线最新，2026-09 解析为 3.1 Pro），
+                        遇到配额或服务错误自动降级到 gemini-flash-latest（2026-09 解析为 3.8 Flash）；可用 GEMINI_MODEL /
                         GEMINI_FALLBACK_MODEL 覆盖。
                         两个都没有则退回关键词规则，每条摘要取原文描述的前 160 字。
     RADAR_WINDOW_HOURS  覆盖 sources.json 里的 window_hours，首次运行或补漏时可以放大到 168。
@@ -422,21 +422,22 @@ def _gemini_once(model: str, api_key: str, system: str, user_msg: str, schema: d
         LAST_GEMINI_ERROR = "transient"
         return None
 
+    usage = data.get("usageMetadata", {})
+    finish = ((data.get("candidates") or [{}])[0]).get("finishReason", "")
+    if finish not in ("STOP", ""):
+        # Gemini 3.x 的思考 token 也算在 maxOutputTokens 里，MAX_TOKENS 多半是预算不够
+        log(f"[{label}] Gemini {model} finishReason={finish}，输出被截断（output={usage.get('candidatesTokenCount')} thoughts={usage.get('thoughtsTokenCount')} 上限={body['generationConfig']['maxOutputTokens']}），调大 GEMINI_MAX_OUTPUT_TOKENS")
+        LAST_GEMINI_ERROR = "permanent"
+        return None
     try:
         cand = data["candidates"][0]
-        finish = cand.get("finishReason", "")
         text = "".join(part.get("text", "") for part in cand["content"]["parts"])
         parsed = json.loads(text)
     except (KeyError, IndexError, json.JSONDecodeError) as e:
         log(f"[{label}] Gemini {model} 返回无法解析（{e}；{str(data)[:160]}）")
         LAST_GEMINI_ERROR = "permanent"
         return None
-    if finish not in ("STOP", ""):
-        log(f"[{label}] Gemini {model} finishReason={finish}，输出可能被截断")
-        LAST_GEMINI_ERROR = "permanent"
-        return None
     version = data.get("modelVersion") or model
-    usage = data.get("usageMetadata", {})
     log(f"[{label}] Gemini 完成（{version}）：prompt={usage.get('promptTokenCount')} output={usage.get('candidatesTokenCount')} thoughts={usage.get('thoughtsTokenCount')}")
     return parsed, version
 
