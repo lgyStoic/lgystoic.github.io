@@ -2,7 +2,7 @@
  "id": "video",
  "name": "视频生成模型",
  "blurb": "文生视频、图生视频、视频 VAE 与 DiT 加速：Wan、Sora、Veo、可灵、海螺、Seedance、Vidu、LTX、HunyuanVideo 等的发布、论文、benchmark 与推理框架支持。",
- "updated": "2026-09-19T09:09:26+00:00",
+ "updated": "2026-09-19T09:25:16+00:00",
  "entries": [
   {
    "id": "e00f945ba32ca3a9",
@@ -38,6 +38,408 @@
    ],
    "entity": "WarmBloodAban",
    "kind": "news"
+  },
+  {
+   "id": "d68c738c749b09d7",
+   "date": "2026-09-19",
+   "title": "【ECCV2026 现场】视频生成看起来很逼真，但模型真懂物理吗？ - sohu.com",
+   "link": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxOLU9ibDNNbnpRd1BwM0Rzb1ZvMTg3TEQxSEx6T3h4YnFvX0pJYjh2aTA3YTBmSm5wR0cyb0h2YkFuMWFlQUlLb2NveFlLdGpuY3Q1cnoyZ3NqRl9KM0xxS0FkTDFhMzFjcmRHX0k4eWFfRTd2elFnTS1maHRVc29PX1JfUjloWDZT?oc=5",
+   "source": "新闻 · 视频生成（中文）",
+   "priority": "medium",
+   "summary": "ECCV 现场研讨视频生成模型的物理世界表征与理解能力。",
+   "why": "探讨视频模型物理规律准确度，涉及世界模型前沿瓶颈。",
+   "tags": [
+    "世界模型",
+    "视频生成",
+    "计算机视觉"
+   ],
+   "entity": "ECCV2026",
+   "kind": "news"
+  },
+  {
+   "id": "c13bd6a0bdc8d14a",
+   "date": "2026-09-19",
+   "title": "realrebelai/FastH3-V2_GGUFs",
+   "link": "https://huggingface.co/realrebelai/FastH3-V2_GGUFs",
+   "source": "HF 热榜 · 文生视频",
+   "priority": "medium",
+   "summary": "FastH3-V2 GGUF 量化版登上 HF 文生视频热榜（likes 14）。",
+   "why": "视频生成模型量化格式，关注边缘推理与低资源显存优化。",
+   "tags": [
+    "GGUF",
+    "视频生成",
+    "量化"
+   ],
+   "entity": "FastH3-V2",
+   "kind": "release"
+  },
+  {
+   "id": "5d60c00dd010b835",
+   "date": "2026-09-19",
+   "title": "Can MiniMax-H3 Reason About the Physical World? An Evaluation of Omni-Modal Generative Model",
+   "link": "https://huggingface.co/papers/2609.18323",
+   "source": "HF Papers 日榜",
+   "priority": "medium",
+   "summary": "构建物理世界推理评估框架，系统评测多模态统一模型 MiniMax-H3。",
+   "why": "关注多模态生成模型在物理世界推理上的能力，可作为评测参考。",
+   "tags": [
+    "MiniMax-H3",
+    "多模态生成",
+    "视频生成",
+    "评测"
+   ],
+   "entity": "MiniMax-H3",
+   "kind": "paper"
+  },
+  {
+   "id": "4c9585c505c73637",
+   "date": "2026-09-19",
+   "title": "LynnReal-AI/LynnReal-Omni",
+   "link": "https://github.com/LynnReal-AI/LynnReal-Omni",
+   "source": "GitHub 新仓库 · 视频 / 世界模型",
+   "priority": "medium",
+   "summary": "四步快速推理多任务全能视频生成框架LynnReal-Omni登上GitHub热榜（⭐ 193）。",
+   "why": "四步蒸馏推理与流式长视频生成，直接关联推理优化方向。",
+   "tags": [
+    "GitHub",
+    "少步蒸馏",
+    "视频生成"
+   ],
+   "entity": "LynnReal-Omni",
+   "kind": "release"
+  },
+  {
+   "id": "b36da72ebbe49c7c",
+   "date": "2026-09-19",
+   "title": "CZMartin22/TaoMate-H3-3step-ComfyUI",
+   "link": "https://huggingface.co/CZMartin22/TaoMate-H3-3step-ComfyUI",
+   "source": "HF 热榜 · 图生视频",
+   "priority": "medium",
+   "summary": "TaoMate-H3 3步快速推理 ComfyUI 流程登上 HF 热榜（likes 31）。",
+   "why": "少步数蒸馏快速采样，涉及生成模型采样加速技巧。",
+   "tags": [
+    "少步采样",
+    "图生视频",
+    "推理加速"
+   ],
+   "entity": "TaoMate-H3-3step-ComfyUI",
+   "kind": "tool"
+  },
+  {
+   "id": "21e5acfb8dfb8b87",
+   "date": "2026-09-19",
+   "title": "Lightricks/LTX-2.5-22b-LoRA-Cinemagraph",
+   "link": "https://huggingface.co/Lightricks/LTX-2.5-22b-LoRA-Cinemagraph",
+   "source": "HF 热榜 · 图生视频",
+   "priority": "medium",
+   "summary": "Lightricks 发布 LTX-2.5 动图生成 LoRA 并登上 HF 热榜。",
+   "why": "知名团队 LTX 视频系列衍生权重，微动态生成参考。",
+   "tags": [
+    "LTX",
+    "视频生成",
+    "LoRA"
+   ],
+   "entity": "LTX-2.5-22b-LoRA-Cinemagraph",
+   "kind": "release"
+  },
+  {
+   "id": "b9ae74709d28cc8a",
+   "date": "2026-09-19",
+   "title": "TaoLiveAIGC/TaoMate-H3",
+   "link": "https://huggingface.co/TaoLiveAIGC/TaoMate-H3",
+   "source": "HF 热榜 · 文生视频",
+   "priority": "medium",
+   "summary": "TaoMate-H3 登上 HF 文生视频热榜（likes 94）。",
+   "why": "社区视频生成模型权重，可扫一眼其生成画质与推理成本。",
+   "tags": [
+    "文生视频",
+    "视频生成",
+    "HuggingFace"
+   ],
+   "entity": "TaoMate-H3",
+   "kind": "release"
+  },
+  {
+   "id": "a60f4bf0eee07cbd",
+   "date": "2026-09-19",
+   "title": "coll3879xx-cyber/dola-render-gateway",
+   "link": "https://github.com/coll3879xx-cyber/dola-render-gateway",
+   "source": "GitHub 新仓库 · 视频 / 世界模型",
+   "priority": "medium",
+   "summary": "开源项目 dola-render-gateway 定位为高性能视频生成网关与会话协调器。",
+   "why": "涉及视频生成服务的调度与推理会话管理，可参考其工程架构。",
+   "tags": [
+    "视频生成",
+    "推理系统",
+    "网关调度"
+   ],
+   "entity": "dola-render-gateway",
+   "kind": "tool"
+  },
+  {
+   "id": "d226d0f5dcc9c954",
+   "date": "2026-09-19",
+   "title": "delaprada/Mask-Forcing",
+   "link": "https://github.com/delaprada/Mask-Forcing",
+   "source": "GitHub 新仓库 · 视频 / 世界模型",
+   "priority": "medium",
+   "summary": "Mask Forcing 官方代码开源，通过双噪声掩码展开优化自回归视频扩散蒸馏。",
+   "why": "聚焦自回归视频扩散模型的蒸馏与采样加速，技术相关度高。",
+   "tags": [
+    "视频生成",
+    "扩散模型",
+    "模型蒸馏"
+   ],
+   "entity": "Mask Forcing",
+   "kind": "tool"
+  },
+  {
+   "id": "07411c10445a1afa",
+   "date": "2026-09-19",
+   "title": "AMAP-ML/DreamX-Creator",
+   "link": "https://github.com/AMAP-ML/DreamX-Creator",
+   "source": "GitHub 新仓库 · 视频 / 世界模型",
+   "priority": "medium",
+   "summary": "高德2K分辨率原生音视频协同生成项目DreamX-Creator登上GitHub热榜（⭐ 303）。",
+   "why": "原生音视频联合生成，涉及多模态DiT架构及高分辨率算子需求。",
+   "tags": [
+    "GitHub",
+    "视频生成",
+    "多模态"
+   ],
+   "entity": "DreamX-Creator",
+   "kind": "release"
+  },
+  {
+   "id": "3577b5df0b898e6b",
+   "date": "2026-09-19",
+   "title": "wide-trace/open-higgsfield",
+   "link": "https://github.com/wide-trace/open-higgsfield",
+   "source": "GitHub 新仓库 · 视频 / 世界模型",
+   "priority": "medium",
+   "summary": "统一图文生视频Studio前端项目open-higgsfield登上GitHub热榜（⭐ 3202）。",
+   "why": "多视频生成模型聚合工作台，偏前端集成可按需扫一眼。",
+   "tags": [
+    "GitHub",
+    "视频生成",
+    "Studio"
+   ],
+   "entity": "open-higgsfield",
+   "kind": "tool"
+  },
+  {
+   "id": "dfaf8991ab0b320c",
+   "date": "2026-09-19",
+   "title": "视频生成模型架构演变：从GAN到Diffusion再到DiT - 微博",
+   "link": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE1mekZvQTdaaElseGQzR1NYcmVoY2ZMMmlGRHNpOHYyQ0hpM1JxMlVZVWprRUpING1nNFFtVGpSeEltdU1hX195bUhZS3M3S2t2UnRSREtn?oc=5",
+   "source": "新闻 · 视频生成（中文）",
+   "priority": "low",
+   "summary": "微博博主发文梳理视频生成模型从GAN、Diffusion到DiT的架构演变。",
+   "why": "泛科普盘点，无新增技术干料可跳过。",
+   "tags": [
+    "视频生成",
+    "DiT",
+    "架构演变"
+   ],
+   "entity": "",
+   "kind": "opinion"
+  },
+  {
+   "id": "cb608d64595d8497",
+   "date": "2026-09-19",
+   "title": "火山引擎×AMD助力砹脉营销（A.M.A）以Seedance重塑汽车营销新范式 - t.cj.sina.cn",
+   "link": "https://news.google.com/rss/articles/CBMijAFBVV95cUxNUi00eTdhZ04xWXU1SVBOb1VrUUZDYnA4a3VvS2RwXy12Q3FmeXFablpaTUpoLUFQZUg5d0NzYk1oclhqdEpfQk9aYVByMUdJb2NjWXJkQTdDdlBadm9XcWVXVzZhbGJkTGlXaW5VaVVhWkFENEVwakczd3NQUzJqZFh6WXRlMDFBZjVMTw?oc=5",
+   "source": "新闻 · 视频生成（中文）",
+   "priority": "low",
+   "summary": "火山引擎与 AMD 合作推动 Seedance 模型用于汽车营销。",
+   "why": "商业合作与营销场景宣传稿，缺乏技术干货。",
+   "tags": [
+    "营销宣传",
+    "商业落地"
+   ],
+   "entity": "Seedance",
+   "kind": "news"
+  },
+  {
+   "id": "45dd8616a11f68ae",
+   "date": "2026-09-19",
+   "title": "Text to Video AI Latest Android App Download - Học viện Nông nghiệp Việt Nam",
+   "link": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE9CV2pnYUhhd3VOTVduUkxzaDF3d3doRGZlaF9aWWtFMFpjUElDMHIwWmVPWFliRUtnODZ3VEEtdnI3d2pWSmtWeGNSa1BIWW91V3l3?oc=5",
+   "source": "新闻 · 视频生成（英文）",
+   "priority": "low",
+   "summary": "越南某农业学院网站出现 AI 文生视频安卓应用下载推广。",
+   "why": "垃圾营销链接，与核心技术毫无关联。",
+   "tags": [
+    "垃圾资讯",
+    "移动端"
+   ],
+   "entity": "",
+   "kind": "news"
+  },
+  {
+   "id": "3a06f956823425ca",
+   "date": "2026-09-19",
+   "title": "必赢体育线上网赌网址_游戏资讯_字节跳动新一代视频模型 30秒一次生成关键能去油腻感 - 体坛",
+   "link": "https://news.google.com/rss/articles/CBMiR0FVX3lxTE9fTlNmSXREcnFpVWdteUphNU0zdkRWTGRhUmVMajFDNGE5anl1Q3lvbGE0ZTA4NGdudUxnR2U4dXRXbloyWkFV?oc=5",
+   "source": "新闻 · 视频生成（中文）",
+   "priority": "low",
+   "summary": "博彩站点转载字节跳动新一代视频模型生成效果相关资讯。",
+   "why": "黑产SEO转载抓取源，非权威首发。",
+   "tags": [
+    "字节跳动",
+    "视频生成",
+    "垃圾信息"
+   ],
+   "entity": "字节跳动",
+   "kind": "news"
+  },
+  {
+   "id": "4a8eed828a2da028",
+   "date": "2026-09-19",
+   "title": "Video Generation Media Platform Higgsfield Launches Unified API for Over 50 Models, Pay-Per-Use Pricing Without Subscription Binding - ababnews.com",
+   "link": "https://news.google.com/rss/articles/CBMidEFVX3lxTFBuNlN4VVFkWldJTS1nbWdNYWQwaUZ5V1Awdy1sTXNDT1FHaWJKRWthcHkxY3JMeVpsYWY1bDNVUVhDUHc1dkU2SGp6XzUtdFJ2TUtvVFAwcWZWeUwtd1FpYmtVejhlUkM1Z2hIU2x3d2pJVXBP?oc=5",
+   "source": "新闻 · 视频生成（英文）",
+   "priority": "low",
+   "summary": "Higgsfield 推出支持 50 多款视频模型的统一 API 聚合平台。",
+   "why": "偏商业聚合 API 服务，不涉及底层性能与模型自研细节。",
+   "tags": [
+    "API",
+    "视频生成",
+    "云服务"
+   ],
+   "entity": "Higgsfield",
+   "kind": "release"
+  },
+  {
+   "id": "704e76be9c7f600a",
+   "date": "2026-09-19",
+   "title": "yabo888体育平台入口下载发布：AI视频生成速度飙升300%，199元/月起-体坛网_体坛+ - 体坛",
+   "link": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE5Kc2VMbFpmSE9OYl94R1lnaFVQd0tmNjJJS2NnR05xTVlQRkFZWmRMM2ZHWS11VXRPeE5nRl9rQ3FaTmZLeVVOQXRSTU41R0V2cG5vbUFibHRxMG5lTnRpVQ?oc=5",
+   "source": "新闻 · 视频生成（中文）",
+   "priority": "low",
+   "summary": "某博彩体育平台借 AI 视频生成速度飙升进行导流宣传。",
+   "why": "非法博彩推广垃圾资讯，请直接忽略。",
+   "tags": [
+    "垃圾资讯",
+    "营销推广"
+   ],
+   "entity": "",
+   "kind": "news"
+  },
+  {
+   "id": "0f41d74f1eaf0973",
+   "date": "2026-09-19",
+   "title": "全球首发 | 乐彩9123-购彩大厅 正式上线：AI视频生成进入实时交互时代，电影级效果触手可及 - 体坛",
+   "link": "https://news.google.com/rss/articles/CBMib0FVX3lxTE9zRTYtS3VpMkxIaHJkdERpVzJQOHVWeTBhbU8xSXJadGNodkhVZVdVS3N6WGRTajVsb3hwT2pwdm5oUXRIOUpZaDRZQ0xWUmtrQnJHNW1HQzVCdXI1dVpud2RPeEJ6RW11enVLc3dvTQ?oc=5",
+   "source": "新闻 · 视频生成（中文）",
+   "priority": "low",
+   "summary": "涉博彩违规引流营销信息假借AI视频生成名义发布。",
+   "why": "垃圾营销与博彩引流信息，直接跳过。",
+   "tags": [
+    "垃圾信息",
+    "过滤"
+   ],
+   "entity": "",
+   "kind": "news"
+  },
+  {
+   "id": "782c2b2a23d1da73",
+   "date": "2026-09-19",
+   "title": "3U国际娱乐_游戏资讯_字节跳动新一代视频模型 30秒一次生成关键能去油腻感 - 体坛",
+   "link": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE40MUZ6YThiam4wWXE3bXZYb3dvLXp4UklMU0ctT1JmaDhOTlNQakY4NXlaWTZqV18ydjI2cTlPLXFMUkZ1RGRrZ0tlbDg4R214V05z?oc=5",
+   "source": "新闻 · 视频生成（中文）",
+   "priority": "low",
+   "summary": "娱乐博彩站点转载字节跳动视频生成模型相关动态。",
+   "why": "与上一条重复且来源为黑产SEO站。",
+   "tags": [
+    "字节跳动",
+    "视频生成",
+    "垃圾信息"
+   ],
+   "entity": "字节跳动",
+   "kind": "news"
+  },
+  {
+   "id": "5b3cc1711d87ca4e",
+   "date": "2026-09-19",
+   "title": "WarmBloodAban/Minimax_H3_LoRAs",
+   "link": "https://huggingface.co/WarmBloodAban/Minimax_H3_LoRAs",
+   "source": "HF 热榜 · 图生视频",
+   "priority": "low",
+   "summary": "Minimax_H3_LoRAs 登上 HF 图生视频热榜（likes 13）。",
+   "why": "社区零散 LoRA 权重，热度较低且缺乏技术细节。",
+   "tags": [
+    "LoRA",
+    "图生视频"
+   ],
+   "entity": "Minimax_H3_LoRAs",
+   "kind": "release"
+  },
+  {
+   "id": "bacdc1a1bf4f67c0",
+   "date": "2026-09-19",
+   "title": "letorig/video-generator-client",
+   "link": "https://github.com/letorig/video-generator-client",
+   "source": "GitHub 新仓库 · 视频 / 世界模型",
+   "priority": "low",
+   "summary": "聚合生数、快手、MiniMax、Wan等视频API的异步客户端登上GitHub热榜（⭐ 535）。",
+   "why": "API调用封装Wrapper，不涉及训练与底层优化。",
+   "tags": [
+    "GitHub",
+    "API Wrapper",
+    "视频生成"
+   ],
+   "entity": "video-generator-client",
+   "kind": "tool"
+  },
+  {
+   "id": "d5c86d15c4151b88",
+   "date": "2026-09-19",
+   "title": "JOKER141/BUNNY_H3_Conditioning_Bridge",
+   "link": "https://huggingface.co/JOKER141/BUNNY_H3_Conditioning_Bridge",
+   "source": "HF 热榜 · 文生视频",
+   "priority": "low",
+   "summary": "BUNNY_H3_Conditioning_Bridge 登上 HF 文生视频热榜（likes 22）。",
+   "why": "社区小众条件桥接权重，热度较低，暂无深入价值。",
+   "tags": [
+    "文生视频",
+    "控制生成"
+   ],
+   "entity": "BUNNY_H3_Conditioning_Bridge",
+   "kind": "tool"
+  },
+  {
+   "id": "9bccb9ead02fc3b2",
+   "date": "2026-09-19",
+   "title": "vpakarinen/natural-face-speech-h3-lora",
+   "link": "https://huggingface.co/vpakarinen/natural-face-speech-h3-lora",
+   "source": "HF 热榜 · 文生视频",
+   "priority": "low",
+   "summary": "人脸语音驱动 LoRA 登上 HF 文生视频热榜（likes 27）。",
+   "why": "社区个性化小 LoRA，对通用系统优化及模型结构无参考意义。",
+   "tags": [
+    "LoRA",
+    "视频生成"
+   ],
+   "entity": "natural-face-speech-h3-lora",
+   "kind": "release"
+  },
+  {
+   "id": "0f1aa1b4fd65097b",
+   "date": "2026-09-19",
+   "title": "Cripacx/mediagen",
+   "link": "https://github.com/Cripacx/mediagen",
+   "source": "GitHub 新仓库 · 视频 / 世界模型",
+   "priority": "low",
+   "summary": "mediagen 开源，为 Claude Code 等 Agent 提供图文视频生成 MCP 服务端与 CLI。",
+   "why": "上层多模态 API 聚合工具，与底层性能优化无关，可跳过。",
+   "tags": [
+    "MCP",
+    "API封装",
+    "Agent工具"
+   ],
+   "entity": "mediagen",
+   "kind": "tool"
   },
   {
    "id": "8d409b60a7de3ca7",
@@ -108,14 +510,70 @@
   }
  ],
  "threads": {
+  "LynnReal-Omni": [
+   "4c9585c505c73637",
+   "7e98109ec1ddfb43"
+  ],
+  "字节跳动": [
+   "3a06f956823425ca",
+   "782c2b2a23d1da73"
+  ],
   "Video DeltaNet": [
    "e00f945ba32ca3a9"
   ],
   "WarmBloodAban": [
    "a24a731e9fc24a94"
   ],
-  "LynnReal-Omni": [
-   "7e98109ec1ddfb43"
+  "ECCV2026": [
+   "d68c738c749b09d7"
+  ],
+  "FastH3-V2": [
+   "c13bd6a0bdc8d14a"
+  ],
+  "MiniMax-H3": [
+   "5d60c00dd010b835"
+  ],
+  "TaoMate-H3-3step-ComfyUI": [
+   "b36da72ebbe49c7c"
+  ],
+  "LTX-2.5-22b-LoRA-Cinemagraph": [
+   "21e5acfb8dfb8b87"
+  ],
+  "TaoMate-H3": [
+   "b9ae74709d28cc8a"
+  ],
+  "dola-render-gateway": [
+   "a60f4bf0eee07cbd"
+  ],
+  "Mask Forcing": [
+   "d226d0f5dcc9c954"
+  ],
+  "DreamX-Creator": [
+   "07411c10445a1afa"
+  ],
+  "open-higgsfield": [
+   "3577b5df0b898e6b"
+  ],
+  "Seedance": [
+   "cb608d64595d8497"
+  ],
+  "Higgsfield": [
+   "4a8eed828a2da028"
+  ],
+  "Minimax_H3_LoRAs": [
+   "5b3cc1711d87ca4e"
+  ],
+  "video-generator-client": [
+   "bacdc1a1bf4f67c0"
+  ],
+  "BUNNY_H3_Conditioning_Bridge": [
+   "d5c86d15c4151b88"
+  ],
+  "natural-face-speech-h3-lora": [
+   "9bccb9ead02fc3b2"
+  ],
+  "mediagen": [
+   "0f1aa1b4fd65097b"
   ],
   "MiniMax H3": [
    "2d39b8ece845ab02"
@@ -123,5 +581,100 @@
   "Recreating a 70": [
    "ada2f64613585383"
   ]
- }
+ },
+ "digest": {
+  "text": "本周视频生成领域聚焦于推理加速与架构轻量化。核心进展包括：Video DeltaNet 结合局部 Softmax 与帧级线性显存注意力加速实时生成；LynnReal-Omni 推出 32B 原生多模态扩散 Transformer 并实现 4 步快速推理；Mask Forcing 开源了用于自回归扩散模型蒸馏的双噪声掩码方案；社区还涌现了 FastH3-V2 GGUF 量化和 3 步 ComfyUI 推理管线。高德开源了 2K 音视频协同模型 DreamX-Creator，智象未来与 MiniMax 围绕物理规律导向与统一模态发布了新模型。需注意，本周搜索源中混入了多条借 AI 视频增速炒作的博彩平台引流营销，属于噪音干扰。",
+  "highlights": [
+   "Video DeltaNet 提出局部与线性显存混合注意力，服务直播实时视频生成",
+   "LynnReal-Omni 开源 32B 视频生成框架，支持 4 步快速推理",
+   "Mask Forcing 开源官方代码，优化自回归视频扩散蒸馏加速",
+   "高德开源 DreamX-Creator，支持 2K 原生音视频协同生成"
+  ],
+  "week": "2026-09-12 ~ 2026-09-19",
+  "generated_at": "2026-09-19T09:25:16+00:00",
+  "model": ""
+ },
+ "sota": [
+  {
+   "model": "LynnReal-Omni",
+   "org": "LynnReal-AI",
+   "date": "2026-09",
+   "open_weights": true,
+   "spec": "32B 多模态扩散 Transformer，支持 4 步快速推理",
+   "link": "https://github.com/LynnReal-AI/LynnReal-Omni",
+   "note": "开源少步数快速推理多模态视频框架"
+  },
+  {
+   "model": "MiniMax-H3",
+   "org": "MiniMax",
+   "date": "2026-09",
+   "open_weights": false,
+   "spec": "全模态统一生成模型，强调物理世界推理",
+   "link": "https://huggingface.co/papers/2609.18323",
+   "note": "闭源全模态旗舰，衍生社区生态活跃"
+  },
+  {
+   "model": "HiDream-O1-Video-1.0",
+   "org": "智象未来",
+   "date": "2026-09-16",
+   "open_weights": false,
+   "spec": "原生全模态、物理规律导向",
+   "link": "https://www.qbitai.com/2026/09/489389.html",
+   "note": "主打物理规律导向的原生全模态模型"
+  },
+  {
+   "model": "DreamX-Creator",
+   "org": "AMAP-ML",
+   "date": "2026-09",
+   "open_weights": true,
+   "spec": "2K 分辨率原生音视频协同生成",
+   "link": "https://github.com/AMAP-ML/DreamX-Creator",
+   "note": "高德开源的原生高分辨率音视频模型"
+  },
+  {
+   "model": "Video DeltaNet",
+   "org": "—",
+   "date": "2026-09",
+   "open_weights": false,
+   "spec": "局部 Softmax 与帧级线性显存混合注意力",
+   "link": "https://huggingface.co/papers/2609.20744",
+   "note": "面向低显存实时直播生成的架构方案"
+  },
+  {
+   "model": "Mask Forcing",
+   "org": "delaprada",
+   "date": "2026-09",
+   "open_weights": true,
+   "spec": "双噪声掩码展开的自回归扩散蒸馏方案",
+   "link": "https://github.com/delaprada/Mask-Forcing",
+   "note": "自回归视频扩散推理蒸馏加速工具"
+  },
+  {
+   "model": "FastH3-V2",
+   "org": "realrebelai",
+   "date": "2026-09",
+   "open_weights": true,
+   "spec": "提供 GGUF 格式量化权重",
+   "link": "https://huggingface.co/realrebelai/FastH3-V2_GGUFs",
+   "note": "端侧/消费级显卡部署优化模型"
+  },
+  {
+   "model": "TaoMate-H3",
+   "org": "TaoLiveAIGC",
+   "date": "2026-09",
+   "open_weights": true,
+   "spec": "支持 3 步快速采样推理管线",
+   "link": "https://huggingface.co/TaoLiveAIGC/TaoMate-H3",
+   "note": "主打快速少步采样的文生视频模型"
+  },
+  {
+   "model": "LTX-2.5-22b",
+   "org": "Lightricks",
+   "date": "2026-09",
+   "open_weights": true,
+   "spec": "22B 参数量，配动图生成 LoRA",
+   "link": "https://huggingface.co/Lightricks/LTX-2.5-22b-LoRA-Cinemagraph",
+   "note": "大参数量开源动图生成基模"
+  }
+ ]
 }
