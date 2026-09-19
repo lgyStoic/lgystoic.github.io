@@ -410,62 +410,6 @@
       "weight": 2
     },
     {
-      "id": "hf-trending-models",
-      "name": "HF 热门模型",
-      "kind": "json",
-      "url": "https://huggingface.co/api/models?sort=trendingScore&direction=-1&limit=15",
-      "json": {
-        "title": "{id}",
-        "link": "https://huggingface.co/{id}",
-        "description": "{pipeline_tag} · likes {likes} · trending {trendingScore}",
-        "published": ""
-      },
-      "category": "trend",
-      "weight": 2,
-      "note": "HF Trending 榜；接口不给日期，published 留空不按时间窗过滤，靠 seen 去重，每个模型只出现一次"
-    },
-    {
-      "id": "hf-trending-spaces",
-      "name": "HF 热门 Spaces",
-      "kind": "json",
-      "url": "https://huggingface.co/api/spaces?sort=trendingScore&direction=-1&limit=12",
-      "json": {
-        "title": "{id}",
-        "link": "https://huggingface.co/spaces/{id}",
-        "description": "Space · {sdk} · likes {likes}",
-        "published": ""
-      },
-      "category": "trend",
-      "weight": 1
-    },
-    {
-      "id": "gh-trending-all",
-      "name": "GitHub Trending · 全部",
-      "url": "https://mshibanami.github.io/GitHubTrendingRSS/daily/all.xml",
-      "category": "trend",
-      "weight": 1,
-      "require_topic": true,
-      "window_hours": 48,
-      "note": "社区镜像的 GitHub Trending RSS，每日"
-    },
-    {
-      "id": "gh-trending-python",
-      "name": "GitHub Trending · Python",
-      "url": "https://mshibanami.github.io/GitHubTrendingRSS/daily/python.xml",
-      "category": "trend",
-      "weight": 1,
-      "require_topic": true,
-      "window_hours": 48
-    },
-    {
-      "id": "gh-trending-cuda",
-      "name": "GitHub Trending · CUDA",
-      "url": "https://mshibanami.github.io/GitHubTrendingRSS/daily/cuda.xml",
-      "category": "trend",
-      "weight": 2,
-      "window_hours": 48
-    },
-    {
       "id": "bsky-karpathy",
       "name": "Bluesky · Andrej Karpathy",
       "url": "https://bsky.app/profile/karpathy.bsky.social/rss",
@@ -553,6 +497,40 @@
       "window_hours": 48,
       "note": "X 从 Actions 抓不到（Nitter 镜像 451/403/DNS、RSSHub 404/503、syndication 429，2026-09-19 探针），改用 Bluesky 官方 RSS；条目无标题，取正文前 120 字",
       "require_topic": true
+    },
+    {
+      "id": "hf-trending-new",
+      "name": "HF 热榜新模型",
+      "kind": "json",
+      "url": "https://huggingface.co/api/models?sort=trendingScore&direction=-1&limit=30",
+      "json": {
+        "title": "{id}",
+        "link": "https://huggingface.co/{id}",
+        "description": "{pipeline_tag} · likes {likes} · trending {trendingScore}",
+        "published": "createdAt"
+      },
+      "category": "trend",
+      "weight": 2,
+      "window_hours": 336,
+      "note": "HF Trending 榜里 14 天内新建的模型；老模型再热也不进（接口只有 createdAt，没有发布事件）"
+    },
+    {
+      "id": "gh-new-stars",
+      "name": "GitHub 新星仓库",
+      "kind": "json",
+      "url": "https://api.github.com/search/repositories?q=created:%3E{today-30d}+stars:%3E150+llm+OR+cuda+OR+inference+OR+diffusion+OR+gpu+OR+transformer&sort=stars&order=desc&per_page=25",
+      "json": {
+        "items": "items",
+        "title": "{full_name}",
+        "link": "html_url",
+        "description": "{description} · ⭐ {stargazers_count}",
+        "published": "created_at"
+      },
+      "category": "trend",
+      "weight": 1,
+      "require_topic": true,
+      "window_hours": 720,
+      "note": "30 天内新建且 150+ star 的仓库，按 star 排；{today-30d} 由 expand_url 换成日期。GitHub Trending RSS 没有日期，会把一年前的老仓库当新闻，已弃用"
     }
   ]
 }

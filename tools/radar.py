@@ -344,6 +344,8 @@ ENRICH_SYSTEM = """你在为一位做 GPU kernel / 训练性能优化、同时�
 - tags：2-4 个简短标签，中英文均可。
 
 同一事件被多个源报道时，把最权威的一条标 high，其余标 low 并在 why 里注明「重复」。
+
+trend 类条目的输入只有仓库 / 模型名、一句描述和 star / likes 数，没有任何「发布」事件：summary 只能写「X 登上 HF / GitHub 热榜（⭐ N）」这类事实，不要编造「推出」「发布」「升级」；priority 最高给 medium，除非名字本身就是知名机构的全新模型（如 DeepSeek / Qwen 的新版本号）。
 不要编造输入里没有的信息。"""
 
 
@@ -547,6 +549,14 @@ def load_json(path: Path, default):
     return json.loads(path.read_text(encoding="utf-8"))
 
 
+def expand_url(url: str, now_utc: datetime) -> str:
+    """URL 里的 {today} / {today-30d} 换成 UTC 日期，给「最近 N 天新建」这类查询用。"""
+    def sub(m):
+        days = int(m.group(1) or 0)
+        return (now_utc - timedelta(days=days)).strftime("%Y-%m-%d")
+    return re.sub(r"\{today(?:-(\d+)d)?\}", sub, url)
+
+
 def collect(config: dict, now_utc: datetime, seen: dict[str, str]) -> tuple[list[dict], list[dict]]:
     rules = config["rules"]
     window_hours = int(os.environ.get("RADAR_WINDOW_HOURS") or config["site"].get("window_hours", 36))
@@ -560,7 +570,7 @@ def collect(config: dict, now_utc: datetime, seen: dict[str, str]) -> tuple[list
         if source.get("disabled"):
             continue
         # urls：同一内容的多个镜像（如 Nitter 实例），按顺序试到一个能用为止
-        urls = source.get("urls") or [source["url"]]
+        urls = [expand_url(u, now_utc) for u in (source.get("urls") or [source["url"]])]
         raw_entries, last_err = None, None
         for k, url in enumerate(urls):
             try:
