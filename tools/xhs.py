@@ -4,6 +4,8 @@
   cards（每天）：当天雷达 high / medium 前 20 条 → 每条 标题 / 正文 / 标签 + 3:4 封面卡片（前 XHS_IMAGES 条带生图配图）
                  → posts/cards/<日期>.md、posts/cards/<日期>/<id>.jpg
   jobs（每周一）：radar/data/jobs.json 里有真实公司名、未过期的岗位，按分数挑 12 条 → 一篇「岗位精选」+ 1 张封面
+  tracks（每天，有料才发）：radar/data/tracks/<id>.json 自上一期以来的新条目 → 模型先判 worth → 值得才出「专题日报」+ 1 张封面
+                 → posts/tracks/<id>/<日期>.md、posts/tracks/<id>/<日期>/cover.jpg
                  → posts/jobs/<日期>.md、posts/jobs/<日期>/cover.jpg
   每次运行后重写 posts/README.md（两类最近 30 期的索引）。本地各留一份 radar/data/xhs-*.md（已 gitignore）。
 
@@ -64,16 +66,19 @@ JOBS_SYSTEM = '''你是一个在小红书做「AI infra 岗位精选」周报的
 7. image_prompt：英文，极简扁平插画，与「招聘/机会/城市与芯片」相关的意象，暖色米白背景赭红点缀，"no text, no letters, no logos"，40 词以内。'''
 JOBS_TAG = 'AIInfra岗位'
 
-TRACK_SYSTEM = '''你在小红书做「{name}周报」，读者是做生成模型与推理加速的工程师。输入是这个专题最近 7 天的条目（标题、摘要、主体、类型、来源）、本周综述和现状表。产出一篇可直接发布的小红书笔记。
+TRACK_SYSTEM = '''你在小红书做「{name}日报」，读者是做生成模型与推理加速的工程师。输入是这个专题自上一期以来的新条目（标题、摘要、主体、类型、来源），以及站内周综述和现状表（只作背景，不要把里面的旧内容当成新进展）。先判断值不值得发，再写稿。
 
-硬性要求：
+先判 worth：只有出现了「真正的进展」才值得发——新模型 / 权重 / 版本发布、有具体结论的论文或评测、推理框架对新模型的支持、可复现的工程结果。全是泛新闻、融资、观点、转述、社区微调或量化版 → worth = false，worth_reason 一句话说明，其余字段随意填短内容即可。
+
+worth = true 时的硬性要求：
 1. 只用输入里的事实，不补充你记忆里的模型、参数、日期；没有的信息就不写。
-2. title ≤20 字，点明这周最大的一件事，如「Wan2.6 开源｜本周视频模型 6 件事」。
-3. body 350–650 字：第一段两句话说这周整体在往哪走（只能从输入归纳）→ 逐条列 5–8 件进展，每条一行「主体｜一句进展」，后面跟一句 ≤25 字的「意味着什么」→ 一句自己的判断（哪条最值得跟）→ 一个提问 → 最后一段关注引导：说明这是每周更新的{name}周报，完整时间线和现状表在主页站点的专题页，收藏 + 关注，措辞自然，不要「求关注」「关注不迷路」。不放 URL，不要小节标签，短段落空行分隔。
-4. headline：封面标题 12–20 字。highlights：封面用 4–6 行，每行 ≤22 字，「主体 · 一句进展」。
+2. title ≤20 字，点明今天最大的一件事，如「Wan2.6 开源｜今日视频模型 3 件事」。
+3. body 250–550 字：第一段一句话说今天的重点 → 逐条列 2–6 件进展（数量随实际，宁少勿凑），每条一行「主体｜一句进展」，后面跟一句 ≤25 字的「意味着什么」→ 一句自己的判断（哪条最值得跟）→ 一个提问 → 最后一段关注引导：说明这是{name}日报，有料才发、不凑数，完整时间线和现状表在主页站点的专题页，收藏 + 关注，措辞自然，不要「求关注」「关注不迷路」。不放 URL，不要小节标签，短段落空行分隔。
+4. headline：封面标题 12–20 字。highlights：封面用 2–6 行，每行 ≤22 字，「主体 · 一句进展」。
 5. tags：3–5 个话题词，不带 #，第一个固定 "{tag}"，其余如 "AI Infra"、"视频生成"、"世界模型"、"DiT"。
 6. image_prompt：英文，极简扁平插画，与专题意象相关（胶片帧、时间轴、三维网格、粒子世界等），暖色米白背景赭红点缀，"no text, no letters, no logos"，40 词以内。'''
-TRACK_TAG = {'video': '视频模型周报', 'world': '世界模型周报'}
+TRACK_SCHEMA = {'type':'object','properties':{**JOBS_SCHEMA['properties'], 'worth':{'type':'boolean'}, 'worth_reason':{'type':'string'}}, 'required': JOBS_SCHEMA['required'] + ['worth', 'worth_reason'], 'additionalProperties': False}
+TRACK_TAG = {'video': '视频模型日报', 'world': '世界模型日报'}
 
 RANK_SCHEMA = {'type':'object','properties':{'ranking':{'type':'array','items':{'type':'object','properties':{'id':{'type':'string'},'audience':{'type':'integer'},'hook':{'type':'integer'},'discuss':{'type':'integer'},'save':{'type':'integer'},'reason':{'type':'string'}},'required':['id','audience','hook','discuss','save','reason'],'additionalProperties':False}}},'required':['ranking'],'additionalProperties':False}
 RANK_SYSTEM = '''你是小红书 AI 技术类账号的运营编辑。输入是同一天生成的一批笔记（标题 + 正文前 200 字 + 原始新闻标题），请判断在小红书上哪些更可能被 AI 从业者点开、点赞、收藏、评论。逐条给 4 个维度 1–5 分（整数）和一句 ≤30 字理由；同一批内要拉开差距，不要都给 3–4 分：
@@ -251,8 +256,8 @@ def gh_get_json(repo, path, token):
 def update_index(repo, token):
     """重写 posts/README.md：两类内容各列最近 30 期。"""
     sections = [('cards', '每日学习卡片', '标题 / 正文 / 标签复制即发，封面在同名目录'), ('jobs', 'AI infra 岗位精选（每周一）', '一篇文稿 + 封面；岗位明细表附在文末供核对')]
-    sections += [(f'tracks/{t["id"]}', f'{t["name"]}周报（每周三）', '一篇文稿 + 封面；条目明细附在文末供核对') for t in load_tracks() if t.get('weekly_post')]
-    lines = ['# 小红书文稿', '', '自动生成初稿，发布前核对事实。目录：`cards/` 每日学习卡片，`jobs/` 岗位周报；`<日期>.md` 是文稿，`<日期>/` 是封面图。', '']
+    sections += [(f'tracks/{t["id"]}', f'{t["name"]}日报（每天，有料才发）', '一篇文稿 + 封面；条目明细附在文末供核对') for t in load_tracks() if t.get('post')]
+    lines = ['# 小红书文稿', '', '自动生成初稿，发布前核对事实。目录：`cards/` 每日学习卡片，`jobs/` 岗位周报，`tracks/<id>/` 专题日报（有料才发）；`<日期>.md` 是文稿，`<日期>/` 是封面图。', '']
     for d, title, note in sections:
         entries = gh_get_json(repo, f'posts/{d}', token)
         mds = sorted((e['name'][:-3] for e in entries if isinstance(e, dict) and e.get('name', '').endswith('.md')), reverse=True)[:30]
@@ -368,8 +373,8 @@ def card_html(index: int, post: dict, src: dict, date: str, art_b64: str | None,
         kicker, right = 'AI infra 岗位精选 · 每周一' + (f' · 第 {episode} 期' if episode else ''), f'{e(date)} · {len(src.get("jobs", []))} 个岗位'
         foot_l, foot_r = '来源 · 各公司官方招聘页 / 猎聘公开信息<br>完整列表每天更新 · 收藏 + 关注', 'lgystoic.github.io/radar/jobs/'
     elif kind == 'track':
-        kicker, right = f'{e(src.get("track_name", ""))}周报 · 每周' + (f' · 第 {episode} 期' if episode else ''), f'{e(date)} · {src.get("n", 0)} 条进展'
-        foot_l, foot_r = '来源 · 论文 / 官方发布 / HF · 专题页有完整时间线与现状表<br>每周更新 · 收藏 + 关注', f'lgystoic.github.io/radar/tracks/{e(src.get("track_id", ""))}/'
+        kicker, right = f'{e(src.get("track_name", ""))}日报 · 有料才发' + (f' · 第 {episode} 期' if episode else ''), f'{e(date)} · {src.get("n", 0)} 条进展'
+        foot_l, foot_r = '来源 · 论文 / 官方发布 / HF · 专题页有完整时间线与现状表<br>有进展就更新 · 收藏 + 关注', f'lgystoic.github.io/radar/tracks/{e(src.get("track_id", ""))}/'
     else:
         domain = re.sub(r'^https?://(www\.)?', '', src.get('link', '')).split('/')[0]
         kicker, right = 'AI 信息学习卡片 · 每天一张' + (f' · 第 {episode} 天' if episode else ''), f'{e(date)} · {index:02d}'
@@ -525,40 +530,52 @@ def run_jobs(date: str, key: str):
     log(f'[xhs] 岗位周报 {len(picked)} 个岗位、{len(files)} 张封面，写入 {dest}')
 
 
+def last_issue_date(repo: str, token: str, kind_dir: str, date: str) -> str | None:
+    """私有仓库里该专题上一期的日期（早于 date 的最新 md）。"""
+    if not token: return None
+    try:
+        names = sorted(e['name'][:-3] for e in gh_get_json(repo, f'posts/{kind_dir}', token) if isinstance(e, dict) and e.get('name', '').endswith('.md') and e['name'][:-3] < date)
+        return names[-1] if names else None
+    except Exception as e:
+        log(f'[xhs] 上一期查询失败：{e}'); return None
+
+
 def run_track_post(track: dict, date: str, key: str):
-    """专题周报：radar/data/tracks/<id>.json 最近 7 天的条目 + 周综述 + 现状表 → 一篇文稿 + 封面。"""
+    """专题日报：自上一期以来的新条目（最多回看 3 天）→ 模型先判值不值得发 → 值得才出文稿 + 封面。"""
     from datetime import timedelta
     src = DATA / 'tracks' / f"{track['id']}.json"
     if not src.exists(): log(f"[xhs] 没有 {src}，先跑 tools/tracks.py"); return
     d = json.loads(src.read_text())
-    week_ago = (datetime.strptime(date, '%Y-%m-%d') - timedelta(days=7)).strftime('%Y-%m-%d')
-    recent = [e for e in d.get('entries', []) if e.get('date', '') >= week_ago]
-    if len(recent) < 3: log(f"[xhs] {track['name']} 近 7 天只有 {len(recent)} 条，跳过周报"); return
-    tag = TRACK_TAG.get(track['id'], f"{track['name']}周报")
-    prompt = json.dumps({'week': f'{week_ago} ~ {date}', 'entries': [{'date': e['date'], 'entity': e.get('entity', ''), 'kind': e.get('kind', ''), 'title': e['title'], 'summary': e.get('summary', ''), 'why': e.get('why', ''), 'source': e.get('source', '')} for e in recent[:40]],
-                         'digest': (d.get('digest') or {}).get('text', ''), 'highlights': (d.get('digest') or {}).get('highlights', []), 'sota': (d.get('sota') or [])[:8]}, ensure_ascii=False)
-    result = call_llm_json(TRACK_SYSTEM.format(name=track['name'], tag=tag), prompt, JOBS_SCHEMA, label=f"xhs-track-{track['id']}")
-    if not result: raise SystemExit('Gemini 未返回专题周报')
+    kind_dir = f"tracks/{track['id']}"
+    token, repo = os.environ.get('INBOX_TOKEN', '').strip(), os.environ.get('INBOX_REPO', 'lgyStoic/radar-inbox')
+    floor = (datetime.strptime(date, '%Y-%m-%d') - timedelta(days=3)).strftime('%Y-%m-%d')
+    since = max(last_issue_date(repo, token, kind_dir, date) or floor, floor)
+    recent = [e for e in d.get('entries', []) if since < e.get('date', '') <= date]
+    if len(recent) < 2: log(f"[xhs] {track['name']}：{since} 之后只有 {len(recent)} 条，今天不发"); return
+    tag = TRACK_TAG.get(track['id'], f"{track['name']}日报")
+    prompt = json.dumps({'since_last_issue': f'{since} ~ {date}', 'entries': [{'date': e['date'], 'entity': e.get('entity', ''), 'kind': e.get('kind', ''), 'title': e['title'], 'summary': e.get('summary', ''), 'why': e.get('why', ''), 'source': e.get('source', '')} for e in recent[:40]],
+                         'context_digest': (d.get('digest') or {}).get('text', ''), 'context_sota': (d.get('sota') or [])[:8]}, ensure_ascii=False)
+    result = call_llm_json(TRACK_SYSTEM.format(name=track['name'], tag=tag), prompt, TRACK_SCHEMA, label=f"xhs-track-{track['id']}")
+    if not result: raise SystemExit('Gemini 未返回专题日报')
+    if not result.get('worth'):
+        log(f"[xhs] {track['name']}：今天不值得发（{result.get('worth_reason', '')[:60]}），{len(recent)} 条候选"); return
     post = clean_post(dict(result)); post['id'] = 'cover'
     shorten_titles([post])
     post['tags'] = [re.sub(r'[\s#]+', '', tag)] + [t for t in post['tags'] if t not in (tag, SERIES_TAG, JOBS_TAG)][:4]
     post['highlights'] = [h for h in result.get('highlights', []) if h.strip()][:6]
     art = gemini_image(post.get('image_prompt') or f"minimal flat illustration about {track['name']}, film frames and a timeline, warm off-white background, rust accent, no text, no letters, no logos", key) if key else None
-    kind_dir = f"tracks/{track['id']}"
     _, img_dir, _, _ = out_paths(kind_dir, date)
-    token, repo = os.environ.get('INBOX_TOKEN', '').strip(), os.environ.get('INBOX_REPO', 'lgyStoic/radar-inbox')
     episode = episode_number(repo, token, kind_dir, date)
     files = render_cards([('cover', card_html(1, post, {'track_name': track['name'], 'track_id': track['id'], 'n': len(recent)}, date, base64.b64encode(art).decode() if art else None, kind='track', episode=episode))], img_dir)
     tags = ' '.join(f'#{t}' for t in post['tags'])
-    lines = [f"# {track['name']}周报 · {date}" + (f' · 第 {episode} 期' if episode else ''), '', f'> 自动生成初稿：事实以文末条目明细（含链接）为准，发布前逐条核对模型名和数字；正文不放链接。专题页：https://lgystoic.github.io/radar/tracks/{track["id"]}/', '']
+    lines = [f"# {track['name']}日报 · {date}" + (f' · 第 {episode} 期' if episode else ''), '', f'> 自动生成初稿：事实以文末条目明细（含链接）为准，发布前逐条核对模型名和数字；正文不放链接。覆盖 {since} 之后的新条目；模型判定值得发的理由：{result.get("worth_reason", "")}。专题页：https://lgystoic.github.io/radar/tracks/{track["id"]}/', '']
     if files: lines += [f'![封面](./{date}/cover.jpg)', '']
     lines += ['**标题**', '', post['title'], '', '**正文**', '', post['body'], '', tags, '', '## 条目明细（核对用，不发）', '', '| 日期 | 主体 | 类型 | 标题 | 来源 | 链接 |', '|---|---|---|---|---|---|']
     lines += [f"| {e['date']} | {e.get('entity', '')} | {e.get('kind', '')} | {e['title']} | {e.get('source', '')} | {e['link']} |" for e in recent]
-    if (d.get('digest') or {}).get('text'): lines += ['', '## 站内周综述（参考）', '', d['digest']['text']]
     if os.environ.get('XHS_PREVIEW') == '1':
-        log(f"[xhs] 预览{track['name']}周报：\n" + post['title'] + '\n\n' + post['body'] + '\n\n' + tags)
+        log(f"[xhs] 预览{track['name']}日报：\n" + post['title'] + '\n\n' + post['body'] + '\n\n' + tags)
     dest = publish(kind_dir, date, '\n'.join(lines), files)
-    log(f"[xhs] {track['name']}周报 {len(recent)} 条进展、{len(files)} 张封面，写入 {dest}")
+    log(f"[xhs] {track['name']}日报 {len(recent)} 条进展、{len(files)} 张封面，写入 {dest}")
 
 
 def main():
@@ -570,9 +587,9 @@ def main():
     if '--jobs' in sys.argv: run_jobs(date, key)
     elif '--tracks' in sys.argv:
         for t in load_tracks():
-            if t.get('weekly_post'):
+            if t.get('post'):
                 try: run_track_post(t, date, key)
-                except SystemExit as e: log(f"[xhs] {t['name']} 周报失败：{e}")
+                except SystemExit as e: log(f"[xhs] {t['name']} 日报失败：{e}")
     else: run_cards(date, key)
 
 
