@@ -21,7 +21,7 @@
 |---|---|
 | 选条目 | `radar/data/<日期>.json` 里 priority ∈ {high, medium} 的前 20 条 |
 | 写文稿 | 一次 `call_llm_json` 生成全部：`headline`（12–24 字）、`takeaways`（2–4 条 ≤40 字）、`post`（350–700 字，固定六段结构）、`image_prompt`（英文，极简扁平插画，禁文字/字母/logo） |
-| 配图 | 前 `XHS_IMAGES`（默认 4）条调用生图：先 `GEMINI_IMAGE_MODEL` 的 `generateContent`（`responseModalities: [IMAGE, TEXT]`，读 `inlineData`），失败再试 `GEMINI_IMAGEN_MODEL` 的 `:predict`（读 `predictions[0].bytesBase64Encoded`）；都失败返回 None |
+| 配图 | 前 `XHS_IMAGES`（默认 4）条调用生图：按 `GEMINI_IMAGE_MODEL`（逗号分隔，默认 `gemini-3.1-flash-image,gemini-2.5-flash-image`）依次调 `generateContent`（`responseModalities: [IMAGE, TEXT]`，读 `inlineData`）；可选再试 `GEMINI_IMAGEN_MODEL` 的 `:predict`（账号无 Imagen 时留空）；都失败返回 None |
 | 封面卡片 | 1080×1440 HTML（页眉「Anaxagore · AI 信息学习卡片 · 日期 · 序号」→ 560px 配图区 → 标题 → 编号要点 ≤4 → 页脚来源域名 + `lgystoic.github.io/radar/<日期>/`），Playwright Chromium 截 JPEG（质量 86，约 100–300 KB） |
 | 写入 | 本地 `radar/data/xhs/<日期>/<id>.jpg` 与 `radar/data/xhs-<日期>.md`；私有仓库 `posts/<日期>/<id>.jpg` + `posts/<日期>.md`（md 内 `![封面](./<日期>/<id>.jpg)` 相对引用） |
 | 排查 | `python3 tools/xhs.py --list-image-models` 列出账号可用的 image / imagen 模型及其方法；工作流勾选 `list_models` 即可 |
@@ -64,8 +64,8 @@ radar/data/<日期>.json ─筛 high/medium 前20─▶ call_llm_json(SYSTEM, SC
 |---|---|---|
 | `RADAR_DATE` | 今天（Asia/Shanghai） | 生成哪天的；工作流输入 `date` |
 | `XHS_IMAGES` | 4 | 生成封面图的条数，0 关闭生图和渲染；工作流输入 `images` |
-| `GEMINI_IMAGE_MODEL` | `gemini-2.5-flash-image` | 原生生图模型；仓库变量 `vars.GEMINI_IMAGE_MODEL` 可覆盖 |
-| `GEMINI_IMAGEN_MODEL` | `imagen-4.0-generate-001` | 备选 Imagen 模型；`vars.GEMINI_IMAGEN_MODEL` 可覆盖 |
+| `GEMINI_IMAGE_MODEL` | `gemini-3.1-flash-image,gemini-2.5-flash-image` | 原生生图模型，逗号分隔按序尝试；仓库变量 `vars.GEMINI_IMAGE_MODEL` 可覆盖（2026-09 账号可用：gemini-3.1-flash-image / -lite-image、gemini-3-pro-image、gemini-2.5-flash-image） |
+| `GEMINI_IMAGEN_MODEL` | 空 | 可选 Imagen `:predict` 兜底；账号列表里没有 Imagen 就别设 |
 | `INBOX_TOKEN` / `INBOX_REPO` | — / `lgyStoic/radar-inbox` | 写私有仓库 |
 | `PW_CHROMIUM` | 自动查找 | 本地 Chromium 可执行文件 |
 
@@ -77,7 +77,7 @@ radar/data/<日期>.json ─筛 high/medium 前20─▶ call_llm_json(SYSTEM, SC
 
 ## 10. 已知问题
 
-1. 生图模型名随 Google 发布更新，默认值可能过期；靠 `--list-image-models` 与仓库变量兜底。
+1. 生图模型名随 Google 发布更新，默认值可能过期；靠 `--list-image-models`（工作流勾 `list_models`）与仓库变量兜底。2026-09-19 列表里没有 Imagen 模型。
 2. 单卡内容过长（headline 超 24 字或要点超 40 字）会被卡片底部挤压，目前靠提示词约束，未做自动缩字。
 3. 私有仓库每天多几百 KB 图片，一年约 100–300 MB，暂不清理。
 

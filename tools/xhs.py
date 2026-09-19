@@ -61,29 +61,31 @@ def list_image_models(key):
 
 
 def gemini_image(prompt: str, key: str) -> bytes | None:
-    """先试原生生图模型（generateContent 回 inlineData），再试 Imagen 的 predict；都不行返回 None。"""
-    model = os.environ.get('GEMINI_IMAGE_MODEL', 'gemini-2.5-flash-image')
-    try:
-        r = _gemini_post(f'models/{model}:generateContent', {'contents': [{'parts': [{'text': prompt}]}], 'generationConfig': {'responseModalities': ['IMAGE', 'TEXT']}}, key)
-        for part in (r.get('candidates') or [{}])[0].get('content', {}).get('parts', []):
-            if part.get('inlineData', {}).get('data'):
-                log(f'[xhs] 配图：{model}'); return base64.b64decode(part['inlineData']['data'])
-        log(f'[xhs] {model} 没有返回图片：{str(r)[:160]}')
-    except urllib.error.HTTPError as e:
-        log(f'[xhs] {model} HTTP {e.code}：{e.read().decode("utf-8", "replace")[:160]}')
-    except Exception as e:
-        log(f'[xhs] {model} 失败：{e}')
-    imagen = os.environ.get('GEMINI_IMAGEN_MODEL', 'imagen-4.0-generate-001')
-    try:
-        r = _gemini_post(f'models/{imagen}:predict', {'instances': [{'prompt': prompt}], 'parameters': {'sampleCount': 1, 'aspectRatio': '1:1'}}, key)
-        b64 = (r.get('predictions') or [{}])[0].get('bytesBase64Encoded')
-        if b64:
-            log(f'[xhs] 配图：{imagen}'); return base64.b64decode(b64)
-        log(f'[xhs] {imagen} 没有返回图片：{str(r)[:160]}')
-    except urllib.error.HTTPError as e:
-        log(f'[xhs] {imagen} HTTP {e.code}：{e.read().decode("utf-8", "replace")[:160]}')
-    except Exception as e:
-        log(f'[xhs] {imagen} 失败：{e}')
+    """依次试原生生图模型（generateContent 回 inlineData），再试可选的 Imagen predict；都不行返回 None。"""
+    models = [m.strip() for m in os.environ.get('GEMINI_IMAGE_MODEL', 'gemini-3.1-flash-image,gemini-2.5-flash-image').split(',') if m.strip()]
+    for model in models:
+        try:
+            r = _gemini_post(f'models/{model}:generateContent', {'contents': [{'parts': [{'text': prompt}]}], 'generationConfig': {'responseModalities': ['IMAGE', 'TEXT']}}, key)
+            for part in (r.get('candidates') or [{}])[0].get('content', {}).get('parts', []):
+                if part.get('inlineData', {}).get('data'):
+                    log(f'[xhs] 配图：{model}'); return base64.b64decode(part['inlineData']['data'])
+            log(f'[xhs] {model} 没有返回图片：{str(r)[:160]}')
+        except urllib.error.HTTPError as e:
+            log(f'[xhs] {model} HTTP {e.code}：{e.read().decode("utf-8", "replace")[:160]}')
+        except Exception as e:
+            log(f'[xhs] {model} 失败：{e}')
+    imagen = os.environ.get('GEMINI_IMAGEN_MODEL', '').strip()  # 账号没有 Imagen 时留空
+    if imagen:
+        try:
+            r = _gemini_post(f'models/{imagen}:predict', {'instances': [{'prompt': prompt}], 'parameters': {'sampleCount': 1, 'aspectRatio': '1:1'}}, key)
+            b64 = (r.get('predictions') or [{}])[0].get('bytesBase64Encoded')
+            if b64:
+                log(f'[xhs] 配图：{imagen}'); return base64.b64decode(b64)
+            log(f'[xhs] {imagen} 没有返回图片：{str(r)[:160]}')
+        except urllib.error.HTTPError as e:
+            log(f'[xhs] {imagen} HTTP {e.code}：{e.read().decode("utf-8", "replace")[:160]}')
+        except Exception as e:
+            log(f'[xhs] {imagen} 失败：{e}')
     return None
 
 
