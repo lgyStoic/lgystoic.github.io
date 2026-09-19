@@ -235,7 +235,7 @@ def _tpl(row, spec: str) -> str:
 
 def parse_json_feed(blob: bytes, source: dict) -> list[dict]:
     """通用 JSON 列表源。source["json"] 里配置字段路径：
-    items（可空，表示根就是列表）、title / link（支持 {字段} 模板）、description、published、
+    items（可空，表示根就是列表）、title / link / description（支持 {字段} 模板）、published（可为空串，表示不按时间窗过滤，只靠 seen 去重）、
     以及可选的 min_number: {"field": "paper.upvotes", "value": 5} 门槛。"""
     spec = source.get("json", {})
     data = json.loads(blob)
@@ -256,7 +256,7 @@ def parse_json_feed(blob: bytes, source: dict) -> list[dict]:
             {
                 "title": _tpl(row, spec.get("title", "title")),
                 "link": link,
-                "description": str(_dig(row, spec.get("description", "description"))),
+                "description": _tpl(row, spec.get("description", "description")),
                 "published": str(_dig(row, spec.get("published", "published"))),
             }
         )
@@ -581,6 +581,8 @@ def collect(config: dict, now_utc: datetime, seen: dict[str, str]) -> tuple[list
         title_pattern = re.compile(source["title_pattern"]) if source.get("title_pattern") else None
         for raw in raw_entries:
             title = strip_html(raw["title"])
+            if not title and raw.get("description"):  # Bluesky 等源的条目没有标题，用正文前 120 字
+                title = strip_html(raw["description"])[:120].strip()
             link = raw["link"].strip()
             if not title or not link:
                 continue
