@@ -328,7 +328,9 @@
       "link_pattern": "^https://cloud\\.tencent\\.com/developer/salon/(live|salon|hackathon)/\\d+",
       "base": "https://cloud.tencent.com",
       "default_type": "talk",
-      "default_city": "深圳"
+      "default_city": "深圳",
+      "disabled": true,
+      "disabled_reason": "2026-09-19 自动停用：连续 5 天解析出 0 条（先查 URL 参数和 json/title_pattern 配置，再考虑反爬）"
     },
     {
       "id": "aliyun-activity",
@@ -351,7 +353,9 @@
       "link_pattern": "^https://www\\.hdb\\.com/party/[a-z0-9]+\\.html",
       "base": "https://www.hdb.com",
       "default_type": "meetup",
-      "default_city": "深圳"
+      "default_city": "深圳",
+      "disabled": true,
+      "disabled_reason": "2026-09-19 自动停用：连续 5 天解析出 0 条（先查 URL 参数和 json/title_pattern 配置，再考虑反爬）"
     },
     {
       "id": "sustech-lectures",
@@ -361,7 +365,9 @@
       "link_pattern": "^https://www\\.sustech\\.edu\\.cn/zh/[a-z-]*lecture[a-z-]*/\\d+",
       "base": "https://www.sustech.edu.cn",
       "default_type": "talk",
-      "default_city": "深圳"
+      "default_city": "深圳",
+      "disabled": true,
+      "disabled_reason": "2026-09-19 自动停用：连续 5 天解析出 0 条（先查 URL 参数和 json/title_pattern 配置，再考虑反爬）"
     },
     {
       "id": "cuhksz-events",
@@ -384,7 +390,9 @@
       "link_pattern": "^https://www\\.bagevent\\.com/event/\\d+",
       "base": "https://www.bagevent.com",
       "default_type": "meetup",
-      "default_city": "深圳"
+      "default_city": "深圳",
+      "disabled": true,
+      "disabled_reason": "2026-09-19 自动停用：连续 5 天解析出 0 条（先查 URL 参数和 json/title_pattern 配置，再考虑反爬）"
     },
     {
       "id": "hdb-guangzhou",
@@ -394,7 +402,9 @@
       "link_pattern": "^https://www\\.hdb\\.com/party/[a-z0-9]+\\.html",
       "base": "https://www.hdb.com",
       "default_type": "meetup",
-      "default_city": "广州"
+      "default_city": "广州",
+      "disabled": true,
+      "disabled_reason": "2026-09-19 自动停用：连续 5 天解析出 0 条（先查 URL 参数和 json/title_pattern 配置，再考虑反爬）"
     },
     {
       "id": "huaweicloud-activity",
@@ -418,7 +428,9 @@
       "base": "https://www.infoq.cn",
       "exclude_pattern": "infoq\\.cn/(conferences|article|news|topic|profile|video|minibook|zones)",
       "default_type": "conference",
-      "default_city": ""
+      "default_city": "",
+      "disabled": true,
+      "disabled_reason": "2026-09-19 自动停用：连续 5 天解析出 0 条（先查 URL 参数和 json/title_pattern 配置，再考虑反爬）"
     },
     {
       "id": "csdn-huodong",
@@ -442,7 +454,9 @@
       "base": "https://www.jiqizhixin.com",
       "exclude_pattern": "/events/?$",
       "default_type": "conference",
-      "default_city": ""
+      "default_city": "",
+      "disabled": true,
+      "disabled_reason": "2026-09-19 自动停用：连续 5 天解析出 0 条（先查 URL 参数和 json/title_pattern 配置，再考虑反爬）"
     },
     {
       "id": "adventurex",
@@ -453,7 +467,9 @@
       "base": "https://adventure-x.org",
       "exclude_pattern": "adventure-x\\.org/?$",
       "default_type": "hackathon",
-      "default_city": ""
+      "default_city": "",
+      "disabled": true,
+      "disabled_reason": "2026-09-19 自动停用：连续 5 天解析出 0 条（先查 URL 参数和 json/title_pattern 配置，再考虑反爬）"
     },
     {
       "id": "aistudio-competitions",
@@ -463,7 +479,9 @@
       "link_pattern": "^https://aistudio\\.baidu\\.com/competition/detail/\\d+",
       "base": "https://aistudio.baidu.com",
       "default_type": "competition",
-      "default_city": "线上"
+      "default_city": "线上",
+      "disabled": true,
+      "disabled_reason": "2026-09-19 自动停用：连续 5 天解析出 0 条（先查 URL 参数和 json/title_pattern 配置，再考虑反爬）"
     },
     {
       "id": "szu-lectures",
