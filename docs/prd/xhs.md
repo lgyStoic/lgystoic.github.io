@@ -92,7 +92,7 @@ radar/data/<日期>.json ─筛 high/medium 前20─▶ call_llm_json(SYSTEM, SC
 
 | 想做什么 | 改哪里 |
 |---|---|
-| 改文稿风格 / 字数 / 段落规则 | `SYSTEM`（body 的 7 条硬性要求）；兜底清洗在 `clean_post` |
+| 改文稿风格 / 字数 / 段落规则 | `SYSTEM`（body 的 8 条硬性要求，第 8 条防编造细节与虚构经历）；兜底清洗在 `clean_post` |
 | 改配图风格 | `SYSTEM` 里 image_prompt 段；兜底提示词在 `main()` |
 | 改卡片版式 / 颜色 | `CARD_CSS`、`card_html` |
 | 多生几张图 | 工作流输入 `images` 或 `XHS_IMAGES` |
