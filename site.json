@@ -115,6 +115,8 @@
       "sogou": "",
       "shenma": "",
       "_readme": "站长平台给的验证码填这里，build 注入首页 <head>：bing→msvalidate.01，google→google-site-verification，baidu→baidu-site-verification，sogou→sogou_site_verification，shenma→shenma-site-verification。为空不输出。"
-    }
+    },
+    "indexnow_key": "5098ea1d920f9f3ecc6f40112c90cab0",
+    "_indexnow": "IndexNow（Bing / Yandex / Naver 共用）的站点密钥；根目录必须有同名 <key>.txt 文件，内容就是密钥。tools/indexnow.py 在 radar.yml 推送成功后把当天有变化的页面推给搜索引擎。"
   }
 }

@@ -158,3 +158,9 @@ jobs:
           done
           echo "连续三次都没推上去"
           exit 1
+      - name: 通知 IndexNow（Bing 索引，当天有变化的页面）
+        if: success()
+        continue-on-error: true
+        env:
+          INDEXNOW_ALL: ${{ github.event.inputs.reason == 'indexnow-all' && '1' || '' }}
+        run: python3 tools/indexnow.py
