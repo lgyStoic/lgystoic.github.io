@@ -242,6 +242,7 @@ RADAR_DAY_TEMPLATE = """<!doctype html>
     <meta property="og:image" content="{site_url}/assets/og/radar.png" />
     <meta name="twitter:card" content="summary_large_image" />
     <link rel="alternate" type="application/rss+xml" title="AI 信息雷达" href="../feed.xml" />
+{jsonld}
     <link rel="icon" href="{favicon}" />
     <link rel="stylesheet" href="../../site.css" />
     <script>
@@ -317,6 +318,7 @@ def write_radar_days(days: list[dict], config: dict, events_data: dict | None = 
             site_url=SITE_URL,
             favicon=FAVICON,
             pager=" · ".join(pager),
+            jsonld=render_radar_jsonld(day),
             body=render_radar_day_body(day, config, events_html=render_day_events(day["date"], events_data, event_types or {})),
         )
         out_dir = RADAR_DIR / day["date"]
@@ -572,7 +574,115 @@ def render_events_page(config: dict, data: dict | None) -> dict[str, str]:
     if past:
         rows = "\n".join(render_event_row(e, types, today) for e in sorted(past, key=ev_last_date, reverse=True))
         tail.append(f'    <details class="radar-low"><summary><h2 class="radar-heading">已结束 <b>{len(past)}</b></h2></summary>\n      <ul class="event-list">\n{rows}\n      </ul>\n    </details>')
-    return {"events-filters": filters, "events-stats": stats, "events-list": listing, "events-past": "\n".join(tail)}
+    return {"events-filters": filters, "events-stats": stats, "events-list": listing, "events-past": "\n".join(tail),
+            "events-jsonld": render_events_jsonld(upcoming, types)}
+
+
+def _ld(data) -> str:
+    return f'    <script type="application/ld+json">{json.dumps(data, ensure_ascii=False)}</script>'
+
+
+def render_events_jsonld(upcoming: list[dict], types: dict, limit: int = 50) -> str:
+    """即将发生的活动作为 schema.org Event 列表：搜索引擎和 AI 搜索都能直接读到日期、城市、报名链接。"""
+    items = []
+    for i, ev in enumerate(upcoming[:limit], 1):
+        if not ev.get("start"):
+            continue
+        e = {"@type": "Event", "name": ev.get("title", ""), "startDate": ev["start"], "url": ev.get("link", ""),
+             "description": ev.get("summary", "") or "", "inLanguage": "zh-CN",
+             "eventAttendanceMode": "https://schema.org/OnlineEventAttendanceMode" if ev.get("online") else "https://schema.org/OfflineEventAttendanceMode",
+             "eventStatus": "https://schema.org/EventScheduled"}
+        if ev.get("end"):
+            e["endDate"] = ev["end"]
+        if ev.get("online"):
+            e["location"] = {"@type": "VirtualLocation", "url": ev.get("link", "")}
+        elif ev.get("city"):
+            e["location"] = {"@type": "Place", "name": ev["city"], "address": {"@type": "PostalAddress", "addressLocality": ev["city"], "addressCountry": "CN"}}
+        if ev.get("organizer"):
+            e["organizer"] = {"@type": "Organization", "name": ev["organizer"]}
+        items.append({"@type": "ListItem", "position": i, "item": e})
+    if not items:
+        return ""
+    return _ld({"@context": "https://schema.org", "@type": "ItemList", "name": "深圳 / 广州 / 香港及线上的 AI 活动", "url": f"{SITE_URL}/radar/events/", "itemListElement": items})
+
+
+def render_radar_jsonld(day: dict) -> str:
+    """每期雷达：Article + 必看条目的 ItemList。"""
+    highs = [r for r in day.get("items", []) if r.get("priority") == "high"]
+    data = [{"@context": "https://schema.org", "@type": "Article", "headline": f"AI 信息雷达 {day['date']}",
+             "datePublished": day["date"], "dateModified": (day.get("generated_at") or day["date"])[:10],
+             "inLanguage": "zh-CN", "url": f"{SITE_URL}/radar/{day['date']}/", "description": radar_description(day),
+             "author": {"@type": "Person", "name": SITE_TITLE, "url": SITE_URL + "/about/"},
+             "publisher": {"@type": "Person", "name": SITE_TITLE, "url": SITE_URL + "/"},
+             "isPartOf": {"@type": "Blog", "name": "AI 信息雷达", "url": f"{SITE_URL}/radar/"}}]
+    if highs:
+        data.append({"@context": "https://schema.org", "@type": "ItemList", "name": f"{day['date']} 必看",
+                     "itemListElement": [{"@type": "ListItem", "position": i, "name": r.get("title", ""), "url": r.get("link", "")} for i, r in enumerate(highs, 1)]})
+    return "\n".join(_ld(d) for d in data)
+
+
+def render_note_jsonld(note: dict) -> str:
+    """笔记页：BlogPosting，字段来自 notes.json。"""
+    url = SITE_URL + note.get("absoluteUrl", "/notes/" + note.get("slug", "") + "/")
+    return _ld({"@context": "https://schema.org", "@type": "BlogPosting", "headline": note.get("title", ""),
+                "description": note.get("summary", ""), "url": url, "mainEntityOfPage": url, "inLanguage": "zh-CN",
+                "dateModified": note.get("updated", ""), "datePublished": note.get("published") or note.get("updated", ""),
+                "keywords": ", ".join(note.get("tags", [])), "isBasedOn": note.get("source", ""),
+                "author": {"@type": "Person", "name": SITE_TITLE, "url": SITE_URL + "/about/"},
+                "publisher": {"@type": "Person", "name": SITE_TITLE, "url": SITE_URL + "/"},
+                "image": f"{SITE_URL}/assets/og/notes.png"})
+
+
+def inject_note_jsonld(notes: list[dict]) -> int:
+    """给带 <!-- build:jsonld --> 标记的笔记页填结构化数据（模板已带标记）。"""
+    n = 0
+    for note in notes:
+        page = ROOT / note.get("absoluteUrl", "").strip("/") / "index.html"
+        if page.exists() and "<!-- build:jsonld -->" in page.read_text(encoding="utf-8"):
+            inject(page, {"jsonld": render_note_jsonld(note)}); n += 1
+    return n
+
+
+def write_llms_txt(site: dict, notes: list[dict], guides: list[dict], days: list[dict], events_data: dict | None) -> None:
+    """/llms.txt：给 AI 搜索与大模型爬虫的站点说明（llmstxt.org 约定）。所有列表由数据生成，和页面同步。"""
+    lines = [f"# {SITE_TITLE}", "", f"> {site.get('description', SITE_DESC)}", "",
+             f"作者 {SITE_TITLE}（GitHub：lgyStoic），深圳，方向：GPU kernel 与训练性能优化、生成模型（DiT / 视频生成）推理加速、端侧部署。"
+             "站点全部中文，纯静态，托管在 GitHub Pages；所有列表页预渲染，`radar/data/*.json` 是公开数据接口。",
+             "引用时请写「Anaxagore（lgystoic.github.io）」并附页面链接；雷达与活动摘要由模型生成，事实以链接原文为准。", ""]
+    lines += ["## 上手指南（教程）", ""]
+    for g in guides or []:
+        if g.get("status") == "published":
+            lines.append(f"- [{g['title']}]({SITE_URL}{g['path']}): {g.get('blurb', '')}（更新 {g.get('updated', '')}）")
+    lines += ["", "## 笔记", ""]
+    for n in notes:
+        lines.append(f"- [{n['title']}]({SITE_URL}{n.get('absoluteUrl', '')}): {n.get('summary', '')}（更新 {n.get('updated', '')}）")
+    lines += ["", "## 每日 AI 信息雷达", "", f"- [雷达首页与往期]({SITE_URL}/radar/)", f"- [RSS]({SITE_URL}/radar/feed.xml)"]
+    for d in days[:7]:
+        highs = "；".join(r.get("title", "") for r in d.get("items", []) if r.get("priority") == "high")[:200]
+        lines.append(f"- [{d['date']}]({SITE_URL}/radar/{d['date']}/): {len(d.get('items', []))} 条，必看：{highs}")
+    alive = 0
+    if events_data and events_data.get("events"):
+        today = events_data.get("today", "")
+        alive = sum(1 for e in events_data["events"] if (ev_last_date(e) or today) >= today and e.get("relevance") != "low")
+    lines += ["", "## 活动清单", "", f"- [深圳 / 广州 / 香港及线上的 AI 活动]({SITE_URL}/radar/events/): 目前即将发生 {alive} 个，页面内含 schema.org Event 数据"]
+    lines += ["", "## 工作机会", "", f"- [AI Infra / GPU Kernel / DiT / 端侧部署 岗位聚合]({SITE_URL}/radar/jobs/): 深圳优先，其次香港与国内，每日更新，附匹配理由"]
+    lines += ["", "## 开源贡献路线", "", f"- [总览]({SITE_URL}/radar/contributions/): 14 个 AI 推理 / kernel 仓库的五章分析（定位、架构、本地运行、社区、切入）与可认领任务卡"]
+    contrib = ROOT / "radar/data/contributions.json"
+    if contrib.exists():
+        try:
+            from contributions import slug as contribution_slug
+            for r in json.loads(contrib.read_text(encoding="utf-8")).get("repos", []):
+                ov = ((r.get("analysis") or {}).get("positioning") or {}).get("overview", "") or r.get("fit", "")
+                lines.append(f"- [{r['repo']}]({SITE_URL}/radar/contributions/{contribution_slug(r['repo'])}/): {ov[:120]}")
+        except Exception:
+            pass
+    lines += ["", "## 公开数据（JSON）", "",
+              f"- {SITE_URL}/radar/data/<YYYY-MM-DD>.json 每日雷达条目（title, link, priority, summary, why, tags）",
+              f"- {SITE_URL}/radar/data/events.json 活动（start, end, city, online, fee, organizer, summary）",
+              f"- {SITE_URL}/radar/data/jobs.json 岗位（title, company, location, region, level, tags, reasons）",
+              f"- {SITE_URL}/radar/data/contributions.json 开源贡献分析与任务卡",
+              "", "## 其他", "", f"- [关于]({SITE_URL}/about/)", f"- [运行状态]({SITE_URL}/status/)", f"- [站点地图]({SITE_URL}/sitemap.xml)", f"- [笔记 RSS]({SITE_URL}/feed.xml)", ""]
+    (ROOT / "llms.txt").write_text("\n".join(lines), encoding="utf-8")
 
 
 def render_home_events(data: dict | None, types: dict) -> str:
@@ -909,6 +1019,8 @@ def render_guide_jsonld(g: dict, page: Path) -> str:
          "description": desc_m.group(1) if desc_m else g.get("blurb", ""),
          "inLanguage": "zh-CN", "url": url, "dateModified": g.get("updated", ""),
          "author": {"@type": "Person", "name": SITE_TITLE, "url": SITE_URL + "/about/"},
+         "publisher": {"@type": "Person", "name": SITE_TITLE, "url": SITE_URL + "/"},
+         "image": f"{SITE_URL}/assets/og/{g['id']}.png",
          "step": steps},
     ]
     return "\n".join(f'    <script type="application/ld+json">{json.dumps(d, ensure_ascii=False)}</script>' for d in data)
@@ -1211,8 +1323,10 @@ def main() -> None:
         },
     )
     guides = build_guides()
+    inject_note_jsonld(notes)
     write_feed(notes)
     write_sitemap(notes, days, guides)
+    write_llms_txt(site, notes, guides, days, events_data)
     print(f"已生成：{len(notes)} 篇笔记 · {len(days)} 期雷达 · index.html · notes/index.html · radar/ · feed.xml · sitemap.xml")
 
 
