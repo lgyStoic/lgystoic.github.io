@@ -5,6 +5,7 @@ on:
       date: {description: 生成日期 YYYY-MM-DD（留空为今天）, required: false, default: ""}
       images: {description: 生成封面图的条数（0 关闭生图）, required: false, default: "4"}
       list_models: {description: 只列出账号可用的全部模型与别名指向（排查用）, type: boolean, default: false}
+      preview: {description: 把第 1 条标题和正文打到日志里（检查文风用）, type: boolean, default: false}
   schedule:
     - cron: "10 1 * * *"
 permissions: {contents: read}
@@ -38,6 +39,7 @@ jobs:
           INBOX_REPO: ${{ vars.INBOX_REPO || 'lgyStoic/radar-inbox' }}
           RADAR_DATE: ${{ inputs.date }}
           XHS_IMAGES: ${{ inputs.images || '4' }}
+          XHS_PREVIEW: ${{ inputs.preview && '1' || '0' }}
           GEMINI_IMAGE_MODEL: ${{ vars.GEMINI_IMAGE_MODEL || 'gemini-3.1-flash-image,gemini-2.5-flash-image' }}
           GEMINI_IMAGEN_MODEL: ${{ vars.GEMINI_IMAGEN_MODEL }}
         run: RADAR_DATE="${RADAR_DATE:-$(TZ=Asia/Shanghai date +%F)}" python3 tools/xhs.py

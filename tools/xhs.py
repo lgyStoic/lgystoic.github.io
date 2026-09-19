@@ -24,10 +24,23 @@ from radar import call_llm_json, log
 
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / 'radar/data'
-SCHEMA = {'type':'object','properties':{'posts':{'type':'array','items':{'type':'object','properties':{'id':{'type':'string'},'headline':{'type':'string'},'takeaways':{'type':'array','items':{'type':'string'}},'post':{'type':'string'},'image_prompt':{'type':'string'}},'required':['id','headline','takeaways','post','image_prompt'],'additionalProperties':False}}},'required':['posts'],'additionalProperties':False}
-SYSTEM = '''你是一个技术型小红书作者，读者是想学习 AI 基础设施、GPU kernel、训练/推理加速、DiT 和端侧部署的工程师。根据输入的新闻条目生成学习卡片和可直接修改发布的小红书草稿。不要编造输入没有的事实，不要夸大结论，不要使用“震惊”“天花板”等标题党。headline 12-24字；takeaways 输出2-4条，每条说明一个可学习的技术点，每条不超过 40 字；post 350-700字，结构为：标题、开头、发生了什么、为什么值得学、我会怎么验证/实践、结尾提问。保留原文链接，文末加“信息来源：URL”。语气清楚、克制、像工程师分享。
-image_prompt：给生图模型的英文提示词，描述一张与主题相关的极简扁平插画（几何形状、电路、芯片、数据流、显卡、网络拓扑等意象），暖色调米白背景配赭红点缀，构图居中，明确写 "no text, no letters, no logos"，40 词以内。'''
+SCHEMA = {'type':'object','properties':{'posts':{'type':'array','items':{'type':'object','properties':{'id':{'type':'string'},'headline':{'type':'string'},'takeaways':{'type':'array','items':{'type':'string'}},'title':{'type':'string'},'body':{'type':'string'},'tags':{'type':'array','items':{'type':'string'}},'image_prompt':{'type':'string'}},'required':['id','headline','takeaways','title','body','tags','image_prompt'],'additionalProperties':False}}},'required':['posts'],'additionalProperties':False}
+SYSTEM = '''你是一个在小红书分享 AI infra 学习笔记的工程师。读者是想学 AI 基础设施、GPU kernel、训练/推理加速、DiT、端侧部署的同行。根据输入的新闻条目，逐条产出可以直接复制粘贴发布的小红书笔记。不要编造输入没有的事实，不要夸大，不要用“震惊”“天花板”“炸裂”这类词。
 
+每条输出字段：
+- headline：学习卡片标题，12–24 字，用于封面图。
+- takeaways：2–4 条可学习的技术点，每条 ≤40 字，用于封面图。
+- title：小红书标题，≤20 字（小红书硬限制），有具体信息量，可用一个 emoji 开头。
+- body：小红书正文，直接发布用，300–600 字。硬性要求：
+  1. 不要出现任何小节标签（禁止写“标题：”“开头：”“发生了什么：”“为什么值得学：”“结尾：”之类）。
+  2. 短段落，每段 1–3 句，段落之间空一行；可以用 1–3 个 emoji 做段首符号，不要多。
+  3. 第一句要能让人停下来（一个具体的数字、变化或反常识点），不要“各位同学”“大家好”这类开场。
+  4. 内容顺序自然衔接：发生了什么 → 为什么对做 infra 的人重要 → 学到的具体技术点（可分行列出）→ 一句自己的看法或接下来想试的方向 → 一个开放式提问。
+  5. 用第一人称、口语化但准确，像发给同行的笔记，不像新闻稿。
+  6. 不要放任何 URL（小红书会限流），需要提来源就写名称，如“来源：SGLang 官方 release notes”。
+  7. 正文末尾不要放话题标签，标签单独放 tags。
+- tags：3–5 个小红书话题词，不带 #，如 "AI Infra"、"大模型推理"、"CUDA"。
+- image_prompt：给生图模型的英文提示词，描述一张与主题相关的极简扁平插画（几何形状、电路、芯片、数据流、显卡、网络拓扑等意象），暖色调米白背景配赭红点缀，构图居中，明确写 "no text, no letters, no logos"，40 词以内。'''
 API = 'https://generativelanguage.googleapis.com/v1beta'
 
 
@@ -94,6 +107,22 @@ def gemini_image(prompt: str, key: str) -> bytes | None:
         except Exception as e:
             log(f'[xhs] {imagen} 失败：{e}')
     return None
+
+
+LABEL_RE = re.compile(r'^[ \t\*#]*(标题|开头|发生了什么|为什么值得学|我会怎么验证/实践|我会怎么验证|实践|结尾提问|结尾|信息来源)\s*[:：]\s*\**\s*', re.M)
+URL_RE = re.compile(r'https?://\S+')
+
+
+def clean_post(p: dict) -> dict:
+    """模型偶尔把结构提示当成小节标签写进正文；发布前统一清掉，URL 一律去掉（小红书限流站外链接）。"""
+    body = p.get('body', '')
+    body = LABEL_RE.sub('', body)
+    body = URL_RE.sub('', body)
+    body = re.sub(r'\n{3,}', '\n\n', body).strip()
+    p['body'] = body
+    p['title'] = URL_RE.sub('', LABEL_RE.sub('', p.get('title', ''))).strip()[:20]
+    p['tags'] = [re.sub(r'[\s#]+', '', t) for t in p.get('tags', []) if re.sub(r'[\s#]+', '', t)][:5]
+    return p
 
 
 # ---------------------------------------------------------------- 封面卡片
@@ -166,7 +195,7 @@ def main():
     result = call_llm_json(SYSTEM, prompt, SCHEMA, label='xhs')
     if not result: raise SystemExit('Gemini 未返回文稿')
     byid = {x['id']: x for x in items}
-    posts = [p for p in result.get('posts', []) if p.get('id') in byid]
+    posts = [clean_post(p) for p in result.get('posts', []) if p.get('id') in byid]
 
     # 封面图：前 N 条
     n_images = int(os.environ.get('XHS_IMAGES', '4'))
@@ -179,15 +208,19 @@ def main():
     files = render_cards(jobs, out_dir) if jobs else []
     log(f'[xhs] 封面图 {len(files)} 张（其中 {art_used} 张带生图配图）')
 
-    lines = [f'# AI 信息学习卡片 · {date}', '', '> 自动生成初稿，请人工核对事实和语气后再发布。封面图 3:4，可直接作为小红书首图；配图由生图模型生成，仅作装饰。', '']
+    preview = os.environ.get('XHS_PREVIEW') == '1'
+    lines = [f'# AI 信息学习卡片 · {date}', '', '> 自动生成初稿，请人工核对事实和语气后再发布。每条：封面图（3:4，可直接作首图）→ 标题 → 正文 → 话题标签，复制即发；原文链接单独列出，小红书限流站外链接，是否放评论区自己定。', '']
     have_img = {f.stem for f in files}
-    for post in posts:
+    for i, post in enumerate(posts, 1):
         s = byid[post['id']]
-        lines += [f'## {post.get("headline", "")}', '']
+        tags = ' '.join(f'#{t}' for t in post.get('tags', []))
+        lines += [f'## {i:02d} {post.get("headline", "")}', '']
         if post['id'] in have_img: lines += [f'![封面](./{date}/{post["id"]}.jpg)', '']
-        lines += [f'原始条目：{s.get("title", "")}', f'链接：{s.get("link", "")}', '', '**学习要点**']
+        lines += ['**标题**', '', post.get('title', ''), '', '**正文**', '', post.get('body', '').strip(), '', tags, '', f'原文：{s.get("title", "")}', f'链接：{s.get("link", "")}', '', '<details><summary>封面要点</summary>', '']
         lines += [f'- {x}' for x in post.get('takeaways', [])]
-        lines += ['', '**小红书草稿**', '', post.get('post', ''), '', '---', '']
+        lines += ['', '</details>', '', '---', '']
+        if preview and i == 1:
+            log('[xhs] 预览第 1 条：\n' + post.get('title', '') + '\n\n' + post.get('body', '').strip() + '\n\n' + tags)
     content = '\n'.join(lines)
     (DATA / f'xhs-{date}.md').write_text(content, encoding='utf-8')
     token, repo = os.environ.get('INBOX_TOKEN', '').strip(), os.environ.get('INBOX_REPO', 'lgyStoic/radar-inbox')
