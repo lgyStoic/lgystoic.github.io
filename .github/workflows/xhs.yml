@@ -6,12 +6,11 @@ on:
       images: {description: 生成封面图的条数（0 关闭生图）, required: false, default: "4"}
       list_models: {description: 只列出账号可用的全部模型与别名指向（排查用）, type: boolean, default: false}
       preview: {description: 把第 1 条标题和正文打到日志里（检查文风用）, type: boolean, default: false}
-      mode: {description: cards=每日学习卡片 jobs=岗位周报 tracks=专题周报 all=都跑, type: choice, options: [cards, jobs, tracks, all], default: cards}
+      mode: {description: cards=每日学习卡片（含专题日报） jobs=岗位周报 tracks=只出专题日报 all=都跑, type: choice, options: [cards, jobs, tracks, all], default: cards}
       jobs_region: {description: 岗位周报地区（空=全部 cn=国内 overseas=海外远程）, required: false, default: ""}
   schedule:
     - cron: "10 1 * * *"   # 每日学习卡片
     - cron: "40 1 * * 1"   # 周一岗位周报
-    - cron: "40 1 * * 3"   # 周三专题周报（视频模型 / 世界模型）
 permissions: {contents: read}
 jobs:
   xhs:
@@ -33,7 +32,7 @@ jobs:
           pip install -q playwright
           python -m playwright install --with-deps chromium
       - name: 每日学习卡片
-        if: ${{ !inputs.list_models && (inputs.mode == '' || inputs.mode == 'cards' || inputs.mode == 'all') && github.event.schedule != '40 1 * * 1' && github.event.schedule != '40 1 * * 3' }}
+        if: ${{ !inputs.list_models && (inputs.mode == '' || inputs.mode == 'cards' || inputs.mode == 'all') && github.event.schedule != '40 1 * * 1' }}
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           GEMINI_MODEL: ${{ vars.GEMINI_MODEL || 'gemini-flash-latest' }}
@@ -60,8 +59,8 @@ jobs:
           XHS_PREVIEW: ${{ inputs.preview && '1' || '0' }}
           GEMINI_IMAGE_MODEL: ${{ vars.GEMINI_IMAGE_MODEL || 'gemini-3.1-flash-image,gemini-2.5-flash-image' }}
         run: RADAR_DATE="${RADAR_DATE:-$(TZ=Asia/Shanghai date +%F)}" python3 tools/xhs.py --jobs
-      - name: 专题周报
-        if: ${{ !inputs.list_models && (inputs.mode == 'tracks' || inputs.mode == 'all' || github.event.schedule == '40 1 * * 3') }}
+      - name: 专题日报（有料才发）
+        if: ${{ !inputs.list_models && (inputs.mode == '' || inputs.mode == 'cards' || inputs.mode == 'tracks' || inputs.mode == 'all') && github.event.schedule != '40 1 * * 1' }}
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           GEMINI_MODEL: ${{ vars.GEMINI_MODEL || 'gemini-flash-latest' }}

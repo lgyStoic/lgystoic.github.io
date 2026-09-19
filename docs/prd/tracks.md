@@ -1,6 +1,6 @@
 # PRD：专题追踪（视频生成模型 · 世界模型）
 
-> 代码：`tools/tracks.py`（累积 / 抽主体 / 周综述）、`tools/radar.py:match_tracks`（打标）、`tools/build.py:write_track_pages`（页面）；配置：`radar/tracks.json`；数据：`radar/data/tracks/<id>.json`（公开）；页面：`/radar/tracks/`、`/radar/tracks/<id>/`；工作流：`radar.yml` 雷达之后一步；小红书周报：`xhs.yml` 周三 01:40 UTC（`--tracks`）。
+> 代码：`tools/tracks.py`（累积 / 抽主体 / 周综述）、`tools/radar.py:match_tracks`（打标）、`tools/build.py:write_track_pages`（页面）；配置：`radar/tracks.json`；数据：`radar/data/tracks/<id>.json`（公开）；页面：`/radar/tracks/`、`/radar/tracks/<id>/`；工作流：`radar.yml` 雷达之后一步；小红书专题日报：`xhs.yml` 每天跟学习卡片一起跑（`--tracks`），模型先判值不值得发，有料才出。
 
 ## 1. 目标与非目标
 
@@ -19,7 +19,7 @@
 
 | 功能 | 说明 |
 |---|---|
-| 配置 | `radar/tracks.json`：`{id, name, blurb, keywords[], weekly_post}`。关键词大小写不敏感；英文按独立词匹配（`oasis` 不会命中 `oasisdb`），中文按子串 |
+| 配置 | `radar/tracks.json`：`{id, name, blurb, keywords[], post}`。关键词大小写不敏感；英文按独立词匹配（`oasis` 不会命中 `oasisdb`），中文按子串 |
 | 打标 | `radar.py:match_tracks`：源带 `track` 字段 → 直接归该专题；否则标题 + 摘要命中关键词。命中的条目 `tracks: [id]`，规则分 +1；源带 `track_required` 时不命中即丢（查询源如 Google News「Sora」会撞地名） |
 | 专属源 | `sources.json` 里：HF 文生视频 / 图生视频热榜（`track: video`，14 天内新建、likes ≥ 10）、Google News 视频 / 世界模型中英查询、GitHub 30 天新仓库、arXiv cs.CV / cs.RO 日报（后四类都 `track_required`）。加源前先跑 `probe.yml` |
 | 累积 | `tracks.py:build_track`：扫所有 `radar/data/<日期>.json`，把带该专题标签的条目并进 `entries`（按 id 去重，保留 180 天）；上线前的旧数据用标题 + 摘要补打标签 |
@@ -28,7 +28,7 @@
 | 周综述 | 距上次 ≥ 6 天且近 7 天 ≥ 3 条 → 模型写 `digest.text`（150–300 字）、`highlights`（3–5 条）并在上一版基础上更新 `sota`（≤ 12 行：model / org / date / open_weights / spec / link / note）。`radar.yml` 手动触发 reason 填 `tracks-digest` 可强制重写 |
 | 页面 | 总览 `/radar/tracks/`（卡片 + 本周要点）；专题页：简介与统计 → 本周综述 → 现状表 → 线程 → 最近 30 天时间线（按天分组）→ 更早（折叠）。`CollectionPage` + `ItemList` JSON-LD |
 | 站点接入 | `site.json.modules` 加 `tracks`（导航「专题」，首页卡片显示专题数与条目数）；sitemap 与 `llms.txt` 列出专题页与本周综述摘要；`radar/data/tracks/<id>.json` 列入公开数据 |
-| 小红书周报 | `xhs.py --tracks`：每个 `weekly_post` 的专题，近 7 天 ≥ 3 条时生成一篇（标题 / 正文 5–8 件进展 / 标签首个固定「视频模型周报」或「世界模型周报」/ 封面 kind=track）→ 私有仓库 `posts/tracks/<id>/<日期>.md`；每日卡片排序里专题条目热度 +0.1 |
+| 小红书日报 | `xhs.py --tracks`（每天）：每个 `post` 的专题取「上一期之后、最多回看 3 天」的新条目，≥ 2 条才问模型；模型输出 `worth` / `worth_reason`，只有真正进展（发布、有结论的论文 / 评测、框架支持）才 true；true 才写稿（标题 / 正文 2–6 件进展 / 标签首个固定「视频模型日报」「世界模型日报」/ 封面 kind=track）→ 私有仓库 `posts/tracks/<id>/<日期>.md`；false 只打日志。每日卡片排序里专题条目热度 +0.1 |
 
 ## 4. 数据管线
 
@@ -40,7 +40,7 @@ sources.json（含 track / track_required 源）─▶ radar.py collect ─ matc
                          ├─ need_digest？→ write_digest（digest + highlights + sota）
                          └─▶ radar/data/tracks/<id>.json
                                    │                      │
-                     build.py write_track_pages      xhs.py --tracks（周三）
+                     build.py write_track_pages      xhs.py --tracks（每天，worth 才发）
                                    ▼                      ▼
                      /radar/tracks/<id>/        私有仓库 posts/tracks/<id>/<日期>.md
 ```
@@ -88,5 +88,5 @@ sources.json（含 track / track_required 源）─▶ radar.py collect ─ matc
 | 改综述 / 现状表口径 | `tools/tracks.py` `DIGEST_SYSTEM` |
 | 改主体规范化 | `tools/tracks.py` `ENTITY_SYSTEM` / `fallback_entity` |
 | 改页面版式 | `tools/build.py` `render_track_body`、`TRACK_PAGE_TEMPLATE`；样式 `site.css` 「专题追踪」段 |
-| 改周报文案 | `tools/xhs.py` `TRACK_SYSTEM`、`TRACK_TAG` |
-| 改周报时间 | `xhs.yml` cron `40 1 * * 3` |
+| 改日报文案 / 值得发的标准 | `tools/xhs.py` `TRACK_SYSTEM`（worth 判定段）、`TRACK_TAG` |
+| 改日报回看天数 / 最少条数 | `run_track_post` 里的 `timedelta(days=3)`、`len(recent) < 2` |

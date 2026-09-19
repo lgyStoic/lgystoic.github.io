@@ -1,5 +1,5 @@
 {
-  "_readme": "专题追踪：命中 keywords（标题+摘要，忽略大小写）或来自 sources.json 里标了 track 的源的条目，会打上 tracks 标签、进入 radar/data/tracks/<id>.json 的累积时间线与 /radar/tracks/<id>/ 页面。加专题：加一项，跑 tools/tracks.py，build.py 自动生成页面。",
+  "_readme": "专题追踪：命中 keywords（标题+摘要，忽略大小写）或来自 sources.json 里标了 track 的源的条目，会打上 tracks 标签、进入 radar/data/tracks/<id>.json 的累积时间线与 /radar/tracks/<id>/ 页面。加专题：加一项，跑 tools/tracks.py，build.py 自动生成页面。 post=true 的专题每天由 xhs.py --tracks 判断有没有值得发的进展，有才出一篇日报。",
   "tracks": [
     {
       "id": "video",
@@ -66,7 +66,7 @@
         "framepack",
         "ttt-video"
       ],
-      "weekly_post": true
+      "post": true
     },
     {
       "id": "world",
@@ -116,7 +116,7 @@
         "world labs",
         "atlas world"
       ],
-      "weekly_post": true
+      "post": true
     }
   ]
 }
