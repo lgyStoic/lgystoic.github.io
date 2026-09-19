@@ -42,6 +42,7 @@ SYSTEM = '''你是一个在小红书分享 AI infra 学习笔记的工程师。�
      - 「每天一张 AI infra 学习卡片，先收藏，等你真要上手时回来翻。」
      - 「如果你也在做训练/推理加速，关注我，这个系列每天更新，评论区一起把细节聊透。」
      - 「觉得有用的话收藏 + 关注，下一张卡片讲 <与本条相关的方向>。」（只在你确实能从输入其他条目推断出方向时使用）
+     - 「这是第 N 天了，前面的都在主页合集里，想系统补 infra 的直接翻。」（输入里给了期数时可用）
      禁止：「求关注」「点赞关注走一波」「关注不迷路」这类模板话；不要承诺抽奖、资料包。
   8. 技术点只能来自输入条目的 title / summary / why，输入没写的细节（性能数字、实现方式、显存/吞吐变化）一律不补；不要虚构自己的团队、项目、经历，「接下来想试」只能写成个人打算，不要写“我们的流程里”。
   6. 不要放任何 URL（小红书会限流），需要提来源就写名称，如“来源：SGLang 官方 release notes”。
@@ -60,6 +61,58 @@ JOBS_SYSTEM = '''你是一个在小红书做「AI infra 岗位精选」周报的
 6. tags：3–5 个话题词，不带 #，第一个固定 "AIInfra岗位"，其余如 "AI Infra"、"大模型推理"、"深圳求职"、"CUDA"。
 7. image_prompt：英文，极简扁平插画，与「招聘/机会/城市与芯片」相关的意象，暖色米白背景赭红点缀，"no text, no letters, no logos"，40 词以内。'''
 JOBS_TAG = 'AIInfra岗位'
+
+RANK_SCHEMA = {'type':'object','properties':{'ranking':{'type':'array','items':{'type':'object','properties':{'id':{'type':'string'},'audience':{'type':'integer'},'hook':{'type':'integer'},'discuss':{'type':'integer'},'save':{'type':'integer'},'reason':{'type':'string'}},'required':['id','audience','hook','discuss','save','reason'],'additionalProperties':False}}},'required':['ranking'],'additionalProperties':False}
+RANK_SYSTEM = '''你是小红书 AI 技术类账号的运营编辑。输入是同一天生成的一批笔记（标题 + 正文前 200 字 + 原始新闻标题），请判断在小红书上哪些更可能被 AI 从业者点开、点赞、收藏、评论。逐条给 4 个维度 1–5 分（整数）和一句 ≤30 字理由；同一批内要拉开差距，不要都给 3–4 分：
+- audience 受众广度：多少 AI 从业者会关心（大厂/明星模型发布 5，通用推理/训练技巧 4，特定框架细节 3，冷门硬件或论文 1–2）
+- hook 钩子强度：标题和第一句有没有具体数字、对比、反常识点
+- discuss 可讨论性：能不能引发站队、经验交流、提问（如 vLLM vs SGLang、值不值得升级）
+- save 收藏价值：是不是查阅型内容（清单、步骤、参数、对照表）
+只输出评分，不改写内容。'''
+BRAND_RE = re.compile(r'DeepSeek|Qwen|通义|OpenAI|GPT|NVIDIA|英伟达|Anthropic|Claude|Gemini|Google|Llama|Meta|Kimi|月之暗面|MiniMax|智谱|GLM|Mistral|vLLM|SGLang|PyTorch|CUDA|H100|H200|B200|Blackwell|Hopper|Jetson|昇腾|华为|Huawei|字节|豆包|Seed|Grok|xAI|Apple|苹果', re.I)
+CAT_HEAT = {'release': 1.0, 'trend': 0.8, 'infra': 0.7, 'people': 0.6, 'research': 0.5, 'industry': 0.4}
+
+
+def objective_heat(src: dict, post: dict) -> float:
+    """0–1：雷达优先级、类别、标题里有没有大厂/明星模型名、有没有具体数字。不依赖模型。"""
+    h = {'high': 1.0, 'medium': 0.6}.get(src.get('priority'), 0.3) * 0.4
+    h += CAT_HEAT.get(src.get('category'), 0.5) * 0.3
+    text = f"{post.get('headline', '')} {post.get('title', '')} {src.get('title', '')}"
+    h += 0.2 if BRAND_RE.search(text) else 0
+    h += 0.1 if re.search(r'\d', post.get('title', '') + post.get('headline', '')) else 0
+    return round(min(h, 1.0), 3)
+
+
+def rank_posts(posts: list[dict], byid: dict) -> list[dict]:
+    """最终分 = 0.5 量表（Gemini 4 维相对打分）+ 0.3 客观热度 + 0.2 雷达优先级；模型失败时只用后两项。"""
+    if not posts: return posts
+    prompt = '以下是今天的笔记，请逐条评分：\n' + json.dumps([{'id': p['id'], 'title': p.get('title'), 'headline': p.get('headline'), 'body_head': (p.get('body') or '')[:200], 'news_title': byid[p['id']].get('title'), 'category': byid[p['id']].get('category')} for p in posts], ensure_ascii=False)
+    result = call_llm_json(RANK_SYSTEM, prompt, RANK_SCHEMA, label='xhs-rank') or {}
+    rubric = {r['id']: r for r in result.get('ranking', []) if r.get('id')}
+    for p in posts:
+        src = byid[p['id']]; r = rubric.get(p['id'])
+        heat = objective_heat(src, p)
+        radar = {'high': 1.0, 'medium': 0.6}.get(src.get('priority'), 0.3)
+        if r:
+            dims = {k: max(1, min(5, int(r.get(k, 3)))) for k in ('audience', 'hook', 'discuss', 'save')}
+            rub = (sum(dims.values()) - 4) / 16  # 4–20 → 0–1
+            p['rank'] = {'score': round(0.5 * rub + 0.3 * heat + 0.2 * radar, 3), **dims, 'heat': heat, 'reason': r.get('reason', '')[:40]}
+        else:
+            p['rank'] = {'score': round(0.6 * heat + 0.4 * radar, 3), 'heat': heat, 'reason': '模型未评分，按客观热度'}
+    posts.sort(key=lambda p: -p['rank']['score'])
+    if not rubric: log('[xhs] 排序：模型未返回评分，只按客观热度 + 雷达优先级')
+    return posts
+
+
+def episode_number(repo: str, token: str, kind: str, date: str) -> int | None:
+    """第几期 = 私有仓库该目录下 md 数（含今天）。没有 token 返回 None。"""
+    if not token: return None
+    try:
+        names = {e['name'][:-3] for e in gh_get_json(repo, f'posts/{kind}', token) if isinstance(e, dict) and e.get('name', '').endswith('.md')}
+        names.add(date)
+        return len(names)
+    except Exception as e:
+        log(f'[xhs] 期数查询失败：{e}'); return None
 ANON_RE = re.compile(r'^某|知名|保密|不便公开|匿名')
 
 API = 'https://generativelanguage.googleapis.com/v1beta'
@@ -197,18 +250,18 @@ li i{flex:0 0 46px;height:46px;border-radius:50%;background:#9a3412;color:#fff;f
 '''
 
 
-def card_html(index: int, post: dict, src: dict, date: str, art_b64: str | None, *, kind: str = 'cards') -> str:
+def card_html(index: int, post: dict, src: dict, date: str, art_b64: str | None, *, kind: str = 'cards', episode: int | None = None) -> str:
     e = html.escape
     art = f'<img src="data:image/png;base64,{art_b64}" alt="">' if art_b64 else f'<div class="n">{index:02d}</div>'
     rows = post.get('takeaways') or post.get('highlights') or []
     rows = rows[:6 if kind == 'jobs' else 4]
     items = ''.join(f'<li><i>{i}</i><span>{e(t)}</span></li>' for i, t in enumerate(rows, 1))
     if kind == 'jobs':
-        kicker, right = 'AI infra 岗位精选 · 每周一', f'{e(date)} · {len(src.get("jobs", []))} 个岗位'
+        kicker, right = 'AI infra 岗位精选 · 每周一' + (f' · 第 {episode} 期' if episode else ''), f'{e(date)} · {len(src.get("jobs", []))} 个岗位'
         foot_l, foot_r = '来源 · 各公司官方招聘页 / 猎聘公开信息<br>完整列表每天更新 · 收藏 + 关注', 'lgystoic.github.io/radar/jobs/'
     else:
         domain = re.sub(r'^https?://(www\.)?', '', src.get('link', '')).split('/')[0]
-        kicker, right = 'AI 信息学习卡片 · 每天一张', f'{e(date)} · {index:02d}'
+        kicker, right = 'AI 信息学习卡片 · 每天一张' + (f' · 第 {episode} 天' if episode else ''), f'{e(date)} · {index:02d}'
         foot_l, foot_r = f'来源 · {e(domain)}<br>关注看每日更新 · 收藏回头翻', f'lgystoic.github.io/radar/{e(date)}/'
     return f'''<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><style>{CARD_CSS}</style></head><body><div class="card {kind}">
 <div class="kicker"><span><b>Anaxagore</b> · {kicker}</span><span>{right}</span></div>
@@ -270,24 +323,31 @@ def run_cards(date: str, key: str):
     if not result: raise SystemExit('Gemini 未返回文稿')
     byid = {x['id']: x for x in items}
     posts = [clean_post(p) for p in result.get('posts', []) if p.get('id') in byid]
+    posts = rank_posts(posts, byid)  # 按小红书发布价值排序，前几条就是今天该发的
+    token, repo = os.environ.get('INBOX_TOKEN', '').strip(), os.environ.get('INBOX_REPO', 'lgyStoic/radar-inbox')
+    episode = episode_number(repo, token, 'cards', date)
 
     n_images = int(os.environ.get('XHS_IMAGES', '4'))
     jobs, art_used = [], 0
     for i, post in enumerate(posts[:n_images], 1):
         art = gemini_image(post.get('image_prompt') or f"minimal flat illustration about {post.get('headline','AI infrastructure')}, warm off-white background, rust accent, no text, no letters, no logos", key) if key and n_images else None
         if art: art_used += 1
-        jobs.append((post['id'], card_html(i, post, byid[post['id']], date, base64.b64encode(art).decode() if art else None)))
+        jobs.append((post['id'], card_html(i, post, byid[post['id']], date, base64.b64encode(art).decode() if art else None, episode=episode)))
     _, img_dir, _, _ = out_paths('cards', date)
     files = render_cards(jobs, img_dir) if jobs else []
     log(f'[xhs] 封面图 {len(files)} 张（其中 {art_used} 张带生图配图）')
 
     preview = os.environ.get('XHS_PREVIEW') == '1'
-    lines = [f'# AI 信息学习卡片 · {date}', '', '> 自动生成初稿，请人工核对事实和语气后再发布。每条：封面图（3:4，可直接作首图）→ 标题 → 正文 → 话题标签，复制即发；原文链接单独列出，小红书限流站外链接，是否放评论区自己定。', '']
+    lines = [f'# AI 信息学习卡片 · {date}' + (f' · 第 {episode} 天' if episode else ''), '', '> 自动生成初稿，请人工核对事实和语气后再发布。**已按小红书发布价值排序**：前 3 条标「今日必发」，封面图给前几条。每条：封面 → 标题 → 正文 → 话题标签，复制即发；原文链接单独列出，是否放评论区自己定。', '', '## 今日发布顺序', '', '| 序 | 标题 | 总分 | 受众 | 钩子 | 讨论 | 收藏 | 热度 | 理由 |', '|---|---|---|---|---|---|---|---|---|']
+    for i, post in enumerate(posts, 1):
+        r = post.get('rank', {})
+        lines.append(f"| {i}{' 🔥' if i <= 3 else ''} | {post.get('title', '')} | {r.get('score', '')} | {r.get('audience', '-')} | {r.get('hook', '-')} | {r.get('discuss', '-')} | {r.get('save', '-')} | {r.get('heat', '')} | {r.get('reason', '')} |")
+    lines.append('')
     have_img = {f.stem for f in files}
     for i, post in enumerate(posts, 1):
         s = byid[post['id']]
         tags = ' '.join(f'#{t}' for t in post.get('tags', []))
-        lines += [f'## {i:02d} {post.get("headline", "")}', '']
+        lines += [f'## {i:02d} {"🔥 今日必发 · " if i <= 3 else ""}{post.get("headline", "")}', '']
         if post['id'] in have_img: lines += [f'![封面](./{date}/{post["id"]}.jpg)', '']
         lines += ['**标题**', '', post.get('title', ''), '', '**正文**', '', post.get('body', '').strip(), '', tags, '', f'原文：{s.get("title", "")}', f'链接：{s.get("link", "")}', '', '<details><summary>封面要点</summary>', '']
         lines += [f'- {x}' for x in post.get('takeaways', [])]
@@ -295,7 +355,8 @@ def run_cards(date: str, key: str):
         if preview and i == 1:
             log('[xhs] 预览第 1 条：\n' + post.get('title', '') + '\n\n' + post.get('body', '').strip() + '\n\n' + tags)
     dest = publish('cards', date, '\n'.join(lines), files)
-    log(f'[xhs] 生成 {len(posts)} 条文稿、{len(files)} 张封面，写入 {dest}')
+    top = ' / '.join(p.get('title', '')[:14] for p in posts[:3])
+    log(f'[xhs] 生成 {len(posts)} 条文稿、{len(files)} 张封面，今日必发：{top}，写入 {dest}')
 
 
 def pick_jobs(jobs: list[dict], region: str = '', n: int = 12, per_company: int = 2) -> list[dict]:
@@ -330,7 +391,8 @@ def run_jobs(date: str, key: str):
     post['highlights'] = [h for h in result.get('highlights', []) if h.strip()][:6]
     art = gemini_image(post.get('image_prompt') or 'minimal flat illustration of a city skyline made of circuit traces and GPU chips, warm off-white background, rust accent, no text, no letters, no logos', key) if key else None
     _, img_dir, _, _ = out_paths('jobs', date)
-    files = render_cards([('cover', card_html(1, post, {'jobs': picked}, date, base64.b64encode(art).decode() if art else None, kind='jobs'))], img_dir)
+    episode = episode_number(os.environ.get('INBOX_REPO', 'lgyStoic/radar-inbox'), os.environ.get('INBOX_TOKEN', '').strip(), 'jobs', date)
+    files = render_cards([('cover', card_html(1, post, {'jobs': picked}, date, base64.b64encode(art).decode() if art else None, kind='jobs', episode=episode))], img_dir)
 
     tags = ' '.join(f'#{t}' for t in post['tags'])
     lines = [f'# AI infra 岗位精选 · {date}', '', '> 自动生成初稿：岗位事实以文末明细表（含链接）为准，发布前逐条核对公司名和岗位名；正文不放链接，不写薪资，不提内推。', '']
