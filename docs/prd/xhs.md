@@ -50,6 +50,7 @@ posts/
 | 历史 | `load_topic_history`：私有仓库 `posts/topics.json`（每次运行写：日期 → [{seq, id, entity, title, novelty}]，保留 45 天）+ `posts/stats.md` 里出现过的 `cards/<日期>#NN` 视为已发布；取近 7 天 |
 | 判定 | 提示词里附「近 7 天已写过的主题（entity｜日期｜已发/未发｜标题）」，模型对每条输出 `entity`（规范主体名）、`novelty`（new / update / same）、`followup_of` |
 | 处理 | `apply_novelty`：same 且已发 → 丢弃并打日志；same 未发 → 保留、排序扣 0.15、md 标 ⚠️「重复选题」；update → 正文第一段承接「上次说了 X，这次 Y」，md 标「承接」 |
+| 同日去重 | `dedupe_same_day`：同一天同一 entity 多条时只留排序最高的当主稿，其余扣 0.2 并标「与第 NN 条同主体，素材可合并」 |
 | 依赖 | 「已发」完全来自站长回填的 `stats.md`；不填就当没发过，只会降权不会丢 |
 
 ### 3.2 岗位周报（jobs，`--jobs`）

@@ -183,6 +183,21 @@ def apply_novelty(posts: list[dict], hist: list[dict]) -> list[dict]:
     return kept
 
 
+def dedupe_same_day(posts: list[dict]) -> list[dict]:
+    """同一天同一主体出现多条（热榜条目 + 论文 + 新闻）：只留排序最高的一条当主稿，其余降权并标注，md 里仍保留供合并素材。"""
+    first: dict[str, int] = {}
+    for i, p in enumerate(posts, 1):
+        ent = (p.get('entity') or '').strip().lower()
+        if not ent: continue
+        if ent in first:
+            p['note'] = (p.get('note') + '；' if p.get('note') else '') + f'与第 {first[ent]:02d} 条同主体，素材可合并'
+            if 'rank' in p: p['rank']['score'] = round(p['rank']['score'] - 0.2, 3)
+        else:
+            first[ent] = i
+    posts.sort(key=lambda p: -p.get('rank', {}).get('score', 0))
+    return posts
+
+
 def save_topics(repo: str, token: str, topics: dict, date: str, posts: list[dict]):
     if not token: return
     topics[date] = [{'seq': i, 'id': p['id'], 'entity': p.get('entity', ''), 'title': p.get('title', ''), 'novelty': p.get('novelty', 'new')} for i, p in enumerate(posts, 1)]
@@ -425,6 +440,7 @@ def run_cards(date: str, key: str):
     posts = apply_novelty(posts, hist)
     shorten_titles(posts)
     posts = rank_posts(posts, byid)  # 按小红书发布价值排序，前几条就是今天该发的
+    posts = dedupe_same_day(posts)
     episode = episode_number(repo, token, 'cards', date)
 
     n_images = int(os.environ.get('XHS_IMAGES', '4'))
