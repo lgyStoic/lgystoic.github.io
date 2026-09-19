@@ -1,0 +1,463 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>用 VLM 把家庭摄像头压成状态序列：一个看护记录系统的设计</title>
+    <meta
+      name="description"
+      content="三个家用摄像头 + 一个视觉模型，把连续画面变成可查询的状态序列。记录其中的取舍：两级过滤如何把模型调用量压下来、为什么输出格式不用 JSON、状态机为什么必须忽略 unknown，以及门口摄像头为什么改成边沿触发。"
+    />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%2322282f'/%3E%3Ctext x='32' y='39' text-anchor='middle' font-size='17' font-family='Arial' font-weight='700' fill='white'%3ECV%3C/text%3E%3C/svg%3E"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="../../" aria-label="回到学习站首页">
+        <span class="brand-mark">CV</span>
+        <span>家庭摄像头 × VLM</span>
+      </a>
+      <nav aria-label="页面导航">
+        <a href="../">笔记</a>
+      </nav>
+    </header>
+
+    <main class="note-shell">
+      <section class="hero">
+        <p class="eyebrow">Home Vision Pipeline</p>
+        <h1>每分钟都在看，但只有画面变了才付钱。</h1>
+        <p class="lead">
+          家里两个室内摄像头加一个门口猫眼，接一个视觉模型，把连续画面压成一条可查询的状态序列：
+          几点睡的、醒了多久、身边有没有人、什么时候被抱出门。这篇不讲「我做了个什么」，只讲几个真正决定成败的取舍——
+          两级过滤怎么把模型调用量压下去、为什么输出格式不用 JSON、状态机为什么必须忽略 unknown、
+          以及门口那路为什么非得是边沿触发。
+        </p>
+        <div class="hero-facts" aria-label="关键参数">
+          <span>采集 1 帧 / 分钟</span>
+          <span>分析 1 次 / 10 分钟</span>
+          <span>门口按状态边沿触发</span>
+          <span>单次分析 ≈ 3.4k input tokens</span>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>一、问题不是「看不见」，是「看得见但不可查询」</h2>
+        <p>
+          摄像头本身早就解决了「看得见」。它没解决的是：我在公司，想知道的是
+          <em>几点睡的、这一觉睡了多久、醒着的时候身边有没有人</em>，
+          而它能给我的只有一条连续的像素流。中间缺的是一层把像素变成<strong>离散状态 + 时间戳</strong>的东西。
+        </p>
+        <p>
+          最直接的做法是每分钟把画面丢给视觉模型让它描述。这条路一算成本就断了——
+          按后面第三节的计价模型，每分钟一次、一天按 15 小时算，光模型调用就是 900 次。
+          所以<strong>成本不是这个系统的优化项，是它的第一约束</strong>，整个架构是围着这条约束长出来的。
+        </p>
+      </section>
+
+      <section class="section">
+        <h2>二、分层与调度</h2>
+        <p>
+          入口只有一个 <code>scheduler.py</code>，crontab 每分钟调一次。采集每分钟都跑，分析十分钟跑一次：
+        </p>
+        <pre><code>if hour &lt; RUN_HOUR_START or hour &gt;= RUN_HOUR_END:
+    return                       # 夜里不跑，省钱也省噪音
+
+run_capture()                    # 每分钟：抓帧 + 存盘
+
+if minute % 10 == 0:
+    run_analyze()                # 每 10 分钟：判断 + 可能调用模型</code></pre>
+        <p>
+          用 crontab 而不是常驻进程，是因为这台机器还跑别的东西，而且<strong>进程崩了不需要我去管</strong>——
+          下一分钟系统会再拉起来一次。代价是所有跨周期的状态都得落盘，这就是
+          <code>tracker_state.json</code> 的由来。
+        </p>
+
+        <figure>
+          <svg viewBox="0 0 900 640" role="img" aria-label="数据流：两个室内摄像头每分钟抓帧交给采集层；分析层每十分钟先做帧差判断，没有变化就跳过模型调用，只写一行日志；有变化才调用视觉模型，结果进状态机；状态机在娃进出室内画面时才触发门口猫眼检查；最后汇到告警与日志" style="max-width: 100%;">
+            <defs>
+              <marker id="a-gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                <path d="M0 0 L10 5 L0 10 z" fill="#65717c"></path>
+              </marker>
+              <marker id="a-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                <path d="M0 0 L10 5 L0 10 z" fill="#3e64b8"></path>
+              </marker>
+              <marker id="a-teal" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                <path d="M0 0 L10 5 L0 10 z" fill="#158d82"></path>
+              </marker>
+            </defs>
+
+            <rect x="0" y="0" width="276" height="56" rx="7" fill="#ffffff" stroke="#dfe6ee" stroke-width="1.5"></rect>
+            <text x="138" y="34" text-anchor="middle" font-size="16" font-weight="600" fill="#20252b">卧室摄像头</text>
+            <rect x="300" y="0" width="276" height="56" rx="7" fill="#ffffff" stroke="#dfe6ee" stroke-width="1.5"></rect>
+            <text x="438" y="34" text-anchor="middle" font-size="16" font-weight="600" fill="#20252b">客厅摄像头</text>
+
+            <line x1="138" y1="56" x2="138" y2="96" stroke="#65717c" stroke-width="1.5" marker-end="url(#a-gray)"></line>
+            <line x1="438" y1="56" x2="438" y2="96" stroke="#65717c" stroke-width="1.5" marker-end="url(#a-gray)"></line>
+            <text x="288" y="82" text-anchor="middle" font-size="13" fill="#65717c">go2rtc · 每分钟各 1 帧</text>
+
+            <rect x="0" y="100" width="576" height="66" rx="7" fill="#ffffff" stroke="#dfe6ee" stroke-width="1.5"></rect>
+            <text x="288" y="127" text-anchor="middle" font-size="16" font-weight="600" fill="#20252b">capture.py</text>
+            <text x="288" y="150" text-anchor="middle" font-size="13" fill="#65717c">抓帧 → 落盘 → 与上一帧算差异 → 心跳</text>
+
+            <line x1="288" y1="166" x2="288" y2="206" stroke="#65717c" stroke-width="1.5" marker-end="url(#a-gray)"></line>
+            <text x="300" y="192" font-size="13" fill="#65717c">每 10 分钟取最近 12 分钟的帧</text>
+
+            <rect x="0" y="210" width="576" height="66" rx="7" fill="#ffffff" stroke="#dfe6ee" stroke-width="1.5"></rect>
+            <text x="288" y="237" text-anchor="middle" font-size="16" font-weight="600" fill="#20252b">L1 · 帧差闸门</text>
+            <text x="288" y="260" text-anchor="middle" font-size="13" fill="#65717c">首尾两帧平均像素差 &gt; 8.0 ？</text>
+
+            <line x1="576" y1="243" x2="624" y2="243" stroke="#158d82" stroke-width="1.5" marker-end="url(#a-teal)"></line>
+            <text x="600" y="232" text-anchor="middle" font-size="12" fill="#158d82">否</text>
+            <rect x="630" y="212" width="270" height="62" rx="7" fill="#f2f8f7" stroke="#158d82" stroke-width="1.5"></rect>
+            <text x="765" y="238" text-anchor="middle" font-size="15" font-weight="700" fill="#158d82">跳过，零调用</text>
+            <text x="765" y="259" text-anchor="middle" font-size="12.5" fill="#3f7a73">只写一行「延续上次状态」</text>
+
+            <line x1="288" y1="276" x2="288" y2="316" stroke="#3e64b8" stroke-width="1.5" marker-end="url(#a-blue)"></line>
+            <text x="300" y="302" font-size="13" font-weight="600" fill="#3e64b8">是</text>
+
+            <rect x="0" y="320" width="576" height="66" rx="7" fill="#eef4ff" stroke="#3e64b8" stroke-width="1.5"></rect>
+            <text x="288" y="347" text-anchor="middle" font-size="16" font-weight="600" fill="#3e64b8">L2 · 视觉模型</text>
+            <text x="288" y="370" text-anchor="middle" font-size="13" fill="#4a68a8">最多 10 张（每摄像头均匀采样 5 张）</text>
+
+            <line x1="288" y1="386" x2="288" y2="426" stroke="#65717c" stroke-width="1.5" marker-end="url(#a-gray)"></line>
+            <text x="300" y="412" font-size="13" fill="#65717c">单行输出：房间 | 活动 | 陪伴 | 光线</text>
+
+            <rect x="0" y="430" width="576" height="78" rx="7" fill="#ffffff" stroke="#dfe6ee" stroke-width="1.5"></rect>
+            <text x="288" y="457" text-anchor="middle" font-size="16" font-weight="600" fill="#20252b">state.py · 状态机</text>
+            <text x="288" y="479" text-anchor="middle" font-size="13" fill="#65717c">sleeping / playing / held / eating</text>
+            <text x="288" y="498" text-anchor="middle" font-size="13" fill="#65717c">alone_awake / out / unknown</text>
+
+            <line x1="576" y1="469" x2="624" y2="469" stroke="#65717c" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#a-gray)"></line>
+            <rect x="630" y="430" width="270" height="78" rx="7" fill="#ffffff" stroke="#65717c" stroke-width="1.5" stroke-dasharray="6 4"></rect>
+            <text x="765" y="456" text-anchor="middle" font-size="15" font-weight="600" fill="#20252b">门口猫眼</text>
+            <text x="765" y="477" text-anchor="middle" font-size="12.5" fill="#65717c">仅在进出室内画面的边沿</text>
+            <text x="765" y="495" text-anchor="middle" font-size="12.5" fill="#65717c">查一次告警截图：有无婴儿车</text>
+
+            <line x1="288" y1="508" x2="288" y2="548" stroke="#65717c" stroke-width="1.5" marker-end="url(#a-gray)"></line>
+            <text x="300" y="534" font-size="13" fill="#65717c">状态转换 / 持续时长越界</text>
+
+            <rect x="0" y="552" width="900" height="66" rx="7" fill="#ffffff" stroke="#dfe6ee" stroke-width="1.5"></rect>
+            <text x="450" y="579" text-anchor="middle" font-size="16" font-weight="600" fill="#20252b">alert.py · 分级告警 + 当天日志</text>
+            <text x="450" y="602" text-anchor="middle" font-size="13" fill="#65717c">群机器人推送 · 每日汇总报告</text>
+          </svg>
+          <figcaption>
+            整条链路。注意门口猫眼不在数据源那一层——它挂在状态机的边沿上，是一条按需支路，平时完全不动。
+          </figcaption>
+        </figure>
+
+        <p class="callout">
+          <strong>一处遗留：</strong>
+          <span>
+            采集层其实已经算出了「这一帧和上一帧比变没变」，并写进了返回值和
+            <code>last_any_change</code>；但分析层没读它，而是自己重新算了一遍。两套判据服务的目标不同
+            （见下一节），不冲突，但确实是重复计算。调度层拿到 <code>run_capture()</code> 的返回值后也没有使用。
+          </span>
+        </p>
+      </section>
+
+      <section class="section">
+        <h2>三、两级过滤：把「要不要问模型」变成一道廉价的闸门</h2>
+        <p>
+          核心思路很朴素：<strong>调用模型之前，先用一个便宜几个数量级的方法判断值不值得调用。</strong>
+          这里用的是最土的帧差。
+        </p>
+        <pre><code>curr = Image.open(io.BytesIO(img_bytes)).convert("L").resize((160, 120))
+prev = Image.open(last_path).convert("L").resize((160, 120))
+diff = ImageChops.difference(curr, prev)
+pixels = list(diff.convert("L").tobytes())
+return sum(pixels) / len(pixels)        # 0-255 的平均绝对差</code></pre>
+        <p>
+          两个细节值得说：<strong>先转灰度再缩到 160×120</strong>，不是为了快（虽然确实快），
+          而是缩放本身就是一次低通滤波，能把传感器噪点、压缩块效应、以及夜视模式下的雪花
+          自然抹掉；留下来的只有「大块区域变了」这种我真正关心的信号。阈值 8.0 就是在这个尺度上定的。
+        </p>
+
+        <h3>为什么比的是首尾帧，不是相邻帧</h3>
+        <p>分析层做判断时，比的是这一批里<strong>最早那张和最晚那张</strong>：</p>
+        <pre><code>for files in captures.values():          # 每个摄像头
+    first = load_gray(files[0])
+    last  = load_gray(files[-1])
+    max_diff = max(max_diff, mean_abs_diff(first, last))</code></pre>
+        <p>
+          因为我要回答的问题是「<em>这十分钟结束时，情况和开始时还一样吗</em>」，而不是「中间有没有抖动」。
+          比相邻帧会被呼吸起伏、窗帘飘动、光照渐变这些持续的小变化不停触发；比首尾帧只对<strong>净变化</strong>敏感。
+        </p>
+        <p class="callout">
+          <strong>这个选择有盲区：</strong>
+          <span>
+            如果在窗口内离开又回到几乎相同的位置和姿势，首尾两帧会非常接近，这一轮就会被判定为「没变化」而跳过。
+            换句话说，帧差闸门过滤的是<em>净位移</em>，天然看不见<em>往返</em>。这是拿漏检换成本，
+            兜底靠的是下面那条强制分析。
+          </span>
+        </p>
+
+        <h3>强制分析：一条必须存在的兜底</h3>
+        <pre><code>significant_change = batch_diff &gt; DIFF_THRESHOLD
+force_check        = minutes_since_last_call &gt;= 30
+
+if not significant_change and not force_check:
+    skip()</code></pre>
+        <p>
+          没有这条，系统会有一个很难发现的失效模式：<strong>画面静止和画面卡死，在帧差看来是一模一样的。</strong>
+          摄像头挂掉后持续输出同一帧，帧差恒等于 0，系统会永远跳过、永远安静，而且日志上看起来一切正常。
+          强制分析把「沉默」的上限钉死在 30 分钟，它既是漏检的兜底，也是故障的探测器。
+        </p>
+
+        <h3>成本模型</h3>
+        <p>代码里直接写了估算（按输入 $1.25/M、输出 $10/M token 计）：</p>
+        <pre><code>input_tokens = num_images * 258 + 800        # 每图 258，prompt 约 800
+cost = (input_tokens * 1.25 + 50 * 10) / 1_000_000
+
+# 10 张图： 3380 input → 约 $0.0047 / 次</code></pre>
+        <div class="stat-grid">
+          <div><b>258</b><span>每张图的 token 成本</span></div>
+          <div><b>≈ $0.0047</b><span>单次分析（10 张图）</span></div>
+          <div><b>0</b><span>被闸门跳过时的成本</span></div>
+        </div>
+        <p>
+          真正决定账单的不是单次价格，而是跳过率。而跳过率由场景决定：婴儿一天里大部分时间在睡觉，
+          画面近乎静止——<strong>这个系统之所以便宜，是因为它监控的对象恰好大部分时间不动。</strong>
+          换成监控一条马路，同一套架构会立刻退化成每次都调用。
+        </p>
+      </section>
+
+      <section class="section">
+        <h2>四、让模型输出可解析的东西</h2>
+        <p>输出格式不是 JSON，是一行用竖线分隔的文本：</p>
+        <pre><code>房间 | 活动描述 | 陪伴情况 | 环境光线
+
+卧室 | 一直在婴儿床里睡觉 | 无人 | 关灯、夜视
+客厅→卧室 | 前 5 分钟客厅玩耍，后被抱回卧室睡觉 | 妈妈 | 明亮</code></pre>
+        <p>三个理由，按重要性排：</p>
+        <ul>
+          <li><strong>失败模式更好。</strong>JSON 会因为少一个括号、多一个逗号而整体解析失败；单行分隔最坏情况是某一段内容不对，其它段照样能用。</li>
+          <li><strong>降级路径天然存在。</strong><code>split("|")</code> 不足 4 段就整条判为 <code>unknown</code>，不去猜、不去修。宁可少一条记录，也不要一条错的记录进状态机。</li>
+          <li><strong>输出更短。</strong>成本模型里输出按 50 token 估，JSON 的括号引号字段名全都要付钱。</li>
+        </ul>
+
+        <h3>把先验写进 prompt，而不是指望模型推断</h3>
+        <p>
+          最早的版本经常把大人、或者来串门的小孩认成目标。解决办法不是换更大的模型，
+          而是<strong>把物理上不可能的事直接写进提示词</strong>：
+        </p>
+        <pre><code>- 8 个月大，不会走路站立！只会躺、坐、爬、趴
+- 站着走路的都不是他，是大人或其他小孩
+- 婴儿床上被子有隆起 / 小鼓包 = 在被子里睡觉
+- 彩色画面 = 开灯；黑白画面 = 关灯 / 夜视模式</code></pre>
+        <p>
+          这本质上是用领域先验去收窄模型的搜索空间。「会站立行走」是一条极强的排除条件，
+          写进去之后误识别明显下降。这部分没有捷径，就是看它出错、把错法补进 prompt、再看。
+        </p>
+
+        <h3>注入历史，让单次判断有连续性</h3>
+        <p>
+          每次调用会把最近 6 条日志和当前状态一起送进去。不然模型每次都是从零开始看图，
+          没法给出「前 5 分钟在客厅，后来被抱回卧室」这种<strong>带转场的描述</strong>——
+          而转场恰恰是状态机最需要的信息。
+        </p>
+      </section>
+
+      <section class="section">
+        <h2>五、从一句话到一个状态</h2>
+        <p>模型给的是自然语言，状态机要的是枚举值。中间这层是纯规则的关键词映射：</p>
+        <pre><code>if any(w in desc for w in ["睡", "sleep", "休息", "闭眼"]):
+    status = "sleeping"
+elif any(w in desc for w in ["玩", "爬", "坐", "play", "活动", "翻"]):
+    status = "alone_awake" if "无人" in companion else "playing"
+elif any(w in desc for w in ["抱", "held", "怀里"]):
+    status = "held"
+elif any(w in desc for w in ["吃", "奶", "eat", "喂", "餐椅"]):
+    status = "eating"</code></pre>
+        <p>
+          为什么不让模型直接输出枚举值？因为
+          <strong><code>alone_awake</code> 是整个系统里唯一会真正吵醒人的状态</strong>。
+          它的判据我希望留在代码里，而不是留在模型输出里——出了问题可以直接读日志复现，
+          改判据也不用重新调 prompt。其它状态只是记录，错了影响不大；这一个错了会半夜把人吓醒，
+          或者更糟，该响的时候没响。
+        </p>
+        <p class="callout">
+          <strong>这层是目前最脆的一环。</strong>
+          <span>
+            关键词匹配撑不住自然语言的多样性：「在婴儿床里安静地待着」既不含「睡」也不含「玩」，
+            会直接落到 <code>unknown</code>。更合理的做法是让模型同时输出一个受限枚举<em>和</em>一段自然语言描述，
+            枚举进状态机、描述进日志，代价是 prompt 变长、输出变长。这个改动还没做。
+          </span>
+        </p>
+      </section>
+
+      <section class="section">
+        <h2>六、状态机：时间才是真正的信息</h2>
+        <p>
+          单帧的「在睡觉」几乎没有价值，「已经连续睡了 182 分钟」才有。所以状态机存的不只是当前状态，
+          还有<strong>进入这个状态的时间戳</strong>，告警全部建立在时长之上。
+        </p>
+        <p>这里有一个不起眼但很关键的设计：<strong><code>unknown</code> 不写入状态。</strong></p>
+        <pre><code>if new_status == "unknown":
+    consecutive_unknown += 1          # 只计数
+else:
+    consecutive_unknown = 0
+
+if new_status != old_status and new_status != "unknown":
+    status       = new_status          # 只有确定的状态才改写
+    status_since = now                 # 计时从这一刻开始</code></pre>
+        <p>
+          如果 <code>unknown</code> 也覆盖状态并重置 <code>status_since</code>，那么「连续睡了 3 小时」这个判断
+          <strong>永远不可能成立</strong>——三小时里只要有一次看不清（夜视、遮挡、模型抽风），计时就清零了。
+          让不确定的观测不破坏已有结论，是这类系统里反复会遇到的模式。
+        </p>
+        <p>连续看不清本身是另一个信号，单独计数、单独告警：</p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>条件</th><th>级别</th><th>含义</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>alone_awake</code> ≥ 5 分钟</td><td>URGENT</td><td>醒着且身边没人，需要立刻处理</td></tr>
+              <tr><td><code>sleeping</code> ≥ 180 分钟</td><td>WATCH</td><td>睡得偏久，提醒看一眼</td></tr>
+              <tr><td>连续 <code>unknown</code> ≥ 2 次</td><td>WATCH / ALERT</td><td>大概率是摄像头或取流出了问题</td></tr>
+              <tr><td>转入 <code>alone_awake</code></td><td>ALERT</td><td>状态刚发生变化</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>
+          注意最后一条和第一条的区别：<em>刚醒</em>和<em>醒了五分钟还没人管</em>是两件事，
+          前者提个醒，后者才升级。把「转换」和「持续」分成两类判据，是状态机相比逐帧判断真正多出来的能力。
+        </p>
+      </section>
+
+      <section class="section">
+        <h2>七、门口那一路：从轮询改成边沿触发</h2>
+        <p>
+          最初门口猫眼和室内摄像头一样每轮截图，每次往批次里塞 2 张。两个问题：
+          每批从 10 张涨到 12 张，输入 token 多了约 15%，而门口画面在绝大多数时间里和目标毫无关系——
+          它只在<strong>被抱出门</strong>和<strong>回来</strong>这两个瞬间有信息量。
+        </p>
+        <p>于是改成由状态机的边沿触发：</p>
+        <pre><code>visible = status in ("sleeping", "playing", "held", "eating", "alone_awake")
+
+if was_visible and not visible:       # 从室内画面消失
+    check_door("out")                  # 是被抱出门了吗？
+elif not was_visible and visible:      # 重新出现
+    check_door("in")                   # 是回来了吗？</code></pre>
+        <p>
+          检查本身也尽量便宜：不自己截图，而是<strong>拉设备自己存的移动侦测告警截图</strong>
+          （猫眼本来就有这个功能，有人经过会自动存图），最近 15 分钟最多取 3 张，
+          然后只问模型一个二值问题：
+        </p>
+        <pre><code>请判断画面中是否有婴儿车 / 推车 / 伞车。
+只输出 YES 或 NO，不要多余文字。</code></pre>
+        <p>
+          二值问题的输出 token 几乎可以忽略，而且答错了也只影响一条事件记录，不会污染状态机。
+          同一事件 30 分钟内不重复通知，避免门口来回走动刷屏。
+        </p>
+        <p>
+          <strong>这个改动的本质是把一个「传感器」重新归类成了「探针」。</strong>
+          轮询适合持续有信息的源，边沿触发适合只在状态跳变时才有信息的源。
+          一开始把三个摄像头平等对待，是没想清楚这件事。
+        </p>
+      </section>
+
+      <section class="section">
+        <h2>八、容错：假设每一层都会挂</h2>
+        <div class="cards">
+          <article>
+            <h3>采集层隔离</h3>
+            <p>每个摄像头独立重试 3 次，退避 2 / 5 / 10 秒；一个失败不影响另一个。取流服务先做健康检查，不在线就直接跳过，不去耗那 30 秒超时。</p>
+          </article>
+          <article>
+            <h3>模型调用</h3>
+            <p>重试 2 次，退避 5 / 15 秒。最终失败不是静默跳过，而是把 <code>consecutive_unknown</code> 加一——失败会自己走到告警链路上去。</p>
+          </article>
+          <article>
+            <h3>通知三级降级</h3>
+            <p>群机器人 → 本地 webhook → 落盘 <code>pending_alerts.txt</code>。告警系统自己挂掉却无声无息，是这类系统最坏的失效方式。</p>
+          </article>
+          <article>
+            <h3>磁盘与心跳</h3>
+            <p>每次采集写心跳文件供外部监控；截图只保留 30 分钟，超时自动清理，磁盘占用有上界。</p>
+          </article>
+        </div>
+        <p>
+          一条贯穿的原则：<strong>失败要能被看见。</strong>
+          系统里绝大多数 bug 不是「算错了」，而是「悄悄什么都没做」。
+          强制分析、连续 unknown 计数、心跳文件、落盘兜底，针对的都是同一类问题。
+        </p>
+      </section>
+
+      <section class="section">
+        <h2>九、这套设计现在的弱点</h2>
+        <ol>
+          <li><strong>夜视画面准确率明显下降。</strong>黑白、低对比、红外反光，模型对「被子里有没有人」的判断变得不稳。这是目前最大的准确率缺口。</li>
+          <li><strong>帧差看不见往返。</strong>第三节说过，窗口内离开又原样回来会被跳过。</li>
+          <li><strong>关键词映射撑不住。</strong>第五节说过，描述稍微换个说法就落到 <code>unknown</code>。</li>
+          <li><strong>离散采样丢动作。</strong>送进去的是每 2 分钟一帧的静止图，模型只能从位置差推断发生了什么，分不清「自己翻身过去」和「被抱起来又放下」。要解决得送视频片段，成本是另一个量级。</li>
+          <li><strong>有一行判据是死逻辑。</strong><code>alone_awake</code> 之后那条「如果有大人陪同则降级为 playing」的兜底，因为上游分支的条件已经保证了陪伴字段含「无」，实际永远不会触发。留着无害，但它不是它看起来的那道保险。</li>
+          <li><strong>单点。</strong>整条链路跑在一台机器上，它挂了就全停。心跳文件只有在被外部监控时才有意义，而那个外部监控目前不存在。</li>
+        </ol>
+      </section>
+
+      <section class="section">
+        <h2>十、参数速查</h2>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>参数</th><th>值</th><th>作用</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>采集周期</td><td>1 分钟</td><td>每个室内摄像头各抓 1 帧</td></tr>
+              <tr><td>分析周期</td><td>10 分钟</td><td>取最近 12 分钟的帧做一批</td></tr>
+              <tr><td>帧差比较尺寸</td><td>160 × 120 灰度</td><td>缩放即低通滤波，压掉噪点</td></tr>
+              <tr><td>帧差阈值</td><td>8.0</td><td>0-255 平均绝对差，超过才调用模型</td></tr>
+              <tr><td>强制分析间隔</td><td>30 分钟</td><td>沉默上限，兼作卡死探测</td></tr>
+              <tr><td>单摄像头采样</td><td>5 张</td><td>均匀采样，最多 10 张 / 次</td></tr>
+              <tr><td>送分析前缩放</td><td>宽 800px</td><td>质量 85 的 JPEG</td></tr>
+              <tr><td>独自清醒告警</td><td>5 分钟</td><td>URGENT</td></tr>
+              <tr><td>长睡提醒</td><td>180 分钟</td><td>WATCH</td></tr>
+              <tr><td>事件去重窗口</td><td>30 分钟</td><td>同一出门 / 回家事件不重复推送</td></tr>
+              <tr><td>猫眼告警回溯</td><td>15 分钟 / 最多 3 张</td><td>仅在状态边沿触发时查</td></tr>
+              <tr><td>运行时段</td><td>07:00 - 22:00</td><td>时段外不采集也不分析</td></tr>
+              <tr><td>截图保留</td><td>30 分钟</td><td>超时自动清理</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>写在最后</h2>
+        <p>
+          回头看，这个系统里真正起作用的不是模型，是模型<strong>外面</strong>那几层：
+          一道便宜的闸门决定要不要花钱，一个宽松的输出格式决定解析失败时会发生什么，
+          一条「不确定不写入」的规则决定时长统计能不能成立，一次从轮询到边沿触发的改写决定第三个摄像头值不值得接。
+          模型本身是可替换的——换一个更强的，上面这些取舍一条都不会变。
+        </p>
+        <p>
+          另外必须说清楚：<strong>它替代不了人看孩子，一秒都不能。</strong>
+          它解决的是我上班时的信息缺口，不是看护本身。做这类东西的时候，把边界说清楚比把指标做高更重要。
+        </p>
+      </section>
+    </main>
+  <!-- build:analytics -->
+    <script data-goatcounter="https://anaxagore.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+    <script>(function(){
+  function gc(){return window.goatcounter&&window.goatcounter.count?window.goatcounter:null}
+  function send(path,title){var g=gc();if(g)g.count({path:path,title:title||path,event:true})}
+  document.addEventListener("click",function(e){
+    var a=e.target.closest&&e.target.closest("a");
+    if(!a)return;
+    var offer=a.closest(".offer");
+    if(a.hasAttribute("data-aff-link")||a.hasAttribute("data-aff")||(a.rel||"").indexOf("sponsored")>-1){
+      var key=(offer&&offer.getAttribute("data-aff"))||a.getAttribute("data-aff")||"link";
+      send("aff/"+key,"推荐位："+key+" @ "+location.pathname);return}
+    if(a.host&&a.host!==location.host){send("out/"+a.host,"外链："+a.host+" @ "+location.pathname)}
+  });
+  document.addEventListener("click",function(e){
+    var b=e.target.closest&&e.target.closest("[data-share-copy],[data-share-native]");
+    if(b)send("share/"+(b.hasAttribute("data-share-copy")?"copy":"native"),"分享 @ "+location.pathname)
+  });
+})();</script>
+    <!-- /build:analytics -->
+  </body>
+</html>

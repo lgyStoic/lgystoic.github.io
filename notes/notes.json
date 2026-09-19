@@ -1,5 +1,17 @@
 [
   {
+    "title": "用 VLM 把家庭摄像头压成状态序列：一个看护记录系统的设计",
+    "slug": "home-camera-vlm-pipeline",
+    "url": "./notes/home-camera-vlm-pipeline/",
+    "absoluteUrl": "/notes/home-camera-vlm-pipeline/",
+    "source": "ruirui-tracker / 自建家庭视觉管线",
+    "tags": ["VLM", "System Design", "成本优化", "状态机", "家庭自动化"],
+    "summary": "三个家用摄像头接一个视觉模型，把连续画面变成可查询的状态序列。记录其中的取舍：帧差闸门如何把模型调用压到接近零、输出格式为什么不用 JSON、状态机为什么必须忽略 unknown，以及门口那一路为什么从轮询改成边沿触发。",
+    "status": "已发布",
+    "featured": false,
+    "updated": "2026-09-19"
+  },
+  {
     "title": "深圳地铁 200 米内住宅画像：南山 / 宝安 / 光明",
     "slug": "2026-08-17-metro200m-residential-profile",
     "url": "./notes/2026-08-17-metro200m-residential-profile/",
