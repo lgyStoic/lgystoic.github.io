@@ -26,7 +26,7 @@
 
 ## 4. 数据模型（私有仓库）
 
-`state.json`：`{issue, last_comment_id, ...}`；`digest/<日期>.json`：`[{url, title, description, note, summary, tags[], site, comment_id}]`。`posts/` 归 xhs.md。
+`state.json`：`{issue, last_comment_id, ...}`；`digest/<日期>.json`：`[{url, title, description, note, summary, tags[], site, comment_id}]`。`posts/`（`cards/`、`jobs/`、`README.md` 索引）归 xhs.md。
 
 ## 5. 验证与排查
 

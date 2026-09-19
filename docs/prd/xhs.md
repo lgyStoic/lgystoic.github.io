@@ -1,6 +1,6 @@
-# PRD：AI 信息学习卡片（小红书学习文稿 + 封面图）
+# PRD：小红书文稿（每日学习卡片 + 周一岗位精选）
 
-> 代码：`tools/xhs.py`；工作流：`.github/workflows/xhs.yml`（每天 01:10 UTC，可手动指定日期）；产物只进私有仓库 `lgyStoic/radar-inbox` 的 `posts/`。公开仓库只放代码，`radar/data/xhs/`、`radar/data/xhs-*.md` 已 gitignore。收件箱见 [inbox.md](inbox.md)。
+> 代码：`tools/xhs.py`；工作流：`.github/workflows/xhs.yml`（每天 01:10 UTC 学习卡片；每周一 01:40 UTC 岗位周报；手动可选 mode / date / 地区）；产物只进私有仓库 `lgyStoic/radar-inbox` 的 `posts/cards/`、`posts/jobs/`，`posts/README.md` 是自动索引。公开仓库只放代码，`radar/data/xhs/`、`radar/data/xhs-*.md` 已 gitignore。收件箱见 [inbox.md](inbox.md)。
 
 ## 1. 目标与非目标
 
@@ -15,7 +15,21 @@
 - 生图和渲染任何一步失败都不能拖垮文稿：无图 → 卡片显示大号序号；Playwright 装不上或崩了 → 只写 md。
 - 正文里不放 URL、不放小节标签，标题 ≤20 字（小红书硬限制）；原文链接只在 md 里单独列出。标明「自动生成初稿，请人工核对事实和语气后再发布」；不用标题党词汇。
 
+## 2.5 私有仓库目录（2026-09-19 起）
+
+```
+posts/
+  README.md            自动索引：两类各最近 30 期
+  cards/<日期>.md       每日学习卡片文稿（20 条）
+  cards/<日期>/<id>.jpg 封面（前 N 条）
+  jobs/<日期>.md        岗位周报文稿 + 核对用明细表
+  jobs/<日期>/cover.jpg 封面 1 张
+```
+2026-09-19 之前的 `posts/<日期>.md` 与 `posts/<日期>/` 是旧格式，原样保留不迁移。
+
 ## 3. 功能清单
+
+### 3.1 每日学习卡片（cards）
 
 | 功能 | 说明 |
 |---|---|
@@ -26,6 +40,15 @@
 | 写入 | 本地 `radar/data/xhs/<日期>/<id>.jpg` 与 `radar/data/xhs-<日期>.md`；私有仓库 `posts/<日期>/<id>.jpg` + `posts/<日期>.md`。md 每条：封面 → **标题** → **正文** → `#标签` 一行（复制即发）→ 原文名 + 链接（单独给人决定是否放评论区）→ 折叠的封面要点 |
 | 排查 | `--list-models` / `--list-image-models` 列账号可用模型；工作流勾 `list_models`。勾 `preview` 把第 1 条标题正文打到日志（检查文风，日志公开可见，文稿本身不敏感） |
 | 留档 | 工作流把 `radar/data/xhs/` 上传为 artifact `xhs-cards`（7 天），不用开私有仓库也能看 |
+
+### 3.2 岗位周报（jobs，`--jobs`）
+
+| 功能 | 说明 |
+|---|---|
+| 选岗位 | `pick_jobs`：`radar/data/jobs.json` 里公司名真实（排除 `某…`、`知名`、`保密`、`匿名`）、未 stale、地区符合 `XHS_JOBS_REGION`（空=全部，cn=国内/深圳/香港，overseas=海外/远程）；分数高优先、同分新发布优先；每家公司 ≤2 条；取 12 条；少于 5 条跳过 |
+| 写文稿 | `JOBS_SYSTEM` + `JOBS_SCHEMA`：`headline`、`highlights`（封面 4–6 行「公司 · 地点 · 方向」）、`title`（≤20 字带数量）、`body`（350–650 字：一句整体观察 → 逐条「公司｜岗位｜地点 — 为什么值得看」→ 关注引导）、`tags`（首个固定 `AIInfra岗位`）、`image_prompt`。硬规则：不编薪资/年限/流程，不说内推/私信，不放 URL，公司名规范化 |
+| 封面 | `card_html(kind='jobs')`：页眉「AI infra 岗位精选 · 每周一 · N 个岗位」，要点区 6 行紧凑，页脚指向 `/radar/jobs/` |
+| md | 封面 → 标题 → 正文 → 标签 → 「岗位明细（核对用，不发）」表：公司 / 岗位 / 地点 / 分数 / 来源 / 链接，以及筛选条件 |
 
 ## 4. 数据管线
 
@@ -63,6 +86,8 @@ radar/data/<日期>.json ─筛 high/medium 前20─▶ call_llm_json(SYSTEM, SC
 | 变量 | 默认 | 说明 |
 |---|---|---|
 | `RADAR_DATE` | 今天（Asia/Shanghai） | 生成哪天的；工作流输入 `date` |
+| `--jobs` / 工作流 `mode` | cards | jobs 只出岗位周报，both 都出；周一 01:40 UTC 的 cron 自动走 jobs |
+| `XHS_JOBS_REGION` | 空 | 岗位周报地区：cn / overseas；工作流输入 `jobs_region` |
 | `XHS_IMAGES` | 4 | 生成封面图的条数，0 关闭生图和渲染；工作流输入 `images` |
 | `GEMINI_IMAGE_MODEL` | `gemini-3.1-flash-image,gemini-2.5-flash-image` | 原生生图模型，逗号分隔按序尝试；仓库变量 `vars.GEMINI_IMAGE_MODEL` 可覆盖（2026-09 账号可用：gemini-3.1-flash-image / -lite-image、gemini-3-pro-image、gemini-2.5-flash-image） |
 | `GEMINI_IMAGEN_MODEL` | 空 | 可选 Imagen `:predict` 兜底；账号列表里没有 Imagen 就别设 |
@@ -87,6 +112,7 @@ radar/data/<日期>.json ─筛 high/medium 前20─▶ call_llm_json(SYSTEM, SC
 1. 多图：第二张起按 takeaway 拆「要点卡」，形成 3–5 张轮播。
 2. 让 Gemini 用配图评估一次「是否含文字 / 是否离题」，不合格重生一次。
 3. 知乎 / 即刻版本文稿。
+4. 岗位周报按地区轮换（国内 / 海外远程交替），或一周两期。
 
 ## 12. 常见改动去哪改
 
@@ -97,4 +123,6 @@ radar/data/<日期>.json ─筛 high/medium 前20─▶ call_llm_json(SYSTEM, SC
 | 改卡片版式 / 颜色 | `CARD_CSS`、`card_html` |
 | 多生几张图 | 工作流输入 `images` 或 `XHS_IMAGES` |
 | 换生图模型 | 仓库变量 `GEMINI_IMAGE_MODEL` / `GEMINI_IMAGEN_MODEL` |
-| 换私有仓库 / 路径 | `INBOX_REPO`；路径在 `main()` 末尾 `gh_put` |
+| 换私有仓库 / 路径 | `INBOX_REPO`；路径在 `out_paths`，写入在 `publish` |
+| 改岗位筛选（条数 / 每家上限 / 匿名规则） | `pick_jobs`、`ANON_RE` |
+| 改岗位文案规则 | `JOBS_SYSTEM` |

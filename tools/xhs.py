@@ -1,20 +1,20 @@
 #!/usr/bin/env python3
-"""AI 信息学习卡片：用当天雷达的 high / medium 条目生成「学习要点 + 小红书草稿」，再为前几条做封面图，写入私有 radar-inbox。
+"""小红书文稿生成：两种内容，都写入私有 radar-inbox 的 posts/。
 
-流程：
-  1. 读 radar/data/<日期>.json，取 high / medium 前 20 条
-  2. Gemini（call_llm_json）逐条生成 headline / takeaways / post（结构化 JSON）
-  3. 前 XHS_IMAGES（默认 4）条做 3:4 封面图：
-       - 配图：Gemini 生图模型画一张无文字的极简插画（GEMINI_IMAGE_MODEL，默认 gemini-2.5-flash-image；
-         失败退到 Imagen predict 接口 GEMINI_IMAGEN_MODEL，默认 imagen-4.0-generate-001；再失败就用纯色渐变）
-       - 文字：中文标题与要点用 HTML 排版，Playwright 截成 1080×1440 JPEG（生图模型写不好中文，所以文字不交给它）
-  4. 写 posts/<日期>.md 与 posts/<日期>/<id>.jpg 到私有仓库；本地留一份 radar/data/xhs-<日期>.md
+  cards（每天）：当天雷达 high / medium 前 20 条 → 每条 标题 / 正文 / 标签 + 3:4 封面卡片（前 XHS_IMAGES 条带生图配图）
+                 → posts/cards/<日期>.md、posts/cards/<日期>/<id>.jpg
+  jobs（每周一）：radar/data/jobs.json 里有真实公司名、未过期的岗位，按分数挑 12 条 → 一篇「岗位精选」+ 1 张封面
+                 → posts/jobs/<日期>.md、posts/jobs/<日期>/cover.jpg
+  每次运行后重写 posts/README.md（两类最近 30 期的索引）。本地各留一份 radar/data/xhs-*.md（已 gitignore）。
+
+封面：文字用 HTML 排版、Playwright 截图（生图模型写不好中文）；配图由 Gemini 生图模型画无文字插画，失败退回纯色渐变。
 
 用法：
-  RADAR_DATE=2026-09-19 python3 tools/xhs.py
-  python3 tools/xhs.py --list-image-models     # 打印当前 key 能用的生图模型名，确认默认值还对不对
-  XHS_IMAGES=0 python3 tools/xhs.py            # 只出文稿不出图
-环境：GEMINI_API_KEY（必需）、INBOX_TOKEN / INBOX_REPO（写私有仓库；没有就只写本地）、PW_CHROMIUM（本机 Chromium 路径，可选）。
+  RADAR_DATE=2026-09-19 python3 tools/xhs.py            # cards
+  python3 tools/xhs.py --jobs                            # jobs；XHS_JOBS_REGION=cn|overseas 只挑国内/海外远程
+  python3 tools/xhs.py --list-models                     # 打印当前 key 能用的模型（--list-image-models 只看生图）
+  XHS_IMAGES=0 python3 tools/xhs.py                      # cards 只出文稿不出图
+环境：GEMINI_API_KEY（必需）、INBOX_TOKEN / INBOX_REPO（写私有仓库；没有就只写本地）、GEMINI_IMAGE_MODEL、PW_CHROMIUM、XHS_PREVIEW=1（第 1 条打日志）。
 """
 import base64, html, json, os, re, sys, urllib.request, urllib.error
 from datetime import datetime
@@ -48,6 +48,20 @@ SYSTEM = '''你是一个在小红书分享 AI infra 学习笔记的工程师。�
   7. 正文末尾不要放话题标签，标签单独放 tags。
 - tags：3–5 个小红书话题词，不带 #。第一个固定为 "AIInfra学习卡片"（系列聚合词，每条都要），其余按内容选，如 "大模型推理"、"CUDA"、"SGLang"。
 - image_prompt：给生图模型的英文提示词，描述一张与主题相关的极简扁平插画（几何形状、电路、芯片、数据流、显卡、网络拓扑等意象），暖色调米白背景配赭红点缀，构图居中，明确写 "no text, no letters, no logos"，40 词以内。'''
+JOBS_SCHEMA = {'type':'object','properties':{'headline':{'type':'string'},'highlights':{'type':'array','items':{'type':'string'}},'title':{'type':'string'},'body':{'type':'string'},'tags':{'type':'array','items':{'type':'string'}},'image_prompt':{'type':'string'}},'required':['headline','highlights','title','body','tags','image_prompt'],'additionalProperties':False}
+JOBS_SYSTEM = '''你是一个在小红书做「AI infra 岗位精选」周报的工程师，不是 HR，也没有内推渠道。输入是一组从各公司官方招聘页和猎聘公开页面抓到的岗位（公司、岗位名、地点、方向标签、匹配理由、来源）。产出一篇可直接发布的小红书笔记。
+
+硬性要求：
+1. 只能用输入里有的信息：不要编造薪资、年限、团队规模、面试流程；输入没有薪资就一个字都不提薪资。公司名做规范化：去掉「招聘」后缀（腾讯招聘 → 腾讯），域名写成公司名（cerebras.ai → Cerebras）。
+2. 不要说「内推」「帮投」「私信我」「留邮箱」；来源统一写「各公司官方招聘页和猎聘公开信息」。
+3. title ≤20 字，带数量和范围，如「本周 12 个 AI infra 岗位｜深圳 5 个」。
+4. body 350–650 字：第一段一句话说这周岗位的整体观察（哪个方向/城市在放岗，只能从输入归纳）；然后逐条列岗位，每条一行：「公司｜岗位｜地点」，后面跟一句 ≤25 字的「为什么值得看」（依据 tags / reasons）；不要出现任何 URL；不要小节标签；短段落空行分隔；最后一段是关注引导：说明这是每周一更新的系列，完整岗位列表在主页站点每天更新，收藏 + 关注，措辞自然，不要「求关注」「关注不迷路」。
+5. headline：封面标题 12–20 字。highlights：封面用 4–6 行，每行 ≤22 字，格式「公司 · 地点 · 方向」，挑最有辨识度的公司。
+6. tags：3–5 个话题词，不带 #，第一个固定 "AIInfra岗位"，其余如 "AI Infra"、"大模型推理"、"深圳求职"、"CUDA"。
+7. image_prompt：英文，极简扁平插画，与「招聘/机会/城市与芯片」相关的意象，暖色米白背景赭红点缀，"no text, no letters, no logos"，40 词以内。'''
+JOBS_TAG = 'AIInfra岗位'
+ANON_RE = re.compile(r'^某|知名|保密|不便公开|匿名')
+
 API = 'https://generativelanguage.googleapis.com/v1beta'
 
 
@@ -64,6 +78,28 @@ def gh_put(repo, path, data: bytes, token, message):
     req = urllib.request.Request(url, data=json.dumps(body).encode(), headers={**hdr, 'Content-Type': 'application/json'}, method='PUT')
     with urllib.request.urlopen(req, timeout=60): pass
 
+
+
+def gh_get_json(repo, path, token):
+    url = f'https://api.github.com/repos/{repo}/contents/{path}'
+    try:
+        with urllib.request.urlopen(urllib.request.Request(url, headers={'Authorization': f'Bearer {token}', 'Accept': 'application/vnd.github+json'}), timeout=20) as r: return json.load(r)
+    except urllib.error.HTTPError as e:
+        if e.code == 404: return []
+        raise
+
+
+def update_index(repo, token):
+    """重写 posts/README.md：两类内容各列最近 30 期。"""
+    sections = [('cards', '每日学习卡片', '标题 / 正文 / 标签复制即发，封面在同名目录'), ('jobs', 'AI infra 岗位精选（每周一）', '一篇文稿 + 封面；岗位明细表附在文末供核对')]
+    lines = ['# 小红书文稿', '', '自动生成初稿，发布前核对事实。目录：`cards/` 每日学习卡片，`jobs/` 岗位周报；`<日期>.md` 是文稿，`<日期>/` 是封面图。', '']
+    for d, title, note in sections:
+        entries = gh_get_json(repo, f'posts/{d}', token)
+        mds = sorted((e['name'][:-3] for e in entries if isinstance(e, dict) and e.get('name', '').endswith('.md')), reverse=True)[:30]
+        lines += [f'## {title}', '', note, '']
+        lines += [f'- [{m}]({d}/{m}.md)' for m in mds] or ['- （暂无）']
+        lines.append('')
+    gh_put(repo, 'posts/README.md', '\n'.join(lines).encode('utf-8'), token, 'posts index')
 
 # ---------------------------------------------------------------- 生图
 def _gemini_post(path, body, key, timeout=120):
@@ -128,7 +164,11 @@ def clean_post(p: dict) -> dict:
     body = URL_RE.sub('', body)
     body = re.sub(r'\n{3,}', '\n\n', body).strip()
     p['body'] = body
-    p['title'] = URL_RE.sub('', LABEL_RE.sub('', p.get('title', ''))).strip()[:20]
+    title = re.sub(r'\s+', ' ', URL_RE.sub('', LABEL_RE.sub('', p.get('title', '')))).strip()
+    if len(title) > 20:
+        title = re.sub(r'(?<=[^\x00-\x7f])\s+|\s+(?=[^\x00-\x7f])', '', title)  # 只去中文旁的空格，英文词间保留
+        if len(title) > 20: log(f'[xhs] 标题超 20 字（{len(title)}），发布前请手改：{title}')
+    p['title'] = title
     tags = [re.sub(r'[\s#]+', '', t) for t in p.get('tags', []) if re.sub(r'[\s#]+', '', t)]
     tags = [SERIES_TAG] + [t for t in tags if t != SERIES_TAG]
     p['tags'] = tags[:5]
@@ -149,22 +189,33 @@ h1{font-size:60px;line-height:1.25;font-weight:800;letter-spacing:-.01em}
 ol{list-style:none;display:flex;flex-direction:column;gap:22px}
 li{display:flex;gap:20px;font-size:32px;line-height:1.45;color:#3d3e3c}
 li i{flex:0 0 46px;height:46px;border-radius:50%;background:#9a3412;color:#fff;font:700 24px/46px sans-serif;text-align:center;font-style:normal;margin-top:2px}
+.jobs .art{height:420px}
+.jobs li{font-size:29px;line-height:1.4}
+.jobs ol{gap:16px}
 .foot{margin-top:auto;display:flex;justify-content:space-between;align-items:flex-end;font-size:24px;line-height:1.5;color:#78746c;border-top:2px solid #e6e2d9;padding-top:28px}
 .foot b{color:#1b1b1a;font-size:26px}
 '''
 
 
-def card_html(index: int, post: dict, src: dict, date: str, art_b64: str | None) -> str:
+def card_html(index: int, post: dict, src: dict, date: str, art_b64: str | None, *, kind: str = 'cards') -> str:
     e = html.escape
     art = f'<img src="data:image/png;base64,{art_b64}" alt="">' if art_b64 else f'<div class="n">{index:02d}</div>'
-    items = ''.join(f'<li><i>{i}</i><span>{e(t)}</span></li>' for i, t in enumerate(post.get('takeaways', [])[:4], 1))
-    domain = re.sub(r'^https?://(www\.)?', '', src.get('link', '')).split('/')[0]
-    return f'''<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><style>{CARD_CSS}</style></head><body><div class="card">
-<div class="kicker"><span><b>Anaxagore</b> · AI 信息学习卡片 · 每天一张</span><span>{e(date)} · {index:02d}</span></div>
+    rows = post.get('takeaways') or post.get('highlights') or []
+    rows = rows[:6 if kind == 'jobs' else 4]
+    items = ''.join(f'<li><i>{i}</i><span>{e(t)}</span></li>' for i, t in enumerate(rows, 1))
+    if kind == 'jobs':
+        kicker, right = 'AI infra 岗位精选 · 每周一', f'{e(date)} · {len(src.get("jobs", []))} 个岗位'
+        foot_l, foot_r = '来源 · 各公司官方招聘页 / 猎聘公开信息<br>完整列表每天更新 · 收藏 + 关注', 'lgystoic.github.io/radar/jobs/'
+    else:
+        domain = re.sub(r'^https?://(www\.)?', '', src.get('link', '')).split('/')[0]
+        kicker, right = 'AI 信息学习卡片 · 每天一张', f'{e(date)} · {index:02d}'
+        foot_l, foot_r = f'来源 · {e(domain)}<br>关注看每日更新 · 收藏回头翻', f'lgystoic.github.io/radar/{e(date)}/'
+    return f'''<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><style>{CARD_CSS}</style></head><body><div class="card {kind}">
+<div class="kicker"><span><b>Anaxagore</b> · {kicker}</span><span>{right}</span></div>
 <div class="art">{art}</div>
 <h1>{e(post.get('headline', ''))}</h1>
 <ol>{items}</ol>
-<div class="foot"><span>来源 · {e(domain)}<br>关注看每日更新 · 收藏回头翻</span><b>lgystoic.github.io/radar/{e(date)}/</b></div>
+<div class="foot"><span>{foot_l}</span><b>{foot_r}</b></div>
 </div></body></html>'''
 
 
@@ -190,12 +241,25 @@ def render_cards(jobs: list[tuple[str, str]], out_dir: Path) -> list[Path]:
     return files
 
 
-def main():
-    key = os.environ.get('GEMINI_API_KEY', '').strip()
-    if '--list-image-models' in sys.argv or '--list-models' in sys.argv:
-        if not key: raise SystemExit('需要 GEMINI_API_KEY')
-        list_image_models(key, everything='--list-models' in sys.argv); return
-    date = os.environ.get('RADAR_DATE') or datetime.now().strftime('%Y-%m-%d')
+def out_paths(kind: str, date: str):
+    """(本地 md, 本地图目录, 私有仓库 md, 私有仓库图目录)"""
+    return DATA / f'xhs-{kind}-{date}.md', DATA / 'xhs' / kind / date, f'posts/{kind}/{date}.md', f'posts/{kind}/{date}'
+
+
+def publish(kind: str, date: str, content: str, files: list[Path]):
+    md_local, _, md_remote, img_remote = out_paths(kind, date)
+    md_local.write_text(content, encoding='utf-8')
+    token, repo = os.environ.get('INBOX_TOKEN', '').strip(), os.environ.get('INBOX_REPO', 'lgyStoic/radar-inbox')
+    if token:
+        for f in files:
+            gh_put(repo, f'{img_remote}/{f.name}', f.read_bytes(), token, f'xhs {kind} cover: {date} {f.stem}')
+        gh_put(repo, md_remote, content.encode('utf-8'), token, f'xhs {kind}: {date}')
+        try: update_index(repo, token)
+        except Exception as e: log(f'[xhs] 索引更新失败：{e}')
+    return repo if token else md_local
+
+
+def run_cards(date: str, key: str):
     src = DATA / f'{date}.json'
     if not src.exists(): raise SystemExit(f'没有 {src}')
     data = json.loads(src.read_text())
@@ -207,15 +271,14 @@ def main():
     byid = {x['id']: x for x in items}
     posts = [clean_post(p) for p in result.get('posts', []) if p.get('id') in byid]
 
-    # 封面图：前 N 条
     n_images = int(os.environ.get('XHS_IMAGES', '4'))
     jobs, art_used = [], 0
     for i, post in enumerate(posts[:n_images], 1):
         art = gemini_image(post.get('image_prompt') or f"minimal flat illustration about {post.get('headline','AI infrastructure')}, warm off-white background, rust accent, no text, no letters, no logos", key) if key and n_images else None
         if art: art_used += 1
         jobs.append((post['id'], card_html(i, post, byid[post['id']], date, base64.b64encode(art).decode() if art else None)))
-    out_dir = DATA / 'xhs' / date
-    files = render_cards(jobs, out_dir) if jobs else []
+    _, img_dir, _, _ = out_paths('cards', date)
+    files = render_cards(jobs, img_dir) if jobs else []
     log(f'[xhs] 封面图 {len(files)} 张（其中 {art_used} 张带生图配图）')
 
     preview = os.environ.get('XHS_PREVIEW') == '1'
@@ -231,14 +294,64 @@ def main():
         lines += ['', '</details>', '', '---', '']
         if preview and i == 1:
             log('[xhs] 预览第 1 条：\n' + post.get('title', '') + '\n\n' + post.get('body', '').strip() + '\n\n' + tags)
-    content = '\n'.join(lines)
-    (DATA / f'xhs-{date}.md').write_text(content, encoding='utf-8')
-    token, repo = os.environ.get('INBOX_TOKEN', '').strip(), os.environ.get('INBOX_REPO', 'lgyStoic/radar-inbox')
-    if token:
-        for f in files:
-            gh_put(repo, f'posts/{date}/{f.name}', f.read_bytes(), token, f'AI learning cover: {date} {f.stem}')
-        gh_put(repo, f'posts/{date}.md', content.encode('utf-8'), token, f'AI learning posts: {date}')
-    log(f'[xhs] 生成 {len(posts)} 条文稿、{len(files)} 张封面，写入 {repo if token else DATA}')
+    dest = publish('cards', date, '\n'.join(lines), files)
+    log(f'[xhs] 生成 {len(posts)} 条文稿、{len(files)} 张封面，写入 {dest}')
+
+
+def pick_jobs(jobs: list[dict], region: str = '', n: int = 12, per_company: int = 2) -> list[dict]:
+    """有真实公司名、未过期；按地区筛；分数高优先；每家公司最多 per_company 条。"""
+    cn, ov = {'国内', '深圳', '香港'}, {'海外', '远程'}
+    want = cn if region == 'cn' else ov if region == 'overseas' else cn | ov
+    pool = [j for j in jobs if j.get('company') and not ANON_RE.search(j['company']) and not j.get('stale') and j.get('region') in want]
+    pool.sort(key=lambda j: str(j.get('source_updated', '')), reverse=True)  # 新发布优先
+    pool.sort(key=lambda j: -int(j.get('score', 0)))  # 稳定排序：分数高优先，同分按新旧
+    out, seen = [], {}
+    for j in pool:
+        c = j['company']
+        if seen.get(c, 0) >= per_company: continue
+        seen[c] = seen.get(c, 0) + 1; out.append(j)
+        if len(out) >= n: break
+    return out
+
+
+def run_jobs(date: str, key: str):
+    src = DATA / 'jobs.json'
+    if not src.exists(): raise SystemExit(f'没有 {src}')
+    data = json.loads(src.read_text())
+    region = os.environ.get('XHS_JOBS_REGION', '').strip()
+    picked = pick_jobs(data.get('jobs', []), region)
+    if len(picked) < 5: log(f'[xhs] 可用岗位只有 {len(picked)} 条，跳过岗位周报'); return
+    total = sum(1 for j in data.get('jobs', []) if not j.get('stale'))
+    prompt = f'本周可选岗位 {len(picked)} 条（站点共 {total} 条在更新），请生成一篇：\n' + json.dumps([{'company': j['company'], 'title': j['title'], 'location': j.get('location'), 'tags': [t for t in j.get('tags', []) if t not in ('匹配高', '匹配中', '匹配低')], 'reasons': j.get('reasons', []), 'source': j.get('source')} for j in picked], ensure_ascii=False)
+    result = call_llm_json(JOBS_SYSTEM, prompt, JOBS_SCHEMA, label='xhs-jobs')
+    if not result: raise SystemExit('Gemini 未返回岗位文稿')
+    post = clean_post(dict(result)); post['id'] = 'cover'
+    post['tags'] = [JOBS_TAG] + [t for t in post['tags'] if t not in (JOBS_TAG, SERIES_TAG)][:4]
+    post['highlights'] = [h for h in result.get('highlights', []) if h.strip()][:6]
+    art = gemini_image(post.get('image_prompt') or 'minimal flat illustration of a city skyline made of circuit traces and GPU chips, warm off-white background, rust accent, no text, no letters, no logos', key) if key else None
+    _, img_dir, _, _ = out_paths('jobs', date)
+    files = render_cards([('cover', card_html(1, post, {'jobs': picked}, date, base64.b64encode(art).decode() if art else None, kind='jobs'))], img_dir)
+
+    tags = ' '.join(f'#{t}' for t in post['tags'])
+    lines = [f'# AI infra 岗位精选 · {date}', '', '> 自动生成初稿：岗位事实以文末明细表（含链接）为准，发布前逐条核对公司名和岗位名；正文不放链接，不写薪资，不提内推。', '']
+    if files: lines += [f'![封面](./{date}/cover.jpg)', '']
+    lines += ['**标题**', '', post['title'], '', '**正文**', '', post['body'], '', tags, '', '## 岗位明细（核对用，不发）', '', '| # | 公司 | 岗位 | 地点 | 分数 | 来源 | 链接 |', '|---|---|---|---|---|---|---|']
+    lines += [f'| {i} | {j["company"]} | {j["title"]} | {j.get("location", "")} | {j.get("score", "")} | {j.get("source", "")} | {j.get("url", "")} |' for i, j in enumerate(picked, 1)]
+    lines += ['', f'筛选：有真实公司名、未过期、地区={region or "全部"}、每家 ≤2 条、按匹配分排序；站点岗位页 https://lgystoic.github.io/radar/jobs/ 共 {total} 条。', '']
+    if os.environ.get('XHS_PREVIEW') == '1':
+        log('[xhs] 预览岗位周报：\n' + post['title'] + '\n\n' + post['body'] + '\n\n' + tags)
+    dest = publish('jobs', date, '\n'.join(lines), files)
+    log(f'[xhs] 岗位周报 {len(picked)} 个岗位、{len(files)} 张封面，写入 {dest}')
+
+
+def main():
+    key = os.environ.get('GEMINI_API_KEY', '').strip()
+    if '--list-image-models' in sys.argv or '--list-models' in sys.argv:
+        if not key: raise SystemExit('需要 GEMINI_API_KEY')
+        list_image_models(key, everything='--list-models' in sys.argv); return
+    date = os.environ.get('RADAR_DATE') or datetime.now().strftime('%Y-%m-%d')
+    if '--jobs' in sys.argv: run_jobs(date, key)
+    else: run_cards(date, key)
 
 
 if __name__ == '__main__':

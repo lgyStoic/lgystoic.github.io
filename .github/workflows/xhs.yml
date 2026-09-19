@@ -6,8 +6,11 @@ on:
       images: {description: 生成封面图的条数（0 关闭生图）, required: false, default: "4"}
       list_models: {description: 只列出账号可用的全部模型与别名指向（排查用）, type: boolean, default: false}
       preview: {description: 把第 1 条标题和正文打到日志里（检查文风用）, type: boolean, default: false}
+      mode: {description: cards=每日学习卡片 jobs=岗位周报 both=都跑, type: choice, options: [cards, jobs, both], default: cards}
+      jobs_region: {description: 岗位周报地区（空=全部 cn=国内 overseas=海外远程）, required: false, default: ""}
   schedule:
-    - cron: "10 1 * * *"
+    - cron: "10 1 * * *"   # 每日学习卡片
+    - cron: "40 1 * * 1"   # 周一岗位周报
 permissions: {contents: read}
 jobs:
   xhs:
@@ -28,8 +31,8 @@ jobs:
           sudo apt-get update -qq && sudo apt-get install -y -qq fonts-noto-cjk >/dev/null
           pip install -q playwright
           python -m playwright install --with-deps chromium
-      - name: 生成并写入私有仓库
-        if: ${{ !inputs.list_models }}
+      - name: 每日学习卡片
+        if: ${{ !inputs.list_models && inputs.mode != 'jobs' && github.event.schedule != '40 1 * * 1' }}
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           GEMINI_MODEL: ${{ vars.GEMINI_MODEL || 'gemini-flash-latest' }}
@@ -43,6 +46,19 @@ jobs:
           GEMINI_IMAGE_MODEL: ${{ vars.GEMINI_IMAGE_MODEL || 'gemini-3.1-flash-image,gemini-2.5-flash-image' }}
           GEMINI_IMAGEN_MODEL: ${{ vars.GEMINI_IMAGEN_MODEL }}
         run: RADAR_DATE="${RADAR_DATE:-$(TZ=Asia/Shanghai date +%F)}" python3 tools/xhs.py
+      - name: 岗位周报
+        if: ${{ !inputs.list_models && (inputs.mode == 'jobs' || inputs.mode == 'both' || github.event.schedule == '40 1 * * 1') }}
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GEMINI_MODEL: ${{ vars.GEMINI_MODEL || 'gemini-flash-latest' }}
+          GEMINI_FALLBACK_MODEL: ${{ vars.GEMINI_FALLBACK_MODEL || 'gemini-pro-latest' }}
+          INBOX_TOKEN: ${{ secrets.INBOX_TOKEN }}
+          INBOX_REPO: ${{ vars.INBOX_REPO || 'lgyStoic/radar-inbox' }}
+          RADAR_DATE: ${{ inputs.date }}
+          XHS_JOBS_REGION: ${{ inputs.jobs_region }}
+          XHS_PREVIEW: ${{ inputs.preview && '1' || '0' }}
+          GEMINI_IMAGE_MODEL: ${{ vars.GEMINI_IMAGE_MODEL || 'gemini-3.1-flash-image,gemini-2.5-flash-image' }}
+        run: RADAR_DATE="${RADAR_DATE:-$(TZ=Asia/Shanghai date +%F)}" python3 tools/xhs.py --jobs
       - name: 封面图留档（7 天）
         if: ${{ !inputs.list_models && hashFiles('radar/data/xhs/**/*.jpg') != '' }}
         uses: actions/upload-artifact@v4
