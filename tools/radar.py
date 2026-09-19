@@ -226,9 +226,16 @@ def _dig(obj, path: str):
     return cur
 
 
+def _tpl(row, spec: str) -> str:
+    """字段路径，或含 {字段} 的模板字符串。"""
+    if "{" in spec:
+        return re.sub(r"\{([^}]+)\}", lambda m: str(_dig(row, m.group(1)) or ""), spec)
+    return str(_dig(row, spec) or "")
+
+
 def parse_json_feed(blob: bytes, source: dict) -> list[dict]:
     """通用 JSON 列表源。source["json"] 里配置字段路径：
-    items（可空，表示根就是列表）、title、link（支持 {字段} 模板）、description、published、
+    items（可空，表示根就是列表）、title / link（支持 {字段} 模板）、description、published、
     以及可选的 min_number: {"field": "paper.upvotes", "value": 5} 门槛。"""
     spec = source.get("json", {})
     data = json.loads(blob)
@@ -244,11 +251,10 @@ def parse_json_feed(blob: bytes, source: dict) -> list[dict]:
                     continue
             except (TypeError, ValueError):
                 continue
-        link_tpl = spec.get("link", "")
-        link = re.sub(r"\{([^}]+)\}", lambda m: str(_dig(row, m.group(1))), link_tpl) if "{" in link_tpl else str(_dig(row, link_tpl))
+        link = _tpl(row, spec.get("link", ""))
         entries.append(
             {
-                "title": str(_dig(row, spec.get("title", "title"))),
+                "title": _tpl(row, spec.get("title", "title")),
                 "link": link,
                 "description": str(_dig(row, spec.get("description", "description"))),
                 "published": str(_dig(row, spec.get("published", "published"))),
@@ -553,13 +559,23 @@ def collect(config: dict, now_utc: datetime, seen: dict[str, str]) -> tuple[list
         sid = source["id"]
         if source.get("disabled"):
             continue
-        try:
-            blob = fetch(source["url"], sid)
-            raw_entries = parse_json_feed(blob, source) if source.get("kind") == "json" else parse_feed(blob)
-        except (urllib.error.URLError, urllib.error.HTTPError, TimeoutError, ET.ParseError, FileNotFoundError, OSError, json.JSONDecodeError, KeyError, TypeError) as e:
-            status.append({"id": sid, "name": source["name"], "ok": False, "count": 0, "total": 0, "error": str(e)[:160]})
-            log(f"[radar] ✗ {source['name']}: {e}")
+        # urls：同一内容的多个镜像（如 Nitter 实例），按顺序试到一个能用为止
+        urls = source.get("urls") or [source["url"]]
+        raw_entries, last_err = None, None
+        for k, url in enumerate(urls):
+            try:
+                blob = fetch(url, sid)
+                raw_entries = parse_json_feed(blob, source) if source.get("kind") == "json" else parse_feed(blob)
+                if k:
+                    log(f"[radar] {source['name']} 用镜像 {k + 1}/{len(urls)}：{urllib.parse.urlsplit(url).netloc}")
+                break
+            except (urllib.error.URLError, urllib.error.HTTPError, TimeoutError, ET.ParseError, FileNotFoundError, OSError, json.JSONDecodeError, KeyError, TypeError) as e:
+                last_err = e
+        if raw_entries is None:
+            status.append({"id": sid, "name": source["name"], "ok": False, "count": 0, "total": 0, "error": str(last_err)[:160]})
+            log(f"[radar] ✗ {source['name']}: {last_err}")
             continue
+        link_host = source.get("link_host")  # 把镜像域名换回原站（xcancel.com → x.com）
 
         kept = 0
         title_pattern = re.compile(source["title_pattern"]) if source.get("title_pattern") else None
@@ -568,6 +584,8 @@ def collect(config: dict, now_utc: datetime, seen: dict[str, str]) -> tuple[list
             link = raw["link"].strip()
             if not title or not link:
                 continue
+            if link_host:
+                link = re.sub(r"^(https?://)[^/]+", rf"\g<1>{link_host}", link).split("#")[0]
             if title_pattern and not title_pattern.search(title):
                 continue
             iid = item_id(link, title)

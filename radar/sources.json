@@ -12,7 +12,8 @@
     "research": "研究论文",
     "infra": "性能与基础设施",
     "people": "行业人物",
-    "industry": "产品与行业"
+    "industry": "产品与行业",
+    "trend": "趋势榜单"
   },
   "rules": {
     "high_keywords": [
@@ -355,6 +356,506 @@
       "weight": 1,
       "require_topic": true,
       "note": "不带 query：Algolia 会要求所有词同时命中；只取 100+ 分的故事，再用 topic_keywords 过滤"
+    },
+    {
+      "id": "x-karpathy",
+      "name": "X · Andrej Karpathy",
+      "urls": [
+        "https://xcancel.com/karpathy/rss",
+        "https://nitter.poast.org/karpathy/rss",
+        "https://nitter.privacydev.net/karpathy/rss",
+        "https://nitter.net/karpathy/rss"
+      ],
+      "url": "https://xcancel.com/karpathy/rss",
+      "link_host": "x.com",
+      "category": "people",
+      "weight": 2,
+      "title_pattern": "^(?!RT by |R to )",
+      "window_hours": 48,
+      "note": "X 无公开 RSS，走 Nitter 镜像（urls 依次尝试）；过滤转推与回复"
+    },
+    {
+      "id": "x-_akhaliq",
+      "name": "X · AK（论文速递）",
+      "urls": [
+        "https://xcancel.com/_akhaliq/rss",
+        "https://nitter.poast.org/_akhaliq/rss",
+        "https://nitter.privacydev.net/_akhaliq/rss",
+        "https://nitter.net/_akhaliq/rss"
+      ],
+      "url": "https://xcancel.com/_akhaliq/rss",
+      "link_host": "x.com",
+      "category": "people",
+      "weight": 2,
+      "title_pattern": "^(?!RT by |R to )",
+      "window_hours": 48,
+      "require_topic": true,
+      "note": "X 无公开 RSS，走 Nitter 镜像（urls 依次尝试）；过滤转推与回复"
+    },
+    {
+      "id": "x-tri_dao",
+      "name": "X · Tri Dao",
+      "urls": [
+        "https://xcancel.com/tri_dao/rss",
+        "https://nitter.poast.org/tri_dao/rss",
+        "https://nitter.privacydev.net/tri_dao/rss",
+        "https://nitter.net/tri_dao/rss"
+      ],
+      "url": "https://xcancel.com/tri_dao/rss",
+      "link_host": "x.com",
+      "category": "people",
+      "weight": 3,
+      "title_pattern": "^(?!RT by |R to )",
+      "window_hours": 48,
+      "note": "X 无公开 RSS，走 Nitter 镜像（urls 依次尝试）；过滤转推与回复"
+    },
+    {
+      "id": "x-soumithchintala",
+      "name": "X · Soumith Chintala",
+      "urls": [
+        "https://xcancel.com/soumithchintala/rss",
+        "https://nitter.poast.org/soumithchintala/rss",
+        "https://nitter.privacydev.net/soumithchintala/rss",
+        "https://nitter.net/soumithchintala/rss"
+      ],
+      "url": "https://xcancel.com/soumithchintala/rss",
+      "link_host": "x.com",
+      "category": "people",
+      "weight": 2,
+      "title_pattern": "^(?!RT by |R to )",
+      "window_hours": 48,
+      "note": "X 无公开 RSS，走 Nitter 镜像（urls 依次尝试）；过滤转推与回复"
+    },
+    {
+      "id": "x-chhillee",
+      "name": "X · Horace He",
+      "urls": [
+        "https://xcancel.com/cHHillee/rss",
+        "https://nitter.poast.org/cHHillee/rss",
+        "https://nitter.privacydev.net/cHHillee/rss",
+        "https://nitter.net/cHHillee/rss"
+      ],
+      "url": "https://xcancel.com/cHHillee/rss",
+      "link_host": "x.com",
+      "category": "people",
+      "weight": 2,
+      "title_pattern": "^(?!RT by |R to )",
+      "window_hours": 48,
+      "note": "X 无公开 RSS，走 Nitter 镜像（urls 依次尝试）；过滤转推与回复"
+    },
+    {
+      "id": "x-tim_dettmers",
+      "name": "X · Tim Dettmers",
+      "urls": [
+        "https://xcancel.com/Tim_Dettmers/rss",
+        "https://nitter.poast.org/Tim_Dettmers/rss",
+        "https://nitter.privacydev.net/Tim_Dettmers/rss",
+        "https://nitter.net/Tim_Dettmers/rss"
+      ],
+      "url": "https://xcancel.com/Tim_Dettmers/rss",
+      "link_host": "x.com",
+      "category": "people",
+      "weight": 2,
+      "title_pattern": "^(?!RT by |R to )",
+      "window_hours": 48,
+      "note": "X 无公开 RSS，走 Nitter 镜像（urls 依次尝试）；过滤转推与回复"
+    },
+    {
+      "id": "x-giffmana",
+      "name": "X · Lucas Beyer",
+      "urls": [
+        "https://xcancel.com/giffmana/rss",
+        "https://nitter.poast.org/giffmana/rss",
+        "https://nitter.privacydev.net/giffmana/rss",
+        "https://nitter.net/giffmana/rss"
+      ],
+      "url": "https://xcancel.com/giffmana/rss",
+      "link_host": "x.com",
+      "category": "people",
+      "weight": 2,
+      "title_pattern": "^(?!RT by |R to )",
+      "window_hours": 48,
+      "require_topic": true,
+      "note": "X 无公开 RSS，走 Nitter 镜像（urls 依次尝试）；过滤转推与回复"
+    },
+    {
+      "id": "x-drjimfan",
+      "name": "X · Jim Fan",
+      "urls": [
+        "https://xcancel.com/DrJimFan/rss",
+        "https://nitter.poast.org/DrJimFan/rss",
+        "https://nitter.privacydev.net/DrJimFan/rss",
+        "https://nitter.net/DrJimFan/rss"
+      ],
+      "url": "https://xcancel.com/DrJimFan/rss",
+      "link_host": "x.com",
+      "category": "people",
+      "weight": 1,
+      "title_pattern": "^(?!RT by |R to )",
+      "window_hours": 48,
+      "require_topic": true,
+      "note": "X 无公开 RSS，走 Nitter 镜像（urls 依次尝试）；过滤转推与回复"
+    },
+    {
+      "id": "x-jeremyphoward",
+      "name": "X · Jeremy Howard",
+      "urls": [
+        "https://xcancel.com/jeremyphoward/rss",
+        "https://nitter.poast.org/jeremyphoward/rss",
+        "https://nitter.privacydev.net/jeremyphoward/rss",
+        "https://nitter.net/jeremyphoward/rss"
+      ],
+      "url": "https://xcancel.com/jeremyphoward/rss",
+      "link_host": "x.com",
+      "category": "people",
+      "weight": 1,
+      "title_pattern": "^(?!RT by |R to )",
+      "window_hours": 48,
+      "require_topic": true,
+      "note": "X 无公开 RSS，走 Nitter 镜像（urls 依次尝试）；过滤转推与回复"
+    },
+    {
+      "id": "x-swyx",
+      "name": "X · swyx",
+      "urls": [
+        "https://xcancel.com/swyx/rss",
+        "https://nitter.poast.org/swyx/rss",
+        "https://nitter.privacydev.net/swyx/rss",
+        "https://nitter.net/swyx/rss"
+      ],
+      "url": "https://xcancel.com/swyx/rss",
+      "link_host": "x.com",
+      "category": "people",
+      "weight": 1,
+      "title_pattern": "^(?!RT by |R to )",
+      "window_hours": 48,
+      "require_topic": true,
+      "note": "X 无公开 RSS，走 Nitter 镜像（urls 依次尝试）；过滤转推与回复"
+    },
+    {
+      "id": "x-stasbekman",
+      "name": "X · Stas Bekman",
+      "urls": [
+        "https://xcancel.com/StasBekman/rss",
+        "https://nitter.poast.org/StasBekman/rss",
+        "https://nitter.privacydev.net/StasBekman/rss",
+        "https://nitter.net/StasBekman/rss"
+      ],
+      "url": "https://xcancel.com/StasBekman/rss",
+      "link_host": "x.com",
+      "category": "people",
+      "weight": 2,
+      "title_pattern": "^(?!RT by |R to )",
+      "window_hours": 48,
+      "note": "X 无公开 RSS，走 Nitter 镜像（urls 依次尝试）；过滤转推与回复"
+    },
+    {
+      "id": "x-yuchenj_uw",
+      "name": "X · Yuchen Jin",
+      "urls": [
+        "https://xcancel.com/Yuchenj_UW/rss",
+        "https://nitter.poast.org/Yuchenj_UW/rss",
+        "https://nitter.privacydev.net/Yuchenj_UW/rss",
+        "https://nitter.net/Yuchenj_UW/rss"
+      ],
+      "url": "https://xcancel.com/Yuchenj_UW/rss",
+      "link_host": "x.com",
+      "category": "people",
+      "weight": 1,
+      "title_pattern": "^(?!RT by |R to )",
+      "window_hours": 48,
+      "require_topic": true,
+      "note": "X 无公开 RSS，走 Nitter 镜像（urls 依次尝试）；过滤转推与回复"
+    },
+    {
+      "id": "x-clementdelangue",
+      "name": "X · Clem Delangue",
+      "urls": [
+        "https://xcancel.com/ClementDelangue/rss",
+        "https://nitter.poast.org/ClementDelangue/rss",
+        "https://nitter.privacydev.net/ClementDelangue/rss",
+        "https://nitter.net/ClementDelangue/rss"
+      ],
+      "url": "https://xcancel.com/ClementDelangue/rss",
+      "link_host": "x.com",
+      "category": "people",
+      "weight": 1,
+      "title_pattern": "^(?!RT by |R to )",
+      "window_hours": 48,
+      "require_topic": true,
+      "note": "X 无公开 RSS，走 Nitter 镜像（urls 依次尝试）；过滤转推与回复"
+    },
+    {
+      "id": "x-thom_wolf",
+      "name": "X · Thomas Wolf",
+      "urls": [
+        "https://xcancel.com/Thom_Wolf/rss",
+        "https://nitter.poast.org/Thom_Wolf/rss",
+        "https://nitter.privacydev.net/Thom_Wolf/rss",
+        "https://nitter.net/Thom_Wolf/rss"
+      ],
+      "url": "https://xcancel.com/Thom_Wolf/rss",
+      "link_host": "x.com",
+      "category": "people",
+      "weight": 1,
+      "title_pattern": "^(?!RT by |R to )",
+      "window_hours": 48,
+      "require_topic": true,
+      "note": "X 无公开 RSS，走 Nitter 镜像（urls 依次尝试）；过滤转推与回复"
+    },
+    {
+      "id": "x-jeffdean",
+      "name": "X · Jeff Dean",
+      "urls": [
+        "https://xcancel.com/JeffDean/rss",
+        "https://nitter.poast.org/JeffDean/rss",
+        "https://nitter.privacydev.net/JeffDean/rss",
+        "https://nitter.net/JeffDean/rss"
+      ],
+      "url": "https://xcancel.com/JeffDean/rss",
+      "link_host": "x.com",
+      "category": "people",
+      "weight": 2,
+      "title_pattern": "^(?!RT by |R to )",
+      "window_hours": 48,
+      "require_topic": true,
+      "note": "X 无公开 RSS，走 Nitter 镜像（urls 依次尝试）；过滤转推与回复"
+    },
+    {
+      "id": "x-hardmaru",
+      "name": "X · hardmaru",
+      "urls": [
+        "https://xcancel.com/hardmaru/rss",
+        "https://nitter.poast.org/hardmaru/rss",
+        "https://nitter.privacydev.net/hardmaru/rss",
+        "https://nitter.net/hardmaru/rss"
+      ],
+      "url": "https://xcancel.com/hardmaru/rss",
+      "link_host": "x.com",
+      "category": "people",
+      "weight": 1,
+      "title_pattern": "^(?!RT by |R to )",
+      "window_hours": 48,
+      "require_topic": true,
+      "note": "X 无公开 RSS，走 Nitter 镜像（urls 依次尝试）；过滤转推与回复"
+    },
+    {
+      "id": "x-vllm_project",
+      "name": "X · vLLM",
+      "urls": [
+        "https://xcancel.com/vllm_project/rss",
+        "https://nitter.poast.org/vllm_project/rss",
+        "https://nitter.privacydev.net/vllm_project/rss",
+        "https://nitter.net/vllm_project/rss"
+      ],
+      "url": "https://xcancel.com/vllm_project/rss",
+      "link_host": "x.com",
+      "category": "people",
+      "weight": 2,
+      "title_pattern": "^(?!RT by |R to )",
+      "window_hours": 48,
+      "note": "X 无公开 RSS，走 Nitter 镜像（urls 依次尝试）；过滤转推与回复"
+    },
+    {
+      "id": "x-lmsysorg",
+      "name": "X · LMSYS / SGLang",
+      "urls": [
+        "https://xcancel.com/lmsysorg/rss",
+        "https://nitter.poast.org/lmsysorg/rss",
+        "https://nitter.privacydev.net/lmsysorg/rss",
+        "https://nitter.net/lmsysorg/rss"
+      ],
+      "url": "https://xcancel.com/lmsysorg/rss",
+      "link_host": "x.com",
+      "category": "people",
+      "weight": 2,
+      "title_pattern": "^(?!RT by |R to )",
+      "window_hours": 48,
+      "note": "X 无公开 RSS，走 Nitter 镜像（urls 依次尝试）；过滤转推与回复"
+    },
+    {
+      "id": "x-pytorch",
+      "name": "X · PyTorch",
+      "urls": [
+        "https://xcancel.com/PyTorch/rss",
+        "https://nitter.poast.org/PyTorch/rss",
+        "https://nitter.privacydev.net/PyTorch/rss",
+        "https://nitter.net/PyTorch/rss"
+      ],
+      "url": "https://xcancel.com/PyTorch/rss",
+      "link_host": "x.com",
+      "category": "people",
+      "weight": 1,
+      "title_pattern": "^(?!RT by |R to )",
+      "window_hours": 48,
+      "require_topic": true,
+      "note": "X 无公开 RSS，走 Nitter 镜像（urls 依次尝试）；过滤转推与回复"
+    },
+    {
+      "id": "x-nvidiaaidev",
+      "name": "X · NVIDIA AI Developer",
+      "urls": [
+        "https://xcancel.com/NVIDIAAIDev/rss",
+        "https://nitter.poast.org/NVIDIAAIDev/rss",
+        "https://nitter.privacydev.net/NVIDIAAIDev/rss",
+        "https://nitter.net/NVIDIAAIDev/rss"
+      ],
+      "url": "https://xcancel.com/NVIDIAAIDev/rss",
+      "link_host": "x.com",
+      "category": "people",
+      "weight": 1,
+      "title_pattern": "^(?!RT by |R to )",
+      "window_hours": 48,
+      "require_topic": true,
+      "note": "X 无公开 RSS，走 Nitter 镜像（urls 依次尝试）；过滤转推与回复"
+    },
+    {
+      "id": "x-huggingface",
+      "name": "X · Hugging Face",
+      "urls": [
+        "https://xcancel.com/huggingface/rss",
+        "https://nitter.poast.org/huggingface/rss",
+        "https://nitter.privacydev.net/huggingface/rss",
+        "https://nitter.net/huggingface/rss"
+      ],
+      "url": "https://xcancel.com/huggingface/rss",
+      "link_host": "x.com",
+      "category": "people",
+      "weight": 1,
+      "title_pattern": "^(?!RT by |R to )",
+      "window_hours": 48,
+      "require_topic": true,
+      "note": "X 无公开 RSS，走 Nitter 镜像（urls 依次尝试）；过滤转推与回复"
+    },
+    {
+      "id": "karpathy-blog",
+      "name": "Andrej Karpathy 博客",
+      "url": "https://karpathy.bearblog.dev/feed/",
+      "category": "people",
+      "weight": 3
+    },
+    {
+      "id": "eugeneyan",
+      "name": "Eugene Yan",
+      "url": "https://eugeneyan.com/rss/",
+      "category": "people",
+      "weight": 1,
+      "require_topic": true
+    },
+    {
+      "id": "importai",
+      "name": "Import AI（Jack Clark）",
+      "url": "https://importai.substack.com/feed",
+      "category": "people",
+      "weight": 2
+    },
+    {
+      "id": "latentspace",
+      "name": "Latent Space",
+      "url": "https://www.latent.space/feed",
+      "category": "people",
+      "weight": 1,
+      "require_topic": true
+    },
+    {
+      "id": "semianalysis",
+      "name": "SemiAnalysis",
+      "url": "https://semianalysis.com/feed/",
+      "category": "infra",
+      "weight": 2
+    },
+    {
+      "id": "meta-ai",
+      "name": "Meta AI Blog",
+      "url": "https://ai.meta.com/blog/rss/",
+      "category": "release",
+      "weight": 2
+    },
+    {
+      "id": "vllm-blog",
+      "name": "vLLM Blog",
+      "url": "https://blog.vllm.ai/feed.xml",
+      "category": "infra",
+      "weight": 3
+    },
+    {
+      "id": "lmsys-blog",
+      "name": "LMSYS / SGLang Blog",
+      "url": "https://lmsys.org/rss.xml",
+      "category": "infra",
+      "weight": 3
+    },
+    {
+      "id": "anthropic-news",
+      "name": "Anthropic",
+      "url": "https://www.anthropic.com/rss.xml",
+      "category": "release",
+      "weight": 3
+    },
+    {
+      "id": "mistral-news",
+      "name": "Mistral AI",
+      "url": "https://mistral.ai/feed.xml",
+      "category": "release",
+      "weight": 2
+    },
+    {
+      "id": "hf-trending-models",
+      "name": "HF 热门模型",
+      "kind": "json",
+      "url": "https://huggingface.co/api/models?sort=trending&limit=25",
+      "json": {
+        "title": "{id}",
+        "link": "https://huggingface.co/{id}",
+        "description": "pipeline_tag",
+        "published": "lastModified"
+      },
+      "category": "trend",
+      "weight": 1,
+      "window_hours": 96,
+      "note": "HF 首页 Trending 榜；标题就是 repo id，不要 require_topic"
+    },
+    {
+      "id": "hf-trending-spaces",
+      "name": "HF 热门 Spaces",
+      "kind": "json",
+      "url": "https://huggingface.co/api/spaces?sort=trending&limit=20",
+      "json": {
+        "title": "{id}",
+        "link": "https://huggingface.co/spaces/{id}",
+        "description": "sdk",
+        "published": "lastModified"
+      },
+      "category": "trend",
+      "weight": 1,
+      "window_hours": 96
+    },
+    {
+      "id": "gh-trending-all",
+      "name": "GitHub Trending · 全部",
+      "url": "https://mshibanami.github.io/GitHubTrendingRSS/daily/all.xml",
+      "category": "trend",
+      "weight": 1,
+      "require_topic": true,
+      "window_hours": 48,
+      "note": "社区镜像的 GitHub Trending RSS，每日"
+    },
+    {
+      "id": "gh-trending-python",
+      "name": "GitHub Trending · Python",
+      "url": "https://mshibanami.github.io/GitHubTrendingRSS/daily/python.xml",
+      "category": "trend",
+      "weight": 1,
+      "require_topic": true,
+      "window_hours": 48
+    },
+    {
+      "id": "gh-trending-cuda",
+      "name": "GitHub Trending · CUDA",
+      "url": "https://mshibanami.github.io/GitHubTrendingRSS/daily/cuda.xml",
+      "category": "trend",
+      "weight": 2,
+      "window_hours": 48
     }
   ]
 }

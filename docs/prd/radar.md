@@ -28,7 +28,7 @@
 
 ## 4. 数据管线
 
-1. `collect`：按源抓取（`kind: rss|json`），JSON 源按 `json` 字段路径映射；解析日期、按 `window_hours`（默认 36，源可覆盖）过滤；`title_pattern` / `require_topic` 过滤；`seen.json` 去重（链接 + 标题指纹）。
+1. `collect`：按源抓取（`kind: rss|json`；`urls` 给多个镜像按序尝试，`link_host` 把镜像域名换回原站），JSON 源按 `json` 字段路径映射（`title` / `link` 支持 `{字段}` 模板）；解析日期、按 `window_hours`（默认 36，源可覆盖）过滤；`title_pattern` / `require_topic` 过滤；`seen.json` 去重（链接 + 标题指纹）。
 2. `score_item`：`high_keywords`（标题）、`topic_keywords`（标题 + 描述）、`mute_keywords`；源 `weight` 加权 → `priority_from_score`。
 3. `dedupe_titles`：跨源近似标题合并。
 4. `enrich_with_ai`：模型对全部条目输出 priority / summary / why / tags（结构化 JSON）；失败退回规则。
@@ -41,13 +41,14 @@
 
 `radar/data/<日期>.json`：`{date, generated_at, ai(bool), model, sources:[{id,name,ok,count,total,error}], counts:{high,medium,low}, items:[{id,title,link,source,source_id,published,category,priority,summary,why,tags[]}]}`。
 
-`radar/sources.json`：`{site:{title,description,timezone,window_hours,max_high,max_medium}, categories{}, rules{high_keywords,topic_keywords,mute_keywords}, sources:[{id,name,url,kind?,json?,category,weight,window_hours?,title_pattern?,require_topic?,disabled?,disabled_reason?,note?}]}`。
+`radar/sources.json`：`{site:{title,description,timezone,window_hours,max_high,max_medium}, categories{}, rules{high_keywords,topic_keywords,mute_keywords}, sources:[{id,name,url,urls?,link_host?,kind?,json?,category,weight,window_hours?,title_pattern?,require_topic?,disabled?,disabled_reason?,note?}]}`。分类含 `trend`（趋势榜单：HF Trending、GitHub Trending）。
 
 ## 6. 规则
 
 - 优先级上限：必看 10、值得看 20，超出的降级。
 - 源被巡检自动停用：连续失败 ≥3 天，或连续 0 条达到阈值（写 `disabled_reason`）；恢复要人工删掉 `disabled`。
 - JSON 源的 `query` 参数：Algolia 类 API 要求所有词同时命中，不要写 `A OR B`；用 `require_topic` 在本地过滤。
+- X（Twitter）没有公开 RSS：人物源走 Nitter 镜像 `urls`（xcancel.com → nitter.poast.org → nitter.privacydev.net → nitter.net），`title_pattern: ^(?!RT by |R to )` 去掉转推和回复，`link_host: x.com` 还原链接；镜像全挂时该源当天失败，连续 3 天由 check.py 自动停用，届时换镜像即可。X 的 Trends 没有可用接口，趋势用 HF / GitHub 榜代替。
 
 ## 7. 验证与排查
 
