@@ -35,8 +35,8 @@ jobs:
           INBOX_REPO: ${{ vars.INBOX_REPO || 'lgyStoic/radar-inbox' }}
           RADAR_DATE: ${{ inputs.date }}
           XHS_IMAGES: ${{ inputs.images || '4' }}
-          GEMINI_IMAGE_MODEL: ${{ vars.GEMINI_IMAGE_MODEL || 'gemini-2.5-flash-image' }}
-          GEMINI_IMAGEN_MODEL: ${{ vars.GEMINI_IMAGEN_MODEL || 'imagen-4.0-generate-001' }}
+          GEMINI_IMAGE_MODEL: ${{ vars.GEMINI_IMAGE_MODEL || 'gemini-3.1-flash-image,gemini-2.5-flash-image' }}
+          GEMINI_IMAGEN_MODEL: ${{ vars.GEMINI_IMAGEN_MODEL }}
         run: RADAR_DATE="${RADAR_DATE:-$(TZ=Asia/Shanghai date +%F)}" python3 tools/xhs.py
       - name: 封面图留档（7 天）
         if: ${{ !inputs.list_models && hashFiles('radar/data/xhs/**/*.jpg') != '' }}
