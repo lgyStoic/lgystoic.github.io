@@ -8,8 +8,8 @@
 
 环境变量：
     ANTHROPIC_API_KEY   有则调用 Claude 做优先级判断和中文摘要（优先）。
-    GEMINI_API_KEY      没有 Anthropic key 时改用 Gemini。默认 gemini-pro-latest（Pro 线最新，2026-09 解析为 3.1 Pro），
-                        遇到配额或服务错误自动降级到 gemini-flash-latest（2026-09 解析为 3.8 Flash）；可用 GEMINI_MODEL /
+    GEMINI_API_KEY      没有 Anthropic key 时改用 Gemini。默认 gemini-flash-latest（Flash 线最新，2026-09 解析为 3.8 Flash），
+                        遇到配额或服务错误自动降级到 gemini-pro-latest（2026-09 解析为 3.1 Pro）；可用 GEMINI_MODEL /
                         GEMINI_FALLBACK_MODEL 覆盖。
                         两个都没有则退回关键词规则，每条摘要取原文描述的前 160 字。
     RADAR_WINDOW_HOURS  覆盖 sources.json 里的 window_hours，首次运行或补漏时可以放大到 168。
@@ -48,8 +48,8 @@ FETCH_TIMEOUT = 20
 SEEN_RETENTION_DAYS = 120
 SUMMARY_FALLBACK_CHARS = 160
 CLAUDE_MODEL = "claude-opus-5"
-GEMINI_MODEL = os.environ.get("GEMINI_MODEL", "gemini-pro-latest")
-GEMINI_FALLBACK_MODEL = os.environ.get("GEMINI_FALLBACK_MODEL", "gemini-flash-latest")
+GEMINI_MODEL = os.environ.get("GEMINI_MODEL", "gemini-flash-latest")
+GEMINI_FALLBACK_MODEL = os.environ.get("GEMINI_FALLBACK_MODEL", "gemini-pro-latest")
 LAST_MODEL_USED = ""  # 本次运行实际用到的模型，写进当天数据文件
 LAST_GEMINI_ERROR = ""  # 最近一次 Gemini 调用失败的性质：transient（超时/429/5xx，可重试）或 permanent
 GEMINI_TIMEOUT = int(os.environ.get("GEMINI_TIMEOUT", "300"))  # 单次调用读超时（秒），长上下文任务可通过环境变量调大

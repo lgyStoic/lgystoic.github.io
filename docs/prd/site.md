@@ -52,9 +52,9 @@
 ## 5. AI 调用层（`tools/radar.py`，所有模块共用）
 
 - `call_llm_json(system, user, schema, label)`：结构化 JSON 输出；有 Anthropic key 走 Claude，否则 Gemini；都没有返回 None，调用方退回规则。
-- Gemini：`GEMINI_MODEL`（默认 `gemini-pro-latest`）→ 瞬时错误（超时 / 429 / 5xx）先重试首选（`GEMINI_PRIMARY_RETRIES`）→ 再降级到 `GEMINI_FALLBACK_MODEL`（默认 `gemini-flash-latest`）；`GEMINI_TIMEOUT` 默认 300 秒；`GEMINI_MAX_OUTPUT_TOKENS` 默认 16384（Gemini 3.x 的思考 token 也占这个预算，长输出任务给 32768）。
+- Gemini：`GEMINI_MODEL`（默认 `gemini-flash-latest`，2026-09-19 起首选 Flash 线：3.8 Flash 输出质量够用、快、不易撞输出上限）→ 瞬时错误（超时 / 429 / 5xx）先重试首选（`GEMINI_PRIMARY_RETRIES`）→ 再降级到 `GEMINI_FALLBACK_MODEL`（默认 `gemini-pro-latest`）；`GEMINI_TIMEOUT` 默认 300 秒；`GEMINI_MAX_OUTPUT_TOKENS` 默认 16384（Gemini 3.x 的思考 token 也占这个预算，长输出任务给 32768）。
 - 模型名全部可用仓库变量 `vars.GEMINI_MODEL` / `vars.GEMINI_FALLBACK_MODEL` 覆盖，四个工作流都读；不改代码即可切模型。
-- 账号可用模型（2026-09-19，`xhs.yml` 勾 `list_models` 可重新列）：Pro 线只有 `gemini-3.1-pro-preview`（`gemini-pro-latest` 指向它）；Flash 线 `gemini-3.8-flash`（`gemini-flash-latest` 指向它）、3.7 / 3.6 / 3.5 / 3-flash-preview；生图 `gemini-3.1-flash-image`、`gemini-3-pro-image`（= nano-banana-pro）、`gemini-2.5-flash-image`，没有 Imagen。API 里没有 3.8 Pro，所以「最新最强」在 Pro 线仍是 3.1。
+- 账号可用模型（2026-09-19，`xhs.yml` 勾 `list_models` 可重新列）：Pro 线只有 `gemini-3.1-pro-preview`（`gemini-pro-latest` 指向它）；Flash 线 `gemini-3.8-flash`（`gemini-flash-latest` 指向它）、3.7 / 3.6 / 3.5 / 3-flash-preview；生图 `gemini-3.1-flash-image`、`gemini-3-pro-image`（= nano-banana-pro）、`gemini-2.5-flash-image`，没有 Imagen。API 里没有 3.8 Pro；站长实测 3.8 Flash 文稿质量可接受，故全站首选 Flash 线，Pro 作备选。
 - `LAST_MODEL_USED` 记录实际模型版本，写进各数据文件的 `model` 字段并显示在页面上。
 
 ## 6. 验证与排查

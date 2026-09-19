@@ -32,8 +32,8 @@ jobs:
         if: ${{ !inputs.list_models }}
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          GEMINI_MODEL: ${{ vars.GEMINI_MODEL || 'gemini-pro-latest' }}
-          GEMINI_FALLBACK_MODEL: ${{ vars.GEMINI_FALLBACK_MODEL || 'gemini-flash-latest' }}
+          GEMINI_MODEL: ${{ vars.GEMINI_MODEL || 'gemini-flash-latest' }}
+          GEMINI_FALLBACK_MODEL: ${{ vars.GEMINI_FALLBACK_MODEL || 'gemini-pro-latest' }}
           GEMINI_MAX_OUTPUT_TOKENS: "32768"
           INBOX_TOKEN: ${{ secrets.INBOX_TOKEN }}
           INBOX_REPO: ${{ vars.INBOX_REPO || 'lgyStoic/radar-inbox' }}
