@@ -320,7 +320,7 @@ ENRICH_SCHEMA = {
                 "properties": {
                     "id": {"type": "string"},
                     "priority": {"type": "string", "enum": ["high", "medium", "low"]},
-                    "category": {"type": "string", "enum": ["release", "research", "infra", "people", "industry"]},
+                    "category": {"type": "string", "enum": ["release", "research", "infra", "people", "industry", "trend"]},
                     "summary": {"type": "string"},
                     "why": {"type": "string"},
                     "tags": {"type": "array", "items": {"type": "string"}},
@@ -338,7 +338,7 @@ ENRICH_SYSTEM = """你在为一位做 GPU kernel / 训练性能优化、同时�
 
 对每条输入条目输出：
 - priority：high = 真正的模型/权重/重要基础设施发布、榜单显著变化、对他工作有直接影响的技术进展；medium = 值得扫一眼的研究、深度文章、行业动态；low = 泛泛讨论、营销、与他方向无关。
-- category：release（模型/产品发布）、research（论文）、infra（GPU/编译器/训练推理系统）、people（个人博客与观点）、industry（行业、融资、政策）。
+- category：release（模型/产品发布）、research（论文）、infra（GPU/编译器/训练推理系统）、people（个人博客、社交动态与观点）、industry（行业、融资、政策）、trend（榜单条目：来自 HF Trending / GitHub Trending 的模型、Space、仓库，输入里 category 已是 trend 的保持 trend，不要改成别的）。
 - summary：一句中文，≤ 60 字，说清「发生了什么」。专有名词、模型名、数字保留原文。
 - why：一句中文，≤ 40 字，说清「为什么值得他看」或「为什么可以跳过」。
 - tags：2-4 个简短标签，中英文均可。
@@ -661,7 +661,7 @@ def finalize(items: list[dict], enrichment: dict[str, dict] | None) -> list[dict
             e = enrichment[it["id"]]
             row.update(
                 priority=e.get("priority", row["priority"]),
-                category=e.get("category", row["category"]),
+                category=row["category"] if row["category"] == "trend" else e.get("category", row["category"]),  # 榜单条目固定归趋势榜单
                 summary=e.get("summary") or row["summary"],
                 why=e.get("why", ""),
                 tags=(e.get("tags") or row["tags"])[:4],
