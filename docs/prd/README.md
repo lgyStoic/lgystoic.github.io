@@ -13,7 +13,8 @@
 | 活动清单 | 看 | `/radar/events/` | [events.md](events.md) |
 | 工作机会 | 看 | `/radar/jobs/` | [jobs.md](jobs.md) |
 | 开源贡献路线 | 看 | `/radar/contributions/` | [contributions.md](contributions.md) |
-| 收件箱 · 小红书文稿 | 做 | 私有仓库 | [inbox.md](inbox.md) |
+| 收件箱 | 做 | 私有仓库 | [inbox.md](inbox.md) |
+| AI 信息学习卡片（小红书文稿 + 封面图） | 做 | 私有仓库 | [xhs.md](xhs.md) |
 | 运行状态 · 巡检 | 做 | `/status/` | [status.md](status.md) |
 | GEO（AI 搜索引用） | — | 全站 | [geo.md](geo.md) |
 

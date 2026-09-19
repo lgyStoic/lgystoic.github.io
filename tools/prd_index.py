@@ -32,7 +32,7 @@ SITE_DIAGRAM = {
         {'from': '收件箱 Issue', 'to': 'radar.yml', 'label': '投递'}, {'from': '招聘站与 ATS', 'to': 'jobs.yml', 'label': '岗位'},
         {'from': 'GitHub API', 'to': 'contributions.yml', 'label': 'Issue/源码'},
         {'from': 'radar.yml', 'to': 'Gemini · Claude', 'label': '摘要'}, {'from': 'jobs.yml', 'to': 'Gemini · Claude', 'label': '去重'},
-        {'from': 'contributions.yml', 'to': 'Gemini · Claude', 'label': '五章+任务卡'}, {'from': 'xhs.yml', 'to': 'Gemini · Claude', 'label': '文稿'},
+        {'from': 'contributions.yml', 'to': 'Gemini · Claude', 'label': '五章+任务卡'}, {'from': 'xhs.yml', 'to': 'Gemini · Claude', 'label': '文稿+生图'},
         {'from': 'health.yml', 'to': 'radar.yml', 'label': '补跑'},
         {'from': 'radar.yml', 'to': 'radar 数据 JSON', 'label': 'JSON'}, {'from': 'jobs.yml', 'to': 'radar 数据 JSON', 'label': ''},
         {'from': 'contributions.yml', 'to': 'radar 数据 JSON', 'label': ''},
@@ -103,7 +103,8 @@ MODULES = [
     ('events', '活动清单', '五种源解析器 → 模型抽字段 → 深圳 / 广州 / 香港 / 线上'),
     ('jobs', '工作机会', '19 个官方源 + 猎聘 / ATS 适配器 → 可解释匹配 → 深圳优先'),
     ('contributions', '开源贡献路线', '14 个仓库五章分析 + 无 GPU 可做的任务卡 + 架构图'),
-    ('inbox', '收件箱 · 学习文稿', '手机投递到私有仓库 Issue → 每日摘要；雷达条目 → 小红书草稿'),
+    ('inbox', '收件箱', '手机投递到私有仓库 Issue → 每日摘要'),
+    ('xhs', 'AI 信息学习卡片', '雷达 high/medium 条目 → 小红书草稿 + 3:4 封面卡片（Gemini 生图配图）'),
     ('status', '运行状态 · 巡检', '最近一次运行、巡检报告、四栏源健康表、自动停用与兜底'),
 ]
 
