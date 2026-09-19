@@ -28,7 +28,7 @@
 
 ## 4. 数据管线
 
-1. `collect`：按源抓取（`kind: rss|json`；`urls` 给多个镜像按序尝试，`link_host` 把镜像域名换回原站，URL 支持 `{today}` / `{today-Nd}` 日期占位，无标题条目取正文前 120 字），JSON 源按 `json` 字段路径映射（`title` / `link` 支持 `{字段}` 模板）；解析日期、按 `window_hours`（默认 36，源可覆盖）过滤；`title_pattern` / `require_topic` 过滤；`seen.json` 去重（链接 + 标题指纹）。
+1. `collect`：按源抓取（`kind: rss|json`；`urls` 给多个镜像按序尝试，`link_host` 把镜像域名换回原站，URL 支持 `{today}` / `{today-Nd}` 日期占位，无标题条目取正文前 120 字），JSON 源按 `json` 字段路径映射（`title` / `link` 支持 `{字段}` 模板）；解析日期、按 `window_hours`（默认 36，源可覆盖）过滤；`title_pattern` / `require_topic` 过滤；`match_tracks` 打专题标签（源 `track` 直接归属，`track_required` 不命中即丢，命中 +1 分），细节见 tracks.md；`seen.json` 去重（链接 + 标题指纹）。
 2. `score_item`：`high_keywords`（标题）、`topic_keywords`（标题 + 描述）、`mute_keywords`；源 `weight` 加权 → `priority_from_score`。
 3. `dedupe_titles`：跨源近似标题合并。
 4. `enrich_with_ai`：模型对全部条目输出 priority / summary / why / tags（结构化 JSON）；失败退回规则。
@@ -39,9 +39,9 @@
 
 ## 5. 数据模型
 
-`radar/data/<日期>.json`：`{date, generated_at, ai(bool), model, sources:[{id,name,ok,count,total,error}], counts:{high,medium,low}, items:[{id,title,link,source,source_id,published,category,priority,summary,why,tags[]}]}`。
+`radar/data/<日期>.json`：`{date, generated_at, ai(bool), model, sources:[{id,name,ok,count,total,error}], counts:{high,medium,low}, items:[{id,title,link,source,source_id,published,category,priority,summary,why,tags[],tracks[]}]}`。
 
-`radar/sources.json`：`{site:{title,description,timezone,window_hours,max_high,max_medium}, categories{}, rules{high_keywords,topic_keywords,mute_keywords}, sources:[{id,name,url,urls?,link_host?,kind?,json?,category,weight,window_hours?,title_pattern?,require_topic?,disabled?,disabled_reason?,note?}]}`。分类含 `trend`（趋势榜单：HF Trending、GitHub Trending）。
+`radar/sources.json`：`{site:{title,description,timezone,window_hours,max_high,max_medium}, categories{}, rules{high_keywords,topic_keywords,mute_keywords}, sources:[{id,name,url,urls?,link_host?,kind?,json?,category,weight,window_hours?,title_pattern?,require_topic?,track?,track_required?,disabled?,disabled_reason?,note?}]}`。分类含 `trend`（趋势榜单：HF Trending、GitHub Trending）。
 
 ## 6. 规则
 

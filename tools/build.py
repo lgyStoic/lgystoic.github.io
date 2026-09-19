@@ -36,6 +36,8 @@ RADAR_DATA = RADAR_DIR / "data"
 RADAR_CONFIG = RADAR_DIR / "sources.json"
 EVENTS_DATA = RADAR_DATA / "events.json"
 EVENTS_CONFIG = RADAR_DIR / "event_sources.json"
+TRACKS_CONFIG = RADAR_DIR / "tracks.json"
+TRACKS_DATA = RADAR_DATA / "tracks"
 CHECKS_DIR = RADAR_DIR / "checks"
 LAST_RUN = RADAR_DATA / "last-run.json"
 SITE_URL = "https://lgystoic.github.io"
@@ -664,6 +666,13 @@ def write_llms_txt(site: dict, notes: list[dict], guides: list[dict], days: list
     if events_data and events_data.get("events"):
         today = events_data.get("today", "")
         alive = sum(1 for e in events_data["events"] if (ev_last_date(e) or today) >= today and e.get("relevance") != "low")
+    tcfg, tdata = load_tracks_data()
+    if tcfg:
+        lines += ["", "## 专题追踪", "", f"- [专题总览]({SITE_URL}/radar/tracks/): 视频生成模型、世界模型等专题的累积时间线、线程、每周综述与现状表"]
+        for t in tcfg:
+            d = tdata.get(t["id"]) or {}
+            dg = (d.get("digest") or {}).get("text", "")
+            lines.append(f"- [{t['name']}]({SITE_URL}/radar/tracks/{t['id']}/): {t.get('blurb', '')[:100]}；累计 {len(d.get('entries', []))} 条" + (f"；本周综述：{dg[:160]}" if dg else ""))
     lines += ["", "## 活动清单", "", f"- [深圳 / 广州 / 香港及线上的 AI 活动]({SITE_URL}/radar/events/): 目前即将发生 {alive} 个，页面内含 schema.org Event 数据"]
     lines += ["", "## 工作机会", "", f"- [AI Infra / GPU Kernel / DiT / 端侧部署 岗位聚合]({SITE_URL}/radar/jobs/): 深圳优先，其次香港与国内，每日更新，附匹配理由"]
     lines += ["", "## 开源贡献路线", "", f"- [总览]({SITE_URL}/radar/contributions/): 14 个 AI 推理 / kernel 仓库的五章分析（定位、架构、本地运行、社区、切入）与可认领任务卡"]
@@ -681,6 +690,7 @@ def write_llms_txt(site: dict, notes: list[dict], guides: list[dict], days: list
               f"- {SITE_URL}/radar/data/events.json 活动（start, end, city, online, fee, organizer, summary）",
               f"- {SITE_URL}/radar/data/jobs.json 岗位（title, company, location, region, level, tags, reasons）",
               f"- {SITE_URL}/radar/data/contributions.json 开源贡献分析与任务卡",
+              f"- {SITE_URL}/radar/data/tracks/<id>.json 专题累积时间线（entries, threads, digest, sota）",
               "", "## 其他", "", f"- [关于]({SITE_URL}/about/)", f"- [运行状态]({SITE_URL}/status/)", f"- [站点地图]({SITE_URL}/sitemap.xml)", f"- [笔记 RSS]({SITE_URL}/feed.xml)", ""]
     (ROOT / "llms.txt").write_text("\n".join(lines), encoding="utf-8")
 
@@ -868,6 +878,11 @@ def module_status(mod: dict, notes: list[dict], days: list[dict], events_data: d
             return f"{len(guides)} 步 · 整理中"
         latest = max(g.get("updated", "") for g in pub)
         return f"{len(pub)} / {len(guides)} 步已发布 · 最近 {esc(latest[5:].replace('-', '/'))}"
+    if kind == "tracks":
+        cfg, data = load_tracks_data()
+        total = sum(len(d.get("entries", [])) for d in data.values())
+        names = "、".join(t["name"] for t in cfg)
+        return f"{len(cfg)} 个专题（{esc(names)}） · {total} 条" if total else f"{len(cfg)} 个专题 · 累积中"
     if kind == "inbox":
         return "私有仓库 · 手机一键投递"
     if kind == "status":
@@ -899,6 +914,170 @@ def render_cards(site: dict, notes: list[dict], days: list[dict], events_data: d
         )
     return '    <ul class="card-grid">\n' + "\n".join(cards) + "\n    </ul>"
 
+
+
+# ---------------------------------------------------------------- 专题追踪
+
+TRACK_PAGE_TEMPLATE = """<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title} | Anaxagore</title>
+    <meta name="description" content="{description}" />
+    <link rel="canonical" href="{canonical}" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="{title}" />
+    <meta property="og:description" content="{description}" />
+    <meta property="og:url" content="{canonical}" />
+    <meta property="og:image" content="{site_url}/assets/og/radar.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+{jsonld}
+    <link rel="icon" href="{favicon}" />
+    <link rel="stylesheet" href="{prefix}site.css" />
+    <script>
+      try {{
+        var t = localStorage.getItem("theme");
+        if (t === "dark" || t === "light") document.documentElement.dataset.theme = t;
+      }} catch (e) {{}}
+    </script>
+  </head>
+  <body>
+{header}
+
+    <main class="wrap">
+{body}
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap">
+        <span>© 2026 {site_name} · 自动汇总，综述由模型生成，请以原文为准</span>
+        <span><a href="{prefix}radar/">每日雷达</a> · <a href="{prefix}radar/tracks/">全部专题</a></span>
+      </div>
+    </footer>
+    <script src="{prefix}site.js" defer></script>
+{analytics}
+  </body>
+</html>
+"""
+
+
+def load_tracks_data() -> tuple[list[dict], dict[str, dict]]:
+    """(专题配置列表, {id: 累积数据})；没有数据的专题也返回配置，页面显示「还没内容」。"""
+    try:
+        cfg = json.loads(TRACKS_CONFIG.read_text(encoding="utf-8")).get("tracks", [])
+    except (OSError, json.JSONDecodeError):
+        return [], {}
+    data = {}
+    for t in cfg:
+        f = TRACKS_DATA / f"{t['id']}.json"
+        if f.exists():
+            try:
+                data[t["id"]] = json.loads(f.read_text(encoding="utf-8"))
+            except (OSError, json.JSONDecodeError):
+                pass
+    return cfg, data
+
+
+KIND_LABEL = {"release": "发布", "paper": "论文", "benchmark": "评测", "tool": "工具", "news": "新闻", "opinion": "观点"}
+
+
+def render_track_entry(e: dict, *, show_entity: bool = False) -> str:
+    tags = "".join(f"<span>{esc(t)}</span>" for t in (e.get("tags") or [])[:4])
+    why = f'<p class="radar-why">{esc(e["why"])}</p>' if e.get("why") else ""
+    kind = KIND_LABEL.get(e.get("kind") or "", "")
+    ent = f'<span>{esc(e["entity"])}</span>' if show_entity and e.get("entity") else ""
+    return f"""        <li class="radar-item prio-{esc(e.get('priority', 'low'))}">
+          <div class="radar-meta"><b class="badge">{esc(e.get('source', ''))}</b>{ent}{f'<span>{kind}</span>' if kind else ''}<time datetime="{esc(e.get('date', ''))}">{esc(e.get('date', ''))}</time></div>
+          <h3 class="radar-title"><a href="{esc(e['link'])}" rel="noopener noreferrer">{esc(e['title'])}</a></h3>
+          <p class="radar-summary">{esc(e.get('summary', ''))}</p>
+          {why}
+          <div class="post-tags">{tags}</div>
+        </li>"""
+
+
+def render_track_body(t: dict, d: dict | None) -> str:
+    parts = [f'      <section class="intro radar-intro">\n        <p class="kicker">专题追踪</p>\n        <h1>{esc(t["name"])}</h1>\n        <p class="bio">{esc(t.get("blurb", ""))}</p>']
+    if not d or not d.get("entries"):
+        parts.append('        <p class="empty-state">还没有累积到内容，每天随雷达更新。</p>\n      </section>')
+        return "\n".join(parts)
+    entries = d["entries"]
+    threads = d.get("threads") or {}
+    digest = d.get("digest") or {}
+    parts.append(f'        <p class="radar-stats">{len(entries)} 条 · {len(threads)} 个线程 · 更新 {esc(fmt_time(d.get("updated", "")))}' + (f' · 综述 {esc(digest.get("week", ""))}' if digest.get("text") else "") + "</p>\n      </section>")
+    if digest.get("text"):
+        hl = "".join(f"<li>{esc(h)}</li>" for h in digest.get("highlights", []))
+        parts.append(f'      <section class="radar-day">\n        <h2 class="radar-heading prio-high">本周综述 <small>{esc(digest.get("week", ""))}</small></h2>\n        <p>{esc(digest["text"])}</p>' + (f'\n        <ul class="track-highlights">{hl}</ul>' if hl else "") + "\n      </section>")
+    sota = d.get("sota") or []
+    if sota:
+        rows = []
+        for r in sota:
+            name = f'<a href="{esc(r["link"])}" rel="noopener noreferrer">{esc(r["model"])}</a>' if r.get("link") else esc(r.get("model", ""))
+            rows.append(f'<tr><td>{name}</td><td>{esc(r.get("org", ""))}</td><td>{esc(r.get("date", ""))}</td><td>{"开源" if r.get("open_weights") else "闭源"}</td><td>{esc(r.get("spec", ""))}</td><td>{esc(r.get("note", ""))}</td></tr>')
+        parts.append('      <section class="radar-day">\n        <h2 class="radar-heading prio-medium">现状表 <small>模型维护，随周综述更新</small></h2>\n        <div class="table-wrap"><table class="src-table"><thead><tr><th>模型</th><th>机构</th><th>日期</th><th>权重</th><th>规格</th><th>位置</th></tr></thead><tbody>' + "".join(rows) + "</tbody></table></div>\n      </section>")
+    byid = {e["id"]: e for e in entries}
+    multi = [(ent, ids) for ent, ids in threads.items() if len(ids) >= 2][:12]
+    if multi:
+        blocks = []
+        for ent, ids in multi:
+            rows = "\n".join(render_track_entry(byid[i]) for i in ids if i in byid)
+            blocks.append(f'        <section class="year-group">\n          <p class="year-label">{esc(ent)} <b>{len(ids)}</b></p>\n          <ul class="radar-list">\n{rows}\n          </ul>\n        </section>')
+        parts.append('      <section class="radar-day">\n        <h2 class="radar-heading prio-medium">线程 <small>同一模型 / 产品的多条进展</small></h2>\n' + "\n".join(blocks) + "\n      </section>")
+    recent_cut = (datetime.now(SHANGHAI) - timedelta(days=30)).strftime("%Y-%m-%d")
+    recent = [e for e in entries if e.get("date", "") >= recent_cut]
+    older = [e for e in entries if e.get("date", "") < recent_cut]
+    groups: dict[str, list[dict]] = {}
+    for e in recent:
+        groups.setdefault(e.get("date", ""), []).append(e)
+    blocks = [f'        <section class="year-group">\n          <p class="year-label">{esc(human_date(day))}</p>\n          <ul class="radar-list">\n' + "\n".join(render_track_entry(e, show_entity=True) for e in rows) + "\n          </ul>\n        </section>" for day, rows in sorted(groups.items(), reverse=True)]
+    parts.append('      <section class="radar-day">\n        <h2 class="radar-heading">时间线 <small>最近 30 天</small></h2>\n' + "\n".join(blocks) + "\n      </section>")
+    if older:
+        rows = "\n".join(render_track_entry(e, show_entity=True) for e in older)
+        parts.append(f'      <details class="radar-low"><summary><h2 class="radar-heading">更早 <b>{len(older)}</b></h2></summary>\n        <ul class="radar-list">\n{rows}\n        </ul>\n      </details>')
+    return "\n".join(parts)
+
+
+def render_track_jsonld(t: dict, d: dict | None, url: str) -> str:
+    items = (d or {}).get("entries", [])[:30]
+    return _ld({"@context": "https://schema.org", "@type": "CollectionPage", "name": f"{t['name']} · 专题追踪", "url": url, "description": t.get("blurb", ""),
+                "dateModified": (d or {}).get("updated", "")[:10], "isPartOf": {"@type": "WebSite", "name": SITE_TITLE, "url": SITE_URL},
+                "mainEntity": {"@type": "ItemList", "numberOfItems": len(items), "itemListElement": [{"@type": "ListItem", "position": i + 1, "url": e["link"], "name": e["title"]} for i, e in enumerate(items)]}})
+
+
+def render_tracks_index_body(cfg: list[dict], data: dict[str, dict]) -> str:
+    cards = []
+    for t in cfg:
+        d = data.get(t["id"]) or {}
+        n = len(d.get("entries", []))
+        digest = (d.get("digest") or {})
+        hl = "".join(f"<li>{esc(h)}</li>" for h in digest.get("highlights", [])[:3])
+        status = f'{n} 条 · {len(d.get("threads") or {})} 个线程 · 更新 {esc(fmt_time(d.get("updated", "")))}' if n else "还没有内容"
+        cards.append(f'        <li><a class="card" href="./{esc(t["id"])}/"><p class="card-role">看</p><h3 class="card-name">{esc(t["name"])}</h3><p class="card-blurb">{esc(t.get("blurb", ""))}</p>' + (f'<ul class="track-highlights">{hl}</ul>' if hl else "") + f'<p class="card-status">{status}</p></a></li>')
+    return ('      <section class="intro radar-intro">\n        <p class="kicker">专题追踪</p>\n        <h1>专题</h1>\n        <p class="bio">每日雷达里命中专题关键词的条目会累积到这里：按模型 / 产品串成线程，每周一段模型写的综述和一张现状表。配置在 <code>radar/tracks.json</code>。</p>\n      </section>\n'
+            '      <ul class="card-grid">\n' + "\n".join(cards) + "\n      </ul>")
+
+
+def write_track_pages(site: dict) -> list[str]:
+    """生成 /radar/tracks/ 与 /radar/tracks/<id>/；返回生成的 URL 路径。"""
+    cfg, data = load_tracks_data()
+    if not cfg:
+        return []
+    out_dir = RADAR_DIR / "tracks"
+    out_dir.mkdir(parents=True, exist_ok=True)
+    urls = ["/radar/tracks/"]
+    common = dict(site_url=SITE_URL, favicon=FAVICON, site_name=esc(SITE_TITLE), analytics=render_analytics(site))
+    (out_dir / "index.html").write_text(TRACK_PAGE_TEMPLATE.format(
+        title="专题追踪", description="视频生成模型、世界模型等专题的累积时间线、线程、每周综述与现状表。", canonical=f"{SITE_URL}/radar/tracks/", prefix="../../",
+        header=render_site_header(site, "../../", "tracks"), jsonld="", body=render_tracks_index_body(cfg, data), **common), encoding="utf-8")
+    for t in cfg:
+        d = data.get(t["id"])
+        url = f"{SITE_URL}/radar/tracks/{t['id']}/"
+        (out_dir / t["id"]).mkdir(parents=True, exist_ok=True)
+        (out_dir / t["id"] / "index.html").write_text(TRACK_PAGE_TEMPLATE.format(
+            title=f"{esc(t['name'])} · 专题追踪", description=esc(t.get("blurb", ""))[:200], canonical=url, prefix="../../../",
+            header=render_site_header(site, "../../../", "tracks"), jsonld=render_track_jsonld(t, d, url), body=render_track_body(t, d), **common), encoding="utf-8")
+        urls.append(f"/radar/tracks/{t['id']}/")
+    return urls
 
 # ---------------------------------------------------------------- 指南 / 推荐链接
 
@@ -1259,7 +1438,7 @@ def write_feed(notes: list[dict]) -> None:
     (ROOT / "feed.xml").write_text(feed, encoding="utf-8")
 
 
-def write_sitemap(notes: list[dict], days: list[dict], guides: list[dict] | None = None) -> None:
+def write_sitemap(notes: list[dict], days: list[dict], guides: list[dict] | None = None, track_urls: list[str] | None = None) -> None:
     latest = notes[0].get("updated") if notes else None
     urls = [(f"{SITE_URL}/", latest), (f"{SITE_URL}/notes/", latest), (f"{SITE_URL}/about/", None)]
     urls.append((f"{SITE_URL}/radar/jobs/", None))
@@ -1277,6 +1456,8 @@ def write_sitemap(notes: list[dict], days: list[dict], guides: list[dict] | None
     if pub:
         urls.append((f"{SITE_URL}/guides/", max(g.get("updated", "") for g in pub) or None))
         urls += [(SITE_URL + g["path"], g.get("updated")) for g in pub]
+    for path in track_urls or []:
+        urls.append((f"{SITE_URL}{path}", days[0]["date"] if days else None))
     if days:
         urls.append((f"{SITE_URL}/radar/", days[0]["date"]))
         urls.append((f"{SITE_URL}/radar/events/", days[0]["date"]))
@@ -1341,11 +1522,12 @@ def main() -> None:
         },
     )
     guides = build_guides()
+    track_urls = write_track_pages(site)
     inject_note_jsonld(notes)
     write_feed(notes)
-    write_sitemap(notes, days, guides)
+    write_sitemap(notes, days, guides, track_urls)
     write_llms_txt(site, notes, guides, days, events_data)
-    print(f"已生成：{len(notes)} 篇笔记 · {len(days)} 期雷达 · index.html · notes/index.html · radar/ · feed.xml · sitemap.xml")
+    print(f"已生成：{len(notes)} 篇笔记 · {len(days)} 期雷达 · {max(len(track_urls) - 1, 0)} 个专题 · index.html · notes/index.html · radar/ · feed.xml · sitemap.xml")
 
 
 if __name__ == "__main__":

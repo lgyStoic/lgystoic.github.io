@@ -6,6 +6,7 @@
   "nav": [
     "notes",
     "radar",
+    "tracks",
     "events",
     "jobs",
     "guides",
@@ -41,6 +42,16 @@
       "status": "radar",
       "script": "tools/radar.py",
       "nav_label": "雷达"
+    },
+    {
+      "id": "tracks",
+      "role": "看",
+      "name": "专题追踪",
+      "path": "/radar/tracks/",
+      "blurb": "视频生成模型、世界模型两条线的累积时间线：按模型串成线程，每周一段综述和一张现状表。",
+      "status": "tracks",
+      "script": "tools/tracks.py",
+      "nav_label": "专题"
     },
     {
       "id": "events",

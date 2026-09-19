@@ -4,7 +4,7 @@
 
 ## 这是什么
 
-Anaxagore（lgystoic.github.io）：跑在 GitHub Pages + Actions 上的纯静态个人平台。模块：笔记、上手指南、每日 AI 雷达、活动、岗位、开源贡献路线、状态页；另有写入私有仓库 `lgyStoic/radar-inbox` 的收件箱与小红书文稿（每日学习卡片 + 周一岗位精选）。
+Anaxagore（lgystoic.github.io）：跑在 GitHub Pages + Actions 上的纯静态个人平台。模块：笔记、上手指南、每日 AI 雷达、专题追踪（视频生成模型 / 世界模型）、活动、岗位、开源贡献路线、状态页；另有写入私有仓库 `lgyStoic/radar-inbox` 的收件箱与小红书文稿（每日学习卡片 + 周一岗位精选）。
 
 ## 开始任何任务前
 
@@ -17,6 +17,7 @@ Anaxagore（lgystoic.github.io）：跑在 GitHub Pages + Actions 上的纯静�
 - 手机 340–430px 不横向溢出：用 Playwright 量 `scrollWidth`（`tools/check_mobile.py`），不要信桌面 Chrome 缩窄窗口。
 - `radar/data/*.json` 是公开 API：不放密钥、不放私密内容。私密只进 `radar-inbox`。
 - 模型调用一律走 `tools/radar.py:call_llm_json`，无 key 时退回规则；单个源失败不能拖垮整轮。
+- 专题追踪的条目只认带日期的源；专题关键词宁缺毋滥（泛词要带版本或机构）。
 - 加雷达源前先跑探针（Actions「源探针」`probe.yml` 或 `python3 tools/probe.py <url>`），不要凭记忆写 URL；趋势类源必须带创建日期；X（Twitter）从 Actions 抓不到，人物动态用 Bluesky RSS。
 - 指南用词写「推荐」不写「推广」；无免责声明、无地址生成器。
 - 不把模型型号写进 commit / PR；不把 key 写进仓库。

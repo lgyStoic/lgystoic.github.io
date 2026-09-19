@@ -41,6 +41,7 @@ ROOT = Path(__file__).resolve().parent.parent
 RADAR = ROOT / "radar"
 DATA = RADAR / "data"
 CONFIG = RADAR / "sources.json"
+TRACKS = ROOT / "radar" / "tracks.json"
 SEEN = DATA / "seen.json"
 
 USER_AGENT = "AnaxagoreRadar/1.0 (+https://lgystoic.github.io/radar/)"
@@ -549,6 +550,32 @@ def load_json(path: Path, default):
     return json.loads(path.read_text(encoding="utf-8"))
 
 
+def load_tracks() -> list[dict]:
+    try:
+        return json.loads(TRACKS.read_text(encoding="utf-8")).get("tracks", [])
+    except (OSError, json.JSONDecodeError):
+        return []
+
+
+def match_tracks(item: dict, source: dict, tracks: list[dict]) -> list[str]:
+    """专题标签：源自带 track，或标题 + 摘要命中专题关键词（独立词匹配，避免 oasis 命中 oasisdb 之类）。"""
+    hit = [source["track"]] if source.get("track") else []
+    text = f"{item['title']} {strip_html(item.get('description', ''))[:800]}".lower()
+    for t in tracks:
+        if t["id"] in hit:
+            continue
+        for kw in t.get("keywords", []):
+            kw = kw.lower()
+            if re.search(r"[\u4e00-\u9fff]", kw):
+                ok = kw in text
+            else:
+                ok = re.search(rf"(?<![a-z0-9]){re.escape(kw)}(?![a-z0-9])", text) is not None
+            if ok:
+                hit.append(t["id"])
+                break
+    return hit
+
+
 def expand_url(url: str, now_utc: datetime) -> str:
     """URL 里的 {today} / {today-30d} 换成 UTC 日期，给「最近 N 天新建」这类查询用。"""
     def sub(m):
@@ -564,6 +591,7 @@ def collect(config: dict, now_utc: datetime, seen: dict[str, str]) -> tuple[list
     log(f"[radar] 时间窗口 {window_hours} 小时")
     items: dict[str, dict] = {}
     status: list[dict] = []
+    tracks = config.get("tracks") or load_tracks()
 
     for source in config["sources"]:
         sid = source["id"]
@@ -619,8 +647,13 @@ def collect(config: dict, now_utc: datetime, seen: dict[str, str]) -> tuple[list
                 "description": raw["description"],
             }
             score, topics = score_item(item, source, rules)
-            if source.get("require_topic") and not topics:
+            item["tracks"] = match_tracks(item, source, tracks)
+            if source.get("track_required") and not item["tracks"]:
+                continue  # 专题查询源：不命中专题关键词的一律丢（Sora 会撞上地名、海螺会撞上水泥）
+            if source.get("require_topic") and not topics and not item["tracks"]:
                 continue
+            if item["tracks"]:
+                score += 1  # 专题条目至少值得看
             item["score"] = score
             item["priority"] = priority_from_score(score)
             item["tags"] = topics
@@ -666,6 +699,7 @@ def finalize(items: list[dict], enrichment: dict[str, dict] | None) -> list[dict
             "summary": fallback_summary(it["description"]),
             "why": "",
             "tags": it["tags"],
+            "tracks": it.get("tracks", []),
         }
         if enrichment and it["id"] in enrichment:
             e = enrichment[it["id"]]
@@ -732,6 +766,7 @@ def main() -> None:
                     "score": 0,
                     "priority": row.get("priority", "low"),
                     "tags": row.get("tags", []),
+                    "tracks": row.get("tracks", []),
                 }
             )
         log(f"[radar] 当天已有 {len(existing['items'])} 条规则版条目，本次连同新内容一起交给 AI 重排")

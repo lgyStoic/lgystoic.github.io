@@ -1,4 +1,4 @@
-# PRD：小红书文稿（每日学习卡片 + 周一岗位精选）
+# PRD：小红书文稿（每日学习卡片 + 周一岗位精选 + 周三专题周报）
 
 > 代码：`tools/xhs.py`；工作流：`.github/workflows/xhs.yml`（每天 01:10 UTC 学习卡片；每周一 01:40 UTC 岗位周报；手动可选 mode / date / 地区）；产物只进私有仓库 `lgyStoic/radar-inbox` 的 `posts/cards/`、`posts/jobs/`，`posts/README.md` 是自动索引。公开仓库只放代码，`radar/data/xhs/`、`radar/data/xhs-*.md` 已 gitignore。收件箱见 [inbox.md](inbox.md)。
 
@@ -52,6 +52,16 @@ posts/
 | 封面 | `card_html(kind='jobs')`：页眉「AI infra 岗位精选 · 每周一 · N 个岗位」，要点区 6 行紧凑，页脚指向 `/radar/jobs/` |
 | md | 封面 → 标题 → 正文 → 标签 → 「岗位明细（核对用，不发）」表：公司 / 岗位 / 地点 / 分数 / 来源 / 链接，以及筛选条件 |
 
+### 3.3 专题周报（tracks，`--tracks`，每周三）
+
+| 功能 | 说明 |
+|---|---|
+| 输入 | `radar/data/tracks/<id>.json` 近 7 天条目（≥ 3 条才出）、站内周综述、现状表前 8 行 |
+| 写文稿 | `TRACK_SYSTEM`：标题点明本周最大事件；正文两句总体走向 → 5–8 行「主体｜一句进展」+ 意味着什么 → 一句判断 → 提问 → 关注引导（指向专题页）；标签首个固定 `视频模型周报` / `世界模型周报`（`TRACK_TAG`） |
+| 封面 | `card_html(kind='track')`：页眉「<专题>周报 · 每周 · 第 N 期 · N 条进展」，页脚指向 `/radar/tracks/<id>/` |
+| 写入 | 私有仓库 `posts/tracks/<id>/<日期>.md` + `/<日期>/cover.jpg`；md 末尾附条目明细表与站内周综述 |
+| 排序联动 | 每日卡片 `objective_heat` 对带 `tracks` 的条目 +0.1 |
+
 ## 4. 数据管线
 
 ```
@@ -89,7 +99,7 @@ radar/data/<日期>.json ─筛 high/medium 前20─▶ call_llm_json(SYSTEM, SC
 | 变量 | 默认 | 说明 |
 |---|---|---|
 | `RADAR_DATE` | 今天（Asia/Shanghai） | 生成哪天的；工作流输入 `date` |
-| `--jobs` / 工作流 `mode` | cards | jobs 只出岗位周报，both 都出；周一 01:40 UTC 的 cron 自动走 jobs |
+| `--jobs` / `--tracks` / 工作流 `mode` | cards | jobs 岗位周报、tracks 专题周报、all 都出；周一 01:40 UTC cron 走 jobs，周三 01:40 走 tracks |
 | `XHS_JOBS_REGION` | 空 | 岗位周报地区：cn / overseas；工作流输入 `jobs_region` |
 | `XHS_IMAGES` | 4 | 生成封面图的条数，0 关闭生图和渲染；工作流输入 `images` |
 | `GEMINI_IMAGE_MODEL` | `gemini-3.1-flash-image,gemini-2.5-flash-image` | 原生生图模型，逗号分隔按序尝试；仓库变量 `vars.GEMINI_IMAGE_MODEL` 可覆盖（2026-09 账号可用：gemini-3.1-flash-image / -lite-image、gemini-3-pro-image、gemini-2.5-flash-image） |
@@ -116,7 +126,8 @@ radar/data/<日期>.json ─筛 high/medium 前20─▶ call_llm_json(SYSTEM, SC
 2. 让 Gemini 用配图评估一次「是否含文字 / 是否离题」，不合格重生一次。
 3. 知乎 / 即刻版本文稿。
 4. 岗位周报按地区轮换（国内 / 海外远程交替），或一周两期。
-5. 发布数据回填：私有仓库 `posts/stats.md`（日期、序号、赞、收藏、关注增量）→ 用它校准排序权重与量表提示词。
+5. 跨天去重：生成时输出 `entity`，对照 `posts/stats.md`（已发）与近 7 天已生成主体判 novelty（same / update / new）：same 且已发丢弃、same 未发降权、update 写成承接。
+6. 发布数据回填：私有仓库 `posts/stats.md`（日期、序号、赞、收藏、关注增量）→ 用它校准排序权重与量表提示词。
 
 ## 12. 常见改动去哪改
 

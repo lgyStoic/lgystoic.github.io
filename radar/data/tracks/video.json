@@ -1,0 +1,127 @@
+{
+ "id": "video",
+ "name": "视频生成模型",
+ "blurb": "文生视频、图生视频、视频 VAE 与 DiT 加速：Wan、Sora、Veo、可灵、海螺、Seedance、Vidu、LTX、HunyuanVideo 等的发布、论文、benchmark 与推理框架支持。",
+ "updated": "2026-09-19T09:09:26+00:00",
+ "entries": [
+  {
+   "id": "e00f945ba32ca3a9",
+   "date": "2026-09-19",
+   "title": "Video DeltaNet: A Video-Native Hybrid Attention for Livestream Video Generation",
+   "link": "https://huggingface.co/papers/2609.20744",
+   "source": "HF Papers 日榜",
+   "priority": "high",
+   "summary": "论文提出 Video DeltaNet，结合局部 Softmax 与帧级线性显存注意力加速实时视频生成。",
+   "why": "直击视频扩散模型注意力算力瓶颈，混合注意力设计对算子优化极具价值。",
+   "tags": [
+    "视频生成",
+    "线性注意力",
+    "扩散模型",
+    "Kernel优化"
+   ],
+   "entity": "Video DeltaNet",
+   "kind": "news"
+  },
+  {
+   "id": "a24a731e9fc24a94",
+   "date": "2026-09-19",
+   "title": "WarmBloodAban/Minimax-h3_Singularity",
+   "link": "https://huggingface.co/WarmBloodAban/Minimax-h3_Singularity",
+   "source": "HF 热榜新模型",
+   "priority": "medium",
+   "summary": "图生视频模型 WarmBloodAban/Minimax-h3_Singularity 登上 HF 热榜。",
+   "why": "视频生成模型热榜条目，可关注生成质量与架构。",
+   "tags": [
+    "视频生成",
+    "图生视频",
+    "HF Trending"
+   ],
+   "entity": "WarmBloodAban",
+   "kind": "news"
+  },
+  {
+   "id": "8d409b60a7de3ca7",
+   "date": "2026-09-16",
+   "title": "全球AI视频榜单第一梯队再添中国力量：智象发布首款物理规律导向视频模型",
+   "link": "https://www.qbitai.com/2026/09/489389.html",
+   "source": "量子位",
+   "priority": "high",
+   "summary": "智象未来发布首个原生全模态、物理规律导向的视频生成模型HiDream-O1-Video-1.0。",
+   "why": "视频生成模型的重要进展，直接契合你对视频生成和物理规律建模的关注。",
+   "tags": [
+    "视频生成",
+    "智象未来",
+    "物理规律"
+   ],
+   "entity": "",
+   "kind": "news"
+  },
+  {
+   "id": "7e98109ec1ddfb43",
+   "date": "2026-09-16",
+   "title": "LynnReal-Omni: Native multi-modal Video Generation for Agentic Visual Workflows",
+   "link": "https://huggingface.co/papers/2609.15863",
+   "source": "HF Papers 日榜",
+   "priority": "high",
+   "summary": "提出基于 32B 多模态扩散 Transformer 的原生视频生成框架 LynnReal-Omni。",
+   "why": "涉及大规模视频生成与扩散 Transformer，高度契合关注点。",
+   "tags": [
+    "Video Generation",
+    "Diffusion",
+    "Transformer"
+   ],
+   "entity": "LynnReal-Omni",
+   "kind": "news"
+  },
+  {
+   "id": "2d39b8ece845ab02",
+   "date": "2026-09-14",
+   "title": "新一代全模态视频生成模型“MiniMax H3”在赣江新区首发 - 凤凰网江西",
+   "link": "https://news.google.com/rss/articles/CBMiSkFVX3lxTFBwb0ZsMTRVQjJxcWdxOGVIYmRLSm5hdGNXb2h3Y1g0Uk92QWdLZFlZQ0pLaVh1ZUJzOHpyU2FkVXVWUlpvVENFYnpn?oc=5",
+   "source": "新闻 · 国内模型公司",
+   "priority": "high",
+   "summary": "MiniMax 在赣江新区首发新一代全模态视频生成模型“MiniMax H3”。",
+   "why": "视频生成模型的新发布，直接契合你对视频生成方向的关注。",
+   "tags": [
+    "MiniMax",
+    "Video Generation",
+    "Release"
+   ],
+   "entity": "MiniMax H3",
+   "kind": "news"
+  },
+  {
+   "id": "ada2f64613585383",
+   "date": "2026-09-14",
+   "title": "Recreating a 70-year love story frame by frame",
+   "link": "https://blog.google/innovation-and-ai/technology/ai/love-rendered-film",
+   "source": "Google AI Blog",
+   "priority": "medium",
+   "summary": "Google AI 博客展示了通过逐帧渲染重现 70 年爱情故事的视频生成案例。",
+   "why": "涉及视频生成应用，可了解大厂在视频生成领域的最新视觉效果。",
+   "tags": [
+    "视频生成",
+    "Google"
+   ],
+   "entity": "Recreating a 70",
+   "kind": "news"
+  }
+ ],
+ "threads": {
+  "Video DeltaNet": [
+   "e00f945ba32ca3a9"
+  ],
+  "WarmBloodAban": [
+   "a24a731e9fc24a94"
+  ],
+  "LynnReal-Omni": [
+   "7e98109ec1ddfb43"
+  ],
+  "MiniMax H3": [
+   "2d39b8ece845ab02"
+  ],
+  "Recreating a 70": [
+   "ada2f64613585383"
+  ]
+ }
+}

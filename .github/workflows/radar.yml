@@ -113,6 +113,17 @@ jobs:
         shell: bash
         run: set -o pipefail; python3 tools/events.py 2>&1 | tee -a radar/data/last-run.log
 
+      - name: 专题追踪（累积时间线 / 周综述）
+        continue-on-error: true
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GEMINI_MODEL: ${{ vars.GEMINI_MODEL || 'gemini-flash-latest' }}
+          GEMINI_FALLBACK_MODEL: ${{ vars.GEMINI_FALLBACK_MODEL || 'gemini-pro-latest' }}
+          TRACKS_FORCE_DIGEST: ${{ inputs.reason == 'tracks-digest' && '1' || '' }}
+        shell: bash
+        run: set -o pipefail; python3 tools/tracks.py 2>&1 | tee -a radar/data/last-run.log
+
       - name: 整理私有收件箱（未配置 INBOX_TOKEN 时跳过）
         continue-on-error: true
         env:

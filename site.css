@@ -607,10 +607,13 @@ main.wrap {
   .site-nav {
     font-size: 0.86rem;
     gap: 0;
+    flex-wrap: wrap;          /* 7 个入口在 340–380px 放不下一行，允许换行而不是横向溢出 */
+    justify-content: flex-end;
+    row-gap: 2px;
   }
 
   .site-nav a {
-    padding: 5px 6px;
+    padding: 4px 5px;
   }
 
   .site-header .wrap {
@@ -1764,3 +1767,9 @@ main.wrap {
 .pick-list li + li {
   margin-top: 8px;
 }
+
+/* 专题追踪 */
+.track-highlights { margin: .6rem 0 0; padding-left: 1.2rem; }
+.track-highlights li { margin: .25rem 0; line-height: 1.5; }
+.card .track-highlights { font-size: .88rem; color: var(--muted, #6b6b66); }
+.radar-heading small { font-size: .8rem; font-weight: 400; color: var(--muted, #6b6b66); margin-left: .4rem; }
