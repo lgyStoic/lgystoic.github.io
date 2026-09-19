@@ -168,12 +168,30 @@ Anaxagore
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "Person",
-        "name": "Anaxagore",
-        "alternateName": "lgyStoic",
-        "url": "https://lgystoic.github.io/",
-        "sameAs": ["https://github.com/lgyStoic"],
-        "knowsAbout": ["GPU kernel optimization", "CUDA", "Triton", "PyTorch", "Diffusion models"]
+        "@graph": [
+          {
+            "@type": "WebSite",
+            "@id": "https://lgystoic.github.io/#website",
+            "name": "Anaxagore",
+            "alternateName": "lgystoic.github.io",
+            "url": "https://lgystoic.github.io/",
+            "description": "GPU kernel 与训练性能笔记、每日 AI 信息雷达、深圳及周边 AI 活动清单、AI Infra 岗位聚合、开源贡献路线。跑在 GitHub 上的纯静态个人平台。",
+            "inLanguage": "zh-CN",
+            "author": {"@id": "https://lgystoic.github.io/#person"},
+            "publisher": {"@id": "https://lgystoic.github.io/#person"}
+          },
+          {
+            "@type": "Person",
+            "@id": "https://lgystoic.github.io/#person",
+            "name": "Anaxagore",
+            "alternateName": "lgyStoic",
+            "url": "https://lgystoic.github.io/about/",
+            "sameAs": ["https://github.com/lgyStoic"],
+            "jobTitle": "GPU kernel / 训练性能工程师",
+            "address": {"@type": "PostalAddress", "addressLocality": "深圳", "addressCountry": "CN"},
+            "knowsAbout": ["GPU kernel optimization", "CUDA", "Triton", "PyTorch", "Diffusion models", "DiT inference", "distributed training", "on-device deployment"]
+          }
+        ]
       }
     </script>
     <script src="./site.js" defer></script>

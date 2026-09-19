@@ -69,6 +69,7 @@ python3 tools/prd_index.py             # 重生成人读版总览
 | 巡检 | `check.py` | `DISABLE_AFTER=3`, `DISABLE_ZERO_AFTER` | `health.json`, `radar/checks/*.md`, `last-run.json` | radar.yml 末步；health.yml 00:35/02:20 UTC | `main` | 报告 ≤8 行 |
 | 笔记 | `build.py` | `notes/notes.json` | — | — | `render_latest, render_archive, render_tag_filters` | — |
 | 指南 | `build.py build_guides` | `guides/guides.json`, `guides/links.json` | — | — | `apply_affiliate_links, apply_guide_support, render_guide_jsonld` | `guides/<id>: 推荐位 N 个已填` |
+| GEO | `build.py write_llms_txt / render_*_jsonld` | `robots.txt` | `llms.txt`、各页 JSON-LD | — | `render_note_jsonld, render_radar_jsonld, render_events_jsonld` | 构建后所有 ld+json 必须能 json.loads |
 | 状态页 | `build.py render_status` | — | 读所有 data | — | `render_status.add_rows`（简报/活动/岗位/开源贡献） | — |
 
 ## 5. 开源贡献硬规则（改前先读 contributions.md §6）
@@ -83,6 +84,7 @@ python3 tools/prd_index.py             # 重生成人读版总览
 - **改渲染不重跑 Gemini**：改代码 → 合并 → 触发 contributions.yml `reuse_run_id=<最近成功 run>`（产物 3 天内有效）。
 - **改页面/CSS**：`build.py` → Playwright 四宽度 scrollWidth → 提交生成物。
 - **排查某天为什么没跑**：状态页「最近一次运行」触发方式；`last-run.json`；health.yml 是否补跑；`radar/data/last-run.log`。
+- **新页面类型**：写 `render_<x>_jsonld`，head 放 `<!-- build:<x>-jsonld -->`，`main()` inject；实体名只用 Anaxagore / lgystoic.github.io（见 geo.md）。
 - **新模块**：`site.json.modules` 加项 → 页面放 `build:header/site-name/analytics` 标记 → `module_status` 加状态行 → 脚本进 `tools/`，工作流复制推送策略 → 写 `docs/prd/<模块>.md` → 更新本文件与 `README.md`。
 
 ## 7. 禁止
