@@ -20,7 +20,10 @@
 | 雷达每期页 | `Article` + 必看条目 `ItemList` | `render_radar_jsonld` |
 | 活动页 | 即将发生的活动 `ItemList<Event>`（startDate、endDate、线上 / 城市、organizer），最多 50 条 | `render_events_jsonld` |
 | 开源贡献仓库页 | `TechArticle` + `about: SoftwareSourceCode` | `contributions.detail_page` |
-| 基础 SEO | canonical、OG 卡片、sitemap（含 lastmod）、Bing / Google 站长验证、RSS ×2、长尾标题 | 各页 head、`write_sitemap` |
+| 指南页 FAQ | 「不通时先查这四项」表格 → `FAQPage`（问题自动加「怎么办？」） | `render_guide_jsonld` |
+| 站长验证 | `site.json.seo.verification`（bing / google / baidu / sogou / shenma），非空即注入首页 head；拿到百度验证码只需填一行 | `render_verification` |
+| 每月提醒 | 每月 1 日的巡检报告「待人决定」里列站外清单 | `check.py` |
+| 基础 SEO | canonical、OG 卡片、sitemap（含 lastmod）、RSS ×2、长尾标题 | 各页 head、`write_sitemap` |
 
 验证：`python3 tools/build.py` 后，所有 `application/ld+json` 块可被 `json.loads` 解析（目前 42 块）；`llms.txt` 约 75 行。
 
@@ -38,7 +41,7 @@
 
 1. **Bing Webmaster**：sitemap 已提交；新页面用「URL 提交」手动推一次（ChatGPT / Perplexity / Kimi 的召回主要靠它）。
 2. **Google Search Console**：同上；Gemini 与 AI Overview 走这里。
-3. **百度站长**：github.io 域名收录慢但可做；验证后提交 sitemap。豆包 / 文心 / DeepSeek 联网主要靠它。买了域名后优先级提高。
+3. **百度站长**：github.io 域名收录慢但可做；把验证码填进 `site.json.seo.verification.baidu`，构建后提交 sitemap。豆包 / 文心 / DeepSeek 联网主要靠它。买了域名后优先级提高。
 4. **被引用**：GitHub 仓库 README 与 About 写站点地址；在 LinuxDo、V2EX、知乎回答里作为来源链接出现（文案在 `.github/promo/`）；把「深圳地铁 200 米小区清单」这类数据型笔记投到相关社区，数据页最容易被 AI 搜索当来源。
 5. **实体建立**：GitHub 个人主页简介、知乎 / LinkedIn 简介都写同一个名字和站点地址，让引擎把 Anaxagore 和站点绑定。
 
@@ -50,7 +53,6 @@
 
 ## 6. 待办
 
-1. 指南页「不通时先查这四项」改成 `FAQPage` 结构化数据（需要把问答写成明确的 Q / A 块）。
 2. 每页生成 Markdown 副本（`index.md`）并在 `llms.txt` 链接，降低模型读取成本。
 3. 岗位页 `JobPosting` 结构化数据（需要保留 description 与 datePosted 字段）。
 4. 自定义域名 + Cloudflare：提升百度收录与国内访问速度。

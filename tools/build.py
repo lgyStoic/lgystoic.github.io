@@ -685,6 +685,16 @@ def write_llms_txt(site: dict, notes: list[dict], guides: list[dict], days: list
     (ROOT / "llms.txt").write_text("\n".join(lines), encoding="utf-8")
 
 
+VERIFICATION_META = {"bing": "msvalidate.01", "google": "google-site-verification", "baidu": "baidu-site-verification",
+                     "sogou": "sogou_site_verification", "shenma": "shenma-site-verification"}
+
+
+def render_verification(site: dict) -> str:
+    """站长平台验证 meta：site.json.seo.verification 里非空的都输出。"""
+    codes = ((site.get("seo") or {}).get("verification") or {})
+    return "\n".join(f'    <meta name="{VERIFICATION_META[k]}" content="{esc(v)}" />' for k, v in codes.items() if k in VERIFICATION_META and v)
+
+
 def render_home_events(data: dict | None, types: dict) -> str:
     if not data or not data.get("events"):
         return ""
@@ -1010,6 +1020,11 @@ def render_guide_jsonld(g: dict, page: Path) -> str:
             steps.append({"@type": "HowToStep", "name": re.sub(r"<[^>]+>", "", name).strip(),
                           "text": re.sub(r"\s+", " ", re.sub(r"<[^>]+>", "", body)).strip()})
     desc_m = re.search(r'<meta name="description" content="([^"]*)"', html)
+    faq = []
+    faq_m = re.search(r'<h2>[^<]*不通时先查[^<]*</h2>\s*<table class="kv">(.*?)</table>', html, re.DOTALL)
+    for q, a in re.findall(r"<tr><td>(.*?)</td><td>(.*?)</td></tr>", faq_m.group(1) if faq_m else "", re.DOTALL):
+        plain = lambda x: re.sub(r"\s+", " ", re.sub(r"<[^>]+>", "", x)).strip()
+        faq.append({"@type": "Question", "name": plain(q) + "怎么办？", "acceptedAnswer": {"@type": "Answer", "text": plain(a)}})
     data = [
         {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
             {"@type": "ListItem", "position": 1, "name": SITE_TITLE, "item": SITE_URL + "/"},
@@ -1023,6 +1038,8 @@ def render_guide_jsonld(g: dict, page: Path) -> str:
          "image": f"{SITE_URL}/assets/og/{g['id']}.png",
          "step": steps},
     ]
+    if faq:
+        data.append({"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": faq})
     return "\n".join(f'    <script type="application/ld+json">{json.dumps(d, ensure_ascii=False)}</script>' for d in data)
 
 def build_guides() -> list[dict]:
@@ -1294,6 +1311,7 @@ def main() -> None:
     inject(
         ROOT / "index.html",
         {
+            "verification": render_verification(site),
             "cards": render_cards(site, notes, days, events_data),
             "latest": render_latest(notes),
             "radar": render_home_radar(days),

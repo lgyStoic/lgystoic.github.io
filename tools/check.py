@@ -129,6 +129,9 @@ def main() -> None:
     if len(undated) >= 10:
         decide.append(f"{len(undated)} 个非低相关活动没有日期，抽取可能需要调")
 
+    if today.endswith("-01"):
+        decide.append("每月 GEO 站外清单：Bing / Google 提交新页面 URL；百度 sitemap；GoatCounter 看来源站里 chatgpt / perplexity / kimi / doubao 占比（docs/prd/geo.md §4–5）")
+
     # ---- 报告 ----
     c = day.get("counts", {})
     ev_new = sum(1 for e in events.get("events", []) if e.get("found") == today)
