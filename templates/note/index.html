@@ -3,25 +3,51 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>新笔记标题 | Anaxagore 的学习站</title>
-    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%231f252b'/%3E%3Ctext x='32' y='39' text-anchor='middle' font-size='18' font-family='Arial' font-weight='700' fill='white'%3EA%3C/text%3E%3C/svg%3E" />
+    <title>新笔记标题 | Anaxagore</title>
+    <meta name="description" content="一句话说明这篇笔记讲什么，和 notes.json 里的 summary 保持一致。" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="新笔记标题 | Anaxagore" />
+    <meta property="og:description" content="一句话说明这篇笔记讲什么。" />
+    <meta property="og:url" content="https://lgystoic.github.io/notes/my-new-note/" />
+    <meta property="og:image" content="https://lgystoic.github.io/assets/og/notes.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="canonical" href="https://lgystoic.github.io/notes/my-new-note/" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231b1b1a'/%3E%3Ctext x='32' y='43' text-anchor='middle' font-size='30' font-family='Helvetica,Arial' font-weight='700' fill='white'%3EA%3C/text%3E%3C/svg%3E"
+    />
+    <!-- 站点框架样式在前，本篇样式在后；颜色一律用 site.css 的变量，深浅色才会跟着切 -->
+    <link rel="stylesheet" href="../../site.css" />
     <link rel="stylesheet" href="./styles.css" />
-      <!-- build:jsonld -->
+    <script>
+      try {
+        var t = localStorage.getItem("theme");
+        if (t === "dark" || t === "light") document.documentElement.dataset.theme = t;
+      } catch (e) {}
+    </script>
+    <!-- build:jsonld -->
     <!-- /build:jsonld -->
-</head>
+  </head>
   <body>
-    <header class="topbar">
-      <a class="brand" href="../../" aria-label="回到学习站首页">
-        <span class="brand-mark">Note</span>
-        <span>新笔记标题</span>
-      </a>
-    </header>
+    <!-- 统一页头由 tools/build.py 注入，不要手写 -->
+    <!-- build:header -->
+    <!-- /build:header -->
 
-    <main class="note-shell">
+    <main class="wrap note">
       <section class="hero">
-        <p class="eyebrow">Source / Course / Paper</p>
+        <p class="eyebrow">来源：课程 / 论文 / 实验</p>
         <h1>新笔记标题</h1>
         <p class="lead">用两三句话说明这份资料解决什么问题、读者应该先抓住哪条主线。</p>
+        <p class="meta">更新于 2026-01-01</p>
+        <div class="tldr">
+          <strong>TL;DR</strong>
+          <ul>
+            <li>结论一：一句话。</li>
+            <li>结论二：一句话。</li>
+          </ul>
+        </div>
       </section>
 
       <section class="section">
@@ -40,10 +66,21 @@
 
       <section class="section">
         <h2>速查</h2>
-        <pre><code>关键公式 / 算法 / 命令放这里</code></pre>
+        <pre><code>关键公式 / 算法 / 命令放这里；长行会在代码块内横向滚动，不会撑破手机页面</code></pre>
       </section>
+
+      <!-- build:comments -->
+      <!-- /build:comments -->
     </main>
-  <!-- build:analytics -->
-  <!-- /build:analytics -->
+
+    <footer class="site-footer">
+      <div class="wrap">
+        <span>© 2026 <!-- build:site-name --><!-- /build:site-name --></span>
+        <span><a href="../">笔记</a></span>
+      </div>
+    </footer>
+    <script src="../../site.js" defer></script>
+    <!-- build:analytics -->
+    <!-- /build:analytics -->
   </body>
 </html>

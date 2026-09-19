@@ -47,6 +47,7 @@ python3 tools/build.py
 1. 模板目录 `templates/note/` 本身会被 Pages 发布出去（已用 robots 屏蔽，未加 noindex，避免复制时把 noindex 带进正文）。
 2. 没有标签页（按标签聚合的独立 URL），标签只在归档页做前端筛选。
 3. 旧数据笔记里的 JSON 表格文件（如 `table_deep.json`）也在仓库里公开。
+4. `home-camera-vlm-pipeline` 之前的 9 篇笔记早于 build 标记，各自手写页头、没有深浅色开关和统计脚本；模板已同步到 §6 的要求，旧篇要逐篇补 `site.css` + 五对 build 标记（header / site-name / jsonld / comments / analytics）。
 
 ## 8. 待办
 

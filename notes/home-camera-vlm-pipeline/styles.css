@@ -10,7 +10,13 @@
   /* grid/flex 语境下 min-width:auto 会被 pre 里不换行的长代码行撑开整个轨道，
      导致手机端横向溢出；显式允许收缩，pre 的 overflow-x 才真正生效 */
   min-width: 0;
+}
+
+.note .hero {
+  /* hero 不是 .section，自己画一条底线；后面的分隔线由 site.css 的 .section 负责 */
   margin-top: 26px;
+  padding-bottom: 30px;
+  border-bottom: 1px solid var(--line-soft);
 }
 
 .note .eyebrow {
@@ -63,14 +69,7 @@
   margin-top: 16px;
 }
 
-.note .section {
-  padding-top: 26px;
-  border-top: 1px solid var(--line-soft);
-}
 
-.note .hero {
-  border-top: 0;
-}
 
 .hero-facts {
   display: flex;
