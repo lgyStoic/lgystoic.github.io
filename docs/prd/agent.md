@@ -67,7 +67,7 @@ AI 模型：`call_llm_json` 走 Claude（有 key）否则 Gemini；模型名由�
 
 | 模块 | 入口 | 配置 | 数据 | 工作流 | 关键函数 | 日志标签 |
 |---|---|---|---|---|---|---|
-| 雷达 | `radar.py main` | `radar/sources.json`（site/categories/rules/sources；源字段 kind,json,weight,window_hours,title_pattern,require_topic,disabled） | `radar/data/<日期>.json`, `seen.json` | radar.yml 23:50/00:20/02:05 UTC + guard | `collect, score_item, dedupe_titles, enrich_with_ai, finalize` | `[radar]`, `[radar-ai]` |
+| 雷达 | `radar.py main` | `radar/sources.json`（site/categories/rules/sources；源字段 kind,json,urls(镜像),link_host,weight,window_hours,title_pattern,require_topic,disabled；X 人物走 Nitter 镜像） | `radar/data/<日期>.json`, `seen.json` | radar.yml 23:50/00:20/02:05 UTC + guard | `collect, score_item, dedupe_titles, enrich_with_ai, finalize` | `[radar]`, `[radar-ai]` |
 | 活动 | `events.py main` | `event_sources.json`（site.cities/keep_past_days/max_*；kind rss,json,ics,page,yaml,wechat） | `events.json` | radar.yml 第二步 | `collect, fetch_detail, enrich_events, to_event` | `[events]`, `[events-ai]` |
 | 岗位 | `jobs.py main` → 适配器 → `jobs_ai.py` | `job_sources.json`（profile.directions/title_terms/exclude_title/max_per_company(_cn)；sources kind 12 种；disabled+disabled_reason；search_links） | `jobs.json` | jobs.yml 00:35 UTC | `match, region_of, limit_jobs, fetch_source(feishu_csrf, feishu_site_path), collect` | `源失败`, `岗位：N；来源成功`, `猎聘：`, `jobs-ai：` |
 | 开源贡献 | `contributions.py main` | `contribution_repos.json`（str 或 {repo,focus,young}） | `contributions.json` | contributions.yml 周一/周四 01:20 UTC；inputs scope, reuse_run_id | `collect_repo, run_analysis, task_prompt, valid_tasks, merge_tasks, scrub_channels, assemble, render, arch_svg, flow_svg` | `[contribution-<owner>-<repo>-<stage>]`, `丢弃…`, `降级到` |
