@@ -24,7 +24,7 @@ from radar import call_llm_json, log, load_tracks
 
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / 'radar/data'
-SCHEMA = {'type':'object','properties':{'posts':{'type':'array','items':{'type':'object','properties':{'id':{'type':'string'},'headline':{'type':'string'},'takeaways':{'type':'array','items':{'type':'string'}},'title':{'type':'string'},'body':{'type':'string'},'tags':{'type':'array','items':{'type':'string'}},'image_prompt':{'type':'string'}},'required':['id','headline','takeaways','title','body','tags','image_prompt'],'additionalProperties':False}}},'required':['posts'],'additionalProperties':False}
+SCHEMA = {'type':'object','properties':{'posts':{'type':'array','items':{'type':'object','properties':{'id':{'type':'string'},'headline':{'type':'string'},'takeaways':{'type':'array','items':{'type':'string'}},'title':{'type':'string'},'body':{'type':'string'},'tags':{'type':'array','items':{'type':'string'}},'image_prompt':{'type':'string'},'entity':{'type':'string'},'novelty':{'type':'string','enum':['new','update','same']},'followup_of':{'type':'string'}},'required':['id','headline','takeaways','title','body','tags','image_prompt','entity','novelty','followup_of'],'additionalProperties':False}}},'required':['posts'],'additionalProperties':False}
 SYSTEM = '''你是一个在小红书分享 AI infra 学习笔记的工程师。读者是想学 AI 基础设施、GPU kernel、训练/推理加速、DiT、端侧部署的同行。根据输入的新闻条目，逐条产出可以直接复制粘贴发布的小红书笔记。不要编造输入没有的事实，不要夸大，不要用“震惊”“天花板”“炸裂”这类词。
 
 每条输出字段：
@@ -48,7 +48,9 @@ SYSTEM = '''你是一个在小红书分享 AI infra 学习笔记的工程师。�
   6. 不要放任何 URL（小红书会限流），需要提来源就写名称，如“来源：SGLang 官方 release notes”。
   7. 正文末尾不要放话题标签，标签单独放 tags。
 - tags：3–5 个小红书话题词，不带 #。第一个固定为 "AIInfra学习卡片"（系列聚合词，每条都要），其余按内容选，如 "大模型推理"、"CUDA"、"SGLang"。
-- image_prompt：给生图模型的英文提示词，描述一张与主题相关的极简扁平插画（几何形状、电路、芯片、数据流、显卡、网络拓扑等意象），暖色调米白背景配赭红点缀，构图居中，明确写 "no text, no letters, no logos"，40 词以内。'''
+- image_prompt：给生图模型的英文提示词，描述一张与主题相关的极简扁平插画（几何形状、电路、芯片、数据流、显卡、网络拓扑等意象），暖色调米白背景配赭红点缀，构图居中，明确写 "no text, no letters, no logos"，40 词以内。
+- entity：这条的主体，规范短名（模型 / 产品 / 项目名带版本，如 "DeepSeek-V4.1-Flash"、"SGLang v0.5.20"、"Qwen3.8"），同一主体必须写成完全一样的字符串。
+- novelty 与 followup_of：用户消息里会给「近 7 天已写过的主题」列表。这条如果和列表里某个主题是同一件事（换个来源再报）→ novelty = "same"，followup_of 填那个主题；如果是同一主体的新进展（论文之后出权重、发版之后被框架支持、有了 benchmark）→ "update"，followup_of 填那个主题，正文第一段必须承接：「上次说了 X，这次 Y」；否则 "new"，followup_of 留空。'''
 JOBS_SCHEMA = {'type':'object','properties':{'headline':{'type':'string'},'highlights':{'type':'array','items':{'type':'string'}},'title':{'type':'string'},'body':{'type':'string'},'tags':{'type':'array','items':{'type':'string'}},'image_prompt':{'type':'string'}},'required':['headline','highlights','title','body','tags','image_prompt'],'additionalProperties':False}
 JOBS_SYSTEM = '''你是一个在小红书做「AI infra 岗位精选」周报的工程师，不是 HR，也没有内推渠道。输入是一组从各公司官方招聘页和猎聘公开页面抓到的岗位（公司、岗位名、地点、方向标签、匹配理由、来源）。产出一篇可直接发布的小红书笔记。
 
@@ -111,6 +113,8 @@ def rank_posts(posts: list[dict], byid: dict) -> list[dict]:
             p['rank'] = {'score': round(0.5 * rub + 0.3 * heat + 0.2 * radar, 3), **dims, 'heat': heat, 'reason': r.get('reason', '')[:40]}
         else:
             p['rank'] = {'score': round(0.6 * heat + 0.4 * radar, 3), 'heat': heat, 'reason': '模型未评分，按客观热度'}
+    for p in posts:
+        if p.get('rank_penalty'): p['rank']['score'] = round(p['rank']['score'] - p['rank_penalty'], 3)
     posts.sort(key=lambda p: -p['rank']['score'])
     if not rubric: log('[xhs] 排序：模型未返回评分，只按客观热度 + 雷达优先级')
     return posts
@@ -131,6 +135,64 @@ def shorten_titles(posts: list[dict], limit: int = 20) -> None:
         if t and len(t) <= limit: p['title'] = t
         else: log(f'[xhs] 标题仍超 {limit} 字，发布前请手改：{p["title"]}')
     log(f'[xhs] 改短标题 {sum(1 for p in long_ if len(p["title"]) <= limit)}/{len(long_)} 条')
+
+
+def gh_get_text(repo, path, token) -> str:
+    d = gh_get_json(repo, path, token)
+    if isinstance(d, dict) and d.get('content'):
+        return base64.b64decode(d['content']).decode('utf-8', 'replace')
+    return ''
+
+
+def load_topic_history(repo: str, token: str, date: str, days: int = 7) -> tuple[list[dict], dict]:
+    """(近 N 天已写过的主题列表, 原始 topics.json)。已发布 = stats.md 里出现过的序号。"""
+    if not token: return [], {}
+    from datetime import timedelta
+    try:
+        topics = json.loads(gh_get_text(repo, 'posts/topics.json', token) or '{}')
+    except json.JSONDecodeError:
+        topics = {}
+    posted = set(re.findall(r'\b(cards/\d{4}-\d{2}-\d{2}#\d{2})\b', gh_get_text(repo, 'posts/stats.md', token) or ''))
+    cutoff = (datetime.strptime(date, '%Y-%m-%d') - timedelta(days=days)).strftime('%Y-%m-%d')
+    hist = []
+    for d, rows in sorted(topics.items(), reverse=True):
+        if d < cutoff or d >= date: continue
+        for r in rows:
+            if r.get('entity'):
+                hist.append({'date': d, 'entity': r['entity'], 'title': r.get('title', ''), 'posted': f"cards/{d}#{r.get('seq', 0):02d}" in posted})
+    return hist, topics
+
+
+def apply_novelty(posts: list[dict], hist: list[dict]) -> list[dict]:
+    """same 且已发 → 丢；same 未发 → 降权并标注；update → 标注承接。"""
+    posted_entities = {h['entity'] for h in hist if h['posted']}
+    seen_dates = {}
+    for h in hist: seen_dates.setdefault(h['entity'], h['date'])
+    kept = []
+    for p in posts:
+        nov, ref = p.get('novelty', 'new'), (p.get('followup_of') or '').strip()
+        if nov == 'same' and ref and ref in posted_entities:
+            log(f"[xhs] 丢弃重复选题（{ref} 已于 {seen_dates.get(ref)} 发过）：{p.get('title', '')}")
+            continue
+        if nov == 'same' and ref:
+            p['note'] = f'同主题 {seen_dates.get(ref, "")} 已生成过（未发），重复选题'
+            p['rank_penalty'] = 0.15
+        elif nov == 'update' and ref:
+            p['note'] = f'承接 {seen_dates.get(ref, "")} 的「{ref}」'
+        kept.append(p)
+    return kept
+
+
+def save_topics(repo: str, token: str, topics: dict, date: str, posts: list[dict]):
+    if not token: return
+    topics[date] = [{'seq': i, 'id': p['id'], 'entity': p.get('entity', ''), 'title': p.get('title', ''), 'novelty': p.get('novelty', 'new')} for i, p in enumerate(posts, 1)]
+    from datetime import timedelta
+    cutoff = (datetime.strptime(date, '%Y-%m-%d') - timedelta(days=45)).strftime('%Y-%m-%d')
+    topics = {d: v for d, v in topics.items() if d >= cutoff}
+    try:
+        gh_put(repo, 'posts/topics.json', json.dumps(topics, ensure_ascii=False, indent=1).encode('utf-8'), token, f'topics: {date}')
+    except Exception as e:
+        log(f'[xhs] topics.json 写入失败：{e}')
 
 
 def episode_number(repo: str, token: str, kind: str, date: str) -> int | None:
@@ -352,14 +414,17 @@ def run_cards(date: str, key: str):
     data = json.loads(src.read_text())
     items = [x for x in data.get('items', []) if x.get('priority') in ('high', 'medium')][:20]
     if not items: log('[xhs] 没有 high/medium 条目'); return
-    prompt = '以下是今日条目 JSON，请逐条生成：\n' + json.dumps([{'id': x.get('id'), 'title': x.get('title'), 'summary': x.get('summary'), 'why': x.get('why'), 'link': x.get('link'), 'tags': x.get('tags', [])} for x in items], ensure_ascii=False)
+    token, repo = os.environ.get('INBOX_TOKEN', '').strip(), os.environ.get('INBOX_REPO', 'lgyStoic/radar-inbox')
+    hist, topics = load_topic_history(repo, token, date)
+    hist_txt = ('\n\n近 7 天已写过的主题（entity｜日期｜是否已发布｜标题）：\n' + '\n'.join(f"{h['entity']}｜{h['date']}｜{'已发' if h['posted'] else '未发'}｜{h['title'][:40]}" for h in hist[:60])) if hist else '\n\n近 7 天没有已写过的主题，novelty 全部填 new。'
+    prompt = '以下是今日条目 JSON，请逐条生成：\n' + json.dumps([{'id': x.get('id'), 'title': x.get('title'), 'summary': x.get('summary'), 'why': x.get('why'), 'link': x.get('link'), 'tags': x.get('tags', [])} for x in items], ensure_ascii=False) + hist_txt
     result = call_llm_json(SYSTEM, prompt, SCHEMA, label='xhs')
     if not result: raise SystemExit('Gemini 未返回文稿')
     byid = {x['id']: x for x in items}
     posts = [clean_post(p) for p in result.get('posts', []) if p.get('id') in byid]
+    posts = apply_novelty(posts, hist)
     shorten_titles(posts)
     posts = rank_posts(posts, byid)  # 按小红书发布价值排序，前几条就是今天该发的
-    token, repo = os.environ.get('INBOX_TOKEN', '').strip(), os.environ.get('INBOX_REPO', 'lgyStoic/radar-inbox')
     episode = episode_number(repo, token, 'cards', date)
 
     n_images = int(os.environ.get('XHS_IMAGES', '4'))
@@ -373,16 +438,17 @@ def run_cards(date: str, key: str):
     log(f'[xhs] 封面图 {len(files)} 张（其中 {art_used} 张带生图配图）')
 
     preview = os.environ.get('XHS_PREVIEW') == '1'
-    lines = [f'# AI 信息学习卡片 · {date}' + (f' · 第 {episode} 天' if episode else ''), '', '> 自动生成初稿，请人工核对事实和语气后再发布。**已按小红书发布价值排序**：前 3 条标「今日必发」，封面图给前几条。每条：封面 → 标题 → 正文 → 话题标签，复制即发；原文链接单独列出，是否放评论区自己定。', '', '## 今日发布顺序', '', '| 序 | 标题 | 总分 | 受众 | 钩子 | 讨论 | 收藏 | 热度 | 理由 |', '|---|---|---|---|---|---|---|---|---|']
+    lines = [f'# AI 信息学习卡片 · {date}' + (f' · 第 {episode} 天' if episode else ''), '', '> 自动生成初稿，请人工核对事实和语气后再发布。**已按小红书发布价值排序**：前 3 条标「今日必发」，封面图给前几条。每条：封面 → 标题 → 正文 → 话题标签，复制即发；原文链接单独列出，是否放评论区自己定。', '', '## 今日发布顺序', '', '| 序 | 标题 | 主体 | 总分 | 受众 | 钩子 | 讨论 | 收藏 | 热度 | 理由 |', '|---|---|---|---|---|---|---|---|---|---|']
     for i, post in enumerate(posts, 1):
         r = post.get('rank', {})
-        lines.append(f"| {i}{' 🔥' if i <= 3 else ''} | {post.get('title', '')} | {r.get('score', '')} | {r.get('audience', '-')} | {r.get('hook', '-')} | {r.get('discuss', '-')} | {r.get('save', '-')} | {r.get('heat', '')} | {r.get('reason', '')} |")
+        lines.append(f"| {i}{' 🔥' if i <= 3 else ''} | {post.get('title', '')} | {post.get('entity', '')}{' ⚠️' if post.get('note') else ''} | {r.get('score', '')} | {r.get('audience', '-')} | {r.get('hook', '-')} | {r.get('discuss', '-')} | {r.get('save', '-')} | {r.get('heat', '')} | {r.get('reason', '')} |")
     lines.append('')
     have_img = {f.stem for f in files}
     for i, post in enumerate(posts, 1):
         s = byid[post['id']]
         tags = ' '.join(f'#{t}' for t in post.get('tags', []))
         lines += [f'## {i:02d} {"🔥 今日必发 · " if i <= 3 else ""}{post.get("headline", "")}', '']
+        if post.get('note'): lines += [f'> ⚠️ {post["note"]}', '']
         if post['id'] in have_img: lines += [f'![封面](./{date}/{post["id"]}.jpg)', '']
         lines += ['**标题**', '', post.get('title', ''), '', '**正文**', '', post.get('body', '').strip(), '', tags, '', f'原文：{s.get("title", "")}', f'链接：{s.get("link", "")}', '', '<details><summary>封面要点</summary>', '']
         lines += [f'- {x}' for x in post.get('takeaways', [])]
@@ -390,6 +456,7 @@ def run_cards(date: str, key: str):
         if preview and i == 1:
             log('[xhs] 预览第 1 条：\n' + post.get('title', '') + '\n\n' + post.get('body', '').strip() + '\n\n' + tags)
     dest = publish('cards', date, '\n'.join(lines), files)
+    save_topics(repo, token, topics, date, posts)
     top = ' / '.join(p.get('title', '')[:14] for p in posts[:3])
     log(f'[xhs] 生成 {len(posts)} 条文稿、{len(files)} 张封面，今日必发：{top}，写入 {dest}')
 

@@ -43,6 +43,15 @@ posts/
 | 排查 | `--list-models` / `--list-image-models` 列账号可用模型；工作流勾 `list_models`。勾 `preview` 把第 1 条标题正文打到日志（检查文风，日志公开可见，文稿本身不敏感） |
 | 留档 | 工作流把 `radar/data/xhs/` 上传为 artifact `xhs-cards`（7 天），不用开私有仓库也能看 |
 
+### 3.1.1 跨天去重（novelty）
+
+| 功能 | 说明 |
+|---|---|
+| 历史 | `load_topic_history`：私有仓库 `posts/topics.json`（每次运行写：日期 → [{seq, id, entity, title, novelty}]，保留 45 天）+ `posts/stats.md` 里出现过的 `cards/<日期>#NN` 视为已发布；取近 7 天 |
+| 判定 | 提示词里附「近 7 天已写过的主题（entity｜日期｜已发/未发｜标题）」，模型对每条输出 `entity`（规范主体名）、`novelty`（new / update / same）、`followup_of` |
+| 处理 | `apply_novelty`：same 且已发 → 丢弃并打日志；same 未发 → 保留、排序扣 0.15、md 标 ⚠️「重复选题」；update → 正文第一段承接「上次说了 X，这次 Y」，md 标「承接」 |
+| 依赖 | 「已发」完全来自站长回填的 `stats.md`；不填就当没发过，只会降权不会丢 |
+
 ### 3.2 岗位周报（jobs，`--jobs`）
 
 | 功能 | 说明 |
@@ -80,7 +89,7 @@ radar/data/<日期>.json ─筛 high/medium 前20─▶ call_llm_json(SYSTEM, SC
 
 ## 5. 数据模型
 
-`SCHEMA.posts[]`：`{id, headline, takeaways[], title, body, tags[], image_prompt}`，`id` 必须回到当天雷达条目（不在 `byid` 的丢弃）。`posts/<日期>.md`：标题 → 提示行 → 每条 `## NN headline`、`![封面]`（有图才有）、**标题**、**正文**、`#标签`、原文、链接、`<details>` 封面要点、`---`。
+`SCHEMA.posts[]`：`{id, headline, takeaways[], title, body, tags[], image_prompt, entity, novelty, followup_of}`，`id` 必须回到当天雷达条目（不在 `byid` 的丢弃）。`posts/<日期>.md`：标题 → 提示行 → 每条 `## NN headline`、`![封面]`（有图才有）、**标题**、**正文**、`#标签`、原文、链接、`<details>` 封面要点、`---`。
 
 ## 6. 规则
 
@@ -126,8 +135,7 @@ radar/data/<日期>.json ─筛 high/medium 前20─▶ call_llm_json(SYSTEM, SC
 2. 让 Gemini 用配图评估一次「是否含文字 / 是否离题」，不合格重生一次。
 3. 知乎 / 即刻版本文稿。
 4. 岗位周报按地区轮换（国内 / 海外远程交替），或一周两期。
-5. 跨天去重：生成时输出 `entity`，对照 `posts/stats.md`（已发）与近 7 天已生成主体判 novelty（same / update / new）：same 且已发丢弃、same 未发降权、update 写成承接。
-6. 发布数据回填：私有仓库 `posts/stats.md`（日期、序号、赞、收藏、关注增量）→ 用它校准排序权重与量表提示词。
+5. 发布数据回填：私有仓库 `posts/stats.md`（日期、序号、赞、收藏、关注增量）→ 用它校准排序权重与量表提示词。
 
 ## 12. 常见改动去哪改
 
