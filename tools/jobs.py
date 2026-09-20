@@ -92,10 +92,32 @@ def region_of(location):
 
 
 def limit_jobs(jobs, profile):
-    """深圳 → 香港 → 国内 → 远程 → 海外；每家公司在国内最多 max_per_company_cn 条，海外最多 max_per_company 条。"""
-    ordered = sorted(jobs, key=lambda j: (REGION_ORDER.get(j['region'], 9), -j['score'], j['company'], j['title']))
-    limited, counts = [], {}
+    """按地区与质量排序；限制公司刷屏，并压缩无法核验雇主的猎头岗位。"""
+    def quality(job):
+        value = job.get('score', 0)
+        if job.get('listing_type') != 'headhunter' and job.get('company'):
+            value += 3
+        if job.get('level') == '高':
+            value += 2
+        if not job.get('stale'):
+            value += 1
+        return value
+
+    ordered = sorted(jobs, key=lambda j: (REGION_ORDER.get(j['region'], 9), -quality(j), j['company'], j['title']))
+    limited, counts, headhunter_regions, headhunter_titles = [], {}, {}, set()
+    headhunter_total = 0
     for job in ordered:
+        if job.get('listing_type') == 'headhunter':
+            title_key = re.sub(r'\W+', '', job.get('title', '').lower())
+            dedupe_key = (job['region'], title_key)
+            if dedupe_key in headhunter_titles:
+                continue
+            region_cap = profile.get('max_headhunter_per_region', 8)
+            if headhunter_total >= profile.get('max_headhunter_total', 30) or headhunter_regions.get(job['region'], 0) >= region_cap:
+                continue
+            headhunter_titles.add(dedupe_key)
+            headhunter_regions[job['region']] = headhunter_regions.get(job['region'], 0) + 1
+            headhunter_total += 1
         domestic = job['region'] in ('深圳', '香港', '国内')
         cap = profile.get('max_per_company_cn', 8) if domestic else profile.get('max_per_company', 3)
         key = (job['company'], domestic)
@@ -104,6 +126,21 @@ def limit_jobs(jobs, profile):
         counts[key] = counts.get(key, 0) + 1
         limited.append(job)
     return limited
+
+
+def split_visible_jobs(jobs, profile):
+    """主页面只展开每个地区最值得看的岗位，其余直招仍可在折叠区查看。"""
+    caps = profile.get('visible_region_caps', {})
+    visible, extra, counts = [], [], {}
+    for job in jobs:
+        region = job['region']
+        cap = caps.get(region)
+        if cap is None or counts.get(region, 0) < cap:
+            visible.append(job)
+            counts[region] = counts.get(region, 0) + 1
+        else:
+            extra.append(job)
+    return visible, extra
 
 
 def term_pattern(term):
@@ -467,6 +504,7 @@ def collect(config, old, fetcher=fetch_source):
 
 def render():
     data = json.loads(DATA.read_text()) if DATA.exists() else {}
+    profile = json.loads(CONFIG.read_text()).get('profile', {})
     esc = html.escape
     parts = [f'<p class="radar-stats">最近尝试更新：{esc(data.get("updated", "尚未运行"))} · 按技术关键词与地点排序，不代表录用概率。</p>']
     parts.append('<p>经验、学历、薪资、签证与远程可工作地区未作匹配，请查看职位原文。「国内其他城市」是深圳、香港以外的中国内地城市；多地点职位请展开原文确认。</p>')
@@ -479,9 +517,22 @@ def render():
         parts.append('<details open><summary>更多招聘网站搜索</summary><ul class="job-search-links">')
         for link in data['search_links']:
             parts.append(f'<li><a href="{esc(link["url"], quote=True)}" rel="noopener noreferrer">{esc(link["name"])}</a> · {esc(link["scope"])}</li>')
-        parts.append('</ul></details>')
-    primary = [j for j in data.get('jobs', []) if j.get('listing_type') != 'headhunter']
-    headhunters = [j for j in data.get('jobs', []) if j.get('listing_type') == 'headhunter']
+    parts.append('</ul></details>')
+    def direct_card(job):
+        search = esc(' '.join([job['title'], job['company'], job['location'], *job['tags']]).lower(), quote=True)
+        level = job.get('level', '')
+        badge = f'<span class="match match-{esc(level)}">匹配{esc(level)}</span>' if level else ''
+        state = '待复核：本次来源抓取失败' if job.get('stale') else '最近在招聘列表中发现'
+        return (f'<li data-search="{search}" data-tags="{esc("|".join(job["tags"]), quote=True)}"><article>'
+                f'<h2>{badge}<a href="{esc(job["url"], quote=True)}" rel="noopener noreferrer">{esc(job["title"])}</a></h2>'
+                f'<p>{esc(job["company"])} · {esc(job["location"])} · {esc(job["region"])}</p>'
+                f'<p>{esc("；".join(job["reasons"]))}</p>'
+                f'<p class="radar-stats">{state} · {esc(job["last_seen"][:10])}</p></article></li>')
+
+    curated_jobs = limit_jobs(data.get('jobs', []), profile)
+    primary = [j for j in curated_jobs if j.get('listing_type') != 'headhunter']
+    primary, extra_primary = split_visible_jobs(primary, profile)
+    headhunters = [j for j in curated_jobs if j.get('listing_type') == 'headhunter']
     groups = [('深圳 / 香港', [j for j in primary if j['region'] in ('深圳', '香港')]),
               ('国内其他城市', [j for j in primary if j['region'] == '国内']),
               ('远程', [j for j in primary if j['region'] == '远程']),
@@ -490,15 +541,14 @@ def render():
         if not group: continue
         parts.append(f'<section data-filter-group><h2>{label} <small>({len(group)})</small></h2><ul class="job-list" data-archive>')
         for job in group:
-            search = esc(' '.join([job['title'], job['company'], job['location'], *job['tags']]).lower(), quote=True)
-            level = job.get('level', '')
-            badge = f'<span class="match match-{esc(level)}">匹配{esc(level)}</span>' if level else ''
-            parts.append(f'<li data-search="{search}" data-tags="{esc("|".join(job["tags"]), quote=True)}"><article><h2>{badge}<a href="{esc(job["url"], quote=True)}" rel="noopener noreferrer">{esc(job["title"])}</a></h2>')
-            parts.append(f'<p>{esc(job["company"])} · {esc(job["location"])} · {esc(job["region"])}</p>')
-            parts.append(f'<p>{esc("；".join(job["reasons"]))}</p>')
-            state = '待复核：本次来源抓取失败' if job.get('stale') else '最近在招聘列表中发现'
-            parts.append(f'<p class="radar-stats">{state} · {esc(job["last_seen"][:10])}</p></article></li>')
+            parts.append(direct_card(job))
         parts.append('</ul></section>')
+    if extra_primary:
+        parts.append(f'<details class="more-jobs" data-filter-group><summary>更多匹配岗位 ({len(extra_primary)})</summary>')
+        parts.append('<p>这些岗位相关，但默认收起，避免列表过长；仍可用上方搜索和筛选查找。</p><ul class="job-list" data-archive>')
+        for job in extra_primary:
+            parts.append(direct_card(job))
+        parts.append('</ul></details>')
     if headhunters:
         parts.append(f'<details class="headhunter-jobs" data-filter-group><summary>猎头代招 · 公司未公开 ({len(headhunters)})</summary>')
         parts.append('<p>这些是猎聘匿名代招岗位，可能有价值，但无法核验实际雇主；与企业直招分开显示。</p><ul class="job-list" data-archive>')
