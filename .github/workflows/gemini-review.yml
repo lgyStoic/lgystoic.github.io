@@ -73,12 +73,20 @@ jobs:
         id: tests
         if: always()
         continue-on-error: true
+        shell: bash
+        env:
+          # Hosted runners can expose a different CPU ISA from the Xeon used to
+          # build the image; keep PyTorch/oneDNN on the broadly supported path.
+          ATEN_CPU_CAPABILITY: default
+          ONEDNN_MAX_CPU_ISA: AVX2
+          DNNL_MAX_CPU_ISA: AVX2
         run: |
           set +e
           PYTHONPATH="$PWD/target/python" python3 -m pytest -q \
             target/python/sglang/multimodal_gen/test/unit/test_qwen_image_edit_dynamic_batch.py \
-            2>&1 | tee test-report.txt
-          result=${PIPESTATUS[0]}
+            > test-report.txt 2>&1
+          result=$?
+          cat test-report.txt
           echo "exit_code=$result" >> "$GITHUB_OUTPUT"
           exit 0
       - name: Compile changed Python files
