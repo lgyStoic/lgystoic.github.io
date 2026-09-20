@@ -46,14 +46,20 @@ jobs:
           git clone --depth=1 --branch "$REF" "https://github.com/$REPOSITORY.git" target
           git -C target remote add review-base "https://github.com/$BASE_REPOSITORY.git"
           git -C target fetch --depth=1 review-base "$BASE_REF"
-          git -C target diff --no-ext-diff FETCH_HEAD HEAD > review.diff
+          git -C target diff --no-ext-diff --unified=5 FETCH_HEAD HEAD -- \
+            python/sglang/multimodal_gen/configs/pipeline_configs/base.py \
+            python/sglang/multimodal_gen/configs/pipeline_configs/qwen_image.py \
+            python/sglang/multimodal_gen/runtime/managers/scheduler.py \
+            python/sglang/multimodal_gen/runtime/pipelines_core/stages/image_encoding.py \
+            python/sglang/multimodal_gen/runtime/pipelines_core/stages/input_validation.py \
+            python/sglang/multimodal_gen/test/unit/test_qwen_image_edit_dynamic_batch.py > review.diff
           test -s review.diff
       - name: Ask Gemini to review
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           GEMINI_MODEL: ${{ vars.CONTRIBUTIONS_GEMINI_MODEL || 'gemini-pro-latest' }}
           GEMINI_FALLBACK_MODEL: ${{ vars.CONTRIBUTIONS_GEMINI_FALLBACK_MODEL || 'gemini-flash-latest' }}
-          GEMINI_MAX_OUTPUT_TOKENS: "16384"
+          GEMINI_MAX_OUTPUT_TOKENS: "32768"
           GEMINI_TIMEOUT: "600"
         run: python3 tools/gemini_review.py --diff review.diff --out gemini-review.md
       - name: Publish review
