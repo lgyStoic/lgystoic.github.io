@@ -7,6 +7,7 @@
 | 目录 | Fork | 上游 | 用途 |
 | --- | --- | --- | --- |
 | `sglang/` | `lgyStoic/sglang` | `sgl-project/sglang` | `codex/qwen-image-edit-batching` 待审贡献分支 |
+| `sglang-omni/` | `lgyStoic/sglang-omni` | `sgl-project/sglang-omni` | 多模态 / 实时推理贡献路线 |
 
 ## 日常流程
 
@@ -24,6 +25,15 @@ git clone --recurse-submodules https://github.com/lgyStoic/lgystoic.github.io.gi
 
 ```bash
 cd projects/sglang
+git switch -c codex/<topic>
+# 改动、测试、commit
+git push -u origin codex/<topic>
+```
+
+`sglang-omni` 同样从自己的 fork 开分支：
+
+```bash
+cd projects/sglang-omni
 git switch -c codex/<topic>
 # 改动、测试、commit
 git push -u origin codex/<topic>
