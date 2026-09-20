@@ -58,6 +58,9 @@ GEMINI_TIMEOUT = int(os.environ.get("GEMINI_TIMEOUT", "300"))  # 单次调用读
 PRIORITY_ORDER = {"high": 0, "medium": 1, "low": 2}
 _GOOGLE_NEWS_CACHE: dict[str, str] = {}
 _GOOGLE_NEWS_LAST_REQUEST = 0.0
+_GOOGLE_NEWS_ATTEMPTS = 0
+_GOOGLE_NEWS_DISABLED = False
+_GOOGLE_NEWS_ATTEMPT_LIMIT = 30
 
 # ---------------------------------------------------------------- 工具函数
 
@@ -82,9 +85,15 @@ def is_google_news_link(link: str) -> bool:
 
 def decode_google_news_link(link: str) -> str:
     """把 Google News opaque article URL 解成发布站 URL；失败时返回原链接。"""
-    global _GOOGLE_NEWS_LAST_REQUEST
+    global _GOOGLE_NEWS_LAST_REQUEST, _GOOGLE_NEWS_ATTEMPTS, _GOOGLE_NEWS_DISABLED
     if link in _GOOGLE_NEWS_CACHE:
         return _GOOGLE_NEWS_CACHE[link]
+    if _GOOGLE_NEWS_DISABLED:
+        return link
+    if _GOOGLE_NEWS_ATTEMPTS >= _GOOGLE_NEWS_ATTEMPT_LIMIT:
+        _GOOGLE_NEWS_DISABLED = True
+        log(f"[radar] Google News 本轮已解析 {_GOOGLE_NEWS_ATTEMPT_LIMIT} 篇，剩余链接下次运行继续")
+        return link
     parsed = urllib.parse.urlsplit(link)
     parts = parsed.path.strip("/").split("/")
     if parsed.hostname not in {"news.google.com", "www.news.google.com"} or len(parts) < 2 or parts[-2] not in {"articles", "read"}:
@@ -99,6 +108,7 @@ def decode_google_news_link(link: str) -> str:
         if wait > 0:
             time.sleep(wait)
         _GOOGLE_NEWS_LAST_REQUEST = time.monotonic()
+        _GOOGLE_NEWS_ATTEMPTS += 1
         req = urllib.request.Request(article_url, headers=headers)
         with urllib.request.urlopen(req, timeout=10) as response:
             page = response.read(2_000_000).decode("utf-8", "replace")
@@ -145,6 +155,13 @@ def decode_google_news_link(link: str) -> str:
             _GOOGLE_NEWS_CACHE[link] = decoded
             log(f"[radar] Google News 链接已解析：{urllib.parse.urlsplit(decoded).netloc}")
             return decoded
+        return link
+    except urllib.error.HTTPError as exc:
+        if exc.code == 429:
+            _GOOGLE_NEWS_DISABLED = True
+            log("[radar] Google News 返回 429，本轮暂停解码，剩余链接保留待下次运行")
+        else:
+            log(f"[radar] Google News 链接解码失败（HTTP {exc.code}），保留中转链接")
         return link
     except (urllib.error.URLError, TimeoutError, OSError, ValueError, json.JSONDecodeError) as exc:
         log(f"[radar] Google News 链接解码失败，保留中转链接：{exc}")
