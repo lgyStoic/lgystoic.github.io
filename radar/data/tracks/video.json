@@ -2,8 +2,126 @@
  "id": "video",
  "name": "视频生成模型",
  "blurb": "文生视频、图生视频、视频 VAE 与 DiT 加速：Wan、Sora、Veo、可灵、海螺、Seedance、Vidu、LTX、HunyuanVideo 等的发布、论文、benchmark 与推理框架支持。",
- "updated": "2026-09-19T09:25:16+00:00",
+ "updated": "2026-09-20T01:51:30+00:00",
  "entries": [
+  {
+   "id": "a3c77994b3d6781a",
+   "date": "2026-09-20",
+   "title": "I tested the generation speed of the Intel graphics card 'Intel Arc Pro B70 Creator 32GB,' which has 32GB of VRAM and costs less than 300,000 yen, by running the local LLM 'Qwen3.8 27B' and the video generation AI 'MiniMax H3.' - GIGAZINE",
+   "link": "https://news.google.com/rss/articles/CBMic0FVX3lxTFBlTW9Yb0JXVS1VaWl6N0Nxb0tDX2dQYloyaEJnaTdOdlZ3ZXljSDlTb0RzRnB3TUhfWnZobTAtSnh3WlprUFMxQjlhWTlCSVRBY0VfUmdXSWx0X21IT3ZXVS13ZEVFNkV1SG00T2MzTnlocEU?oc=5",
+   "source": "新闻 · 视频生成（英文）",
+   "priority": "medium",
+   "summary": "GIGAZINE 实测 Intel Arc Pro B70 32GB 显卡运行 MiniMax H3 视频生成及 Qwen 模型的生成速度。",
+   "why": "提供非英伟达硬件上大显存运行视频生成模型的实测参考。",
+   "tags": [
+    "Intel GPU",
+    "视频生成",
+    "推理基准"
+   ],
+   "entity": "Intel Arc Pro B70 Creator 32GB",
+   "kind": "opinion"
+  },
+  {
+   "id": "21e91c67e227ac4b",
+   "date": "2026-09-20",
+   "title": "论文周报丨Vidu S2实现实时720P数字人生成与视频编辑；NCP-ArchPreview探索LLM隐空间预训练新范式...速览一周AI前沿论文 - 智源社区",
+   "link": "https://news.google.com/rss/articles/CBMiSEFVX3lxTE1MMlVoMjcxNTdsb2pveDRKSHl0U0tiWDA5dmc1dnhrdVhEWVd0T1c3NlR5bGZkUXVoV0JIUkU1bXBIU2k5ODQzdA?oc=5",
+   "source": "新闻 · 视频生成（中文）",
+   "priority": "medium",
+   "summary": "智源论文周报介绍 Vidu S2 实现实时 720P 数字人生成与视频编辑等技术进展。",
+   "why": "涉及实时高清视频生成与编辑的架构方案，值得留意。",
+   "tags": [
+    "视频生成",
+    "Vidu S2",
+    "实时生成"
+   ],
+   "entity": "Vidu S2",
+   "kind": "paper"
+  },
+  {
+   "id": "43410583ddeee2f2",
+   "date": "2026-09-20",
+   "title": "Abiray/MiniMax-H3-Singularity-GGUF",
+   "link": "https://huggingface.co/Abiray/MiniMax-H3-Singularity-GGUF",
+   "source": "HF 热榜 · 图生视频",
+   "priority": "medium",
+   "summary": "图生视频模型 MiniMax-H3-Singularity-GGUF 登上 HF 热榜（⭐ 16）。",
+   "why": "视频扩散/Flow 模型的 GGUF 量化实践值得工程关注。",
+   "tags": [
+    "图生视频",
+    "MiniMax",
+    "GGUF量化"
+   ],
+   "entity": "MiniMax-H3-Singularity-GGUF",
+   "kind": "release"
+  },
+  {
+   "id": "122834d2a88c8f16",
+   "date": "2026-09-20",
+   "title": "vpakarinen/asmr-trigger-audio-h3-lora",
+   "link": "https://huggingface.co/vpakarinen/asmr-trigger-audio-h3-lora",
+   "source": "HF 热榜 · 文生视频",
+   "priority": "medium",
+   "summary": "文生视频 LoRA 微调权重 asmr-trigger-audio-h3-lora 登上 HF 热榜（⭐ 13）。",
+   "why": "视频生成特定音频触发 LoRA，可扫一眼效果。",
+   "tags": [
+    "文生视频",
+    "LoRA",
+    "微调"
+   ],
+   "entity": "asmr-trigger-audio-h3-lora",
+   "kind": "release"
+  },
+  {
+   "id": "5fe07effcac73adc",
+   "date": "2026-09-20",
+   "title": "智象团队以技术使命感支撑团队及视频生成世界模型研发 - 微博",
+   "link": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE5wV1ppYnZZbXBQMUF0Rm5qVlowdnl5U0pNTUQ3dkVMUXdUMmxpWTFDdVZMc0NQQlk4WF9LWHhYaVVHMjE4UlNvc2tyLWg1SEZVVHRCWV93?oc=5",
+   "source": "新闻 · 视频生成（中文）",
+   "priority": "low",
+   "summary": "微博博主发文宣传智象团队研发视频生成与世界模型的企业使命感。",
+   "why": "纯团队公关宣传文案，无任何技术价值。",
+   "tags": [
+    "智象",
+    "世界模型",
+    "公关宣传"
+   ],
+   "entity": "智象",
+   "kind": "news"
+  },
+  {
+   "id": "f6629282f2d73645",
+   "date": "2026-09-20",
+   "title": "百万视频生成中……又到了许我耀眼最佳赏味期 #一分钟精选视频扶持计划# ​ - k.sina.com.cn",
+   "link": "https://news.google.com/rss/articles/CBMic0FVX3lxTE9sVlBObl9qaHNRWG5lWWpoNVpUU1liNkhGX1h3ckQzWFVZM01HS01lTy15M0Y3alJpNHZ3V19RMVUxd3NzNWxkdDdPaGN1RGhoOUM1VS12ODVaOXl1VlFOUkVfN2xYbzJCaEdiTjB5VkNwQTA?oc=5",
+   "source": "新闻 · 视频生成（中文）",
+   "priority": "low",
+   "summary": "社交媒体娱乐向视频扶持计划与影视剧宣发内容。",
+   "why": "娱乐营销内容，与模型技术完全无关。",
+   "tags": [
+    "短视频",
+    "宣发"
+   ],
+   "entity": "",
+   "kind": "news"
+  },
+  {
+   "id": "3564bd7309c39f95",
+   "date": "2026-09-20",
+   "title": "#科技# 【ECCV2026 现场】视频生成看起来很逼真，但模型真懂物理吗？ - Sohu",
+   "link": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE16bmE5ancxVlVrVDNJOXBGTGw3ZDNfRDdvMmtoMTZVZFU3RmRqNlBXZEdRLU1LN0ZsYkxNZFpsX3l5LUVQRWhpbklOUDQwd1dfcUN0VGNpSDFuMmJWV052b0xUQVVvRWM?oc=5",
+   "source": "新闻 · 视频生成（中文）",
+   "priority": "low",
+   "summary": "搜狐报道 ECCV 现场学者针对当前视频生成模型是否真正理解物理规律的圆桌讨论。",
+   "why": "泛学术探讨与观点汇总，缺乏深入系统或架构方案。",
+   "tags": [
+    "ECCV",
+    "视频生成",
+    "物理先验"
+   ],
+   "entity": "ECCV 2026",
+   "kind": "opinion"
+  },
   {
    "id": "e00f945ba32ca3a9",
    "date": "2026-09-19",
@@ -517,6 +635,24 @@
   "字节跳动": [
    "3a06f956823425ca",
    "782c2b2a23d1da73"
+  ],
+  "Intel Arc Pro B70 Creator 32GB": [
+   "a3c77994b3d6781a"
+  ],
+  "Vidu S2": [
+   "21e91c67e227ac4b"
+  ],
+  "MiniMax-H3-Singularity-GGUF": [
+   "43410583ddeee2f2"
+  ],
+  "asmr-trigger-audio-h3-lora": [
+   "122834d2a88c8f16"
+  ],
+  "智象": [
+   "5fe07effcac73adc"
+  ],
+  "ECCV 2026": [
+   "3564bd7309c39f95"
   ],
   "Video DeltaNet": [
    "e00f945ba32ca3a9"
