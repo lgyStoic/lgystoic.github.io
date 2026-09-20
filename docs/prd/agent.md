@@ -93,7 +93,7 @@ AI 模型：`call_llm_json` 走 Claude（有 key）否则 Gemini；高频任务�
 - **加岗位源**：`job_sources.json.sources` 加项（kind 已有的直接用；新 kind 在 `fetch_source` 加分支）→ 沙箱无法访问则直接开 PR 合并后 `actions_run_trigger jobs.yml` → 读日志。
 - **加贡献仓库**：`contribution_repos.json` → 手动触发 contributions.yml（scope=all 或把仓库标 focus 用 scope=focus）。
 - **改渲染不重跑 Gemini**：改代码 → 合并 → 触发 contributions.yml `reuse_run_id=<最近成功 run>`（产物 3 天内有效）。
-- **开源 fork 开发 / 审查**：进入 `projects/<name>` 建分支并推到个人 fork → 手动触发「Gemini patch review」→ 通过后向上游开 PR；主仓库只在需要更新基线时提交 submodule 指针。
+- **开源 fork 开发 / 审查**：进入 `projects/<name>` 建分支并推到个人 fork → 手动触发「Gemini patch review」（GitHub-hosted `ubuntu-latest` 跑聚焦 CPU 单测，并由只读 SGLang Gemini agent 审查）→ 通过后向上游开 PR；主仓库只在需要更新基线时提交 submodule 指针。
 - **改页面/CSS**：`build.py` → Playwright 四宽度 scrollWidth → 提交生成物。
 - **排查某天为什么没跑**：状态页「最近一次运行」触发方式；`last-run.json`；health.yml 是否补跑；`radar/data/last-run.log`。
 - **新页面类型**：写 `render_<x>_jsonld`，head 放 `<!-- build:<x>-jsonld -->`，`main()` inject；实体名只用 Anaxagore / lgystoic.github.io（见 geo.md）。

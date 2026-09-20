@@ -10,6 +10,10 @@
 
 ## 日常流程
 
+### Gemini 审查与 CPU 验证
+
+在主仓库 Actions 手动运行「Gemini patch review」，填写 fork 分支和审查任务。工作流使用 GitHub-hosted `ubuntu-latest`，安装 CPU 版 PyTorch 并运行该分支的 Qwen Image Edit 聚焦单测和 Python 编译检查；随后调用 `.gemini/agents/sglang-contributor.md` 只读审查 diff 与测试报告。Gemini 不会改文件或推送。运行摘要和测试日志作为 14 天 artifact 保存。此流程不依赖 SGLang 官方的 GPU runner。
+
 首次 checkout：
 
 ```bash
