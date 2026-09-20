@@ -2,7 +2,7 @@
  "id": "video",
  "name": "视频生成模型",
  "blurb": "文生视频、图生视频、视频 VAE 与 DiT 加速：Wan、Sora、Veo、可灵、海螺、Seedance、Vidu、LTX、HunyuanVideo 等的发布、论文、benchmark 与推理框架支持。",
- "updated": "2026-09-20T12:39:33+00:00",
+ "updated": "2026-09-20T12:53:01+00:00",
  "entries": [
   {
    "id": "a68d6c54cbd40d7b",
@@ -20,6 +20,24 @@
    ],
    "entity": "Runway",
    "kind": "news"
+  },
+  {
+   "id": "4ce3be4127e91b65",
+   "date": "2026-09-20",
+   "title": "ByteDance Unveils Seedance 2.5 AI Video Model - TechJuice",
+   "link": "https://news.google.com/rss/articles/CBMie0FVX3lxTE5DVkZnLTdDa0l6cmkwNnhoNVBmNkVwblhiMmtObWNzc3JtVzdUaUhUVXB3dkpJQlJrWnI2cnBrRFRCNzhRaTk3WWUtMFdmb2lPQnFMQXdYeU1jZzJyOXRPUWNwOVptVVJSZzNmRmtPVGx1dzhZZ1Y1WE5fQQ?oc=5",
+   "source": "新闻 · 视频生成（英文）",
+   "priority": "high",
+   "summary": "字节跳动推出Seedance 2.5视频生成模型，性能全面提升。",
+   "why": "头部厂商核心视频生成模型更新，重点关注生成质量与架构。",
+   "tags": [
+    "字节跳动",
+    "Seedance",
+    "视频生成",
+    "模型发布"
+   ],
+   "entity": "Seedance 2.5",
+   "kind": "release"
   },
   {
    "id": "a3c77994b3d6781a",
@@ -747,13 +765,14 @@
   }
  ],
  "threads": {
+  "Seedance 2.5": [
+   "4ce3be4127e91b65",
+   "e3e37d24c382772e",
+   "b3cd147d851410fb"
+  ],
   "ECCV2026": [
    "ef865c252f9d05f6",
    "d68c738c749b09d7"
-  ],
-  "Seedance 2.5": [
-   "e3e37d24c382772e",
-   "b3cd147d851410fb"
   ],
   "LynnReal-Omni": [
    "4c9585c505c73637",
