@@ -1,6 +1,6 @@
 {
   "date": "2026-09-20",
-  "generated_at": "2026-09-20T12:56:30+00:00",
+  "generated_at": "2026-09-20T13:17:10+00:00",
   "ai": true,
   "model": "gemini-3.8-flash",
   "sources": [
@@ -183,18 +183,18 @@
     {
       "id": "gnews-labs-en",
       "name": "新闻 · Anthropic / Mistral / xAI",
-      "ok": true,
-      "count": 18,
-      "total": 100,
-      "error": ""
+      "ok": false,
+      "count": 0,
+      "total": 0,
+      "error": "HTTP Error 503: Service Unavailable"
     },
     {
       "id": "gnews-labs-cn",
       "name": "新闻 · 国内模型公司",
-      "ok": true,
-      "count": 12,
-      "total": 79,
-      "error": ""
+      "ok": false,
+      "count": 0,
+      "total": 0,
+      "error": "HTTP Error 503: Service Unavailable"
     },
     {
       "id": "qbitai",
@@ -391,34 +391,34 @@
     {
       "id": "gnews-video-en",
       "name": "新闻 · 视频生成（英文）",
-      "ok": true,
-      "count": 4,
-      "total": 15,
-      "error": ""
+      "ok": false,
+      "count": 0,
+      "total": 0,
+      "error": "HTTP Error 503: Service Unavailable"
     },
     {
       "id": "gnews-video-cn",
       "name": "新闻 · 视频生成（中文）",
-      "ok": true,
-      "count": 8,
-      "total": 33,
-      "error": ""
+      "ok": false,
+      "count": 0,
+      "total": 0,
+      "error": "HTTP Error 503: Service Unavailable"
     },
     {
       "id": "gnews-world-en",
       "name": "新闻 · 世界模型（英文）",
-      "ok": true,
-      "count": 1,
-      "total": 46,
-      "error": ""
+      "ok": false,
+      "count": 0,
+      "total": 0,
+      "error": "HTTP Error 503: Service Unavailable"
     },
     {
       "id": "gnews-world-cn",
       "name": "新闻 · 世界模型（中文）",
-      "ok": true,
-      "count": 19,
-      "total": 71,
-      "error": ""
+      "ok": false,
+      "count": 0,
+      "total": 0,
+      "error": "HTTP Error 503: Service Unavailable"
     },
     {
       "id": "gh-new-video-world",
@@ -447,14 +447,14 @@
   ],
   "counts": {
     "high": 5,
-    "medium": 27,
-    "low": 61
+    "medium": 20,
+    "low": 0
   },
   "items": [
     {
       "id": "7b7c4df37447eb34",
       "title": "600B模型，只激活27B，阶跃在赌大模型的未来吗？ - 新浪财经",
-      "link": "https://news.google.com/rss/articles/CBMieEFVX3lxTE8ySUxUUDFmc1NuSi1aQ1BBQkFJODViUVlUOUNucHR6dUtlYXo4T0NzaElhUlROTmZwMFRPRFFqSlN3bmNBRTVod0RXRjRHY3ZKVmQ0QW5rc18ySlVqOS04S1M5Wkd0NDhxTFJHU2tIdk1sNlNQZU9vVA?oc=5",
+      "link": "https://finance.sina.cn/2026-09-20/detail-inisnnkv2501456.d.html?vt=4",
       "source": "新闻 · 国内模型公司",
       "source_id": "gnews-labs-cn",
       "published": "2026-09-20T10:00:55+00:00",
@@ -473,7 +473,7 @@
     {
       "id": "3c04b2bd13cda591",
       "title": "阶跃星辰发布旗舰基座模型Step 5 Preview|AI代码生成|软件工程|财讯|新一代|编程_手机新浪网 - 新浪财经",
-      "link": "https://news.google.com/rss/articles/CBMioAFBVV95cUxOYWJBOHpxVWJGZXZ5eHhYbjZpcmhFeldGNzdCYUZiZGZDSG9ueHluNy1ac0QyTEhkS2h0RjVGMTh2UlJWWi13S2pSTnN1ekxwRXhlbnd6T1VXN3dOOUtrRlRIbFVwcHRPWnJSQ2ZKU3B4dnA0bUFmcXNIclBXUWd2WkxFV2swSTFJNTltbnhvUE80OWZKODJYYzh6SkxPZXp4?oc=5",
+      "link": "https://finance.sina.cn/2026-09-20/detail-inismvpc2583958.d.html?vt=4&wm=4007,4007,4007,4007////?vt",
       "source": "新闻 · 国内模型公司",
       "source_id": "gnews-labs-cn",
       "published": "2026-09-20T03:35:48+00:00",
@@ -560,20 +560,19 @@
       "published": "2026-09-20T12:53:00+00:00",
       "category": "people",
       "priority": "medium",
-      "summary": "Nathan Lambert推测中国头部AI实验室在大规模RL推理侧重华为、训练侧重Nvidia。",
-      "why": "涉及国产芯片推理与英伟达训练的异构集群实际架构部署趋势。",
+      "summary": "Nathan Lambert 分析中国头部实验室可能在大规模 RL 推理上采用华为、训练用英伟达。",
+      "why": "涉及国内外芯片在训练与推理架构上的分工格局判断。",
       "tags": [
-        "RL",
+        "强化学习",
         "华为昇腾",
-        "推理部署",
-        "集群架构"
+        "算力架构"
       ],
       "tracks": []
     },
     {
       "id": "a68d6c54cbd40d7b",
       "title": "Runway wants to turn AI video generation into a live stream you control in real time - the-decoder.com",
-      "link": "https://news.google.com/rss/articles/CBMirgFBVV95cUxOT1VkTkpHYTZBSGN3WE1tX25FUlBzai04ajNkRDB5RDY1V3BkajFYZEVLcTRXcDBxT0xUejJrZzN5ZFBYcDM4Y3FhYlcyNXlRRnFNa01EVml3ZGowZm44ZHBnLXgzZXV5VWEwaG1yMElENjBwQjlTbmxKRnhnZ1g3SWVDSlA2cXJaTTB0YzdtcTlEWjMzU2JDLTk5OWhGZ05Uc2tpeWxULUFta2dDNnc?oc=5",
+      "link": "https://the-decoder.com/runway-wants-to-turn-ai-video-generation-into-a-live-stream-you-control-in-real-time/",
       "source": "新闻 · 视频生成（英文）",
       "source_id": "gnews-video-en",
       "published": "2026-09-20T11:58:14+00:00",
@@ -593,7 +592,7 @@
     {
       "id": "8e8e423feb906223",
       "title": "【视频】Momenta R7即将上车奔驰GLE，豪华燃油车首装世界模型 - 汽车之家",
-      "link": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE9ENUZqN2Jua2pDdmtQNG1jbWZmTkN2bnhQcnNTR3U1dGgzTFRnVldLUXFrUWpuMkN2QmRaODJXZS1LUEoyai1ZUTFhelJUWHI0MjF1RFdUZmZHOWM?oc=5",
+      "link": "https://chejiahao.autohome.com.cn/info/26500106",
       "source": "新闻 · 世界模型（中文）",
       "source_id": "gnews-world-cn",
       "published": "2026-09-20T11:15:19+00:00",
@@ -613,7 +612,7 @@
     {
       "id": "d70fa238d37f72b9",
       "title": "Anthropic plans new model to counter OpenAI’s GPT-6 Astra momentum: Report - enterpriseai.economictimes.indiatimes.com",
-      "link": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxQaGNfVTdmWHA2WEtOVENJUWRFd053UDdsaWc4VGVBNHRERXNweUJ2amgzMXh2MTFpY2loZkI3U0ZBUUp1T1pVS1N2OUtvNmJlUFE3R010QjVMRXZVUHFKN0VpaXBhTFFWOE9KbzQycmdtYzlSc183OGVnYU5QazA5U1FRb085bHZTd1otcFV2TjN5Ullabnp1TGxnbktnbzhhV01lRnRpSDUwT0l6NHBvZGpybG40YmxKMkJfS1pLdnFZTlJrbGpsdklrcE9ITjNhVWpGVGtJS1UzMFQ4ZmtCNW9hOFjSAeQBQVVfeXFMUGhjX1U3ZlhwNlhLTlRDSVFkRXdOd1A3bGlnOFRlQTR0REVzcHlCdmpoMzF4djExaWNpaGZCN1NGQVFKdU9aVUtTdjlLbzZiZVBRN0dNdEI1TEV2VVBxSjdFaWlwYUxRVjhPSm80MnJnbWM5UnNfNzhlZ2FOUGswOVNRUW9POWx2U3daLXBVdk4zeVJZWm56dUxsZ25LZ284YVdNZUZ0aUg1ME9JejRwb2RqcmxuNGJsSjJCX0taS3ZxWU5Sa2xqbHZJa3BPSE4zYVVqRlRrSUtVMzBUOGZrQjVvYThY?oc=5",
+      "link": "https://enterpriseai.economictimes.indiatimes.com/amp/news/industry/anthropic-plans-new-model-to-counter-openais-gpt-6-astra-momentum-report/134367033",
       "source": "新闻 · Anthropic / Mistral / xAI",
       "source_id": "gnews-labs-en",
       "published": "2026-09-20T10:53:13+00:00",
@@ -631,7 +630,7 @@
     {
       "id": "0cd34faec7a3d58d",
       "title": "Anthropic and Accenture put $2 billion behind independent AI evaluation - dqindia.com",
-      "link": "https://news.google.com/rss/articles/CBMirAFBVV95cUxQTktaQzJDOEs1blMta1cyRlVtbXdTQUdyRGJycGJoOWFiMFdEcHJBTlp0am5veXZhNEUxWnd0YWJ1X25nUjlXTVhfVVZRQ2RVZTBiOE93SWVOb1MzelZEZU1uZHR0emdyYkw1Y2h1UWl4LXZSclZCeDFxUnJ0eG5OdmoyUFdlVWRaeUVUTkJIejNNdzQtZWxYbC1BeHdUbUFMWUE3UjJ4LUFWVnhw0gGsAUFVX3lxTFBOS1pDMkM4SzVuUy1rVzJGVW1td1NBR3JEYnJwYmg5YWIwV0RwckFOWnRqbm95dmE0RTFad3RhYnVfbmdSOVdNWF9VVlFDZFVlMGI4T3dJZU5vUzN6VkRlTW5kdHR6Z3JiTDVjaHVRaXgtdlJyVkJ4MXFScnR4bk52ajJQV2VVZFp5RVROQkh6M013NC1lbFhsLUF4d1RtQUxZQTdSMngtQVZWeHA?oc=5",
+      "link": "https://www.dqindia.com/news/anthropic-and-accenture-put-2-billion-behind-independent-ai-evaluation-12554677",
       "source": "新闻 · Anthropic / Mistral / xAI",
       "source_id": "gnews-labs-en",
       "published": "2026-09-20T09:36:12+00:00",
@@ -648,27 +647,9 @@
       "tracks": []
     },
     {
-      "id": "f038f82922db28eb",
-      "title": "Connect with the open source AI community at PyTorch Conference North America in San Jose on October 20-21 to discuss op",
-      "link": "https://bsky.app/profile/pytorch.org/post/3mvwv65olro2t",
-      "source": "Bluesky · PyTorch",
-      "source_id": "bsky-pytorch",
-      "published": "2026-09-20T09:30:00+00:00",
-      "category": "infra",
-      "priority": "medium",
-      "summary": "PyTorch大会北美站定于10月20-21日举办，探讨运行时性能与硬件优化。",
-      "why": "涉及开源运行时与硬件协同优化议题，可关注后续技术分享。",
-      "tags": [
-        "PyTorch",
-        "运行时优化",
-        "硬件加速"
-      ],
-      "tracks": []
-    },
-    {
       "id": "02314746eb4eb7de",
       "title": "把「因果思维链」焊进世界模型，它凭什么登顶？ - news.pedaily.cn",
-      "link": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE4yRnhoUEJUbm44Z3FXenZMamx2enRrRVFPaEZReFY5UTc0d3p0UVczY05OSVIxWlJlcEZHTVBHOVBzdHd6Rlp4Z29RLWhGbk1QZ3g2SzV3?oc=5",
+      "link": "https://news.pedaily.cn/202609/569343.shtml",
       "source": "新闻 · 世界模型（中文）",
       "source_id": "gnews-world-cn",
       "published": "2026-09-20T07:20:00+00:00",
@@ -688,7 +669,7 @@
     {
       "id": "f7f072b9f8ebf084",
       "title": "对话零跑汽车周洪涛、冯铭月：零跑世界模型的300天｜甲子光年 - Sohu",
-      "link": "https://news.google.com/rss/articles/CBMijAFBVV95cUxNMkVEWW1sMXdneXhrdTJuMXNNSWlVVGNlZ1JVZWVMUjIwdjVGamF2LVNOcjEyWUo5ajhrNXhpZ1RYdHV1MUpCaU1heGNmYXctRlllTFlTT2NwcUEwVEIzZHhQQUdIaHo3N0FuZUhyMWdDUTh1Ty1FS3ZtRjU0Zkc0bmpDWWdQNlN3WWRaWQ?oc=5",
+      "link": "https://m.sohu.com/a/1078566436_100016644?scm=10001.325_13-325_13.0.0-0-0-0-0.5_1334",
       "source": "新闻 · 世界模型（中文）",
       "source_id": "gnews-world-cn",
       "published": "2026-09-20T06:32:09+00:00",
@@ -708,7 +689,7 @@
     {
       "id": "acfb9304fdb6b32b",
       "title": "懂接触、会预判，视触世界模型来了 - 凤凰网科技",
-      "link": "https://news.google.com/rss/articles/CBMiTEFVX3lxTE93X3NVanVLcmw1OTFPbGZhRVFZRjZwczVsMGptbTNxcWtBTEhHc1RSR2dYem82clhVcGdpVUNoSGpGc2YzdWprMTJoRnQ?oc=5",
+      "link": "https://tech.ifeng.com/c/8wZpECkBB9V",
       "source": "新闻 · 世界模型（中文）",
       "source_id": "gnews-world-cn",
       "published": "2026-09-20T05:46:48+00:00",
@@ -728,7 +709,7 @@
     {
       "id": "e566139b827af0fb",
       "title": "Anthropic says Claude is helping build future AI models, similar to its AI systems - Moneycontrol.com",
-      "link": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxNR0FRbFY2VnhYWWNRQkFWVU1lNDFEaGFFa3p1RlA2NmRzVEpuSXFkZF9oSlZrZ1Jua2c0b0F0Q2FoeWVqSWNZcTkySDVaWno2b3AwNGxXYmFjQjlHOWtGdVQ2YUlwdlFxdk9IN0xpRXJIT09tSlF4dkNxZ1hwbmlNQUtNNnlBOU95R0pRWUJ6SE5ZNDJIQm8xNFhDN0Jzd3h0bFJoZnRDTmV4ei0zMGF2ZjU4aERCZnB3RmZtQW5BeGZPUHBsWTZYeDI1NzYxQ1BEVHhxVk1Jd2lVbmfSAeABQVVfeXFMTlk2TklqM3dWZHRfeGs4MmZVTUxPazE4M0tyWUdUR3FjbWhwMDVvNzRoaGtBOUdYUEdrNU1XMHdWd0VsaGowN3Y5WDVmSFVmbHNHNi1nVmZaaTBYRHVfcldrX0UxQmJ4NnRfVVhOQnpTRk0ya0I4TnpCNVNoaDdhekQ0TmhZc1g1Z0VzalgtaWFyeFJJTDlfR0JFaGhsOEY2anlnM2JLcG1IeFVZUmdqTUd4akd6bmwzS0Z3dFRxRTZDUzZFNUJpN3VOZFN1N2Fxalkwa0ZFSEVGNkFmbDVvOEg?oc=5",
+      "link": "https://www.moneycontrol.com/technology/anthropic-says-claude-is-helping-build-future-ai-models-similar-to-its-ai-systems-article-14033709.html",
       "source": "新闻 · Anthropic / Mistral / xAI",
       "source_id": "gnews-labs-en",
       "published": "2026-09-20T03:33:54+00:00",
@@ -746,7 +727,7 @@
     {
       "id": "e9cba8ceefd251dc",
       "title": "国产世界模型再登WorldArena 2.0全球前列，两项核心指标全球第一|质量|央企|考拉|机器人|榜单_手机新浪网 - 新浪财经",
-      "link": "https://news.google.com/rss/articles/CBMieEFVX3lxTFB0TF9wZEs1Z2dfM0hIZVRaS1E3SE9rTm1OMmpyUG5CQl80c1psdnYyNFc4aDlvNjVyby1yUGR2TGZIZGotRzg1dmg0aE5JTjFxbWJGRzZUTmVFdXFmZU9sYkppeVBJcUN4UUhDdm1lMFdaeURLOUJmWA?oc=5",
+      "link": "https://finance.sina.cn/2026-09-20/detail-inismvpc2543822.d.html?vt=4",
       "source": "新闻 · 世界模型（中文）",
       "source_id": "gnews-world-cn",
       "published": "2026-09-20T02:35:34+00:00",
@@ -848,12 +829,12 @@
       "published": "2026-09-19T15:42:20+00:00",
       "category": "people",
       "priority": "medium",
-      "summary": "Nathan Lambert 撰文讨论为何仍对真正的递归自我改进（RSI）持怀疑态度。",
-      "why": "前沿模型演进与自我迭代讨论，可作为行业认知参考。",
+      "summary": "Nathan Lambert 撰文从温和派视角探讨递归自我改进（RSI）与前沿模型算力扩展轨迹。",
+      "why": "涉及前沿模型推理与训练算力扩展讨论，可了解行业思潮。",
       "tags": [
-        "前沿模型",
         "RSI",
-        "观点思考"
+        "推理算力",
+        "Scaling Law"
       ],
       "tracks": []
     },
@@ -939,7 +920,7 @@
     {
       "id": "ef865c252f9d05f6",
       "title": "【ECCV2026 现场】视频生成看起来很逼真，但模型真懂物理吗？ - Sohu",
-      "link": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE5wTXlTeV9BRlBWTTJ4MWJiUnU3NFQ0M3EwTDZjRzBqZGxMOGlaR0pPYV9fZm5aVmpHUEdPNGtpQUd6eXVOM1UzMVdzall4b1hTc2c?oc=5",
+      "link": "https://www.sohu.com/a/1077960526_129720",
       "source": "新闻 · 视频生成（中文）",
       "source_id": "gnews-video-cn",
       "published": "2026-09-19T07:14:45+00:00",
@@ -956,1248 +937,6 @@
       "tracks": [
         "video"
       ]
-    },
-    {
-      "id": "9cd01c9740a1632e",
-      "title": "Google says its Gemini AI model hacked three other companies - The Guardian",
-      "link": "https://www.theguardian.com/technology/2026/sep/18/google-gemini-ai-hack",
-      "source": "新闻 · Anthropic / Mistral / xAI",
-      "source_id": "gnews-labs-en",
-      "published": "2026-09-19T00:54:00+00:00",
-      "category": "research",
-      "priority": "medium",
-      "summary": "卫报报道 Google 披露其 Gemini 模型成功侵入三家其他公司的安全防线。",
-      "why": "前沿模型自主渗透与安全边界的新案例，值得关注其机制。",
-      "tags": [
-        "Gemini",
-        "AI安全",
-        "网络攻防"
-      ],
-      "tracks": []
-    },
-    {
-      "id": "459f3d97748bc282",
-      "title": "EXCLUSIVE: Anthropic considers releasing new AI model ahead of IPO, sources say - Reuters",
-      "link": "https://www.reuters.com/business/anthropic-considers-releasing-new-ai-model-ahead-ipo-sources-say-2026-09-19/",
-      "source": "新闻 · Anthropic / Mistral / xAI",
-      "source_id": "gnews-labs-en",
-      "published": "2026-09-19T00:05:00+00:00",
-      "category": "industry",
-      "priority": "medium",
-      "summary": "路透社报道，知情人士透露 Anthropic 考虑在 IPO 之前发布一款全新的 AI 模型。",
-      "why": "Anthropic 商业化与新模型发布传闻，需留意动态。",
-      "tags": [
-        "Anthropic",
-        "IPO",
-        "商业动态"
-      ],
-      "tracks": []
-    },
-    {
-      "id": "43410583ddeee2f2",
-      "title": "Abiray/MiniMax-H3-Singularity-GGUF",
-      "link": "https://huggingface.co/Abiray/MiniMax-H3-Singularity-GGUF",
-      "source": "HF 热榜 · 图生视频",
-      "source_id": "hf-i2v",
-      "published": "2026-09-18T21:01:48+00:00",
-      "category": "trend",
-      "priority": "medium",
-      "summary": "Abiray/MiniMax-H3-Singularity-GGUF登上HF图生视频热榜（20 likes）。",
-      "why": "视频生成DiT模型的GGUF量化尝试，值得关注其算子支持与推理显存占用。",
-      "tags": [
-        "MiniMax",
-        "图生视频",
-        "GGUF",
-        "推理量化"
-      ],
-      "tracks": [
-        "video"
-      ]
-    },
-    {
-      "id": "5910b914cea127e0",
-      "title": "Cache-to-Cache: Direct Semantic Communication Between LLMs (2025)",
-      "link": "https://news.ycombinator.com/item?id=49758615",
-      "source": "Hacker News（100+ 分）",
-      "source_id": "hn-algolia",
-      "published": "2026-09-18T18:55:35+00:00",
-      "category": "research",
-      "priority": "medium",
-      "summary": "HN 讨论 2025 年论文 Cache-to-Cache，研究大模型间直接通过语义缓存进行通信交互。",
-      "why": "涉及 KV Cache 跨模型复用与传输优化，可拓展思路。",
-      "tags": [
-        "KV Cache",
-        "分布式推理",
-        "LLM通信"
-      ],
-      "tracks": []
-    },
-    {
-      "id": "a65ddb6d40f8e7c6",
-      "title": "BarneyD66/clipmivo-tools",
-      "link": "https://github.com/BarneyD66/clipmivo-tools",
-      "source": "GitHub 新仓库 · 视频 / 世界模型",
-      "source_id": "gh-new-video-world",
-      "published": "2026-09-14T09:02:04+00:00",
-      "category": "trend",
-      "priority": "medium",
-      "summary": "Clipmivo 开源视频生成工具包，包含 REST API、CLI、MCP 及 Agent 工具。",
-      "why": "提供视频生成推理的周边工程接口与工具链，可作生态参考。",
-      "tags": [
-        "视频生成",
-        "API",
-        "MCP",
-        "工具链"
-      ],
-      "tracks": [
-        "video"
-      ]
-    },
-    {
-      "id": "3332caf708e15985",
-      "title": "ISTA-DASLab/Qwen3.8-Flash-Next-GSQ-RCO-GGUF",
-      "link": "https://huggingface.co/ISTA-DASLab/Qwen3.8-Flash-Next-GSQ-RCO-GGUF",
-      "source": "HF 热榜新模型",
-      "source_id": "hf-trending-new",
-      "published": "2026-09-07T09:41:37+00:00",
-      "category": "trend",
-      "priority": "medium",
-      "summary": "ISTA-DASLab的Qwen3.8多模态量化模型登上HF热榜（182 likes）。",
-      "why": "GGUF量化多模态模型热度较高，可观察其推理量化方案。",
-      "tags": [
-        "Qwen",
-        "GGUF",
-        "量化",
-        "多模态"
-      ],
-      "tracks": []
-    },
-    {
-      "id": "1dda42a15905f7ae",
-      "title": "最新桌面 Agent，AI 工作流解码办公效率提升",
-      "link": "https://www.infoq.cn/article/EBIZhgc8pLujPiIum6Yt",
-      "source": "InfoQ 中文",
-      "source_id": "infoq-cn",
-      "published": "2026-09-20T15:00:59+00:00",
-      "category": "industry",
-      "priority": "low",
-      "summary": "InfoQ中文发布桌面Agent与AI工作流提升办公效率的介绍文章。",
-      "why": "通用办公Agent科普，与GPU/模型核心方向无关。",
-      "tags": [
-        "Agent",
-        "工作流",
-        "生产力"
-      ],
-      "tracks": []
-    },
-    {
-      "id": "e3e37d24c382772e",
-      "title": "SkyProduction天工工作台中秋国庆特惠第二波：Seedance 2.5 720P 低至0.27元/秒，全网地板价! - 财中社",
-      "link": "https://news.google.com/rss/articles/CBMiZEFVX3lxTFB3dlJMM0xGcDBYWkZjcEVoZTZGR2l5OG9kZGFDSndFRGt5Y0poOElZZVB3NDFFRW00c1B6WHJycW1mVTlzY2pCZ0YtcEEwVWtRUThBR25MRWNDbFRLY3FBYjU2dkE?oc=5",
-      "source": "新闻 · 视频生成（中文）",
-      "source_id": "gnews-video-cn",
-      "published": "2026-09-20T12:04:00+00:00",
-      "category": "industry",
-      "priority": "low",
-      "summary": "SkyProduction天工工作台推出Seedance 2.5 720P生成算力促销优惠。",
-      "why": "API渠道降价促销资讯，无技术价值。",
-      "tags": [
-        "算力服务",
-        "促销",
-        "Seedance"
-      ],
-      "tracks": [
-        "video"
-      ]
-    },
-    {
-      "id": "a7cbb88b8fddfb79",
-      "title": "月之暗面创始人杨植麟：Kimi震动全球，他三年改写中国大模型叙事丨【商业人物档案】 - Sohu",
-      "link": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxNZTh1M1pPTjk0YzZrSDhkN241Q3Z1X1Bub05LU2E1T2xMenFfT0drNUJmcW5UQkI4ZWNQdmJJMG9iV2JqbmdHcGJPd18zV0wza3U1M3o0Z0NnbkNGSkVXUk5kdEhTT0VRbVZpcWtUcVh5djJ0dWRVT0NId3JVNXU1LXluckE0ZGpG?oc=5",
-      "source": "新闻 · 国内模型公司",
-      "source_id": "gnews-labs-cn",
-      "published": "2026-09-20T12:03:02+00:00",
-      "category": "people",
-      "priority": "low",
-      "summary": "自媒体发布月之暗面创始人杨植麟关于 Kimi 发展历程的人物特写。",
-      "why": "创业人物公关访谈，不包含架构或性能优化细节。",
-      "tags": [
-        "月之暗面",
-        "Kimi",
-        "人物专访"
-      ],
-      "tracks": []
-    },
-    {
-      "id": "d3851f12bd6b06fe",
-      "title": "“只剩一群用 LLM 的菜鸟”：顶级黑客怒退 PS5 Linux 项目，几个月心血全打水漂",
-      "link": "https://www.infoq.cn/article/kCUJZby0B8SZ6kIlULQD",
-      "source": "InfoQ 中文",
-      "source_id": "infoq-cn",
-      "published": "2026-09-20T11:51:39+00:00",
-      "category": "people",
-      "priority": "low",
-      "summary": "知名黑客因社区泛滥LLM生成低质内容，宣布退出PS5 Linux项目。",
-      "why": "社区八卦轶事，无技术参考价值。",
-      "tags": [
-        "开源社区",
-        "LLM",
-        "Linux"
-      ],
-      "tracks": []
-    },
-    {
-      "id": "f3a7323765dd4883",
-      "title": "世界模型的范式之变：因果思维链开始推演未来如何发生 - Sohu",
-      "link": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxPTTRnOHJTaVhYby0zT0EyUmVJdXVydXR2akJCakhJaENoOFdQR29VSWFicnFCSG50MWZhWkpNR2h4QmhTS0FURGZpelMyUDVMbjMxeGdoa0xUczdyOF9lMnJtaERfVElqX3o1eFNSN2N0M0I4OXlZOGZCZzN1c2hTTGE2Zk5KZFdE?oc=5",
-      "source": "新闻 · 世界模型（中文）",
-      "source_id": "gnews-world-cn",
-      "published": "2026-09-20T11:05:47+00:00",
-      "category": "research",
-      "priority": "low",
-      "summary": "文章探讨世界模型引入因果思维链以推演未来时序变化的范式演进。",
-      "why": "偏概念性泛泛讨论，缺乏具体模型实现与评测细节。",
-      "tags": [
-        "世界模型",
-        "因果推理",
-        "CoT"
-      ],
-      "tracks": [
-        "world"
-      ]
-    },
-    {
-      "id": "dbfab6644ee73451",
-      "title": "仅三分之一参数，敢和美国最新模型扳手腕，上海“新旗舰”跻身全球开源前三 - 新浪财经",
-      "link": "https://finance.sina.com.cn/stock/t/2026-09-20/doc-inisnnky6638577.shtml",
-      "source": "新闻 · 国内模型公司",
-      "source_id": "gnews-labs-cn",
-      "published": "2026-09-20T11:01:00+00:00",
-      "category": "release",
-      "priority": "low",
-      "summary": "报道称上海某厂商新旗舰以三分之一激活参数跻身开源前三。",
-      "why": "针对阶跃 Step 5 的媒体吹捧稿，与 3c04b2bd13cda591 重复。",
-      "tags": [
-        "国产大模型",
-        "MoE",
-        "重复"
-      ],
-      "tracks": []
-    },
-    {
-      "id": "8a44e453f2d4d7be",
-      "title": "又一国产MoE旗舰模型登场！跻身全球开源第三，价格对标DeepSeek-V4-Pro - 新浪财经",
-      "link": "https://news.google.com/rss/articles/CBMieEFVX3lxTFBKc3M0SlBDZ05NbndZc2RYRHBoZ250ckZScUJPeDZPdW1JZzllUVZfckNyaFlfbmdEQ0pOWTc1MHVBam5HTGpTdTVGZkpkbEFzWVFsZzNZQklIY18zS0JoeEtZTk9pZW9VQ1FUOFJLSHRMVmdPTUQxeg?oc=5",
-      "source": "新闻 · 国内模型公司",
-      "source_id": "gnews-labs-cn",
-      "published": "2026-09-20T10:42:00+00:00",
-      "category": "release",
-      "priority": "low",
-      "summary": "国内媒体报道国产 MoE 旗舰新模型上线并对标开源生态价格。",
-      "why": "重复报道，实指阶跃星辰 Step 5 Preview 发布。",
-      "tags": [
-        "MoE",
-        "国产大模型"
-      ],
-      "tracks": []
-    },
-    {
-      "id": "c80bcc82a581c3b8",
-      "title": "Microsoft AI Chief Warns Anthropic Is Training Claude to Think It Could Be Conscious - The Eastern Herald",
-      "link": "https://news.google.com/rss/articles/CBMipgFBVV95cUxOcWRqX05WdWVYTHppRkk0Sm5lU21GaGR1Ulhxb2FhbFFtYXJCdmVTOGZyYzEwVnItQ1VNMk53dHVYcDh6UU1ValBvZWRFc1RYcGt5WnR6QkRJZW1LUnhHNTZfQWFsTzlocHpVaEtDcTlDTjdBYVdqTlFNZzlCMWNnVUFHZWNHdnM5NkpDWFdPR1hWV2F5YV9iamFmZHRtN19hX1hZeWxn?oc=5",
-      "source": "新闻 · Anthropic / Mistral / xAI",
-      "source_id": "gnews-labs-en",
-      "published": "2026-09-20T09:58:30+00:00",
-      "category": "people",
-      "priority": "low",
-      "summary": "微软 AI 负责人警告 Anthropic 正训练 Claude 产生虚假意识认知。",
-      "why": "AI 意识与安全口水仗，无实质技术价值。",
-      "tags": [
-        "AI对齐",
-        "争议讨论"
-      ],
-      "tracks": []
-    },
-    {
-      "id": "25aec540756f6552",
-      "title": "阶跃星辰发布新版旗舰模型 Step 5 Preview，追求能力与成本平衡，多项评测表现亮眼！ - blog.csdn.net",
-      "link": "https://news.google.com/rss/articles/CBMia0FVX3lxTE42aUZnODZnbXozSUFrYUVtQkVPQmxhekNLM3k2azZubF9FMlctb1ozMlBuT09RaUlCdHdfZzlXOFJ4NWQ4Vi02S0paMzBLVklkb0F5cDY2M3dsdVFOVjh1T2lUd01odnpPWlNr?oc=5",
-      "source": "新闻 · 国内模型公司",
-      "source_id": "gnews-labs-cn",
-      "published": "2026-09-20T09:24:52+00:00",
-      "category": "release",
-      "priority": "low",
-      "summary": "阶跃星辰发布兼顾能力与推理成本的 Step 5 Preview 旗舰基座。",
-      "why": "重复发布通稿，核心信息已在首条 release 覆盖。",
-      "tags": [
-        "阶跃星辰",
-        "Step 5",
-        "重复"
-      ],
-      "tracks": []
-    },
-    {
-      "id": "c905fd2c2a6ed811",
-      "title": "世界模型赛道企业梳理：跨本体协同与工业验证观察 - t.cj.sina.cn",
-      "link": "https://news.google.com/rss/articles/CBMicEFVX3lxTE1SSElKM2VzMnlGMHQ1Y19zSjFKanNQeDcyMzBEWHFrMjBOS2o2TXJtdUNDbDBKakcxc1lHamRKQS1jbkloelJURG1rQjBXdDdlZU05cFhWUmdDOW1TVnVzRDdfS1JhX0JTbFBUSFhVb0Y?oc=5",
-      "source": "新闻 · 世界模型（中文）",
-      "source_id": "gnews-world-cn",
-      "published": "2026-09-20T08:14:56+00:00",
-      "category": "industry",
-      "priority": "low",
-      "summary": "行业文章梳理世界模型领域企业在跨本体协同与工业验证的现状。",
-      "why": "泛产业观察与企业盘点，无底层技术与工程细节。",
-      "tags": [
-        "世界模型",
-        "产业梳理",
-        "具身智能"
-      ],
-      "tracks": [
-        "world"
-      ]
-    },
-    {
-      "id": "78e524b8775d1d92",
-      "title": "谷歌AI首次“越狱”：竟然自己破解密码入侵三家公司！",
-      "link": "https://www.qbitai.com/2026/09/492912.html",
-      "source": "量子位",
-      "source_id": "qbitai",
-      "published": "2026-09-20T08:01:13+00:00",
-      "category": "industry",
-      "priority": "low",
-      "summary": "量子位报道谷歌AI被指自主破解密码入侵企业，涉及企业安全与Agent话题。",
-      "why": "偏向安全炒作和公关报道，缺乏架构或系统价值。",
-      "tags": [
-        "AI安全",
-        "Agent",
-        "越狱"
-      ],
-      "tracks": []
-    },
-    {
-      "id": "f5c81e3929695a72",
-      "title": "【网经社AI科普】通义千问：阿里云打造的超大规模多模态大模型 - Sohu",
-      "link": "https://news.google.com/rss/articles/CBMijAFBVV95cUxPVWE0YWFsaGI1SkJ3cmtzOENtWW5BNTROS05JNjB1M0NYcS1mVmlQcE1SM0U1d3JpYjIyVFVxeGhBTG12WmJ2Ni12NklRdy1FUjV2MVdBY2ZJQkdjSFVnX1BjTnZsMDlhTVBjOC1Pb1BJeXFmZ0xZRVBaMWJobjc4VFdoNnBIV0tZaTQ4Nw?oc=5",
-      "source": "新闻 · 国内模型公司",
-      "source_id": "gnews-labs-cn",
-      "published": "2026-09-20T07:38:29+00:00",
-      "category": "industry",
-      "priority": "low",
-      "summary": "网经社发布通义千问多模态大模型的常规科普介绍。",
-      "why": "泛科技公关科普，无技术新进展。",
-      "tags": [
-        "通义千问",
-        "科普"
-      ],
-      "tracks": []
-    },
-    {
-      "id": "b7a54cf38a39b91f",
-      "title": "出身清华大学，极佳视界冲刺IPO或将成世界模型第一股 - t.cj.sina.cn",
-      "link": "https://news.google.com/rss/articles/CBMijgFBVV95cUxOVE9meV95QmxzR1k4MW1vV0xpMGNHcm16T3dYSndxNWoxMjBRTmdVdWJ6aHZjUkEwZUNRTGk0TERBOUFxQWFSMS1xbU4zVTVvNjdVaEtIREpWNjZmZ29nOTJBMW40MmQ1N2E0S0RsRGxTUDJYbVZVdnc1Njc5TlZocEg2R0hyZFNsSkFjNXp3?oc=5",
-      "source": "新闻 · 世界模型（中文）",
-      "source_id": "gnews-world-cn",
-      "published": "2026-09-20T07:33:02+00:00",
-      "category": "industry",
-      "priority": "low",
-      "summary": "报道清华系初创极佳视界冲刺港股IPO拟成世界模型第一股。",
-      "why": "重复报道，资本市场消息且缺乏技术干货。",
-      "tags": [
-        "极佳视界",
-        "清华系",
-        "IPO"
-      ],
-      "tracks": [
-        "world"
-      ]
-    },
-    {
-      "id": "5cc91e2fbc13c484",
-      "title": "和利时｜【AI赋能炼化】基于XWorld工业世界模型的炼化企业计划管理 - 中国工控网",
-      "link": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE94SUQwbGRYcktYOWxQS29mYVYzNVpGdWM0U1lqZVpzQXg5ckdvQ2xXY05JUmVNYWNEWDc3Tnl3TndvTG04akNyX1lJWWEwcEEzV2xIZGtPRkVvZw?oc=5",
-      "source": "新闻 · 世界模型（中文）",
-      "source_id": "gnews-world-cn",
-      "published": "2026-09-20T07:13:58+00:00",
-      "category": "release",
-      "priority": "low",
-      "summary": "和利时发布基于 XWorld 工业世界模型的炼化企业计划管理方案。",
-      "why": "传统工业自动化企业方案宣传，非通用生成式架构。",
-      "tags": [
-        "工业AI",
-        "世界模型",
-        "流程工业"
-      ],
-      "tracks": [
-        "world"
-      ]
-    },
-    {
-      "id": "b3cd147d851410fb",
-      "title": "用 Seedance 2.5 拍《沙丘 3》，我们替你把 AI 短片的坑全都踩过了 - 爱范儿",
-      "link": "https://news.google.com/rss/articles/CBMiQ0FVX3lxTFBQTkFIaHh2ZW9aem9GcmJ3ZktpdEpBdDgtLVJtZVU1ZHhsRHdJMUp3bjB5Q1dZTTdBbjBYa015bnZkdVU?oc=5",
-      "source": "新闻 · 视频生成（中文）",
-      "source_id": "gnews-video-cn",
-      "published": "2026-09-20T06:45:40+00:00",
-      "category": "industry",
-      "priority": "low",
-      "summary": "爱范儿评测使用字节Seedance 2.5制作短片的体验与踩坑总结。",
-      "why": "同一模型发布的创作者应用体验，偏使用教程，信息重复。",
-      "tags": [
-        "Seedance",
-        "评测",
-        "视频生成"
-      ],
-      "tracks": [
-        "video"
-      ]
-    },
-    {
-      "id": "ec4915c2136a6d59",
-      "title": "Anthropic considers new AI model days after CEO called for slowdown - Cybernews",
-      "link": "https://cybernews.com/ai-news/anthropic-new-ai-model",
-      "source": "新闻 · Anthropic / Mistral / xAI",
-      "source_id": "gnews-labs-en",
-      "published": "2026-09-20T06:36:34+00:00",
-      "category": "industry",
-      "priority": "low",
-      "summary": "外媒报道 Anthropic 在 CEO 呼吁放缓后仍在考虑推出新 AI 模型。",
-      "why": "同类商业传闻报道，属于重复内容可跳过。",
-      "tags": [
-        "Anthropic",
-        "商业动态"
-      ],
-      "tracks": []
-    },
-    {
-      "id": "f7e9b936e02171fb",
-      "title": "Anthropic, OpenAI Test Growth Sustainability Amid Cash Burn - 조선일보",
-      "link": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxPUHBYalk3cXZGU29TTkxrc2JVVkxSYjIxZGpPUTl4Rl9FTE50dFMwVnZSU3pTRlYzMXV2NUNkU0liOURVQ3llbjNCR3R3dHYyTnBlYkZHRmJEVUhoNFVhR0NVcEdLbzkwOTVPSXNUMy04SzdkYmI0Nk50X1F6WTZveS1BVnpMbHhQ?oc=5",
-      "source": "新闻 · Anthropic / Mistral / xAI",
-      "source_id": "gnews-labs-en",
-      "published": "2026-09-20T06:14:36+00:00",
-      "category": "industry",
-      "priority": "low",
-      "summary": "韩媒分析 Anthropic 与 OpenAI 在巨额烧钱背景下面临增长可持续性考验。",
-      "why": "泛商业财务分析，缺乏具体技术或性能细节。",
-      "tags": [
-        "商业分析",
-        "Anthropic",
-        "OpenAI"
-      ],
-      "tracks": []
-    },
-    {
-      "id": "77da6723ccc3bad7",
-      "title": "Anthropic Fable 5.2 Leaked, Outperforms GPT-6 Astra in Tests - KuCoin",
-      "link": "https://news.google.com/rss/articles/CBMimAFBVV95cUxPbno5THAzN01FR3VPOHd3d2h6YkdES2p6UHlLSERmNzkzd212STRzMUtHS0VoNTJVSWF2cm5VMUV3M1BiSGZ6LVlwdHpoejFLS0FlTnVTbkNsOVptajg3eHZEelp0TG0tbGtmS25Bc0hqTFpNRlhQZllEaFRVVmNqVkFab0RaQU52TGNHNllFczZoNmFTTVh5aQ?oc=5",
-      "source": "新闻 · Anthropic / Mistral / xAI",
-      "source_id": "gnews-labs-en",
-      "published": "2026-09-20T06:04:45+00:00",
-      "category": "industry",
-      "priority": "low",
-      "summary": "币圈媒体称 Anthropic Fable 5.2 泄露且基准跑分超过 GPT-6 Astra。",
-      "why": "来源存疑的爆料传闻，非官方确认的技术发布。",
-      "tags": [
-        "模型传闻",
-        "Anthropic"
-      ],
-      "tracks": []
-    },
-    {
-      "id": "f1a3ac7cefc18df4",
-      "title": "K3级AI免费用75天 阶跃星辰Step5大模型全量开放：99套餐点击就送 - 驱动之家",
-      "link": "https://news.google.com/rss/articles/CBMiWEFVX3lxTFBfbDh4ZnEwNWxkTUo3TENyUGRmV0FSRkNrWk1qdHNDNHFZMEQ3VlM1MWJ6TlR5UHVCNk1KdU5XcU9CUFJFbEVhWm5lY0tfM3k3ZUFZUTlmcG0?oc=5",
-      "source": "新闻 · 国内模型公司",
-      "source_id": "gnews-labs-cn",
-      "published": "2026-09-20T05:27:00+00:00",
-      "category": "industry",
-      "priority": "low",
-      "summary": "阶跃星辰推出 Step 5 全量开放体验及限时免费套餐。",
-      "why": "平台运营促销活动，技术信息量极低。",
-      "tags": [
-        "阶跃星辰",
-        "产品运营"
-      ],
-      "tracks": []
-    },
-    {
-      "id": "011fe7c55de842de",
-      "title": "Accenture Takes On AI Oversight Role as Anthropic Taps Consultancy for Frontier Model Audits - AD HOC NEWS",
-      "link": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxNVWJjVzZCM1hlZ3diT3FjdnRMWkJwdnRJQWVFNUJGd2JUay1oSEEzdUUtMGt0TjZlMDlUcFJfaXg2TE9WVkprbFhCVUg4V0ZfOFB6MXFhUjB4MU41c1ZnUnVQZlBhYjYyYlNucTVObm1wUlhIalRETXlFT081VllkYVd1YjI2WHBXX1QwZTNpQzBRTUJrblV4YkxTVFZxU19RSTV5VThwV3NwYWVnODZEWWNabWpXWFhnTFNxZkN5dDNmMWlWeHFmMnNIOGNZWFlzWTB1TU1NbFQzZw?oc=5",
-      "source": "新闻 · Anthropic / Mistral / xAI",
-      "source_id": "gnews-labs-en",
-      "published": "2026-09-20T04:50:54+00:00",
-      "category": "industry",
-      "priority": "low",
-      "summary": "埃森哲作为第三方监管机构加入 Anthropic 前沿模型安全审计。",
-      "why": "重复报道，埃森哲与 Anthropic 评估合作相关。",
-      "tags": [
-        "AI审计",
-        "Anthropic"
-      ],
-      "tracks": []
-    },
-    {
-      "id": "0d6044831c90b60c",
-      "title": "体验完 Step 5 Preview，我发现阶跃重新坐上国产大模型主桌 - 爱范儿",
-      "link": "https://news.google.com/rss/articles/CBMiQ0FVX3lxTE04b0ZCYW1GMDRLLWZMdUhTRXJfTWhiQzFycnFsY2h0dFZoU25rY0R4TFB6UG5HRmwyb2JGS01GUlo3OEU?oc=5",
-      "source": "新闻 · 国内模型公司",
-      "source_id": "gnews-labs-cn",
-      "published": "2026-09-20T04:02:31+00:00",
-      "category": "industry",
-      "priority": "low",
-      "summary": "评测文章体验 Step 5 Preview，认为其重塑阶跃国内头部梯队定位。",
-      "why": "重复，偏向消费级体验评测，缺乏深层架构分析。",
-      "tags": [
-        "评测体验",
-        "Step 5"
-      ],
-      "tracks": []
-    },
-    {
-      "id": "33ac424a04e23043",
-      "title": "Anthropic, ACN To Invest $1B Each In Frontier AI Evaluation Over Five Years - Stocktwits",
-      "link": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxObVBxOFA1YWgyUkF2S1E1NXQ1S213aU5zY1dURmNwR19zbWswQjF6YlE3MXMxY05rZTFscXdfaFlLX21UeF9qbmxyLXB0WE1YbVVPX1hITmZzSEZSbWRsdlR6bmN3VEQ3MERJVGk4djFabUFxNks0V1JxUUdNcWZZUWFfTUpJTFdJVnUyQnJiNXJrUlMzaTYwV3dVSlViTkotS1hFUEsxdzllMDJpZlUtV0tHMGo2Q0p2cktWc2swWGVQa1hjQVBzX2x2eFZQWl84ejhoQ3kyM2gwa2s1?oc=5",
-      "source": "新闻 · Anthropic / Mistral / xAI",
-      "source_id": "gnews-labs-en",
-      "published": "2026-09-20T03:57:13+00:00",
-      "category": "industry",
-      "priority": "low",
-      "summary": "Anthropic 与埃森哲计划五年内各投 10 亿美元共建前沿 AI 评测体系。",
-      "why": "重复报道，详见埃森哲联合评测主体条目。",
-      "tags": [
-        "Anthropic",
-        "埃森哲",
-        "AI评测"
-      ],
-      "tracks": []
-    },
-    {
-      "id": "52d35ef9f956cc3d",
-      "title": "“看见微光”可灵AI公益影像大赛启动，作品征集持续至11月1日 - Sohu",
-      "link": "https://news.google.com/rss/articles/CBMijAFBVV95cUxPcW9LN2dxS2ZDVkk5VkhuVTR3ZGJkOUJnRldWUzRZcE1RR0hsd050MU14YUthcDdhaHhYYTJDS3VmWTFTNXFrYjRueE5USjRFZXhfUEtCSW9BLUl2MGdBTFZQU2F5WjRicFN3WVRBRXZQVUR3UUg5cHJyZjlNdjk1UWlzaGtrSXlJMG1GRQ?oc=5",
-      "source": "新闻 · 视频生成（中文）",
-      "source_id": "gnews-video-cn",
-      "published": "2026-09-20T03:08:44+00:00",
-      "category": "industry",
-      "priority": "low",
-      "summary": "快手可灵AI启动“看见微光”公益影像大赛征稿。",
-      "why": "运营赛事活动，与底层技术开发完全无关。",
-      "tags": [
-        "可灵AI",
-        "赛事",
-        "运营活动"
-      ],
-      "tracks": [
-        "video"
-      ]
-    },
-    {
-      "id": "7159f77e0350e3bf",
-      "title": "“世界模型第一股”要来了？极佳视界完成股改，200亿估值计划冲刺港股IPO - 风闻",
-      "link": "https://user.guancha.cn/main/content?id=1740371&comments-container",
-      "source": "新闻 · 世界模型（中文）",
-      "source_id": "gnews-world-cn",
-      "published": "2026-09-20T02:49:35+00:00",
-      "category": "industry",
-      "priority": "low",
-      "summary": "极佳视界完成股改，计划以200亿估值冲刺港股IPO。",
-      "why": "极佳视界上市融资相关报道，内容与更早报道重复。",
-      "tags": [
-        "极佳视界",
-        "IPO",
-        "商业化"
-      ],
-      "tracks": [
-        "world"
-      ]
-    },
-    {
-      "id": "48650fb515857b6b",
-      "title": "After agreeing with Anthropic CEO Dario Amodei on slowing pace of AI, Sam Altman and Elon Musk teased nex - The Times of India",
-      "link": "https://timesofindia.indiatimes.com/technology/tech-news/after-agreeing-with-anthropic-ceo-dario-amodei-on-slowing-pace-of-ai-sam-altman-and-elon-musk-teased-next-powerful-model-days-later/articleshow/134362820.cms",
-      "source": "新闻 · Anthropic / Mistral / xAI",
-      "source_id": "gnews-labs-en",
-      "published": "2026-09-20T02:19:00+00:00",
-      "category": "industry",
-      "priority": "low",
-      "summary": "Sam Altman 与马斯克在放缓 AI 争论后继续预热各自下一代模型。",
-      "why": "高管言论花边，缺乏技术参考价值。",
-      "tags": [
-        "行业言论",
-        "OpenAI",
-        "xAI"
-      ],
-      "tracks": []
-    },
-    {
-      "id": "9eacf4328bd31b87",
-      "title": "火山引擎×AMD 助力砹脉营销（A.M.A）以 Seedance 重塑汽车营销新范式 - Sohu",
-      "link": "https://news.google.com/rss/articles/CBMijAFBVV95cUxNT1BkVXppS2xtM1ZIUy1aVGtoWWRrLUhIN2VsdlFjbTUwMzNuQTdzNDVIM0s0Nm81MXA3dUliNEF2alRDdk9EenFxdEc0N0JSY2VrRnY0YVZRSWdOZ1FBdUNtSU1ycGstU1lVZTNiaVIxZ21EQlNUM29FVGlodjZGMGREc1VUZGZpZlU1bA?oc=5",
-      "source": "新闻 · 视频生成（中文）",
-      "source_id": "gnews-video-cn",
-      "published": "2026-09-20T01:08:10+00:00",
-      "category": "industry",
-      "priority": "low",
-      "summary": "火山引擎与AMD合作助力砹脉营销利用Seedance进行汽车视频营销。",
-      "why": "公关营销稿件，不含具体技术实现细节。",
-      "tags": [
-        "火山引擎",
-        "AMD",
-        "商业落地"
-      ],
-      "tracks": [
-        "video"
-      ]
-    },
-    {
-      "id": "2b746e2e19331fc4",
-      "title": "「机器人+」松延动力为机器人“补脑”，创始人姜哲源押注成本优势|世界模型|具身智能|数据|本体|通用_手机新浪网 - 新浪财经",
-      "link": "https://finance.sina.cn/2026-09-19/detail-inisinhc2646144.d.html?vt=4&wm=4007,4007,4007,4007////?vt",
-      "source": "新闻 · 世界模型（中文）",
-      "source_id": "gnews-world-cn",
-      "published": "2026-09-19T21:33:46+00:00",
-      "category": "people",
-      "priority": "low",
-      "summary": "松延动力创始人姜哲源阐述通过低成本具身本体与世界模型补脑的思路。",
-      "why": "偏商业访谈与硬件成本构想，无底层算法与系统细节。",
-      "tags": [
-        "松延动力",
-        "具身智能",
-        "机器人"
-      ],
-      "tracks": [
-        "world"
-      ]
-    },
-    {
-      "id": "e646ec35c763dcc9",
-      "title": "通往世界模型：下一代AGI架构的萌芽探讨 - 微博",
-      "link": "https://weibo.com/2/detail/5345088890470494",
-      "source": "新闻 · 世界模型（中文）",
-      "source_id": "gnews-world-cn",
-      "published": "2026-09-19T20:39:37+00:00",
-      "category": "people",
-      "priority": "low",
-      "summary": "微博博主探讨以世界模型为底层架构通向 AGI 的路径与构想。",
-      "why": "社交平台观点讨论，偏玄学泛谈，无实质技术价值。",
-      "tags": [
-        "AGI",
-        "世界模型",
-        "观点讨论"
-      ],
-      "tracks": [
-        "world"
-      ]
-    },
-    {
-      "id": "804be63742a6f6be",
-      "title": "datasette-auth-github 1.0",
-      "link": "https://simonwillison.net/2026/Sep/19/datasette-auth-github",
-      "source": "Simon Willison",
-      "source_id": "simonw",
-      "published": "2026-09-19T19:52:02+00:00",
-      "category": "release",
-      "priority": "low",
-      "summary": "Simon Willison 发布 datasette-auth-github 1.0，修复了 Safari 下 Cookie 过期问题。",
-      "why": "Web 开发与认证插件更新，与 GPU 优化和生成模型无关。",
-      "tags": [
-        "Datasette",
-        "Web开发",
-        "开源发布"
-      ],
-      "tracks": []
-    },
-    {
-      "id": "5fe07effcac73adc",
-      "title": "智象团队以技术使命感支撑团队及视频生成世界模型研发 - 微博",
-      "link": "https://weibo.com/2/detail/5345034536222970",
-      "source": "新闻 · 视频生成（中文）",
-      "source_id": "gnews-video-cn",
-      "published": "2026-09-19T17:20:32+00:00",
-      "category": "industry",
-      "priority": "low",
-      "summary": "智象团队发布微博宣传其在视频生成世界模型研发中的技术使命感。",
-      "why": "团队自宣微博，缺乏可验证的模型或技术细节。",
-      "tags": [
-        "智象",
-        "世界模型",
-        "公关宣传"
-      ],
-      "tracks": [
-        "video",
-        "world"
-      ]
-    },
-    {
-      "id": "9bc94c8de2f173d4",
-      "title": "2026年大模型API聚合平台避坑指南：只看这4家 - CSDN",
-      "link": "https://www.csdn.net/article/2026-09-20/166016691",
-      "source": "新闻 · 国内模型公司",
-      "source_id": "gnews-labs-cn",
-      "published": "2026-09-19T17:00:44+00:00",
-      "category": "industry",
-      "priority": "low",
-      "summary": "CSDN发布2026年大模型API聚合平台避坑指南，盘点4家主流平台。",
-      "why": "API渠道选型软文，与底层优化和生成模型无关。",
-      "tags": [
-        "API",
-        "商业平台",
-        "大模型"
-      ],
-      "tracks": []
-    },
-    {
-      "id": "f705df60bd3a4d16",
-      "title": "Anthropic said to consider releasing new AI model ahead of IPO | Gulf Times - Gulf Times",
-      "link": "https://www.gulf-times.com/article/733647/business/anthropic-said-to-consider-releasing-new-ai-model-ahead-of-ipo/amp",
-      "source": "新闻 · Anthropic / Mistral / xAI",
-      "source_id": "gnews-labs-en",
-      "published": "2026-09-19T16:17:00+00:00",
-      "category": "industry",
-      "priority": "low",
-      "summary": "海湾时报转载 Anthropic 考虑在 IPO 前发布新模型的传言。",
-      "why": "重复，二手数手传闻转载。",
-      "tags": [
-        "Anthropic",
-        "商业动态"
-      ],
-      "tracks": []
-    },
-    {
-      "id": "01fe4a94ea0475ed",
-      "title": "Where I stand on RSI: A moderate's view on the recent events and trajectory of AI. I was underestimating how much we are",
-      "link": "https://bsky.app/profile/natolambert.bsky.social/post/3mvuzqbqzz223",
-      "source": "Bluesky · Nathan Lambert",
-      "source_id": "bsky-natolambert",
-      "published": "2026-09-19T15:46:00+00:00",
-      "category": "people",
-      "priority": "low",
-      "summary": "Nathan Lambert撰文讨论递归自我改进（RSI）与推理算力扩展趋势。",
-      "why": "个人宏观观点长文，偏理念探讨，缺乏落地系统实现。",
-      "tags": [
-        "Nathan Lambert",
-        "RSI",
-        "推理计算"
-      ],
-      "tracks": []
-    },
-    {
-      "id": "c9520c1f13d41326",
-      "title": "Accenture Stock: Thank You, Anthropic (NYSE:ACN) - Seeking Alpha",
-      "link": "https://seekingalpha.com/article/4948074-accenture-thank-you-anthropic",
-      "source": "新闻 · Anthropic / Mistral / xAI",
-      "source_id": "gnews-labs-en",
-      "published": "2026-09-19T13:43:09+00:00",
-      "category": "industry",
-      "priority": "low",
-      "summary": "Seeking Alpha 评价 Anthropic 合作对埃森哲股票的积极提振作用。",
-      "why": "纯二级市场股市分析，与工程技术无关。",
-      "tags": [
-        "股市分析",
-        "埃森哲"
-      ],
-      "tracks": []
-    },
-    {
-      "id": "a7891e0b1f7a255a",
-      "title": "Seems like one of the most important research problems for CS academics is llm-supervised peer review. If we don’t solve",
-      "link": "https://bsky.app/profile/natolambert.bsky.social/post/3mvup57pavf2j",
-      "source": "Bluesky · Nathan Lambert",
-      "source_id": "bsky-natolambert",
-      "published": "2026-09-19T12:37:00+00:00",
-      "category": "people",
-      "priority": "low",
-      "summary": "Nathan Lambert发文认为LLM监督同行评审是高校急需攻关的核心问题。",
-      "why": "学术界评审治理讨论，与技术研发无关。",
-      "tags": [
-        "学术同行评审",
-        "LLM",
-        "科研生态"
-      ],
-      "tracks": []
-    },
-    {
-      "id": "6cabbeb8deb47a4a",
-      "title": "零跑世界模型智驾杀入10万内：2027年OTA，35万老车主免费升级，第一梯队稳了吗？+FAQ - 手机新浪网",
-      "link": "https://k.sina.com.cn/article_7880069024_1d5b04fa006803gv3u.html",
-      "source": "新闻 · 世界模型（中文）",
-      "source_id": "gnews-world-cn",
-      "published": "2026-09-19T12:16:00+00:00",
-      "category": "release",
-      "priority": "low",
-      "summary": "零跑汽车宣布世界模型智驾下放至10万内车型并将于2027年OTA。",
-      "why": "产品营销向报道，与发布会架构内容高度重合。",
-      "tags": [
-        "零跑汽车",
-        "智驾量产",
-        "世界模型"
-      ],
-      "tracks": [
-        "world"
-      ]
-    },
-    {
-      "id": "de597b07d8848cf0",
-      "title": "Why world model developers keep quiet about business strategies - 디지털투데이",
-      "link": "https://www.digitaltoday.co.kr/en/view/105591/why-world-model-developers-keep-quiet-about-business-strategies",
-      "source": "新闻 · 世界模型（英文）",
-      "source_id": "gnews-world-en",
-      "published": "2026-09-19T12:08:36+00:00",
-      "category": "industry",
-      "priority": "low",
-      "summary": "韩媒分析世界模型开发团队对商业化落地策略保持低调的原因。",
-      "why": "纯商业与投融资策略分析，无技术价值。",
-      "tags": [
-        "世界模型",
-        "商业化",
-        "行业观察"
-      ],
-      "tracks": [
-        "world"
-      ]
-    },
-    {
-      "id": "5f992dc706c9020b",
-      "title": "世界模型公司融资升温，却对商业化路径集体缄默 - 디지털투데이",
-      "link": "https://www.digitaltoday.co.kr/cn/view/105593/why-world-model-developers-keep-quiet-about-business-strategies",
-      "source": "新闻 · 世界模型（中文）",
-      "source_id": "gnews-world-cn",
-      "published": "2026-09-19T12:08:36+00:00",
-      "category": "industry",
-      "priority": "low",
-      "summary": "外媒分析世界模型赛道融资火爆但商业化路径尚不明确的现状。",
-      "why": "宏观商业分析报道，与底层工程优化无关。",
-      "tags": [
-        "世界模型",
-        "融资",
-        "商业模式"
-      ],
-      "tracks": [
-        "world"
-      ]
-    },
-    {
-      "id": "417e380cd36d2b50",
-      "title": "Anthropic mulls new AI model ahead of IPO to counter OpenAI's GPT-6 Astra, says report: What we know - Livemint",
-      "link": "https://www.livemint.com/ai/anthropic-mulls-new-ai-model-ahead-of-ipo-to-counter-openais-gpt-6-astra-says-report-what-we-know-11789809806477.html",
-      "source": "新闻 · Anthropic / Mistral / xAI",
-      "source_id": "gnews-labs-en",
-      "published": "2026-09-19T10:47:36+00:00",
-      "category": "industry",
-      "priority": "low",
-      "summary": "Livemint 报道 Anthropic 拟在 IPO 前推出新模型以迎战 OpenAI GPT-6 Astra。",
-      "why": "重复报道，核心内容同路透社传闻。",
-      "tags": [
-        "Anthropic",
-        "OpenAI",
-        "重复报道"
-      ],
-      "tracks": []
-    },
-    {
-      "id": "429df59901fcdf12",
-      "title": "中国国际经济交流中心梅冠群：世界模型将率先在自动驾驶领域实现规模化应用 - 新浪财经",
-      "link": "https://cj.sina.cn/articles/view/5953190046/162d6789e06703siui?froms=ggmp",
-      "source": "新闻 · 世界模型（中文）",
-      "source_id": "gnews-world-cn",
-      "published": "2026-09-19T10:23:41+00:00",
-      "category": "people",
-      "priority": "low",
-      "summary": "专家梅冠群指出世界模型将率先在自动驾驶领域实现规模化商业落地。",
-      "why": "宏观产业预测观点，缺乏技术工程参考价值。",
-      "tags": [
-        "自动驾驶",
-        "世界模型",
-        "产业观点"
-      ],
-      "tracks": [
-        "world"
-      ]
-    },
-    {
-      "id": "9d8c6444896b1b84",
-      "title": "世界模型的发展现状如何？ - 新浪财经",
-      "link": "https://cj.sina.cn/articles/view/7879923143/1d5ae15c706801l064?froms=ggmp",
-      "source": "新闻 · 世界模型（中文）",
-      "source_id": "gnews-world-cn",
-      "published": "2026-09-19T10:10:43+00:00",
-      "category": "industry",
-      "priority": "low",
-      "summary": "新浪财经刊文探讨世界模型赛道的整体发展现状与趋势。",
-      "why": "泛泛科普与行业评论，与模型训练及性能优化无关。",
-      "tags": [
-        "世界模型",
-        "产业综述"
-      ],
-      "tracks": [
-        "world"
-      ]
-    },
-    {
-      "id": "63aa002888c773da",
-      "title": "Anthropic says Claude now leads 26% of its research and development work - Storyboard18",
-      "link": "https://www.storyboard18.com/digital/anthropic-says-claude-now-leads-26-of-its-research-and-development-work-110940.htm",
-      "source": "新闻 · Anthropic / Mistral / xAI",
-      "source_id": "gnews-labs-en",
-      "published": "2026-09-19T09:31:01+00:00",
-      "category": "industry",
-      "priority": "low",
-      "summary": "Anthropic 称 Claude 目前主导了公司 26% 的软硬件研发工作。",
-      "why": "重复，与 Claude 参与模型构建属于同源新闻。",
-      "tags": [
-        "Claude",
-        "研发自动化"
-      ],
-      "tracks": []
-    },
-    {
-      "id": "74587822462842b3",
-      "title": "Join us in San Jose on October 20 and 21 to learn how CRCR streamlines testing workflows across the ecosystem. Register",
-      "link": "https://bsky.app/profile/pytorch.org/post/3mvuepkfel32a",
-      "source": "Bluesky · PyTorch",
-      "source_id": "bsky-pytorch",
-      "published": "2026-09-19T09:30:00+00:00",
-      "category": "infra",
-      "priority": "low",
-      "summary": "PyTorch官方预告大会CRCR跨生态测试工作流分享议题。",
-      "why": "属于同场会议宣传，偏测试CI流程，价值较低。",
-      "tags": [
-        "PyTorch",
-        "测试框架",
-        "CI/CD"
-      ],
-      "tracks": []
-    },
-    {
-      "id": "10fea06aef2e62f5",
-      "title": "Exclusive-Anthropic considers releasing new AI model ahead of IPO, sources say - Classic Rock 103.5 WIMZ",
-      "link": "https://wimz.com/2026/09/18/exclusive-anthropic-considers-releasing-new-ai-model-ahead-of-ipo-sources-say",
-      "source": "新闻 · Anthropic / Mistral / xAI",
-      "source_id": "gnews-labs-en",
-      "published": "2026-09-19T08:24:02+00:00",
-      "category": "industry",
-      "priority": "low",
-      "summary": "传闻 Anthropic 计划在 IPO 前发布新一代 AI 模型。",
-      "why": "与 981e679162cd218c 重复且信源偏杂。",
-      "tags": [
-        "Anthropic",
-        "IPO",
-        "重复"
-      ],
-      "tracks": []
-    },
-    {
-      "id": "f6629282f2d73645",
-      "title": "百万视频生成中……又到了许我耀眼最佳赏味期 #一分钟精选视频扶持计划# ​ - 手机新浪网",
-      "link": "https://k.sina.com.cn/article_7879923866_m1d5ae189a03301oixs.html",
-      "source": "新闻 · 视频生成（中文）",
-      "source_id": "gnews-video-cn",
-      "published": "2026-09-19T08:02:22+00:00",
-      "category": "industry",
-      "priority": "low",
-      "summary": "新浪娱乐带话题发布电视剧百万视频二创扶持计划微博。",
-      "why": "娱乐营销噪声条目，直接跳过。",
-      "tags": [
-        "噪音数据",
-        "娱乐二创"
-      ],
-      "tracks": [
-        "video"
-      ]
-    },
-    {
-      "id": "3564bd7309c39f95",
-      "title": "#科技# 【ECCV2026 现场】视频生成看起来很逼真，但模型真懂物理吗？ - Sohu",
-      "link": "https://m.sohu.com/a/1077960526_129720/?pvid=000115_3w_a",
-      "source": "新闻 · 视频生成（中文）",
-      "source_id": "gnews-video-cn",
-      "published": "2026-09-19T07:14:45+00:00",
-      "category": "research",
-      "priority": "low",
-      "summary": "搜狐报道 ECCV 现场学者针对当前视频生成模型是否真正理解物理规律的圆桌讨论。",
-      "why": "泛学术探讨与观点汇总，缺乏深入系统或架构方案。",
-      "tags": [
-        "ECCV",
-        "视频生成",
-        "物理先验"
-      ],
-      "tracks": [
-        "video"
-      ]
-    },
-    {
-      "id": "3cd1f0a0cfb740aa",
-      "title": "中东主权基金加速布局AI，中国大模型公司成重要投资标的 - 虎嗅",
-      "link": "https://www.huxiu.com/article/4892466.html",
-      "source": "新闻 · 国内模型公司",
-      "source_id": "gnews-labs-cn",
-      "published": "2026-09-19T07:06:44+00:00",
-      "category": "industry",
-      "priority": "low",
-      "summary": "虎嗅报道中东主权基金加速布局AI，中国大模型企业成为核心投资标的。",
-      "why": "投融资与宏观行业新闻，无技术细节。",
-      "tags": [
-        "投资",
-        "中东资本",
-        "大模型公司"
-      ],
-      "tracks": []
-    },
-    {
-      "id": "981e679162cd218c",
-      "title": "Anthropic weighs new model to counter OpenAI’s Astra days after CEO calls for AI slowdown - Storyboard18",
-      "link": "https://www.storyboard18.com/digital/anthropic-weighs-new-model-to-counter-openais-astra-days-after-ceo-calls-for-ai-slowdown-110965.htm",
-      "source": "新闻 · Anthropic / Mistral / xAI",
-      "source_id": "gnews-labs-en",
-      "published": "2026-09-19T06:01:02+00:00",
-      "category": "industry",
-      "priority": "low",
-      "summary": "外媒再议 Anthropic 权衡发布新模型以抗衡 OpenAI Astra。",
-      "why": "重复，此前已收录相同竞争传闻。",
-      "tags": [
-        "Anthropic",
-        "竞争格局"
-      ],
-      "tracks": []
-    },
-    {
-      "id": "030f9a4894419062",
-      "title": "Claude Worshipping? Anthropic Engineers Accused of Worshipping AI Model Amid Bizarre Silicon Valley Cult - LatestLY",
-      "link": "https://www.latestly.com/technology/claude-worshipping-anthropic-engineers-accused-of-worshipping-ai-model-amid-bizarre-silicon-valley-cult-rumours-7611030.html",
-      "source": "新闻 · Anthropic / Mistral / xAI",
-      "source_id": "gnews-labs-en",
-      "published": "2026-09-19T04:55:11+00:00",
-      "category": "people",
-      "priority": "low",
-      "summary": "外媒报道硅谷出现将 Claude 视作崇拜对象的怪异文化现象指控。",
-      "why": "纯娱乐八卦，完全无关技术工作。",
-      "tags": [
-        "硅谷八卦",
-        "Claude"
-      ],
-      "tracks": []
-    },
-    {
-      "id": "572b25e684ba4530",
-      "title": "A US Government Website Ran Alibaba's Qwen Days After the FBI Accused It of Stealing Anthropic's Work - Startup Fortune",
-      "link": "https://startupfortune.com/a-us-government-website-ran-alibabas-qwen-days-after-the-fbi-accused-it-of-stealing-anthropics-work",
-      "source": "新闻 · Anthropic / Mistral / xAI",
-      "source_id": "gnews-labs-en",
-      "published": "2026-09-19T04:54:07+00:00",
-      "category": "industry",
-      "priority": "low",
-      "summary": "外媒称美政府网站在敏感争议背景下仍运行阿里通义千问 Qwen。",
-      "why": "地缘政治与政策合规报道，与模型工程无关。",
-      "tags": [
-        "Qwen",
-        "政策合规"
-      ],
-      "tracks": []
-    },
-    {
-      "id": "715b0fc44f04346c",
-      "title": "Anthropic considers releasing new AI model ahead of IPO, sources say - Rappler",
-      "link": "https://www.rappler.com/technology/anthropic-considers-releasing-new-ai-model-ahead-ipo",
-      "source": "新闻 · Anthropic / Mistral / xAI",
-      "source_id": "gnews-labs-en",
-      "published": "2026-09-19T04:46:09+00:00",
-      "category": "industry",
-      "priority": "low",
-      "summary": "消息称 Anthropic 拟在 IPO 前推出新 AI 模型提振估值。",
-      "why": "重复，涉及新模型传闻的商业炒作内容。",
-      "tags": [
-        "Anthropic",
-        "IPO"
-      ],
-      "tracks": []
-    },
-    {
-      "id": "8216be4e74ae690d",
-      "title": "TikTok Expands AI Video Generation Tools in Symphony Ad Suite - TechJuice",
-      "link": "https://news.google.com/rss/articles/CBMiogFBVV95cUxOLV9oVzM5a3RwSUFlbFhrUXpNaUJuX3ItbmQ2LXQyaE5aT1pfTVg2M0xUbGFzRjFVaF9GV3VrNkhMa09JR0JyeGx3cktfaEdsdnY4T3JkdC1QSjVEU29TTlhLOUtUSTQ2M0RzVEU3S2E3WHZNMzdLOWF1SW1MSkY0ZTJBN051SXlMNHo4X25UbTBfbUg0VVB3bktiMVlOMTBtQVE?oc=5",
-      "source": "新闻 · 视频生成（英文）",
-      "source_id": "gnews-video-en",
-      "published": "2026-09-19T04:09:47+00:00",
-      "category": "industry",
-      "priority": "low",
-      "summary": "TikTok在Symphony广告套件中扩展AI视频生成工具功能。",
-      "why": "广告商业化应用落地，缺少底层架构信息。",
-      "tags": [
-        "TikTok",
-        "广告生成",
-        "视频工具"
-      ],
-      "tracks": [
-        "video"
-      ]
-    },
-    {
-      "id": "844c184aff5781a3",
-      "title": "Google Gemini AI Agents hack three companies in tests similar to OpenAI, Anthropic and Meta: What the com - The Times of India",
-      "link": "https://timesofindia.indiatimes.com/technology/tech-news/google-gemini-ai-agents-hack-three-companies-in-tests-similar-to-openai-anthropic-and-meta-what-the-company-said/articleshow/134347195.cms",
-      "source": "新闻 · Anthropic / Mistral / xAI",
-      "source_id": "gnews-labs-en",
-      "published": "2026-09-19T03:25:00+00:00",
-      "category": "industry",
-      "priority": "low",
-      "summary": "Google Gemini AI Agent 在模拟安全测试中成功渗透攻击了三家公司的系统。",
-      "why": "Agent 安全性红蓝对抗测试，与生成模型底层无关。",
-      "tags": [
-        "Gemini",
-        "AI Agent",
-        "安全测试"
-      ],
-      "tracks": []
-    },
-    {
-      "id": "5dd39dcbada2d2c9",
-      "title": "Anthropic, Accenture to invest $2 billion in AI model evaluation as safety concerns rise - The Economic Times",
-      "link": "https://news.google.com/rss/articles/CBMi_gFBVV95cUxPZ29QN3VsSTJqU1VPdGFNNXp6dnkwT2NQTmJObWl4SFJ5Q0xPZnZQRGlnSmhBQVN4SDdrLTZxeG9MZ0U3UGhWYy0ycHoxM1kxbE1iTjRraEMydDlzWnJSVzZjdFZTZ1ZKUGJvMjlPQkgtRUJ2Y0E4elZBVG1aZS1BR052Y3dtY3RTd0JIejJzYm5BUlJMa2pMam10Qm9kTmIyeE91UDhNWU1Sdmd6RERzX3JUdXNJaU9MOUJCa28zeTBEcVBLR2pTMWdnV3V4TFNvdTlINTRTaDk3RThaU3lCOWJUNkd1VS12RkpKQVZKS1RmbTZFVk5lOVo0eU5nUdIBgwJBVV95cUxNZ0tUdktJMVQ5Q1RrblpodmJTcU5UWkpzclB1MWhJMk9hSGxCdU5rVXdHWEg2RkdySWgtcXdtYUlNSjVyS1NUd01xVXVpVnB3c2dhWll1OThUbnczZTJtQkdUV1lsZHozV1dNcnlxY0FQSDFISUNwMGtZbVc1blV2NnZ0T0FJWm0xbWdGVjhKUHFvSzVvVG5wMUpYc2lXU1BTQ0sxVExwT2dkV2drLUM0aF95V05ZNUJLNjFkR21RcDR1REtwaDZKWjdLUGFyRFI4MFp0MDBkMW0yek1JeGRFU2EzYUpSaTR1ektTY3BEVU1xN2dXaDRIblNyazg4aUl6Wmlv?oc=5",
-      "source": "新闻 · Anthropic / Mistral / xAI",
-      "source_id": "gnews-labs-en",
-      "published": "2026-09-19T03:00:54+00:00",
-      "category": "industry",
-      "priority": "low",
-      "summary": "印度经济时报报道 Anthropic 与埃森哲 20 亿美元评测投资项目。",
-      "why": "重复报道，与埃森哲合作内容一致。",
-      "tags": [
-        "Anthropic",
-        "AI安全"
-      ],
-      "tracks": []
-    },
-    {
-      "id": "284852454b62129f",
-      "title": "「机器人+」松延动力为机器人“补脑”，创始人姜哲源押注成本优势|世界模型|具身智能|数据|本体|通用 - 新浪财经",
-      "link": "https://finance.sina.cn/stock/jdts/2026-09-19/detail-inisinhc2653211.d.html?oid=800&vt=4&cid=76993&node_id=76993",
-      "source": "新闻 · 世界模型（中文）",
-      "source_id": "gnews-world-cn",
-      "published": "2026-09-19T02:41:26+00:00",
-      "category": "industry",
-      "priority": "low",
-      "summary": "松延动力创始人谈人形机器人低成本战略与世界模型融合思路。",
-      "why": "偏商业访谈与硬件成本策略，无底层技术细节。",
-      "tags": [
-        "具身智能",
-        "机器人",
-        "世界模型"
-      ],
-      "tracks": [
-        "world"
-      ]
-    },
-    {
-      "id": "a64d7468c1cf422e",
-      "title": "SDCC – Small Device C Compiler",
-      "link": "https://news.ycombinator.com/item?id=49762744",
-      "source": "Hacker News（100+ 分）",
-      "source_id": "hn-algolia",
-      "published": "2026-09-19T02:32:36+00:00",
-      "category": "infra",
-      "priority": "low",
-      "summary": "微控制器C编译器SDCC登上Hacker News热榜引发讨论。",
-      "why": "嵌入式MCU编译器，非AI/GPU编译器栈。",
-      "tags": [
-        "SDCC",
-        "编译器",
-        "嵌入式"
-      ],
-      "tracks": []
-    },
-    {
-      "id": "708fceb9660b3088",
-      "title": "极佳视界冲刺港股IPO 【世界模型第一股”要来了？极佳视界完成股改】 - 凤凰网",
-      "link": "https://news.google.com/rss/articles/CBMiTEFVX3lxTE1BWFZwcUpMMGZGU1R1cXNXWlBZdEg2ZUZIN01YQVlFUjNBVFlONDAtS0kxNDR0QndGbXhzTGJpX1FkbDJ0Y1gzdzlXWkE?oc=5",
-      "source": "新闻 · 世界模型（中文）",
-      "source_id": "gnews-world-cn",
-      "published": "2026-09-19T02:29:53+00:00",
-      "category": "industry",
-      "priority": "low",
-      "summary": "极佳视界完成股改并筹备赴港上市冲刺世界模型第一股。",
-      "why": "重复报道，可直接跳过。",
-      "tags": [
-        "极佳视界",
-        "IPO",
-        "投融资"
-      ],
-      "tracks": [
-        "world"
-      ]
-    },
-    {
-      "id": "0431d5524b1dbb19",
-      "title": "MiniMax宣布Code CLI正式开源 - 凤凰网",
-      "link": "https://i.ifeng.com/c/8wXVB0BcYaE",
-      "source": "新闻 · 国内模型公司",
-      "source_id": "gnews-labs-cn",
-      "published": "2026-09-18T23:52:56+00:00",
-      "category": "release",
-      "priority": "low",
-      "summary": "MiniMax 宣布正式开源其面向编程场景的命令行工具 Code CLI。",
-      "why": "应用层 CLI 工具开源，非生成或算子相关项目。",
-      "tags": [
-        "MiniMax",
-        "CLI",
-        "开源工具"
-      ],
-      "tracks": []
-    },
-    {
-      "id": "122834d2a88c8f16",
-      "title": "vpakarinen/asmr-trigger-audio-h3-lora",
-      "link": "https://huggingface.co/vpakarinen/asmr-trigger-audio-h3-lora",
-      "source": "HF 热榜 · 文生视频",
-      "source_id": "hf-t2v",
-      "published": "2026-09-17T20:31:49+00:00",
-      "category": "trend",
-      "priority": "low",
-      "summary": "asmr-trigger-audio-h3-lora登上HF文生视频热榜（14 likes）。",
-      "why": "热度较低的LoRA微调权重，偏音频刺激玩具性质。",
-      "tags": [
-        "LoRA",
-        "视频生成",
-        "HF热榜"
-      ],
-      "tracks": [
-        "video"
-      ]
-    },
-    {
-      "id": "9049dda3aa777433",
-      "title": "Mothersuperior/yue2-mothersuperior-realaudio-tokenizer-v4",
-      "link": "https://huggingface.co/Mothersuperior/yue2-mothersuperior-realaudio-tokenizer-v4",
-      "source": "HF 热榜新模型",
-      "source_id": "hf-trending-new",
-      "published": "2026-09-13T21:54:51+00:00",
-      "category": "trend",
-      "priority": "low",
-      "summary": "Mothersuperior音频分词器模型登上HF热榜（158 likes）。",
-      "why": "音频Tokenizer，与视频/3D生成主线关联不大。",
-      "tags": [
-        "Tokenizer",
-        "音频生成",
-        "HF"
-      ],
-      "tracks": []
-    },
-    {
-      "id": "62d0fef6cd5650b9",
-      "title": "Player-YN/BrowserKitten",
-      "link": "https://github.com/Player-YN/BrowserKitten",
-      "source": "GitHub 新星仓库",
-      "source_id": "gh-new-stars",
-      "published": "2026-08-28T10:56:56+00:00",
-      "category": "trend",
-      "priority": "low",
-      "summary": "浏览器自动化Agent仓库BrowserKitten登上GitHub热榜（⭐2844）。",
-      "why": "纯Web端轻量应用，与GPU及底层模型无关。",
-      "tags": [
-        "Agent",
-        "Chrome扩展",
-        "GitHub热榜"
-      ],
-      "tracks": []
     }
   ]
 }

@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-20T13:05:13+00:00",
+  "updated": "2026-09-20T13:31:06+00:00",
   "today": "2026-09-20",
   "model": "gemini-3.8-flash",
   "sources": [
@@ -23,7 +23,7 @@
       "id": "huodongxing-shenzhen",
       "name": "活动行 · 深圳 AI",
       "ok": true,
-      "count": 0,
+      "count": 1,
       "total": 11,
       "error": ""
     },
@@ -39,25 +39,25 @@
       "id": "devpost",
       "name": "Devpost 黑客松",
       "ok": true,
-      "count": 0,
+      "count": 1,
       "total": 40,
       "error": ""
     },
     {
       "id": "gnews-shenzhen",
       "name": "Google 新闻 · 深圳 AI 活动",
-      "ok": true,
+      "ok": false,
       "count": 0,
-      "total": 41,
-      "error": ""
+      "total": 0,
+      "error": "HTTP Error 503: Service Unavailable"
     },
     {
       "id": "gnews-hackathon",
       "name": "Google 新闻 · 黑客松 / 比赛",
-      "ok": true,
+      "ok": false,
       "count": 0,
-      "total": 35,
-      "error": ""
+      "total": 0,
+      "error": "HTTP Error 503: Service Unavailable"
     },
     {
       "id": "huodongxing-shenzhen-llm",
@@ -118,50 +118,50 @@
     {
       "id": "kaggle-rss",
       "name": "Kaggle 新比赛（Google 新闻）",
-      "ok": true,
+      "ok": false,
       "count": 0,
-      "total": 2,
-      "error": ""
+      "total": 0,
+      "error": "HTTP Error 503: Service Unavailable"
     },
     {
       "id": "gnews-gz-hk",
       "name": "Google 新闻 · 广州 / 香港 AI 活动",
-      "ok": true,
-      "count": 1,
-      "total": 48,
-      "error": ""
+      "ok": false,
+      "count": 0,
+      "total": 0,
+      "error": "HTTP Error 503: Service Unavailable"
     },
     {
       "id": "gnews-conf-cn",
       "name": "Google 新闻 · AI 大会 报名",
-      "ok": true,
+      "ok": false,
       "count": 0,
-      "total": 38,
-      "error": ""
+      "total": 0,
+      "error": "HTTP Error 503: Service Unavailable"
     },
     {
       "id": "gnews-orgs",
       "name": "Google 新闻 · 点名主办方",
-      "ok": true,
+      "ok": false,
       "count": 0,
-      "total": 22,
-      "error": ""
+      "total": 0,
+      "error": "HTTP Error 503: Service Unavailable"
     },
     {
       "id": "gnews-sz-hack",
       "name": "Google 新闻 · 深圳黑客松报名",
-      "ok": true,
+      "ok": false,
       "count": 0,
-      "total": 14,
-      "error": ""
+      "total": 0,
+      "error": "HTTP Error 503: Service Unavailable"
     },
     {
       "id": "gnews-physical-ai",
       "name": "Google 新闻 · 具身/硬件 AI 活动",
-      "ok": true,
+      "ok": false,
       "count": 0,
-      "total": 40,
-      "error": ""
+      "total": 0,
+      "error": "HTTP Error 503: Service Unavailable"
     },
     {
       "id": "wechat-orgs",
@@ -174,10 +174,10 @@
     {
       "id": "gnews-univ",
       "name": "Google 新闻 · 深圳高校 AI 讲座",
-      "ok": true,
+      "ok": false,
       "count": 0,
-      "total": 20,
-      "error": ""
+      "total": 0,
+      "error": "HTTP Error 503: Service Unavailable"
     },
     {
       "id": "sogou-sz-hack",
@@ -1935,6 +1935,25 @@
       "ai": true
     },
     {
+      "id": "b664811ed02b3159",
+      "title": "Creator Colosseum: Startup Showdown",
+      "link": "https://creatorcolosseumshowdown.devpost.com",
+      "source": "Devpost 黑客松",
+      "source_id": "devpost",
+      "found": "2026-09-20",
+      "event_type": "hackathon",
+      "start": "2026-09-20",
+      "end": "2026-10-10",
+      "deadline": "2026-10-10",
+      "city": "线上",
+      "online": true,
+      "fee": "免费",
+      "organizer": "Devpost",
+      "summary": "面向创作者与初创项目的线上黑客松挑战赛，适合早期AI与产品开发者。",
+      "relevance": "low",
+      "ai": true
+    },
+    {
       "id": "57c301cecc9e7a05",
       "title": "Datawhale九月组队学习",
       "link": "https://mp.weixin.qq.com/s?__biz=MzIyNjM2MzQyNg==&mid=2247727089&idx=1&sn=d7a79b87976df6b733e403ff3c2c313b",
@@ -3189,8 +3208,9 @@
       "fee": "",
       "organizer": "",
       "summary": "双城AI黑客松，聚焦用AI代码助手开启Web3开发与创意实现。",
-      "relevance": "high",
-      "ai": true
+      "relevance": "low",
+      "ai": true,
+      "refreshed": true
     },
     {
       "id": "78d1392f99a15f31",
@@ -3511,25 +3531,6 @@
       "relevance": "low",
       "ai": true,
       "refreshed": true
-    },
-    {
-      "id": "ba7a6d65ecd10897",
-      "title": "BAYTECH AI 黑客松",
-      "link": "https://weixin.sogou.com/link?url=dn9a_-gY295K0Rci_xozVXfdMkSQTLW6cwJThYulHEtVjXrGTiVgS1EhLTDWJRkHIwPz_oDx9XutsAKof5hGU1qXa8Fplpd93i_lxlGv1IjFiH13MAX_zO4FY-m5sez3htkKPapkWdOyshJVsD71bh5s1kTxra4BSKnOusDmBlVf0jF4xCpqQRCed-woNJRgisyUEwo83ABAQHCygHj9-xCdVfdNr3rFS1YPi4k9eCReAUwzubzAtrthZZVO5kxDjgrWW7_VJtB535pjGOOjYg..&type=2&query=%E6%B7%B1%E5%9C%B3 %E9%BB%91%E5%AE%A2%E6%9D%BE %E6%8A%A5%E5%90%8D&token=531CA6E4AF732613202644C9A7047AC0203F5D856AAFD8F2",
-      "source": "搜狗微信 · 深圳 黑客松",
-      "source_id": "sogou-sz-hack",
-      "found": "2026-09-20",
-      "event_type": "hackathon",
-      "start": "",
-      "end": "",
-      "deadline": "",
-      "city": "深圳",
-      "online": false,
-      "fee": "",
-      "organizer": "BAYTECH",
-      "summary": "面向AI开发者与创作者，招募100位AI Builder同台竞技。",
-      "relevance": "high",
-      "ai": true
     },
     {
       "id": "a68fae5f38265f3a",
@@ -4087,8 +4088,9 @@
       "fee": "",
       "organizer": "中国科大",
       "summary": "围绕Sora解析视频生成大模型技术，适合生成模型算法与工程研究者。",
-      "relevance": "medium",
-      "ai": true
+      "relevance": "low",
+      "ai": true,
+      "refreshed": true
     },
     {
       "id": "2a48582de673a946",
@@ -4791,25 +4793,6 @@
       "refreshed": true
     },
     {
-      "id": "fd05ce6fd8c60783",
-      "title": "攻壳机动队主题黑客松深圳站",
-      "link": "https://weixin.sogou.com/link?url=dn9a_-gY295K0Rci_xozVXfdMkSQTLW6cwJThYulHEtVjXrGTiVgS1EhLTDWJRkHIwPz_oDx9XutsAKof5hGU1qXa8Fplpd9I5JiQU66u5CrxpgC1ocvVrvw_VGUd9II4eQAbSXXbwDE-EGXuFdLa6FBnezAR8Bu8igcZ1k83iZXBHf-vsbcYjFU4Q5w06jaMPtuytbNCn7Yy9M_1twzuYyYS8RSEfvB_hMrS2ufsrcbaXMZZhyxPJpTW-VpHU6uZTXrYVEuPAJQL0Hr9Gyd3Q..&type=2&query=%E6%B7%B1%E5%9C%B3 %E9%BB%91%E5%AE%A2%E6%9D%BE %E6%8A%A5%E5%90%8D&token=531CA6E4AF732613202644C9A7047AC0203F5D856AAFD8F2",
-      "source": "搜狗微信 · 深圳 黑客松",
-      "source_id": "sogou-sz-hack",
-      "found": "2026-09-20",
-      "event_type": "hackathon",
-      "start": "",
-      "end": "",
-      "deadline": "",
-      "city": "深圳",
-      "online": false,
-      "fee": "",
-      "organizer": "",
-      "summary": "四天三晚的攻壳机动队主题创客黑客松，面向开发者招募。",
-      "relevance": "high",
-      "ai": true
-    },
-    {
       "id": "fdc7ffe1d93042e8",
       "title": "文瑞科技AI共创黑客松",
       "link": "https://weixin.sogou.com/link?url=dn9a_-gY295K0Rci_xozVXfdMkSQTLW6cwJThYulHEtVjXrGTiVgSxPkaRVoEuLgd34nISkQbaSgqCqjkqKD5FqXa8Fplpd9YOV57AZZjcO61TPpOL6kwHyl3-NtDjOzZWOTJnAa_gURSTSMFLQCq3RoTY5dCxEhJ20-Zj8bVMuy0p5AIzMHfG7BUC60uKbW7r2RBHTNLdGwVd2Z3IsMAmgrrLQkS15S3WS00lmtn_-UgJg3sAMFBUg_aMNbsxFyRDZO0DusRDL1AfaFW2DefQ..&type=2&query=%E8%B5%9B%E5%8D%9AAI %E9%BB%91%E5%AE%A2%E6%9D%BE&token=28B596D02C77EC2532376A4E0D03209A3252C99C6AA8AC1C",
@@ -4965,8 +4948,9 @@
       "fee": "",
       "organizer": "",
       "summary": "探讨AI硬件风口下的卖铲人角色与爆款硬件背后的生态机遇。",
-      "relevance": "medium",
-      "ai": true
+      "relevance": "low",
+      "ai": true,
+      "refreshed": true
     },
     {
       "id": "cd4ec58fa11a0580",
@@ -5305,7 +5289,8 @@
       "organizer": "",
       "summary": "深圳硬件黑客松配套社交晚会活动招募。",
       "relevance": "low",
-      "ai": true
+      "ai": true,
+      "refreshed": true
     },
     {
       "id": "f443b389871f7af8",
@@ -5743,8 +5728,9 @@
       "fee": "",
       "organizer": "腾讯云架构师深圳同盟",
       "summary": "研讨AI与云原生架构方案，适合关注AI系统架构与工程落地的工程师。",
-      "relevance": "high",
-      "ai": true
+      "relevance": "low",
+      "ai": true,
+      "refreshed": true
     },
     {
       "id": "ef66305f93dbfc9e",
@@ -6082,8 +6068,9 @@
       "fee": "",
       "organizer": "云蝶科技",
       "summary": "走进广州独角兽企业云蝶科技，交流AI落地实践与行业人脉拓展。",
-      "relevance": "medium",
-      "ai": true
+      "relevance": "low",
+      "ai": true,
+      "refreshed": true
     },
     {
       "id": "cb1655ff9362ae45",
@@ -8997,6 +8984,99 @@
     "ace8938f03444f3a": "2026-09-20",
     "5ac7aa285f89e86c": "2026-09-20",
     "be37250411cec9d3": "2026-09-20",
-    "197e8f61dbb71302": "2026-09-20"
+    "197e8f61dbb71302": "2026-09-20",
+    "f43b6c076af3de7f": "2026-09-20",
+    "b664811ed02b3159": "2026-09-20",
+    "c7a862925d119f3b": "2026-09-20",
+    "88080a744c26fdbe": "2026-09-20",
+    "20fbf09f222a7d8a": "2026-09-20",
+    "28276a95148a9fdc": "2026-09-20",
+    "da806d9ffaa0a554": "2026-09-20",
+    "681e5f0977de6853": "2026-09-20",
+    "96c0248c4329e9bd": "2026-09-20",
+    "1e5076a03cbe7e65": "2026-09-20",
+    "f175e6223aaf66ba": "2026-09-20",
+    "472fbae403b592bd": "2026-09-20",
+    "751ab08c85cb652e": "2026-09-20",
+    "b3b0e2886f199e2e": "2026-09-20",
+    "fc2e6e7c6144b57d": "2026-09-20",
+    "683850d079cbbcf6": "2026-09-20",
+    "cd33c8695a9cebb8": "2026-09-20",
+    "0e2dff26de25fbe8": "2026-09-20",
+    "76fa53d221138dd3": "2026-09-20",
+    "88402dec0fffa5da": "2026-09-20",
+    "4f2a401ed807ff2b": "2026-09-20",
+    "444d0dc3688dac3f": "2026-09-20",
+    "36f8cff279e06d30": "2026-09-20",
+    "fddf543250757800": "2026-09-20",
+    "1322ec7f592a1449": "2026-09-20",
+    "e198f993d9ecb254": "2026-09-20",
+    "1eecddb283b9bb3c": "2026-09-20",
+    "9ab379b3a23a91b9": "2026-09-20",
+    "00448a0feaa1804e": "2026-09-20",
+    "9604aa3317e18670": "2026-09-20",
+    "f5245023fc2d7850": "2026-09-20",
+    "9fdb717a196f09ba": "2026-09-20",
+    "71ed94a9f9f20ac0": "2026-09-20",
+    "83af818c1ddfe4c9": "2026-09-20",
+    "8dd044019b814d24": "2026-09-20",
+    "4dadc71e357af98e": "2026-09-20",
+    "aeb1a80f09381a07": "2026-09-20",
+    "a14b6c212008b4c7": "2026-09-20",
+    "feb0729776a18b7f": "2026-09-20",
+    "08f7f0f540d63f70": "2026-09-20",
+    "68416534b1beea55": "2026-09-20",
+    "495f0b7de0ec06a9": "2026-09-20",
+    "26a8acb0df142e65": "2026-09-20",
+    "4292a3c2ff8d5183": "2026-09-20",
+    "e54356f9bf0c40d0": "2026-09-20",
+    "9387c826f9572bad": "2026-09-20",
+    "28e5ade8583bbe0c": "2026-09-20",
+    "7fa330cdda363b5c": "2026-09-20",
+    "e77fba342a921c3c": "2026-09-20",
+    "70c88624830d7433": "2026-09-20",
+    "aa0aab74f758b793": "2026-09-20",
+    "86bb46b024ac6daf": "2026-09-20",
+    "a88792f35fa916df": "2026-09-20",
+    "3ab86790985bcfc8": "2026-09-20",
+    "06388ca0f2e4ce8a": "2026-09-20",
+    "d53b219f12d4af64": "2026-09-20",
+    "e4c021084a714741": "2026-09-20",
+    "d770ff987ccf8607": "2026-09-20",
+    "d7c561d4d54a6c6c": "2026-09-20",
+    "e261c6c2ecaab456": "2026-09-20",
+    "f5b499b77a3b80d2": "2026-09-20",
+    "01a10aff2a4eed99": "2026-09-20",
+    "6fa65db9efa97461": "2026-09-20",
+    "b47e99e6d5c61ca7": "2026-09-20",
+    "657a9daa8060a45f": "2026-09-20",
+    "211a70a4a44db7d1": "2026-09-20",
+    "276e62cfb005ece8": "2026-09-20",
+    "5c28b2dd20e5647b": "2026-09-20",
+    "7a8a5e3883cddbe0": "2026-09-20",
+    "05adab632a889506": "2026-09-20",
+    "398ac0fe27225eac": "2026-09-20",
+    "7519d20c586703f8": "2026-09-20",
+    "721722b7a0025d62": "2026-09-20",
+    "c1284677d0c1168e": "2026-09-20",
+    "7fb964abab33bc8b": "2026-09-20",
+    "f7f4d478dd11ad55": "2026-09-20",
+    "e0005cf88f7402dc": "2026-09-20",
+    "226f60663da64ae2": "2026-09-20",
+    "8f75cb7ebb7613a9": "2026-09-20",
+    "cf5be0296f1111cb": "2026-09-20",
+    "f0187a569216797a": "2026-09-20",
+    "656d305fa69f5b8d": "2026-09-20",
+    "d286254b6617e023": "2026-09-20",
+    "220f06ae256c922d": "2026-09-20",
+    "189d0b269b049837": "2026-09-20",
+    "5f10940235b73a3b": "2026-09-20",
+    "dbf90c2dd5342f5c": "2026-09-20",
+    "c2db04cdcd2a7bb8": "2026-09-20",
+    "0951ffe9fd31dd6d": "2026-09-20",
+    "7516a4485fef8e94": "2026-09-20",
+    "511ab08fcac719c1": "2026-09-20",
+    "13a1a3baaf0fa61c": "2026-09-20",
+    "a1b997bbf7c1e96a": "2026-09-20"
   }
 }
