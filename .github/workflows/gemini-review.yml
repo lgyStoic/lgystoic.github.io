@@ -1,0 +1,65 @@
+name: Gemini patch review
+
+on:
+  workflow_dispatch:
+    inputs:
+      repository:
+        description: "GitHub repository containing the branch to review"
+        type: string
+        required: true
+        default: "lgyStoic/sglang"
+      ref:
+        description: "Branch or commit to review"
+        type: string
+        required: true
+        default: "codex/qwen-image-edit-batching"
+      base_repository:
+        description: "Repository containing the comparison base"
+        type: string
+        required: true
+        default: "sgl-project/sglang"
+      base_ref:
+        description: "Base branch or commit"
+        type: string
+        required: true
+        default: "main"
+
+permissions:
+  contents: read
+
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: master}
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12"}
+      - name: Fetch patch
+        env:
+          REPOSITORY: ${{ inputs.repository }}
+          REF: ${{ inputs.ref }}
+          BASE_REPOSITORY: ${{ inputs.base_repository }}
+          BASE_REF: ${{ inputs.base_ref }}
+        run: |
+          git clone --depth=1 --branch "$REF" "https://github.com/$REPOSITORY.git" target
+          git -C target remote add review-base "https://github.com/$BASE_REPOSITORY.git"
+          git -C target fetch --depth=1 review-base "$BASE_REF"
+          git -C target diff --no-ext-diff FETCH_HEAD HEAD > review.diff
+          test -s review.diff
+      - name: Ask Gemini to review
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GEMINI_MODEL: ${{ vars.CONTRIBUTIONS_GEMINI_MODEL || 'gemini-pro-latest' }}
+          GEMINI_FALLBACK_MODEL: ${{ vars.CONTRIBUTIONS_GEMINI_FALLBACK_MODEL || 'gemini-flash-latest' }}
+          GEMINI_MAX_OUTPUT_TOKENS: "16384"
+          GEMINI_TIMEOUT: "600"
+        run: python3 tools/gemini_review.py --diff review.diff --out gemini-review.md
+      - name: Publish review
+        run: cat gemini-review.md >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: gemini-review
+          path: gemini-review.md
+          retention-days: 14
