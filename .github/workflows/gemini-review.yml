@@ -80,12 +80,18 @@ jobs:
           ATEN_CPU_CAPABILITY: default
           ONEDNN_MAX_CPU_ISA: AVX2
           DNNL_MAX_CPU_ISA: AVX2
+          # The upstream Xeon image preloads Intel-optimized libraries that
+          # can SIGILL on GitHub-hosted CPU models; tests don't need that preload.
+          LD_PRELOAD: ""
         run: |
           set +e
           PYTHONPATH="$PWD/target/python" python3 -m pytest -q \
             target/python/sglang/multimodal_gen/test/unit/test_qwen_image_edit_dynamic_batch.py \
             > test-report.txt 2>&1
           result=$?
+          if [ ! -s test-report.txt ]; then
+            printf 'pytest produced no output (exit code %s); process may have terminated by signal.\n' "$result" > test-report.txt
+          fi
           cat test-report.txt
           echo "exit_code=$result" >> "$GITHUB_OUTPUT"
           exit 0
@@ -122,6 +128,15 @@ jobs:
         run: |
           printf '%s\n' "$GEMINI_REPORT" > gemini-agent-report.md
           cat gemini-agent-report.md >> "$GITHUB_STEP_SUMMARY"
+      - name: Require focused CPU tests to pass
+        if: always()
+        env:
+          TEST_EXIT_CODE: ${{ steps.tests.outputs.exit_code }}
+        run: |
+          if [ "$TEST_EXIT_CODE" != "0" ]; then
+            echo "::error::Focused CPU tests failed or could not run (exit code: ${TEST_EXIT_CODE:-unknown}). See test-report.txt and Gemini review above."
+            exit 1
+          fi
       - name: Upload test and agent reports
         if: always()
         uses: actions/upload-artifact@v4
