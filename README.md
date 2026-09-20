@@ -29,9 +29,14 @@ tools/build.py    从 notes.json 与 radar/data 生成列表 HTML、feed.xml、s
 tools/radar.py    AI 信息雷达：抓 RSS → 去重 → 打分 → （可选）AI 摘要
 tools/inbox.py    私有收件箱：读取私有仓库 Issue 里手动投递的链接，整理成每日摘要
 tools/events.py   活动雷达：从活动源找可报名参加的活动，抽日期/地点/费用/截止，维护 /radar/events/
+projects/         外部开源贡献项目的 submodule 控制面；源码不发布到 Pages
 radar/            雷达页、信息源配置（sources.json）、每日数据（data/）、每期永久链接
 templates/note/   新笔记的起步模板
 ```
+
+## 开源贡献项目
+
+`projects/` 把个人站的任务卡、Gemini 审查与实际 fork 连接起来。它以 Git submodule 管理 fork，只保存固定提交指针，因此不会把 SGLang 等大型项目源码与历史塞进 Pages 仓库。开发流程见 [`projects/README.md`](projects/README.md)。
 
 列表是**预渲染进 HTML** 的，不是前端 fetch 出来的：搜索引擎和社交卡片能抓到内容，
 禁用 JS 也能正常读。JS 只负责深浅色切换和归档页的搜索/筛选。

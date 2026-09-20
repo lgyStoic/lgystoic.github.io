@@ -32,3 +32,4 @@ python3 -m pytest -q tests && python3 tools/build.py
 ## 相关仓库
 
 - `lgyStoic/radar-inbox`（私有）：收件箱、小红书文稿与封面、发布队列技能。它自己有 `AGENTS.md`。
+- `projects/`：外部开源贡献项目的浅克隆 submodule；从这里进入 fork 开发，主仓库只提交 submodule 指针。流程见 `projects/README.md`。
