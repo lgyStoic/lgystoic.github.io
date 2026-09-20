@@ -20,7 +20,7 @@
 | 功能 | 说明 |
 |---|---|
 | 雷达首页 | 最新一期正文 + 往期列表（日期、条数、必看预览） |
-| 每期页 `/radar/<日期>/` | 统计行（条数、源通率、模式 / 模型）、失败源折叠、三组条目（必看 ≤10、值得看 ≤20、其余默认折叠）、活动清单一行指引（不再内嵌活动列表）、RSS 链接 |
+| 每期页 `/radar/<日期>/` | 统计行（条数、源通率、模式 / 模型）、失败源折叠、只保留高优先级 ≤10 与中优先级 ≤20 条；低优先级与超限条目直接丢弃、记入 seen，避免重复出现；活动清单一行指引（不再内嵌活动列表）、RSS 链接 |
 | 条目 | 标题链接、来源、时间、分类标签（模型发布 / 研究论文 / 性能与基础设施 / 行业人物 / 产品与行业）、AI 摘要、为什么值得看、主题 tags |
 | 首页卡片 | 状态行「日期 · 条数 · 必看 N · 模型」 |
 | RSS | `radar/feed.xml`，每期一条 |
@@ -28,11 +28,11 @@
 
 ## 4. 数据管线
 
-1. `collect`：按源抓取（`kind: rss|json`；`urls` 给多个镜像按序尝试，`link_host` 把镜像域名换回原站，URL 支持 `{today}` / `{today-Nd}` 日期占位，无标题条目取正文前 120 字），JSON 源按 `json` 字段路径映射（`title` / `link` 支持 `{字段}` 模板）；Google News 的 opaque 文章链接在采集时解析为媒体原文链接，每轮最多尝试 30 篇，遇到 HTTP 429 熔断并在后续运行继续，失败条目保留原链接且不影响整轮。解析日期、按 `window_hours`（默认 36，源可覆盖）过滤；`title_pattern` / `require_topic` 过滤；`match_tracks` 打专题标签（源 `track` 直接归属，`track_required` 不命中即丢，命中 +1 分），细节见 tracks.md；`seen.json` 去重（链接 + 标题指纹）。
+1. `collect`：按源抓取（`kind: rss|json`；`urls` 给多个镜像按序尝试，`link_host` 把镜像域名换回原站，URL 支持 `{today}` / `{today-Nd}` 日期占位，无标题条目取正文前 120 字），JSON 源按 `json` 字段路径映射（`title` / `link` 支持 `{字段}` 模板）。解析日期、按 `window_hours`（默认 36，源可覆盖）过滤；`title_pattern` / `require_topic` 过滤；`match_tracks` 打专题标签（源 `track` 直接归属，`track_required` 不命中即丢，命中 +1 分），细节见 tracks.md；`seen.json` 去重（原链接 + 标题指纹）。
 2. `score_item`：`high_keywords`（标题）、`topic_keywords`（标题 + 描述）、`mute_keywords`；源 `weight` 加权 → `priority_from_score`。
 3. `dedupe_titles`：跨源近似标题合并。
 4. `enrich_with_ai`：模型对全部条目输出 priority / summary / why / tags（结构化 JSON）；失败退回规则。
-5. `finalize` / `sort_rows` → 写 `radar/data/<日期>.json`，更新 `seen.json`。
+5. `finalize` / `sort_rows` → 仅保留 high 前 10、medium 前 20，低优先级及超限条目丢弃并写入 `seen.json`；再解析 Google News 中转链接（每轮最多 30 篇，HTTP 429 后停止并留待下次运行），写 `radar/data/<日期>.json`。
 6. `build.py` 渲染；`check.py` 自检；机器人提交。
 
 工作流步骤：记录运行元数据 `last-run.json` → 雷达 → 活动 → 收件箱（有 `INBOX_TOKEN` 时）→ 自检 → 构建 → 提交（推送被拒时保留数据重渲染，三次）。

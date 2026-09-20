@@ -726,7 +726,6 @@ def collect(config: dict, now_utc: datetime, seen: dict[str, str]) -> tuple[list
                 continue
             # Keep the original fingerprint so links collected before this decoder
             # was added remain deduplicated after their URL is resolved.
-            original_is_google = is_google_news_link(original_link)
             iid = item_id(original_link, title)
             if iid in seen or iid in items:
                 continue
@@ -734,8 +733,6 @@ def collect(config: dict, now_utc: datetime, seen: dict[str, str]) -> tuple[list
             src_window = timedelta(hours=source["window_hours"]) if source.get("window_hours") else window
             if published and now_utc - published > src_window:
                 continue
-            if original_is_google:
-                link = decode_google_news_link(original_link)
             if link_host:
                 link = re.sub(r"^(https?://)[^/]+", rf"\g<1>{link_host}", link).split("#")[0]
 
@@ -845,8 +842,6 @@ def main() -> None:
     # 同一天重复运行：已经写进今天文件的条目允许再次出现，避免覆盖丢失
     if existing:
         for row in existing.get("items", []):
-            if is_google_news_link(row.get("link", "")):
-                row["link"] = decode_google_news_link(row["link"])
             seen.pop(row["id"], None)
 
     items, status = collect(config, now_utc, seen)
@@ -899,6 +894,24 @@ def main() -> None:
             log(f"[radar] 清掉 {dropped_old} 条已移除源 / 不符合标题规则的旧条目")
         rows.extend(kept_old)
         rows = sort_rows(rows)
+
+    # 只保留高价值条目：低优先级及超过展示上限的内容直接丢弃。
+    max_high = int(config["site"].get("max_high", 10))
+    max_medium = int(config["site"].get("max_medium", 20))
+    kept_rows = [r for r in rows if r["priority"] == "high"][:max_high]
+    kept_rows += [r for r in rows if r["priority"] == "medium"][:max_medium]
+    dropped_rows = [r for r in rows if r not in kept_rows]
+    if dropped_rows:
+        log(f"[radar] 丢弃低优先级 / 超出展示上限条目：{len(dropped_rows)}")
+        for row in dropped_rows:
+            seen[row["id"]] = today
+    rows = sort_rows(kept_rows)
+
+    # Only resolve links that survive quality filtering; Google limits this endpoint.
+    if not args.dry_run:
+        for row in rows:
+            if is_google_news_link(row.get("link", "")):
+                row["link"] = decode_google_news_link(row["link"])
 
     day = {
         "date": today,
