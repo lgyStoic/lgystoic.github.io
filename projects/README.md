@@ -6,7 +6,7 @@
 
 | 目录 | Fork | 上游 | 用途 |
 | --- | --- | --- | --- |
-| `sglang/` | `lgyStoic/sglang` | `sgl-project/sglang` | diffusion / AI infra 开源贡献 |
+| `sglang/` | `lgyStoic/sglang` | `sgl-project/sglang` | `codex/qwen-image-edit-batching` 待审贡献分支 |
 
 ## 日常流程
 
@@ -25,7 +25,7 @@ git switch -c codex/<topic>
 git push -u origin codex/<topic>
 ```
 
-回到根目录后，手动触发 Actions 的「Gemini patch review」，填 branch 名。审查通过后从 fork 向上游开 PR。若需要把控制面固定到新的 fork `main`，更新 submodule 指针：
+回到根目录后，手动触发 Actions 的「Gemini patch review」，填 branch 名。审查通过后从 fork 向上游开 PR。需要把控制面固定到更新后的提交时，更新 submodule 指针：
 
 ```bash
 git submodule update --remote --depth=1 projects/sglang
