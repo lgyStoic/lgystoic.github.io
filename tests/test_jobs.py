@@ -42,5 +42,19 @@ class JobsTests(unittest.TestCase):
         result = jobs.collect(config, {}, lambda _: [self.job(), self.job(), self.job(url='javascript:alert(1)')])
         self.assertEqual(len(result['jobs']), 1)
 
+    def test_headhunters_are_deduplicated_and_capped(self):
+        rows = []
+        for i in range(12):
+            row = jobs.match(self.job(title=f'Inference Engineer {i % 4}', url=f'https://example.org/job/{i}', company=f'某公司{i}'), PROFILE)
+            rows.append(dict(row, listing_type='headhunter', last_seen='2026-09-20', stale=False))
+        profile = dict(PROFILE, max_headhunter_total=3, max_headhunter_per_region=2)
+        result = jobs.limit_jobs(rows, profile)
+        self.assertEqual(len(result), 2)
+
+    def test_visible_region_caps_keep_remainder(self):
+        rows = [dict(jobs.match(self.job(title=f'Inference Engineer {i}', url=f'https://example.org/job/{i}'), PROFILE), last_seen='2026-09-20') for i in range(5)]
+        visible, extra = jobs.split_visible_jobs(rows, {'visible_region_caps': {'深圳': 2}})
+        self.assertEqual((len(visible), len(extra)), (2, 3))
+
 if __name__ == '__main__':
     unittest.main()
