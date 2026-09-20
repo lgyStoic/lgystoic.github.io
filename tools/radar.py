@@ -56,6 +56,8 @@ LAST_GEMINI_ERROR = ""  # 最近一次 Gemini 调用失败的性质：transient�
 GEMINI_TIMEOUT = int(os.environ.get("GEMINI_TIMEOUT", "300"))  # 单次调用读超时（秒），长上下文任务可通过环境变量调大
 
 PRIORITY_ORDER = {"high": 0, "medium": 1, "low": 2}
+_GOOGLE_NEWS_CACHE: dict[str, str] = {}
+_GOOGLE_NEWS_LAST_REQUEST = 0.0
 
 # ---------------------------------------------------------------- 工具函数
 
@@ -69,6 +71,84 @@ def strip_html(text: str) -> str:
     text = re.sub(r"<[^>]+>", " ", text)
     text = html.unescape(text)
     return re.sub(r"\s+", " ", text).strip()
+
+
+def is_google_news_link(link: str) -> bool:
+    parsed = urllib.parse.urlsplit((link or "").strip())
+    return parsed.hostname in {"news.google.com", "www.news.google.com"} and any(
+        part in {"articles", "read"} for part in parsed.path.split("/")
+    )
+
+
+def decode_google_news_link(link: str) -> str:
+    """把 Google News opaque article URL 解成发布站 URL；失败时返回原链接。"""
+    global _GOOGLE_NEWS_LAST_REQUEST
+    if link in _GOOGLE_NEWS_CACHE:
+        return _GOOGLE_NEWS_CACHE[link]
+    parsed = urllib.parse.urlsplit(link)
+    parts = parsed.path.strip("/").split("/")
+    if parsed.hostname not in {"news.google.com", "www.news.google.com"} or len(parts) < 2 or parts[-2] not in {"articles", "read"}:
+        return link
+
+    article_id = parts[-1]
+    article_url = f"https://news.google.com/articles/{article_id}"
+    headers = {"User-Agent": USER_AGENT, "Accept": "text/html"}
+    try:
+        # Keep requests below Google's rate limit; feeds often contain many entries.
+        wait = 3.0 - (time.monotonic() - _GOOGLE_NEWS_LAST_REQUEST)
+        if wait > 0:
+            time.sleep(wait)
+        _GOOGLE_NEWS_LAST_REQUEST = time.monotonic()
+        req = urllib.request.Request(article_url, headers=headers)
+        with urllib.request.urlopen(req, timeout=10) as response:
+            page = response.read(2_000_000).decode("utf-8", "replace")
+        # Google currently provides these attributes on a div in the article shell.
+        match = re.search(r'<div\b[^>]*data-n-a-ts="(\d+)"[^>]*data-n-a-sg="([^"]+)"', page)
+        if not match:
+            # Attribute order can change between Google deployments.
+            match = re.search(r'<div\b(?=[^>]*data-n-a-ts="(\d+)")(?=[^>]*data-n-a-sg="([^"]+)")[^>]*>', page)
+        if not match:
+            return link
+        timestamp, signature = match.groups()
+        request_payload = [
+            "Fbv4je",
+            f'["garturlreq",[["X","X",["X","X"],null,null,1,1,"US:en",null,1,null,null,null,null,null,0,1],"X","X",1,[1,1,1],1,1,null,0,0,null,0],"{article_id}",{timestamp},"{signature}"]',
+            None,
+            "generic",
+        ]
+        encoded = json.dumps([[request_payload]], separators=(",", ":"))
+        body = urllib.parse.urlencode({"f.req": encoded}).encode()
+        req = urllib.request.Request(
+            "https://news.google.com/_/DotsSplashUi/data/batchexecute",
+            data=body,
+            headers={
+                **headers,
+                "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
+                "Referer": "https://news.google.com/",
+            },
+        )
+        with urllib.request.urlopen(req, timeout=10) as response:
+            result = response.read(200_000).decode("utf-8", "replace")
+        decoded = link
+        payload_text = result.split("\n\n", 1)[-1]
+        try:
+            frames = json.loads(payload_text)
+            for frame in frames:
+                if isinstance(frame, list) and len(frame) > 2 and frame[0] == "wrb.fr" and isinstance(frame[2], str):
+                    article_result = json.loads(frame[2])
+                    if isinstance(article_result, list) and len(article_result) > 1 and article_result[0] == "garturlres":
+                        decoded = html.unescape(article_result[1])
+                        break
+        except (json.JSONDecodeError, TypeError):
+            pass
+        if decoded != link and not is_google_news_link(decoded):
+            _GOOGLE_NEWS_CACHE[link] = decoded
+            log(f"[radar] Google News 链接已解析：{urllib.parse.urlsplit(decoded).netloc}")
+            return decoded
+        return link
+    except (urllib.error.URLError, TimeoutError, OSError, ValueError, json.JSONDecodeError) as exc:
+        log(f"[radar] Google News 链接解码失败，保留中转链接：{exc}")
+        return link
 
 
 def normalize_link(link: str) -> str:
@@ -621,20 +701,26 @@ def collect(config: dict, now_utc: datetime, seen: dict[str, str]) -> tuple[list
             title = strip_html(raw["title"])
             if not title and raw.get("description"):  # Bluesky 等源的条目没有标题，用正文前 120 字
                 title = strip_html(raw["description"])[:120].strip()
-            link = raw["link"].strip()
+            original_link = raw["link"].strip()
+            link = original_link
             if not title or not link:
                 continue
-            if link_host:
-                link = re.sub(r"^(https?://)[^/]+", rf"\g<1>{link_host}", link).split("#")[0]
             if title_pattern and not title_pattern.search(title):
                 continue
-            iid = item_id(link, title)
+            # Keep the original fingerprint so links collected before this decoder
+            # was added remain deduplicated after their URL is resolved.
+            original_is_google = is_google_news_link(original_link)
+            iid = item_id(original_link, title)
             if iid in seen or iid in items:
                 continue
             published = parse_date(raw["published"])
             src_window = timedelta(hours=source["window_hours"]) if source.get("window_hours") else window
             if published and now_utc - published > src_window:
                 continue
+            if original_is_google:
+                link = decode_google_news_link(original_link)
+            if link_host:
+                link = re.sub(r"^(https?://)[^/]+", rf"\g<1>{link_host}", link).split("#")[0]
 
             item = {
                 "id": iid,
@@ -742,6 +828,8 @@ def main() -> None:
     # 同一天重复运行：已经写进今天文件的条目允许再次出现，避免覆盖丢失
     if existing:
         for row in existing.get("items", []):
+            if is_google_news_link(row.get("link", "")):
+                row["link"] = decode_google_news_link(row["link"])
             seen.pop(row["id"], None)
 
     items, status = collect(config, now_utc, seen)
