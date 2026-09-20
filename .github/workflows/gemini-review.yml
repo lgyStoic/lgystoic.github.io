@@ -35,12 +35,12 @@ permissions:
 jobs:
   review:
     runs-on: ubuntu-latest
+    container:
+      image: docker.io/lmsysorg/sglang@sha256:2b11d06617917b0cbbddf0ffe3da54ce4310a3bc4672497e1cd46069abf58a8a # v0.5.20-xeon
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
         with: {ref: master}
-      - uses: actions/setup-python@v5
-        with: {python-version: "3.12"}
       - name: Fetch patch
         env:
           REPOSITORY: ${{ inputs.repository }}
@@ -60,15 +60,15 @@ jobs:
             python/sglang/multimodal_gen/test/unit/test_qwen_image_edit_dynamic_batch.py > review.diff
           test -s review.diff
 
-      - uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
       - name: Install CPU test dependencies
-        timeout-minutes: 30
+        timeout-minutes: 5
         continue-on-error: true
-        run: |
-          python -m pip install --disable-pip-version-check pytest pillow numpy pyzmq
-          python -m pip install --disable-pip-version-check --index-url https://download.pytorch.org/whl/cpu torch torchvision
+        run: python3 -m pip install --disable-pip-version-check pytest
+      - name: Install Gemini CLI runtime tools
+        run: apt-get update && apt-get install -y --no-install-recommends jq
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
       - name: Run focused CPU unit tests
         id: tests
         if: always()
@@ -91,9 +91,11 @@ jobs:
       - name: Ask Gemini SGLang agent to review
         id: gemini-agent
         uses: google-github-actions/run-gemini-cli@f77273f4c914e4bf38440cf36a0369cb64a37489 # v0.1.22
+        env:
+          GEMINI_CLI_TRUST_WORKSPACE: "true"
         with:
-          gemini_api_key: ${{ secrets.GEMINI_API_KEY }}
           gemini_cli_version: "0.39.1"
+          gemini_api_key: ${{ secrets.GEMINI_API_KEY }}
           gemini_model: "gemini-3.1-pro-preview"
           upload_artifacts: true
           settings: >-
