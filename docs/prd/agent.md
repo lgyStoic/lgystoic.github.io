@@ -63,7 +63,7 @@ python3 tools/check_mobile.py --all    # 手机宽度溢出检查（需 pip inst
 
 工作流通用：cron 不在整点；`concurrency` 按工作流；机器人推送被拒 → 保留数据文件 → `reset --hard origin/master` → `build.py` → 再推，三次。改这段要四个工作流同步。
 
-AI 模型：`call_llm_json` 走 Claude（有 key）否则 Gemini；模型名由仓库变量 `vars.GEMINI_MODEL` / `vars.GEMINI_FALLBACK_MODEL` 覆盖，默认首选 `gemini-flash-latest`（→3.8 Flash），备选 `gemini-pro-latest`（→3.1 Pro）；可用模型清单看 site.md §5 或跑 `xhs.yml list_models`。日志出现 `finishReason=MAX_TOKENS` → 调大 `GEMINI_MAX_OUTPUT_TOKENS`。
+AI 模型：`call_llm_json` 走 Claude（有 key）否则 Gemini；高频任务由仓库变量 `vars.GEMINI_MODEL` / `vars.GEMINI_FALLBACK_MODEL` 覆盖，默认 Flash 优先、Pro 备选。开源贡献路线为保证深度，单独使用 `CONTRIBUTIONS_GEMINI_MODEL` / `CONTRIBUTIONS_GEMINI_FALLBACK_MODEL`，默认 Pro 优先、Flash 备选。可用模型清单看 site.md §5 或跑 `xhs.yml list_models`。日志出现 `finishReason=MAX_TOKENS` → 调大 `GEMINI_MAX_OUTPUT_TOKENS`。
 
 ## 4. 模块速查
 

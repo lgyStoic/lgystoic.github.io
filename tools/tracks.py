@@ -15,7 +15,8 @@ import json, os, re, sys
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from radar import call_llm_json, log, load_tracks, match_tracks, LAST_MODEL_USED  # noqa: F401
+import radar
+from radar import call_llm_json, log, load_tracks, match_tracks
 
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "radar" / "data"
@@ -110,7 +111,7 @@ def write_digest(track: dict, state: dict, entries: list[dict], today: datetime)
         log(f"[tracks] {track['name']}：综述未生成（模型不可用），保留上一版")
         return
     state["digest"] = {"text": result.get("digest", "").strip(), "highlights": [h.strip() for h in result.get("highlights", []) if h.strip()][:5],
-                       "week": f"{week_ago} ~ {today.strftime('%Y-%m-%d')}", "generated_at": today.isoformat(timespec="seconds"), "model": LAST_MODEL_USED}
+                       "week": f"{week_ago} ~ {today.strftime('%Y-%m-%d')}", "generated_at": today.isoformat(timespec="seconds"), "model": radar.LAST_MODEL_USED}
     sota = [r for r in result.get("sota", []) if r.get("model")][:12]
     if sota:
         state["sota"] = sota

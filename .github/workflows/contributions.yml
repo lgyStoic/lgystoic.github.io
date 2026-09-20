@@ -64,8 +64,8 @@ jobs:
       - name: 分析 ${{ matrix.repo }}
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          GEMINI_MODEL: ${{ vars.GEMINI_MODEL || 'gemini-flash-latest' }}
-          GEMINI_FALLBACK_MODEL: ${{ vars.GEMINI_FALLBACK_MODEL || 'gemini-pro-latest' }}
+          GEMINI_MODEL: ${{ vars.CONTRIBUTIONS_GEMINI_MODEL || 'gemini-pro-latest' }}
+          GEMINI_FALLBACK_MODEL: ${{ vars.CONTRIBUTIONS_GEMINI_FALLBACK_MODEL || 'gemini-flash-latest' }}
           GITHUB_TOKEN: ${{ github.token }}
           GEMINI_MAX_OUTPUT_TOKENS: "32768"
           GEMINI_TIMEOUT: "600"
