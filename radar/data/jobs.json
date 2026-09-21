@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-20T05:20:36+00:00",
+  "updated": "2026-09-21T05:23:34+00:00",
   "sources": [
     {
       "name": "字节跳动",
@@ -35,7 +35,7 @@
       "name": "NVIDIA",
       "ok": true,
       "fetched": 317,
-      "matched": 108
+      "matched": 107
     },
     {
       "name": "Anthropic",
@@ -70,14 +70,14 @@
     {
       "name": "Remotive 聚合",
       "ok": true,
-      "fetched": 17,
-      "matched": 1
+      "fetched": 20,
+      "matched": 2
     },
     {
       "name": "Arbeitnow 聚合",
       "ok": true,
       "fetched": 250,
-      "matched": 7
+      "matched": 17
     },
     {
       "name": "Job-Hunter · RemoteOK",
@@ -88,20 +88,20 @@
     {
       "name": "Job-Hunter · Himalayas",
       "ok": true,
-      "fetched": 67,
-      "matched": 10
+      "fetched": 69,
+      "matched": 17
     },
     {
       "name": "Adzuna · 新加坡",
       "ok": true,
       "fetched": 150,
-      "matched": 35
+      "matched": 33
     },
     {
       "name": "腾讯招聘",
       "ok": true,
-      "fetched": 248,
-      "matched": 173
+      "fetched": 246,
+      "matched": 172
     },
     {
       "name": "智谱",
@@ -118,8 +118,8 @@
     {
       "name": "LinkedIn · 国内城市",
       "ok": true,
-      "fetched": 126,
-      "matched": 24
+      "fetched": 298,
+      "matched": 58
     },
     {
       "name": "ats-jobs · 12类ATS",
@@ -135,11 +135,8 @@
     },
     {
       "name": "猎聘 · 深圳/北京/上海/杭州/广州",
-      "ok": true,
-      "fetched": 1464,
-      "matched": 740,
-      "direct": 222,
-      "headhunter": 16
+      "ok": false,
+      "error": "ExternalToolError"
     }
   ],
   "jobs": [
@@ -169,7 +166,7 @@
       "region": "深圳",
       "level": "高",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "高性能算子开发工程师（自研芯片方向）（J97205）",
@@ -195,14 +192,14 @@
       "score": 14,
       "region": "深圳",
       "level": "高",
-      "last_seen": "2026-09-20T05:20:36+00:00",
+      "last_seen": "2026-09-21T05:23:34+00:00",
       "stale": false
     },
     {
       "title": "混元多模态大模型推理加速工程师（深圳/北京/上海/杭州）",
       "url": "https://careers.tencent.com/jobdesc.html?postId=2007768439787249664",
       "location": "深圳",
-      "source_updated": "2026年09月07日",
+      "source_updated": "2026年09月20日",
       "company": "腾讯招聘",
       "source": "tencent",
       "tags": [
@@ -222,14 +219,14 @@
       "score": 14,
       "region": "深圳",
       "level": "高",
-      "last_seen": "2026-09-20T05:20:36+00:00",
+      "last_seen": "2026-09-21T05:23:34+00:00",
       "stale": false
     },
     {
       "title": "混元多模态大模型算法加速工程师（深圳/北京/上海/杭州）",
       "url": "https://careers.tencent.com/jobdesc.html?postId=2007768437438439424",
       "location": "深圳",
-      "source_updated": "2026年09月10日",
+      "source_updated": "2026年09月20日",
       "company": "腾讯招聘",
       "source": "tencent",
       "tags": [
@@ -249,7 +246,7 @@
       "score": 14,
       "region": "深圳",
       "level": "高",
-      "last_seen": "2026-09-20T05:20:36+00:00",
+      "last_seen": "2026-09-21T05:23:34+00:00",
       "stale": false
     },
     {
@@ -278,7 +275,109 @@
       "score": 13,
       "region": "深圳",
       "level": "高",
-      "last_seen": "2026-09-20T05:20:36+00:00",
+      "last_seen": "2026-09-21T05:23:34+00:00",
+      "stale": false
+    },
+    {
+      "title": "GPGPU 算子优化专家",
+      "url": "https://www.liepin.com/job/1983583673.shtml",
+      "location": "深圳-南山区",
+      "source_updated": "2026-06-22",
+      "company": "云天励飞",
+      "source": "liepin",
+      "listing_type": "direct",
+      "tags": [
+        "GPU Kernel",
+        "AI Infra",
+        "训推加速",
+        "深圳",
+        "匹配高"
+      ],
+      "reasons": [
+        "GPU Kernel：算子",
+        "训推加速：算子"
+      ],
+      "score": 13,
+      "region": "深圳",
+      "level": "高",
+      "last_seen": "2026-09-20T05:25:00+00:00",
+      "stale": true
+    },
+    {
+      "title": "GPGPU算子工程师",
+      "url": "https://www.liepin.com/job/1978030181.shtml",
+      "location": "深圳-南山区",
+      "source_updated": "2026-07-28",
+      "company": "云天励飞",
+      "source": "liepin",
+      "listing_type": "direct",
+      "tags": [
+        "GPU Kernel",
+        "AI Infra",
+        "训推加速",
+        "深圳",
+        "匹配高"
+      ],
+      "reasons": [
+        "GPU Kernel：算子",
+        "训推加速：算子"
+      ],
+      "score": 13,
+      "region": "深圳",
+      "level": "高",
+      "last_seen": "2026-09-20T05:25:00+00:00",
+      "stale": true
+    },
+    {
+      "title": "GPGPU算子专家",
+      "url": "https://www.liepin.com/job/1981006043.shtml",
+      "location": "深圳-南山区",
+      "source_updated": "2026-03-17",
+      "company": "北南集团",
+      "source": "liepin",
+      "listing_type": "direct",
+      "tags": [
+        "GPU Kernel",
+        "AI Infra",
+        "训推加速",
+        "深圳",
+        "匹配高"
+      ],
+      "reasons": [
+        "GPU Kernel：算子",
+        "训推加速：算子"
+      ],
+      "score": 13,
+      "region": "深圳",
+      "level": "高",
+      "last_seen": "2026-09-20T05:25:00+00:00",
+      "stale": true
+    },
+    {
+      "title": "大模型推理架构研发工程师（J95970）",
+      "url": "https://talent.baidu.com/jobs/social-detail/495f5822-a881-4285-bf30-3bc5b1e376b1",
+      "location": "北京市,上海市,深圳市",
+      "source_updated": "2026-01-28",
+      "company": "百度",
+      "source": "baidu",
+      "tags": [
+        "GPU Kernel",
+        "AI Infra",
+        "端侧部署",
+        "训推加速",
+        "深圳",
+        "匹配高"
+      ],
+      "reasons": [
+        "GPU Kernel：算子",
+        "AI Infra：大模型、深度学习、异构",
+        "端侧部署：tensorrt、量化、部署",
+        "训推加速：vllm、sglang、推理"
+      ],
+      "score": 12,
+      "region": "深圳",
+      "level": "高",
+      "last_seen": "2026-09-21T05:23:34+00:00",
       "stale": false
     },
     {
@@ -305,34 +404,7 @@
       "region": "深圳",
       "level": "高",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
-    },
-    {
-      "title": "大模型推理架构研发工程师（J95970）",
-      "url": "https://talent.baidu.com/jobs/social-detail/495f5822-a881-4285-bf30-3bc5b1e376b1",
-      "location": "北京市,上海市,深圳市",
-      "source_updated": "2026-01-28",
-      "company": "百度",
-      "source": "baidu",
-      "tags": [
-        "GPU Kernel",
-        "AI Infra",
-        "端侧部署",
-        "训推加速",
-        "深圳",
-        "匹配高"
-      ],
-      "reasons": [
-        "GPU Kernel：算子",
-        "AI Infra：大模型、深度学习、异构",
-        "端侧部署：tensorrt、量化、部署",
-        "训推加速：vllm、sglang、推理"
-      ],
-      "score": 12,
-      "region": "深圳",
-      "level": "高",
-      "last_seen": "2026-09-20T05:20:36+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "异构加速框架工程师（深圳/北京/上海）",
@@ -358,8 +430,325 @@
       "score": 12,
       "region": "深圳",
       "level": "高",
-      "last_seen": "2026-09-20T05:20:36+00:00",
+      "last_seen": "2026-09-21T05:23:34+00:00",
       "stale": false
+    },
+    {
+      "title": "AI算子开发工程师",
+      "url": "https://cn.linkedin.com/jobs/view/ai%E7%AE%97%E5%AD%90%E5%BC%80%E5%8F%91%E5%B7%A5%E7%A8%8B%E5%B8%88-at-enflame-4463922782",
+      "location": "Shenzhen, Guangdong, China",
+      "source_updated": "",
+      "company": "Enflame",
+      "source": "linkedin-cn",
+      "tags": [
+        "GPU Kernel",
+        "训推加速",
+        "深圳",
+        "匹配高"
+      ],
+      "reasons": [
+        "GPU Kernel：算子",
+        "训推加速：算子"
+      ],
+      "score": 10,
+      "region": "深圳",
+      "level": "高",
+      "last_seen": "2026-09-21T05:23:34+00:00",
+      "stale": false
+    },
+    {
+      "title": "AI算子开发工程师(A178565)",
+      "url": "https://www.liepin.com/job/1980717591.shtml",
+      "location": "深圳-福田区",
+      "source_updated": "2026-08-14",
+      "company": "NIO蔚来",
+      "source": "liepin",
+      "listing_type": "direct",
+      "tags": [
+        "GPU Kernel",
+        "AI Infra",
+        "训推加速",
+        "深圳",
+        "匹配高"
+      ],
+      "reasons": [
+        "GPU Kernel：算子",
+        "训推加速：算子"
+      ],
+      "score": 11,
+      "region": "深圳",
+      "level": "高",
+      "last_seen": "2026-09-20T05:25:00+00:00",
+      "stale": true
+    },
+    {
+      "title": "AI大模型架构师（训练/推理） 中国/北京 OTT2系统部 研发族",
+      "url": "https://career.huawei.com/reccampportal/portal5//reccampportal/portal5/social-recruitment-detail.html?jobId=28183&amp;dataSource=1",
+      "location": "中国 / 深圳及其他城市",
+      "source_updated": "",
+      "company": "华为",
+      "source": "huawei-china-ai",
+      "tags": [
+        "AI Infra",
+        "训推加速",
+        "深圳",
+        "匹配高"
+      ],
+      "reasons": [
+        "AI Infra：大模型",
+        "训推加速：推理、训练"
+      ],
+      "score": 10,
+      "region": "深圳",
+      "level": "高",
+      "last_seen": "2026-09-21T05:23:34+00:00",
+      "stale": false
+    },
+    {
+      "title": "昇腾大模型推理专家 中国/上海 OTT1技术部 研发族",
+      "url": "https://career.huawei.com/reccampportal/portal5//reccampportal/portal5/social-recruitment-detail.html?jobId=27623&amp;dataSource=1",
+      "location": "中国 / 深圳及其他城市",
+      "source_updated": "",
+      "company": "华为",
+      "source": "huawei-china-ai",
+      "tags": [
+        "AI Infra",
+        "训推加速",
+        "深圳",
+        "匹配高"
+      ],
+      "reasons": [
+        "AI Infra：大模型、昇腾",
+        "训推加速：推理"
+      ],
+      "score": 10,
+      "region": "深圳",
+      "level": "高",
+      "last_seen": "2026-09-21T05:23:34+00:00",
+      "stale": false
+    },
+    {
+      "title": "昇腾大模型训练专家 中国/上海 OTT1技术部 研发族",
+      "url": "https://career.huawei.com/reccampportal/portal5//reccampportal/portal5/social-recruitment-detail.html?jobId=27621&amp;dataSource=1",
+      "location": "中国 / 深圳及其他城市",
+      "source_updated": "",
+      "company": "华为",
+      "source": "huawei-china-ai",
+      "tags": [
+        "AI Infra",
+        "训推加速",
+        "深圳",
+        "匹配高"
+      ],
+      "reasons": [
+        "AI Infra：大模型、昇腾",
+        "训推加速：训练"
+      ],
+      "score": 10,
+      "region": "深圳",
+      "level": "高",
+      "last_seen": "2026-09-21T05:23:34+00:00",
+      "stale": false
+    },
+    {
+      "title": "软件算子开发工程师",
+      "url": "https://www.liepin.com/job/1978346061.shtml",
+      "location": "深圳-南山区",
+      "source_updated": "2026-04-23",
+      "company": "小鹏集团",
+      "source": "liepin",
+      "listing_type": "direct",
+      "tags": [
+        "GPU Kernel",
+        "AI Infra",
+        "训推加速",
+        "深圳",
+        "匹配高"
+      ],
+      "reasons": [
+        "GPU Kernel：算子",
+        "训推加速：算子"
+      ],
+      "score": 11,
+      "region": "深圳",
+      "level": "高",
+      "last_seen": "2026-09-20T05:25:00+00:00",
+      "stale": true
+    },
+    {
+      "title": "算子工程师(J10123)",
+      "url": "https://www.liepin.com/job/1984657545.shtml",
+      "location": "深圳-龙岗区",
+      "source_updated": "2026-08-05",
+      "company": "数聚红芯",
+      "source": "liepin",
+      "listing_type": "direct",
+      "tags": [
+        "GPU Kernel",
+        "AI Infra",
+        "训推加速",
+        "深圳",
+        "匹配高"
+      ],
+      "reasons": [
+        "GPU Kernel：算子",
+        "训推加速：算子"
+      ],
+      "score": 11,
+      "region": "深圳",
+      "level": "高",
+      "last_seen": "2026-09-20T05:25:00+00:00",
+      "stale": true
+    },
+    {
+      "title": "计算机视觉算法部署工程师（模型推理_边缘计算方向）",
+      "url": "https://cn.linkedin.com/jobs/view/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E7%AE%97%E6%B3%95%E9%83%A8%E7%BD%B2%E5%B7%A5%E7%A8%8B%E5%B8%88%EF%BC%88%E6%A8%A1%E5%9E%8B%E6%8E%A8%E7%90%86-%E8%BE%B9%E7%BC%98%E8%AE%A1%E7%AE%97%E6%96%B9%E5%90%91%EF%BC%89-4467065813",
+      "location": "Shenzhen, Guangdong, China",
+      "source_updated": "",
+      "company": "某央企具身智能公司",
+      "source": "linkedin-cn",
+      "tags": [
+        "端侧部署",
+        "训推加速",
+        "深圳",
+        "匹配高"
+      ],
+      "reasons": [
+        "端侧部署：部署",
+        "训推加速：推理"
+      ],
+      "score": 10,
+      "region": "深圳",
+      "level": "高",
+      "last_seen": "2026-09-21T05:23:34+00:00",
+      "stale": false
+    },
+    {
+      "title": "高性能算子开发（AI芯片）",
+      "url": "https://www.liepin.com/a/76732495.shtml",
+      "location": "深圳-南山区",
+      "source_updated": "2026-08-14",
+      "company": "某电子/半导体/集成电路公司",
+      "source": "liepin",
+      "listing_type": "headhunter",
+      "tags": [
+        "GPU Kernel",
+        "AI Infra",
+        "端侧部署",
+        "训推加速",
+        "深圳",
+        "匹配高"
+      ],
+      "reasons": [
+        "GPU Kernel：算子、高性能算子",
+        "端侧部署：芯片",
+        "训推加速：算子"
+      ],
+      "score": 14,
+      "region": "深圳",
+      "level": "高",
+      "last_seen": "2026-09-20T05:25:00+00:00",
+      "stale": true
+    },
+    {
+      "title": "AI算子开发工程师",
+      "url": "https://www.liepin.com/job/1985458381.shtml",
+      "location": "深圳-罗湖区",
+      "source_updated": "2026-09-08",
+      "company": "江原创芯科技(上海)有限公司",
+      "source": "liepin",
+      "listing_type": "direct",
+      "tags": [
+        "GPU Kernel",
+        "AI Infra",
+        "训推加速",
+        "深圳",
+        "匹配高"
+      ],
+      "reasons": [
+        "GPU Kernel：算子",
+        "训推加速：算子"
+      ],
+      "score": 11,
+      "region": "深圳",
+      "level": "高",
+      "last_seen": "2026-09-20T05:25:00+00:00",
+      "stale": true
+    },
+    {
+      "title": "算子工程师",
+      "url": "https://www.liepin.com/job/1980282711.shtml",
+      "location": "深圳-龙岗区",
+      "source_updated": "2026-08-17",
+      "company": "深圳市大数据研究院",
+      "source": "liepin",
+      "listing_type": "direct",
+      "tags": [
+        "GPU Kernel",
+        "AI Infra",
+        "训推加速",
+        "深圳",
+        "匹配高"
+      ],
+      "reasons": [
+        "GPU Kernel：算子",
+        "训推加速：算子"
+      ],
+      "score": 11,
+      "region": "深圳",
+      "level": "高",
+      "last_seen": "2026-09-20T05:25:00+00:00",
+      "stale": true
+    },
+    {
+      "title": "资深算子开发工程师",
+      "url": "https://www.liepin.com/job/1985496945.shtml",
+      "location": "深圳-南山区",
+      "source_updated": "2026-09-09",
+      "company": "燧原科技",
+      "source": "liepin",
+      "listing_type": "direct",
+      "tags": [
+        "GPU Kernel",
+        "AI Infra",
+        "训推加速",
+        "深圳",
+        "匹配高"
+      ],
+      "reasons": [
+        "GPU Kernel：算子",
+        "训推加速：算子"
+      ],
+      "score": 11,
+      "region": "深圳",
+      "level": "高",
+      "last_seen": "2026-09-20T05:25:00+00:00",
+      "stale": true
+    },
+    {
+      "title": "腾讯游戏-高性能算子优化工程师/专家 (深圳)",
+      "url": "https://www.liepin.com/job/1984027017.shtml",
+      "location": "深圳-南山区",
+      "source_updated": "2026-07-09",
+      "company": "腾讯",
+      "source": "liepin",
+      "listing_type": "direct",
+      "tags": [
+        "GPU Kernel",
+        "AI Infra",
+        "训推加速",
+        "深圳",
+        "匹配高"
+      ],
+      "reasons": [
+        "GPU Kernel：算子、高性能算子",
+        "训推加速：算子"
+      ],
+      "score": 11,
+      "region": "深圳",
+      "level": "高",
+      "last_seen": "2026-09-20T05:25:00+00:00",
+      "stale": true
     },
     {
       "title": "分布式训练通信优化专家",
@@ -383,196 +772,7 @@
       "region": "深圳",
       "level": "高",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
-    },
-    {
-      "title": "AI算子开发工程师(A178565)",
-      "url": "https://www.liepin.com/job/1980717591.shtml",
-      "location": "深圳-福田区",
-      "source_updated": "2026-08-14",
-      "company": "NIO蔚来",
-      "source": "liepin",
-      "listing_type": "direct",
-      "tags": [
-        "GPU Kernel",
-        "训推加速",
-        "深圳",
-        "匹配高"
-      ],
-      "reasons": [
-        "GPU Kernel：算子",
-        "训推加速：算子"
-      ],
-      "score": 10,
-      "region": "深圳",
-      "level": "高",
-      "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
-    },
-    {
-      "title": "GPGPU 算子优化专家",
-      "url": "https://www.liepin.com/job/1983583673.shtml",
-      "location": "深圳-南山区",
-      "source_updated": "2026-06-22",
-      "company": "云天励飞",
-      "source": "liepin",
-      "listing_type": "direct",
-      "tags": [
-        "GPU Kernel",
-        "训推加速",
-        "深圳",
-        "匹配高"
-      ],
-      "reasons": [
-        "GPU Kernel：算子",
-        "训推加速：算子"
-      ],
-      "score": 10,
-      "region": "深圳",
-      "level": "高",
-      "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
-    },
-    {
-      "title": "GPGPU算子专家-全国",
-      "url": "https://www.liepin.com/job/1978629203.shtml",
-      "location": "深圳",
-      "source_updated": "2026-06-17",
-      "company": "云天励飞",
-      "source": "liepin",
-      "listing_type": "direct",
-      "tags": [
-        "GPU Kernel",
-        "训推加速",
-        "深圳",
-        "匹配高"
-      ],
-      "reasons": [
-        "GPU Kernel：算子",
-        "训推加速：算子"
-      ],
-      "score": 10,
-      "region": "深圳",
-      "level": "高",
-      "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
-    },
-    {
-      "title": "GPGPU算子工程师",
-      "url": "https://www.liepin.com/job/1978030181.shtml",
-      "location": "深圳-南山区",
-      "source_updated": "2026-07-28",
-      "company": "云天励飞",
-      "source": "liepin",
-      "listing_type": "direct",
-      "tags": [
-        "GPU Kernel",
-        "训推加速",
-        "深圳",
-        "匹配高"
-      ],
-      "reasons": [
-        "GPU Kernel：算子",
-        "训推加速：算子"
-      ],
-      "score": 10,
-      "region": "深圳",
-      "level": "高",
-      "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
-    },
-    {
-      "title": "GPGPU算子专家",
-      "url": "https://www.liepin.com/job/1981006043.shtml",
-      "location": "深圳-南山区",
-      "source_updated": "2026-03-17",
-      "company": "北南集团",
-      "source": "liepin",
-      "listing_type": "direct",
-      "tags": [
-        "GPU Kernel",
-        "训推加速",
-        "深圳",
-        "匹配高"
-      ],
-      "reasons": [
-        "GPU Kernel：算子",
-        "训推加速：算子"
-      ],
-      "score": 10,
-      "region": "深圳",
-      "level": "高",
-      "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
-    },
-    {
-      "title": "AI大模型架构师（训练/推理） 中国/北京 OTT2系统部 研发族",
-      "url": "https://career.huawei.com/reccampportal/portal5//reccampportal/portal5/social-recruitment-detail.html?jobId=28183&amp;dataSource=1",
-      "location": "中国 / 深圳及其他城市",
-      "source_updated": "",
-      "company": "华为",
-      "source": "huawei-china-ai",
-      "tags": [
-        "AI Infra",
-        "训推加速",
-        "深圳",
-        "匹配高"
-      ],
-      "reasons": [
-        "AI Infra：大模型",
-        "训推加速：推理、训练"
-      ],
-      "score": 10,
-      "region": "深圳",
-      "level": "高",
-      "last_seen": "2026-09-20T05:20:36+00:00",
-      "stale": false
-    },
-    {
-      "title": "昇腾大模型推理专家 中国/上海 OTT1技术部 研发族",
-      "url": "https://career.huawei.com/reccampportal/portal5//reccampportal/portal5/social-recruitment-detail.html?jobId=27623&amp;dataSource=1",
-      "location": "中国 / 深圳及其他城市",
-      "source_updated": "",
-      "company": "华为",
-      "source": "huawei-china-ai",
-      "tags": [
-        "AI Infra",
-        "训推加速",
-        "深圳",
-        "匹配高"
-      ],
-      "reasons": [
-        "AI Infra：大模型、昇腾",
-        "训推加速：推理"
-      ],
-      "score": 10,
-      "region": "深圳",
-      "level": "高",
-      "last_seen": "2026-09-20T05:20:36+00:00",
-      "stale": false
-    },
-    {
-      "title": "昇腾大模型训练专家 中国/上海 OTT1技术部 研发族",
-      "url": "https://career.huawei.com/reccampportal/portal5//reccampportal/portal5/social-recruitment-detail.html?jobId=27621&amp;dataSource=1",
-      "location": "中国 / 深圳及其他城市",
-      "source_updated": "",
-      "company": "华为",
-      "source": "huawei-china-ai",
-      "tags": [
-        "AI Infra",
-        "训推加速",
-        "深圳",
-        "匹配高"
-      ],
-      "reasons": [
-        "AI Infra：大模型、昇腾",
-        "训推加速：训练"
-      ],
-      "score": 10,
-      "region": "深圳",
-      "level": "高",
-      "last_seen": "2026-09-20T05:20:36+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "AI Infra工程师（分布式训练方向）",
@@ -596,31 +796,7 @@
       "region": "深圳",
       "level": "高",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
-    },
-    {
-      "title": "软件算子开发工程师",
-      "url": "https://www.liepin.com/job/1978346061.shtml",
-      "location": "深圳-南山区",
-      "source_updated": "2026-04-23",
-      "company": "小鹏集团",
-      "source": "liepin",
-      "listing_type": "direct",
-      "tags": [
-        "GPU Kernel",
-        "训推加速",
-        "深圳",
-        "匹配高"
-      ],
-      "reasons": [
-        "GPU Kernel：算子",
-        "训推加速：算子"
-      ],
-      "score": 10,
-      "region": "深圳",
-      "level": "高",
-      "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "分布式训练资深算法工程师(J10425)",
@@ -644,31 +820,7 @@
       "region": "深圳",
       "level": "高",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
-    },
-    {
-      "title": "算子工程师(J10123)",
-      "url": "https://www.liepin.com/job/1984657545.shtml",
-      "location": "深圳-龙岗区",
-      "source_updated": "2026-08-05",
-      "company": "数聚红芯",
-      "source": "liepin",
-      "listing_type": "direct",
-      "tags": [
-        "GPU Kernel",
-        "训推加速",
-        "深圳",
-        "匹配高"
-      ],
-      "reasons": [
-        "GPU Kernel：算子",
-        "训推加速：算子"
-      ],
-      "score": 10,
-      "region": "深圳",
-      "level": "高",
-      "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "算子开发Leader（训推底层算子 / 高性能计算方向）",
@@ -694,7 +846,7 @@
       "region": "深圳",
       "level": "高",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "多模态大模型推理加速工程师",
@@ -720,30 +872,7 @@
       "region": "深圳",
       "level": "高",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
-    },
-    {
-      "title": "计算机视觉算法部署工程师（模型推理_边缘计算方向）",
-      "url": "https://cn.linkedin.com/jobs/view/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E7%AE%97%E6%B3%95%E9%83%A8%E7%BD%B2%E5%B7%A5%E7%A8%8B%E5%B8%88%EF%BC%88%E6%A8%A1%E5%9E%8B%E6%8E%A8%E7%90%86-%E8%BE%B9%E7%BC%98%E8%AE%A1%E7%AE%97%E6%96%B9%E5%90%91%EF%BC%89-4467065813",
-      "location": "Shenzhen, Guangdong, China",
-      "source_updated": "",
-      "company": "某央企具身智能公司",
-      "source": "linkedin-cn",
-      "tags": [
-        "端侧部署",
-        "训推加速",
-        "深圳",
-        "匹配高"
-      ],
-      "reasons": [
-        "端侧部署：部署",
-        "训推加速：推理"
-      ],
-      "score": 10,
-      "region": "深圳",
-      "level": "高",
-      "last_seen": "2026-09-20T05:20:36+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "CUDA/HIP算子优化工程师",
@@ -769,7 +898,7 @@
       "region": "深圳",
       "level": "高",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "大模型部署与推理优化工程师",
@@ -795,57 +924,7 @@
       "region": "深圳",
       "level": "高",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
-    },
-    {
-      "title": "高性能算子开发（AI芯片）",
-      "url": "https://www.liepin.com/a/76732495.shtml",
-      "location": "深圳-南山区",
-      "source_updated": "2026-08-14",
-      "company": "某电子/半导体/集成电路公司",
-      "source": "liepin",
-      "listing_type": "headhunter",
-      "tags": [
-        "GPU Kernel",
-        "端侧部署",
-        "训推加速",
-        "深圳",
-        "匹配高"
-      ],
-      "reasons": [
-        "GPU Kernel：算子、高性能算子",
-        "端侧部署：芯片",
-        "训推加速：算子"
-      ],
-      "score": 13,
-      "region": "深圳",
-      "level": "高",
-      "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
-    },
-    {
-      "title": "AI算子开发工程师",
-      "url": "https://www.liepin.com/job/1985458381.shtml",
-      "location": "深圳-罗湖区",
-      "source_updated": "2026-09-08",
-      "company": "江原创芯科技(上海)有限公司",
-      "source": "liepin",
-      "listing_type": "direct",
-      "tags": [
-        "GPU Kernel",
-        "训推加速",
-        "深圳",
-        "匹配高"
-      ],
-      "reasons": [
-        "GPU Kernel：算子",
-        "训推加速：算子"
-      ],
-      "score": 10,
-      "region": "深圳",
-      "level": "高",
-      "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "大模型推理加速专家",
@@ -869,7 +948,7 @@
       "region": "深圳",
       "level": "高",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "分布式训练专家",
@@ -893,7 +972,7 @@
       "region": "深圳",
       "level": "高",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "大模型推理优化工程师",
@@ -917,31 +996,7 @@
       "region": "深圳",
       "level": "高",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
-    },
-    {
-      "title": "算子工程师",
-      "url": "https://www.liepin.com/job/1980282711.shtml",
-      "location": "深圳-龙岗区",
-      "source_updated": "2026-08-17",
-      "company": "深圳市大数据研究院",
-      "source": "liepin",
-      "listing_type": "direct",
-      "tags": [
-        "GPU Kernel",
-        "训推加速",
-        "深圳",
-        "匹配高"
-      ],
-      "reasons": [
-        "GPU Kernel：算子",
-        "训推加速：算子"
-      ],
-      "score": 10,
-      "region": "深圳",
-      "level": "高",
-      "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "大模型推理系统工程师（vLLM方向）",
@@ -965,7 +1020,7 @@
       "region": "深圳",
       "level": "高",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "大模型训练框架开发工程师",
@@ -989,55 +1044,7 @@
       "region": "深圳",
       "level": "高",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
-    },
-    {
-      "title": "AI算子开发工程师",
-      "url": "https://www.liepin.com/job/1985497073.shtml",
-      "location": "深圳-南山区",
-      "source_updated": "2026-09-09",
-      "company": "燧原科技",
-      "source": "liepin",
-      "listing_type": "direct",
-      "tags": [
-        "GPU Kernel",
-        "训推加速",
-        "深圳",
-        "匹配高"
-      ],
-      "reasons": [
-        "GPU Kernel：算子",
-        "训推加速：算子"
-      ],
-      "score": 10,
-      "region": "深圳",
-      "level": "高",
-      "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
-    },
-    {
-      "title": "资深算子开发工程师",
-      "url": "https://www.liepin.com/job/1985496945.shtml",
-      "location": "深圳-南山区",
-      "source_updated": "2026-09-09",
-      "company": "燧原科技",
-      "source": "liepin",
-      "listing_type": "direct",
-      "tags": [
-        "GPU Kernel",
-        "训推加速",
-        "深圳",
-        "匹配高"
-      ],
-      "reasons": [
-        "GPU Kernel：算子",
-        "训推加速：算子"
-      ],
-      "score": 10,
-      "region": "深圳",
-      "level": "高",
-      "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "大模型训练框架研发工程师-强化学习/精调/蒸馏方向(深圳)",
@@ -1061,31 +1068,7 @@
       "region": "深圳",
       "level": "高",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
-    },
-    {
-      "title": "腾讯游戏-高性能算子优化工程师/专家 (深圳)",
-      "url": "https://www.liepin.com/job/1984027017.shtml",
-      "location": "深圳-南山区",
-      "source_updated": "2026-07-09",
-      "company": "腾讯",
-      "source": "liepin",
-      "listing_type": "direct",
-      "tags": [
-        "GPU Kernel",
-        "训推加速",
-        "深圳",
-        "匹配高"
-      ],
-      "reasons": [
-        "GPU Kernel：算子、高性能算子",
-        "训推加速：算子"
-      ],
-      "score": 10,
-      "region": "深圳",
-      "level": "高",
-      "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "大模型训练架构师/专家",
@@ -1109,7 +1092,7 @@
       "region": "深圳",
       "level": "高",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "算子开发",
@@ -1121,6 +1104,7 @@
       "listing_type": "headhunter",
       "tags": [
         "GPU Kernel",
+        "AI Infra",
         "端侧部署",
         "训推加速",
         "深圳",
@@ -1131,11 +1115,11 @@
         "端侧部署：芯片",
         "训推加速：算子"
       ],
-      "score": 11,
+      "score": 12,
       "region": "深圳",
       "level": "高",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "大模型算法工程师- 行业应用",
@@ -1159,7 +1143,53 @@
       "score": 9,
       "region": "深圳",
       "level": "中",
-      "last_seen": "2026-09-20T05:20:36+00:00",
+      "last_seen": "2026-09-21T05:23:34+00:00",
+      "stale": false
+    },
+    {
+      "title": "NVIDIA 2027 New College Graduate: Deep Learning and High-Performance Computing Engineering - China",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/en-US/NVIDIAExternalCareerSite/job/China-Shanghai/NVIDIA-2027-New-College-Graduate--Deep-Learning-and-High-Performance-Computing-Engineering---China_JR2024107",
+      "location": "China, Shanghai; China, Beijing; China, Shenzhen",
+      "source_updated": "Posted 30 Days Ago",
+      "company": "NVIDIA",
+      "source": "nvidia",
+      "tags": [
+        "AI Infra",
+        "训推加速",
+        "深圳",
+        "匹配中"
+      ],
+      "reasons": [
+        "AI Infra：gpu、deep learning、llm",
+        "训推加速：inference"
+      ],
+      "score": 8,
+      "region": "深圳",
+      "level": "中",
+      "last_seen": "2026-09-21T05:23:34+00:00",
+      "stale": false
+    },
+    {
+      "title": "NVIDIA 2027 New College Graduate: GPU Architecture Engineering - China",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/en-US/NVIDIAExternalCareerSite/job/China-Shanghai/NVIDIA-2027-New-College-Graduate--GPU-Architecture-Engineering---China_JR2024108",
+      "location": "China, Shanghai; China, Beijing; China, Shenzhen",
+      "source_updated": "Posted 30 Days Ago",
+      "company": "NVIDIA",
+      "source": "nvidia",
+      "tags": [
+        "AI Infra",
+        "端侧部署",
+        "深圳",
+        "匹配中"
+      ],
+      "reasons": [
+        "AI Infra：gpu",
+        "端侧部署：soc"
+      ],
+      "score": 8,
+      "region": "深圳",
+      "level": "中",
+      "last_seen": "2026-09-21T05:23:34+00:00",
       "stale": false
     },
     {
@@ -1184,7 +1214,7 @@
       "region": "深圳",
       "level": "高",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "推理加速与部署工程师",
@@ -1208,53 +1238,7 @@
       "region": "深圳",
       "level": "高",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
-    },
-    {
-      "title": "NVIDIA 2027 New College Graduate: Deep Learning and High-Performance Computing Engineering - China",
-      "url": "https://nvidia.wd5.myworkdayjobs.com/en-US/NVIDIAExternalCareerSite/job/China-Shanghai/NVIDIA-2027-New-College-Graduate--Deep-Learning-and-High-Performance-Computing-Engineering---China_JR2024107",
-      "location": "China, Shanghai; China, Beijing; China, Shenzhen",
-      "source_updated": "Posted 29 Days Ago",
-      "company": "NVIDIA",
-      "source": "nvidia",
-      "tags": [
-        "AI Infra",
-        "训推加速",
-        "深圳",
-        "匹配中"
-      ],
-      "reasons": [
-        "AI Infra：gpu、deep learning、llm",
-        "训推加速：inference"
-      ],
-      "score": 8,
-      "region": "深圳",
-      "level": "中",
-      "last_seen": "2026-09-20T05:20:36+00:00",
-      "stale": false
-    },
-    {
-      "title": "NVIDIA 2027 New College Graduate: GPU Architecture Engineering - China",
-      "url": "https://nvidia.wd5.myworkdayjobs.com/en-US/NVIDIAExternalCareerSite/job/China-Shanghai/NVIDIA-2027-New-College-Graduate--GPU-Architecture-Engineering---China_JR2024108",
-      "location": "China, Shanghai; China, Beijing; China, Shenzhen",
-      "source_updated": "Posted 29 Days Ago",
-      "company": "NVIDIA",
-      "source": "nvidia",
-      "tags": [
-        "AI Infra",
-        "端侧部署",
-        "深圳",
-        "匹配中"
-      ],
-      "reasons": [
-        "AI Infra：gpu",
-        "端侧部署：soc"
-      ],
-      "score": 8,
-      "region": "深圳",
-      "level": "中",
-      "last_seen": "2026-09-20T05:20:36+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "AI Engineer",
@@ -1274,7 +1258,7 @@
       "score": 7,
       "region": "深圳",
       "level": "中",
-      "last_seen": "2026-09-20T05:20:36+00:00",
+      "last_seen": "2026-09-21T05:23:34+00:00",
       "stale": false
     },
     {
@@ -1295,29 +1279,7 @@
       "score": 7,
       "region": "深圳",
       "level": "中",
-      "last_seen": "2026-09-20T05:20:36+00:00",
-      "stale": false
-    },
-    {
-      "title": "分布式并行文件存储开发工程师J104950",
-      "url": "https://www.liepin.com/job/1985213333.shtml",
-      "location": "深圳-南山区",
-      "source_updated": "2026-08-27",
-      "company": "Baidu",
-      "source": "liepin",
-      "listing_type": "direct",
-      "tags": [
-        "AI Infra",
-        "深圳",
-        "匹配中"
-      ],
-      "reasons": [
-        "AI Infra：分布式"
-      ],
-      "score": 7,
-      "region": "深圳",
-      "level": "中",
-      "last_seen": "2026-09-20T05:25:00+00:00",
+      "last_seen": "2026-09-21T05:23:34+00:00",
       "stale": false
     },
     {
@@ -1338,7 +1300,7 @@
       "score": 7,
       "region": "深圳",
       "level": "中",
-      "last_seen": "2026-09-20T05:20:36+00:00",
+      "last_seen": "2026-09-21T05:23:34+00:00",
       "stale": false
     },
     {
@@ -1359,7 +1321,7 @@
       "score": 7,
       "region": "深圳",
       "level": "中",
-      "last_seen": "2026-09-20T05:20:36+00:00",
+      "last_seen": "2026-09-21T05:23:34+00:00",
       "stale": false
     },
     {
@@ -1380,7 +1342,7 @@
       "score": 7,
       "region": "深圳",
       "level": "中",
-      "last_seen": "2026-09-20T05:20:36+00:00",
+      "last_seen": "2026-09-21T05:23:34+00:00",
       "stale": false
     },
     {
@@ -1401,7 +1363,7 @@
       "score": 7,
       "region": "深圳",
       "level": "中",
-      "last_seen": "2026-09-20T05:20:36+00:00",
+      "last_seen": "2026-09-21T05:23:34+00:00",
       "stale": false
     },
     {
@@ -1426,7 +1388,7 @@
       "score": 7,
       "region": "深圳",
       "level": "中",
-      "last_seen": "2026-09-20T05:20:36+00:00",
+      "last_seen": "2026-09-21T05:23:34+00:00",
       "stale": false
     },
     {
@@ -1447,7 +1409,7 @@
       "score": 7,
       "region": "深圳",
       "level": "中",
-      "last_seen": "2026-09-20T05:20:36+00:00",
+      "last_seen": "2026-09-21T05:23:34+00:00",
       "stale": false
     },
     {
@@ -1468,7 +1430,7 @@
       "score": 7,
       "region": "深圳",
       "level": "中",
-      "last_seen": "2026-09-20T05:20:36+00:00",
+      "last_seen": "2026-09-21T05:23:34+00:00",
       "stale": false
     },
     {
@@ -1489,7 +1451,7 @@
       "score": 7,
       "region": "深圳",
       "level": "中",
-      "last_seen": "2026-09-20T05:20:36+00:00",
+      "last_seen": "2026-09-21T05:23:34+00:00",
       "stale": false
     },
     {
@@ -1510,227 +1472,7 @@
       "score": 7,
       "region": "深圳",
       "level": "中",
-      "last_seen": "2026-09-20T05:20:36+00:00",
-      "stale": false
-    },
-    {
-      "title": "AI算法工程师（端侧部署）",
-      "url": "https://www.liepin.com/job/1985624793.shtml",
-      "location": "深圳-龙岗区",
-      "source_updated": "2026-09-15",
-      "company": "乐木骆",
-      "source": "liepin",
-      "listing_type": "direct",
-      "tags": [
-        "端侧部署",
-        "深圳",
-        "匹配中"
-      ],
-      "reasons": [
-        "端侧部署：端侧、部署"
-      ],
-      "score": 7,
-      "region": "深圳",
-      "level": "中",
-      "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
-    },
-    {
-      "title": "Pollo.ai 数据开发Owner(AI视频生成）",
-      "url": "https://www.liepin.com/job/1985024843.shtml",
-      "location": "深圳-宝安区",
-      "source_updated": "2026-09-14",
-      "company": "九瓴科技",
-      "source": "liepin",
-      "listing_type": "direct",
-      "tags": [
-        "DiT",
-        "深圳",
-        "匹配中"
-      ],
-      "reasons": [
-        "DiT：视频生成"
-      ],
-      "score": 7,
-      "region": "深圳",
-      "level": "中",
-      "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
-    },
-    {
-      "title": "AI 推理平台技术专家",
-      "url": "https://www.liepin.com/job/1985396463.shtml",
-      "location": "深圳-南山区",
-      "source_updated": "2026-09-17",
-      "company": "优必选机器人",
-      "source": "liepin",
-      "listing_type": "direct",
-      "tags": [
-        "训推加速",
-        "深圳",
-        "匹配中"
-      ],
-      "reasons": [
-        "训推加速：推理"
-      ],
-      "score": 7,
-      "region": "深圳",
-      "level": "中",
-      "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
-    },
-    {
-      "title": "端侧部署工程师",
-      "url": "https://www.liepin.com/job/1985379311.shtml",
-      "location": "深圳-南山区",
-      "source_updated": "2026-09-17",
-      "company": "优必选机器人",
-      "source": "liepin",
-      "listing_type": "direct",
-      "tags": [
-        "端侧部署",
-        "深圳",
-        "匹配中"
-      ],
-      "reasons": [
-        "端侧部署：端侧、部署"
-      ],
-      "score": 7,
-      "region": "深圳",
-      "level": "中",
-      "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
-    },
-    {
-      "title": "AI分布式框架工程师",
-      "url": "https://www.liepin.com/job/1965506223.shtml",
-      "location": "深圳-南山区",
-      "source_updated": "2024-03-15",
-      "company": "北京清程极智科技有限公司",
-      "source": "liepin",
-      "listing_type": "direct",
-      "tags": [
-        "AI Infra",
-        "深圳",
-        "匹配中"
-      ],
-      "reasons": [
-        "AI Infra：分布式"
-      ],
-      "score": 7,
-      "region": "深圳",
-      "level": "中",
-      "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
-    },
-    {
-      "title": "算法工程师（推理加速）",
-      "url": "https://www.liepin.com/job/1985026397.shtml",
-      "location": "深圳-南山区",
-      "source_updated": "2026-08-20",
-      "company": "北京芯大通科技有限公司",
-      "source": "liepin",
-      "listing_type": "direct",
-      "tags": [
-        "训推加速",
-        "深圳",
-        "匹配中"
-      ],
-      "reasons": [
-        "训推加速：推理、加速"
-      ],
-      "score": 7,
-      "region": "深圳",
-      "level": "中",
-      "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
-    },
-    {
-      "title": "硬件加速推理AI Infra工程师/专家  北上杭深",
-      "url": "https://www.liepin.com/job/1985370225.shtml",
-      "location": "深圳-南山区",
-      "source_updated": "2026-09-07",
-      "company": "咸宁市伯乐智信息咨询有限公司",
-      "source": "liepin",
-      "listing_type": "direct",
-      "tags": [
-        "训推加速",
-        "深圳",
-        "匹配中"
-      ],
-      "reasons": [
-        "训推加速：推理、加速"
-      ],
-      "score": 7,
-      "region": "深圳",
-      "level": "中",
-      "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
-    },
-    {
-      "title": "硬件加速训练框架研发工程师（深圳）",
-      "url": "https://www.liepin.com/job/1970786545.shtml",
-      "location": "深圳-南山区",
-      "source_updated": "2024-11-12",
-      "company": "字节跳动",
-      "source": "liepin",
-      "listing_type": "direct",
-      "tags": [
-        "训推加速",
-        "深圳",
-        "匹配中"
-      ],
-      "reasons": [
-        "训推加速：训练、加速"
-      ],
-      "score": 7,
-      "region": "深圳",
-      "level": "中",
-      "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
-    },
-    {
-      "title": "编译器工程师",
-      "url": "https://www.liepin.com/job/1984998387.shtml",
-      "location": "深圳-南山区",
-      "source_updated": "2026-08-19",
-      "company": "小鹏集团",
-      "source": "liepin",
-      "listing_type": "direct",
-      "tags": [
-        "训推加速",
-        "深圳",
-        "匹配中"
-      ],
-      "reasons": [
-        "训推加速：编译器"
-      ],
-      "score": 7,
-      "region": "深圳",
-      "level": "中",
-      "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
-    },
-    {
-      "title": "编译器开发资深工程师",
-      "url": "https://www.liepin.com/job/1984998865.shtml",
-      "location": "深圳-南山区",
-      "source_updated": "2026-08-19",
-      "company": "小鹏集团",
-      "source": "liepin",
-      "listing_type": "direct",
-      "tags": [
-        "训推加速",
-        "深圳",
-        "匹配中"
-      ],
-      "reasons": [
-        "训推加速：编译器"
-      ],
-      "score": 7,
-      "region": "深圳",
-      "level": "中",
-      "last_seen": "2026-09-20T05:25:00+00:00",
+      "last_seen": "2026-09-21T05:23:34+00:00",
       "stale": false
     },
     {
@@ -1751,7 +1493,7 @@
       "score": 7,
       "region": "深圳",
       "level": "中",
-      "last_seen": "2026-09-20T05:20:36+00:00",
+      "last_seen": "2026-09-21T05:23:34+00:00",
       "stale": false
     },
     {
@@ -1772,29 +1514,7 @@
       "score": 7,
       "region": "深圳",
       "level": "中",
-      "last_seen": "2026-09-20T05:20:36+00:00",
-      "stale": false
-    },
-    {
-      "title": "算法工程师（推理加速）",
-      "url": "https://www.liepin.com/job/1985253675.shtml",
-      "location": "深圳-南山区",
-      "source_updated": "2026-09-13",
-      "company": "广东高乐股份有限公司北京科技分公司",
-      "source": "liepin",
-      "listing_type": "direct",
-      "tags": [
-        "训推加速",
-        "深圳",
-        "匹配中"
-      ],
-      "reasons": [
-        "训推加速：推理、加速"
-      ],
-      "score": 7,
-      "region": "深圳",
-      "level": "中",
-      "last_seen": "2026-09-20T05:25:00+00:00",
+      "last_seen": "2026-09-21T05:23:34+00:00",
       "stale": false
     },
     {
@@ -1815,29 +1535,7 @@
       "score": 7,
       "region": "深圳",
       "level": "中",
-      "last_seen": "2026-09-20T05:20:36+00:00",
-      "stale": false
-    },
-    {
-      "title": "具身智能算法工程师（模型量化与部署方向）",
-      "url": "https://www.liepin.com/job/1981666997.shtml",
-      "location": "深圳-宝安区",
-      "source_updated": "2026-09-14",
-      "company": "拓邦股份",
-      "source": "liepin",
-      "listing_type": "direct",
-      "tags": [
-        "端侧部署",
-        "深圳",
-        "匹配中"
-      ],
-      "reasons": [
-        "端侧部署：量化、部署"
-      ],
-      "score": 7,
-      "region": "深圳",
-      "level": "中",
-      "last_seen": "2026-09-20T05:25:00+00:00",
+      "last_seen": "2026-09-21T05:23:34+00:00",
       "stale": false
     },
     {
@@ -1862,7 +1560,7 @@
       "score": 7,
       "region": "深圳",
       "level": "中",
-      "last_seen": "2026-09-20T05:20:36+00:00",
+      "last_seen": "2026-09-21T05:23:34+00:00",
       "stale": false
     },
     {
@@ -1887,8 +1585,399 @@
       "score": 7,
       "region": "深圳",
       "level": "中",
-      "last_seen": "2026-09-20T05:20:36+00:00",
+      "last_seen": "2026-09-21T05:23:34+00:00",
       "stale": false
+    },
+    {
+      "title": "大模型算法专家",
+      "url": "https://cn.linkedin.com/jobs/view/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%AE%97%E6%B3%95%E4%B8%93%E5%AE%B6-at-%E6%B2%83%E5%B0%94%E7%8E%9B-%E4%B8%AD%E5%9B%BD-%E6%8A%95%E8%B5%84%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8-4467312275",
+      "location": "Shenzhen, Guangdong, China",
+      "source_updated": "",
+      "company": "沃尔玛(中国)投资有限公司",
+      "source": "linkedin-cn",
+      "tags": [
+        "AI Infra",
+        "深圳",
+        "匹配中"
+      ],
+      "reasons": [
+        "AI Infra：大模型"
+      ],
+      "score": 7,
+      "region": "深圳",
+      "level": "中",
+      "last_seen": "2026-09-21T05:23:34+00:00",
+      "stale": false
+    },
+    {
+      "title": "27届--大模型算法工程师 (MJ000889)",
+      "url": "https://cn.linkedin.com/jobs/view/27%E5%B1%8A-%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%AE%97%E6%B3%95%E5%B7%A5%E7%A8%8B%E5%B8%88-mj000889-at-%E6%B7%B1%E5%9C%B3%E4%BD%91%E9%A9%BE%E5%88%9B%E6%96%B0%E7%A7%91%E6%8A%80%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8-4460425550",
+      "location": "Shenzhen, Guangdong, China",
+      "source_updated": "",
+      "company": "深圳佑驾创新科技有限公司",
+      "source": "linkedin-cn",
+      "tags": [
+        "AI Infra",
+        "深圳",
+        "匹配中"
+      ],
+      "reasons": [
+        "AI Infra：大模型"
+      ],
+      "score": 7,
+      "region": "深圳",
+      "level": "中",
+      "last_seen": "2026-09-21T05:23:34+00:00",
+      "stale": false
+    },
+    {
+      "title": "机器学习工程师（应届生）",
+      "url": "https://cn.linkedin.com/jobs/view/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%B7%A5%E7%A8%8B%E5%B8%88%EF%BC%88%E5%BA%94%E5%B1%8A%E7%94%9F%EF%BC%89-at-%E6%B7%B1%E5%9C%B3%E5%B8%82%E5%A4%A9%E9%A9%AC%E8%B5%84%E4%BA%A7%E7%AE%A1%E7%90%86%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8-4467322196",
+      "location": "Shenzhen, Guangdong, China",
+      "source_updated": "",
+      "company": "深圳市天马资产管理有限公司",
+      "source": "linkedin-cn",
+      "tags": [
+        "AI Infra",
+        "深圳",
+        "匹配中"
+      ],
+      "reasons": [
+        "AI Infra：机器学习"
+      ],
+      "score": 7,
+      "region": "深圳",
+      "level": "中",
+      "last_seen": "2026-09-21T05:23:34+00:00",
+      "stale": false
+    },
+    {
+      "title": "基础设施研发工程师（OS / Cloud Infra）",
+      "url": "https://cn.linkedin.com/jobs/view/%E5%9F%BA%E7%A1%80%E8%AE%BE%E6%96%BD%E7%A0%94%E5%8F%91%E5%B7%A5%E7%A8%8B%E5%B8%88%EF%BC%88os-cloud-infra%EF%BC%89-at-%E7%A5%A5%E6%81%A9%E8%82%A1%E6%9D%83%E6%8A%95%E8%B5%84%E7%AE%A1%E7%90%86-%E4%B8%8A%E6%B5%B7-%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8-4468856977",
+      "location": "Shenzhen, Guangdong, China",
+      "source_updated": "",
+      "company": "祥恩股权投资管理(上海)有限公司",
+      "source": "linkedin-cn",
+      "tags": [
+        "AI Infra",
+        "深圳",
+        "匹配中"
+      ],
+      "reasons": [
+        "AI Infra：基础设施"
+      ],
+      "score": 7,
+      "region": "深圳",
+      "level": "中",
+      "last_seen": "2026-09-21T05:23:34+00:00",
+      "stale": false
+    },
+    {
+      "title": "AI编译器开发工程师(J10741)",
+      "url": "https://cn.linkedin.com/jobs/view/ai%E7%BC%96%E8%AF%91%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E7%A8%8B%E5%B8%88-j10741-at-%E9%93%B6%E6%98%9F%E6%99%BA%E8%83%BD-4467159448",
+      "location": "Shenzhen, Guangdong, China",
+      "source_updated": "",
+      "company": "银星智能",
+      "source": "linkedin-cn",
+      "tags": [
+        "训推加速",
+        "深圳",
+        "匹配中"
+      ],
+      "reasons": [
+        "训推加速：编译器"
+      ],
+      "score": 7,
+      "region": "深圳",
+      "level": "中",
+      "last_seen": "2026-09-21T05:23:34+00:00",
+      "stale": false
+    },
+    {
+      "title": "分布式并行文件存储开发工程师J104950",
+      "url": "https://www.liepin.com/job/1985213333.shtml",
+      "location": "深圳-南山区",
+      "source_updated": "2026-08-27",
+      "company": "Baidu",
+      "source": "liepin",
+      "listing_type": "direct",
+      "tags": [
+        "AI Infra",
+        "深圳",
+        "匹配中"
+      ],
+      "reasons": [
+        "AI Infra：分布式"
+      ],
+      "score": 7,
+      "region": "深圳",
+      "level": "中",
+      "last_seen": "2026-09-20T05:25:00+00:00",
+      "stale": true
+    },
+    {
+      "title": "AI算法工程师（端侧部署）",
+      "url": "https://www.liepin.com/job/1985624793.shtml",
+      "location": "深圳-龙岗区",
+      "source_updated": "2026-09-15",
+      "company": "乐木骆",
+      "source": "liepin",
+      "listing_type": "direct",
+      "tags": [
+        "端侧部署",
+        "深圳",
+        "匹配中"
+      ],
+      "reasons": [
+        "端侧部署：端侧、部署"
+      ],
+      "score": 7,
+      "region": "深圳",
+      "level": "中",
+      "last_seen": "2026-09-20T05:25:00+00:00",
+      "stale": true
+    },
+    {
+      "title": "Pollo.ai 数据开发Owner(AI视频生成）",
+      "url": "https://www.liepin.com/job/1985024843.shtml",
+      "location": "深圳-宝安区",
+      "source_updated": "2026-09-14",
+      "company": "九瓴科技",
+      "source": "liepin",
+      "listing_type": "direct",
+      "tags": [
+        "DiT",
+        "深圳",
+        "匹配中"
+      ],
+      "reasons": [
+        "DiT：视频生成"
+      ],
+      "score": 7,
+      "region": "深圳",
+      "level": "中",
+      "last_seen": "2026-09-20T05:25:00+00:00",
+      "stale": true
+    },
+    {
+      "title": "AI 推理平台技术专家",
+      "url": "https://www.liepin.com/job/1985396463.shtml",
+      "location": "深圳-南山区",
+      "source_updated": "2026-09-17",
+      "company": "优必选机器人",
+      "source": "liepin",
+      "listing_type": "direct",
+      "tags": [
+        "训推加速",
+        "深圳",
+        "匹配中"
+      ],
+      "reasons": [
+        "训推加速：推理"
+      ],
+      "score": 7,
+      "region": "深圳",
+      "level": "中",
+      "last_seen": "2026-09-20T05:25:00+00:00",
+      "stale": true
+    },
+    {
+      "title": "端侧部署工程师",
+      "url": "https://www.liepin.com/job/1985379311.shtml",
+      "location": "深圳-南山区",
+      "source_updated": "2026-09-17",
+      "company": "优必选机器人",
+      "source": "liepin",
+      "listing_type": "direct",
+      "tags": [
+        "端侧部署",
+        "深圳",
+        "匹配中"
+      ],
+      "reasons": [
+        "端侧部署：端侧、部署"
+      ],
+      "score": 7,
+      "region": "深圳",
+      "level": "中",
+      "last_seen": "2026-09-20T05:25:00+00:00",
+      "stale": true
+    },
+    {
+      "title": "AI分布式框架工程师",
+      "url": "https://www.liepin.com/job/1965506223.shtml",
+      "location": "深圳-南山区",
+      "source_updated": "2024-03-15",
+      "company": "北京清程极智科技有限公司",
+      "source": "liepin",
+      "listing_type": "direct",
+      "tags": [
+        "AI Infra",
+        "深圳",
+        "匹配中"
+      ],
+      "reasons": [
+        "AI Infra：分布式"
+      ],
+      "score": 7,
+      "region": "深圳",
+      "level": "中",
+      "last_seen": "2026-09-20T05:25:00+00:00",
+      "stale": true
+    },
+    {
+      "title": "算法工程师（推理加速）",
+      "url": "https://www.liepin.com/job/1985026397.shtml",
+      "location": "深圳-南山区",
+      "source_updated": "2026-08-20",
+      "company": "北京芯大通科技有限公司",
+      "source": "liepin",
+      "listing_type": "direct",
+      "tags": [
+        "训推加速",
+        "深圳",
+        "匹配中"
+      ],
+      "reasons": [
+        "训推加速：推理、加速"
+      ],
+      "score": 7,
+      "region": "深圳",
+      "level": "中",
+      "last_seen": "2026-09-20T05:25:00+00:00",
+      "stale": true
+    },
+    {
+      "title": "硬件加速推理AI Infra工程师/专家  北上杭深",
+      "url": "https://www.liepin.com/job/1985370225.shtml",
+      "location": "深圳-南山区",
+      "source_updated": "2026-09-07",
+      "company": "咸宁市伯乐智信息咨询有限公司",
+      "source": "liepin",
+      "listing_type": "direct",
+      "tags": [
+        "训推加速",
+        "深圳",
+        "匹配中"
+      ],
+      "reasons": [
+        "训推加速：推理、加速"
+      ],
+      "score": 7,
+      "region": "深圳",
+      "level": "中",
+      "last_seen": "2026-09-20T05:25:00+00:00",
+      "stale": true
+    },
+    {
+      "title": "硬件加速训练框架研发工程师（深圳）",
+      "url": "https://www.liepin.com/job/1970786545.shtml",
+      "location": "深圳-南山区",
+      "source_updated": "2024-11-12",
+      "company": "字节跳动",
+      "source": "liepin",
+      "listing_type": "direct",
+      "tags": [
+        "训推加速",
+        "深圳",
+        "匹配中"
+      ],
+      "reasons": [
+        "训推加速：训练、加速"
+      ],
+      "score": 7,
+      "region": "深圳",
+      "level": "中",
+      "last_seen": "2026-09-20T05:25:00+00:00",
+      "stale": true
+    },
+    {
+      "title": "编译器工程师",
+      "url": "https://www.liepin.com/job/1984998387.shtml",
+      "location": "深圳-南山区",
+      "source_updated": "2026-08-19",
+      "company": "小鹏集团",
+      "source": "liepin",
+      "listing_type": "direct",
+      "tags": [
+        "训推加速",
+        "深圳",
+        "匹配中"
+      ],
+      "reasons": [
+        "训推加速：编译器"
+      ],
+      "score": 7,
+      "region": "深圳",
+      "level": "中",
+      "last_seen": "2026-09-20T05:25:00+00:00",
+      "stale": true
+    },
+    {
+      "title": "编译器开发资深工程师",
+      "url": "https://www.liepin.com/job/1984998865.shtml",
+      "location": "深圳-南山区",
+      "source_updated": "2026-08-19",
+      "company": "小鹏集团",
+      "source": "liepin",
+      "listing_type": "direct",
+      "tags": [
+        "训推加速",
+        "深圳",
+        "匹配中"
+      ],
+      "reasons": [
+        "训推加速：编译器"
+      ],
+      "score": 7,
+      "region": "深圳",
+      "level": "中",
+      "last_seen": "2026-09-20T05:25:00+00:00",
+      "stale": true
+    },
+    {
+      "title": "算法工程师（推理加速）",
+      "url": "https://www.liepin.com/job/1985253675.shtml",
+      "location": "深圳-南山区",
+      "source_updated": "2026-09-13",
+      "company": "广东高乐股份有限公司北京科技分公司",
+      "source": "liepin",
+      "listing_type": "direct",
+      "tags": [
+        "训推加速",
+        "深圳",
+        "匹配中"
+      ],
+      "reasons": [
+        "训推加速：推理、加速"
+      ],
+      "score": 7,
+      "region": "深圳",
+      "level": "中",
+      "last_seen": "2026-09-20T05:25:00+00:00",
+      "stale": true
+    },
+    {
+      "title": "具身智能算法工程师（模型量化与部署方向）",
+      "url": "https://www.liepin.com/job/1981666997.shtml",
+      "location": "深圳-宝安区",
+      "source_updated": "2026-09-14",
+      "company": "拓邦股份",
+      "source": "liepin",
+      "listing_type": "direct",
+      "tags": [
+        "端侧部署",
+        "深圳",
+        "匹配中"
+      ],
+      "reasons": [
+        "端侧部署：量化、部署"
+      ],
+      "score": 7,
+      "region": "深圳",
+      "level": "中",
+      "last_seen": "2026-09-20T05:25:00+00:00",
+      "stale": true
     },
     {
       "title": "分布式存储研发工程师",
@@ -1910,7 +1999,7 @@
       "region": "深圳",
       "level": "中",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "区块链研究员（分布式方向）",
@@ -1932,49 +2021,7 @@
       "region": "深圳",
       "level": "中",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
-    },
-    {
-      "title": "大模型算法专家",
-      "url": "https://cn.linkedin.com/jobs/view/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%AE%97%E6%B3%95%E4%B8%93%E5%AE%B6-at-%E6%B2%83%E5%B0%94%E7%8E%9B-%E4%B8%AD%E5%9B%BD-%E6%8A%95%E8%B5%84%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8-4467312275",
-      "location": "Shenzhen, Guangdong, China",
-      "source_updated": "",
-      "company": "沃尔玛(中国)投资有限公司",
-      "source": "linkedin-cn",
-      "tags": [
-        "AI Infra",
-        "深圳",
-        "匹配中"
-      ],
-      "reasons": [
-        "AI Infra：大模型"
-      ],
-      "score": 7,
-      "region": "深圳",
-      "level": "中",
-      "last_seen": "2026-09-20T05:20:36+00:00",
-      "stale": false
-    },
-    {
-      "title": "27届--大模型算法工程师 (MJ000889)",
-      "url": "https://cn.linkedin.com/jobs/view/27%E5%B1%8A-%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%AE%97%E6%B3%95%E5%B7%A5%E7%A8%8B%E5%B8%88-mj000889-at-%E6%B7%B1%E5%9C%B3%E4%BD%91%E9%A9%BE%E5%88%9B%E6%96%B0%E7%A7%91%E6%8A%80%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8-4460425550",
-      "location": "Shenzhen, Guangdong, China",
-      "source_updated": "",
-      "company": "深圳佑驾创新科技有限公司",
-      "source": "linkedin-cn",
-      "tags": [
-        "AI Infra",
-        "深圳",
-        "匹配中"
-      ],
-      "reasons": [
-        "AI Infra：大模型"
-      ],
-      "score": 7,
-      "region": "深圳",
-      "level": "中",
-      "last_seen": "2026-09-20T05:20:36+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "世界模型推理加速负责人",
@@ -1996,28 +2043,7 @@
       "region": "深圳",
       "level": "中",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
-    },
-    {
-      "title": "机器学习工程师（应届生）",
-      "url": "https://cn.linkedin.com/jobs/view/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%B7%A5%E7%A8%8B%E5%B8%88%EF%BC%88%E5%BA%94%E5%B1%8A%E7%94%9F%EF%BC%89-at-%E6%B7%B1%E5%9C%B3%E5%B8%82%E5%A4%A9%E9%A9%AC%E8%B5%84%E4%BA%A7%E7%AE%A1%E7%90%86%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8-4467322196",
-      "location": "Shenzhen, Guangdong, China",
-      "source_updated": "",
-      "company": "深圳市天马资产管理有限公司",
-      "source": "linkedin-cn",
-      "tags": [
-        "AI Infra",
-        "深圳",
-        "匹配中"
-      ],
-      "reasons": [
-        "AI Infra：机器学习"
-      ],
-      "score": 7,
-      "region": "深圳",
-      "level": "中",
-      "last_seen": "2026-09-20T05:20:36+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "部署工程师——oncepick",
@@ -2039,28 +2065,7 @@
       "region": "深圳",
       "level": "中",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
-    },
-    {
-      "title": "基础设施研发工程师（OS / Cloud Infra）",
-      "url": "https://cn.linkedin.com/jobs/view/%E5%9F%BA%E7%A1%80%E8%AE%BE%E6%96%BD%E7%A0%94%E5%8F%91%E5%B7%A5%E7%A8%8B%E5%B8%88%EF%BC%88os-cloud-infra%EF%BC%89-at-%E7%A5%A5%E6%81%A9%E8%82%A1%E6%9D%83%E6%8A%95%E8%B5%84%E7%AE%A1%E7%90%86-%E4%B8%8A%E6%B5%B7-%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8-4468856977",
-      "location": "Shenzhen, Guangdong, China",
-      "source_updated": "",
-      "company": "祥恩股权投资管理(上海)有限公司",
-      "source": "linkedin-cn",
-      "tags": [
-        "AI Infra",
-        "深圳",
-        "匹配中"
-      ],
-      "reasons": [
-        "AI Infra：基础设施"
-      ],
-      "score": 7,
-      "region": "深圳",
-      "level": "中",
-      "last_seen": "2026-09-20T05:20:36+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "多模态数据算法工程师（视频生成方向）",
@@ -2082,7 +2087,7 @@
       "region": "深圳",
       "level": "中",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "AIGC视频生成算法工程师",
@@ -2104,27 +2109,384 @@
       "region": "深圳",
       "level": "中",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
-      "title": "AI编译器开发工程师(J10741)",
-      "url": "https://cn.linkedin.com/jobs/view/ai%E7%BC%96%E8%AF%91%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E7%A8%8B%E5%B8%88-j10741-at-%E9%93%B6%E6%98%9F%E6%99%BA%E8%83%BD-4467159448",
-      "location": "Shenzhen, Guangdong, China",
+      "title": "Founding AI R&D Engineer — AI Infrastructure & Model Routing",
+      "url": "https://hk.linkedin.com/jobs/view/founding-ai-r-d-engineer-%E2%80%94-ai-infrastructure-model-routing-at-a-field-tech-4467987056",
+      "location": "Hong Kong, Hong Kong SAR",
       "source_updated": "",
-      "company": "银星智能",
+      "company": "A-Field Tech",
       "source": "linkedin-cn",
       "tags": [
-        "训推加速",
-        "深圳",
+        "AI Infra",
+        "香港",
         "匹配中"
       ],
       "reasons": [
-        "训推加速：编译器"
+        "AI Infra：ai infrastructure"
       ],
-      "score": 7,
-      "region": "深圳",
+      "score": 6,
+      "region": "香港",
       "level": "中",
-      "last_seen": "2026-09-20T05:20:36+00:00",
+      "last_seen": "2026-09-21T05:23:34+00:00",
+      "stale": false
+    },
+    {
+      "title": "LLM Data Scientist/Algorithm Engineer (Top Talent Program)",
+      "url": "https://hk.linkedin.com/jobs/view/llm-data-scientist-algorithm-engineer-top-talent-program-at-binance-4304866204",
+      "location": "Hong Kong, Hong Kong SAR",
+      "source_updated": "",
+      "company": "Binance",
+      "source": "linkedin-cn",
+      "tags": [
+        "AI Infra",
+        "香港",
+        "匹配中"
+      ],
+      "reasons": [
+        "AI Infra：llm"
+      ],
+      "score": 6,
+      "region": "香港",
+      "level": "中",
+      "last_seen": "2026-09-21T05:23:34+00:00",
+      "stale": false
+    },
+    {
+      "title": "Applied AI Engineer - Hong Kong",
+      "url": "https://hk.linkedin.com/jobs/view/applied-ai-engineer-hong-kong-at-catl-4464189340",
+      "location": "Hong Kong, Hong Kong SAR",
+      "source_updated": "",
+      "company": "CATL",
+      "source": "linkedin-cn",
+      "tags": [
+        "AI Infra",
+        "香港",
+        "匹配中"
+      ],
+      "reasons": [
+        "AI Infra：ai engineer"
+      ],
+      "score": 6,
+      "region": "香港",
+      "level": "中",
+      "last_seen": "2026-09-21T05:23:34+00:00",
+      "stale": false
+    },
+    {
+      "title": "Senior AI Engineer",
+      "url": "https://hk.linkedin.com/jobs/view/senior-ai-engineer-at-china-mobile-international-limited-4457698635",
+      "location": "Hong Kong, Hong Kong SAR",
+      "source_updated": "",
+      "company": "China Mobile International Limited",
+      "source": "linkedin-cn",
+      "tags": [
+        "AI Infra",
+        "香港",
+        "匹配中"
+      ],
+      "reasons": [
+        "AI Infra：ai engineer"
+      ],
+      "score": 6,
+      "region": "香港",
+      "level": "中",
+      "last_seen": "2026-09-21T05:23:34+00:00",
+      "stale": false
+    },
+    {
+      "title": "NLP & Machine Learning Engineer",
+      "url": "https://hk.linkedin.com/jobs/view/nlp-machine-learning-engineer-at-datago-technology-limited-4466166506",
+      "location": "Hong Kong, Hong Kong SAR",
+      "source_updated": "",
+      "company": "Datago Technology Limited",
+      "source": "linkedin-cn",
+      "tags": [
+        "AI Infra",
+        "香港",
+        "匹配中"
+      ],
+      "reasons": [
+        "AI Infra：machine learning"
+      ],
+      "score": 6,
+      "region": "香港",
+      "level": "中",
+      "last_seen": "2026-09-21T05:23:34+00:00",
+      "stale": false
+    },
+    {
+      "title": "Embedded Software Engineer",
+      "url": "https://hk.linkedin.com/jobs/view/embedded-software-engineer-at-hong-kong-center-for-construction-robotics-4442968427",
+      "location": "Hong Kong, Hong Kong SAR",
+      "source_updated": "",
+      "company": "Hong Kong Center for Construction Robotics",
+      "source": "linkedin-cn",
+      "tags": [
+        "端侧部署",
+        "香港",
+        "匹配中"
+      ],
+      "reasons": [
+        "端侧部署：embedded"
+      ],
+      "score": 6,
+      "region": "香港",
+      "level": "中",
+      "last_seen": "2026-09-21T05:23:34+00:00",
+      "stale": false
+    },
+    {
+      "title": "Machine Learning Researcher",
+      "url": "https://hk.linkedin.com/jobs/view/machine-learning-researcher-at-jane-street-4300870659",
+      "location": "Hong Kong, Hong Kong SAR",
+      "source_updated": "",
+      "company": "Jane Street",
+      "source": "linkedin-cn",
+      "tags": [
+        "AI Infra",
+        "香港",
+        "匹配中"
+      ],
+      "reasons": [
+        "AI Infra：machine learning"
+      ],
+      "score": 6,
+      "region": "香港",
+      "level": "中",
+      "last_seen": "2026-09-21T05:23:34+00:00",
+      "stale": false
+    },
+    {
+      "title": "[LPS] AI Platform Engineer (AI Infrastructure)",
+      "url": "https://hk.linkedin.com/jobs/view/lps-ai-platform-engineer-ai-infrastructure-at-lps-4460954056",
+      "location": "Hong Kong, Hong Kong SAR",
+      "source_updated": "",
+      "company": "LPS",
+      "source": "linkedin-cn",
+      "tags": [
+        "AI Infra",
+        "香港",
+        "匹配中"
+      ],
+      "reasons": [
+        "AI Infra：ai infrastructure"
+      ],
+      "score": 6,
+      "region": "香港",
+      "level": "中",
+      "last_seen": "2026-09-21T05:23:34+00:00",
+      "stale": false
+    },
+    {
+      "title": "AI Engineer",
+      "url": "https://hk.linkedin.com/jobs/view/ai-engineer-at-millennium-4455671002",
+      "location": "Hong Kong, Hong Kong SAR",
+      "source_updated": "",
+      "company": "Millennium",
+      "source": "linkedin-cn",
+      "tags": [
+        "AI Infra",
+        "香港",
+        "匹配中"
+      ],
+      "reasons": [
+        "AI Infra：ai engineer"
+      ],
+      "score": 6,
+      "region": "香港",
+      "level": "中",
+      "last_seen": "2026-09-21T05:23:34+00:00",
+      "stale": false
+    },
+    {
+      "title": "Deep Learning Quantitative Researcher",
+      "url": "https://hk.linkedin.com/jobs/view/deep-learning-quantitative-researcher-at-millennium-4444603846",
+      "location": "Hong Kong, Hong Kong SAR",
+      "source_updated": "",
+      "company": "Millennium",
+      "source": "linkedin-cn",
+      "tags": [
+        "AI Infra",
+        "香港",
+        "匹配中"
+      ],
+      "reasons": [
+        "AI Infra：deep learning"
+      ],
+      "score": 6,
+      "region": "香港",
+      "level": "中",
+      "last_seen": "2026-09-21T05:23:34+00:00",
+      "stale": false
+    },
+    {
+      "title": "Insurance AI Architect / AI Engineer / AI Transformation Lead",
+      "url": "https://hk.linkedin.com/jobs/view/insurance-ai-architect-ai-engineer-ai-transformation-lead-at-one-advisors-4458365506",
+      "location": "Hong Kong, Hong Kong SAR",
+      "source_updated": "",
+      "company": "One Advisors",
+      "source": "linkedin-cn",
+      "tags": [
+        "AI Infra",
+        "香港",
+        "匹配中"
+      ],
+      "reasons": [
+        "AI Infra：ai engineer"
+      ],
+      "score": 6,
+      "region": "香港",
+      "level": "中",
+      "last_seen": "2026-09-21T05:23:34+00:00",
+      "stale": false
+    },
+    {
+      "title": "AI Engineer (LLM/ Chatbot)",
+      "url": "https://hk.linkedin.com/jobs/view/ai-engineer-llm-chatbot-at-pantheon-lab-limited-4444897383",
+      "location": "Hong Kong, Hong Kong SAR",
+      "source_updated": "",
+      "company": "Pantheon Lab Limited",
+      "source": "linkedin-cn",
+      "tags": [
+        "AI Infra",
+        "香港",
+        "匹配中"
+      ],
+      "reasons": [
+        "AI Infra：ai engineer、llm"
+      ],
+      "score": 6,
+      "region": "香港",
+      "level": "中",
+      "last_seen": "2026-09-21T05:23:34+00:00",
+      "stale": false
+    },
+    {
+      "title": "AI and Machine Learning Engineer (GenAI & LLM) - Financial Services - J13067",
+      "url": "https://hk.linkedin.com/jobs/view/ai-and-machine-learning-engineer-genai-llm-financial-services-j13067-at-pinpoint-asia-4457678589",
+      "location": "Kowloon, Hong Kong SAR",
+      "source_updated": "",
+      "company": "Pinpoint Asia",
+      "source": "linkedin-cn",
+      "tags": [
+        "AI Infra",
+        "香港",
+        "匹配中"
+      ],
+      "reasons": [
+        "AI Infra：machine learning、llm"
+      ],
+      "score": 6,
+      "region": "香港",
+      "level": "中",
+      "last_seen": "2026-09-21T05:23:34+00:00",
+      "stale": false
+    },
+    {
+      "title": "Manager, AI Engineer",
+      "url": "https://hk.linkedin.com/jobs/view/manager-ai-engineer-at-sun-life-4447137155",
+      "location": "Kowloon, Hong Kong SAR",
+      "source_updated": "",
+      "company": "Sun Life",
+      "source": "linkedin-cn",
+      "tags": [
+        "AI Infra",
+        "香港",
+        "匹配中"
+      ],
+      "reasons": [
+        "AI Infra：ai engineer"
+      ],
+      "score": 6,
+      "region": "香港",
+      "level": "中",
+      "last_seen": "2026-09-21T05:23:34+00:00",
+      "stale": false
+    },
+    {
+      "title": "LLM Engineer (Data and Optimization)",
+      "url": "https://hk.linkedin.com/jobs/view/llm-engineer-data-and-optimization-at-tcl-corporate-research-hk-co-ltd-4443816676",
+      "location": "Hong Kong, Hong Kong SAR",
+      "source_updated": "",
+      "company": "TCL Corporate Research(HK) Co., Ltd",
+      "source": "linkedin-cn",
+      "tags": [
+        "AI Infra",
+        "香港",
+        "匹配中"
+      ],
+      "reasons": [
+        "AI Infra：llm"
+      ],
+      "score": 6,
+      "region": "香港",
+      "level": "中",
+      "last_seen": "2026-09-21T05:23:34+00:00",
+      "stale": false
+    },
+    {
+      "title": "Machine Learning Engineer",
+      "url": "https://hk.linkedin.com/jobs/view/machine-learning-engineer-at-tower-research-capital-4387272139",
+      "location": "Hong Kong, Hong Kong SAR",
+      "source_updated": "",
+      "company": "Tower Research Capital",
+      "source": "linkedin-cn",
+      "tags": [
+        "AI Infra",
+        "香港",
+        "匹配中"
+      ],
+      "reasons": [
+        "AI Infra：machine learning"
+      ],
+      "score": 6,
+      "region": "香港",
+      "level": "中",
+      "last_seen": "2026-09-21T05:23:34+00:00",
+      "stale": false
+    },
+    {
+      "title": "Inference & System Optimization Engineer",
+      "url": "https://hk.linkedin.com/jobs/view/inference-system-optimization-engineer-4457455693",
+      "location": "Sha Tin District, Hong Kong SAR",
+      "source_updated": "",
+      "company": "奇瑞全球創新(香港)有限公司",
+      "source": "linkedin-cn",
+      "tags": [
+        "训推加速",
+        "香港",
+        "匹配中"
+      ],
+      "reasons": [
+        "训推加速：inference"
+      ],
+      "score": 6,
+      "region": "香港",
+      "level": "中",
+      "last_seen": "2026-09-21T05:23:34+00:00",
+      "stale": false
+    },
+    {
+      "title": "LLM/VLM Algorithm Engineer",
+      "url": "https://hk.linkedin.com/jobs/view/llm-vlm-algorithm-engineer-4457444683",
+      "location": "Sha Tin District, Hong Kong SAR",
+      "source_updated": "",
+      "company": "奇瑞全球創新(香港)有限公司",
+      "source": "linkedin-cn",
+      "tags": [
+        "AI Infra",
+        "香港",
+        "匹配中"
+      ],
+      "reasons": [
+        "AI Infra：llm"
+      ],
+      "score": 6,
+      "region": "香港",
+      "level": "中",
+      "last_seen": "2026-09-21T05:23:34+00:00",
       "stale": false
     },
     {
@@ -2153,7 +2515,138 @@
       "region": "国内",
       "level": "高",
       "last_seen": "2026-09-20T05:25:00+00:00",
+      "stale": true
+    },
+    {
+      "title": "大模型部署和加速工程师(A182472)",
+      "url": "https://cn.linkedin.com/jobs/view/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E9%83%A8%E7%BD%B2%E5%92%8C%E5%8A%A0%E9%80%9F%E5%B7%A5%E7%A8%8B%E5%B8%88-a182472-at-zeron-%E9%9B%B6%E4%B8%80%E6%B1%BD%E8%BD%A6-4467154301",
+      "location": "Shanghai, Shanghai, China",
+      "source_updated": "",
+      "company": "ZERON 零一汽车",
+      "source": "linkedin-cn",
+      "tags": [
+        "AI Infra",
+        "端侧部署",
+        "训推加速",
+        "国内",
+        "匹配高"
+      ],
+      "reasons": [
+        "AI Infra：大模型",
+        "端侧部署：部署",
+        "训推加速：加速"
+      ],
+      "score": 12,
+      "region": "国内",
+      "level": "高",
+      "last_seen": "2026-09-21T05:23:34+00:00",
       "stale": false
+    },
+    {
+      "title": "大模型算法工程师（端侧LLM/vLLM）",
+      "url": "https://cn.linkedin.com/jobs/view/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%AE%97%E6%B3%95%E5%B7%A5%E7%A8%8B%E5%B8%88%EF%BC%88%E7%AB%AF%E4%BE%A7llm-vllm%EF%BC%89-at-%E4%B8%8A%E6%B5%B7%E5%95%86%E6%B3%B0%E6%B1%BD%E8%BD%A6%E4%BF%A1%E6%81%AF%E7%B3%BB%E7%BB%9F%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8-4466950528",
+      "location": "Shanghai, Shanghai, China",
+      "source_updated": "",
+      "company": "上海商泰汽车信息系统有限公司",
+      "source": "linkedin-cn",
+      "tags": [
+        "AI Infra",
+        "端侧部署",
+        "训推加速",
+        "国内",
+        "匹配高"
+      ],
+      "reasons": [
+        "AI Infra：大模型",
+        "端侧部署：端侧",
+        "训推加速：vllm"
+      ],
+      "score": 12,
+      "region": "国内",
+      "level": "高",
+      "last_seen": "2026-09-21T05:23:34+00:00",
+      "stale": false
+    },
+    {
+      "title": "人工智能芯片算法和算子开发工程师(A151834)",
+      "url": "https://www.liepin.com/job/1982184667.shtml",
+      "location": "上海-徐汇区",
+      "source_updated": "2026-09-16",
+      "company": "凌川科技",
+      "source": "liepin",
+      "listing_type": "direct",
+      "tags": [
+        "GPU Kernel",
+        "AI Infra",
+        "端侧部署",
+        "训推加速",
+        "国内",
+        "匹配高"
+      ],
+      "reasons": [
+        "GPU Kernel：算子",
+        "端侧部署：芯片",
+        "训推加速：算子"
+      ],
+      "score": 13,
+      "region": "国内",
+      "level": "高",
+      "last_seen": "2026-09-20T05:25:00+00:00",
+      "stale": true
+    },
+    {
+      "title": "嵌入式GPU开发工程师（Jetson/CUDA）",
+      "url": "https://www.liepin.com/job/1985399119.shtml",
+      "location": "北京-海淀区",
+      "source_updated": "2026-09-18",
+      "company": "北京中璟空间航天科技有限公司",
+      "source": "liepin",
+      "listing_type": "direct",
+      "tags": [
+        "GPU Kernel",
+        "AI Infra",
+        "端侧部署",
+        "训推加速",
+        "国内",
+        "匹配高"
+      ],
+      "reasons": [
+        "GPU Kernel：cuda",
+        "AI Infra：cuda",
+        "端侧部署：嵌入式"
+      ],
+      "score": 13,
+      "region": "国内",
+      "level": "高",
+      "last_seen": "2026-09-20T05:25:00+00:00",
+      "stale": true
+    },
+    {
+      "title": "嵌入式软件工程师-DSP算子开发(J11355)",
+      "url": "https://www.liepin.com/job/1979136653.shtml",
+      "location": "杭州-滨江区",
+      "source_updated": "2025-12-15",
+      "company": "烟台睿创微纳技术股份有限公司",
+      "source": "liepin",
+      "listing_type": "direct",
+      "tags": [
+        "GPU Kernel",
+        "AI Infra",
+        "端侧部署",
+        "训推加速",
+        "国内",
+        "匹配高"
+      ],
+      "reasons": [
+        "GPU Kernel：算子",
+        "端侧部署：嵌入式",
+        "训推加速：算子"
+      ],
+      "score": 13,
+      "region": "国内",
+      "level": "高",
+      "last_seen": "2026-09-20T05:25:00+00:00",
+      "stale": true
     },
     {
       "title": "大模型推理部署工程师（VLLM sglang ））",
@@ -2179,7 +2672,7 @@
       "region": "国内",
       "level": "高",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "大模型适配与算子优化工程师",
@@ -2205,59 +2698,7 @@
       "region": "国内",
       "level": "高",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
-    },
-    {
-      "title": "人工智能芯片算法和算子开发工程师(A151834)",
-      "url": "https://www.liepin.com/job/1982184667.shtml",
-      "location": "上海-徐汇区",
-      "source_updated": "2026-09-16",
-      "company": "凌川科技",
-      "source": "liepin",
-      "listing_type": "direct",
-      "tags": [
-        "GPU Kernel",
-        "端侧部署",
-        "训推加速",
-        "国内",
-        "匹配高"
-      ],
-      "reasons": [
-        "GPU Kernel：算子",
-        "端侧部署：芯片",
-        "训推加速：算子"
-      ],
-      "score": 12,
-      "region": "国内",
-      "level": "高",
-      "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
-    },
-    {
-      "title": "嵌入式GPU开发工程师（Jetson/CUDA）",
-      "url": "https://www.liepin.com/job/1985399119.shtml",
-      "location": "北京-海淀区",
-      "source_updated": "2026-09-18",
-      "company": "北京中璟空间航天科技有限公司",
-      "source": "liepin",
-      "listing_type": "direct",
-      "tags": [
-        "GPU Kernel",
-        "AI Infra",
-        "端侧部署",
-        "国内",
-        "匹配高"
-      ],
-      "reasons": [
-        "GPU Kernel：cuda",
-        "AI Infra：cuda",
-        "端侧部署：嵌入式"
-      ],
-      "score": 12,
-      "region": "国内",
-      "level": "高",
-      "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "大模型推理框架/算子开发工程师",
@@ -2283,7 +2724,7 @@
       "region": "国内",
       "level": "高",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "大模型算子开发工程师（C++/CUDA）",
@@ -2309,7 +2750,7 @@
       "region": "国内",
       "level": "高",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "大模型推理引擎开发工程师（GPU Kernel / Backend）",
@@ -2335,7 +2776,7 @@
       "region": "国内",
       "level": "高",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "AI算子库性能优化专家（大模型推理MOE layer）",
@@ -2361,7 +2802,7 @@
       "region": "国内",
       "level": "高",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "大模型算法与算子优化工程师",
@@ -2387,7 +2828,7 @@
       "region": "国内",
       "level": "高",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "大模型适配与算子优化工程师",
@@ -2413,7 +2854,7 @@
       "region": "国内",
       "level": "高",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "编译器研发工程师(Triton)",
@@ -2439,7 +2880,7 @@
       "region": "国内",
       "level": "高",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "算子开发 / 高性能计算工程师",
@@ -2465,33 +2906,7 @@
       "region": "国内",
       "level": "高",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
-    },
-    {
-      "title": "嵌入式软件工程师-DSP算子开发(J11355)",
-      "url": "https://www.liepin.com/job/1979136653.shtml",
-      "location": "杭州-滨江区",
-      "source_updated": "2025-12-15",
-      "company": "烟台睿创微纳技术股份有限公司",
-      "source": "liepin",
-      "listing_type": "direct",
-      "tags": [
-        "GPU Kernel",
-        "端侧部署",
-        "训推加速",
-        "国内",
-        "匹配高"
-      ],
-      "reasons": [
-        "GPU Kernel：算子",
-        "端侧部署：嵌入式",
-        "训推加速：算子"
-      ],
-      "score": 12,
-      "region": "国内",
-      "level": "高",
-      "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "车机 AI 算法工程师（大模型 / 多模态 / 端侧部署）(A194334)",
@@ -2517,7 +2932,7 @@
       "region": "国内",
       "level": "高",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "具身智能算法专家（大模型微调与端侧部署方向）",
@@ -2543,7 +2958,7 @@
       "region": "国内",
       "level": "高",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "分布式训练工程师（大模型/扩散模型方向）",
@@ -2569,7 +2984,7 @@
       "region": "国内",
       "level": "高",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "编译器 / 算子优化工程师（TVM/MLIR/CUDA/Triton）",
@@ -2595,7 +3010,7 @@
       "region": "国内",
       "level": "高",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "AI推理平台-LLM / AIGC 推理加速算法专家-杭州/北京",
@@ -2621,7 +3036,7 @@
       "region": "国内",
       "level": "高",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "AI推理平台-大模型异构芯片适配与推理优化工程师-杭州/北京",
@@ -2647,7 +3062,7 @@
       "region": "国内",
       "level": "高",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "千问事业部-大模型算子技术专家/高级技术专家-杭州/北京/广州",
@@ -2673,7 +3088,626 @@
       "region": "国内",
       "level": "高",
       "last_seen": "2026-09-20T05:25:00+00:00",
+      "stale": true
+    },
+    {
+      "title": "多模态大模型算法工程师",
+      "url": "https://cn.linkedin.com/jobs/view/%E5%A4%9A%E6%A8%A1%E6%80%81%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%AE%97%E6%B3%95%E5%B7%A5%E7%A8%8B%E5%B8%88-at-caeri-4465934813",
+      "location": "Shanghai, Shanghai, China",
+      "source_updated": "",
+      "company": "CAERI",
+      "source": "linkedin-cn",
+      "tags": [
+        "AI Infra",
+        "DiT",
+        "国内",
+        "匹配高"
+      ],
+      "reasons": [
+        "AI Infra：大模型",
+        "DiT：多模态"
+      ],
+      "score": 9,
+      "region": "国内",
+      "level": "高",
+      "last_seen": "2026-09-21T05:23:34+00:00",
       "stale": false
+    },
+    {
+      "title": "高性能算子/通信/编译器工程师",
+      "url": "https://www.liepin.com/job/1983713543.shtml",
+      "location": "杭州-拱墅区",
+      "source_updated": "2026-08-20",
+      "company": "DeepSeek",
+      "source": "liepin",
+      "listing_type": "direct",
+      "tags": [
+        "GPU Kernel",
+        "AI Infra",
+        "训推加速",
+        "国内",
+        "匹配高"
+      ],
+      "reasons": [
+        "GPU Kernel：算子、高性能算子",
+        "训推加速：算子、编译器"
+      ],
+      "score": 10,
+      "region": "国内",
+      "level": "高",
+      "last_seen": "2026-09-20T05:25:00+00:00",
+      "stale": true
+    },
+    {
+      "title": "AI算子开发工程师(A178565)",
+      "url": "https://www.liepin.com/job/1976962259.shtml",
+      "location": "杭州-滨江区",
+      "source_updated": "2026-08-14",
+      "company": "NIO蔚来",
+      "source": "liepin",
+      "listing_type": "direct",
+      "tags": [
+        "GPU Kernel",
+        "AI Infra",
+        "训推加速",
+        "国内",
+        "匹配高"
+      ],
+      "reasons": [
+        "GPU Kernel：算子",
+        "训推加速：算子"
+      ],
+      "score": 10,
+      "region": "国内",
+      "level": "高",
+      "last_seen": "2026-09-20T05:25:00+00:00",
+      "stale": true
+    },
+    {
+      "title": "AI 编译器与高性能算子工程师（TileLang 方向）",
+      "url": "https://www.liepin.com/job/1984905125.shtml",
+      "location": "北京-海淀区",
+      "source_updated": "2026-09-09",
+      "company": "上海大衍智象科技有限公司北京分公司",
+      "source": "liepin",
+      "listing_type": "direct",
+      "tags": [
+        "GPU Kernel",
+        "AI Infra",
+        "训推加速",
+        "国内",
+        "匹配高"
+      ],
+      "reasons": [
+        "GPU Kernel：算子、高性能算子",
+        "训推加速：算子、编译器"
+      ],
+      "score": 10,
+      "region": "国内",
+      "level": "高",
+      "last_seen": "2026-09-20T05:25:00+00:00",
+      "stale": true
+    },
+    {
+      "title": "算子开发和优化工程师",
+      "url": "https://www.liepin.com/job/1984057033.shtml",
+      "location": "杭州-滨江区",
+      "source_updated": "2026-07-10",
+      "company": "上海芯瀚科技有限公司",
+      "source": "liepin",
+      "listing_type": "direct",
+      "tags": [
+        "GPU Kernel",
+        "AI Infra",
+        "训推加速",
+        "国内",
+        "匹配高"
+      ],
+      "reasons": [
+        "GPU Kernel：算子",
+        "训推加速：算子"
+      ],
+      "score": 10,
+      "region": "国内",
+      "level": "高",
+      "last_seen": "2026-09-20T05:25:00+00:00",
+      "stale": true
+    },
+    {
+      "title": "高性能AI算子开发优化工程师",
+      "url": "https://www.liepin.com/job/1982780893.shtml",
+      "location": "杭州-余杭区",
+      "source_updated": "2026-08-18",
+      "company": "北京曦望芯科智能科技有限公司",
+      "source": "liepin",
+      "listing_type": "direct",
+      "tags": [
+        "GPU Kernel",
+        "AI Infra",
+        "训推加速",
+        "国内",
+        "匹配高"
+      ],
+      "reasons": [
+        "GPU Kernel：算子",
+        "训推加速：算子"
+      ],
+      "score": 10,
+      "region": "国内",
+      "level": "高",
+      "last_seen": "2026-09-20T05:25:00+00:00",
+      "stale": true
+    },
+    {
+      "title": "ACCL集合通信算子开发工程师",
+      "url": "https://www.liepin.com/job/1980814031.shtml",
+      "location": "杭州-滨江区",
+      "source_updated": "2026-03-10",
+      "company": "北京谦合益邦云信息技术有限公司",
+      "source": "liepin",
+      "listing_type": "direct",
+      "tags": [
+        "GPU Kernel",
+        "AI Infra",
+        "训推加速",
+        "国内",
+        "匹配高"
+      ],
+      "reasons": [
+        "GPU Kernel：算子",
+        "训推加速：算子"
+      ],
+      "score": 10,
+      "region": "国内",
+      "level": "高",
+      "last_seen": "2026-09-20T05:25:00+00:00",
+      "stale": true
+    },
+    {
+      "title": "算子开发和优化工程师",
+      "url": "https://www.liepin.com/job/1979415031.shtml",
+      "location": "杭州-滨江区",
+      "source_updated": "2026-03-09",
+      "company": "北京谦合益邦云信息技术有限公司",
+      "source": "liepin",
+      "listing_type": "direct",
+      "tags": [
+        "GPU Kernel",
+        "AI Infra",
+        "训推加速",
+        "国内",
+        "匹配高"
+      ],
+      "reasons": [
+        "GPU Kernel：算子",
+        "训推加速：算子"
+      ],
+      "score": 10,
+      "region": "国内",
+      "level": "高",
+      "last_seen": "2026-09-20T05:25:00+00:00",
+      "stale": true
+    },
+    {
+      "title": "算子开发工程师",
+      "url": "https://www.liepin.com/job/1985640073.shtml",
+      "location": "杭州-上城区",
+      "source_updated": "2026-09-17",
+      "company": "北京铭芯启睿科技有限公司",
+      "source": "liepin",
+      "listing_type": "direct",
+      "tags": [
+        "GPU Kernel",
+        "AI Infra",
+        "训推加速",
+        "国内",
+        "匹配高"
+      ],
+      "reasons": [
+        "GPU Kernel：算子",
+        "训推加速：算子"
+      ],
+      "score": 10,
+      "region": "国内",
+      "level": "高",
+      "last_seen": "2026-09-20T05:25:00+00:00",
+      "stale": true
+    },
+    {
+      "title": "CUDA 兼容与 AI GPU 性能调优专家",
+      "url": "https://www.liepin.com/job/1985559563.shtml",
+      "location": "北京-海淀区",
+      "source_updated": "2026-09-11",
+      "company": "同创芯海(北京)科技有限公司",
+      "source": "liepin",
+      "listing_type": "direct",
+      "tags": [
+        "GPU Kernel",
+        "AI Infra",
+        "训推加速",
+        "国内",
+        "匹配高"
+      ],
+      "reasons": [
+        "GPU Kernel：cuda",
+        "AI Infra：gpu、cuda"
+      ],
+      "score": 10,
+      "region": "国内",
+      "level": "高",
+      "last_seen": "2026-09-20T05:25:00+00:00",
+      "stale": true
+    },
+    {
+      "title": "MLIR/IR 优化与 AI 算子编译专家",
+      "url": "https://www.liepin.com/job/1985559375.shtml",
+      "location": "北京-海淀区",
+      "source_updated": "2026-09-11",
+      "company": "同创芯海(北京)科技有限公司",
+      "source": "liepin",
+      "listing_type": "direct",
+      "tags": [
+        "GPU Kernel",
+        "AI Infra",
+        "训推加速",
+        "国内",
+        "匹配高"
+      ],
+      "reasons": [
+        "GPU Kernel：算子",
+        "训推加速：算子"
+      ],
+      "score": 10,
+      "region": "国内",
+      "level": "高",
+      "last_seen": "2026-09-20T05:25:00+00:00",
+      "stale": true
+    },
+    {
+      "title": "AI高性能算子工程师",
+      "url": "https://www.liepin.com/job/1984030371.shtml",
+      "location": "北京-通州区",
+      "source_updated": "2026-07-09",
+      "company": "奕行智能科技(广州)有限公司",
+      "source": "liepin",
+      "listing_type": "direct",
+      "tags": [
+        "GPU Kernel",
+        "AI Infra",
+        "训推加速",
+        "国内",
+        "匹配高"
+      ],
+      "reasons": [
+        "GPU Kernel：算子、高性能算子",
+        "训推加速：算子"
+      ],
+      "score": 10,
+      "region": "国内",
+      "level": "高",
+      "last_seen": "2026-09-20T05:25:00+00:00",
+      "stale": true
+    },
+    {
+      "title": "AI 加速器编译与 Kernel 工程师",
+      "url": "https://www.liepin.com/job/1985581025.shtml",
+      "location": "上海-徐汇区",
+      "source_updated": "2026-09-13",
+      "company": "微珩启元",
+      "source": "liepin",
+      "listing_type": "direct",
+      "tags": [
+        "GPU Kernel",
+        "AI Infra",
+        "训推加速",
+        "国内",
+        "匹配高"
+      ],
+      "reasons": [
+        "GPU Kernel：kernel",
+        "训推加速：kernel、加速"
+      ],
+      "score": 10,
+      "region": "国内",
+      "level": "高",
+      "last_seen": "2026-09-20T05:25:00+00:00",
+      "stale": true
+    },
+    {
+      "title": "算子开发工程师（AI方向）",
+      "url": "https://www.liepin.com/job/1983848401.shtml",
+      "location": "杭州-萧山区",
+      "source_updated": "2026-07-16",
+      "company": "微纳核芯",
+      "source": "liepin",
+      "listing_type": "direct",
+      "tags": [
+        "GPU Kernel",
+        "AI Infra",
+        "训推加速",
+        "国内",
+        "匹配高"
+      ],
+      "reasons": [
+        "GPU Kernel：算子",
+        "训推加速：算子"
+      ],
+      "score": 10,
+      "region": "国内",
+      "level": "高",
+      "last_seen": "2026-09-20T05:25:00+00:00",
+      "stale": true
+    },
+    {
+      "title": "AI算子库开发工程师",
+      "url": "https://www.liepin.com/job/1985065739.shtml",
+      "location": "杭州-萧山区",
+      "source_updated": "2026-08-21",
+      "company": "摩尔线程",
+      "source": "liepin",
+      "listing_type": "direct",
+      "tags": [
+        "GPU Kernel",
+        "AI Infra",
+        "训推加速",
+        "国内",
+        "匹配高"
+      ],
+      "reasons": [
+        "GPU Kernel：算子",
+        "训推加速：算子"
+      ],
+      "score": 10,
+      "region": "国内",
+      "level": "高",
+      "last_seen": "2026-09-20T05:25:00+00:00",
+      "stale": true
+    },
+    {
+      "title": "算子开发工程师(J10007)",
+      "url": "https://www.liepin.com/job/1981389481.shtml",
+      "location": "杭州-余杭区",
+      "source_updated": "2026-05-15",
+      "company": "曦智科技",
+      "source": "liepin",
+      "listing_type": "direct",
+      "tags": [
+        "GPU Kernel",
+        "AI Infra",
+        "训推加速",
+        "国内",
+        "匹配高"
+      ],
+      "reasons": [
+        "GPU Kernel：算子",
+        "训推加速：算子"
+      ],
+      "score": 10,
+      "region": "国内",
+      "level": "高",
+      "last_seen": "2026-09-20T05:25:00+00:00",
+      "stale": true
+    },
+    {
+      "title": "算子开发主管/经理",
+      "url": "https://www.liepin.com/job/1981911579.shtml",
+      "location": "杭州-西湖区",
+      "source_updated": "2026-04-20",
+      "company": "杭州天宽科技有限公司",
+      "source": "liepin",
+      "listing_type": "direct",
+      "tags": [
+        "GPU Kernel",
+        "AI Infra",
+        "训推加速",
+        "国内",
+        "匹配高"
+      ],
+      "reasons": [
+        "GPU Kernel：算子",
+        "训推加速：算子"
+      ],
+      "score": 10,
+      "region": "国内",
+      "level": "高",
+      "last_seen": "2026-09-20T05:25:00+00:00",
+      "stale": true
+    },
+    {
+      "title": "BLAS及算子库优化专家",
+      "url": "https://www.liepin.com/job/1979992221.shtml",
+      "location": "杭州-余杭区",
+      "source_updated": "2026-04-02",
+      "company": "沐曦集成电路(上海)股份有限公司",
+      "source": "liepin",
+      "listing_type": "direct",
+      "tags": [
+        "GPU Kernel",
+        "AI Infra",
+        "训推加速",
+        "国内",
+        "匹配高"
+      ],
+      "reasons": [
+        "GPU Kernel：算子",
+        "训推加速：算子"
+      ],
+      "score": 10,
+      "region": "国内",
+      "level": "高",
+      "last_seen": "2026-09-20T05:25:00+00:00",
+      "stale": true
+    },
+    {
+      "title": "AI算子开发工程师",
+      "url": "https://www.liepin.com/job/1985497075.shtml",
+      "location": "杭州-萧山区",
+      "source_updated": "2026-09-09",
+      "company": "燧原科技",
+      "source": "liepin",
+      "listing_type": "direct",
+      "tags": [
+        "GPU Kernel",
+        "AI Infra",
+        "训推加速",
+        "国内",
+        "匹配高"
+      ],
+      "reasons": [
+        "GPU Kernel：算子",
+        "训推加速：算子"
+      ],
+      "score": 10,
+      "region": "国内",
+      "level": "高",
+      "last_seen": "2026-09-20T05:25:00+00:00",
+      "stale": true
+    },
+    {
+      "title": "大模型端侧部署工程师",
+      "url": "https://cn.linkedin.com/jobs/view/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%AB%AF%E4%BE%A7%E9%83%A8%E7%BD%B2%E5%B7%A5%E7%A8%8B%E5%B8%88-at-%E7%8E%B0%E4%BB%A3%E6%B1%BD%E8%BD%A6%E7%A0%94%E5%8F%91%E4%B8%AD%E5%BF%83-%E4%B8%AD%E5%9B%BD-%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8-4467338908",
+      "location": "Shanghai, Shanghai, China",
+      "source_updated": "",
+      "company": "现代汽车研发中心(中国)有限公司",
+      "source": "linkedin-cn",
+      "tags": [
+        "AI Infra",
+        "端侧部署",
+        "国内",
+        "匹配高"
+      ],
+      "reasons": [
+        "AI Infra：大模型",
+        "端侧部署：端侧、部署"
+      ],
+      "score": 9,
+      "region": "国内",
+      "level": "高",
+      "last_seen": "2026-09-21T05:23:34+00:00",
+      "stale": false
+    },
+    {
+      "title": "北大AI算子开发",
+      "url": "https://cn.linkedin.com/jobs/view/%E5%8C%97%E5%A4%A7ai%E7%AE%97%E5%AD%90%E5%BC%80%E5%8F%91-at-%E7%94%B5%E8%A3%85-%E4%B8%AD%E5%9B%BD-%E6%8A%95%E8%B5%84%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8-4460484070",
+      "location": "Haidian District, Beijing, China",
+      "source_updated": "",
+      "company": "电装(中国)投资有限公司",
+      "source": "linkedin-cn",
+      "tags": [
+        "GPU Kernel",
+        "训推加速",
+        "国内",
+        "匹配高"
+      ],
+      "reasons": [
+        "GPU Kernel：算子",
+        "训推加速：算子"
+      ],
+      "score": 9,
+      "region": "国内",
+      "level": "高",
+      "last_seen": "2026-09-21T05:23:34+00:00",
+      "stale": false
+    },
+    {
+      "title": "cuda算子开发工程师/专家",
+      "url": "https://www.liepin.com/job/1966993751.shtml",
+      "location": "上海-浦东新区",
+      "source_updated": "2025-04-09",
+      "company": "艾捷科芯",
+      "source": "liepin",
+      "listing_type": "direct",
+      "tags": [
+        "GPU Kernel",
+        "AI Infra",
+        "训推加速",
+        "国内",
+        "匹配高"
+      ],
+      "reasons": [
+        "GPU Kernel：算子",
+        "训推加速：算子"
+      ],
+      "score": 10,
+      "region": "国内",
+      "level": "高",
+      "last_seen": "2026-09-20T05:25:00+00:00",
+      "stale": true
+    },
+    {
+      "title": "算子开发",
+      "url": "https://www.liepin.com/job/1969287351.shtml",
+      "location": "北京-朝阳区",
+      "source_updated": "2024-08-26",
+      "company": "艾捷科芯",
+      "source": "liepin",
+      "listing_type": "direct",
+      "tags": [
+        "GPU Kernel",
+        "AI Infra",
+        "训推加速",
+        "国内",
+        "匹配高"
+      ],
+      "reasons": [
+        "GPU Kernel：算子",
+        "训推加速：算子"
+      ],
+      "score": 10,
+      "region": "国内",
+      "level": "高",
+      "last_seen": "2026-09-20T05:25:00+00:00",
+      "stale": true
+    },
+    {
+      "title": "算子性能架构师",
+      "url": "https://www.liepin.com/job/1983835607.shtml",
+      "location": "上海-浦东新区",
+      "source_updated": "2026-09-03",
+      "company": "芯元时代(上海)科技有限公司",
+      "source": "liepin",
+      "listing_type": "direct",
+      "tags": [
+        "GPU Kernel",
+        "AI Infra",
+        "训推加速",
+        "国内",
+        "匹配高"
+      ],
+      "reasons": [
+        "GPU Kernel：算子",
+        "训推加速：算子"
+      ],
+      "score": 10,
+      "region": "国内",
+      "level": "高",
+      "last_seen": "2026-09-20T05:25:00+00:00",
+      "stale": true
+    },
+    {
+      "title": "AI 算子工程师",
+      "url": "https://www.liepin.com/job/1976497411.shtml",
+      "location": "北京-海淀区",
+      "source_updated": "2026-08-24",
+      "company": "象帝先计算技术(重庆)有限公司",
+      "source": "liepin",
+      "listing_type": "direct",
+      "tags": [
+        "GPU Kernel",
+        "AI Infra",
+        "训推加速",
+        "国内",
+        "匹配高"
+      ],
+      "reasons": [
+        "GPU Kernel：算子",
+        "训推加速：算子"
+      ],
+      "score": 10,
+      "region": "国内",
+      "level": "高",
+      "last_seen": "2026-09-20T05:25:00+00:00",
+      "stale": true
     },
     {
       "title": "分布式训练通信优化专家",
@@ -2697,78 +3731,7 @@
       "region": "国内",
       "level": "高",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
-    },
-    {
-      "title": "多模态大模型算法工程师",
-      "url": "https://cn.linkedin.com/jobs/view/%E5%A4%9A%E6%A8%A1%E6%80%81%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%AE%97%E6%B3%95%E5%B7%A5%E7%A8%8B%E5%B8%88-at-caeri-4465934813",
-      "location": "Shanghai, Shanghai, China",
-      "source_updated": "",
-      "company": "CAERI",
-      "source": "linkedin-cn",
-      "tags": [
-        "AI Infra",
-        "DiT",
-        "国内",
-        "匹配高"
-      ],
-      "reasons": [
-        "AI Infra：大模型",
-        "DiT：多模态"
-      ],
-      "score": 9,
-      "region": "国内",
-      "level": "高",
-      "last_seen": "2026-09-20T05:20:36+00:00",
-      "stale": false
-    },
-    {
-      "title": "高性能算子/通信/编译器工程师",
-      "url": "https://www.liepin.com/job/1983713543.shtml",
-      "location": "杭州-拱墅区",
-      "source_updated": "2026-08-20",
-      "company": "DeepSeek",
-      "source": "liepin",
-      "listing_type": "direct",
-      "tags": [
-        "GPU Kernel",
-        "训推加速",
-        "国内",
-        "匹配高"
-      ],
-      "reasons": [
-        "GPU Kernel：算子、高性能算子",
-        "训推加速：算子、编译器"
-      ],
-      "score": 9,
-      "region": "国内",
-      "level": "高",
-      "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
-    },
-    {
-      "title": "AI算子开发工程师(A178565)",
-      "url": "https://www.liepin.com/job/1976962259.shtml",
-      "location": "杭州-滨江区",
-      "source_updated": "2026-08-14",
-      "company": "NIO蔚来",
-      "source": "liepin",
-      "listing_type": "direct",
-      "tags": [
-        "GPU Kernel",
-        "训推加速",
-        "国内",
-        "匹配高"
-      ],
-      "reasons": [
-        "GPU Kernel：算子",
-        "训推加速：算子"
-      ],
-      "score": 9,
-      "region": "国内",
-      "level": "高",
-      "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "大模型训练框架算法工程师",
@@ -2792,31 +3755,7 @@
       "region": "国内",
       "level": "高",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
-    },
-    {
-      "title": "AI 编译器与高性能算子工程师（TileLang 方向）",
-      "url": "https://www.liepin.com/job/1984905125.shtml",
-      "location": "北京-海淀区",
-      "source_updated": "2026-09-09",
-      "company": "上海大衍智象科技有限公司北京分公司",
-      "source": "liepin",
-      "listing_type": "direct",
-      "tags": [
-        "GPU Kernel",
-        "训推加速",
-        "国内",
-        "匹配高"
-      ],
-      "reasons": [
-        "GPU Kernel：算子、高性能算子",
-        "训推加速：算子、编译器"
-      ],
-      "score": 9,
-      "region": "国内",
-      "level": "高",
-      "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "大模型分布式训练/推理框架开发工程师",
@@ -2840,7 +3779,7 @@
       "region": "国内",
       "level": "高",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "AI算法加速优化与部署工程师/具身智能算法工程师（模型量化与部署方向）/AI模型训练推理工程师（端侧部署向）",
@@ -2864,31 +3803,7 @@
       "region": "国内",
       "level": "高",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
-    },
-    {
-      "title": "算子开发和优化工程师",
-      "url": "https://www.liepin.com/job/1984057033.shtml",
-      "location": "杭州-滨江区",
-      "source_updated": "2026-07-10",
-      "company": "上海芯瀚科技有限公司",
-      "source": "liepin",
-      "listing_type": "direct",
-      "tags": [
-        "GPU Kernel",
-        "训推加速",
-        "国内",
-        "匹配高"
-      ],
-      "reasons": [
-        "GPU Kernel：算子",
-        "训推加速：算子"
-      ],
-      "score": 9,
-      "region": "国内",
-      "level": "高",
-      "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "AI大模型推理工程师",
@@ -2912,31 +3827,7 @@
       "region": "国内",
       "level": "高",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
-    },
-    {
-      "title": "Ai大模型推理加速工程师",
-      "url": "https://www.liepin.com/job/1983563395.shtml",
-      "location": "广州",
-      "source_updated": "2026-06-18",
-      "company": "上海跳脱网络科技有限公司",
-      "source": "liepin",
-      "listing_type": "direct",
-      "tags": [
-        "AI Infra",
-        "训推加速",
-        "国内",
-        "匹配高"
-      ],
-      "reasons": [
-        "AI Infra：大模型",
-        "训推加速：推理、加速"
-      ],
-      "score": 9,
-      "region": "国内",
-      "level": "高",
-      "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "大模型推理优化专家",
@@ -2960,7 +3851,7 @@
       "region": "国内",
       "level": "高",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "大模型应用与推理工程师(A219200)",
@@ -2984,7 +3875,7 @@
       "region": "国内",
       "level": "高",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "AIGC / 多模态影像高性能专家（端侧模型轻量化及部署方向）",
@@ -3008,7 +3899,7 @@
       "region": "国内",
       "level": "高",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "编译器与软件栈专家（光电异构计算方向）",
@@ -3032,7 +3923,7 @@
       "region": "国内",
       "level": "高",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "大模型推理与应用工程师 (MJ000236)",
@@ -3056,7 +3947,7 @@
       "region": "国内",
       "level": "高",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "大模型推理基础设施专家（杭州/南京）",
@@ -3080,103 +3971,7 @@
       "region": "国内",
       "level": "高",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
-    },
-    {
-      "title": "高性能AI算子开发优化工程师",
-      "url": "https://www.liepin.com/job/1982780893.shtml",
-      "location": "杭州-余杭区",
-      "source_updated": "2026-08-18",
-      "company": "北京曦望芯科智能科技有限公司",
-      "source": "liepin",
-      "listing_type": "direct",
-      "tags": [
-        "GPU Kernel",
-        "训推加速",
-        "国内",
-        "匹配高"
-      ],
-      "reasons": [
-        "GPU Kernel：算子",
-        "训推加速：算子"
-      ],
-      "score": 9,
-      "region": "国内",
-      "level": "高",
-      "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
-    },
-    {
-      "title": "ACCL集合通信算子开发工程师",
-      "url": "https://www.liepin.com/job/1980814031.shtml",
-      "location": "杭州-滨江区",
-      "source_updated": "2026-03-10",
-      "company": "北京谦合益邦云信息技术有限公司",
-      "source": "liepin",
-      "listing_type": "direct",
-      "tags": [
-        "GPU Kernel",
-        "训推加速",
-        "国内",
-        "匹配高"
-      ],
-      "reasons": [
-        "GPU Kernel：算子",
-        "训推加速：算子"
-      ],
-      "score": 9,
-      "region": "国内",
-      "level": "高",
-      "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
-    },
-    {
-      "title": "算子开发和优化工程师",
-      "url": "https://www.liepin.com/job/1979415031.shtml",
-      "location": "杭州-滨江区",
-      "source_updated": "2026-03-09",
-      "company": "北京谦合益邦云信息技术有限公司",
-      "source": "liepin",
-      "listing_type": "direct",
-      "tags": [
-        "GPU Kernel",
-        "训推加速",
-        "国内",
-        "匹配高"
-      ],
-      "reasons": [
-        "GPU Kernel：算子",
-        "训推加速：算子"
-      ],
-      "score": 9,
-      "region": "国内",
-      "level": "高",
-      "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
-    },
-    {
-      "title": "算子开发工程师",
-      "url": "https://www.liepin.com/job/1985640073.shtml",
-      "location": "杭州-上城区",
-      "source_updated": "2026-09-17",
-      "company": "北京铭芯启睿科技有限公司",
-      "source": "liepin",
-      "listing_type": "direct",
-      "tags": [
-        "GPU Kernel",
-        "训推加速",
-        "国内",
-        "匹配高"
-      ],
-      "reasons": [
-        "GPU Kernel：算子",
-        "训推加速：算子"
-      ],
-      "score": 9,
-      "region": "国内",
-      "level": "高",
-      "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "智能座舱大模型专家(端侧部署与优化)_XC",
@@ -3200,55 +3995,7 @@
       "region": "国内",
       "level": "高",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
-    },
-    {
-      "title": "CUDA 兼容与 AI GPU 性能调优专家",
-      "url": "https://www.liepin.com/job/1985559563.shtml",
-      "location": "北京-海淀区",
-      "source_updated": "2026-09-11",
-      "company": "同创芯海(北京)科技有限公司",
-      "source": "liepin",
-      "listing_type": "direct",
-      "tags": [
-        "GPU Kernel",
-        "AI Infra",
-        "国内",
-        "匹配高"
-      ],
-      "reasons": [
-        "GPU Kernel：cuda",
-        "AI Infra：gpu、cuda"
-      ],
-      "score": 9,
-      "region": "国内",
-      "level": "高",
-      "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
-    },
-    {
-      "title": "MLIR/IR 优化与 AI 算子编译专家",
-      "url": "https://www.liepin.com/job/1985559375.shtml",
-      "location": "北京-海淀区",
-      "source_updated": "2026-09-11",
-      "company": "同创芯海(北京)科技有限公司",
-      "source": "liepin",
-      "listing_type": "direct",
-      "tags": [
-        "GPU Kernel",
-        "训推加速",
-        "国内",
-        "匹配高"
-      ],
-      "reasons": [
-        "GPU Kernel：算子",
-        "训推加速：算子"
-      ],
-      "score": 9,
-      "region": "国内",
-      "level": "高",
-      "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "大模型推理工程师（Inference Engineer）",
@@ -3272,31 +4019,7 @@
       "region": "国内",
       "level": "高",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
-    },
-    {
-      "title": "AI高性能算子工程师",
-      "url": "https://www.liepin.com/job/1984030371.shtml",
-      "location": "北京-通州区",
-      "source_updated": "2026-07-09",
-      "company": "奕行智能科技(广州)有限公司",
-      "source": "liepin",
-      "listing_type": "direct",
-      "tags": [
-        "GPU Kernel",
-        "训推加速",
-        "国内",
-        "匹配高"
-      ],
-      "reasons": [
-        "GPU Kernel：算子、高性能算子",
-        "训推加速：算子"
-      ],
-      "score": 9,
-      "region": "国内",
-      "level": "高",
-      "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "软件工程师 - 大模型端侧优化和部署",
@@ -3320,7 +4043,7 @@
       "region": "国内",
       "level": "高",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "多模态大模型算法负责人",
@@ -3344,7 +4067,7 @@
       "region": "国内",
       "level": "高",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "机器学习训练框架工程师/专家",
@@ -3368,55 +4091,7 @@
       "region": "国内",
       "level": "高",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
-    },
-    {
-      "title": "AI 加速器编译与 Kernel 工程师",
-      "url": "https://www.liepin.com/job/1985581025.shtml",
-      "location": "上海-徐汇区",
-      "source_updated": "2026-09-13",
-      "company": "微珩启元",
-      "source": "liepin",
-      "listing_type": "direct",
-      "tags": [
-        "GPU Kernel",
-        "训推加速",
-        "国内",
-        "匹配高"
-      ],
-      "reasons": [
-        "GPU Kernel：kernel",
-        "训推加速：kernel、加速"
-      ],
-      "score": 9,
-      "region": "国内",
-      "level": "高",
-      "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
-    },
-    {
-      "title": "算子开发工程师（AI方向）",
-      "url": "https://www.liepin.com/job/1983848401.shtml",
-      "location": "杭州-萧山区",
-      "source_updated": "2026-07-16",
-      "company": "微纳核芯",
-      "source": "liepin",
-      "listing_type": "direct",
-      "tags": [
-        "GPU Kernel",
-        "训推加速",
-        "国内",
-        "匹配高"
-      ],
-      "reasons": [
-        "GPU Kernel：算子",
-        "训推加速：算子"
-      ],
-      "score": 9,
-      "region": "国内",
-      "level": "高",
-      "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "分布式推理工程师（Distributed Inference Engineer）",
@@ -3440,7 +4115,7 @@
       "region": "国内",
       "level": "高",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "AI算法工程师-大模型推理 (MJ001088)",
@@ -3464,7 +4139,7 @@
       "region": "国内",
       "level": "高",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "机器学习训练框架研发工程师",
@@ -3488,31 +4163,7 @@
       "region": "国内",
       "level": "高",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
-    },
-    {
-      "title": "AI算子库开发工程师",
-      "url": "https://www.liepin.com/job/1985065739.shtml",
-      "location": "杭州-萧山区",
-      "source_updated": "2026-08-21",
-      "company": "摩尔线程",
-      "source": "liepin",
-      "listing_type": "direct",
-      "tags": [
-        "GPU Kernel",
-        "训推加速",
-        "国内",
-        "匹配高"
-      ],
-      "reasons": [
-        "GPU Kernel：算子",
-        "训推加速：算子"
-      ],
-      "score": 9,
-      "region": "国内",
-      "level": "高",
-      "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "分布式训练算法工程师 - 北京、上海",
@@ -3536,7 +4187,7 @@
       "region": "国内",
       "level": "高",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "大模型推理算法 高级专家",
@@ -3560,7 +4211,7 @@
       "region": "国内",
       "level": "高",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "大模型推理引擎开发工程师",
@@ -3584,7 +4235,7 @@
       "region": "国内",
       "level": "高",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "具身大模型训练框架工程师/专家",
@@ -3608,31 +4259,7 @@
       "region": "国内",
       "level": "高",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
-    },
-    {
-      "title": "算子开发工程师(J10007)",
-      "url": "https://www.liepin.com/job/1981389481.shtml",
-      "location": "杭州-余杭区",
-      "source_updated": "2026-05-15",
-      "company": "曦智科技",
-      "source": "liepin",
-      "listing_type": "direct",
-      "tags": [
-        "GPU Kernel",
-        "训推加速",
-        "国内",
-        "匹配高"
-      ],
-      "reasons": [
-        "GPU Kernel：算子",
-        "训推加速：算子"
-      ],
-      "score": 9,
-      "region": "国内",
-      "level": "高",
-      "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "视频生成大模型算法工程师",
@@ -3656,7 +4283,7 @@
       "region": "国内",
       "level": "高",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "大模型推理框架工程师",
@@ -3680,31 +4307,7 @@
       "region": "国内",
       "level": "高",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
-    },
-    {
-      "title": "算子开发主管/经理",
-      "url": "https://www.liepin.com/job/1981911579.shtml",
-      "location": "杭州-西湖区",
-      "source_updated": "2026-04-20",
-      "company": "杭州天宽科技有限公司",
-      "source": "liepin",
-      "listing_type": "direct",
-      "tags": [
-        "GPU Kernel",
-        "训推加速",
-        "国内",
-        "匹配高"
-      ],
-      "reasons": [
-        "GPU Kernel：算子",
-        "训推加速：算子"
-      ],
-      "score": 9,
-      "region": "国内",
-      "level": "高",
-      "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "大模型推理优化工程师",
@@ -3728,7 +4331,7 @@
       "region": "国内",
       "level": "高",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "边端侧大模型推理框架部署优化高级工程师",
@@ -3754,7 +4357,7 @@
       "region": "国内",
       "level": "高",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "大模型训练框架研发工程师-生成模型方向",
@@ -3780,7 +4383,7 @@
       "region": "国内",
       "level": "高",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "Cuda 算子开发",
@@ -3806,7 +4409,7 @@
       "region": "国内",
       "level": "高",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "异构计算算子开发专家",
@@ -3832,7 +4435,7 @@
       "region": "国内",
       "level": "高",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "大模型部署优化/推理引擎/算法开发工程师",
@@ -3858,7 +4461,7 @@
       "region": "国内",
       "level": "高",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "深度学习框架/大模型训推/AI 算子开发优化专家/分布式通讯库专家",
@@ -3884,7 +4487,7 @@
       "region": "国内",
       "level": "高",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "具身智能后训练与Infra专家（分布式RL/真机部署方向）",
@@ -3910,7 +4513,7 @@
       "region": "国内",
       "level": "高",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "大模型推理优化工程师（BPU算子开发方向）",
@@ -3936,7 +4539,7 @@
       "region": "国内",
       "level": "高",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "机器人算法（具身智能模型量化加速工程师）",
@@ -3960,31 +4563,7 @@
       "region": "国内",
       "level": "高",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
-    },
-    {
-      "title": "BLAS及算子库优化专家",
-      "url": "https://www.liepin.com/job/1979992221.shtml",
-      "location": "杭州-余杭区",
-      "source_updated": "2026-04-02",
-      "company": "沐曦集成电路(上海)股份有限公司",
-      "source": "liepin",
-      "listing_type": "direct",
-      "tags": [
-        "GPU Kernel",
-        "训推加速",
-        "国内",
-        "匹配高"
-      ],
-      "reasons": [
-        "GPU Kernel：算子",
-        "训推加速：算子"
-      ],
-      "score": 9,
-      "region": "国内",
-      "level": "高",
-      "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "分布式训练性能优化专家-杭州",
@@ -4008,7 +4587,7 @@
       "region": "国内",
       "level": "高",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "软件开发工程师/经理（大模型推理加速）",
@@ -4032,7 +4611,7 @@
       "region": "国内",
       "level": "高",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "大模型压缩推理优化工程师",
@@ -4056,54 +4635,7 @@
       "region": "国内",
       "level": "高",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
-    },
-    {
-      "title": "AI算子开发工程师",
-      "url": "https://www.liepin.com/job/1985497075.shtml",
-      "location": "杭州-萧山区",
-      "source_updated": "2026-09-09",
-      "company": "燧原科技",
-      "source": "liepin",
-      "listing_type": "direct",
-      "tags": [
-        "GPU Kernel",
-        "训推加速",
-        "国内",
-        "匹配高"
-      ],
-      "reasons": [
-        "GPU Kernel：算子",
-        "训推加速：算子"
-      ],
-      "score": 9,
-      "region": "国内",
-      "level": "高",
-      "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
-    },
-    {
-      "title": "北大AI算子开发",
-      "url": "https://cn.linkedin.com/jobs/view/%E5%8C%97%E5%A4%A7ai%E7%AE%97%E5%AD%90%E5%BC%80%E5%8F%91-at-%E7%94%B5%E8%A3%85-%E4%B8%AD%E5%9B%BD-%E6%8A%95%E8%B5%84%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8-4460484070",
-      "location": "Haidian District, Beijing, China",
-      "source_updated": "",
-      "company": "电装(中国)投资有限公司",
-      "source": "linkedin-cn",
-      "tags": [
-        "GPU Kernel",
-        "训推加速",
-        "国内",
-        "匹配高"
-      ],
-      "reasons": [
-        "GPU Kernel：算子",
-        "训推加速：算子"
-      ],
-      "score": 9,
-      "region": "国内",
-      "level": "高",
-      "last_seen": "2026-09-20T05:20:36+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "AI研究院-多模态大模型研究算法工程师-合肥",
@@ -4127,7 +4659,7 @@
       "region": "国内",
       "level": "高",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "讯飞AI工程院-大模型推理引擎架构师-合肥",
@@ -4151,7 +4683,7 @@
       "region": "国内",
       "level": "高",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "GPU推理部署工程师",
@@ -4175,7 +4707,7 @@
       "region": "国内",
       "level": "高",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "大模型部署工程师",
@@ -4199,7 +4731,7 @@
       "region": "国内",
       "level": "高",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "推理优化工程师（扩散模型/生成式AI方向）",
@@ -4223,7 +4755,7 @@
       "region": "国内",
       "level": "高",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "大模型推理加速算法专家",
@@ -4247,79 +4779,7 @@
       "region": "国内",
       "level": "高",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
-    },
-    {
-      "title": "cuda算子开发工程师/专家",
-      "url": "https://www.liepin.com/job/1966993751.shtml",
-      "location": "上海-浦东新区",
-      "source_updated": "2025-04-09",
-      "company": "艾捷科芯",
-      "source": "liepin",
-      "listing_type": "direct",
-      "tags": [
-        "GPU Kernel",
-        "训推加速",
-        "国内",
-        "匹配高"
-      ],
-      "reasons": [
-        "GPU Kernel：算子",
-        "训推加速：算子"
-      ],
-      "score": 9,
-      "region": "国内",
-      "level": "高",
-      "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
-    },
-    {
-      "title": "算子开发",
-      "url": "https://www.liepin.com/job/1969287351.shtml",
-      "location": "北京-朝阳区",
-      "source_updated": "2024-08-26",
-      "company": "艾捷科芯",
-      "source": "liepin",
-      "listing_type": "direct",
-      "tags": [
-        "GPU Kernel",
-        "训推加速",
-        "国内",
-        "匹配高"
-      ],
-      "reasons": [
-        "GPU Kernel：算子",
-        "训推加速：算子"
-      ],
-      "score": 9,
-      "region": "国内",
-      "level": "高",
-      "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
-    },
-    {
-      "title": "算子性能架构师",
-      "url": "https://www.liepin.com/job/1983835607.shtml",
-      "location": "上海-浦东新区",
-      "source_updated": "2026-09-03",
-      "company": "芯元时代(上海)科技有限公司",
-      "source": "liepin",
-      "listing_type": "direct",
-      "tags": [
-        "GPU Kernel",
-        "训推加速",
-        "国内",
-        "匹配高"
-      ],
-      "reasons": [
-        "GPU Kernel：算子",
-        "训推加速：算子"
-      ],
-      "score": 9,
-      "region": "国内",
-      "level": "高",
-      "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "大模型推理＆ PIM 算法工程师",
@@ -4343,7 +4803,7 @@
       "region": "国内",
       "level": "高",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "多模态大模型算法研究员",
@@ -4367,31 +4827,7 @@
       "region": "国内",
       "level": "高",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
-    },
-    {
-      "title": "AI 算子工程师",
-      "url": "https://www.liepin.com/job/1976497411.shtml",
-      "location": "北京-海淀区",
-      "source_updated": "2026-08-24",
-      "company": "象帝先计算技术(重庆)有限公司",
-      "source": "liepin",
-      "listing_type": "direct",
-      "tags": [
-        "GPU Kernel",
-        "训推加速",
-        "国内",
-        "匹配高"
-      ],
-      "reasons": [
-        "GPU Kernel：算子",
-        "训推加速：算子"
-      ],
-      "score": 9,
-      "region": "国内",
-      "level": "高",
-      "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "分布式大模型推理系统研发工程师",
@@ -4415,7 +4851,7 @@
       "region": "国内",
       "level": "高",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "大模型推理优化工程师",
@@ -4439,7 +4875,7 @@
       "region": "国内",
       "level": "高",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "大模型训练框架工程师-预训练",
@@ -4463,7 +4899,7 @@
       "region": "国内",
       "level": "高",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "大模型训练框架系统工程师",
@@ -4487,7 +4923,7 @@
       "region": "国内",
       "level": "高",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "阿里云智能-大模型推理优化专家/高级专家-杭州/北京",
@@ -4511,7 +4947,7 @@
       "region": "国内",
       "level": "高",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "嵌入式异构计算工程师（RK3588 / GPU / NPU）",
@@ -4535,7 +4971,7 @@
       "region": "国内",
       "level": "高",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "大模型推理优化工程师",
@@ -4559,7 +4995,7 @@
       "region": "国内",
       "level": "高",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "大模型推理运维架构师",
@@ -4583,6 +5019,279 @@
       "region": "国内",
       "level": "高",
       "last_seen": "2026-09-20T05:25:00+00:00",
+      "stale": true
+    },
+    {
+      "title": "自动驾驶大模型 / 端到端自动驾驶算法工程师 (MJ003048)",
+      "url": "https://cn.linkedin.com/jobs/view/%E8%87%AA%E5%8A%A8%E9%A9%BE%E9%A9%B6%E5%A4%A7%E6%A8%A1%E5%9E%8B-%E7%AB%AF%E5%88%B0%E7%AB%AF%E8%87%AA%E5%8A%A8%E9%A9%BE%E9%A9%B6%E7%AE%97%E6%B3%95%E5%B7%A5%E7%A8%8B%E5%B8%88-mj003048-at-caeri-4457720641",
+      "location": "Shanghai, Shanghai, China",
+      "source_updated": "",
+      "company": "CAERI",
+      "source": "linkedin-cn",
+      "tags": [
+        "AI Infra",
+        "国内",
+        "匹配中"
+      ],
+      "reasons": [
+        "AI Infra：大模型"
+      ],
+      "score": 6,
+      "region": "国内",
+      "level": "中",
+      "last_seen": "2026-09-21T05:23:34+00:00",
+      "stale": false
+    },
+    {
+      "title": "AI Agent算法模型部署⼯程师",
+      "url": "https://cn.linkedin.com/jobs/view/ai-agent%E7%AE%97%E6%B3%95%E6%A8%A1%E5%9E%8B%E9%83%A8%E7%BD%B2%E2%BC%AF%E7%A8%8B%E5%B8%88-at-cienet-technologies-4464943551",
+      "location": "Shanghai, Shanghai, China",
+      "source_updated": "",
+      "company": "CIeNET Technologies",
+      "source": "linkedin-cn",
+      "tags": [
+        "端侧部署",
+        "国内",
+        "匹配中"
+      ],
+      "reasons": [
+        "端侧部署：部署"
+      ],
+      "score": 6,
+      "region": "国内",
+      "level": "中",
+      "last_seen": "2026-09-21T05:23:34+00:00",
+      "stale": false
+    },
+    {
+      "title": "DSL编译器开发工程师",
+      "url": "https://cn.linkedin.com/jobs/view/dsl%E7%BC%96%E8%AF%91%E5%99%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E7%A8%8B%E5%B8%88-at-enflame-4463918894",
+      "location": "Shanghai, Shanghai, China",
+      "source_updated": "",
+      "company": "Enflame",
+      "source": "linkedin-cn",
+      "tags": [
+        "训推加速",
+        "国内",
+        "匹配中"
+      ],
+      "reasons": [
+        "训推加速：编译器"
+      ],
+      "score": 6,
+      "region": "国内",
+      "level": "中",
+      "last_seen": "2026-09-21T05:23:34+00:00",
+      "stale": false
+    },
+    {
+      "title": "Machine Learning Engineer – HPC",
+      "url": "https://cn.linkedin.com/jobs/view/machine-learning-engineer-%E2%80%93-hpc-at-meshyai-4365141987",
+      "location": "Shanghai, Shanghai, China",
+      "source_updated": "",
+      "company": "MeshyAI",
+      "source": "linkedin-cn",
+      "tags": [
+        "AI Infra",
+        "国内",
+        "匹配中"
+      ],
+      "reasons": [
+        "AI Infra：machine learning、hpc"
+      ],
+      "score": 6,
+      "region": "国内",
+      "level": "中",
+      "last_seen": "2026-09-21T05:23:34+00:00",
+      "stale": false
+    },
+    {
+      "title": "Senior Performance Software Engineer, Deep Learning Libraries",
+      "url": "https://cn.linkedin.com/jobs/view/senior-performance-software-engineer-deep-learning-libraries-at-nvidia-ai-4467347209",
+      "location": "Shanghai, Shanghai, China",
+      "source_updated": "",
+      "company": "NVIDIA AI",
+      "source": "linkedin-cn",
+      "tags": [
+        "AI Infra",
+        "国内",
+        "匹配中"
+      ],
+      "reasons": [
+        "AI Infra：deep learning"
+      ],
+      "score": 6,
+      "region": "国内",
+      "level": "中",
+      "last_seen": "2026-09-21T05:23:34+00:00",
+      "stale": false
+    },
+    {
+      "title": "Agentic AI Engineer, AVP",
+      "url": "https://cn.linkedin.com/jobs/view/agentic-ai-engineer-avp-at-state-street-4459127056",
+      "location": "Hangzhou, Zhejiang, China",
+      "source_updated": "",
+      "company": "State Street",
+      "source": "linkedin-cn",
+      "tags": [
+        "AI Infra",
+        "国内",
+        "匹配中"
+      ],
+      "reasons": [
+        "AI Infra：ai engineer"
+      ],
+      "score": 6,
+      "region": "国内",
+      "level": "中",
+      "last_seen": "2026-09-21T05:23:34+00:00",
+      "stale": false
+    },
+    {
+      "title": "Senior Machine Learning Engineer",
+      "url": "https://cn.linkedin.com/jobs/view/senior-machine-learning-engineer-at-virtuos-4423661623",
+      "location": "Shanghai, Shanghai, China",
+      "source_updated": "",
+      "company": "Virtuos",
+      "source": "linkedin-cn",
+      "tags": [
+        "AI Infra",
+        "国内",
+        "匹配中"
+      ],
+      "reasons": [
+        "AI Infra：machine learning"
+      ],
+      "score": 6,
+      "region": "国内",
+      "level": "中",
+      "last_seen": "2026-09-21T05:23:34+00:00",
+      "stale": false
+    },
+    {
+      "title": "大模型语料数据生成及质量评估研究（博士后）",
+      "url": "https://cn.linkedin.com/jobs/view/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%AF%AD%E6%96%99%E6%95%B0%E6%8D%AE%E7%94%9F%E6%88%90%E5%8F%8A%E8%B4%A8%E9%87%8F%E8%AF%84%E4%BC%B0%E7%A0%94%E7%A9%B6%EF%BC%88%E5%8D%9A%E5%A3%AB%E5%90%8E%EF%BC%89-at-%E4%B9%8B%E6%B1%9F%E5%AE%9E%E9%AA%8C%E5%AE%A4-zhejiang-lab-4457912323",
+      "location": "Hangzhou, Zhejiang, China",
+      "source_updated": "",
+      "company": "之江实验室 Zhejiang Lab",
+      "source": "linkedin-cn",
+      "tags": [
+        "AI Infra",
+        "国内",
+        "匹配中"
+      ],
+      "reasons": [
+        "AI Infra：大模型"
+      ],
+      "score": 6,
+      "region": "国内",
+      "level": "中",
+      "last_seen": "2026-09-21T05:23:34+00:00",
+      "stale": false
+    },
+    {
+      "title": "多模态算法专家",
+      "url": "https://cn.linkedin.com/jobs/view/%E5%A4%9A%E6%A8%A1%E6%80%81%E7%AE%97%E6%B3%95%E4%B8%93%E5%AE%B6-4457896218",
+      "location": "Hangzhou, Zhejiang, China",
+      "source_updated": "",
+      "company": "某杭州互联网公司",
+      "source": "linkedin-cn",
+      "tags": [
+        "DiT",
+        "国内",
+        "匹配中"
+      ],
+      "reasons": [
+        "DiT：多模态"
+      ],
+      "score": 6,
+      "region": "国内",
+      "level": "中",
+      "last_seen": "2026-09-21T05:23:34+00:00",
+      "stale": false
+    },
+    {
+      "title": "深度强化学习算法工程师",
+      "url": "https://cn.linkedin.com/jobs/view/%E6%B7%B1%E5%BA%A6%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95%E5%B7%A5%E7%A8%8B%E5%B8%88-at-%E6%B7%B1%E5%9C%B3%E5%90%89%E9%98%B3%E6%99%BA%E8%83%BD%E7%A7%91%E6%8A%80%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8-4460783782",
+      "location": "Hangzhou, Zhejiang, China",
+      "source_updated": "",
+      "company": "深圳吉阳智能科技有限公司",
+      "source": "linkedin-cn",
+      "tags": [
+        "训推加速",
+        "国内",
+        "匹配中"
+      ],
+      "reasons": [
+        "训推加速：强化学习"
+      ],
+      "score": 6,
+      "region": "国内",
+      "level": "中",
+      "last_seen": "2026-09-21T05:23:34+00:00",
+      "stale": false
+    },
+    {
+      "title": "大模型工程师",
+      "url": "https://cn.linkedin.com/jobs/view/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%B7%A5%E7%A8%8B%E5%B8%88-at-%E7%88%B1%E6%9F%AF%E8%BF%AA-4460919189",
+      "location": "Shanghai, Shanghai, China",
+      "source_updated": "",
+      "company": "爱柯迪",
+      "source": "linkedin-cn",
+      "tags": [
+        "AI Infra",
+        "国内",
+        "匹配中"
+      ],
+      "reasons": [
+        "AI Infra：大模型"
+      ],
+      "score": 6,
+      "region": "国内",
+      "level": "中",
+      "last_seen": "2026-09-21T05:23:34+00:00",
+      "stale": false
+    },
+    {
+      "title": "银泰星-AI 系统工程师-产技(J11330)",
+      "url": "https://cn.linkedin.com/jobs/view/%E9%93%B6%E6%B3%B0%E6%98%9F-ai-%E7%B3%BB%E7%BB%9F%E5%B7%A5%E7%A8%8B%E5%B8%88-%E4%BA%A7%E6%8A%80-j11330-at-%E9%93%B6%E6%B3%B0%E5%95%86%E4%B8%9A%E9%9B%86%E5%9B%A2-4460419537",
+      "location": "Hangzhou, Zhejiang, China",
+      "source_updated": "",
+      "company": "银泰商业集团",
+      "source": "linkedin-cn",
+      "tags": [
+        "AI Infra",
+        "国内",
+        "匹配中"
+      ],
+      "reasons": [
+        "AI Infra：ai 系统"
+      ],
+      "score": 6,
+      "region": "国内",
+      "level": "中",
+      "last_seen": "2026-09-21T05:23:34+00:00",
+      "stale": false
+    },
+    {
+      "title": "银泰星-AI 系统工程师-深象(J11329)",
+      "url": "https://cn.linkedin.com/jobs/view/%E9%93%B6%E6%B3%B0%E6%98%9F-ai-%E7%B3%BB%E7%BB%9F%E5%B7%A5%E7%A8%8B%E5%B8%88-%E6%B7%B1%E8%B1%A1-j11329-at-%E9%93%B6%E6%B3%B0%E5%95%86%E4%B8%9A%E9%9B%86%E5%9B%A2-4460430622",
+      "location": "Hangzhou, Zhejiang, China",
+      "source_updated": "",
+      "company": "银泰商业集团",
+      "source": "linkedin-cn",
+      "tags": [
+        "AI Infra",
+        "国内",
+        "匹配中"
+      ],
+      "reasons": [
+        "AI Infra：ai 系统"
+      ],
+      "score": 6,
+      "region": "国内",
+      "level": "中",
+      "last_seen": "2026-09-21T05:23:34+00:00",
       "stale": false
     },
     {
@@ -4605,7 +5314,7 @@
       "region": "国内",
       "level": "中",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "高性能分布式存储工程师",
@@ -4627,7 +5336,7 @@
       "region": "国内",
       "level": "中",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "多模态算法专家（AI生图）",
@@ -4649,28 +5358,7 @@
       "region": "国内",
       "level": "中",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
-    },
-    {
-      "title": "Senior Machine Learning Engineer",
-      "url": "https://cn.linkedin.com/jobs/view/senior-machine-learning-engineer-at-virtuos-4423661623",
-      "location": "Shanghai, Shanghai, China",
-      "source_updated": "",
-      "company": "Virtuos",
-      "source": "linkedin-cn",
-      "tags": [
-        "AI Infra",
-        "国内",
-        "匹配中"
-      ],
-      "reasons": [
-        "AI Infra：machine learning"
-      ],
-      "score": 6,
-      "region": "国内",
-      "level": "中",
-      "last_seen": "2026-09-20T05:20:36+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "AI Infra工程师（模型加速）",
@@ -4692,7 +5380,7 @@
       "region": "国内",
       "level": "中",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "AI系统研发工程师",
@@ -4714,7 +5402,7 @@
       "region": "国内",
       "level": "中",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "视频生成算法工程师",
@@ -4736,7 +5424,7 @@
       "region": "国内",
       "level": "中",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "AI模型训练推理工程师",
@@ -4758,7 +5446,7 @@
       "region": "国内",
       "level": "中",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "具身智能算法工程师（模型量化与部署方向）",
@@ -4780,7 +5468,7 @@
       "region": "国内",
       "level": "中",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "天基分布式操作系统开发专员",
@@ -4802,7 +5490,7 @@
       "region": "国内",
       "level": "中",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "强化学习训练框架工程专家",
@@ -4824,7 +5512,7 @@
       "region": "国内",
       "level": "中",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "强化学习训练框架开发工程师",
@@ -4846,7 +5534,7 @@
       "region": "国内",
       "level": "中",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "分布式通信库研发专家",
@@ -4868,7 +5556,7 @@
       "region": "国内",
       "level": "中",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "模型推理优化工程师",
@@ -4890,7 +5578,7 @@
       "region": "国内",
       "level": "中",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "AI算法工程师（视频生成与自动剪辑方向）",
@@ -4912,7 +5600,7 @@
       "region": "国内",
       "level": "中",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "视频生成/扩散模型算法工程师",
@@ -4934,7 +5622,7 @@
       "region": "国内",
       "level": "中",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "AI视频生成算法工程师（兼职）",
@@ -4956,7 +5644,7 @@
       "region": "国内",
       "level": "中",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "具身模型部署工程师",
@@ -4978,7 +5666,7 @@
       "region": "国内",
       "level": "中",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "大模型算法主管/专员",
@@ -5000,7 +5688,7 @@
       "region": "国内",
       "level": "中",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "GPU推理优化工程师",
@@ -5022,7 +5710,7 @@
       "region": "国内",
       "level": "中",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "Triton编译器工程师(J10296)",
@@ -5044,7 +5732,7 @@
       "region": "国内",
       "level": "中",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "AIGC视频生成算法工程师",
@@ -5066,7 +5754,7 @@
       "region": "国内",
       "level": "中",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "VLA量化部署专家",
@@ -5088,7 +5776,7 @@
       "region": "国内",
       "level": "中",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "分布式机器学习专家",
@@ -5110,7 +5798,7 @@
       "region": "国内",
       "level": "中",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "视频生成与优化研究员// 算法工程师",
@@ -5132,7 +5820,7 @@
       "region": "国内",
       "level": "中",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "分布式块存储产品化开发工程师",
@@ -5154,7 +5842,7 @@
       "region": "国内",
       "level": "中",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "分布式文件系统研发工程师",
@@ -5176,7 +5864,7 @@
       "region": "国内",
       "level": "中",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "视频生成算法岗",
@@ -5198,7 +5886,7 @@
       "region": "国内",
       "level": "中",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "AI平台训练框架研发工程师",
@@ -5220,7 +5908,7 @@
       "region": "国内",
       "level": "中",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "搜广推 - 训练框架研发工程师 / 专家",
@@ -5242,7 +5930,7 @@
       "region": "国内",
       "level": "中",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "大模型算法工程师",
@@ -5264,7 +5952,7 @@
       "region": "国内",
       "level": "中",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "分布式光伏开发经理",
@@ -5286,7 +5974,7 @@
       "region": "国内",
       "level": "中",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "分布式光伏项目设计工程师",
@@ -5308,7 +5996,7 @@
       "region": "国内",
       "level": "中",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "资深大模型算法工程师(J11975)",
@@ -5330,7 +6018,7 @@
       "region": "国内",
       "level": "中",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "高级多模态算法工程师",
@@ -5352,7 +6040,7 @@
       "region": "国内",
       "level": "中",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "大模型工程师",
@@ -5374,7 +6062,7 @@
       "region": "国内",
       "level": "中",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "项目开发副总监（分布式光伏）华南大区",
@@ -5396,7 +6084,7 @@
       "region": "国内",
       "level": "中",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "视频生成算法专家",
@@ -5418,7 +6106,7 @@
       "region": "国内",
       "level": "中",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "AIGC工程师（视频生成方向）",
@@ -5440,7 +6128,7 @@
       "region": "国内",
       "level": "中",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "AI应用开发工程师（AIGC/长文档）",
@@ -5462,7 +6150,7 @@
       "region": "国内",
       "level": "中",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "大模型算法工程师",
@@ -5484,7 +6172,7 @@
       "region": "国内",
       "level": "中",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "真机部署工程师",
@@ -5506,7 +6194,7 @@
       "region": "国内",
       "level": "中",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "分布式开发主管",
@@ -5528,7 +6216,7 @@
       "region": "国内",
       "level": "中",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "分布式开发副总",
@@ -5550,7 +6238,7 @@
       "region": "国内",
       "level": "中",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "AI视频生成工程师（ComfyUI/SD/Flex方向）",
@@ -5572,7 +6260,7 @@
       "region": "国内",
       "level": "中",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "推理加速工程师",
@@ -5594,7 +6282,7 @@
       "region": "国内",
       "level": "中",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "全闪分布式存储开发工程师",
@@ -5616,29 +6304,7 @@
       "region": "国内",
       "level": "中",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
-    },
-    {
-      "title": "全闪分布式存储开发工程师（C）",
-      "url": "https://www.liepin.com/job/1984884559.shtml",
-      "location": "杭州-滨江区",
-      "source_updated": "2026-08-14",
-      "company": "杭州宏杉科技股份有限公司",
-      "source": "liepin",
-      "listing_type": "direct",
-      "tags": [
-        "AI Infra",
-        "国内",
-        "匹配中"
-      ],
-      "reasons": [
-        "AI Infra：分布式"
-      ],
-      "score": 6,
-      "region": "国内",
-      "level": "中",
-      "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "轻量化部署算法工程师（嵌入式）",
@@ -5660,7 +6326,7 @@
       "region": "国内",
       "level": "中",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "分布式项目开发经理 (MJ000635)",
@@ -5682,7 +6348,7 @@
       "region": "国内",
       "level": "中",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "大模型调优工程师（Token工厂）",
@@ -5704,7 +6370,7 @@
       "region": "国内",
       "level": "中",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "AI大模型工程师",
@@ -5726,7 +6392,7 @@
       "region": "国内",
       "level": "中",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "大模型分布式优化工程师",
@@ -5748,7 +6414,7 @@
       "region": "国内",
       "level": "中",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "分布式数据库内核专家",
@@ -5770,28 +6436,7 @@
       "region": "国内",
       "level": "中",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
-    },
-    {
-      "title": "大模型工程师",
-      "url": "https://cn.linkedin.com/jobs/view/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%B7%A5%E7%A8%8B%E5%B8%88-at-%E7%88%B1%E6%9F%AF%E8%BF%AA-4460919189",
-      "location": "Shanghai, Shanghai, China",
-      "source_updated": "",
-      "company": "爱柯迪",
-      "source": "linkedin-cn",
-      "tags": [
-        "AI Infra",
-        "国内",
-        "匹配中"
-      ],
-      "reasons": [
-        "AI Infra：大模型"
-      ],
-      "score": 6,
-      "region": "国内",
-      "level": "中",
-      "last_seen": "2026-09-20T05:20:36+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "银行系统架构师（分布式账本/数字资产方向）",
@@ -5813,7 +6458,7 @@
       "region": "国内",
       "level": "中",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "视频生成/世界模型算法工程师",
@@ -5835,7 +6480,7 @@
       "region": "国内",
       "level": "中",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "强化学习算法专家/训练框架",
@@ -5857,7 +6502,7 @@
       "region": "国内",
       "level": "中",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "多模态AI架构师",
@@ -5879,7 +6524,7 @@
       "region": "国内",
       "level": "中",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "算力交付实施工程师",
@@ -5901,7 +6546,7 @@
       "region": "国内",
       "level": "中",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "分布式计算性能调优工程师",
@@ -5923,7 +6568,7 @@
       "region": "国内",
       "level": "中",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "研究科学家/工程师 - 世界模型（视频生成与预测）",
@@ -5945,7 +6590,7 @@
       "region": "国内",
       "level": "中",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "多模态视频生成算法工程师",
@@ -5967,7 +6612,7 @@
       "region": "国内",
       "level": "中",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "资深 AIGC 算法工程师",
@@ -5989,7 +6634,7 @@
       "region": "国内",
       "level": "中",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "大模型研发技术专家(J23560)",
@@ -6011,7 +6656,7 @@
       "region": "国内",
       "level": "中",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "AI Infra高性能异构优化工程师",
@@ -6033,7 +6678,7 @@
       "region": "国内",
       "level": "中",
       "last_seen": "2026-09-20T05:25:00+00:00",
-      "stale": false
+      "stale": true
     },
     {
       "title": "Staff Kernel Optimzation Engineer",
@@ -6059,64 +6704,14 @@
       "score": 10,
       "region": "远程",
       "level": "高",
-      "last_seen": "2026-09-20T05:22:27+00:00",
-      "stale": false
-    },
-    {
-      "title": "Compiler Engineer - AI Inference",
-      "url": "https://nvidia.wd5.myworkdayjobs.com/en-US/NVIDIAExternalCareerSite/job/UK-Remote/Compiler-Engineer---AI-Inference_JR2023372",
-      "location": "UK, Remote; UK, Cambridge",
-      "source_updated": "Posted 30+ Days Ago",
-      "company": "NVIDIA",
-      "source": "nvidia",
-      "tags": [
-        "GPU Kernel",
-        "AI Infra",
-        "训推加速",
-        "远程",
-        "匹配中"
-      ],
-      "reasons": [
-        "GPU Kernel：kernel",
-        "AI Infra：gpu、deep learning、llm",
-        "训推加速：inference、kernel"
-      ],
-      "score": 7,
-      "region": "远程",
-      "level": "中",
-      "last_seen": "2026-09-20T05:20:36+00:00",
-      "stale": false
-    },
-    {
-      "title": "AI Compiler Engineer",
-      "url": "https://www.arbeitnow.com/jobs/companies/enchargeai36/remote-ai-compiler-engineer-152964",
-      "location": "Remote-US, Canada",
-      "source_updated": "",
-      "company": "Arbeitnow 聚合",
-      "source": "arbeitnow",
-      "tags": [
-        "AI Infra",
-        "端侧部署",
-        "训推加速",
-        "远程",
-        "匹配中"
-      ],
-      "reasons": [
-        "AI Infra：deep learning",
-        "端侧部署：edge ai、quantization",
-        "训推加速：inference"
-      ],
-      "score": 5,
-      "region": "远程",
-      "level": "中",
-      "last_seen": "2026-09-20T05:20:36+00:00",
+      "last_seen": "2026-09-21T05:25:32+00:00",
       "stale": false
     },
     {
       "title": "Senior Deep Learning Software Infrastructure Engineer",
       "url": "https://nvidia.wd5.myworkdayjobs.com/en-US/NVIDIAExternalCareerSite/job/US-CA-Remote/Senior-Deep-Learning-Sofware-Infrastructure-Engineer_JR2022034",
       "location": "US, CA, Remote",
-      "source_updated": "Posted 12 Days Ago",
+      "source_updated": "Posted 13 Days Ago",
       "company": "NVIDIA",
       "source": "nvidia",
       "tags": [
@@ -6130,7 +6725,7 @@
       "score": 5,
       "region": "远程",
       "level": "中",
-      "last_seen": "2026-09-20T05:20:36+00:00",
+      "last_seen": "2026-09-21T05:23:34+00:00",
       "stale": false
     },
     {
@@ -6155,7 +6750,32 @@
       "score": 9,
       "region": "海外",
       "level": "高",
-      "last_seen": "2026-09-20T05:20:36+00:00",
+      "last_seen": "2026-09-21T05:23:34+00:00",
+      "stale": false
+    },
+    {
+      "title": "Senior Inference Engineer, GPU Kernel Optimization",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/en-US/NVIDIAExternalCareerSite/job/US-CA-Santa-Clara/Senior-Inference-Engineer--GPU-Kernel-Optimization_JR2021962",
+      "location": "4 Locations",
+      "source_updated": "Posted 30+ Days Ago",
+      "company": "NVIDIA",
+      "source": "nvidia",
+      "tags": [
+        "GPU Kernel",
+        "AI Infra",
+        "训推加速",
+        "海外",
+        "匹配高"
+      ],
+      "reasons": [
+        "GPU Kernel：kernel",
+        "AI Infra：gpu",
+        "训推加速：inference、kernel"
+      ],
+      "score": 9,
+      "region": "海外",
+      "level": "高",
+      "last_seen": "2026-09-21T05:23:34+00:00",
       "stale": false
     },
     {
@@ -6182,7 +6802,7 @@
       "score": 8,
       "region": "海外",
       "level": "高",
-      "last_seen": "2026-09-20T05:20:36+00:00",
+      "last_seen": "2026-09-21T05:23:34+00:00",
       "stale": false
     },
     {
@@ -6209,7 +6829,7 @@
       "score": 8,
       "region": "海外",
       "level": "高",
-      "last_seen": "2026-09-20T05:22:27+00:00",
+      "last_seen": "2026-09-21T05:25:32+00:00",
       "stale": false
     },
     {
@@ -6236,7 +6856,7 @@
       "score": 8,
       "region": "海外",
       "level": "高",
-      "last_seen": "2026-09-20T05:22:27+00:00",
+      "last_seen": "2026-09-21T05:25:32+00:00",
       "stale": false
     },
     {
@@ -6263,7 +6883,7 @@
       "score": 8,
       "region": "海外",
       "level": "高",
-      "last_seen": "2026-09-20T05:22:27+00:00",
+      "last_seen": "2026-09-21T05:25:32+00:00",
       "stale": false
     },
     {
@@ -6290,7 +6910,7 @@
       "score": 8,
       "region": "海外",
       "level": "高",
-      "last_seen": "2026-09-20T05:22:27+00:00",
+      "last_seen": "2026-09-21T05:25:32+00:00",
       "stale": false
     },
     {
@@ -6317,7 +6937,7 @@
       "score": 8,
       "region": "海外",
       "level": "高",
-      "last_seen": "2026-09-20T05:22:27+00:00",
+      "last_seen": "2026-09-21T05:25:32+00:00",
       "stale": false
     },
     {
@@ -6346,7 +6966,61 @@
       "score": 7,
       "region": "海外",
       "level": "高",
-      "last_seen": "2026-09-20T05:20:36+00:00",
+      "last_seen": "2026-09-21T05:23:34+00:00",
+      "stale": false
+    },
+    {
+      "title": "Senior Embedded Linux Engineer (all genders) - Yocto · Python · IoT Edge",
+      "url": "https://www.arbeitnow.com/jobs/companies/wemolo/senior-embedded-linux-engineer-all-genders-yocto-python-iot-edge-munchen-308178",
+      "location": "Munich",
+      "source_updated": "",
+      "company": "Arbeitnow 聚合",
+      "source": "arbeitnow",
+      "tags": [
+        "GPU Kernel",
+        "AI Infra",
+        "端侧部署",
+        "训推加速",
+        "海外",
+        "匹配高"
+      ],
+      "reasons": [
+        "GPU Kernel：kernel",
+        "AI Infra：machine learning",
+        "端侧部署：edge ai、embedded",
+        "训推加速：kernel"
+      ],
+      "score": 6,
+      "region": "海外",
+      "level": "高",
+      "last_seen": "2026-09-21T05:23:34+00:00",
+      "stale": false
+    },
+    {
+      "title": "Senior Machine Learning Engineer",
+      "url": "https://www.arbeitnow.com/jobs/companies/tools-for-humanity/senior-machine-learning-engineer-munich-149730",
+      "location": "Munich",
+      "source_updated": "",
+      "company": "Arbeitnow 聚合",
+      "source": "arbeitnow",
+      "tags": [
+        "GPU Kernel",
+        "AI Infra",
+        "端侧部署",
+        "训推加速",
+        "海外",
+        "匹配高"
+      ],
+      "reasons": [
+        "GPU Kernel：kernel",
+        "AI Infra：ml infrastructure、gpu、ml systems",
+        "端侧部署：on-device、quantization、embedded",
+        "训推加速：kernel"
+      ],
+      "score": 6,
+      "region": "海外",
+      "level": "高",
+      "last_seen": "2026-09-21T05:23:34+00:00",
       "stale": false
     },
     {
@@ -6369,7 +7043,7 @@
       "score": 6,
       "region": "海外",
       "level": "高",
-      "last_seen": "2026-09-20T05:20:36+00:00",
+      "last_seen": "2026-09-21T05:23:34+00:00",
       "stale": false
     },
     {
@@ -6396,7 +7070,7 @@
       "score": 6,
       "region": "海外",
       "level": "高",
-      "last_seen": "2026-09-20T05:20:36+00:00",
+      "last_seen": "2026-09-21T05:23:34+00:00",
       "stale": false
     },
     {
@@ -6423,7 +7097,7 @@
       "score": 6,
       "region": "海外",
       "level": "高",
-      "last_seen": "2026-09-20T05:20:36+00:00",
+      "last_seen": "2026-09-21T05:23:34+00:00",
       "stale": false
     },
     {
@@ -6450,7 +7124,7 @@
       "score": 6,
       "region": "海外",
       "level": "高",
-      "last_seen": "2026-09-20T05:22:27+00:00",
+      "last_seen": "2026-09-21T05:25:32+00:00",
       "stale": false
     },
     {
@@ -6477,7 +7151,7 @@
       "score": 6,
       "region": "海外",
       "level": "高",
-      "last_seen": "2026-09-20T05:22:27+00:00",
+      "last_seen": "2026-09-21T05:25:32+00:00",
       "stale": false
     },
     {
@@ -6504,57 +7178,7 @@
       "score": 6,
       "region": "海外",
       "level": "高",
-      "last_seen": "2026-09-20T05:22:27+00:00",
-      "stale": false
-    },
-    {
-      "title": "AI Researcher, LLMs",
-      "url": "https://www.arbeitnow.co.uk/jobs/companies/wehrtyou/ai-researcher-llms-london-187579",
-      "location": "London",
-      "source_updated": "",
-      "company": "Arbeitnow 聚合",
-      "source": "arbeitnow",
-      "tags": [
-        "GPU Kernel",
-        "AI Infra",
-        "训推加速",
-        "海外",
-        "匹配中"
-      ],
-      "reasons": [
-        "GPU Kernel：kernel",
-        "AI Infra：gpu、ai tools、llm",
-        "训推加速：inference、distributed training、kernel"
-      ],
-      "score": 5,
-      "region": "海外",
-      "level": "中",
-      "last_seen": "2026-09-20T05:20:36+00:00",
-      "stale": false
-    },
-    {
-      "title": "Senior Embedded Linux Software Engineer",
-      "url": "https://www.arbeitnow.com/jobs/companies/auterion/senior-embedded-linux-software-engineer-munich-391168",
-      "location": "Munich",
-      "source_updated": "",
-      "company": "Arbeitnow 聚合",
-      "source": "arbeitnow",
-      "tags": [
-        "GPU Kernel",
-        "端侧部署",
-        "训推加速",
-        "海外",
-        "匹配中"
-      ],
-      "reasons": [
-        "GPU Kernel：kernel",
-        "端侧部署：embedded",
-        "训推加速：kernel"
-      ],
-      "score": 5,
-      "region": "海外",
-      "level": "中",
-      "last_seen": "2026-09-20T05:20:36+00:00",
+      "last_seen": "2026-09-21T05:25:32+00:00",
       "stale": false
     },
     {
@@ -6579,7 +7203,7 @@
       "score": 5,
       "region": "海外",
       "level": "中",
-      "last_seen": "2026-09-20T05:22:27+00:00",
+      "last_seen": "2026-09-21T05:25:32+00:00",
       "stale": false
     },
     {
@@ -6604,7 +7228,7 @@
       "score": 5,
       "region": "海外",
       "level": "中",
-      "last_seen": "2026-09-20T05:22:27+00:00",
+      "last_seen": "2026-09-21T05:25:32+00:00",
       "stale": false
     },
     {
@@ -6629,7 +7253,7 @@
       "score": 5,
       "region": "海外",
       "level": "中",
-      "last_seen": "2026-09-20T05:22:27+00:00",
+      "last_seen": "2026-09-21T05:25:32+00:00",
       "stale": false
     },
     {
@@ -6654,7 +7278,7 @@
       "score": 5,
       "region": "海外",
       "level": "中",
-      "last_seen": "2026-09-20T05:22:27+00:00",
+      "last_seen": "2026-09-21T05:25:32+00:00",
       "stale": false
     },
     {
@@ -6679,7 +7303,7 @@
       "score": 5,
       "region": "海外",
       "level": "中",
-      "last_seen": "2026-09-20T05:22:27+00:00",
+      "last_seen": "2026-09-21T05:25:32+00:00",
       "stale": false
     },
     {
@@ -6702,7 +7326,7 @@
       "score": 4,
       "region": "海外",
       "level": "中",
-      "last_seen": "2026-09-20T05:20:36+00:00",
+      "last_seen": "2026-09-21T05:23:34+00:00",
       "stale": false
     },
     {
@@ -6725,7 +7349,7 @@
       "score": 4,
       "region": "海外",
       "level": "中",
-      "last_seen": "2026-09-20T05:20:36+00:00",
+      "last_seen": "2026-09-21T05:23:34+00:00",
       "stale": false
     },
     {
@@ -6748,7 +7372,53 @@
       "score": 4,
       "region": "海外",
       "level": "中",
-      "last_seen": "2026-09-20T05:20:36+00:00",
+      "last_seen": "2026-09-21T05:23:34+00:00",
+      "stale": false
+    },
+    {
+      "title": "Applied AI Engineer",
+      "url": "https://www.arbeitnow.com/jobs/companies/bjak/applied-ai-engineer-germany-121817",
+      "location": "Germany",
+      "source_updated": "",
+      "company": "Arbeitnow 聚合",
+      "source": "arbeitnow",
+      "tags": [
+        "AI Infra",
+        "训推加速",
+        "海外",
+        "匹配中"
+      ],
+      "reasons": [
+        "AI Infra：ai engineer、machine learning",
+        "训推加速：inference、vllm、serving"
+      ],
+      "score": 4,
+      "region": "海外",
+      "level": "中",
+      "last_seen": "2026-09-21T05:23:34+00:00",
+      "stale": false
+    },
+    {
+      "title": "Senior AI Engineer",
+      "url": "https://remotive.com/remote-jobs/artificial-intelligence/senior-ai-engineer-2091131",
+      "location": "Northern America, LATAM, Europe, APAC",
+      "source_updated": "",
+      "company": "Remotive 聚合",
+      "source": "remotive",
+      "tags": [
+        "AI Infra",
+        "端侧部署",
+        "海外",
+        "匹配中"
+      ],
+      "reasons": [
+        "AI Infra：ai engineer、machine learning、llm",
+        "端侧部署：embedded"
+      ],
+      "score": 4,
+      "region": "海外",
+      "level": "中",
+      "last_seen": "2026-09-21T05:23:34+00:00",
       "stale": false
     },
     {
@@ -6771,7 +7441,7 @@
       "score": 4,
       "region": "海外",
       "level": "中",
-      "last_seen": "2026-09-20T05:22:27+00:00",
+      "last_seen": "2026-09-21T05:25:32+00:00",
       "stale": false
     },
     {
@@ -6794,7 +7464,7 @@
       "score": 4,
       "region": "海外",
       "level": "中",
-      "last_seen": "2026-09-20T05:22:27+00:00",
+      "last_seen": "2026-09-21T05:25:32+00:00",
       "stale": false
     },
     {
@@ -6817,7 +7487,7 @@
       "score": 4,
       "region": "海外",
       "level": "中",
-      "last_seen": "2026-09-20T05:22:27+00:00",
+      "last_seen": "2026-09-21T05:25:32+00:00",
       "stale": false
     },
     {
@@ -6838,7 +7508,7 @@
       "score": 3,
       "region": "海外",
       "level": "中",
-      "last_seen": "2026-09-20T05:20:36+00:00",
+      "last_seen": "2026-09-21T05:23:34+00:00",
       "stale": false
     },
     {
@@ -6859,7 +7529,7 @@
       "score": 3,
       "region": "海外",
       "level": "中",
-      "last_seen": "2026-09-20T05:20:36+00:00",
+      "last_seen": "2026-09-21T05:23:34+00:00",
       "stale": false
     },
     {
@@ -6882,7 +7552,7 @@
       "score": 2,
       "region": "海外",
       "level": "低",
-      "last_seen": "2026-09-20T05:22:27+00:00",
+      "last_seen": "2026-09-21T05:25:32+00:00",
       "stale": false
     }
   ],
