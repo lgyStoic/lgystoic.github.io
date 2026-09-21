@@ -1,0 +1,665 @@
+{
+  "date": "2026-09-21",
+  "generated_at": "2026-09-21T01:44:55+00:00",
+  "ai": true,
+  "model": "gemini-3.8-flash",
+  "sources": [
+    {
+      "id": "openai",
+      "name": "OpenAI",
+      "ok": true,
+      "count": 0,
+      "total": 1210,
+      "error": ""
+    },
+    {
+      "id": "deepmind",
+      "name": "Google DeepMind",
+      "ok": true,
+      "count": 0,
+      "total": 100,
+      "error": ""
+    },
+    {
+      "id": "google-ai",
+      "name": "Google AI Blog",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "qwen",
+      "name": "Qwen",
+      "ok": true,
+      "count": 0,
+      "total": 44,
+      "error": ""
+    },
+    {
+      "id": "hf-blog",
+      "name": "Hugging Face Blog",
+      "ok": true,
+      "count": 0,
+      "total": 862,
+      "error": ""
+    },
+    {
+      "id": "nvidia-dev",
+      "name": "NVIDIA Technical Blog",
+      "ok": true,
+      "count": 0,
+      "total": 100,
+      "error": ""
+    },
+    {
+      "id": "hf-papers",
+      "name": "HF Papers 日榜",
+      "ok": true,
+      "count": 0,
+      "total": 46,
+      "error": ""
+    },
+    {
+      "id": "pytorch",
+      "name": "PyTorch Blog",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "simonw",
+      "name": "Simon Willison",
+      "ok": true,
+      "count": 1,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "lilianweng",
+      "name": "Lil'Log",
+      "ok": true,
+      "count": 0,
+      "total": 53,
+      "error": ""
+    },
+    {
+      "id": "interconnects",
+      "name": "Interconnects",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "raschka",
+      "name": "Sebastian Raschka",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "chiphuyen",
+      "name": "Chip Huyen",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-pytorch",
+      "name": "Release · PyTorch",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-triton",
+      "name": "Release · Triton",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-cutlass",
+      "name": "Release · CUTLASS",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-flash-attention",
+      "name": "Release · FlashAttention",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-vllm",
+      "name": "Release · vLLM",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-sglang",
+      "name": "Release · SGLang",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-tensorrt-llm",
+      "name": "Release · TensorRT-LLM",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-diffusers",
+      "name": "Release · Diffusers",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-cuda-python",
+      "name": "Release · cuda-python",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "gnews-labs-en",
+      "name": "新闻 · Anthropic / Mistral / xAI",
+      "ok": true,
+      "count": 6,
+      "total": 100,
+      "error": ""
+    },
+    {
+      "id": "gnews-labs-cn",
+      "name": "新闻 · 国内模型公司",
+      "ok": true,
+      "count": 11,
+      "total": 81,
+      "error": ""
+    },
+    {
+      "id": "qbitai",
+      "name": "量子位",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "infoq-cn",
+      "name": "InfoQ 中文",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "thonking",
+      "name": "Horace He (thonking)",
+      "ok": true,
+      "count": 0,
+      "total": 6,
+      "error": ""
+    },
+    {
+      "id": "hn-algolia",
+      "name": "Hacker News（100+ 分）",
+      "ok": true,
+      "count": 3,
+      "total": 60,
+      "error": ""
+    },
+    {
+      "id": "karpathy-blog",
+      "name": "Andrej Karpathy 博客",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "eugeneyan",
+      "name": "Eugene Yan",
+      "ok": true,
+      "count": 0,
+      "total": 212,
+      "error": ""
+    },
+    {
+      "id": "importai",
+      "name": "Import AI（Jack Clark）",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "latentspace",
+      "name": "Latent Space",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "semianalysis",
+      "name": "SemiAnalysis",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "meta-ai",
+      "name": "Meta Engineering",
+      "ok": true,
+      "count": 0,
+      "total": 9,
+      "error": ""
+    },
+    {
+      "id": "mistral-news",
+      "name": "Mistral AI",
+      "ok": true,
+      "count": 0,
+      "total": 87,
+      "error": ""
+    },
+    {
+      "id": "bsky-karpathy",
+      "name": "Bluesky · Andrej Karpathy",
+      "ok": true,
+      "count": 0,
+      "total": 15,
+      "error": ""
+    },
+    {
+      "id": "bsky-giffmana",
+      "name": "Bluesky · Lucas Beyer",
+      "ok": true,
+      "count": 0,
+      "total": 22,
+      "error": ""
+    },
+    {
+      "id": "bsky-hardmaru",
+      "name": "Bluesky · hardmaru",
+      "ok": true,
+      "count": 0,
+      "total": 17,
+      "error": ""
+    },
+    {
+      "id": "bsky-swyx",
+      "name": "Bluesky · swyx",
+      "ok": true,
+      "count": 0,
+      "total": 3,
+      "error": ""
+    },
+    {
+      "id": "bsky-pytorch",
+      "name": "Bluesky · PyTorch",
+      "ok": true,
+      "count": 0,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "bsky-clem",
+      "name": "Bluesky · Clem Delangue",
+      "ok": true,
+      "count": 0,
+      "total": 11,
+      "error": ""
+    },
+    {
+      "id": "bsky-natolambert",
+      "name": "Bluesky · Nathan Lambert",
+      "ok": true,
+      "count": 0,
+      "total": 29,
+      "error": ""
+    },
+    {
+      "id": "bsky-rasbt",
+      "name": "Bluesky · Sebastian Raschka",
+      "ok": true,
+      "count": 0,
+      "total": 27,
+      "error": ""
+    },
+    {
+      "id": "bsky-jeffdean",
+      "name": "Bluesky · Jeff Dean",
+      "ok": true,
+      "count": 0,
+      "total": 18,
+      "error": ""
+    },
+    {
+      "id": "hf-trending-new",
+      "name": "HF 热榜新模型",
+      "ok": true,
+      "count": 2,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "gh-new-stars",
+      "name": "GitHub 新星仓库",
+      "ok": true,
+      "count": 1,
+      "total": 15,
+      "error": ""
+    },
+    {
+      "id": "hf-t2v",
+      "name": "HF 热榜 · 文生视频",
+      "ok": true,
+      "count": 1,
+      "total": 19,
+      "error": ""
+    },
+    {
+      "id": "hf-i2v",
+      "name": "HF 热榜 · 图生视频",
+      "ok": true,
+      "count": 0,
+      "total": 16,
+      "error": ""
+    },
+    {
+      "id": "gnews-video-en",
+      "name": "新闻 · 视频生成（英文）",
+      "ok": true,
+      "count": 2,
+      "total": 12,
+      "error": ""
+    },
+    {
+      "id": "gnews-video-cn",
+      "name": "新闻 · 视频生成（中文）",
+      "ok": true,
+      "count": 4,
+      "total": 34,
+      "error": ""
+    },
+    {
+      "id": "gnews-world-en",
+      "name": "新闻 · 世界模型（英文）",
+      "ok": true,
+      "count": 4,
+      "total": 50,
+      "error": ""
+    },
+    {
+      "id": "gnews-world-cn",
+      "name": "新闻 · 世界模型（中文）",
+      "ok": true,
+      "count": 10,
+      "total": 78,
+      "error": ""
+    },
+    {
+      "id": "gh-new-video-world",
+      "name": "GitHub 新仓库 · 视频 / 世界模型",
+      "ok": true,
+      "count": 0,
+      "total": 17,
+      "error": ""
+    },
+    {
+      "id": "arxiv-cscv",
+      "name": "arXiv cs.CV（专题）",
+      "ok": true,
+      "count": 0,
+      "total": 0,
+      "error": ""
+    },
+    {
+      "id": "arxiv-csro",
+      "name": "arXiv cs.RO（专题）",
+      "ok": true,
+      "count": 0,
+      "total": 0,
+      "error": ""
+    }
+  ],
+  "counts": {
+    "high": 3,
+    "medium": 8,
+    "low": 0
+  },
+  "items": [
+    {
+      "id": "376ae494fa24b669",
+      "title": "阶跃星辰发布Step 5 Preview，面向真实世界Agentic 任务的旗舰基座模型- OSCHINA - 开源 × AI · 开发者生态社区 - OSCHINA",
+      "link": "https://www.oschina.net/news/502614/stepfun-step-5-preview",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-09-20T09:40:14+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "阶跃星辰发布旗舰基座模型 Step 5 Preview，主打 Agentic 复杂任务及低推理成本。",
+      "why": "国产新一代 MoE 旗舰基座发布，值得关注其推理成本与架构。",
+      "tags": [
+        "阶跃星辰",
+        "MoE",
+        "大模型发布"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "2f17fc177a3a2f13",
+      "title": "Aether AI发布首个因果世界模型，世界模型开始思考“行动背后的因果”｜甲子光年 - Sohu",
+      "link": "https://m.sohu.com/a/1078592571_100016644?scm=10001.325_13-325_13.0.0-0-0-0-0.5_1334",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-09-20T07:41:47+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "Aether AI 宣布推出其首个因果世界模型，探索基于动作与因果推理的场景模拟。",
+      "why": "因果世界模型是生成与仿真领域的新技术方向，值得重点关注。",
+      "tags": [
+        "因果推断",
+        "世界模型",
+        "模型发布"
+      ],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "d5575488bdb45cb4",
+      "title": "Qwen/Qwen-Image-2.1",
+      "link": "https://huggingface.co/Qwen/Qwen-Image-2.1",
+      "source": "HF 热榜新模型",
+      "source_id": "hf-trending-new",
+      "published": "2026-09-14T03:47:26+00:00",
+      "category": "trend",
+      "priority": "high",
+      "summary": "Qwen/Qwen-Image-2.1 登上 HF 热榜（787 likes）。",
+      "why": "知名机构全新文生图模型，图像生成领域核心重点。",
+      "tags": [
+        "Qwen",
+        "文生图",
+        "扩散模型"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "d0d589f98944bd9d",
+      "title": "Google's Open Agentic Orchestrator",
+      "link": "https://news.ycombinator.com/item?id=49780797",
+      "source": "Hacker News（100+ 分）",
+      "source_id": "hn-algolia",
+      "published": "2026-09-20T22:32:43+00:00",
+      "category": "infra",
+      "priority": "medium",
+      "summary": "Google 的开源 Agentic 编排框架引发 Hacker News 热议。",
+      "why": "大厂开源的 Agent 调度执行架构，可关注其系统编排设计。",
+      "tags": [
+        "Google",
+        "Agent",
+        "编排系统"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "23c2a2bd2c5b6cea",
+      "title": "World model companies are keeping a lot of secrets - TechCrunch",
+      "link": "https://techcrunch.com/2026/09/20/world-model-companies-are-keeping-a-lot-of-secrets/",
+      "source": "新闻 · 世界模型（英文）",
+      "source_id": "gnews-world-en",
+      "published": "2026-09-20T20:29:07+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "TechCrunch 报道多家获巨额融资的世界模型初创公司对商业化路径与技术细节保持高度保密。",
+      "why": "权威外媒对世界模型初创生态的综述观察，可了解行业动态。",
+      "tags": [
+        "世界模型",
+        "行业动态",
+        "商业化"
+      ],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "0ff4202d36254263",
+      "title": "李飞飞的世界模型：实现原理、现实影响与未来应用 - 新浪财经",
+      "link": "https://cj.sina.cn/articles/view/5953190046/162d6789e06703smem?froms=ggmp",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-09-20T16:21:03+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "媒体梳理李飞飞团队空间智能与世界模型的实现原理、影响及未来应用场景。",
+      "why": "梳理空间智能与 3D/视频世界模型的技术脉络，可做背景参考。",
+      "tags": [
+        "李飞飞",
+        "空间智能",
+        "世界模型"
+      ],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "40de3cb577530044",
+      "title": "Seedance 2.5 还能这么玩？只要一张图， 生成一个可随意摆弄的 3D 世界 - 爱范儿",
+      "link": "https://www.ifanr.com/1678698",
+      "source": "新闻 · 视频生成（中文）",
+      "source_id": "gnews-video-cn",
+      "published": "2026-09-20T16:20:33+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "爱范儿报道 Seedance 2.5 支持单图生成可交互的 3D 世界场景。",
+      "why": "涉及 3D/世界生成的新玩法与交互落地，值得扫一眼技术形态。",
+      "tags": [
+        "3D生成",
+        "世界模型",
+        "Seedance"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "ecb193f356138420",
+      "title": "论文周报丨Vidu S2实现实时720P数字人生成与视频编辑；NCP-ArchPreview探索LLM隐空间预训练新范式...速览一周AI前沿论文 - 智源社区",
+      "link": "https://hub.baai.ac.cn/view/58125",
+      "source": "新闻 · 视频生成（中文）",
+      "source_id": "gnews-video-cn",
+      "published": "2026-09-20T13:44:00+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "智源论文周报介绍 Vidu S2 实时 720P 视频生成及 LLM 隐空间预训练新范式。",
+      "why": "包含实时视频生成与隐空间架构研究，与生成模型方向高度契合。",
+      "tags": [
+        "视频生成",
+        "论文周报",
+        "隐空间预训练"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "6e4de13808181379",
+      "title": "智源王仲远：世界模型是未来，但现在谈现金流还早|连线创始人 - 电子工程专辑",
+      "link": "https://www.eet-china.com/mp/a526204.html",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-09-20T04:36:00+00:00",
+      "category": "people",
+      "priority": "medium",
+      "summary": "智源王仲远在访谈中表示世界模型是未来方向，但目前讨论现金流为时尚早。",
+      "why": "国内核心研发机构高管对世界模型落地阶段的客观判断，值得一览。",
+      "tags": [
+        "智源",
+        "观点",
+        "世界模型"
+      ],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "72c605ffebc36801",
+      "title": "mizorewww/laya-mlx",
+      "link": "https://github.com/mizorewww/laya-mlx",
+      "source": "GitHub 新星仓库",
+      "source_id": "gh-new-stars",
+      "published": "2026-09-19T13:50:26+00:00",
+      "category": "trend",
+      "priority": "medium",
+      "summary": "mizorewww/laya-mlx 登上 GitHub 热榜（⭐ 1751）。",
+      "why": "针对 Apple Silicon 的原生 MLX 运行时推理优化，可参考低延迟设计。",
+      "tags": [
+        "MLX",
+        "推理优化",
+        "Kernel"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "6f2dcc337e5c7206",
+      "title": "Comfy-Org/Qwen-Image-2.1",
+      "link": "https://huggingface.co/Comfy-Org/Qwen-Image-2.1",
+      "source": "HF 热榜新模型",
+      "source_id": "hf-trending-new",
+      "published": "2026-09-15T19:41:09+00:00",
+      "category": "trend",
+      "priority": "medium",
+      "summary": "Comfy-Org/Qwen-Image-2.1 登上 HF 热榜（273 likes）。",
+      "why": "Qwen-Image-2.1 的 ComfyUI 适配版本，便于本地工作流实测。",
+      "tags": [
+        "ComfyUI",
+        "文生图",
+        "生成模型"
+      ],
+      "tracks": []
+    }
+  ]
+}
