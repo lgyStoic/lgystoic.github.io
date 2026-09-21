@@ -53,20 +53,20 @@
 ## 开源贡献路线
 
 - [总览](https://lgystoic.github.io/radar/contributions/): 14 个 AI 推理 / kernel 仓库的五章分析（定位、架构、本地运行、社区、切入）与可认领任务卡
-- [sgl-project/sglang](https://lgystoic.github.io/radar/contributions/sgl-project--sglang/): SGLang 是一个专为大语言模型（LLM）和多模态/扩散模型设计的高性能推理与服务框架。它的核心愿景是通过极致的底层优化（如 RadixAttention 前缀缓存、零开销 CPU 调度器、Prefill-Decode 分离）来解决大规模
-- [sgl-project/sglang-omni](https://lgystoic.github.io/radar/contributions/sgl-project--sglang-omni/): SGLang-Omni 是一个专为音频模型（TTS、ASR）和统一多模态（Omni）模型设计的高性能多阶段推理服务框架。传统的大语言模型（LLM）服务框架通常假设推理过程是同构的自回归（AR）解码，而现代 Omni 模型（如 Qwen3-O
-- [vllm-project/vllm](https://lgystoic.github.io/radar/contributions/vllm-project--vllm/): vLLM 是目前开源社区事实上的大模型（LLM）推理与服务引擎标准。它的核心价值在于通过 PagedAttention 技术解决了自回归生成中 KV Cache 显存碎片化的问题，并结合 Continuous Batching 极大提升了 
-- [flashinfer-ai/flashinfer](https://lgystoic.github.io/radar/contributions/flashinfer-ai--flashinfer/): FlashInfer 是一个专为大语言模型（LLM）推理服务设计的高性能 GPU 算子库（Kernel Library）。它的核心定位是连接底层前沿硬件（如 Hopper、Blackwell 架构）与上层推理框架（如 vLLM、SGLang
-- [Dao-AILab/flash-attention](https://lgystoic.github.io/radar/contributions/dao-ailab--flash-attention/): FlashAttention 是当前 AI 基础设施中最核心的底层算子库，旨在通过 IO-Awareness 解决 Transformer 长序列 Attention 计算的显存墙（二次复杂度 OOM）与内存带宽瓶颈。它已被广泛集成到 Py
-- [tile-ai/tilelang](https://lgystoic.github.io/radar/contributions/tile-ai--tilelang/): TileLang 是一个基于 Python 语法的领域特定语言（DSL），旨在简化高性能 GPU/CPU/加速器内核（如 GEMM、FlashAttention、LinearAttention 等）的开发。它构建在 Apache TVM 的
-- [huggingface/diffusers](https://lgystoic.github.io/radar/contributions/huggingface--diffusers/): 🤗 Diffusers 是 Hugging Face 官方维护的扩散模型（图像、视频、音频）核心库。对于你这样一位资深 GPU/训练性能工程师来说，首先需要建立一个关键认知：该项目的核心设计哲学是「易用性高于性能（usability ove
-- [hao-ai-lab/FastVideo](https://lgystoic.github.io/radar/contributions/hao-ai-lab--fastvideo/): FastVideo 是一个专注于视频生成模型（DiT）加速的端到端统一推理与后训练框架。它的核心价值在于将前沿的视频生成大模型（如 Wan2.1/2.2、MiniMax-H3）通过稀疏注意力（VSA）、分布匹配蒸馏（DMD2）和量化（Att
-- [thu-ml/TurboDiffusion](https://lgystoic.github.io/radar/contributions/thu-ml--turbodiffusion/): TurboDiffusion 是清华大学 thu-ml 实验室开源的视频扩散模型（VDM）端到端推理加速框架。其核心目标是通过算法与底层的协同优化，将 Wan2.1/Wan2.2 等百亿参数级视频生成模型的推理延迟降低 100-200 倍（
-- [modelscope/DiffSynth-Engine](https://lgystoic.github.io/radar/contributions/modelscope--diffsynth-engine/): DiffSynth-Engine 是由 MuseAI 与 ModelScope 联合开源的高性能扩散模型推理引擎。它的核心设计理念是「去重依赖」与「极致显存管理」，通过彻底重写 Sampler 和 Scheduler 等核心组件，移除了对 
-- [JeffreyXiang/FlexGEMM](https://lgystoic.github.io/radar/contributions/jeffreyxiang--flexgemm/): FlexGEMM 是一个专为 3D 稀疏卷积（Sparse Convolutions）设计的高性能、跨平台底层算子库。其核心架构采用了「混合编程」范式：利用自定义 CUDA/C++ 扩展（如 `hash.cu`, `subm_neighbo
-- [NVIDIA-NeMo/labs-molt](https://lgystoic.github.io/radar/contributions/nvidia-nemo--labs-molt/): Molt 是 NVIDIA-NeMo 团队开源的一个专为研究设计的 Agentic-first 强化学习（RL）框架。它的核心架构非常精简（RL 核心代码仅约 9.2K 行），基于三大组件构建：Ray 负责分布式调度与异步队列，vLLM 负
-- [RightNow-AI/autokernel](https://lgystoic.github.io/radar/contributions/rightnow-ai--autokernel/): `autokernel` 是一个受 Karpathy `autoresearch` 启发的 GPU kernel 自动化优化框架。它的核心理念是将 AI Agent 引入到底层算子优化中，通过“修改代码-运行基准测试-保留或回退”的无限循环
-- [THU-MIG/edge-dit.cpp](https://lgystoic.github.io/radar/contributions/thu-mig--edge-dit.cpp/): edge-dit.cpp 是一个专为 Diffusion Transformers (DiT) 设计的轻量级原生 C/C++ 推理引擎，基于 ggml 构建。它的核心使命是让极度消耗显存的现代 DiT 模型（如 FLUX、Wan 2.1、M
+- [sgl-project/sglang](https://lgystoic.github.io/radar/contributions/sgl-project--sglang/): SGLang 是由 LMSYS 孵化的高性能大语言模型（LLM）、视觉语言模型（VLM）及扩散模型（Diffusion/DiT）推理服务框架。它的核心设计理念是通过极致的显存管理（如原生的 RadixAttention 前缀缓存）和复杂的调
+- [sgl-project/sglang-omni](https://lgystoic.github.io/radar/contributions/sgl-project--sglang-omni/): SGLang-Omni 是一个专为全模态（Omni）和语音模型（TTS、ASR）设计的高性能多阶段推理服务框架。对于你这位资深 GPU kernel 与训练性能工程师而言，这个项目完美契合你的技术栈（DiT、算子融合、分布式性能），但你的硬
+- [vllm-project/vllm](https://lgystoic.github.io/radar/contributions/vllm-project--vllm/): vLLM 是目前开源大模型推理与服务领域的绝对标杆（De facto standard），由 UC Berkeley Sky Computing Lab 发起，现已拥有超 2000 名贡献者。它的核心价值在于通过 PagedAttentio
+- [flashinfer-ai/flashinfer](https://lgystoic.github.io/radar/contributions/flashinfer-ai--flashinfer/): FlashInfer 是一个专为 LLM 推理服务设计的高性能 GPU 算子库，提供 Attention、GEMM 和 MoE 的统一 API。对于你这样具备 CuTe/CUTLASS 和底层优化经验的资深 Kernel 工程师来说，这是一
+- [Dao-AILab/flash-attention](https://lgystoic.github.io/radar/contributions/dao-ailab--flash-attention/): FlashAttention 是目前深度学习领域事实上的标准注意力机制底层实现。它的核心价值在于通过 Tiling（分块）和 Recomputation（重计算）技术，将标准 Attention 的 O(N^2) 显存复杂度降为 O(N)，
+- [tile-ai/tilelang](https://lgystoic.github.io/radar/contributions/tile-ai--tilelang/): TileLang (tile-lang) 是一个基于 Python 的领域特定语言（DSL），构建在 Apache TVM 编译器基础设施（TIRX）之上，专为简化高性能 GPU/CPU/加速器内核（如 GEMM、FlashAttentio
+- [huggingface/diffusers](https://lgystoic.github.io/radar/contributions/huggingface--diffusers/): Hugging Face `diffusers` 是目前 PyTorch 生态中图像、视频、音频扩散模型（Diffusion Models）的事实标准库。它的核心定位是连接前沿生成式 AI 研究与工业界落地的桥梁。项目明确奉行「可用性高于性
+- [hao-ai-lab/FastVideo](https://lgystoic.github.io/radar/contributions/hao-ai-lab--fastvideo/): FastVideo 是一个面向视频生成大模型（如 Wan2.1/2.2, MiniMax-H3 等 DiT 架构）的端到端统一推理与后训练（Post-training）加速框架。它的核心价值在于打破了“训练”与“推理”的壁垒，通过算法层（D
+- [thu-ml/TurboDiffusion](https://lgystoic.github.io/radar/contributions/thu-ml--turbodiffusion/): TurboDiffusion 是清华大学机器学习组（THU-ML）开源的端到端视频扩散模型（DiT）推理加速框架。其核心目标是通过算法与系统协同设计，在单张消费级或数据中心 GPU 上实现 100-200 倍的生成加速，同时保持视频质量。项
+- [modelscope/DiffSynth-Engine](https://lgystoic.github.io/radar/contributions/modelscope--diffsynth-engine/): DiffSynth-Engine 是由 MuseAI 与 ModelScope 联合开发的高性能扩散模型（Diffusion Models）推理引擎。它的核心设计理念是摆脱传统生态（如 k-diffusion、ldm、sgm）的历史包袱，通
+- [JeffreyXiang/FlexGEMM](https://lgystoic.github.io/radar/contributions/jeffreyxiang--flexgemm/): FlexGEMM 是一个专为 3D 稀疏卷积（3D sparse convolutions）设计的高性能、基于 Triton 的 GEMM 后端。在 3D 深度学习（如体素化点云、3D 生成模型）中，数据通常具有高度不规则的稀疏性，传统的密
+- [NVIDIA-NeMo/labs-molt](https://lgystoic.github.io/radar/contributions/nvidia-nemo--labs-molt/): Molt 是 NVIDIA-NeMo 团队推出的一个以智能体为中心（Agentic-first）、原生 PyTorch 架构的强化学习研究框架。它的核心价值在于用极简的代码量（约 9.2K 行）串联起 Ray（异步调度）、vLLM（推理采样
+- [RightNow-AI/autokernel](https://lgystoic.github.io/radar/contributions/rightnow-ai--autokernel/): AutoKernel 是一个受 Karpathy `autoresearch` 启发的 GPU 算子自动优化 AI 代理框架。它的核心理念是：给定任意 PyTorch 模型，AI Agent 会自动分析瓶颈、提取算子，并在一个无限循环中（修
+- [THU-MIG/edge-dit.cpp](https://lgystoic.github.io/radar/contributions/thu-mig--edge-dit.cpp/): edge-dit.cpp 是一个专为 Diffusion Transformers (DiT) 设计的轻量级 C/C++ 原生推理引擎。它基于 ggml 构建，在运行时完全脱离 Python 和 PyTorch 依赖。该项目旨在解决现代大参
 
 ## 公开数据（JSON）
 
