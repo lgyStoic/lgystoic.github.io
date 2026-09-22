@@ -1,0 +1,1039 @@
+{
+  "date": "2026-09-22",
+  "generated_at": "2026-09-22T01:56:04+00:00",
+  "ai": true,
+  "model": "gemini-3.8-flash",
+  "sources": [
+    {
+      "id": "openai",
+      "name": "OpenAI",
+      "ok": true,
+      "count": 5,
+      "total": 1215,
+      "error": ""
+    },
+    {
+      "id": "deepmind",
+      "name": "Google DeepMind",
+      "ok": true,
+      "count": 0,
+      "total": 100,
+      "error": ""
+    },
+    {
+      "id": "google-ai",
+      "name": "Google AI Blog",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "qwen",
+      "name": "Qwen",
+      "ok": true,
+      "count": 0,
+      "total": 44,
+      "error": ""
+    },
+    {
+      "id": "hf-blog",
+      "name": "Hugging Face Blog",
+      "ok": true,
+      "count": 2,
+      "total": 863,
+      "error": ""
+    },
+    {
+      "id": "nvidia-dev",
+      "name": "NVIDIA Technical Blog",
+      "ok": true,
+      "count": 2,
+      "total": 100,
+      "error": ""
+    },
+    {
+      "id": "hf-papers",
+      "name": "HF Papers 日榜",
+      "ok": true,
+      "count": 11,
+      "total": 37,
+      "error": ""
+    },
+    {
+      "id": "pytorch",
+      "name": "PyTorch Blog",
+      "ok": true,
+      "count": 1,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "simonw",
+      "name": "Simon Willison",
+      "ok": true,
+      "count": 2,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "lilianweng",
+      "name": "Lil'Log",
+      "ok": true,
+      "count": 0,
+      "total": 53,
+      "error": ""
+    },
+    {
+      "id": "interconnects",
+      "name": "Interconnects",
+      "ok": true,
+      "count": 1,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "raschka",
+      "name": "Sebastian Raschka",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "chiphuyen",
+      "name": "Chip Huyen",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-pytorch",
+      "name": "Release · PyTorch",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-triton",
+      "name": "Release · Triton",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-cutlass",
+      "name": "Release · CUTLASS",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-flash-attention",
+      "name": "Release · FlashAttention",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-vllm",
+      "name": "Release · vLLM",
+      "ok": true,
+      "count": 1,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-sglang",
+      "name": "Release · SGLang",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-tensorrt-llm",
+      "name": "Release · TensorRT-LLM",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-diffusers",
+      "name": "Release · Diffusers",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-cuda-python",
+      "name": "Release · cuda-python",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "gnews-labs-en",
+      "name": "新闻 · Anthropic / Mistral / xAI",
+      "ok": true,
+      "count": 15,
+      "total": 95,
+      "error": ""
+    },
+    {
+      "id": "gnews-labs-cn",
+      "name": "新闻 · 国内模型公司",
+      "ok": true,
+      "count": 23,
+      "total": 100,
+      "error": ""
+    },
+    {
+      "id": "qbitai",
+      "name": "量子位",
+      "ok": true,
+      "count": 2,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "infoq-cn",
+      "name": "InfoQ 中文",
+      "ok": true,
+      "count": 5,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "thonking",
+      "name": "Horace He (thonking)",
+      "ok": true,
+      "count": 0,
+      "total": 6,
+      "error": ""
+    },
+    {
+      "id": "hn-algolia",
+      "name": "Hacker News（100+ 分）",
+      "ok": true,
+      "count": 4,
+      "total": 60,
+      "error": ""
+    },
+    {
+      "id": "karpathy-blog",
+      "name": "Andrej Karpathy 博客",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "eugeneyan",
+      "name": "Eugene Yan",
+      "ok": true,
+      "count": 0,
+      "total": 212,
+      "error": ""
+    },
+    {
+      "id": "importai",
+      "name": "Import AI（Jack Clark）",
+      "ok": true,
+      "count": 1,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "latentspace",
+      "name": "Latent Space",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "semianalysis",
+      "name": "SemiAnalysis",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "meta-ai",
+      "name": "Meta Engineering",
+      "ok": true,
+      "count": 0,
+      "total": 9,
+      "error": ""
+    },
+    {
+      "id": "mistral-news",
+      "name": "Mistral AI",
+      "ok": true,
+      "count": 0,
+      "total": 87,
+      "error": ""
+    },
+    {
+      "id": "bsky-karpathy",
+      "name": "Bluesky · Andrej Karpathy",
+      "ok": true,
+      "count": 0,
+      "total": 15,
+      "error": ""
+    },
+    {
+      "id": "bsky-giffmana",
+      "name": "Bluesky · Lucas Beyer",
+      "ok": true,
+      "count": 0,
+      "total": 22,
+      "error": ""
+    },
+    {
+      "id": "bsky-hardmaru",
+      "name": "Bluesky · hardmaru",
+      "ok": true,
+      "count": 0,
+      "total": 17,
+      "error": ""
+    },
+    {
+      "id": "bsky-swyx",
+      "name": "Bluesky · swyx",
+      "ok": true,
+      "count": 0,
+      "total": 3,
+      "error": ""
+    },
+    {
+      "id": "bsky-pytorch",
+      "name": "Bluesky · PyTorch",
+      "ok": true,
+      "count": 2,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "bsky-clem",
+      "name": "Bluesky · Clem Delangue",
+      "ok": true,
+      "count": 0,
+      "total": 11,
+      "error": ""
+    },
+    {
+      "id": "bsky-natolambert",
+      "name": "Bluesky · Nathan Lambert",
+      "ok": true,
+      "count": 0,
+      "total": 29,
+      "error": ""
+    },
+    {
+      "id": "bsky-rasbt",
+      "name": "Bluesky · Sebastian Raschka",
+      "ok": true,
+      "count": 0,
+      "total": 27,
+      "error": ""
+    },
+    {
+      "id": "bsky-jeffdean",
+      "name": "Bluesky · Jeff Dean",
+      "ok": true,
+      "count": 0,
+      "total": 18,
+      "error": ""
+    },
+    {
+      "id": "hf-trending-new",
+      "name": "HF 热榜新模型",
+      "ok": true,
+      "count": 6,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "gh-new-stars",
+      "name": "GitHub 新星仓库",
+      "ok": true,
+      "count": 0,
+      "total": 15,
+      "error": ""
+    },
+    {
+      "id": "hf-t2v",
+      "name": "HF 热榜 · 文生视频",
+      "ok": true,
+      "count": 0,
+      "total": 19,
+      "error": ""
+    },
+    {
+      "id": "hf-i2v",
+      "name": "HF 热榜 · 图生视频",
+      "ok": true,
+      "count": 0,
+      "total": 16,
+      "error": ""
+    },
+    {
+      "id": "gnews-video-en",
+      "name": "新闻 · 视频生成（英文）",
+      "ok": true,
+      "count": 2,
+      "total": 15,
+      "error": ""
+    },
+    {
+      "id": "gnews-video-cn",
+      "name": "新闻 · 视频生成（中文）",
+      "ok": true,
+      "count": 4,
+      "total": 32,
+      "error": ""
+    },
+    {
+      "id": "gnews-world-en",
+      "name": "新闻 · 世界模型（英文）",
+      "ok": true,
+      "count": 8,
+      "total": 50,
+      "error": ""
+    },
+    {
+      "id": "gnews-world-cn",
+      "name": "新闻 · 世界模型（中文）",
+      "ok": true,
+      "count": 17,
+      "total": 80,
+      "error": ""
+    },
+    {
+      "id": "gh-new-video-world",
+      "name": "GitHub 新仓库 · 视频 / 世界模型",
+      "ok": true,
+      "count": 2,
+      "total": 18,
+      "error": ""
+    },
+    {
+      "id": "arxiv-cscv",
+      "name": "arXiv cs.CV（专题）",
+      "ok": true,
+      "count": 10,
+      "total": 141,
+      "error": ""
+    },
+    {
+      "id": "arxiv-csro",
+      "name": "arXiv cs.RO（专题）",
+      "ok": true,
+      "count": 7,
+      "total": 165,
+      "error": ""
+    }
+  ],
+  "counts": {
+    "high": 10,
+    "medium": 20,
+    "low": 0
+  },
+  "items": [
+    {
+      "id": "5964216149171f7a",
+      "title": "浪潮信息发布元脑SD200 Ultra：单机承载2.8万亿参数Kimi K3 - 凤凰网科技",
+      "link": "https://tech.ifeng.com/c/8wcTEXMnSFn",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-09-21T23:48:08+00:00",
+      "category": "infra",
+      "priority": "high",
+      "summary": "浪潮信息发布SD200 Ultra，单机承载2.8万亿参数Kimi K3。",
+      "why": "超大参数模型单机推理/训练硬件架构，直关系统优化。",
+      "tags": [
+        "浪潮信息",
+        "AI服务器",
+        "推理硬件",
+        "Kimi"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "49c023466b3cd598",
+      "title": "v0.30.0",
+      "link": "https://github.com/vllm-project/vllm/releases/tag/v0.30.0",
+      "source": "Release · vLLM",
+      "source_id": "rel-vllm",
+      "published": "2026-09-21T22:32:49+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "vLLM 正式发布 v0.30.0 版本，包含构建流程及推理后端更新。",
+      "why": "主流推理核心框架版本升级，直接影响推理部署实践。",
+      "tags": [
+        "vLLM",
+        "推理引擎",
+        "版本发布"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "bc796ee1b309d432",
+      "title": "Simplifying Model Serving Across Multiple GPUs with NVIDIA TensorRT Multi-Device Integration in NVIDIA Dynamo-Triton",
+      "link": "https://developer.nvidia.com/blog/simplifying-model-serving-across-multiple-gpus-with-nvidia-tensorrt-multi-device-integration-in-nvidia-dynamo-triton",
+      "source": "NVIDIA Technical Blog",
+      "source_id": "nvidia-dev",
+      "published": "2026-09-21T21:51:14+00:00",
+      "category": "infra",
+      "priority": "high",
+      "summary": "NVIDIA 推出 Dynamo-Triton 多设备 TensorRT 集成，简化跨多 GPU 模型服务部署。",
+      "why": "多卡推理加速与 Serving 核心基建，直接切合工作重点。",
+      "tags": [
+        "TensorRT",
+        "Triton",
+        "多卡推理",
+        "GPU"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "d8c21899017eb9af",
+      "title": "亚马逊AWS旗下Bedrock官宣接入Kimi K3模型|开源模型|闭源模型|编程|大模型|Token_手机新浪网 - 新浪财经",
+      "link": "https://finance.sina.cn/stock/jdts/2026-09-21/detail-inisqkzy8965250.d.html?oid=ds%20vvip%20com(~KR1144.COM~),ds%20vvip%20com(~KR1144.COM~),ds%20vvip%20comys6&vt=4&cid=76993&node_id=76993",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-09-21T08:16:34+00:00",
+      "category": "industry",
+      "priority": "high",
+      "summary": "亚马逊AWS Bedrock官宣接入月之暗面Kimi K3模型并实行分成。",
+      "why": "国产闭源大模型首次通过商业分成模式上线全球主流云。",
+      "tags": [
+        "Kimi",
+        "AWS Bedrock",
+        "云服务"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "4d46355821a0379c",
+      "title": "Claude Opus 5.5 Leak Points to 20% Lower Prices and a Tuesday Launch - Pasquale Pillitteri",
+      "link": "https://pasqualepillitteri.it/en/news/17197/claude-opus-5-5-leak-prices-tuesday-launch",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-09-21T07:19:08+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "曝Claude Opus 5.5将于周二发布，API调用降价20%。",
+      "why": "旗舰模型重磅更新传闻，关注其推理能力与定价。",
+      "tags": [
+        "Claude",
+        "Anthropic",
+        "模型发布"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "5b18b3691d62d03c",
+      "title": "4DGS-Fixer: Generative Sparse-View 4D Gaussian Splatting with Iterative Refinement Guided by Video Diffusion Priors",
+      "link": "https://arxiv.org/abs/2609.21176",
+      "source": "arXiv cs.CV（专题）",
+      "source_id": "arxiv-cscv",
+      "published": "2026-09-21T04:00:00+00:00",
+      "category": "research",
+      "priority": "high",
+      "summary": "论文提出 4DGS-Fixer，结合视频扩散先验与迭代细化，解决稀疏视角 4DGS 几何初始化不足问题。",
+      "why": "结合 4DGS 与扩散先验的动态重建，直接契合 3D/视频生成方向。",
+      "tags": [
+        "4DGS",
+        "视频扩散模型",
+        "3D生成",
+        "动态场景重建"
+      ],
+      "tracks": [
+        "video",
+        "world"
+      ]
+    },
+    {
+      "id": "b9856e48301306cb",
+      "title": "JEPA Guided Diffusion: Predictive Vision-Language Conditioning for Generative Traffic Forecasting",
+      "link": "https://arxiv.org/abs/2609.21379",
+      "source": "arXiv cs.CV（专题）",
+      "source_id": "arxiv-cscv",
+      "published": "2026-09-21T04:00:00+00:00",
+      "category": "research",
+      "priority": "high",
+      "summary": "论文提出 JEPA 引导的扩散框架，解耦潜在动力学表征学习与视频扩散生成，大幅降低交通预测训练开销。",
+      "why": "解耦 JEPA 与扩散视频生成的端到端优化思路，对生成模型系统设计极具参考价值。",
+      "tags": [
+        "V-JEPA",
+        "视频扩散模型",
+        "训练性能",
+        "交通预测"
+      ],
+      "tracks": [
+        "video",
+        "world"
+      ]
+    },
+    {
+      "id": "46d3cf62e3463118",
+      "title": "CompAdapt: Adaptable Composite Motion Modeling for Physics-Consistent Text-to-Video Generation",
+      "link": "https://arxiv.org/abs/2609.21455",
+      "source": "arXiv cs.CV（专题）",
+      "source_id": "arxiv-cscv",
+      "published": "2026-09-21T04:00:00+00:00",
+      "category": "research",
+      "priority": "high",
+      "summary": "论文提出 CompAdapt 框架，通过神经动力学复合运动建模提升 T2V 扩散模型的物理规律一致性与泛化性。",
+      "why": "针对视频扩散模型物理一致性缺陷的架构改进，属视频生成前沿。",
+      "tags": [
+        "文生视频",
+        "扩散模型",
+        "物理动力学",
+        "T2V"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "7c485cb0fa0214c1",
+      "title": "MT-WAM: Reorienting the One-Pass Predictive Representation Toward Action Generation",
+      "link": "https://arxiv.org/abs/2609.21474",
+      "source": "arXiv cs.CV（专题）",
+      "source_id": "arxiv-cscv",
+      "published": "2026-09-21T04:00:00+00:00",
+      "category": "research",
+      "priority": "high",
+      "summary": "论文提出 MT-WAM，利用单次视频 DiT 前向抽取表征，并加入 2D 点轨迹与双流结构直接指导动作生成。",
+      "why": "DiT 单次前向表征与动作结合，涉及 DiT 架构重构与高效推理。",
+      "tags": [
+        "DiT",
+        "动作生成",
+        "视频生成",
+        "前向表征"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "db526c19cf1fd16b",
+      "title": "ZYT-World: A Real-Time Controllable World Model for Closed-Loop Autonomous-Driving Simulation",
+      "link": "https://arxiv.org/abs/2609.21712",
+      "source": "arXiv cs.CV（专题）",
+      "source_id": "arxiv-cscv",
+      "published": "2026-09-21T04:00:00+00:00",
+      "category": "research",
+      "priority": "high",
+      "summary": "论文发布 ZYT-World 实时闭环自动驾驶世界模型，统一生成 4 路鱼眼与 3 路针孔视角，兼顾低延迟与稳定性。",
+      "why": "多相机高分辨率实时视频生成系统，低延迟闭环设计对推理与 Kernel 优化启发很大。",
+      "tags": [
+        "世界模型",
+        "实时推理",
+        "多视角生成",
+        "自动驾驶仿真"
+      ],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "75a11dc1a0903a32",
+      "title": "Jev introduces a new shape of LLM - System One, aka Decision Models",
+      "link": "https://simonwillison.net/2026/Sep/21/jev",
+      "source": "Simon Willison",
+      "source_id": "simonw",
+      "published": "2026-09-21T23:09:20+00:00",
+      "category": "people",
+      "priority": "medium",
+      "summary": "Simon Willison 讨论 TypeSafe AI 推出的 Jev，一种直接输出类型化概率决策的轻量模型。",
+      "why": "探讨非自回归流式生成替代结构，对推理低延迟形态有启发。",
+      "tags": [
+        "决策模型",
+        "推理延迟",
+        "模型架构"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "51ee63047fa12aab",
+      "title": "TinyTorch is a free, open source curriculum where you build a working machine learning framework from scratch, tensors t",
+      "link": "https://bsky.app/profile/pytorch.org/post/3mw2m6tzmlr23",
+      "source": "Bluesky · PyTorch",
+      "source_id": "bsky-pytorch",
+      "published": "2026-09-21T21:00:00+00:00",
+      "category": "infra",
+      "priority": "medium",
+      "summary": "PyTorch官方推荐开源课程TinyTorch，教学用纯Python从零实现包含张量到Transformer的框架。",
+      "why": "从底层张量到算子调度手写框架，可作为算子实现的教学参考。",
+      "tags": [
+        "PyTorch",
+        "机器学习框架",
+        "算子实现"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "824cb23ba896d8d2",
+      "title": "TinyTorch: Don’t Just Import PyTorch. Build It.",
+      "link": "https://pytorch.org/blog/tinytorch-dont-just-import-pytorch-build-it",
+      "source": "PyTorch Blog",
+      "source_id": "pytorch",
+      "published": "2026-09-21T20:41:14+00:00",
+      "category": "infra",
+      "priority": "medium",
+      "summary": "PyTorch 官方博客推荐 TinyTorch，一个从张量底层动手自制 mini 框架的开源教学项目。",
+      "why": "偏教育性质项目，但涉及纯底层张量与算子构建，适合扫一眼。",
+      "tags": [
+        "PyTorch",
+        "底层架构",
+        "张量引擎"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "565a2255c0eb2d84",
+      "title": "阶跃Step 5 Preview 升至全球开源前二|Kimi K3|阶跃星辰|模型评测|大模型|开源模型_手机新浪网 - 新浪财经",
+      "link": "https://finance.sina.cn/stock/jdts/2026-09-21/detail-inisqetx0768074.d.html?oid=%E6%AC%A7%E7%B1%B3%E8%8C%84%E5%93%AA%E9%87%8C%E6%8B%BF%E8%B4%A7%E6%9C%80%E4%BE%BF%E5%AE%9C%E5%8F%88%E5%A5%BD%EF%BD%9B%E5%BE%AE%E4%BF%A189486682%EF%BD%9D7XFK&vt=4&cid=76993&node_id=76993",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-09-21T18:50:14+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "阶跃星辰Step 5 Preview在模型评测中升至全球开源第二名。",
+      "why": "国内顶级开源大模型榜单进展，建议关注架构表现。",
+      "tags": [
+        "阶跃星辰",
+        "开源模型",
+        "基准评测"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "064d049414224eb8",
+      "title": "Yann LeCun Joins Cellular Intelligence Board: World Models Move From AI Theory to Parkinson's Research - The Eastern Herald",
+      "link": "https://easternherald.com/2026/09/21/yann-lecun-cellular-intelligence-board-world-models-parkinson/",
+      "source": "新闻 · 世界模型（英文）",
+      "source_id": "gnews-world-en",
+      "published": "2026-09-21T17:39:25+00:00",
+      "category": "people",
+      "priority": "medium",
+      "summary": "Yann LeCun 加入 Cellular Intelligence 董事会，推动世界模型从 AI 理论扩展至帕金森病等生物医学研究。",
+      "why": "图灵奖得主最新行业任职，体现世界模型跨界应用方向。",
+      "tags": [
+        "Yann LeCun",
+        "世界模型",
+        "生物医学",
+        "人物动态"
+      ],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "cf27d4e11dd2b036",
+      "title": "Pruning LLMs Like a Physicist: Block Removal as an Ising Optimization Problem",
+      "link": "https://huggingface.co/blog/MultiverseComputingCAI/pruning-llms-like-a-physicist-block-removal-as-an",
+      "source": "Hugging Face Blog",
+      "source_id": "hf-blog",
+      "published": "2026-09-21T13:44:34+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "HF 博客发文探讨将 LLM 模块剪枝建模为 Ising 物理优化问题。",
+      "why": "模型压缩与轻量化思路，对推理加速有参考价值。",
+      "tags": [
+        "LLM剪枝",
+        "模型压缩",
+        "Ising模型"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "09399890cfb0e77e",
+      "title": "智谱被指未经用户允许上传数据 随后致歉并开源ZCode - 财新",
+      "link": "https://m.caixin.com/m/2026-09-21/102487246.html",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-09-21T10:36:00+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "智谱就未经允许上传数据致歉，并宣布开源编程助手ZCode。",
+      "why": "官方开源代码助手ZCode，可关注其客户端实现。",
+      "tags": [
+        "智谱AI",
+        "ZCode",
+        "代码助手",
+        "开源"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "45bd75cf74edc4c0",
+      "title": "Altum：蚂蚁集团新一代大模型训练数据处理系统设计与实践｜QCon上海",
+      "link": "https://www.infoq.cn/article/AGIRRRtM1lBDFIvwWuRX",
+      "source": "InfoQ 中文",
+      "source_id": "infoq-cn",
+      "published": "2026-09-21T10:00:00+00:00",
+      "category": "infra",
+      "priority": "medium",
+      "summary": "蚂蚁集团在QCon分享新一代大模型训练数据处理系统Altum的架构与设计实践。",
+      "why": "涉及大规模预训练数据流水线与分布式处理架构，具参考价值。",
+      "tags": [
+        "训练系统",
+        "数据流水线",
+        "基础设施"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "4ac84eca573da92f",
+      "title": "World Labs and AMI Labs Have $2.3 Billion to Rethink AI: Neither Will Say How It Makes Money - The Eastern Herald",
+      "link": "https://easternherald.com/2026/09/21/world-labs-ami-labs-world-model-ai-secrecy/",
+      "source": "新闻 · 世界模型（英文）",
+      "source_id": "gnews-world-en",
+      "published": "2026-09-21T08:33:37+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "World Labs 与 AMI Labs 共获 23 亿美元融资研发世界模型，但两家均未公布商业盈利路径。",
+      "why": "关注头部世界模型创企资金与商业化动向，可泛读了解。",
+      "tags": [
+        "世界模型",
+        "融资",
+        "World Labs",
+        "行业动态"
+      ],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "3795b556833093ca",
+      "title": "视频生成模型到底会不会“思考”？我们测了27个任务给出答案 - 科技行者",
+      "link": "https://www.techwalker.com/2026/0921/3200025.shtml",
+      "source": "新闻 · 视频生成（中文）",
+      "source_id": "gnews-video-cn",
+      "published": "2026-09-21T08:19:00+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "科技行者设计27个任务评测主流视频生成模型在物理规律认知与因果推理上的能力。",
+      "why": "系统剖析视频生成模型的真实物理与推理极限，契合研究方向。",
+      "tags": [
+        "视频生成",
+        "世界模型",
+        "模型评测"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "a96f87f5fff4768f",
+      "title": "月之暗面发布Kimi Code Desktop桌面客户端 - 搜狐网",
+      "link": "https://www.sohu.com/a/1079027789_115060?scm=10001.325_13-325_13.0.0-0-0-0-0.5_1334",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-09-21T07:59:16+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "月之暗面正式推出桌面端编程软件Kimi Code Desktop。",
+      "why": "了解国内头部大模型团队在AI Coding工程客户端的布局。",
+      "tags": [
+        "Kimi",
+        "代码助手",
+        "产品发布"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "2c6e432f28bb4893",
+      "title": "开环闭环双榜夺魁 千里智驾 WA-JEPA 重塑自动驾驶世界模型范式 - 搜狐网",
+      "link": "https://m.sohu.com/a/1079016169_322372?scm=10001.325_13-325_13.0.0-0-0-0-0.5_1334",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-09-21T07:55:13+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "千里智驾发布 WA-JEPA 自动驾驶世界模型范式，在开环与闭环双榜单夺得第一。",
+      "why": "JEPA 架构在自动驾驶落地的评测表现，值得快速了解。",
+      "tags": [
+        "世界模型",
+        "JEPA",
+        "自动驾驶",
+        "榜单"
+      ],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "0fc7abcfc09cf237",
+      "title": "Skylark Labs brings on Giuseppe Loianno, a top robotics researcher, to build Almanac — a world model designed to Continuously Self-Learn - Mashable Benelux",
+      "link": "https://nl.mashable.com/autonomous-vehicles/13418/skylark-labs-brings-on-giuseppe-loianno-a-top-robotics-researcher-to-build-almanac-a-world-model-des",
+      "source": "新闻 · 世界模型（英文）",
+      "source_id": "gnews-world-en",
+      "published": "2026-09-21T07:00:49+00:00",
+      "category": "people",
+      "priority": "medium",
+      "summary": "Skylark Labs引入机器人学者Giuseppe Loianno，开发具备自学习能力的世界模型Almanac。",
+      "why": "涉及世界模型与具身智能架构演进，值得关注其技术路径。",
+      "tags": [
+        "世界模型",
+        "具身智能",
+        "人事动态"
+      ],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "ea63774c79de8b32",
+      "title": "39个Day 0背后，沐曦股份如何把国产GPU生态做成一张网？ - Jiemian.com",
+      "link": "https://www.jiemian.com/article/15120797.html",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-09-21T05:58:37+00:00",
+      "category": "infra",
+      "priority": "medium",
+      "summary": "界面新闻报道国产GPU厂商沐曦股份在生态适配及Day 0支持方面的布局进展。",
+      "why": "涉及国产GPU软硬件生态进展，适合作为算力背景了解。",
+      "tags": [
+        "国产GPU",
+        "沐曦",
+        "AI算力"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "798cdb02de83cd51",
+      "title": "WorldRoamBench: An Open-World Benchmark for Long-Horizon Stability of Interactive World Models",
+      "link": "https://arxiv.org/abs/2606.31672",
+      "source": "arXiv cs.CV（专题）",
+      "source_id": "arxiv-cscv",
+      "published": "2026-09-21T04:00:00+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "提出WorldRoamBench基准，从动作、视觉漂移、物理和记忆四个维度评测交互式世界模型的长程稳定性。",
+      "why": "针对交互式世界模型长程生成与物理一致性的系统性基准，值得生成模型方向关注。",
+      "tags": [
+        "World Models",
+        "Benchmark",
+        "Video Generation"
+      ],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "c38a7a67e7f56df3",
+      "title": "The Missing Temporal Link: Temporal Context Routing for Script-Driven Audio-Video Generation",
+      "link": "https://arxiv.org/abs/2609.02367",
+      "source": "arXiv cs.CV（专题）",
+      "source_id": "arxiv-cscv",
+      "published": "2026-09-21T04:00:00+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "提出时序上下文路由机制，解决剧本驱动音视频联合生成中镜头切换与台词对齐不准的问题。",
+      "why": "音视频联合多模态生成中的时序对齐问题，对视频生成控制细节有参考价值。",
+      "tags": [
+        "Audio-Video Generation",
+        "Temporal Alignment",
+        "Multimodal"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "90fac43be35688a0",
+      "title": "Adaptive Rollout Truncation Based on Epistemic Uncertainty for Efficient Offline World Model Training",
+      "link": "https://arxiv.org/abs/2609.21482",
+      "source": "arXiv cs.RO（专题）",
+      "source_id": "arxiv-csro",
+      "published": "2026-09-21T04:00:00+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "提出基于认知不确定性的自适应展开截断策略，优化离线世界模型的训练步长与计算开销。",
+      "why": "涉及多步自回归展开的训练开销优化，对长序列时序模型训练效率有参考价值。",
+      "tags": [
+        "Training Efficiency",
+        "World Models",
+        "Autoregressive"
+      ],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "28def1b06debb6d0",
+      "title": "Sandwich-Residuals: Parameter-Efficient Test-time Adaptation of World Models",
+      "link": "https://arxiv.org/abs/2609.21740",
+      "source": "arXiv cs.RO（专题）",
+      "source_id": "arxiv-csro",
+      "published": "2026-09-21T04:00:00+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "提出Sandwich-Residuals，冻结预训练世界模型并在预测器前后学习轻量残差实现在线测试时适应。",
+      "why": "高效微调与测试时自适应结构设计，思路可借鉴到大模型参数高效推理。",
+      "tags": [
+        "Test-time Adaptation",
+        "PEFT",
+        "World Models"
+      ],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "efc88fdd8cb0c6eb",
+      "title": "是美国的4.7倍！中国AI大模型周调用量连续二十一周领跑：DeepSeek V4.1-Flash登顶，环比增长219% - 东方财富",
+      "link": "https://finance.eastmoney.com/a/202609213879819210.html",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-09-21T03:13:20+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "国内AI周调用量持续领先，DeepSeek V4.1-Flash登顶且增219%。",
+      "why": "高吞吐轻量推理模型调用激增，体现推理部署需求趋势。",
+      "tags": [
+        "DeepSeek",
+        "推理吞吐",
+        "调用量"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "32d0ac66748af31f",
+      "title": "数据到 4D 世界：世界模型如何重塑自动驾驶的训练场？ - 汽车之家",
+      "link": "https://chejiahao.autohome.com.cn/info/26109798",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-09-21T02:10:47+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "汽车之家深度分析世界模型构建 4D 动态场景如何重塑自动驾驶闭环训练体系。",
+      "why": "涉及 4D 生成与模拟器构建思路，可作为背景扫读。",
+      "tags": [
+        "世界模型",
+        "4D场景",
+        "自动驾驶",
+        "仿真训练"
+      ],
+      "tracks": [
+        "world"
+      ]
+    }
+  ]
+}

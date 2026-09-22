@@ -2,8 +2,114 @@
  "id": "video",
  "name": "视频生成模型",
  "blurb": "文生视频、图生视频、视频 VAE 与 DiT 加速：Wan、Sora、Veo、可灵、海螺、Seedance、Vidu、LTX、HunyuanVideo 等的发布、论文、benchmark 与推理框架支持。",
- "updated": "2026-09-21T01:51:03+00:00",
+ "updated": "2026-09-22T02:05:49+00:00",
  "entries": [
+  {
+   "id": "5b18b3691d62d03c",
+   "date": "2026-09-22",
+   "title": "4DGS-Fixer: Generative Sparse-View 4D Gaussian Splatting with Iterative Refinement Guided by Video Diffusion Priors",
+   "link": "https://arxiv.org/abs/2609.21176",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "high",
+   "summary": "论文提出 4DGS-Fixer，结合视频扩散先验与迭代细化，解决稀疏视角 4DGS 几何初始化不足问题。",
+   "why": "结合 4DGS 与扩散先验的动态重建，直接契合 3D/视频生成方向。",
+   "tags": [
+    "4DGS",
+    "视频扩散模型",
+    "3D生成",
+    "动态场景重建"
+   ],
+   "entity": "4DGS-Fixer",
+   "kind": "paper"
+  },
+  {
+   "id": "b9856e48301306cb",
+   "date": "2026-09-22",
+   "title": "JEPA Guided Diffusion: Predictive Vision-Language Conditioning for Generative Traffic Forecasting",
+   "link": "https://arxiv.org/abs/2609.21379",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "high",
+   "summary": "论文提出 JEPA 引导的扩散框架，解耦潜在动力学表征学习与视频扩散生成，大幅降低交通预测训练开销。",
+   "why": "解耦 JEPA 与扩散视频生成的端到端优化思路，对生成模型系统设计极具参考价值。",
+   "tags": [
+    "V-JEPA",
+    "视频扩散模型",
+    "训练性能",
+    "交通预测"
+   ],
+   "entity": "JEPA Guided Diffusion",
+   "kind": "paper"
+  },
+  {
+   "id": "46d3cf62e3463118",
+   "date": "2026-09-22",
+   "title": "CompAdapt: Adaptable Composite Motion Modeling for Physics-Consistent Text-to-Video Generation",
+   "link": "https://arxiv.org/abs/2609.21455",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "high",
+   "summary": "论文提出 CompAdapt 框架，通过神经动力学复合运动建模提升 T2V 扩散模型的物理规律一致性与泛化性。",
+   "why": "针对视频扩散模型物理一致性缺陷的架构改进，属视频生成前沿。",
+   "tags": [
+    "文生视频",
+    "扩散模型",
+    "物理动力学",
+    "T2V"
+   ],
+   "entity": "CompAdapt",
+   "kind": "paper"
+  },
+  {
+   "id": "7c485cb0fa0214c1",
+   "date": "2026-09-22",
+   "title": "MT-WAM: Reorienting the One-Pass Predictive Representation Toward Action Generation",
+   "link": "https://arxiv.org/abs/2609.21474",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "high",
+   "summary": "论文提出 MT-WAM，利用单次视频 DiT 前向抽取表征，并加入 2D 点轨迹与双流结构直接指导动作生成。",
+   "why": "DiT 单次前向表征与动作结合，涉及 DiT 架构重构与高效推理。",
+   "tags": [
+    "DiT",
+    "动作生成",
+    "视频生成",
+    "前向表征"
+   ],
+   "entity": "MT-WAM",
+   "kind": "paper"
+  },
+  {
+   "id": "3795b556833093ca",
+   "date": "2026-09-22",
+   "title": "视频生成模型到底会不会“思考”？我们测了27个任务给出答案 - 科技行者",
+   "link": "https://www.techwalker.com/2026/0921/3200025.shtml",
+   "source": "新闻 · 视频生成（中文）",
+   "priority": "medium",
+   "summary": "科技行者设计27个任务评测主流视频生成模型在物理规律认知与因果推理上的能力。",
+   "why": "系统剖析视频生成模型的真实物理与推理极限，契合研究方向。",
+   "tags": [
+    "视频生成",
+    "世界模型",
+    "模型评测"
+   ],
+   "entity": "科技行者",
+   "kind": "benchmark"
+  },
+  {
+   "id": "c38a7a67e7f56df3",
+   "date": "2026-09-22",
+   "title": "The Missing Temporal Link: Temporal Context Routing for Script-Driven Audio-Video Generation",
+   "link": "https://arxiv.org/abs/2609.02367",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "medium",
+   "summary": "提出时序上下文路由机制，解决剧本驱动音视频联合生成中镜头切换与台词对齐不准的问题。",
+   "why": "音视频联合多模态生成中的时序对齐问题，对视频生成控制细节有参考价值。",
+   "tags": [
+    "Audio-Video Generation",
+    "Temporal Alignment",
+    "Multimodal"
+   ],
+   "entity": "Temporal Context Routing",
+   "kind": "paper"
+  },
   {
    "id": "40de3cb577530044",
    "date": "2026-09-21",
@@ -837,6 +943,24 @@
   "字节跳动": [
    "3a06f956823425ca",
    "782c2b2a23d1da73"
+  ],
+  "4DGS-Fixer": [
+   "5b18b3691d62d03c"
+  ],
+  "JEPA Guided Diffusion": [
+   "b9856e48301306cb"
+  ],
+  "CompAdapt": [
+   "46d3cf62e3463118"
+  ],
+  "MT-WAM": [
+   "7c485cb0fa0214c1"
+  ],
+  "科技行者": [
+   "3795b556833093ca"
+  ],
+  "Temporal Context Routing": [
+   "c38a7a67e7f56df3"
   ],
   "智源社区": [
    "ecb193f356138420"

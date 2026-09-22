@@ -2,8 +2,202 @@
  "id": "world",
  "name": "世界模型",
  "blurb": "可交互的生成式世界模拟：Genie、Cosmos、V-JEPA、Dreamer、GameNGen、Oasis、Matrix-Game、HunyuanWorld 等，以及动作条件视频生成、4D 生成与具身仿真。",
- "updated": "2026-09-21T01:51:03+00:00",
+ "updated": "2026-09-22T02:05:49+00:00",
  "entries": [
+  {
+   "id": "5b18b3691d62d03c",
+   "date": "2026-09-22",
+   "title": "4DGS-Fixer: Generative Sparse-View 4D Gaussian Splatting with Iterative Refinement Guided by Video Diffusion Priors",
+   "link": "https://arxiv.org/abs/2609.21176",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "high",
+   "summary": "论文提出 4DGS-Fixer，结合视频扩散先验与迭代细化，解决稀疏视角 4DGS 几何初始化不足问题。",
+   "why": "结合 4DGS 与扩散先验的动态重建，直接契合 3D/视频生成方向。",
+   "tags": [
+    "4DGS",
+    "视频扩散模型",
+    "3D生成",
+    "动态场景重建"
+   ],
+   "entity": "4DGS-Fixer",
+   "kind": "paper"
+  },
+  {
+   "id": "b9856e48301306cb",
+   "date": "2026-09-22",
+   "title": "JEPA Guided Diffusion: Predictive Vision-Language Conditioning for Generative Traffic Forecasting",
+   "link": "https://arxiv.org/abs/2609.21379",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "high",
+   "summary": "论文提出 JEPA 引导的扩散框架，解耦潜在动力学表征学习与视频扩散生成，大幅降低交通预测训练开销。",
+   "why": "解耦 JEPA 与扩散视频生成的端到端优化思路，对生成模型系统设计极具参考价值。",
+   "tags": [
+    "V-JEPA",
+    "视频扩散模型",
+    "训练性能",
+    "交通预测"
+   ],
+   "entity": "JEPA Guided Diffusion",
+   "kind": "paper"
+  },
+  {
+   "id": "db526c19cf1fd16b",
+   "date": "2026-09-22",
+   "title": "ZYT-World: A Real-Time Controllable World Model for Closed-Loop Autonomous-Driving Simulation",
+   "link": "https://arxiv.org/abs/2609.21712",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "high",
+   "summary": "论文发布 ZYT-World 实时闭环自动驾驶世界模型，统一生成 4 路鱼眼与 3 路针孔视角，兼顾低延迟与稳定性。",
+   "why": "多相机高分辨率实时视频生成系统，低延迟闭环设计对推理与 Kernel 优化启发很大。",
+   "tags": [
+    "世界模型",
+    "实时推理",
+    "多视角生成",
+    "自动驾驶仿真"
+   ],
+   "entity": "ZYT-World",
+   "kind": "paper"
+  },
+  {
+   "id": "064d049414224eb8",
+   "date": "2026-09-22",
+   "title": "Yann LeCun Joins Cellular Intelligence Board: World Models Move From AI Theory to Parkinson's Research - The Eastern Herald",
+   "link": "https://easternherald.com/2026/09/21/yann-lecun-cellular-intelligence-board-world-models-parkinson/",
+   "source": "新闻 · 世界模型（英文）",
+   "priority": "medium",
+   "summary": "Yann LeCun 加入 Cellular Intelligence 董事会，推动世界模型从 AI 理论扩展至帕金森病等生物医学研究。",
+   "why": "图灵奖得主最新行业任职，体现世界模型跨界应用方向。",
+   "tags": [
+    "Yann LeCun",
+    "世界模型",
+    "生物医学",
+    "人物动态"
+   ],
+   "entity": "Cellular Intelligence",
+   "kind": "news"
+  },
+  {
+   "id": "4ac84eca573da92f",
+   "date": "2026-09-22",
+   "title": "World Labs and AMI Labs Have $2.3 Billion to Rethink AI: Neither Will Say How It Makes Money - The Eastern Herald",
+   "link": "https://easternherald.com/2026/09/21/world-labs-ami-labs-world-model-ai-secrecy/",
+   "source": "新闻 · 世界模型（英文）",
+   "priority": "medium",
+   "summary": "World Labs 与 AMI Labs 共获 23 亿美元融资研发世界模型，但两家均未公布商业盈利路径。",
+   "why": "关注头部世界模型创企资金与商业化动向，可泛读了解。",
+   "tags": [
+    "世界模型",
+    "融资",
+    "World Labs",
+    "行业动态"
+   ],
+   "entity": "World Labs",
+   "kind": "news"
+  },
+  {
+   "id": "2c6e432f28bb4893",
+   "date": "2026-09-22",
+   "title": "开环闭环双榜夺魁 千里智驾 WA-JEPA 重塑自动驾驶世界模型范式 - 搜狐网",
+   "link": "https://m.sohu.com/a/1079016169_322372?scm=10001.325_13-325_13.0.0-0-0-0-0.5_1334",
+   "source": "新闻 · 世界模型（中文）",
+   "priority": "medium",
+   "summary": "千里智驾发布 WA-JEPA 自动驾驶世界模型范式，在开环与闭环双榜单夺得第一。",
+   "why": "JEPA 架构在自动驾驶落地的评测表现，值得快速了解。",
+   "tags": [
+    "世界模型",
+    "JEPA",
+    "自动驾驶",
+    "榜单"
+   ],
+   "entity": "WA-JEPA",
+   "kind": "news"
+  },
+  {
+   "id": "0fc7abcfc09cf237",
+   "date": "2026-09-22",
+   "title": "Skylark Labs brings on Giuseppe Loianno, a top robotics researcher, to build Almanac — a world model designed to Continuously Self-Learn - Mashable Benelux",
+   "link": "https://nl.mashable.com/autonomous-vehicles/13418/skylark-labs-brings-on-giuseppe-loianno-a-top-robotics-researcher-to-build-almanac-a-world-model-des",
+   "source": "新闻 · 世界模型（英文）",
+   "priority": "medium",
+   "summary": "Skylark Labs引入机器人学者Giuseppe Loianno，开发具备自学习能力的世界模型Almanac。",
+   "why": "涉及世界模型与具身智能架构演进，值得关注其技术路径。",
+   "tags": [
+    "世界模型",
+    "具身智能",
+    "人事动态"
+   ],
+   "entity": "Almanac",
+   "kind": "news"
+  },
+  {
+   "id": "798cdb02de83cd51",
+   "date": "2026-09-22",
+   "title": "WorldRoamBench: An Open-World Benchmark for Long-Horizon Stability of Interactive World Models",
+   "link": "https://arxiv.org/abs/2606.31672",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "medium",
+   "summary": "提出WorldRoamBench基准，从动作、视觉漂移、物理和记忆四个维度评测交互式世界模型的长程稳定性。",
+   "why": "针对交互式世界模型长程生成与物理一致性的系统性基准，值得生成模型方向关注。",
+   "tags": [
+    "World Models",
+    "Benchmark",
+    "Video Generation"
+   ],
+   "entity": "WorldRoamBench",
+   "kind": "benchmark"
+  },
+  {
+   "id": "90fac43be35688a0",
+   "date": "2026-09-22",
+   "title": "Adaptive Rollout Truncation Based on Epistemic Uncertainty for Efficient Offline World Model Training",
+   "link": "https://arxiv.org/abs/2609.21482",
+   "source": "arXiv cs.RO（专题）",
+   "priority": "medium",
+   "summary": "提出基于认知不确定性的自适应展开截断策略，优化离线世界模型的训练步长与计算开销。",
+   "why": "涉及多步自回归展开的训练开销优化，对长序列时序模型训练效率有参考价值。",
+   "tags": [
+    "Training Efficiency",
+    "World Models",
+    "Autoregressive"
+   ],
+   "entity": "",
+   "kind": "paper"
+  },
+  {
+   "id": "28def1b06debb6d0",
+   "date": "2026-09-22",
+   "title": "Sandwich-Residuals: Parameter-Efficient Test-time Adaptation of World Models",
+   "link": "https://arxiv.org/abs/2609.21740",
+   "source": "arXiv cs.RO（专题）",
+   "priority": "medium",
+   "summary": "提出Sandwich-Residuals，冻结预训练世界模型并在预测器前后学习轻量残差实现在线测试时适应。",
+   "why": "高效微调与测试时自适应结构设计，思路可借鉴到大模型参数高效推理。",
+   "tags": [
+    "Test-time Adaptation",
+    "PEFT",
+    "World Models"
+   ],
+   "entity": "Sandwich-Residuals",
+   "kind": "paper"
+  },
+  {
+   "id": "32d0ac66748af31f",
+   "date": "2026-09-22",
+   "title": "数据到 4D 世界：世界模型如何重塑自动驾驶的训练场？ - 汽车之家",
+   "link": "https://chejiahao.autohome.com.cn/info/26109798",
+   "source": "新闻 · 世界模型（中文）",
+   "priority": "medium",
+   "summary": "汽车之家深度分析世界模型构建 4D 动态场景如何重塑自动驾驶闭环训练体系。",
+   "why": "涉及 4D 生成与模拟器构建思路，可作为背景扫读。",
+   "tags": [
+    "世界模型",
+    "4D场景",
+    "自动驾驶",
+    "仿真训练"
+   ],
+   "entity": "汽车之家",
+   "kind": "opinion"
+  },
   {
    "id": "2f17fc177a3a2f13",
    "date": "2026-09-21",
@@ -1023,6 +1217,10 @@
    "bc3a19dbc2c54e80",
    "e85b0a26fa78cf4b"
   ],
+  "WorldRoamBench": [
+   "798cdb02de83cd51",
+   "27e878c24349d7c0"
+  ],
   "LEAP5.0": [
    "10cd27d58c2f15cc",
    "3a7be6aff720ee6e"
@@ -1046,6 +1244,33 @@
   "魔芯科技": [
    "fe9d33edf0701555",
    "92ea4301b3012f12"
+  ],
+  "4DGS-Fixer": [
+   "5b18b3691d62d03c"
+  ],
+  "JEPA Guided Diffusion": [
+   "b9856e48301306cb"
+  ],
+  "ZYT-World": [
+   "db526c19cf1fd16b"
+  ],
+  "Cellular Intelligence": [
+   "064d049414224eb8"
+  ],
+  "World Labs": [
+   "4ac84eca573da92f"
+  ],
+  "WA-JEPA": [
+   "2c6e432f28bb4893"
+  ],
+  "Almanac": [
+   "0fc7abcfc09cf237"
+  ],
+  "Sandwich-Residuals": [
+   "28def1b06debb6d0"
+  ],
+  "汽车之家": [
+   "32d0ac66748af31f"
   ],
   "Aether AI": [
    "2f17fc177a3a2f13"
@@ -1076,9 +1301,6 @@
   ],
   "新浪财经": [
    "9d8c6444896b1b84"
-  ],
-  "WorldRoamBench": [
-   "27e878c24349d7c0"
   ],
   "ABot-Earth 0.7": [
    "4af44092e3c8b088"
