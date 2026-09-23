@@ -2,8 +2,61 @@
  "id": "video",
  "name": "视频生成模型",
  "blurb": "文生视频、图生视频、视频 VAE 与 DiT 加速：Wan、Sora、Veo、可灵、海螺、Seedance、Vidu、LTX、HunyuanVideo 等的发布、论文、benchmark 与推理框架支持。",
- "updated": "2026-09-22T02:05:49+00:00",
+ "updated": "2026-09-23T02:01:21+00:00",
  "entries": [
+  {
+   "id": "4de16cb3cffdd50b",
+   "date": "2026-09-23",
+   "title": "The Biological Computing Partners With AWS To Launch AI Video Model With 5x Faster Generation And 80% Lower Costs - Pulse 2.0",
+   "link": "https://pulse2.com/the-biological-computing-partners-with-aws-to-launch-ai-video-model-with-5x-faster-generation-and-80-lower-costs/",
+   "source": "新闻 · 视频生成（英文）",
+   "priority": "high",
+   "summary": "Biological Computing 联手 AWS 推出提速5倍的视频生成模型。",
+   "why": "宣称推理提速5倍且降本80%，涉及重大推理性能优化。",
+   "tags": [
+    "视频生成",
+    "推理加速",
+    "AWS",
+    "性能优化"
+   ],
+   "entity": "Biological Computing",
+   "kind": "news"
+  },
+  {
+   "id": "2114e51ab5759a6d",
+   "date": "2026-09-23",
+   "title": "Seedance 2.5 上线 Draft 模式：先用 480P 验证创意，满意再用 1080P 生成终版 - 新浪财经_金融信息服务商",
+   "link": "https://finance.sina.com.cn/tech/digi/2026-09-22/doc-inistewx8830403.shtml",
+   "source": "新闻 · 视频生成（中文）",
+   "priority": "high",
+   "summary": "Seedance 2.5 推出 480P 验证、1080P 出图的 Draft 模式。",
+   "why": "典型两阶段级联生成优化产品方案，大幅节约推理成本。",
+   "tags": [
+    "视频生成",
+    "推理优化",
+    "产品架构",
+    "Seedance"
+   ],
+   "entity": "Seedance 2.5",
+   "kind": "release"
+  },
+  {
+   "id": "3acd027f8dd36a77",
+   "date": "2026-09-23",
+   "title": "Accurate Motion Estimation with B\\'ezier Control Point for Efficient Frame Interpolation",
+   "link": "https://arxiv.org/abs/2609.23408",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "medium",
+   "summary": "ABC-Inter结合贝塞尔控制点与解耦光流估计实现高效高保真插帧。",
+   "why": "视频插帧与光流估计模块优化，关注推理延迟与运动平滑度可看。",
+   "tags": [
+    "视频插帧",
+    "光流估计",
+    "推理效率"
+   ],
+   "entity": "ABC-Inter",
+   "kind": "paper"
+  },
   {
    "id": "5b18b3691d62d03c",
    "date": "2026-09-22",
@@ -923,6 +976,7 @@
  ],
  "threads": {
   "Seedance 2.5": [
+   "2114e51ab5759a6d",
    "40de3cb577530044",
    "4ce3be4127e91b65",
    "e3e37d24c382772e",
@@ -943,6 +997,12 @@
   "字节跳动": [
    "3a06f956823425ca",
    "782c2b2a23d1da73"
+  ],
+  "Biological Computing": [
+   "4de16cb3cffdd50b"
+  ],
+  "ABC-Inter": [
+   "3acd027f8dd36a77"
   ],
   "4DGS-Fixer": [
    "5b18b3691d62d03c"

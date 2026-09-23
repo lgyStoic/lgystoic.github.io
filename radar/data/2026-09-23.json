@@ -1,0 +1,1022 @@
+{
+  "date": "2026-09-23",
+  "generated_at": "2026-09-23T01:51:35+00:00",
+  "ai": true,
+  "model": "gemini-3.8-flash",
+  "sources": [
+    {
+      "id": "openai",
+      "name": "OpenAI",
+      "ok": true,
+      "count": 4,
+      "total": 1219,
+      "error": ""
+    },
+    {
+      "id": "deepmind",
+      "name": "Google DeepMind",
+      "ok": true,
+      "count": 0,
+      "total": 100,
+      "error": ""
+    },
+    {
+      "id": "google-ai",
+      "name": "Google AI Blog",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "qwen",
+      "name": "Qwen",
+      "ok": true,
+      "count": 0,
+      "total": 44,
+      "error": ""
+    },
+    {
+      "id": "hf-blog",
+      "name": "Hugging Face Blog",
+      "ok": true,
+      "count": 3,
+      "total": 866,
+      "error": ""
+    },
+    {
+      "id": "nvidia-dev",
+      "name": "NVIDIA Technical Blog",
+      "ok": true,
+      "count": 4,
+      "total": 100,
+      "error": ""
+    },
+    {
+      "id": "hf-papers",
+      "name": "HF Papers 日榜",
+      "ok": true,
+      "count": 20,
+      "total": 31,
+      "error": ""
+    },
+    {
+      "id": "pytorch",
+      "name": "PyTorch Blog",
+      "ok": true,
+      "count": 2,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "simonw",
+      "name": "Simon Willison",
+      "ok": true,
+      "count": 3,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "lilianweng",
+      "name": "Lil'Log",
+      "ok": true,
+      "count": 0,
+      "total": 53,
+      "error": ""
+    },
+    {
+      "id": "interconnects",
+      "name": "Interconnects",
+      "ok": true,
+      "count": 1,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "raschka",
+      "name": "Sebastian Raschka",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "chiphuyen",
+      "name": "Chip Huyen",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-pytorch",
+      "name": "Release · PyTorch",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-triton",
+      "name": "Release · Triton",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-cutlass",
+      "name": "Release · CUTLASS",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-flash-attention",
+      "name": "Release · FlashAttention",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-vllm",
+      "name": "Release · vLLM",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-sglang",
+      "name": "Release · SGLang",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-tensorrt-llm",
+      "name": "Release · TensorRT-LLM",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-diffusers",
+      "name": "Release · Diffusers",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-cuda-python",
+      "name": "Release · cuda-python",
+      "ok": true,
+      "count": 2,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "gnews-labs-en",
+      "name": "新闻 · Anthropic / Mistral / xAI",
+      "ok": true,
+      "count": 24,
+      "total": 100,
+      "error": ""
+    },
+    {
+      "id": "gnews-labs-cn",
+      "name": "新闻 · 国内模型公司",
+      "ok": true,
+      "count": 16,
+      "total": 100,
+      "error": ""
+    },
+    {
+      "id": "qbitai",
+      "name": "量子位",
+      "ok": true,
+      "count": 3,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "infoq-cn",
+      "name": "InfoQ 中文",
+      "ok": true,
+      "count": 8,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "thonking",
+      "name": "Horace He (thonking)",
+      "ok": true,
+      "count": 0,
+      "total": 6,
+      "error": ""
+    },
+    {
+      "id": "hn-algolia",
+      "name": "Hacker News（100+ 分）",
+      "ok": true,
+      "count": 3,
+      "total": 60,
+      "error": ""
+    },
+    {
+      "id": "karpathy-blog",
+      "name": "Andrej Karpathy 博客",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "eugeneyan",
+      "name": "Eugene Yan",
+      "ok": true,
+      "count": 0,
+      "total": 212,
+      "error": ""
+    },
+    {
+      "id": "importai",
+      "name": "Import AI（Jack Clark）",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "latentspace",
+      "name": "Latent Space",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "semianalysis",
+      "name": "SemiAnalysis",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "meta-ai",
+      "name": "Meta Engineering",
+      "ok": true,
+      "count": 0,
+      "total": 9,
+      "error": ""
+    },
+    {
+      "id": "mistral-news",
+      "name": "Mistral AI",
+      "ok": true,
+      "count": 0,
+      "total": 87,
+      "error": ""
+    },
+    {
+      "id": "bsky-karpathy",
+      "name": "Bluesky · Andrej Karpathy",
+      "ok": true,
+      "count": 0,
+      "total": 15,
+      "error": ""
+    },
+    {
+      "id": "bsky-giffmana",
+      "name": "Bluesky · Lucas Beyer",
+      "ok": true,
+      "count": 0,
+      "total": 22,
+      "error": ""
+    },
+    {
+      "id": "bsky-hardmaru",
+      "name": "Bluesky · hardmaru",
+      "ok": true,
+      "count": 0,
+      "total": 17,
+      "error": ""
+    },
+    {
+      "id": "bsky-swyx",
+      "name": "Bluesky · swyx",
+      "ok": true,
+      "count": 0,
+      "total": 3,
+      "error": ""
+    },
+    {
+      "id": "bsky-pytorch",
+      "name": "Bluesky · PyTorch",
+      "ok": true,
+      "count": 1,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "bsky-clem",
+      "name": "Bluesky · Clem Delangue",
+      "ok": true,
+      "count": 0,
+      "total": 11,
+      "error": ""
+    },
+    {
+      "id": "bsky-natolambert",
+      "name": "Bluesky · Nathan Lambert",
+      "ok": true,
+      "count": 0,
+      "total": 29,
+      "error": ""
+    },
+    {
+      "id": "bsky-rasbt",
+      "name": "Bluesky · Sebastian Raschka",
+      "ok": true,
+      "count": 0,
+      "total": 27,
+      "error": ""
+    },
+    {
+      "id": "bsky-jeffdean",
+      "name": "Bluesky · Jeff Dean",
+      "ok": true,
+      "count": 0,
+      "total": 18,
+      "error": ""
+    },
+    {
+      "id": "hf-trending-new",
+      "name": "HF 热榜新模型",
+      "ok": true,
+      "count": 3,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "gh-new-stars",
+      "name": "GitHub 新星仓库",
+      "ok": true,
+      "count": 0,
+      "total": 15,
+      "error": ""
+    },
+    {
+      "id": "hf-t2v",
+      "name": "HF 热榜 · 文生视频",
+      "ok": true,
+      "count": 2,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "hf-i2v",
+      "name": "HF 热榜 · 图生视频",
+      "ok": true,
+      "count": 0,
+      "total": 16,
+      "error": ""
+    },
+    {
+      "id": "gnews-video-en",
+      "name": "新闻 · 视频生成（英文）",
+      "ok": true,
+      "count": 4,
+      "total": 38,
+      "error": ""
+    },
+    {
+      "id": "gnews-video-cn",
+      "name": "新闻 · 视频生成（中文）",
+      "ok": true,
+      "count": 8,
+      "total": 29,
+      "error": ""
+    },
+    {
+      "id": "gnews-world-en",
+      "name": "新闻 · 世界模型（英文）",
+      "ok": true,
+      "count": 2,
+      "total": 58,
+      "error": ""
+    },
+    {
+      "id": "gnews-world-cn",
+      "name": "新闻 · 世界模型（中文）",
+      "ok": true,
+      "count": 19,
+      "total": 88,
+      "error": ""
+    },
+    {
+      "id": "gh-new-video-world",
+      "name": "GitHub 新仓库 · 视频 / 世界模型",
+      "ok": true,
+      "count": 3,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "arxiv-cscv",
+      "name": "arXiv cs.CV（专题）",
+      "ok": true,
+      "count": 29,
+      "total": 382,
+      "error": ""
+    },
+    {
+      "id": "arxiv-csro",
+      "name": "arXiv cs.RO（专题）",
+      "ok": true,
+      "count": 15,
+      "total": 306,
+      "error": ""
+    }
+  ],
+  "counts": {
+    "high": 10,
+    "medium": 20,
+    "low": 0
+  },
+  "items": [
+    {
+      "id": "4de16cb3cffdd50b",
+      "title": "The Biological Computing Partners With AWS To Launch AI Video Model With 5x Faster Generation And 80% Lower Costs - Pulse 2.0",
+      "link": "https://pulse2.com/the-biological-computing-partners-with-aws-to-launch-ai-video-model-with-5x-faster-generation-and-80-lower-costs/",
+      "source": "新闻 · 视频生成（英文）",
+      "source_id": "gnews-video-en",
+      "published": "2026-09-22T22:00:15+00:00",
+      "category": "infra",
+      "priority": "high",
+      "summary": "Biological Computing 联手 AWS 推出提速5倍的视频生成模型。",
+      "why": "宣称推理提速5倍且降本80%，涉及重大推理性能优化。",
+      "tags": [
+        "视频生成",
+        "推理加速",
+        "AWS",
+        "性能优化"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "b6b1e4118cdbb529",
+      "title": "Better prompt caching for GPT-6",
+      "link": "https://openai.com/index/better-prompt-caching-for-gpt-6",
+      "source": "OpenAI",
+      "source_id": "openai",
+      "published": "2026-09-22T21:00:00+00:00",
+      "category": "infra",
+      "priority": "high",
+      "summary": "OpenAI 推出 GPT-6 的 Prompt Caching 升级，引入显式断点与控制机制以降低延迟与成本。",
+      "why": "涉及推理系统级 KV 缓存设计与成本优化，对推理性能架构很有参考价值。",
+      "tags": [
+        "Prompt Caching",
+        "Inference",
+        "GPT-6"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "1f6ffc1964b2fe5f",
+      "title": "What’s New for Game Developers: DLSS 5 with 3D-Guided Neural Rendering, NVIDIA ACE Updates, and New RTX Kit Capabilities",
+      "link": "https://developer.nvidia.com/blog/whats-new-for-game-developers-dlss-5-with-3d-guided-neural-rendering-nvidia-ace-updates-and-new-rtx-kit-capabilities",
+      "source": "NVIDIA Technical Blog",
+      "source_id": "nvidia-dev",
+      "published": "2026-09-22T20:48:36+00:00",
+      "category": "infra",
+      "priority": "high",
+      "summary": "NVIDIA 发布 DLSS 5，带来 3D 引导神经渲染并升级 ACE 与 RTX Kit 开发工具。",
+      "why": "神经渲染结合 3D 几何与实时生成，对 3D 生成与渲染优化很有启发。",
+      "tags": [
+        "Neural Rendering",
+        "DLSS 5",
+        "NVIDIA",
+        "3D Generation"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "3ae9fee98bec8bd2",
+      "title": "Anthropic releases Claude Opus 5.5, beating Fable 5.1 on key agentic benchmarks at 60% cheaper API price - VentureBeat",
+      "link": "https://venturebeat.com/technology/anthropic-releases-claude-opus-5-5-beating-fable-5-1-on-key-agentic-benchmarks-at-60-cheaper-api-price",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-09-22T19:05:41+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "Anthropic发布Claude Opus 5.5，Agent基准超越竞品且API降价60%",
+      "why": "前沿闭源基座模型发布核心事实，性能和价格指标明确",
+      "tags": [
+        "Claude Opus 5.5",
+        "Anthropic",
+        "模型发布"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "3d48e529ad7a20b1",
+      "title": "Introducing GPT-6 Sol and Luna",
+      "link": "https://openai.com/index/introducing-gpt-6-sol-and-luna",
+      "source": "OpenAI",
+      "source_id": "openai",
+      "published": "2026-09-22T18:00:00+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "OpenAI 发布 GPT-6 Sol 与 Luna 两款新模型，在不同性能和推理成本梯级上提供选择。",
+      "why": "前沿大模型核心产品发布，是关注模型演进的重要基准。",
+      "tags": [
+        "OpenAI",
+        "GPT-6",
+        "LLM"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "4ef001001f5ea783",
+      "title": "Topology-Aware Workload Scheduling with NVIDIA Topograph",
+      "link": "https://developer.nvidia.com/blog/topology-aware-workload-scheduling-with-nvidia-topograph",
+      "source": "NVIDIA Technical Blog",
+      "source_id": "nvidia-dev",
+      "published": "2026-09-22T17:16:36+00:00",
+      "category": "infra",
+      "priority": "high",
+      "summary": "NVIDIA 发布 Topograph，利用集群拓扑感知的工作负载放置优化大规模 GPU 调度效率。",
+      "why": "拓扑感知直接影响分布式训练与推理的通信吞吐，与训练集群优化强相关。",
+      "tags": [
+        "NVIDIA",
+        "Distributed Training",
+        "Topology",
+        "Scheduling"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "945b70c7d2a0a26f",
+      "title": "In our latest blog, contributors from IBM, Meta, and Hugging Face introduce hardware-agnostic layers designed to balance",
+      "link": "https://bsky.app/profile/pytorch.org/post/3mw4pbfcaeq2u",
+      "source": "Bluesky · PyTorch",
+      "source_id": "bsky-pytorch",
+      "published": "2026-09-22T17:00:00+00:00",
+      "category": "infra",
+      "priority": "high",
+      "summary": "IBM、Meta 与 HF 联合在 vLLM 中引入跨硬件抽象层。",
+      "why": "直接涉及推理框架底层跨硬件适配与算子优化，必看。",
+      "tags": [
+        "vLLM",
+        "推理优化",
+        "硬件抽象",
+        "算子"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "274923956a528dea",
+      "title": "Anthropic launches Claude Opus 5.5: faster and cheaper, but with some limitations - Il Sole 24 ORE",
+      "link": "https://en.ilsole24ore.com/art/anthropic-launches-claude-opus-55-faster-and-cheaper-but-with-some-limitations-AJsJvOLB",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-09-22T16:39:46+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "Anthropic正式上线Claude Opus 5.5，主打更高推理速度与更低调用成本。",
+      "why": "前沿闭源旗舰模型发布，关注其速度提升背后的性能与架构变化。",
+      "tags": [
+        "Claude",
+        "Anthropic",
+        "大模型发布"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "7ee577324b473063",
+      "title": "Hardware-Agnostic Models in vLLM",
+      "link": "https://pytorch.org/blog/hardware-agnostic-models-in-vllm",
+      "source": "PyTorch Blog",
+      "source_id": "pytorch",
+      "published": "2026-09-22T15:45:46+00:00",
+      "category": "infra",
+      "priority": "high",
+      "summary": "vLLM为追求前沿推理性能重构内部实现，因此与torch.compile fullgraph产生不兼容",
+      "why": "直接涉及推理系统架构演进及PyTorch编译优化兼容性",
+      "tags": [
+        "vLLM",
+        "torch.compile",
+        "LLM推理",
+        "性能优化"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "2114e51ab5759a6d",
+      "title": "Seedance 2.5 上线 Draft 模式：先用 480P 验证创意，满意再用 1080P 生成终版 - 新浪财经_金融信息服务商",
+      "link": "https://finance.sina.com.cn/tech/digi/2026-09-22/doc-inistewx8830403.shtml",
+      "source": "新闻 · 视频生成（中文）",
+      "source_id": "gnews-video-cn",
+      "published": "2026-09-22T11:01:00+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "Seedance 2.5 推出 480P 验证、1080P 出图的 Draft 模式。",
+      "why": "典型两阶段级联生成优化产品方案，大幅节约推理成本。",
+      "tags": [
+        "视频生成",
+        "推理优化",
+        "产品架构",
+        "Seedance"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "256ff5ae0335a89e",
+      "title": "v13.4.3: [doc-only] Prepare the 13.4.3 release (#2936)",
+      "link": "https://github.com/NVIDIA/cuda-python/releases/tag/v13.4.3",
+      "source": "Release · cuda-python",
+      "source_id": "rel-cuda-python",
+      "published": "2026-09-23T00:00:42+00:00",
+      "category": "infra",
+      "priority": "medium",
+      "summary": "cuda-python发布v13.4.3，更新发布文档并包含FFI审计相关的修复说明",
+      "why": "CUDA Python绑定的文档与补丁更新，了解底层FFI变动",
+      "tags": [
+        "CUDA",
+        "cuda-python",
+        "FFI"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "0b92e82ba407c167",
+      "title": "v12.9.9: [12.9.x] Backport FFI helper and normalized channel-format fixes (#2934)",
+      "link": "https://github.com/NVIDIA/cuda-python/releases/tag/v12.9.9",
+      "source": "Release · cuda-python",
+      "source_id": "rel-cuda-python",
+      "published": "2026-09-22T23:25:08+00:00",
+      "category": "infra",
+      "priority": "medium",
+      "summary": "cuda-python发布v12.9.9，反向移植JIT wall-time指针及通道格式相关FFI修复",
+      "why": "修复JIT及通道格式问题，对写CUDA Python绑定有参考价值",
+      "tags": [
+        "CUDA",
+        "cuda-python",
+        "JIT"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "7e5747f9769cf2c2",
+      "title": "Anthropic scores Opus 5.5 at 66.4% on Terminal-Bench, but ran the test itself - MIXED Reality News",
+      "link": "https://mixed-news.com/en/anthropic-opus-5-5-terminal-bench-66-4-percent-public-board/",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-09-22T21:35:30+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "Anthropic公布Opus 5.5在Terminal-Bench获66.4%得分，但评测由内部自行运行",
+      "why": "涉及前沿模型评估基准的自测水分问题，可作评测参考",
+      "tags": [
+        "基准评测",
+        "Benchmark",
+        "Claude Opus 5.5"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "389971b01f496b38",
+      "title": "OpenAI, Anthropic and xAI launch new AI models with lower prices, pointing to higher usage - 디지털투데이",
+      "link": "https://www.digitaltoday.co.kr/en/view/106723/openai-anthropic-xai-cut-prices-new-ai-models-price-war-boost-usage",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-09-22T20:38:45+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "OpenAI、Anthropic与xAI近期密集推出低定价新模型，推动大模型推理调用成本大幅下降。",
+      "why": "海外头部厂商推理降价潮，反映推理效率与硬件优化趋势。",
+      "tags": [
+        "推理成本",
+        "大模型",
+        "市场竞争"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "c81da1087d86ec7a",
+      "title": "China Probes DeepSeek, Moonshot AI Over Anthropic's Claims They Route Requests to Claude - Gizmodo",
+      "link": "https://gizmodo.com/china-probes-deepseek-moonshot-ai-over-anthropics-claims-they-route-requests-to-claude-2000815507",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-09-22T18:45:38+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "外媒报道DeepSeek和月之暗面因被指路由请求至Claude而面临相关调查",
+      "why": "涉及国内主流大模型厂商的突发争议与行业调查",
+      "tags": [
+        "DeepSeek",
+        "Moonshot AI",
+        "行业调查"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "04cb32c6e4b14b66",
+      "title": "Anthropic Reveals Claude Opus 5.5's Classifiers Silently Reroute Requests - pasqualepillitteri.it",
+      "link": "https://pasqualepillitteri.it/en/news/17574/claude-opus-5-5-classifiers-reroute-requests",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-09-22T18:20:01+00:00",
+      "category": "infra",
+      "priority": "medium",
+      "summary": "Anthropic披露Claude Opus 5.5引入请求分类器，在后台静默重定向分发请求。",
+      "why": "涉及超大模型的系统层请求调度与推理分流架构设计。",
+      "tags": [
+        "模型路由",
+        "Anthropic",
+        "推理架构"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "b0f8ec8fd14bfe88",
+      "title": "Enabling Private High-Performance Production AI Inference with NVIDIA Confidential Computing",
+      "link": "https://developer.nvidia.com/blog/enabling-private-high-performance-production-ai-inference-with-nvidia-confidential-computing",
+      "source": "NVIDIA Technical Blog",
+      "source_id": "nvidia-dev",
+      "published": "2026-09-22T17:27:48+00:00",
+      "category": "infra",
+      "priority": "medium",
+      "summary": "NVIDIA 介绍如何利用机密计算技术在保障数据隐私的同时维持高吞吐的大模型生产推理。",
+      "why": "涉及企业级 GPU 硬件安全特性与推理性能开销权衡，可作背景了解。",
+      "tags": [
+        "NVIDIA",
+        "Inference",
+        "Confidential Computing"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "f6be7499f1dcbdc6",
+      "title": "Anthropic releases Opus 5.5 and cuts pricing by 20%. Your agent calls might secretly get routed to an older model. - The New Stack",
+      "link": "https://thenewstack.io/claude-opus-5-5-release/",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-09-22T17:02:46+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Anthropic发布Opus 5.5并降价，The New Stack指出其Agent调用可能被路由至旧模型",
+      "why": "揭示了新模型API路由机制可能的工程猫腻，值得留心",
+      "tags": [
+        "Anthropic",
+        "API路由",
+        "Agent"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "da8758f6c8ac5964",
+      "title": "陆川手搓历史现场，王珞丹熬夜抽卡，阿里全模态开始兜底生产",
+      "link": "https://www.qbitai.com/2026/09/494429.html",
+      "source": "量子位",
+      "source_id": "qbitai",
+      "published": "2026-09-22T15:59:35+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "阿里在云栖大会提出未来三年将实现原生全模态统一生成模型，融合视音频生成。",
+      "why": "契合视频与跨模态生成模型演化路线，关注架构统一趋势。",
+      "tags": [
+        "全模态",
+        "视频生成",
+        "阿里"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "fd4042635219e9ed",
+      "title": "Agent时代，CPU的价值该重估了",
+      "link": "https://www.qbitai.com/2026/09/494430.html",
+      "source": "量子位",
+      "source_id": "qbitai",
+      "published": "2026-09-22T15:46:54+00:00",
+      "category": "infra",
+      "priority": "medium",
+      "summary": "行业文章探讨在复杂Agent任务下CPU与GPU算力配比趋近1比1的异构硬件演变。",
+      "why": "涉及训练与推理节点系统架构及异构协同瓶颈分析。",
+      "tags": [
+        "异构计算",
+        "CPU/GPU",
+        "系统架构"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "ebc01fe3f99abc3d",
+      "title": "How Shopify built a continual learning loop with PyTorch and vLLM",
+      "link": "https://pytorch.org/blog/how-shopify-built-a-continual-learning-loop-with-pytorch-and-vllm",
+      "source": "PyTorch Blog",
+      "source_id": "pytorch",
+      "published": "2026-09-22T13:45:18+00:00",
+      "category": "infra",
+      "priority": "medium",
+      "summary": "Shopify基于PyTorch和vLLM构建每日持续学习闭环，优化质量并缩减96%服务成本",
+      "why": "结合PyTorch与vLLM的生产级端到端系统实践案例",
+      "tags": [
+        "vLLM",
+        "PyTorch",
+        "持续学习",
+        "工程实践"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "2db531190271c775",
+      "title": "游戏开发,能不能成为AI世界模型的\"编译器\"? - 手机新浪网",
+      "link": "https://k.sina.com.cn/article_5953190046_162d6789e06703stey.html?from=tech",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-09-22T12:39:59+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "媒体探讨以游戏引擎作为 AI 世界模型物理编译器的技术路径。",
+      "why": "探讨神经渲染与物理引擎结合逻辑，有交叉启发性。",
+      "tags": [
+        "游戏引擎",
+        "世界模型",
+        "物理模拟"
+      ],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "b2ea95cb1858118e",
+      "title": "Matrix-Game 3.5：如何让AI生成的虚拟世界记住自己走过的路 - 科技行者",
+      "link": "https://www.techwalker.com/2026/0922/3200163.shtml",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-09-22T09:17:00+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "媒体解析Matrix-Game 3.5如何通过状态记忆解决虚拟世界一致性问题。",
+      "why": "涉及世界模型长期记忆与一致性生成设计，可泛读参考。",
+      "tags": [
+        "世界模型",
+        "视频生成",
+        "游戏AI"
+      ],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "51c03f67afac32a9",
+      "title": "Can gzip be a language model?",
+      "link": "https://news.ycombinator.com/item?id=49797323",
+      "source": "Hacker News（100+ 分）",
+      "source_id": "hn-algolia",
+      "published": "2026-09-22T06:08:39+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "HN 讨论 gzip 能否作为语言模型的技术探索。",
+      "why": "经典信息论与压缩算法视角的讨论，可拓展建模视野。",
+      "tags": [
+        "压缩算法",
+        "信息论",
+        "语言模型"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "9a0efbd6be06ba50",
+      "title": "太原一公司的12问，智谱的再次道歉与ZCode开源 - 风闻",
+      "link": "https://user.guancha.cn/main/content?id=1741616&s=fwtjgzwz",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-09-22T05:02:02+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "智谱针对技术争议作出说明并开源代码模型ZCode。",
+      "why": "开源代码模型，可评估其权重与下游推理适配价值。",
+      "tags": [
+        "智谱",
+        "ZCode",
+        "代码大模型"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "444098f951a6a750",
+      "title": "专访清华学者王立元：从持续学习到内心世界模型，脑启发AI的双向闭环 - 虎嗅网",
+      "link": "https://m.huxiu.com/article/4893110.html?type=text",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-09-22T04:51:24+00:00",
+      "category": "people",
+      "priority": "medium",
+      "summary": "清华学者王立元受访探讨类脑AI、持续学习与内心世界模型的双向闭环。",
+      "why": "宏观学术观点访谈，可作为世界模型理论演进的背景参考。",
+      "tags": [
+        "访谈",
+        "类脑计算",
+        "世界模型"
+      ],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "8e6f5f77e98e3613",
+      "title": "ConsistWorld: Evidence Routing for Consistent Multi-Agent World Models",
+      "link": "https://arxiv.org/abs/2609.22641",
+      "source": "arXiv cs.CV（专题）",
+      "source_id": "arxiv-cscv",
+      "published": "2026-09-22T04:00:00+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "ConsistWorld提出证据路由机制，实现自回归多智能体视频世界模型。",
+      "why": "针对多视角与长上下文时序一致性设计，关注自回归生成可读。",
+      "tags": [
+        "世界模型",
+        "自回归生成",
+        "多智能体",
+        "视角一致性"
+      ],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "8ae000fd5bf955dc",
+      "title": "Planning-Aligned Pretraining of BEV Representations with Sparse Action-Conditioned Targets for End-to-End Autonomous Driving",
+      "link": "https://arxiv.org/abs/2609.22868",
+      "source": "arXiv cs.CV（专题）",
+      "source_id": "arxiv-cscv",
+      "published": "2026-09-22T04:00:00+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "PAVER提出规划对齐的稀疏动作目标预训练框架以优化BEV表征。",
+      "why": "端到端自动驾驶表征学习，轻量预训练头设计有借鉴价值。",
+      "tags": [
+        "自动驾驶",
+        "BEV",
+        "表征学习",
+        "端到端"
+      ],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "3acd027f8dd36a77",
+      "title": "Accurate Motion Estimation with B\\'ezier Control Point for Efficient Frame Interpolation",
+      "link": "https://arxiv.org/abs/2609.23408",
+      "source": "arXiv cs.CV（专题）",
+      "source_id": "arxiv-cscv",
+      "published": "2026-09-22T04:00:00+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "ABC-Inter结合贝塞尔控制点与解耦光流估计实现高效高保真插帧。",
+      "why": "视频插帧与光流估计模块优化，关注推理延迟与运动平滑度可看。",
+      "tags": [
+        "视频插帧",
+        "光流估计",
+        "推理效率"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "aa1651b4984b8ad4",
+      "title": "OnlineWM: Causality-Aware Active Online Learning for Effective World Modeling",
+      "link": "https://arxiv.org/abs/2609.23753",
+      "source": "arXiv cs.CV（专题）",
+      "source_id": "arxiv-cscv",
+      "published": "2026-09-22T04:00:00+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "OnlineWM引入因果感知的主动在线学习机制以减少长尾动作动力学误差。",
+      "why": "解决世界模型训练集与误差分布不匹配的在线策略，训练算法工程师可扫读。",
+      "tags": [
+        "世界模型",
+        "在线学习",
+        "因果推断"
+      ],
+      "tracks": [
+        "world"
+      ]
+    }
+  ]
+}

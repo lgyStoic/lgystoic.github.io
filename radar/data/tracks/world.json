@@ -2,8 +2,112 @@
  "id": "world",
  "name": "世界模型",
  "blurb": "可交互的生成式世界模拟：Genie、Cosmos、V-JEPA、Dreamer、GameNGen、Oasis、Matrix-Game、HunyuanWorld 等，以及动作条件视频生成、4D 生成与具身仿真。",
- "updated": "2026-09-22T02:05:49+00:00",
+ "updated": "2026-09-23T02:01:21+00:00",
  "entries": [
+  {
+   "id": "2db531190271c775",
+   "date": "2026-09-23",
+   "title": "游戏开发,能不能成为AI世界模型的\"编译器\"? - 手机新浪网",
+   "link": "https://k.sina.com.cn/article_5953190046_162d6789e06703stey.html?from=tech",
+   "source": "新闻 · 世界模型（中文）",
+   "priority": "medium",
+   "summary": "媒体探讨以游戏引擎作为 AI 世界模型物理编译器的技术路径。",
+   "why": "探讨神经渲染与物理引擎结合逻辑，有交叉启发性。",
+   "tags": [
+    "游戏引擎",
+    "世界模型",
+    "物理模拟"
+   ],
+   "entity": "",
+   "kind": "opinion"
+  },
+  {
+   "id": "b2ea95cb1858118e",
+   "date": "2026-09-23",
+   "title": "Matrix-Game 3.5：如何让AI生成的虚拟世界记住自己走过的路 - 科技行者",
+   "link": "https://www.techwalker.com/2026/0922/3200163.shtml",
+   "source": "新闻 · 世界模型（中文）",
+   "priority": "medium",
+   "summary": "媒体解析Matrix-Game 3.5如何通过状态记忆解决虚拟世界一致性问题。",
+   "why": "涉及世界模型长期记忆与一致性生成设计，可泛读参考。",
+   "tags": [
+    "世界模型",
+    "视频生成",
+    "游戏AI"
+   ],
+   "entity": "Matrix-Game 3.5",
+   "kind": "opinion"
+  },
+  {
+   "id": "444098f951a6a750",
+   "date": "2026-09-23",
+   "title": "专访清华学者王立元：从持续学习到内心世界模型，脑启发AI的双向闭环 - 虎嗅网",
+   "link": "https://m.huxiu.com/article/4893110.html?type=text",
+   "source": "新闻 · 世界模型（中文）",
+   "priority": "medium",
+   "summary": "清华学者王立元受访探讨类脑AI、持续学习与内心世界模型的双向闭环。",
+   "why": "宏观学术观点访谈，可作为世界模型理论演进的背景参考。",
+   "tags": [
+    "访谈",
+    "类脑计算",
+    "世界模型"
+   ],
+   "entity": "清华大学",
+   "kind": "opinion"
+  },
+  {
+   "id": "8e6f5f77e98e3613",
+   "date": "2026-09-23",
+   "title": "ConsistWorld: Evidence Routing for Consistent Multi-Agent World Models",
+   "link": "https://arxiv.org/abs/2609.22641",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "medium",
+   "summary": "ConsistWorld提出证据路由机制，实现自回归多智能体视频世界模型。",
+   "why": "针对多视角与长上下文时序一致性设计，关注自回归生成可读。",
+   "tags": [
+    "世界模型",
+    "自回归生成",
+    "多智能体",
+    "视角一致性"
+   ],
+   "entity": "ConsistWorld",
+   "kind": "paper"
+  },
+  {
+   "id": "8ae000fd5bf955dc",
+   "date": "2026-09-23",
+   "title": "Planning-Aligned Pretraining of BEV Representations with Sparse Action-Conditioned Targets for End-to-End Autonomous Driving",
+   "link": "https://arxiv.org/abs/2609.22868",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "medium",
+   "summary": "PAVER提出规划对齐的稀疏动作目标预训练框架以优化BEV表征。",
+   "why": "端到端自动驾驶表征学习，轻量预训练头设计有借鉴价值。",
+   "tags": [
+    "自动驾驶",
+    "BEV",
+    "表征学习",
+    "端到端"
+   ],
+   "entity": "PAVER",
+   "kind": "paper"
+  },
+  {
+   "id": "aa1651b4984b8ad4",
+   "date": "2026-09-23",
+   "title": "OnlineWM: Causality-Aware Active Online Learning for Effective World Modeling",
+   "link": "https://arxiv.org/abs/2609.23753",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "medium",
+   "summary": "OnlineWM引入因果感知的主动在线学习机制以减少长尾动作动力学误差。",
+   "why": "解决世界模型训练集与误差分布不匹配的在线策略，训练算法工程师可扫读。",
+   "tags": [
+    "世界模型",
+    "在线学习",
+    "因果推断"
+   ],
+   "entity": "OnlineWM",
+   "kind": "paper"
+  },
   {
    "id": "5b18b3691d62d03c",
    "date": "2026-09-22",
@@ -1244,6 +1348,21 @@
   "魔芯科技": [
    "fe9d33edf0701555",
    "92ea4301b3012f12"
+  ],
+  "Matrix-Game 3.5": [
+   "b2ea95cb1858118e"
+  ],
+  "清华大学": [
+   "444098f951a6a750"
+  ],
+  "ConsistWorld": [
+   "8e6f5f77e98e3613"
+  ],
+  "PAVER": [
+   "8ae000fd5bf955dc"
+  ],
+  "OnlineWM": [
+   "aa1651b4984b8ad4"
   ],
   "4DGS-Fixer": [
    "5b18b3691d62d03c"
