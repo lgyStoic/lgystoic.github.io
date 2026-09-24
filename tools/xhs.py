@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+from __future__ import annotations
+
 """小红书文稿生成：两种内容，都写入私有 radar-inbox 的 posts/。
 
   cards（每天）：当天雷达 high / medium 前 20 条 → 每条 标题 / 正文 / 标签 + 3:4 封面卡片（前 XHS_IMAGES 条带生图配图）
@@ -9,16 +11,18 @@
                  → posts/jobs/<日期>.md、posts/jobs/<日期>/cover.jpg
   每次运行后重写 posts/README.md（两类最近 30 期的索引）。本地各留一份 radar/data/xhs-*.md（已 gitignore）。
 
-封面：文字用 HTML 排版、Playwright 截图，使用本地渐变设计，不依赖生图 API。
+封面：文字用 HTML 排版、Playwright 截图；LongCat 生成受限 SVG 技术示意图，校验失败时回退本地渐变设计。
 
 用法：
   RADAR_DATE=2026-09-19 python3 tools/xhs.py            # cards
   python3 tools/xhs.py --jobs                            # jobs；XHS_JOBS_REGION=cn|overseas 只挑国内/海外远程
   python3 tools/xhs.py --check-llm                       # 检查 LongCat 文本模型连通性
+  python3 tools/xhs.py --check-svg                       # 生成并校验一张 LongCat SVG（不写入 inbox）
   XHS_IMAGES=0 python3 tools/xhs.py                      # cards 只出文稿不出图
 环境：LONGCAT_API_KEY（必需，文稿生成）、INBOX_TOKEN / INBOX_REPO（写私有仓库；没有就只写本地）、PW_CHROMIUM、XHS_PREVIEW=1（第 1 条打日志）。
 """
 import base64, html, json, os, re, sys, urllib.request, urllib.error
+import xml.etree.ElementTree as ET
 from datetime import datetime
 from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -79,6 +83,46 @@ worth = true 时的硬性要求：
 6. image_prompt：英文，极简扁平插画，与专题意象相关（胶片帧、时间轴、三维网格、粒子世界等），暖色米白背景赭红点缀，"no text, no letters, no logos"，40 词以内。'''
 TRACK_SCHEMA = {'type':'object','properties':{**JOBS_SCHEMA['properties'], 'worth':{'type':'boolean'}, 'worth_reason':{'type':'string'}}, 'required': JOBS_SCHEMA['required'] + ['worth', 'worth_reason'], 'additionalProperties': False}
 TRACK_TAG = {'video': '视频模型日报', 'world': '世界模型日报'}
+
+SVG_SCHEMA = {'type':'object','properties':{'svg':{'type':'string'}},'required':['svg'],'additionalProperties':False}
+SVG_SYSTEM = '''你是技术信息图设计师。根据输入的标题、要点和类型，生成一张可放进小红书技术卡片的 SVG 示意图。
+
+严格要求：
+1. 只输出 JSON 字段 svg，svg 的值必须是完整 SVG 字符串，根节点为 <svg viewBox="0 0 680 420">。
+2. 只用 SVG 基础图元：svg、defs、marker、path、rect、circle、line、polyline、polygon、text、g、tspan。禁止 script、foreignObject、image、use、href、任何事件属性或外部资源。
+3. 图内只能表现输入明确给出的事实；解释关系时可以使用中性步骤名。不要编造性能数字、代码路径或系统组件。
+4. 做成一眼能看懂的工程示意图：顶部标题与副标题，主体用 2–4 个步骤框、流程箭头或结构模块；文字保持简短。需要时用 Online Softmax、KV、GPU 等原词。
+5. 配色固定：深蓝 #185FA5、浅蓝 #E6F1FB、绿色 #0F6E56/#E1F5EE、橙色 #993C1D/#FAECE7、正文灰 #5F5E5A，背景透明。使用圆角矩形、细描边、无渐变。
+6. 所有文字用 11–15px；中文要简洁，图中的信息密度优先于装饰。不要 logo、人物、照片或英文花体。
+'''
+_UNSAFE_SVG = re.compile(r'<\s*/?\s*(?:script|foreignobject|iframe|object|embed|image|use)\b|\bon[a-z]+\s*=|(?:xlink:)?href\s*=|@import', re.I)
+
+
+def make_svg_art(post: dict, *, kind: str) -> str | None:
+    """让 LongCat 输出受限 SVG；校验后作为 data URL 放进现有 Chromium 封面渲染器。"""
+    payload = {
+        'kind': kind,
+        'headline': post.get('headline', ''),
+        'title': post.get('title', ''),
+        'highlights': (post.get('takeaways') or post.get('highlights') or [])[:6],
+    }
+    result = call_llm_json(SVG_SYSTEM, json.dumps(payload, ensure_ascii=False), SVG_SCHEMA, label='xhs-svg') or {}
+    svg = (result.get('svg') or '').strip()
+    if svg.startswith('```'):
+        svg = re.sub(r'^```(?:svg|xml)?\s*|\s*```$', '', svg, flags=re.I)
+    if not svg or len(svg) > 24000 or _UNSAFE_SVG.search(svg):
+        log('[xhs-svg] 返回为空、过长或含不安全元素，改用本地渐变封面')
+        return None
+    try:
+        root = ET.fromstring(svg)
+    except ET.ParseError as e:
+        log(f'[xhs-svg] SVG 解析失败（{e}），改用本地渐变封面')
+        return None
+    if root.tag.rsplit('}', 1)[-1].lower() != 'svg' or 'viewBox' not in root.attrib:
+        log('[xhs-svg] 缺少 svg 根节点或 viewBox，改用本地渐变封面')
+        return None
+    log('[xhs-svg] LongCat SVG 已生成')
+    return base64.b64encode(svg.encode('utf-8')).decode('ascii')
 
 RANK_SCHEMA = {'type':'object','properties':{'ranking':{'type':'array','items':{'type':'object','properties':{'id':{'type':'string'},'audience':{'type':'integer'},'hook':{'type':'integer'},'discuss':{'type':'integer'},'save':{'type':'integer'},'reason':{'type':'string'}},'required':['id','audience','hook','discuss','save','reason'],'additionalProperties':False}}},'required':['ranking'],'additionalProperties':False}
 RANK_SYSTEM = '''你是小红书 AI 技术类账号的运营编辑。输入是同一天生成的一批笔记（标题 + 正文前 200 字 + 原始新闻标题），请判断在小红书上哪些更可能被 AI 从业者点开、点赞、收藏、评论。逐条给 4 个维度 1–5 分（整数）和一句 ≤30 字理由；同一批内要拉开差距，不要都给 3–4 分：
@@ -395,12 +439,14 @@ def run_cards(date: str):
     episode = episode_number(repo, token, 'cards', date)
 
     n_images = int(os.environ.get('XHS_IMAGES', '4'))
-    jobs = []
+    jobs, svg_used = [], 0
     for i, post in enumerate(posts[:n_images], 1):
-        jobs.append((post['id'], card_html(i, post, byid[post['id']], date, None, episode=episode)))
+        art = make_svg_art(post, kind='cards')
+        if art: svg_used += 1
+        jobs.append((post['id'], card_html(i, post, byid[post['id']], date, art, episode=episode)))
     _, img_dir, _, _ = out_paths('cards', date)
     files = render_cards(jobs, img_dir) if jobs else []
-    log(f'[xhs] 封面图 {len(files)} 张（本地渐变设计）')
+    log(f'[xhs] 封面图 {len(files)} 张（其中 {svg_used} 张含 LongCat SVG 示意图）')
 
     preview = os.environ.get('XHS_PREVIEW') == '1'
     lines = [f'# AI 信息学习卡片 · {date}' + (f' · 第 {episode} 天' if episode else ''), '', '> 自动生成初稿，请人工核对事实和语气后再发布。**已按小红书发布价值排序**：前 3 条标「今日必发」，封面图给前几条。每条：封面 → 标题 → 正文 → 话题标签，复制即发；原文链接单独列出，是否放评论区自己定。', '', '## 今日发布顺序', '', '| 序 | 标题 | 主体 | 总分 | 受众 | 钩子 | 讨论 | 收藏 | 热度 | 理由 |', '|---|---|---|---|---|---|---|---|---|---|']
@@ -457,7 +503,7 @@ def run_jobs(date: str):
     shorten_titles([post])
     post['tags'] = [JOBS_TAG] + [t for t in post['tags'] if t not in (JOBS_TAG, SERIES_TAG)][:4]
     post['highlights'] = [h for h in result.get('highlights', []) if h.strip()][:6]
-    art = None
+    art = make_svg_art(post, kind='jobs')
     _, img_dir, _, _ = out_paths('jobs', date)
     episode = episode_number(os.environ.get('INBOX_REPO', 'lgyStoic/radar-inbox'), os.environ.get('INBOX_TOKEN', '').strip(), 'jobs', date)
     files = render_cards([('cover', card_html(1, post, {'jobs': picked}, date, base64.b64encode(art).decode() if art else None, kind='jobs', episode=episode))], img_dir)
@@ -507,7 +553,7 @@ def run_track_post(track: dict, date: str):
     shorten_titles([post])
     post['tags'] = [re.sub(r'[\s#]+', '', tag)] + [t for t in post['tags'] if t not in (tag, SERIES_TAG, JOBS_TAG)][:4]
     post['highlights'] = [h for h in result.get('highlights', []) if h.strip()][:6]
-    art = None
+    art = make_svg_art(post, kind='track')
     _, img_dir, _, _ = out_paths(kind_dir, date)
     episode = episode_number(repo, token, kind_dir, date)
     files = render_cards([('cover', card_html(1, post, {'track_name': track['name'], 'track_id': track['id'], 'n': len(recent)}, date, base64.b64encode(art).decode() if art else None, kind='track', episode=episode))], img_dir)
@@ -527,6 +573,10 @@ def main():
         check = call_llm_json('你是连通性检测器。', '只返回 {"ok": true}。', {'type':'object', 'properties':{'ok':{'type':'boolean'}}, 'required':['ok'], 'additionalProperties':False}, label='xhs-check')
         if not check or check.get('ok') is not True: raise SystemExit('LongCat 未返回有效检测结果')
         print('LongCat 文本模型可用'); return
+    if '--check-svg' in sys.argv:
+        art = make_svg_art({'headline': 'Ring Attention 的 KV 环形传递', 'title': 'Ring Attention', 'takeaways': ['Q 保持本地不动', 'KV 块逐轮传递', '局部结果在线融合']}, kind='cards')
+        if not art: raise SystemExit('LongCat 未返回可用 SVG')
+        print('LongCat SVG 可用'); return
     date = os.environ.get('RADAR_DATE') or datetime.now().strftime('%Y-%m-%d')
     if '--jobs' in sys.argv: run_jobs(date)
     elif '--tracks' in sys.argv:
