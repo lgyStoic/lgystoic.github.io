@@ -1,0 +1,949 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AI 是怎么学会捏 3D 模型的：生成式 3D 六年演进 | Anaxagore</title>
+    <meta name="description" content="从 NeRF 到 3DGS，从 SDS 到原生 mesh 生成，再到 2026 年的 flow matching——生成式 3D 这六年没有一步是拍脑袋想出来的，每一步都是被上一步的缺陷逼出来的。按缺陷驱动的顺序把学术脉络与商业战场串一遍，附 8 张机制图与论文速查表。" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="AI 是怎么学会捏 3D 模型的：生成式 3D 六年演进 | Anaxagore" />
+    <meta property="og:description" content="从 NeRF 到 3DGS，从 SDS 到原生 mesh 生成，再到 2026 年的 flow matching——生成式 3D 这六年没有一步是拍脑袋想出来的，每一步都是被上一步的缺陷逼出来的。按缺陷驱动的顺序把学术脉络与商业战场串一遍，附 8 张机制图与论文速查表。" />
+    <meta property="og:url" content="https://lgystoic.github.io/notes/generative-3d-ai/" />
+    <meta property="og:image" content="https://lgystoic.github.io/assets/og/notes.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="canonical" href="https://lgystoic.github.io/notes/generative-3d-ai/" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231b1b1a'/%3E%3Ctext x='32' y='43' text-anchor='middle' font-size='30' font-family='Helvetica,Arial' font-weight='700' fill='white'%3EA%3C/text%3E%3C/svg%3E"
+    />
+    <!-- 站点框架样式在前，本篇样式在后；颜色一律用 site.css 的变量，深浅色才会跟着切 -->
+    <link rel="stylesheet" href="../../site.css" />
+    <link rel="stylesheet" href="./styles.css" />
+    <script>
+      try {
+        var t = localStorage.getItem("theme");
+        if (t === "dark" || t === "light") document.documentElement.dataset.theme = t;
+      } catch (e) {}
+    </script>
+    <!-- build:jsonld -->
+    <!-- /build:jsonld -->
+  </head>
+  <body>
+    <!-- 统一页头由 tools/build.py 注入，不要手写 -->
+    <!-- build:header -->
+    <!-- /build:header -->
+
+    <main class="wrap note">
+      <section class="hero">
+        <p class="eyebrow">生成式 3D AI · 2020 → 2026</p>
+        <h1>AI 是怎么学会捏 3D 模型的</h1>
+        <p class="lead">
+          2020 年，一个角色资产的建模、材质、绑骨报价是 18000；2026 年，同一张需求图丢给 AI，十秒出一个。
+          这中间发生了六年的技术混战。这篇不讲「AI 好厉害」，只顺着一条线讲清楚：
+          <strong>每一步都是被上一步的毛病逼出来的</strong>——从隐式表示到显式表示，从借 2D 评委到自己长出手艺，
+          以及为什么最后的胜负手落在「布线干不干净」这种听起来很小的事情上。
+        </p>
+        <p class="meta">更新于 2026-09-24</p>
+        <div class="hero-facts" aria-label="关键事实">
+          <span>三代范式</span>
+          <span>8 张机制图</span>
+          <span>3DGS 快约 100 倍</span>
+          <span>Meshy T2：6 秒出网格</span>
+        </div>
+        <div class="tldr">
+          <strong>TL;DR</strong>
+          <ul>
+            <li>3D 的表示换了三代：SDF / NeRF（隐式）→ 3DGS（显式椭球）→ mesh（原生多边形）。<strong>表示一变，生成范式就跟着变一次。</strong></li>
+            <li>没有 3D 数据怎么办：DreamFusion 借冻结的 2D 扩散模型当评委（SDS），代价是 Janus 多面脸——评委这辈子只见过照片。</li>
+            <li>直接生成 mesh 的主流是自回归，死穴是「串行」；2026 年 Meshy T2 改用 flow matching 并行解码，压到 6 秒、100% 成功率。</li>
+            <li>大厂发论文做基建，创业公司做产品抢用户——所以一开源，砸的是所有订阅制玩家的定价权。</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>一、3D 该怎么「存」：从 mesh 到 NeRF</h2>
+        <p>
+          想让模型生成一个 3D 物体，第一件事就卡住了：<strong>在神经网络眼里，3D 物体长什么样？</strong>
+        </p>
+        <p>
+          游戏行业早有标准答案——mesh，一堆顶点连线围成面。听起来很自然，但它有个要命的毛病：
+          <strong>拓扑太乱</strong>。顶点怎么连、连几个，毫无规律。而神经网络最讨厌没规律的东西。
+        </p>
+        <p>
+          换个角度：<strong>别存形状了，存「空间里每个点离表面有多远」。</strong>
+          在物体外面为正，在里面为负，整个物体就变成一张连续的距离地图。这叫
+          <strong>SDF</strong>（Signed Distance Function，符号距离函数）。
+          可以想象成把一座雕塑泡进果冻，然后记录果冻里每一个点离雕塑表面的距离。
+        </p>
+        <p>
+          2019 年，<strong>DeepSDF</strong> 第一个把它喂进神经网络：输入一个坐标，输出一个距离。
+          百万个模型压进去，它就成了张「3D 形状的压缩表」。<strong>神经网络第一次被当成 3D 数据库用。</strong>
+        </p>
+        <p>
+          一年后，另一群人走得更远——不存表面了，<strong>干脆把整个空间都存下来</strong>。
+          这伙人叫 <strong>NeRF</strong>（Neural Radiance Fields，神经辐射场，2020，UC Berkeley）。
+        </p>
+        <p>
+          做法是：给网络一对输入（一个坐标 + 一个观察方向），它回两样东西——这个位置
+          <strong>是什么颜色</strong>、<strong>有多实</strong>（密度）。然后从相机位置往场景里射一条线，
+          沿线一路采样、每个点问一遍网络，再把颜色一层层叠起来。<strong>一张照片就这么「算」出来了。</strong>
+        </p>
+                <figure>
+          <svg viewBox="0 0 900 320" role="img" aria-label="NeRF 渲染一张照片的流程：从相机射出一条光线，沿线采样约一百个点，每个点都要问一次神经网络得到颜色和密度，最后叠加成这一个像素；一张 1080p 有约两百万像素，每个都要走同一套流程">
+            <defs>
+              <marker id="f1-g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                <path d="M0 0 L10 5 L0 10 z" class="n-mk"></path>
+              </marker>
+              <marker id="f1-h" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                <path d="M0 0 L10 5 L0 10 z" class="n-mk-hot"></path>
+              </marker>
+              <marker id="f1-o" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                <path d="M0 0 L10 5 L0 10 z" class="n-mk-ok"></path>
+              </marker>
+            </defs>
+            <rect x="0" y="20" width="250" height="86" rx="7" class="n-box"></rect>
+            <text x="125" y="54" text-anchor="middle" font-size="16" font-weight="600" class="n-t">① 一条光线</text>
+            <text x="125" y="78" text-anchor="middle" font-size="13" class="n-s">从相机出发，穿过一个像素</text>
+            <line x1="250" y1="63" x2="325" y2="63" class="n-e" marker-end="url(#f1-g)"></line>
+            <rect x="325" y="20" width="250" height="86" rx="7" class="n-box"></rect>
+            <text x="450" y="54" text-anchor="middle" font-size="16" font-weight="600" class="n-t">② 沿线采样约 100 个点</text>
+            <text x="450" y="78" text-anchor="middle" font-size="13" class="n-s">每个点问一次网络</text>
+            <line x1="575" y1="63" x2="650" y2="63" class="n-e" marker-end="url(#f1-g)"></line>
+            <rect x="650" y="20" width="250" height="86" rx="7" class="n-box"></rect>
+            <text x="775" y="54" text-anchor="middle" font-size="16" font-weight="600" class="n-t">③ 叠成这一个像素</text>
+            <text x="775" y="78" text-anchor="middle" font-size="13" class="n-s">颜色按密度加权累加</text>
+            <line x1="40" y1="180" x2="860" y2="180" class="n-e"></line>
+            <circle cx="140" cy="180" r="4.5" class="n-dot"></circle>
+            <circle cx="240" cy="180" r="4.5" class="n-dot"></circle>
+            <circle cx="340" cy="180" r="4.5" class="n-dot"></circle>
+            <circle cx="440" cy="180" r="4.5" class="n-dot"></circle>
+            <circle cx="540" cy="180" r="4.5" class="n-dot"></circle>
+            <circle cx="640" cy="180" r="4.5" class="n-dot"></circle>
+            <circle cx="740" cy="180" r="4.5" class="n-dot"></circle>
+            <text x="450" y="206" text-anchor="middle" font-size="12.5" class="n-s">光线上的采样点</text>
+            <line x1="450" y1="174" x2="450" y2="112" class="n-e" marker-end="url(#f1-g)"></line>
+            <text x="462" y="146" text-anchor="start" font-size="12.5" class="n-s">每个点给网络一对输入：(位置, 方向) → 得到 (颜色, 密度)</text>
+            <rect x="0" y="220" width="900" height="82" rx="7" class="n-box-hot"></rect>
+            <text x="450" y="252" text-anchor="middle" font-size="15" font-weight="700" class="n-hot">一张 1080p ≈ 200 万个像素</text>
+            <text x="450" y="276" text-anchor="middle" font-size="13" class="n-hot-s">同一套流程要走 200 万遍 —— 训练以小时计，渲染远离实时</text>
+          </svg>
+          <figcaption>
+            NeRF 渲染<strong>一个像素</strong>的完整流程。注意第二步——「每个点」，这就是它慢的全部原因。
+          </figcaption>
+        </figure>
+        <p class="callout">
+          <strong>一个几百 KB 的小网络，装下了一整个世界。</strong>
+          <span>
+            NeRF 拿下 ECCV 2020 荣誉提名，随后几百篇变体井喷，硬生生炸出一个新领域：神经渲染。
+            代价是上面那张图里的第二步——每个像素都要把这条路走一遍。
+          </span>
+        </p>
+      </section>
+
+      <section class="section">
+        <h2>二、NeRF 的致命伤：太慢</h2>
+        <p>
+          渲染<strong>一个像素</strong>要沿线采样几十上百个点，每个点都得跑一遍神经网络。
+          而一张 1080p 的画面有 200 万个像素。训练一个场景几个小时起步，训完还只能渲染这
+          <strong>一个</strong>场景——想换个东西？从头再来。
+        </p>
+        <p>于是开始打补丁：</p>
+        <ul>
+          <li><strong>pixelNeRF</strong>（2021）：给一张照片直接推理出 NeRF，终于不用一个场景训一次。</li>
+          <li><strong>Instant-NGP</strong>（NVIDIA，2022）：把那个大 MLP 换成一堆多分辨率哈希表，训练时间从<strong>小时</strong>砍到<strong>秒</strong>。</li>
+        </ul>
+        <p>
+          但真正的革命在 2023 年。SIGGRAPH 2023，法国 INRIA 的一群人甩出一篇
+          <strong>3D Gaussian Splatting</strong>（3DGS），思路清奇到：<strong>神经网络？扔了。</strong>
+        </p>
+        <p>
+          改用几百万个带颜色的小椭圆（高斯椭球），直接把场景「堆」出来。
+          每个椭球有自己的位置、大小、朝向、颜色、透明度；渲染时按远近排个序，一层层叠上去——
+          <strong>纯光栅化，一次神经网络推理都不用。</strong>
+          结果是 1080p 实时 100+ FPS，画质不输 NeRF，快约 100 倍。
+        </p>
+                <figure>
+          <svg viewBox="0 0 900 400" role="img" aria-label="左右对比：左边 NeRF 逐个采样点过 MLP，像素数乘以采样点全部要过网络；右边 3DGS 用几百万个高斯椭球排序后直接光栅化，渲染时不跑任何神经网络">
+            <defs>
+              <marker id="f2-g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                <path d="M0 0 L10 5 L0 10 z" class="n-mk"></path>
+              </marker>
+              <marker id="f2-h" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                <path d="M0 0 L10 5 L0 10 z" class="n-mk-hot"></path>
+              </marker>
+              <marker id="f2-o" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                <path d="M0 0 L10 5 L0 10 z" class="n-mk-ok"></path>
+              </marker>
+            </defs>
+            <rect x="0" y="0" width="430" height="300" rx="7" class="n-panel"></rect>
+            <text x="215" y="36" text-anchor="middle" font-size="16" font-weight="600" class="n-t">NeRF：逐点问网络</text>
+            <text x="215" y="58" text-anchor="middle" font-size="12.5" class="n-s">每个采样点单独过一次 MLP</text>
+            <line x1="40" y1="120" x2="390" y2="120" class="n-e"></line>
+            <circle cx="60" cy="120" r="4.5" class="n-dot"></circle>
+            <circle cx="110" cy="120" r="4.5" class="n-dot"></circle>
+            <circle cx="160" cy="120" r="4.5" class="n-dot"></circle>
+            <circle cx="210" cy="120" r="4.5" class="n-dot"></circle>
+            <circle cx="260" cy="120" r="4.5" class="n-dot"></circle>
+            <circle cx="310" cy="120" r="4.5" class="n-dot"></circle>
+            <circle cx="360" cy="120" r="4.5" class="n-dot"></circle>
+            <rect x="62" y="152" width="66" height="42" rx="7" class="n-box"></rect>
+            <text x="95" y="178" text-anchor="middle" font-size="13" font-weight="600" class="n-s">MLP</text>
+            <rect x="162" y="152" width="66" height="42" rx="7" class="n-box"></rect>
+            <text x="195" y="178" text-anchor="middle" font-size="13" font-weight="600" class="n-s">MLP</text>
+            <rect x="262" y="152" width="66" height="42" rx="7" class="n-box"></rect>
+            <text x="295" y="178" text-anchor="middle" font-size="13" font-weight="600" class="n-s">MLP</text>
+            <text x="362" y="178" text-anchor="middle" font-size="16" class="n-t">…</text>
+            <text x="215" y="232" text-anchor="middle" font-size="13" font-weight="600" class="n-hot">像素数 × 采样点，全都要过一遍网络</text>
+            <text x="215" y="256" text-anchor="middle" font-size="12.5" class="n-s">没有可预计算的中间结果</text>
+            <rect x="470" y="0" width="430" height="300" rx="7" class="n-panel"></rect>
+            <text x="685" y="36" text-anchor="middle" font-size="16" font-weight="600" class="n-t">3DGS：直接叠椭圆</text>
+            <text x="685" y="58" text-anchor="middle" font-size="12.5" class="n-s">几百万个高斯椭球，排序后光栅化</text>
+            <ellipse cx="644.1" cy="118.4" rx="15.0" ry="9.7" transform="rotate(80 644.1 118.4)" class="n-ell-ok"></ellipse>
+            <ellipse cx="627.9" cy="138.4" rx="10.6" ry="5.4" transform="rotate(30 627.9 138.4)" class="n-ell"></ellipse>
+            <ellipse cx="669.8" cy="139.5" rx="9.8" ry="7.2" transform="rotate(75 669.8 139.5)" class="n-ell"></ellipse>
+            <ellipse cx="701.0" cy="228.3" rx="14.5" ry="10.2" transform="rotate(39 701.0 228.3)" class="n-ell-ok"></ellipse>
+            <ellipse cx="750.6" cy="216.3" rx="11.3" ry="7.3" transform="rotate(174 750.6 216.3)" class="n-ell"></ellipse>
+            <ellipse cx="700.4" cy="160.1" rx="14.9" ry="8.5" transform="rotate(180 700.4 160.1)" class="n-ell"></ellipse>
+            <ellipse cx="597.1" cy="126.4" rx="11.4" ry="9.7" transform="rotate(91 597.1 126.4)" class="n-ell-ok"></ellipse>
+            <ellipse cx="570.9" cy="121.9" rx="14.9" ry="5.3" transform="rotate(55 570.9 121.9)" class="n-ell"></ellipse>
+            <ellipse cx="621.6" cy="132.8" rx="16.7" ry="10.2" transform="rotate(38 621.6 132.8)" class="n-ell"></ellipse>
+            <ellipse cx="560.8" cy="167.3" rx="8.7" ry="7.2" transform="rotate(115 560.8 167.3)" class="n-ell-ok"></ellipse>
+            <ellipse cx="740.6" cy="98.7" rx="8.5" ry="6.4" transform="rotate(139 740.6 98.7)" class="n-ell"></ellipse>
+            <ellipse cx="723.5" cy="179.9" rx="9.9" ry="10.1" transform="rotate(43 723.5 179.9)" class="n-ell"></ellipse>
+            <ellipse cx="653.9" cy="115.3" rx="15.0" ry="7.5" transform="rotate(19 653.9 115.3)" class="n-ell-ok"></ellipse>
+            <ellipse cx="766.5" cy="183.5" rx="8.3" ry="6.2" transform="rotate(44 766.5 183.5)" class="n-ell"></ellipse>
+            <ellipse cx="817.7" cy="167.3" rx="12.8" ry="6.3" transform="rotate(163 817.7 167.3)" class="n-ell"></ellipse>
+            <ellipse cx="711.9" cy="104.0" rx="12.1" ry="7.5" transform="rotate(102 711.9 104.0)" class="n-ell-ok"></ellipse>
+            <ellipse cx="691.3" cy="192.4" rx="13.5" ry="7.6" transform="rotate(127 691.3 192.4)" class="n-ell"></ellipse>
+            <ellipse cx="659.6" cy="170.9" rx="14.9" ry="9.6" transform="rotate(18 659.6 170.9)" class="n-ell"></ellipse>
+            <ellipse cx="727.5" cy="117.5" rx="15.5" ry="7.0" transform="rotate(65 727.5 117.5)" class="n-ell-ok"></ellipse>
+            <ellipse cx="581.1" cy="115.0" rx="9.5" ry="10.1" transform="rotate(171 581.1 115.0)" class="n-ell"></ellipse>
+            <ellipse cx="730.0" cy="127.0" rx="11.8" ry="5.3" transform="rotate(176 730.0 127.0)" class="n-ell"></ellipse>
+            <ellipse cx="752.0" cy="180.9" rx="15.3" ry="10.6" transform="rotate(129 752.0 180.9)" class="n-ell-ok"></ellipse>
+            <ellipse cx="694.4" cy="172.8" rx="12.6" ry="10.8" transform="rotate(81 694.4 172.8)" class="n-ell"></ellipse>
+            <ellipse cx="733.2" cy="123.4" rx="13.9" ry="7.5" transform="rotate(149 733.2 123.4)" class="n-ell"></ellipse>
+            <ellipse cx="671.6" cy="197.0" rx="8.9" ry="8.2" transform="rotate(144 671.6 197.0)" class="n-ell-ok"></ellipse>
+            <ellipse cx="655.6" cy="118.5" rx="12.2" ry="10.7" transform="rotate(157 655.6 118.5)" class="n-ell"></ellipse>
+            <ellipse cx="650.1" cy="137.0" rx="8.7" ry="11.0" transform="rotate(25 650.1 137.0)" class="n-ell"></ellipse>
+            <ellipse cx="769.4" cy="198.6" rx="8.2" ry="10.6" transform="rotate(65 769.4 198.6)" class="n-ell-ok"></ellipse>
+            <ellipse cx="754.6" cy="178.8" rx="8.7" ry="8.6" transform="rotate(53 754.6 178.8)" class="n-ell"></ellipse>
+            <ellipse cx="559.2" cy="170.2" rx="12.5" ry="8.1" transform="rotate(71 559.2 170.2)" class="n-ell"></ellipse>
+            <text x="685" y="232" text-anchor="middle" font-size="13" font-weight="600" class="n-ok">渲染时零神经网络推理</text>
+            <text x="685" y="256" text-anchor="middle" font-size="12.5" class="n-s">位置 / 大小 / 朝向 / 颜色 / 透明度 都是显式参数</text>
+            <rect x="0" y="330" width="900" height="62" rx="7" class="n-box-hot"></rect>
+            <text x="450" y="359" text-anchor="middle" font-size="14.5" font-weight="700" class="n-hot">画质接近，速度差约两个数量级：1080p 实时 100+ FPS</text>
+            <text x="450" y="382" text-anchor="middle" font-size="12.5" class="n-hot-s">NeRF 是「背下来」，3DGS 是「摆出来」</text>
+          </svg>
+          <figcaption>
+            同一件事的两条路。左边每加一个像素就多一份网络计算；右边把计算一次性前移到优化阶段，渲染只做排序和叠加。
+          </figcaption>
+        </figure>
+        <p>
+          一个不严谨但好记的比方：NeRF 像「一个记性超群的人，把每个角落死死背在脑子里，你问他一句他答一句」；
+          3DGS 像「直接往空中撒几百万颗珠子，你从哪个角度看，都是珠子拼出来的画」。
+        </p>
+        <p><strong>表示的问题到这儿告一段落。接下来才是正题：生成。</strong></p>
+      </section>
+
+      <section class="section">
+        <h2>三、没有 3D 数据，怎么生成：借一个 2D 评委</h2>
+        <p>
+          2022 年，目标变成「输入一句话，输出一个 3D 模型」。然后撞上第二堵墙：
+          <strong>没有 3D 训练数据。</strong>
+          互联网上有几十亿张带文字的图片，文生图扩散模型就是吃这个长大的；但高质量 3D 模型全网翻个底朝天也就百万级，
+          还都是椅子、桌子、汽车这种。数据量差着三个数量级，硬训喂不饱。
+        </p>
+        <p>
+          Google 的 <strong>DreamFusion</strong>（2022.9）给了一个天才到离谱的答案：
+          <strong>没有 3D 评委，那就借 2D 的用。</strong>
+        </p>
+        <p>
+          四步：随便初始化一个 3D 表示（一开始就是一坨糊）；从它身上渲染出一张图；故意往图上加噪声，
+          请一个<strong>冻结的</strong>、已经看过几十亿张图的 2D 扩散模型来猜「这坨东西里面加的噪声长什么样」；
+          它猜出来的噪声和实际加的噪声之间的<strong>差</strong>，就是「这张图哪里不像真的」——把这个差当成梯度，
+          回头去改 3D 参数。
+        </p>
+                <figure>
+          <svg viewBox="0 0 900 370" role="img" aria-label="SDS 闭环：先渲染出一张图，加上噪声，交给冻结的二维扩散模型去猜噪声，用预测噪声与实际噪声的差作为梯度回传修改三维参数，如此循环；全程不需要三维训练数据">
+            <defs>
+              <marker id="f3-g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                <path d="M0 0 L10 5 L0 10 z" class="n-mk"></path>
+              </marker>
+              <marker id="f3-h" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                <path d="M0 0 L10 5 L0 10 z" class="n-mk-hot"></path>
+              </marker>
+              <marker id="f3-o" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                <path d="M0 0 L10 5 L0 10 z" class="n-mk-ok"></path>
+              </marker>
+            </defs>
+            <rect x="20" y="30" width="230" height="80" rx="7" class="n-box"></rect>
+            <text x="135" y="62" text-anchor="middle" font-size="15" font-weight="600" class="n-t">① 渲染一张图</text>
+            <text x="135" y="86" text-anchor="middle" font-size="12.5" class="n-s">从当前 3D 参数渲出画面</text>
+            <line x1="250" y1="70" x2="335" y2="70" class="n-e" marker-end="url(#f3-g)"></line>
+            <rect x="335" y="30" width="230" height="80" rx="7" class="n-box"></rect>
+            <text x="450" y="62" text-anchor="middle" font-size="15" font-weight="600" class="n-t">② 往上加噪声</text>
+            <text x="450" y="86" text-anchor="middle" font-size="12.5" class="n-s">故意把这张图弄脏</text>
+            <line x1="565" y1="70" x2="650" y2="70" class="n-e" marker-end="url(#f3-g)"></line>
+            <rect x="650" y="30" width="230" height="80" rx="7" class="n-box-soft"></rect>
+            <text x="765" y="62" text-anchor="middle" font-size="14" font-weight="600" class="n-t">③ 冻结的 2D 扩散模型</text>
+            <text x="765" y="86" text-anchor="middle" font-size="12.5" class="n-s">只做一件事：猜噪声长什么样</text>
+            <rect x="190" y="200" width="520" height="86" rx="7" class="n-box-hot"></rect>
+            <text x="450" y="234" text-anchor="middle" font-size="15" font-weight="700" class="n-hot">④ 预测噪声 − 实际噪声 = 「哪里不像真的」</text>
+            <text x="450" y="260" text-anchor="middle" font-size="13" class="n-hot-s">把这个差当作梯度回传，去改 3D 参数</text>
+            <path d="M765 110 L765 243 L714 243" fill="none" class="n-e-hot" marker-end="url(#f3-h)"></path>
+            <path d="M190 243 L135 243 L135 114" fill="none" class="n-e" marker-end="url(#f3-g)"></path>
+            <text x="450" y="320" text-anchor="middle" font-size="14" font-weight="700" class="n-t">渲染 → 加噪 → 预测 → 回传，循环到评委点头</text>
+            <text x="450" y="346" text-anchor="middle" font-size="12.5" class="n-s">2D 扩散模型当评委，3D 模型当学生 —— 全程不需要任何 3D 数据</text>
+          </svg>
+          <figcaption>
+            分数蒸馏采样（SDS）。冻结的 2D 扩散模型只是个「评委」——它从没学过 3D，只负责回答「这张图哪里不像真的」。
+          </figcaption>
+        </figure>
+        <p>
+          这套路叫 <strong>SDS</strong>（Score Distillation Sampling，分数蒸馏采样），是整个文生 3D 的奠基技术。
+          后续就卷疯了：
+        </p>
+        <ul>
+          <li><strong>Magic3D</strong>（NVIDIA，2023）：粗、细两阶段走，快 2 倍、分辨率高 8 倍，<strong>第一次直接吐出带纹理的 mesh</strong>。</li>
+          <li><strong>ProlificDreamer</strong>（清华，2023）：升级蒸馏算法（VSD），治好了过饱和，质量起飞。</li>
+        </ul>
+        <p>但 SDS 有三个毛病，怎么治都治不好：</p>
+        <ol>
+          <li><strong>慢</strong>——优化一个模型几十分钟。</li>
+          <li><strong>糊</strong>——出来的东西像被水泡过，过于平滑。</li>
+          <li><strong>多面脸。</strong></li>
+        </ol>
+        <p>
+          第三个值得单独讲，它有个专有名词叫 <strong>Janus 问题</strong>（雅努斯，罗马神话里前后面各一张脸的神）。
+        </p>
+        <p>
+          为什么会长出多面脸？想想那个 2D 评委——它这辈子只见过<strong>照片</strong>，
+          而照片永远只是一个面。你问它「这个物体的背面长什么样」，它真不知道。
+          于是它一脸笃定地指导学生：「正面，应该长这样。」学生就傻乎乎地把物体的
+          <strong>每一个面</strong>都做成了正面。结果就是：一个模型，三张脸。
+        </p>
+        <p class="callout">
+          <strong>评委不是不专业，是它压根没背过背面。</strong>
+          <span>这也点明了下一步的方向：得换一个懂多视角的评委。</span>
+        </p>
+      </section>
+
+      <section class="section">
+        <h2>四、换个思路：先看懂图，再重建</h2>
+        <p>Janus 的根子在于「评委没有 3D 概念」。那换一个懂多视角的评委呢？2023 年，三条路同时爆发。</p>
+        <div class="cards">
+          <article>
+            <h3>路线 A · 视角扩散</h3>
+            <p>
+              <strong>Zero-1-to-3</strong>（Columbia，2023）训一个扩散模型，输入单张图 + 一句「从左边 30 度看」，
+              吐出那个角度下的新画面——绕开 3D，只学「视角变换」这一件事。
+              后来的 Zero123++、<strong>InstantMesh</strong>（腾讯，2024）都走这条路：单图 → 脑补 6 个视角 → 重建 3D，全程 10 秒。
+            </p>
+          </article>
+          <article>
+            <h3>路线 B · 前馈重建</h3>
+            <p>
+              <strong>LRM</strong>（Adobe，2023）把 LLM 那套 scaling 直接搬进 3D：5 亿参数 Transformer，
+              100 万 3D 资产喂下去，<strong>单图 5 秒吐出一个 3D</strong>——不优化、不迭代，一次前向传播搞定。
+              Stability AI 和 Tripo 拿它改成 <strong>TripoSR</strong>（2024）：A100 上 <strong>0.5 秒</strong>出模型，还开源了。
+            </p>
+          </article>
+          <article>
+            <h3>路线 C · 3D 原生扩散</h3>
+            <p>
+              OpenAI 的 <strong>Shap-E</strong>（2023）不借 2D 了，直接在 3D 空间里做扩散，几秒生成。
+              质量一般，但思路很关键：<strong>让 3D 数据自己学自己。</strong>
+            </p>
+          </article>
+          <article>
+            <h3>三条路的共识</h3>
+            <p>
+              别再用 2D 评委打分了，直接生成 3D。这一步之后，「能不能秒出 3D」不再是问题，
+              新问题是<strong>「秒出来的东西，美术能不能直接用」</strong>。
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>五、终点站：直接生成 mesh</h2>
+        <p>
+          到这儿，AI 已经能「秒出」3D 了。但游戏公司拿到手一看，还是摇头——
+          <strong>因为吐出来的是一坨「密集三角化网格」，几万个乱糟糟的小三角形密密麻麻糊在表面上。</strong>
+        </p>
+        <p>
+          人类美术做的模型恰恰相反：<strong>几千个面，布线干干净净，一条环线顺着肌肉走势绕过去</strong>——
+          行话叫 artist-like mesh。为什么非要讲究布线？因为模型做出来是要动的，要绑骨骼、要做动画。
+          <strong>布线一乱，模型一动就烂</strong>：该弯的地方不弯，该转的地方卡死。
+        </p>
+                <figure>
+          <svg viewBox="0 0 900 390" role="img" aria-label="左右对比两种网格：左边是算法生成的密集三角化，几万个面、连接毫无规律；右边是美术手工拓扑的干净四边网格，几千个面，环线顺着形体走势排列">
+            <rect x="0" y="0" width="430" height="292" rx="7" class="n-panel"></rect>
+            <text x="215" y="36" text-anchor="middle" font-size="15" font-weight="600" class="n-t">AI 直接蒸出来的：密集三角化</text>
+            <polygon points="18.3,61.7 84.8,62.1 58.9,80.3" class="n-tri"></polygon>
+            <polygon points="84.8,62.1 87.0,88.9 58.9,80.3" class="n-tri"></polygon>
+            <polygon points="87.0,88.9 25.6,95.3 58.9,80.3" class="n-tri"></polygon>
+            <polygon points="25.6,95.3 18.3,61.7 58.9,80.3" class="n-tri"></polygon>
+            <polygon points="84.8,52.9 149.9,60.1 115.1,67.1" class="n-tri"></polygon>
+            <polygon points="149.9,60.1 148.3,91.4 115.1,67.1" class="n-tri"></polygon>
+            <polygon points="148.3,91.4 90.2,91.3 115.1,67.1" class="n-tri"></polygon>
+            <polygon points="90.2,91.3 84.8,52.9 115.1,67.1" class="n-tri"></polygon>
+            <polygon points="155.0,54.8 215.5,52.8 188.9,76.7" class="n-tri"></polygon>
+            <polygon points="215.5,52.8 209.8,94.8 188.9,76.7" class="n-tri"></polygon>
+            <polygon points="209.8,94.8 153.6,89.7 188.9,76.7" class="n-tri"></polygon>
+            <polygon points="153.6,89.7 155.0,54.8 188.9,76.7" class="n-tri"></polygon>
+            <polygon points="217.9,57.4 285.1,54.9 241.9,75.6" class="n-tri"></polygon>
+            <polygon points="285.1,54.9 279.4,90.8 241.9,75.6" class="n-tri"></polygon>
+            <polygon points="279.4,90.8 209.2,95.4 241.9,75.6" class="n-tri"></polygon>
+            <polygon points="209.2,95.4 217.9,57.4 241.9,75.6" class="n-tri"></polygon>
+            <polygon points="276.3,53.7 349.4,63.7 315.3,66.6" class="n-tri"></polygon>
+            <polygon points="349.4,63.7 346.5,94.1 315.3,66.6" class="n-tri"></polygon>
+            <polygon points="346.5,94.1 275.2,88.5 315.3,66.6" class="n-tri"></polygon>
+            <polygon points="275.2,88.5 276.3,53.7 315.3,66.6" class="n-tri"></polygon>
+            <polygon points="348.7,60.8 412.6,52.5 376.3,79.7" class="n-tri"></polygon>
+            <polygon points="412.6,52.5 402.6,96.5 376.3,79.7" class="n-tri"></polygon>
+            <polygon points="402.6,96.5 344.0,98.5 376.3,79.7" class="n-tri"></polygon>
+            <polygon points="344.0,98.5 348.7,60.8 376.3,79.7" class="n-tri"></polygon>
+            <polygon points="22.6,93.3 89.7,93.7 61.3,118.5" class="n-tri"></polygon>
+            <polygon points="89.7,93.7 87.6,128.2 61.3,118.5" class="n-tri"></polygon>
+            <polygon points="87.6,128.2 23.4,134.2 61.3,118.5" class="n-tri"></polygon>
+            <polygon points="23.4,134.2 22.6,93.3 61.3,118.5" class="n-tri"></polygon>
+            <polygon points="83.2,90.6 148.2,94.4 113.5,110.9" class="n-tri"></polygon>
+            <polygon points="148.2,94.4 153.0,131.7 113.5,110.9" class="n-tri"></polygon>
+            <polygon points="153.0,131.7 86.4,136.7 113.5,110.9" class="n-tri"></polygon>
+            <polygon points="86.4,136.7 83.2,90.6 113.5,110.9" class="n-tri"></polygon>
+            <polygon points="155.2,95.0 209.2,91.9 180.1,120.8" class="n-tri"></polygon>
+            <polygon points="209.2,91.9 220.0,135.0 180.1,120.8" class="n-tri"></polygon>
+            <polygon points="220.0,135.0 145.1,131.3 180.1,120.8" class="n-tri"></polygon>
+            <polygon points="145.1,131.3 155.2,95.0 180.1,120.8" class="n-tri"></polygon>
+            <polygon points="212.2,99.4 277.8,97.2 244.9,117.6" class="n-tri"></polygon>
+            <polygon points="277.8,97.2 279.4,135.2 244.9,117.6" class="n-tri"></polygon>
+            <polygon points="279.4,135.2 215.3,126.7 244.9,117.6" class="n-tri"></polygon>
+            <polygon points="215.3,126.7 212.2,99.4 244.9,117.6" class="n-tri"></polygon>
+            <polygon points="278.6,99.7 340.0,94.1 316.5,109.0" class="n-tri"></polygon>
+            <polygon points="340.0,94.1 342.2,128.4 316.5,109.0" class="n-tri"></polygon>
+            <polygon points="342.2,128.4 282.7,134.8 316.5,109.0" class="n-tri"></polygon>
+            <polygon points="282.7,134.8 278.6,99.7 316.5,109.0" class="n-tri"></polygon>
+            <polygon points="348.6,99.3 402.0,91.5 378.6,110.9" class="n-tri"></polygon>
+            <polygon points="402.0,91.5 409.5,134.1 378.6,110.9" class="n-tri"></polygon>
+            <polygon points="409.5,134.1 340.0,127.8 378.6,110.9" class="n-tri"></polygon>
+            <polygon points="340.0,127.8 348.6,99.3 378.6,110.9" class="n-tri"></polygon>
+            <polygon points="16.7,128.1 84.1,126.5 56.4,142.5" class="n-tri"></polygon>
+            <polygon points="84.1,126.5 85.5,169.0 56.4,142.5" class="n-tri"></polygon>
+            <polygon points="85.5,169.0 17.7,168.2 56.4,142.5" class="n-tri"></polygon>
+            <polygon points="17.7,168.2 16.7,128.1 56.4,142.5" class="n-tri"></polygon>
+            <polygon points="81.9,127.8 154.2,135.0 113.9,145.5" class="n-tri"></polygon>
+            <polygon points="154.2,135.0 149.6,161.2 113.9,145.5" class="n-tri"></polygon>
+            <polygon points="149.6,161.2 82.2,163.9 113.9,145.5" class="n-tri"></polygon>
+            <polygon points="82.2,163.9 81.9,127.8 113.9,145.5" class="n-tri"></polygon>
+            <polygon points="150.9,136.3 217.6,135.9 190.2,161.0" class="n-tri"></polygon>
+            <polygon points="217.6,135.9 217.9,172.8 190.2,161.0" class="n-tri"></polygon>
+            <polygon points="217.9,172.8 149.4,168.5 190.2,161.0" class="n-tri"></polygon>
+            <polygon points="149.4,168.5 150.9,136.3 190.2,161.0" class="n-tri"></polygon>
+            <polygon points="212.4,129.4 279.7,132.1 254.4,158.0" class="n-tri"></polygon>
+            <polygon points="279.7,132.1 284.6,173.0 254.4,158.0" class="n-tri"></polygon>
+            <polygon points="284.6,173.0 218.6,166.5 254.4,158.0" class="n-tri"></polygon>
+            <polygon points="218.6,166.5 212.4,129.4 254.4,158.0" class="n-tri"></polygon>
+            <polygon points="279.3,130.5 340.2,127.3 312.6,142.8" class="n-tri"></polygon>
+            <polygon points="340.2,127.3 340.2,168.7 312.6,142.8" class="n-tri"></polygon>
+            <polygon points="340.2,168.7 284.5,163.9 312.6,142.8" class="n-tri"></polygon>
+            <polygon points="284.5,163.9 279.3,130.5 312.6,142.8" class="n-tri"></polygon>
+            <polygon points="347.3,129.5 411.2,132.4 383.8,153.1" class="n-tri"></polygon>
+            <polygon points="411.2,132.4 407.1,167.8 383.8,153.1" class="n-tri"></polygon>
+            <polygon points="407.1,167.8 349.7,163.3 383.8,153.1" class="n-tri"></polygon>
+            <polygon points="349.7,163.3 347.3,129.5 383.8,153.1" class="n-tri"></polygon>
+            <polygon points="21.5,172.2 90.4,171.7 62.4,193.9" class="n-tri"></polygon>
+            <polygon points="90.4,171.7 88.1,200.6 62.4,193.9" class="n-tri"></polygon>
+            <polygon points="88.1,200.6 27.9,205.9 62.4,193.9" class="n-tri"></polygon>
+            <polygon points="27.9,205.9 21.5,172.2 62.4,193.9" class="n-tri"></polygon>
+            <polygon points="85.7,167.7 147.9,168.2 115.0,183.8" class="n-tri"></polygon>
+            <polygon points="147.9,168.2 147.7,198.5 115.0,183.8" class="n-tri"></polygon>
+            <polygon points="147.7,198.5 86.4,200.0 115.0,183.8" class="n-tri"></polygon>
+            <polygon points="86.4,200.0 85.7,167.7 115.0,183.8" class="n-tri"></polygon>
+            <polygon points="148.6,170.1 211.4,161.2 176.1,188.2" class="n-tri"></polygon>
+            <polygon points="211.4,161.2 213.1,198.3 176.1,188.2" class="n-tri"></polygon>
+            <polygon points="213.1,198.3 148.0,199.5 176.1,188.2" class="n-tri"></polygon>
+            <polygon points="148.0,199.5 148.6,170.1 176.1,188.2" class="n-tri"></polygon>
+            <polygon points="212.1,168.1 275.9,164.1 249.3,192.7" class="n-tri"></polygon>
+            <polygon points="275.9,164.1 276.2,203.8 249.3,192.7" class="n-tri"></polygon>
+            <polygon points="276.2,203.8 220.2,207.6 249.3,192.7" class="n-tri"></polygon>
+            <polygon points="220.2,207.6 212.1,168.1 249.3,192.7" class="n-tri"></polygon>
+            <polygon points="281.3,161.4 345.3,164.1 311.5,184.2" class="n-tri"></polygon>
+            <polygon points="345.3,164.1 340.3,203.4 311.5,184.2" class="n-tri"></polygon>
+            <polygon points="340.3,203.4 279.7,209.4 311.5,184.2" class="n-tri"></polygon>
+            <polygon points="279.7,209.4 281.3,161.4 311.5,184.2" class="n-tri"></polygon>
+            <polygon points="344.1,171.8 407.1,170.4 379.1,181.2" class="n-tri"></polygon>
+            <polygon points="407.1,170.4 411.6,203.9 379.1,181.2" class="n-tri"></polygon>
+            <polygon points="411.6,203.9 342.7,201.4 379.1,181.2" class="n-tri"></polygon>
+            <polygon points="342.7,201.4 344.1,171.8 379.1,181.2" class="n-tri"></polygon>
+            <polygon points="18.4,200.9 80.9,201.8 61.1,224.1" class="n-tri"></polygon>
+            <polygon points="80.9,201.8 89.7,236.2 61.1,224.1" class="n-tri"></polygon>
+            <polygon points="89.7,236.2 26.7,243.0 61.1,224.1" class="n-tri"></polygon>
+            <polygon points="26.7,243.0 18.4,200.9 61.1,224.1" class="n-tri"></polygon>
+            <polygon points="82.8,208.9 151.5,206.6 111.6,226.3" class="n-tri"></polygon>
+            <polygon points="151.5,206.6 152.5,235.6 111.6,226.3" class="n-tri"></polygon>
+            <polygon points="152.5,235.6 82.1,236.2 111.6,226.3" class="n-tri"></polygon>
+            <polygon points="82.1,236.2 82.8,208.9 111.6,226.3" class="n-tri"></polygon>
+            <polygon points="156.5,207.1 210.6,204.3 188.4,221.5" class="n-tri"></polygon>
+            <polygon points="210.6,204.3 215.5,239.9 188.4,221.5" class="n-tri"></polygon>
+            <polygon points="215.5,239.9 152.0,234.3 188.4,221.5" class="n-tri"></polygon>
+            <polygon points="152.0,234.3 156.5,207.1 188.4,221.5" class="n-tri"></polygon>
+            <polygon points="210.3,197.7 276.1,199.2 239.8,226.7" class="n-tri"></polygon>
+            <polygon points="276.1,199.2 275.4,244.9 239.8,226.7" class="n-tri"></polygon>
+            <polygon points="275.4,244.9 212.9,242.1 239.8,226.7" class="n-tri"></polygon>
+            <polygon points="212.9,242.1 210.3,197.7 239.8,226.7" class="n-tri"></polygon>
+            <polygon points="280.2,199.5 343.7,198.6 317.7,212.2" class="n-tri"></polygon>
+            <polygon points="343.7,198.6 342.3,238.9 317.7,212.2" class="n-tri"></polygon>
+            <polygon points="342.3,238.9 274.0,238.1 317.7,212.2" class="n-tri"></polygon>
+            <polygon points="274.0,238.1 280.2,199.5 317.7,212.2" class="n-tri"></polygon>
+            <polygon points="339.4,205.3 403.5,198.2 382.6,222.8" class="n-tri"></polygon>
+            <polygon points="403.5,198.2 412.1,239.1 382.6,222.8" class="n-tri"></polygon>
+            <polygon points="412.1,239.1 346.4,242.8 382.6,222.8" class="n-tri"></polygon>
+            <polygon points="346.4,242.8 339.4,205.3 382.6,222.8" class="n-tri"></polygon>
+            <text x="215" y="274" text-anchor="middle" font-size="12.5" class="n-s">几万个面，顶点怎么连毫无规律</text>
+            <rect x="470" y="0" width="430" height="292" rx="7" class="n-panel"></rect>
+            <text x="685" y="36" text-anchor="middle" font-size="15" font-weight="600" class="n-t">美术手搓的：干净四边布线</text>
+            <polyline points="492.0,58.0 556.3,62.7 620.7,63.9 685.0,60.7 749.3,55.6 813.7,52.2 878.0,53.1" class="n-quad"></polyline>
+            <polyline points="492.0,103.5 556.3,109.9 620.7,111.6 685.0,107.2 749.3,100.1 813.7,95.5 878.0,96.8" class="n-quad"></polyline>
+            <polyline points="492.0,149.0 556.3,157.2 620.7,159.3 685.0,153.8 749.3,144.7 813.7,138.9 878.0,140.5" class="n-quad"></polyline>
+            <polyline points="492.0,194.5 556.3,204.4 620.7,207.0 685.0,200.3 749.3,189.3 813.7,182.2 878.0,184.2" class="n-quad"></polyline>
+            <polyline points="492.0,240.0 556.3,251.7 620.7,254.7 685.0,246.8 749.3,233.9 813.7,225.5 878.0,227.9" class="n-quad"></polyline>
+            <polyline points="492.0,58.0 492.0,103.5 492.0,149.0 492.0,194.5 492.0,240.0" class="n-quad"></polyline>
+            <polyline points="556.3,62.7 556.3,109.9 556.3,157.2 556.3,204.4 556.3,251.7" class="n-quad"></polyline>
+            <polyline points="620.7,63.9 620.7,111.6 620.7,159.3 620.7,207.0 620.7,254.7" class="n-quad"></polyline>
+            <polyline points="685.0,60.7 685.0,107.2 685.0,153.8 685.0,200.3 685.0,246.8" class="n-quad"></polyline>
+            <polyline points="749.3,55.6 749.3,100.1 749.3,144.7 749.3,189.3 749.3,233.9" class="n-quad"></polyline>
+            <polyline points="813.7,52.2 813.7,95.5 813.7,138.9 813.7,182.2 813.7,225.5" class="n-quad"></polyline>
+            <polyline points="878.0,53.1 878.0,96.8 878.0,140.5 878.0,184.2 878.0,227.9" class="n-quad"></polyline>
+            <circle cx="492.0" cy="58.0" r="2.6" class="n-dot-ok"></circle>
+            <circle cx="556.3" cy="62.7" r="2.6" class="n-dot-ok"></circle>
+            <circle cx="620.7" cy="63.9" r="2.6" class="n-dot-ok"></circle>
+            <circle cx="685.0" cy="60.7" r="2.6" class="n-dot-ok"></circle>
+            <circle cx="749.3" cy="55.6" r="2.6" class="n-dot-ok"></circle>
+            <circle cx="813.7" cy="52.2" r="2.6" class="n-dot-ok"></circle>
+            <circle cx="878.0" cy="53.1" r="2.6" class="n-dot-ok"></circle>
+            <circle cx="492.0" cy="103.5" r="2.6" class="n-dot-ok"></circle>
+            <circle cx="556.3" cy="109.9" r="2.6" class="n-dot-ok"></circle>
+            <circle cx="620.7" cy="111.6" r="2.6" class="n-dot-ok"></circle>
+            <circle cx="685.0" cy="107.2" r="2.6" class="n-dot-ok"></circle>
+            <circle cx="749.3" cy="100.1" r="2.6" class="n-dot-ok"></circle>
+            <circle cx="813.7" cy="95.5" r="2.6" class="n-dot-ok"></circle>
+            <circle cx="878.0" cy="96.8" r="2.6" class="n-dot-ok"></circle>
+            <circle cx="492.0" cy="149.0" r="2.6" class="n-dot-ok"></circle>
+            <circle cx="556.3" cy="157.2" r="2.6" class="n-dot-ok"></circle>
+            <circle cx="620.7" cy="159.3" r="2.6" class="n-dot-ok"></circle>
+            <circle cx="685.0" cy="153.8" r="2.6" class="n-dot-ok"></circle>
+            <circle cx="749.3" cy="144.7" r="2.6" class="n-dot-ok"></circle>
+            <circle cx="813.7" cy="138.9" r="2.6" class="n-dot-ok"></circle>
+            <circle cx="878.0" cy="140.5" r="2.6" class="n-dot-ok"></circle>
+            <circle cx="492.0" cy="194.5" r="2.6" class="n-dot-ok"></circle>
+            <circle cx="556.3" cy="204.4" r="2.6" class="n-dot-ok"></circle>
+            <circle cx="620.7" cy="207.0" r="2.6" class="n-dot-ok"></circle>
+            <circle cx="685.0" cy="200.3" r="2.6" class="n-dot-ok"></circle>
+            <circle cx="749.3" cy="189.3" r="2.6" class="n-dot-ok"></circle>
+            <circle cx="813.7" cy="182.2" r="2.6" class="n-dot-ok"></circle>
+            <circle cx="878.0" cy="184.2" r="2.6" class="n-dot-ok"></circle>
+            <circle cx="492.0" cy="240.0" r="2.6" class="n-dot-ok"></circle>
+            <circle cx="556.3" cy="251.7" r="2.6" class="n-dot-ok"></circle>
+            <circle cx="620.7" cy="254.7" r="2.6" class="n-dot-ok"></circle>
+            <circle cx="685.0" cy="246.8" r="2.6" class="n-dot-ok"></circle>
+            <circle cx="749.3" cy="233.9" r="2.6" class="n-dot-ok"></circle>
+            <circle cx="813.7" cy="225.5" r="2.6" class="n-dot-ok"></circle>
+            <circle cx="878.0" cy="227.9" r="2.6" class="n-dot-ok"></circle>
+            <text x="685" y="274" text-anchor="middle" font-size="12.5" class="n-s">几千个面，环线顺着走势绕过去</text>
+            <rect x="0" y="322" width="900" height="58" rx="7" class="n-box-hot"></rect>
+            <text x="450" y="356" text-anchor="middle" font-size="14.5" font-weight="700" class="n-hot">AI 生成 1 秒，人工重拓扑 2 天 —— 等于白干</text>
+          </svg>
+          <figcaption>
+            行话里右边叫 artist-like mesh。区别不在面数多少，在于<strong>布线能不能支撑后面的绑定和动画</strong>。
+          </figcaption>
+        </figure>
+        <p>
+          于是 2024 年，最硬核的路线登场：<strong>把 mesh 当成一门语言，让 Transformer 一个 token、一个 token 地「写」出来。</strong>
+        </p>
+        <p>
+          这个脑洞其实 2020 年就有人开过：DeepMind 的 <strong>PolyGen</strong>，先自回归生成顶点序列，再生成面，
+          只是当时没人当回事。到 2024 年这条线彻底爆发：
+        </p>
+        <ul>
+          <li><strong>MeshGPT</strong>（TU Munich，CVPR 2024）：先用 VQ-VAE 把三角形编码成 token，再让 GPT 式模型自回归生成。<strong>第一次生成出紧凑、布线像人做的网格。</strong></li>
+        </ul>
+                <figure>
+          <svg viewBox="0 0 900 320" role="img" aria-label="把网格当语言：三角形被编码成 token 序列，送进 Transformer 自回归生成，出来的面一个个被拼成三维模型；串行的代价是生成一个模型需要四十九秒到二十分钟，成功率可掉到百分之三十以下">
+            <defs>
+              <marker id="f5-g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                <path d="M0 0 L10 5 L0 10 z" class="n-mk"></path>
+              </marker>
+              <marker id="f5-h" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                <path d="M0 0 L10 5 L0 10 z" class="n-mk-hot"></path>
+              </marker>
+              <marker id="f5-o" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                <path d="M0 0 L10 5 L0 10 z" class="n-mk-ok"></path>
+              </marker>
+            </defs>
+            <text x="162" y="52" text-anchor="middle" font-size="12.5" class="n-s">三角形 → token 序列</text>
+            <rect x="20" y="70" width="32" height="32" rx="6" class="n-box"></rect>
+            <polygon points="29,95 36,77 43,95" fill="none" stroke="var(--dia-dim)" stroke-width="1.3"></polygon>
+            <rect x="62" y="70" width="32" height="32" rx="6" class="n-box"></rect>
+            <polygon points="71,95 78,77 85,95" fill="none" stroke="var(--dia-dim)" stroke-width="1.3"></polygon>
+            <rect x="104" y="70" width="32" height="32" rx="6" class="n-box"></rect>
+            <polygon points="113,95 120,77 127,95" fill="none" stroke="var(--dia-dim)" stroke-width="1.3"></polygon>
+            <rect x="146" y="70" width="32" height="32" rx="6" class="n-box"></rect>
+            <polygon points="155,95 162,77 169,95" fill="none" stroke="var(--dia-dim)" stroke-width="1.3"></polygon>
+            <rect x="188" y="70" width="32" height="32" rx="6" class="n-box"></rect>
+            <polygon points="197,95 204,77 211,95" fill="none" stroke="var(--dia-dim)" stroke-width="1.3"></polygon>
+            <rect x="230" y="70" width="32" height="32" rx="6" class="n-box"></rect>
+            <polygon points="239,95 246,77 253,95" fill="none" stroke="var(--dia-dim)" stroke-width="1.3"></polygon>
+            <rect x="272" y="70" width="32" height="32" rx="6" class="n-box"></rect>
+            <polygon points="281,95 288,77 295,95" fill="none" stroke="var(--dia-dim)" stroke-width="1.3"></polygon>
+            <line x1="312" y1="86" x2="378" y2="86" class="n-e" marker-end="url(#f5-g)"></line>
+            <rect x="378" y="42" width="222" height="88" rx="7" class="n-box"></rect>
+            <text x="489" y="80" text-anchor="middle" font-size="15" font-weight="600" class="n-t">Transformer</text>
+            <text x="489" y="104" text-anchor="middle" font-size="12.5" class="n-s">一个 token 接一个 token 地吐</text>
+            <line x1="600" y1="86" x2="662" y2="86" class="n-e" marker-end="url(#f5-g)"></line>
+            <polygon points="790,112 742,62 790,52" class="n-box-ok"></polygon>
+            <polygon points="790,112 790,52 846,58" class="n-box-ok"></polygon>
+            <polygon points="790,112 846,58 876,106" class="n-box-ok"></polygon>
+            <polygon points="790,112 876,106 858,158" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-dasharray="5 4"></polygon>
+            <circle cx="790" cy="112" r="3" class="n-dot-ok"></circle>
+            <circle cx="742" cy="62" r="3" class="n-dot-ok"></circle>
+            <circle cx="790" cy="52" r="3" class="n-dot-ok"></circle>
+            <circle cx="846" cy="58" r="3" class="n-dot-ok"></circle>
+            <circle cx="876" cy="106" r="3" class="n-dot-ok"></circle>
+            <circle cx="858" cy="158" r="3.5" class="n-dot"></circle>
+            <text x="790" y="186" text-anchor="middle" font-size="12.5" class="n-s">一个个面被拼出来</text>
+            <rect x="0" y="215" width="900" height="86" rx="7" class="n-box-hot"></rect>
+            <text x="450" y="248" text-anchor="middle" font-size="15" font-weight="700" class="n-hot">错一个 token，后面全崩</text>
+            <text x="450" y="272" text-anchor="middle" font-size="13" class="n-hot-s">生成一个模型 49 秒 – 20 分钟；成功率可掉到 30% 以下</text>
+          </svg>
+          <figcaption>
+            MeshGPT 这一代的做法：mesh 当成句子，三角形当成词。和 GPT 写句子的唯一区别是——写错的代价大得多。
+          </figcaption>
+        </figure>
+        <ul>
+          <li><strong>MeshAnything V2</strong>（2024）：让相邻三角形共享顶点，序列长度直接减半，能撑到 1600 面。</li>
+          <li><strong>MeshXL</strong>（复旦 + 腾讯，NeurIPS 2024）：250 万 mesh 预训练，参数干到 1.3B——<strong>第一次验证了 3D 也有 Scaling Law。</strong></li>
+          <li><strong>Meshtron</strong>（NVIDIA，2024.12）：沙漏结构 Transformer + 滑窗推理，<strong>一口气支持 64K 面</strong>，比此前最好结果高一个数量级。</li>
+        </ul>
+        <p>
+          但这条自回归的路有个绕不开的死穴：<strong>它是串行的。</strong>
+          一个 token 接一个 token 地吐，中间错一个，后面全跟着崩。代价直接写在数字里：
+          生成一个模型要 49 秒到 20 分钟，成功率能掉到 30% 以下。
+          想拿它搭流水线？一个三次里失败一次的工具，没法用。
+        </p>
+        <p>
+          于是 2026 年 7 月，Meshy 甩出 <strong>Meshy T2</strong>，把「逐 token 串行」整个扔掉，
+          改用 <strong>flow matching</strong>——就是现在图像生成模型背后那套快速生成的数学。
+          <strong>两阶段走</strong>：第一阶段看着你的图，先框出一个粗糙的 <strong>64³ 体素脚手架</strong>；
+          第二阶段拿这个脚手架当底，把每一个顶点、每一条边、每一个面的绕序，<strong>一次性并行解码出来</strong>。
+        </p>
+        <p>
+          核心是一个 <strong>vertex-set VAE</strong>：一个顶点 = 一个连续 latent token，顶点和连接关系一起生成，
+          所以多部件物体（一辆车 + 四个轮子）会自己裂成干净的连通块，不用单独做部件切分。三个数字说明差别：
+        </p>
+                <figure>
+          <svg viewBox="0 0 900 355" role="img" aria-label="左右对比两条路线：左边自回归必须逐个 token 串行生成，耗时四十九秒到二十分钟、成功率百分之二十八到九十六；右边 flow matching 先用六十四立方体素脚手架定位置，再并行解码全部顶点，六秒完成、成功率百分之百、面数可控">
+            <defs>
+              <marker id="f6-g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                <path d="M0 0 L10 5 L0 10 z" class="n-mk"></path>
+              </marker>
+              <marker id="f6-h" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                <path d="M0 0 L10 5 L0 10 z" class="n-mk-hot"></path>
+              </marker>
+              <marker id="f6-o" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                <path d="M0 0 L10 5 L0 10 z" class="n-mk-ok"></path>
+              </marker>
+            </defs>
+            <rect x="0" y="0" width="430" height="252" rx="7" class="n-panel"></rect>
+            <text x="215" y="36" text-anchor="middle" font-size="16" font-weight="600" class="n-t">自回归：串行</text>
+            <text x="215" y="58" text-anchor="middle" font-size="12.5" class="n-s">第 n 个 token 必须等第 n−1 个</text>
+            <rect x="40" y="82" width="50" height="44" rx="6" class="n-box-hot"></rect>
+            <text x="65" y="110" text-anchor="middle" font-size="13" font-weight="600" class="n-hot">t1</text>
+            <line x1="90" y1="104" x2="108" y2="104" class="n-e" marker-end="url(#f6-g)"></line>
+            <rect x="110" y="82" width="50" height="44" rx="6" class="n-box-hot"></rect>
+            <text x="135" y="110" text-anchor="middle" font-size="13" font-weight="600" class="n-hot">t2</text>
+            <line x1="160" y1="104" x2="178" y2="104" class="n-e" marker-end="url(#f6-g)"></line>
+            <rect x="180" y="82" width="50" height="44" rx="6" class="n-box-hot"></rect>
+            <text x="205" y="110" text-anchor="middle" font-size="13" font-weight="600" class="n-hot">t3</text>
+            <line x1="230" y1="104" x2="248" y2="104" class="n-e" marker-end="url(#f6-g)"></line>
+            <rect x="250" y="82" width="50" height="44" rx="6" class="n-box-hot"></rect>
+            <text x="275" y="110" text-anchor="middle" font-size="13" font-weight="600" class="n-hot">t4</text>
+            <line x1="300" y1="104" x2="318" y2="104" class="n-e" marker-end="url(#f6-g)"></line>
+            <rect x="320" y="82" width="50" height="44" rx="6" class="n-box-hot"></rect>
+            <text x="345" y="110" text-anchor="middle" font-size="13" font-weight="600" class="n-hot">t5</text>
+            <text x="215" y="168" text-anchor="middle" font-size="13" class="n-s">每一步都依赖上一步的输出</text>
+            <text x="215" y="198" text-anchor="middle" font-size="14" font-weight="700" class="n-hot">49 秒 – 20 分钟</text>
+            <text x="215" y="222" text-anchor="middle" font-size="13" class="n-hot-s">成功率 28% – 96%</text>
+            <rect x="470" y="0" width="430" height="252" rx="7" class="n-panel"></rect>
+            <text x="685" y="36" text-anchor="middle" font-size="16" font-weight="600" class="n-t">Flow Matching：两阶段并行</text>
+            <text x="685" y="58" text-anchor="middle" font-size="12.5" class="n-s">先在粗结构上定好位置，再一次解码</text>
+            <rect x="490" y="84" width="160" height="62" rx="7" class="n-box-ok"></rect>
+            <text x="570" y="110" text-anchor="middle" font-size="12.5" font-weight="600" class="n-ok">64³ 体素脚手架</text>
+            <text x="570" y="130" text-anchor="middle" font-size="11.5" class="n-s">把物体框出来</text>
+            <rect x="720" y="84" width="160" height="62" rx="7" class="n-box-ok"></rect>
+            <text x="800" y="110" text-anchor="middle" font-size="12.5" font-weight="600" class="n-ok">全部顶点一次解码</text>
+            <text x="800" y="130" text-anchor="middle" font-size="11.5" class="n-s">顶点 + 连接一起出</text>
+            <line x1="650" y1="95" x2="718" y2="95" class="n-e-ok" marker-end="url(#f6-o)"></line>
+            <line x1="650" y1="115" x2="718" y2="115" class="n-e-ok" marker-end="url(#f6-o)"></line>
+            <line x1="650" y1="135" x2="718" y2="135" class="n-e-ok" marker-end="url(#f6-o)"></line>
+            <text x="685" y="168" text-anchor="middle" font-size="13" class="n-s">顶点 / 边 / 面绕序同时生成</text>
+            <text x="685" y="198" text-anchor="middle" font-size="14" font-weight="700" class="n-ok">6 秒</text>
+            <text x="685" y="222" text-anchor="middle" font-size="13" class="n-ok-s">成功率 100%，面数可控</text>
+            <rect x="0" y="285" width="900" height="58" rx="7" class="n-box-hot"></rect>
+            <text x="450" y="319" text-anchor="middle" font-size="14.5" font-weight="700" class="n-hot">差的不是「快一点」，是能不能接进生产流水线</text>
+          </svg>
+          <figcaption>
+            自回归的瓶颈是「必须等上一个」；flow matching 把顶点集合整体当成一个可并行的对象。这是 2026 年这条路线上唯一重要的转折。
+          </figcaption>
+        </figure>
+        <div class="stat-grid">
+          <div><b>6 秒</b><span>中位耗时，比自回归快一个数量级以上</span></div>
+          <div><b>100%</b><span>重拓扑测试里的合法网格成功率（老方法 28%–96%）</span></div>
+          <div><b>可控</b><span>生成前告诉它要多少顶点，就按这个预算建</span></div>
+        </div>
+        <p>
+          代码和权重已经放到 GitHub，不过许可写的是 <strong>CC BY-NC-SA 4.0</strong>——<strong>非商用</strong>，
+          所以「开源 = 白嫖」在这条线上暂时不成立。
+        </p>
+        <p>
+          与此同时，另一条线在解决「表示不统一」的问题，终极形态叫 <strong>TRELLIS</strong>（清华 + 微软，2024.12 开源）：
+          搞了个统一潜在表示（SLAT），<strong>一个模型同时输出 mesh / NeRF / 3DGS 三种格式</strong>，2B 参数，CVPR 2025 Spotlight。
+          一年后 <strong>TRELLIS 2</strong>（2025.12）参数翻到 4B，新的 O-Voxel 表示把数据压 16 倍，<strong>3 秒生成</strong>。
+        </p>
+        <p>
+          还有一个绕不开的名字：<strong>腾讯混元 Hunyuan3D</strong>。2.0（2025.01）一开源就登顶 HuggingFace；
+          2.1（2025.06）是<strong>第一个开源的 PBR 材质方案</strong>，6GB 显存就能在本地跑。
+        </p>
+        <p><strong>到这儿，学术侧的三代范式齐了：</strong></p>
+        <pre><code>第一代（2019–2021）：表示学习 —— NeRF 一统神经渲染
+第二代（2022–2023）：借 2D 评委 —— SDS 蒸馏凭空长出 3D
+第三代（2024–2026）：原生生成 —— 直接吐 artist-like mesh + PBR</code></pre>
+        <p>学术讲完了。接下来是商业战场——<strong>比论文精彩多了。</strong></p>
+      </section>
+
+      <section class="section">
+        <h2>六、创业公司的生死簿</h2>
+                <figure>
+          <svg viewBox="0 0 900 472" role="img" aria-label="2020 到 2026 的六年时间线：2020 年 NeRF 提出；2022 年 DreamFusion 用 SDS 破局；2023 年 3DGS 与视角扩散、前馈重建并行；2024 年 MeshGPT 开启原生网格生成；2025 年 TRELLIS 与混元开源；2026 年 Meshy T2 把生成压到六秒">
+            <line x1="150" y1="46" x2="150" y2="416" class="n-e"></line>
+            <circle cx="150" cy="46" r="6" class="n-dot"></circle>
+            <text x="122" y="52" text-anchor="end" font-size="16" font-weight="700" class="n-t">2020</text>
+            <text x="178" y="47" text-anchor="start" font-size="15" font-weight="600" class="n-t">NeRF 炸场</text>
+            <text x="178" y="70" text-anchor="start" font-size="12.5" class="n-s">「表示」这个问题第一次有了神经网络的答案</text>
+            <circle cx="150" cy="120" r="6" class="n-dot"></circle>
+            <text x="122" y="126" text-anchor="end" font-size="16" font-weight="700" class="n-t">2022</text>
+            <text x="178" y="121" text-anchor="start" font-size="15" font-weight="600" class="n-t">DreamFusion 用 SDS 借 2D 评委</text>
+            <text x="178" y="144" text-anchor="start" font-size="12.5" class="n-s">文生 3D 破局——没有 3D 数据也能量</text>
+            <circle cx="150" cy="194" r="6" class="n-dot"></circle>
+            <text x="122" y="200" text-anchor="end" font-size="16" font-weight="700" class="n-t">2023</text>
+            <text x="178" y="195" text-anchor="start" font-size="15" font-weight="600" class="n-t">3DGS 革命 + 视角扩散 / 前馈重建</text>
+            <text x="178" y="218" text-anchor="start" font-size="12.5" class="n-s">同一个问题被三条路同时抢攻</text>
+            <circle cx="150" cy="268" r="6" class="n-dot"></circle>
+            <text x="122" y="274" text-anchor="end" font-size="16" font-weight="700" class="n-t">2024</text>
+            <text x="178" y="269" text-anchor="start" font-size="15" font-weight="600" class="n-t">MeshGPT 开启原生 mesh 生成</text>
+            <text x="178" y="292" text-anchor="start" font-size="12.5" class="n-s">商用元年：Tripo / Meshy / Rodin 三强</text>
+            <circle cx="150" cy="342" r="6" class="n-dot"></circle>
+            <text x="122" y="348" text-anchor="end" font-size="16" font-weight="700" class="n-t">2025</text>
+            <text x="178" y="343" text-anchor="start" font-size="15" font-weight="600" class="n-t">TRELLIS 统一格式，混元开源 PBR</text>
+            <text x="178" y="366" text-anchor="start" font-size="12.5" class="n-s">Luma 估值冲到 40 亿美元</text>
+            <circle cx="150" cy="416" r="6" class="n-dot"></circle>
+            <text x="122" y="422" text-anchor="end" font-size="16" font-weight="700" class="n-t">2026</text>
+            <text x="178" y="417" text-anchor="start" font-size="15" font-weight="600" class="n-t">Meshy T2 用 flow matching 压到 6 秒</text>
+            <text x="178" y="440" text-anchor="start" font-size="12.5" class="n-s">双雄会师独角兽：Meshy 100 亿人民币、Tripo 10 亿美元</text>
+          </svg>
+          <figcaption>
+            六年六个节点。往下读任何一层，都能在上面一层找到它要解决的那个毛病。
+          </figcaption>
+        </figure>
+        <h3>Luma AI：最优雅的叛逃</h3>
+        <p>
+          Luma（2021，Palo Alto）起点好得不像话：创始人 Alex Yu 是 UC Berkeley 搞 NeRF 的，
+          做了个「iPhone 拍段视频就能重建 3D」的 App，融资一路绿灯。
+          2023 年 11 月发布文生 3D 产品 Genie，Discord 上线首日几万人涌进来。
+          所有人都以为：Luma 要做 3D 界的 Midjourney 了。
+        </p>
+        <p>
+          <strong>然后他们掉头，做了视频。</strong>
+          2024 年 6 月 Dream Machine 上线，<strong>4 天用户破百万</strong>；这家「3D 公司」彻底转行做视频生成。
+          2025 年 11 月拿下 9 亿美元 C 轮，估值 40 亿，沙特 HUMAIN 领投，Amazon、AMD 跟投。
+          顺带一提，他们首席科学家宋佳铭是 DDIM 算法的发明者——Stable Diffusion 的底层技术之一。
+          人家不是跑路，是本来就有这本事。
+        </p>
+        <p>他们的说法很文艺：「要做好 3D，必须先理解世界怎么动。视频，是通往 4D 的必经之路。」信不信由你，反正钱是真的。</p>
+        <h3>Kaedim：AI 界的「机械土耳其人」</h3>
+        <p>
+          1769 年，欧洲展出过一台「会下棋的自动机器」，全欧洲震惊。多年后真相泄露：
+          <strong>机器肚子里，藏着一个真人棋手。</strong>这段典故后来有了个名字，叫「机械土耳其人」。
+        </p>
+        <p>
+          2023 年，404 Media 扒了 Kaedim——一家对外宣称「AI 自动把 2D 图转成 3D」的创业公司。
+          真相是：他们雇了阿根廷、印尼、埃塞俄比亚的 3D 艺术家，<strong>一个模型付 1–4 美元，有时候压根没用 AI，是从零手画的。</strong>
+          CEO 出来辩解：那不是外包，那是「质量控制团队」。更讽刺的是——2024 年 a16z Games 还是给他们领投了 1500 万 A 轮。
+        </p>
+        <h3>Meshy vs Tripo：两个 90 后的对决</h3>
+        <p>这是中国 AI 3D 赛道的双雄会，人设工整得像编剧安排的。</p>
+        <p>
+          <strong>胡渊鸣</strong>，1994 年生，Meshy 创始人。清华姚班 → MIT 博士（导师 Frédo Durand），
+          博士期间发了 6 篇 SIGGRAPH / NeurIPS，还独立写了 25k Star 的开源物理模拟框架「太极」——
+          <strong>技术天才型</strong>。上面那个 Meshy T2 的论文，他就在作者名单里：产品在卖，论文在发，两头都抓。
+        </p>
+        <p>
+          <strong>宋亚宸</strong>，1997 年生，VAST（Tripo）创始人。Johns Hopkins 毕业（学的还不是 CS），
+          前商汤、MiniMax 联合创始人，重度游戏玩家——<strong>商业玩家型</strong>。
+        </p>
+        <p>2026 年战报：</p>
+        <ul>
+          <li><strong>Meshy</strong>：近 4 亿美元 B 轮，估值 100 亿人民币，1200 万用户——AI 3D 赛道最高估值。</li>
+          <li><strong>Tripo</strong>：2 亿美元 A+/A++ 轮，估值破 10 亿美元，2000 万用户——中国最快 AI 独角兽。</li>
+        </ul>
+        <p>一个从技术深度打，一个从产品生态打，两家都赢了。<strong>这个赛道大到容得下两种活法。</strong></p>
+        <h3>大厂众生相</h3>
+        <ul>
+          <li><strong>NVIDIA</strong>：不发 C 端产品，只发论文（Magic3D、Meshtron）+ 做基建（Omniverse）。翻译成人话：<strong>我卖铲子，你们去淘金</strong>。</li>
+          <li><strong>Microsoft</strong>：开源 TRELLIS 一击必杀，然后 Azure 收租。经典微软打法。</li>
+          <li><strong>腾讯</strong>：混元 3D 全家桶开源。自媒体标题都是「暴击国外建模行业」——夸张，但定价权是真被砸了。</li>
+          <li><strong>OpenAI</strong>：Point-E、Shap-E 起了个大早，然后资源全押 Sora。<strong>3D 先驱，变先烈。</strong></li>
+          <li><strong>Meta</strong>：3D Gen 论文一发就走，不给产品。人家做 3D 是为了给自家元宇宙补内容。</li>
+          <li><strong>Stability AI</strong>：开源神话的代价——估值 10 亿 → 欠云厂商 1 亿 → 创始人跑路。<strong>开源一个模型，不等于跑通一个商业模式。</strong></li>
+        </ul>
+      </section>
+
+      <section class="section">
+        <h2>七、复盘：四条能带走的东西</h2>
+        <p>
+          <strong>一、这条技术路线是「缺陷驱动」的。</strong>
+          每一步都是上一步的毛病逼出来的：SDF 存不下细节 → 那就 NeRF；NeRF 太慢 → 那就 3DGS；
+          SDS 有 Janus 问题 → 那就前馈重建；密集三角化没法用 → 那就原生 mesh 生成。
+          <strong>没有一步是拍脑袋想出来的。</strong>
+        </p>
+        <p>
+          <strong>二、表示和生成是绑在一起的。</strong>
+          NeRF 时代生成靠「优化」；3DGS 时代生成靠「蒸馏」；mesh 时代生成靠「自回归」；
+          到了 flow matching 阶段，生成靠「并行去噪」。<strong>表示一变，整个生成范式就跟着变一次。</strong>
+        </p>
+        <p>
+          <strong>三、大厂和创业公司根本不在同一个维度打架。</strong>
+          大厂发论文、做基建；创业公司做产品、抢用户。
+          所以腾讯和微软一开源，砸的其实是<strong>所有订阅制玩家的定价权</strong>。
+        </p>
+        <p>
+          <strong>四、最后的瓶颈不在「能不能生成」，在「能不能生产级」。</strong>
+          今天所有模型吐出来的 3D，美术都得二次编辑。谁能把「70% 自动 + 30% 手动」变成「95% 自动」，谁就通吃。
+          这就是为什么 Tripo Studio、Meshy Agent 都在拼命做一站式工作台——
+          <strong>生成只是门票，工作流才是护城河。</strong>
+        </p>
+        <p>
+          回到开头那个报价员。他 2020 年报价 18000 的活，2026 年 AI 十秒生成、成本 1 美元。
+          但他没有失业——他现在的工作变成了：从 AI 生成的 20 个方案里挑出最好的那一个，然后改布线、调材质、绑骨骼。
+        </p>
+        <p><strong>AI 干掉的不是人，是「从零开始」这四个字。</strong></p>
+                <figure>
+          <svg viewBox="0 0 900 345" role="img" aria-label="从生成一个物体到生成一个可以走进去的世界：左边是一个立方体网格，右边透视图里是实时生成、可以漫游的三维世界；代表玩家有 Tripo Project Eden、混元三维世界模型与 World Labs">
+            <defs>
+              <marker id="f8-g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                <path d="M0 0 L10 5 L0 10 z" class="n-mk"></path>
+              </marker>
+              <marker id="f8-h" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                <path d="M0 0 L10 5 L0 10 z" class="n-mk-hot"></path>
+              </marker>
+              <marker id="f8-o" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                <path d="M0 0 L10 5 L0 10 z" class="n-mk-ok"></path>
+              </marker>
+            </defs>
+            <rect x="0" y="30" width="320" height="210" rx="7" class="n-panel"></rect>
+            <text x="160" y="62" text-anchor="middle" font-size="15" font-weight="600" class="n-t">现在：生成一个物体</text>
+            <polygon points="116,122 170,106 170,162 116,178" fill="none" stroke="var(--dia-ok)" stroke-width="1.6"></polygon>
+            <polygon points="170,106 208,126 208,180 170,162" fill="none" stroke="var(--dia-ok)" stroke-width="1.6"></polygon>
+            <polygon points="116,122 170,106 208,126 150,144" fill="none" stroke="var(--dia-ok)" stroke-width="1.6"></polygon>
+            <circle cx="116" cy="122" r="2.6" class="n-dot-ok"></circle>
+            <circle cx="170" cy="106" r="2.6" class="n-dot-ok"></circle>
+            <circle cx="170" cy="162" r="2.6" class="n-dot-ok"></circle>
+            <circle cx="116" cy="178" r="2.6" class="n-dot-ok"></circle>
+            <circle cx="170" cy="106" r="2.6" class="n-dot-ok"></circle>
+            <circle cx="208" cy="126" r="2.6" class="n-dot-ok"></circle>
+            <circle cx="208" cy="180" r="2.6" class="n-dot-ok"></circle>
+            <circle cx="170" cy="162" r="2.6" class="n-dot-ok"></circle>
+            <text x="160" y="218" text-anchor="middle" font-size="12.5" class="n-s">一个 mesh + 一张贴图，交付完事</text>
+            <line x1="320" y1="135" x2="400" y2="135" class="n-e-hot" marker-end="url(#f8-h)"></line>
+            <text x="360" y="122" text-anchor="middle" font-size="11.5" font-weight="700" class="n-hot">下一站</text>
+            <rect x="400" y="30" width="500" height="210" rx="7" class="n-panel"></rect>
+            <text x="650" y="62" text-anchor="middle" font-size="15" font-weight="600" class="n-t">下一站：生成一个可以走进去的世界</text>
+            <line x1="430" y1="132" x2="870" y2="132" stroke="var(--dia-ok)" stroke-width="1.5"></line>
+            <line x1="585.0" y1="132" x2="430.0" y2="212" stroke="var(--dia-ok)" stroke-width="1" opacity="0.55"></line>
+            <line x1="603.6" y1="132" x2="492.9" y2="212" stroke="var(--dia-ok)" stroke-width="1" opacity="0.55"></line>
+            <line x1="622.1" y1="132" x2="555.7" y2="212" stroke="var(--dia-ok)" stroke-width="1" opacity="0.55"></line>
+            <line x1="640.7" y1="132" x2="618.6" y2="212" stroke="var(--dia-ok)" stroke-width="1" opacity="0.55"></line>
+            <line x1="659.3" y1="132" x2="681.4" y2="212" stroke="var(--dia-ok)" stroke-width="1" opacity="0.55"></line>
+            <line x1="677.9" y1="132" x2="744.3" y2="212" stroke="var(--dia-ok)" stroke-width="1" opacity="0.55"></line>
+            <line x1="696.4" y1="132" x2="807.1" y2="212" stroke="var(--dia-ok)" stroke-width="1" opacity="0.55"></line>
+            <line x1="715.0" y1="132" x2="870.0" y2="212" stroke="var(--dia-ok)" stroke-width="1" opacity="0.55"></line>
+            <line x1="554.0" y1="148.0" x2="746.0" y2="148.0" stroke="var(--dia-ok)" stroke-width="1" opacity="0.55"></line>
+            <line x1="523.0" y1="164.0" x2="777.0" y2="164.0" stroke="var(--dia-ok)" stroke-width="1" opacity="0.55"></line>
+            <line x1="492.0" y1="180.0" x2="808.0" y2="180.0" stroke="var(--dia-ok)" stroke-width="1" opacity="0.55"></line>
+            <line x1="461.0" y1="196.0" x2="839.0" y2="196.0" stroke="var(--dia-ok)" stroke-width="1" opacity="0.55"></line>
+            <circle cx="782" cy="102" r="15" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="1.5"></circle>
+            <text x="650" y="228" text-anchor="middle" font-size="12.5" class="n-s">实时生成、可以漫游、物体之间有关系</text>
+            <rect x="0" y="270" width="900" height="62" rx="7" class="n-box-hot"></rect>
+            <text x="450" y="301" text-anchor="middle" font-size="14.5" font-weight="700" class="n-hot">Tripo Project Eden｜混元 3D 世界模型｜World Labs</text>
+            <text x="450" y="322" text-anchor="middle" font-size="12.5" class="n-hot-s">这一代人赌的是同一件事：把「生成一个物体」变成「生成一个世界」</text>
+          </svg>
+          <figcaption>
+            同一批人正在把战场从「物体」推到「世界」——要求从「像不像」变成「能不能一直走下去而不崩」。
+          </figcaption>
+        </figure>
+      </section>
+
+      <section class="section">
+        <h2>八、关键论文速查</h2>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>论文 / 产品</th><th>年份</th><th>一句话</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>DeepSDF</td><td>2019</td><td>把 SDF 喂进网络，第一次当 3D 数据库用</td></tr>
+              <tr><td>NeRF</td><td>2020</td><td>一个 MLP 装下整个场景</td></tr>
+              <tr><td>PolyGen</td><td>2020</td><td>最早把 mesh 当序列生成（当时没人理）</td></tr>
+              <tr><td>DreamFusion / SDS</td><td>2022</td><td>借 2D 扩散模型当 3D 评委</td></tr>
+              <tr><td>Instant-NGP</td><td>2022</td><td>哈希表把训练从小时砍到秒</td></tr>
+              <tr><td>3D Gaussian Splatting</td><td>2023</td><td>几百万个小椭圆，快约 100 倍</td></tr>
+              <tr><td>Zero-1-to-3 / LRM</td><td>2023</td><td>单图秒出 3D 的两条路</td></tr>
+              <tr><td>MeshGPT</td><td>2024</td><td>mesh 当语言，逐 token 生成</td></tr>
+              <tr><td>Meshtron</td><td>2024</td><td>64K 面，NVIDIA 的警告</td></tr>
+              <tr><td>TRELLIS / TRELLIS 2</td><td>2024 / 2025</td><td>一个模型三种格式；2 代 3 秒生成</td></tr>
+              <tr><td>Hunyuan3D 2.x</td><td>2025</td><td>开源 PBR，6GB 显存能跑</td></tr>
+              <tr><td>Meshy T2</td><td>2026</td><td>扔掉自回归，flow matching 并行出网格，6 秒</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="callout">
+          <strong>作业：</strong>
+          <span>
+            去 tripo3d.ai 或者 meshy.ai，传一张你手机里的照片进去。
+            十秒之后你会回来点赞的——然后你会盯着那条布线，想起这篇里的第五层。
+          </span>
+        </p>
+        <p>
+          整理自公开论文与产品资料，年份以会议 / 预印本首次公开为准；
+          商业数据（估值、轮次、用户量）来自公开报道，口径可能不一致，引用前请回原文核对。
+        </p>
+      </section>
+
+      <!-- build:comments -->
+      <!-- /build:comments -->
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap">
+        <span>© 2026 <!-- build:site-name --><!-- /build:site-name --></span>
+        <span><a href="../">笔记</a></span>
+      </div>
+    </footer>
+    <script src="../../site.js" defer></script>
+    <!-- build:analytics -->
+    <!-- /build:analytics -->
+  </body>
+</html>
