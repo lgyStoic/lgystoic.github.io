@@ -4,7 +4,8 @@ on:
     inputs:
       window_hours: {description: 抓取窗口（小时）, required: false, default: "24"}
   schedule:
-    - cron: "35 0 * * *"
+    # 北京时间 08:27；避免和健康检查及整点批量任务争抢调度。
+    - cron: "27 0 * * *"
 permissions: {contents: write}
 jobs:
   jobs:
