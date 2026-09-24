@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Gemini post-processing: semantic dedupe on domestic direct-employer rows, in chunks."""
+"""LLM post-processing: semantic dedupe on domestic direct-employer rows, in chunks."""
 import json
 from pathlib import Path
 from radar import call_llm_json

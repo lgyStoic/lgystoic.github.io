@@ -8,7 +8,7 @@ on:
         options: [all, focus]
         default: all
       reuse_run_id:
-        description: "只重做合并：填一个已跑完分析的 run id，直接用它的产物合并渲染，不再调用 Gemini"
+        description: "只重做合并：填一个已跑完分析的 run id，直接用它的产物合并渲染，不再调用模型"
         type: string
         default: ""
   schedule:
@@ -63,13 +63,11 @@ jobs:
         with: {python-version: "3.12"}
       - name: 分析 ${{ matrix.repo }}
         env:
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          GEMINI_MODEL: ${{ vars.CONTRIBUTIONS_GEMINI_MODEL || 'gemini-pro-latest' }}
-          GEMINI_FALLBACK_MODEL: ${{ vars.CONTRIBUTIONS_GEMINI_FALLBACK_MODEL || 'gemini-flash-latest' }}
+          LONGCAT_API_KEY: ${{ secrets.LONGCAT_API_KEY }}
+          LONGCAT_MODEL: ${{ vars.LONGCAT_MODEL || 'LongCat-2.0' }}
           GITHUB_TOKEN: ${{ github.token }}
-          GEMINI_MAX_OUTPUT_TOKENS: "32768"
-          GEMINI_TIMEOUT: "600"
-          GEMINI_PRIMARY_RETRIES: "2"
+          LONGCAT_MAX_TOKENS: "32768"
+          LONGCAT_TIMEOUT: "600"
           REPO: ${{ matrix.repo }}
         run: |
           python3 tools/contributions.py --only "$REPO" --out "out/${REPO//\//-}.json"

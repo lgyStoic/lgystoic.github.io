@@ -96,9 +96,8 @@ jobs:
         continue-on-error: true
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          GEMINI_MODEL: ${{ vars.GEMINI_MODEL || 'gemini-flash-latest' }}
-          GEMINI_FALLBACK_MODEL: ${{ vars.GEMINI_FALLBACK_MODEL || 'gemini-pro-latest' }}
+          LONGCAT_API_KEY: ${{ secrets.LONGCAT_API_KEY }}
+          LONGCAT_MODEL: ${{ vars.LONGCAT_MODEL || 'LongCat-2.0' }}
           RADAR_WINDOW_HOURS: ${{ inputs.window_hours }}
         shell: bash
         run: set -o pipefail; python3 tools/radar.py 2>&1 | tee -a radar/data/last-run.log
@@ -107,9 +106,8 @@ jobs:
         continue-on-error: true
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          GEMINI_MODEL: ${{ vars.GEMINI_MODEL || 'gemini-flash-latest' }}
-          GEMINI_FALLBACK_MODEL: ${{ vars.GEMINI_FALLBACK_MODEL || 'gemini-pro-latest' }}
+          LONGCAT_API_KEY: ${{ secrets.LONGCAT_API_KEY }}
+          LONGCAT_MODEL: ${{ vars.LONGCAT_MODEL || 'LongCat-2.0' }}
         shell: bash
         run: set -o pipefail; python3 tools/events.py 2>&1 | tee -a radar/data/last-run.log
 
@@ -117,9 +115,8 @@ jobs:
         continue-on-error: true
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          GEMINI_MODEL: ${{ vars.GEMINI_MODEL || 'gemini-flash-latest' }}
-          GEMINI_FALLBACK_MODEL: ${{ vars.GEMINI_FALLBACK_MODEL || 'gemini-pro-latest' }}
+          LONGCAT_API_KEY: ${{ secrets.LONGCAT_API_KEY }}
+          LONGCAT_MODEL: ${{ vars.LONGCAT_MODEL || 'LongCat-2.0' }}
           TRACKS_FORCE_DIGEST: ${{ inputs.reason == 'tracks-digest' && '1' || '' }}
         shell: bash
         run: set -o pipefail; python3 tools/tracks.py 2>&1 | tee -a radar/data/last-run.log
@@ -128,9 +125,8 @@ jobs:
         continue-on-error: true
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          GEMINI_MODEL: ${{ vars.GEMINI_MODEL || 'gemini-flash-latest' }}
-          GEMINI_FALLBACK_MODEL: ${{ vars.GEMINI_FALLBACK_MODEL || 'gemini-pro-latest' }}
+          LONGCAT_API_KEY: ${{ secrets.LONGCAT_API_KEY }}
+          LONGCAT_MODEL: ${{ vars.LONGCAT_MODEL || 'LongCat-2.0' }}
           INBOX_TOKEN: ${{ secrets.INBOX_TOKEN }}
           INBOX_REPO: ${{ vars.INBOX_REPO || 'lgyStoic/radar-inbox' }}
         shell: bash

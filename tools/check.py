@@ -117,7 +117,7 @@ def main() -> None:
     if "Traceback (most recent call last)" in log_text:
         decide.append("有脚本抛出未捕获异常，看 last-run.log 里的 Traceback")
     if health["ai_fallback_streak"] >= 2:
-        decide.append("AI 连续两天退回规则，检查 GEMINI_API_KEY / 配额")
+        decide.append("AI 连续两天退回规则，检查 LONGCAT_API_KEY / 配额")
     if health["schedule_miss_streak"] >= 2:
         decide.append("定时连续两天没触发，考虑改 cron 时间或换触发方式")
     for kind, rows in statuses.items():

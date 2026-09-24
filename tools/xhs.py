@@ -9,14 +9,14 @@
                  → posts/jobs/<日期>.md、posts/jobs/<日期>/cover.jpg
   每次运行后重写 posts/README.md（两类最近 30 期的索引）。本地各留一份 radar/data/xhs-*.md（已 gitignore）。
 
-封面：文字用 HTML 排版、Playwright 截图（生图模型写不好中文）；配图由 Gemini 生图模型画无文字插画，失败退回纯色渐变。
+封面：文字用 HTML 排版、Playwright 截图；若配置了独立 Gemini 生图 key，则用它生成无文字配图，否则退回纯色渐变。
 
 用法：
   RADAR_DATE=2026-09-19 python3 tools/xhs.py            # cards
   python3 tools/xhs.py --jobs                            # jobs；XHS_JOBS_REGION=cn|overseas 只挑国内/海外远程
   python3 tools/xhs.py --list-models                     # 打印当前 key 能用的模型（--list-image-models 只看生图）
   XHS_IMAGES=0 python3 tools/xhs.py                      # cards 只出文稿不出图
-环境：GEMINI_API_KEY（必需）、INBOX_TOKEN / INBOX_REPO（写私有仓库；没有就只写本地）、GEMINI_IMAGE_MODEL、PW_CHROMIUM、XHS_PREVIEW=1（第 1 条打日志）。
+环境：LONGCAT_API_KEY（必需，文稿生成）、GEMINI_IMAGE_API_KEY（可选，仅配图）、INBOX_TOKEN / INBOX_REPO（写私有仓库；没有就只写本地）、PW_CHROMIUM、XHS_PREVIEW=1（第 1 条打日志）。
 """
 import base64, html, json, os, re, sys, urllib.request, urllib.error
 from datetime import datetime
@@ -103,7 +103,7 @@ def objective_heat(src: dict, post: dict) -> float:
 
 
 def rank_posts(posts: list[dict], byid: dict) -> list[dict]:
-    """最终分 = 0.5 量表（Gemini 4 维相对打分）+ 0.3 客观热度 + 0.2 雷达优先级；模型失败时只用后两项。"""
+    """最终分 = 0.5 量表（模型 4 维相对打分）+ 0.3 客观热度 + 0.2 雷达优先级；模型失败时只用后两项。"""
     if not posts: return posts
     prompt = '以下是今天的笔记，请逐条评分：\n' + json.dumps([{'id': p['id'], 'title': p.get('title'), 'headline': p.get('headline'), 'body_head': (p.get('body') or '')[:200], 'news_title': byid[p['id']].get('title'), 'category': byid[p['id']].get('category')} for p in posts], ensure_ascii=False)
     result = call_llm_json(RANK_SYSTEM, prompt, RANK_SCHEMA, label='xhs-rank') or {}
@@ -583,9 +583,13 @@ def run_track_post(track: dict, date: str, key: str):
 
 
 def main():
-    key = os.environ.get('GEMINI_API_KEY', '').strip()
+    key = os.environ.get('GEMINI_IMAGE_API_KEY', '').strip()
+    if '--check-llm' in sys.argv:
+        check = call_llm_json('你是连通性检测器。', '只返回 {"ok": true}。', {'type':'object', 'properties':{'ok':{'type':'boolean'}}, 'required':['ok'], 'additionalProperties':False}, label='xhs-check')
+        if not check or check.get('ok') is not True: raise SystemExit('LongCat 未返回有效检测结果')
+        print('LongCat 文本模型可用'); return
     if '--list-image-models' in sys.argv or '--list-models' in sys.argv:
-        if not key: raise SystemExit('需要 GEMINI_API_KEY')
+        if not key: raise SystemExit('需要 GEMINI_IMAGE_API_KEY')
         list_image_models(key, everything='--list-models' in sys.argv); return
     date = os.environ.get('RADAR_DATE') or datetime.now().strftime('%Y-%m-%d')
     if '--jobs' in sys.argv: run_jobs(date, key)
