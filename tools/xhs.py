@@ -400,9 +400,14 @@ li i{flex:0 0 46px;height:46px;border-radius:50%;background:#9a3412;color:#fff;f
 '''
 
 
-def card_html(index: int, post: dict, src: dict, date: str, art_b64: str | None, *, kind: str = 'cards', episode: int | None = None) -> str:
+def card_html(index: int, post: dict, src: dict, date: str, art_b64: str | None, *, kind: str = 'cards', episode: int | None = None, src_img: str | None = None) -> str:
     e = html.escape
-    art = f'<img src="data:image/png;base64,{art_b64}" alt="">' if art_b64 else f'<div class="n">{index:02d}</div>'
+    if src_img:
+        art = f'<img src="{src_img}" alt="">'
+    elif art_b64:
+        art = f'<img src="data:image/png;base64,{art_b64}" alt="">'
+    else:
+        art = f'<div class="n">{index:02d}</div>'
     rows = post.get('takeaways') or post.get('highlights') or []
     rows = rows[:6 if kind in ('jobs', 'track') else 4]
     items = ''.join(f'<li><i>{i}</i><span>{e(t)}</span></li>' for i, t in enumerate(rows, 1))
@@ -445,6 +450,44 @@ def render_cards(jobs: list[tuple[str, str]], out_dir: Path) -> list[Path]:
     except Exception as e:  # 浏览器问题不拖垮文稿
         log(f'[xhs] 渲染封面失败：{e}')
     return files
+
+
+def fetch_source_image(link: str) -> str | None:
+    """扒原文配图（og:image → twitter:image → 正文第一张 <img>），返回 data URI；失败返回 None（回退 SVG）。"""
+    if not link: return None
+    # 短 UA：部分站点（华尔街见闻等）对完整 Chrome UA 无 cookie 请求反而风控拦截
+    UA = {'User-Agent': 'Mozilla/5.0'}
+    try:
+        req = urllib.request.Request(link, headers=UA, method='GET')
+        with urllib.request.urlopen(req, timeout=12) as r:
+            page = r.read(600000).decode('utf-8', 'replace')
+        candidates: list[str] = []
+        for pattern in (r'<meta[^>]+property=["\']og:image["\'][^>]+content=["\']([^"\']+)["\']',
+                        r'<meta[^>]+content=["\']([^"\']+)["\'][^>]+property=["\']og:image["\']',
+                        r'<meta[^>]+name=["\']twitter:image(?::src)?["\'][^>]+content=["\']([^"\']+)["\']',
+                        r'<meta[^>]+content=["\']([^"\']+)["\'][^>]+name=["\']twitter:image(?::src)?["\']'):
+            candidates += re.findall(pattern, page, re.I)
+        # JS 渲染站点（华尔街见闻等）：og meta 缺失时取正文第一张 <img>（排除站点图标/头像/emoji）
+        body_imgs = [u for u in re.findall(r'<img[^>]+src="([^"]+)"', page)
+                     if re.match(r'https?://', u) and not re.search(r'(logo|icon|avatar|emoji|spacer|share\.png|favicon|1x1|pixel)', u, re.I)]
+        candidates += body_imgs[:2]
+        from urllib.parse import urlsplit
+        for img_url in candidates:
+            if img_url.startswith('//'): img_url = 'https:' + img_url
+            elif img_url.startswith('/'):
+                s = urlsplit(link); img_url = f'{s.scheme}://{s.netloc}{img_url}'
+            try:
+                req2 = urllib.request.Request(img_url, headers=UA)
+                with urllib.request.urlopen(req2, timeout=12) as r2:
+                    blob = r2.read(8 * 1024 * 1024)
+                mime = r2.headers.get('Content-Type', 'image/jpeg').split(';')[0].strip()
+                if not mime.startswith('image/') or len(blob) < 5000: continue
+                return f'data:{mime};base64,{base64.b64encode(blob).decode("ascii")}'
+            except Exception:
+                continue
+        return None
+    except Exception:
+        return None
 
 
 def out_paths(kind: str, date: str):
@@ -511,14 +554,18 @@ def run_cards(date: str):
     episode = episode_number(repo, token, 'cards', date)
 
     n_images = int(os.environ.get('XHS_IMAGES', '4'))
-    jobs, svg_used = [], 0
+    jobs, svg_used, srcimg_used = [], 0, 0
     for i, post in enumerate(posts[:n_images], 1):
-        art = make_svg_art(post, kind='cards')
-        if art: svg_used += 1
-        jobs.append((post['id'], card_html(i, post, byid[post['id']], date, art, episode=episode)))
+        src_img = fetch_source_image(byid[post['id']].get('link', ''))
+        art = None
+        if src_img: srcimg_used += 1
+        else:
+            art = make_svg_art(post, kind='cards')
+            if art: svg_used += 1
+        jobs.append((post['id'], card_html(i, post, byid[post['id']], date, art, episode=episode, src_img=src_img)))
     _, img_dir, _, _ = out_paths('cards', date)
     files = render_cards(jobs, img_dir) if jobs else []
-    log(f'[xhs] 封面图 {len(files)} 张（其中 {svg_used} 张含 LongCat SVG 示意图）')
+    log(f'[xhs] 封面图 {len(files)} 张（原文配图 {srcimg_used} 张，LongCat SVG {svg_used} 张）')
 
     preview = os.environ.get('XHS_PREVIEW') == '1'
     lines = [f'# AI 信息学习卡片 · {date}' + (f' · 第 {episode} 天' if episode else ''), '', '> 自动生成初稿，请人工核对事实和语气后再发布。**已按小红书发布价值排序**：前 3 条标「今日必发」，封面图给前几条。每条：封面 → 标题 → 正文 → 话题标签，复制即发；原文链接单独列出，是否放评论区自己定。', '', '## 今日发布顺序', '', '| 序 | 标题 | 主体 | 总分 | 受众 | 钩子 | 讨论 | 收藏 | 热度 | 理由 |', '|---|---|---|---|---|---|---|---|---|---|']
