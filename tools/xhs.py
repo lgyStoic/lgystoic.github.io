@@ -463,11 +463,36 @@ def run_cards(date: str):
     token, repo = os.environ.get('INBOX_TOKEN', '').strip(), os.environ.get('INBOX_REPO', 'lgyStoic/radar-inbox')
     hist, topics = load_topic_history(repo, token, date)
     hist_txt = ('\n\n近 7 天已写过的主题（entity｜日期｜是否已发布｜标题）：\n' + '\n'.join(f"{h['entity']}｜{h['date']}｜{'已发' if h['posted'] else '未发'}｜{h['title'][:40]}" for h in hist[:60])) if hist else '\n\n近 7 天没有已写过的主题，novelty 全部填 new。'
-    prompt = '以下是今日条目 JSON，请逐条生成：\n' + json.dumps([{'id': x.get('id'), 'title': x.get('title'), 'summary': x.get('summary'), 'why': x.get('why'), 'link': x.get('link'), 'tags': x.get('tags', [])} for x in items], ensure_ascii=False) + hist_txt
-    result = call_llm_json(SYSTEM, prompt, SCHEMA, label='xhs')
-    if not result: raise SystemExit('文本模型未返回文稿')
+    # LongCat occasionally emits malformed JSON for a large 20-post response.
+    # Generate small batches, then retry only missing posts individually so a
+    # single broken response cannot discard the whole day's draft.
+    input_rows = [{'id': x.get('id'), 'title': x.get('title'), 'summary': x.get('summary'), 'why': x.get('why'), 'link': x.get('link'), 'tags': x.get('tags', [])} for x in items]
+    source_byid = {x['id']: x for x in input_rows}
+    generated: dict[str, dict] = {}
+    def request_posts(rows: list[dict], label: str) -> list[dict]:
+        prompt = '以下是今日条目 JSON，请逐条生成，每条只输出一个对象：\n' + json.dumps(rows, ensure_ascii=False) + hist_txt
+        result = call_llm_json(SYSTEM, prompt, SCHEMA, label=label) or {}
+        valid = []
+        for post in result.get('posts', []):
+            pid = post.get('id')
+            if pid in source_byid and pid not in generated:
+                generated[pid] = post
+                valid.append(post)
+        return valid
+
+    for start in range(0, len(input_rows), 3):
+        batch = input_rows[start:start + 3]
+        request_posts(batch, f'xhs-{start // 3 + 1}')
+        missing = [row for row in batch if row['id'] not in generated]
+        if missing:
+            log(f'[xhs] {len(missing)} 条未从批次响应中取到，逐条重试')
+            for row in missing:
+                request_posts([row], 'xhs-single-retry')
+    if not generated: raise SystemExit('LongCat 未生成任何有效文稿')
+    if len(generated) < len(items):
+        log(f'[xhs] 仅生成 {len(generated)}/{len(items)} 条，继续处理已成功文稿')
     byid = {x['id']: x for x in items}
-    posts = [clean_post(p) for p in result.get('posts', []) if p.get('id') in byid]
+    posts = [clean_post(generated[x['id']]) for x in items if x['id'] in generated and x['id'] in byid]
     posts = apply_novelty(posts, hist)
     shorten_titles(posts)
     posts = rank_posts(posts, byid)  # 按小红书发布价值排序，前几条就是今天该发的
