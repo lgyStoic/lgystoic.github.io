@@ -274,8 +274,12 @@ def _gemini_post(path, body, key, timeout=120):
 
 def list_image_models(key, everything=False):
     """列账号可用模型；默认只列生图相关，everything=True 列全部（含别名解析）。"""
-    with urllib.request.urlopen(urllib.request.Request(f'{API}/models?pageSize=200', headers={'x-goog-api-key': key}), timeout=30) as r:
-        models = json.load(r).get('models', [])
+    try:
+        with urllib.request.urlopen(urllib.request.Request(f'{API}/models?pageSize=200', headers={'x-goog-api-key': key}), timeout=30) as r:
+            models = json.load(r).get('models', [])
+    except urllib.error.HTTPError as e:
+        detail = e.read().decode('utf-8', 'replace').strip()
+        raise SystemExit(f'Gemini 模型列表请求失败：HTTP {e.code}：{detail[:1000]}') from e
     for m in sorted(models, key=lambda m: m.get('name', '')):
         name = m.get('name', '').replace('models/', '')
         if everything or 'image' in name or 'imagen' in name:
