@@ -84,35 +84,61 @@ worth = true 时的硬性要求：
 TRACK_SCHEMA = {'type':'object','properties':{**JOBS_SCHEMA['properties'], 'worth':{'type':'boolean'}, 'worth_reason':{'type':'string'}}, 'required': JOBS_SCHEMA['required'] + ['worth', 'worth_reason'], 'additionalProperties': False}
 TRACK_TAG = {'video': '视频模型日报', 'world': '世界模型日报'}
 
-SVG_SCHEMA = {'type':'object','properties':{'svg':{'type':'string'}},'required':['svg'],'additionalProperties':False}
-SVG_SYSTEM = '''你是技术信息图设计师。根据输入的标题、要点和类型，生成一张可放进小红书技术卡片的 SVG 示意图。
+SVG_SCHEMA = {'type':'object','properties':{
+    'title':{'type':'string'}, 'subtitle':{'type':'string'}, 'steps':{'type':'array','items':{'type':'object','properties':{
+        'label':{'type':'string'}, 'headline':{'type':'string'}, 'detail':{'type':'string'}, 'tone':{'type':'string','enum':['blue','green','orange']}
+    },'required':['label','headline','detail','tone'],'additionalProperties':False}}, 'note':{'type':'string'}
+},'required':['title','subtitle','steps','note'],'additionalProperties':False}
+SVG_SYSTEM = '''你是技术信息图设计师。根据输入的标题、要点和类型，输出一份可渲染为 SVG 的结构化技术示意图计划。
 
-严格要求：
-1. 只输出 JSON 字段 svg，svg 的值必须是完整 SVG 字符串，根节点为 <svg viewBox="0 0 680 420">。
-2. 只用 SVG 基础图元：svg、defs、marker、path、rect、circle、line、polyline、polygon、text、g、tspan。禁止 script、foreignObject、image、use、href、任何事件属性或外部资源。
-3. 图内只能表现输入明确给出的事实；解释关系时可以使用中性步骤名。不要编造性能数字、代码路径或系统组件。
-4. 做成一眼能看懂的工程示意图：顶部标题与副标题，主体用 2–4 个步骤框、流程箭头或结构模块；文字保持简短。需要时用 Online Softmax、KV、GPU 等原词。
-5. 配色固定：深蓝 #185FA5、浅蓝 #E6F1FB、绿色 #0F6E56/#E1F5EE、橙色 #993C1D/#FAECE7、正文灰 #5F5E5A，背景透明。使用圆角矩形、细描边、无渐变。
-6. 所有文字用 11–15px；中文要简洁，图中的信息密度优先于装饰。不要 logo、人物、照片或英文花体。
+规则：
+1. 图内只能表现输入明确给出的事实；解释关系时使用中性步骤名。不要编造性能数字、代码路径或系统组件。
+2. title 12–26 字，subtitle ≤38 字；steps 取 2–3 步，每步 label ≤10 字、headline ≤55 字、detail ≤55 字；note ≤55 字。
+3. 内容做成一眼能看懂的工程流程或结构图，优先解释输入中的数据流、模块关系、执行顺序或验证步骤。需要时可保留 Online Softmax、KV、GPU 等原词。
+4. tone 只能是 blue、green、orange，按步骤依次交替。不要 logo、人物、照片或营销语。
 '''
-_UNSAFE_SVG = re.compile(r'<\s*/?\s*(?:script|foreignobject|iframe|object|embed|image|use)\b|\bon[a-z]+\s*=|(?:xlink:)?href\s*=|@import', re.I)
+_SVG_TONES = {
+    'blue': ('#E6F1FB', '#85B7EB', '#185FA5', '#042C53'),
+    'green': ('#E1F5EE', '#5DCAA5', '#0F6E56', '#04342C'),
+    'orange': ('#FAECE7', '#F0997B', '#993C1D', '#712B13'),
+}
 
 
 def make_svg_art(post: dict, *, kind: str) -> str | None:
-    """让 LongCat 输出受限 SVG；校验后作为 data URL 放进现有 Chromium 封面渲染器。"""
+    """让 LongCat 输出图示计划，再由本地模板渲染为结构正确的 SVG。"""
     payload = {
         'kind': kind,
         'headline': post.get('headline', ''),
         'title': post.get('title', ''),
         'highlights': (post.get('takeaways') or post.get('highlights') or [])[:6],
     }
-    result = call_llm_json(SVG_SYSTEM, json.dumps(payload, ensure_ascii=False), SVG_SCHEMA, label='xhs-svg') or {}
-    svg = (result.get('svg') or '').strip()
-    if svg.startswith('```'):
-        svg = re.sub(r'^```(?:svg|xml)?\s*|\s*```$', '', svg, flags=re.I)
-    if not svg or len(svg) > 24000 or _UNSAFE_SVG.search(svg):
-        log('[xhs-svg] 返回为空、过长或含不安全元素，改用本地渐变封面')
+    plan = call_llm_json(SVG_SYSTEM, json.dumps(payload, ensure_ascii=False), SVG_SCHEMA, label='xhs-svg') or {}
+    steps = [s for s in plan.get('steps', []) if all(str(s.get(k, '')).strip() for k in ('label', 'headline', 'detail'))][:3]
+    if not steps:
+        log('[xhs-svg] 未返回可用步骤，改用本地渐变封面')
         return None
+    esc = lambda value: html.escape(str(value).replace('\n', ' ').strip()[:80], quote=False)
+    title, subtitle, note = esc(plan.get('title', post.get('headline', '技术要点'))), esc(plan.get('subtitle', '')), esc(plan.get('note', ''))
+    height, gap = 78, 12
+    first_y = 78
+    parts = ['<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 420" width="100%">',
+             '<defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M2 1L8 5L2 9" fill="none" stroke="#888780" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>',
+             f'<text x="40" y="28" fill="#185FA5" font-size="15" font-weight="600">{title}</text>',
+             f'<text x="40" y="50" fill="#5F5E5A" font-size="12">{subtitle}</text>']
+    for i, step in enumerate(steps):
+        y = first_y + i * (height + gap)
+        fill, stroke, accent, ink = _SVG_TONES.get(step.get('tone'), _SVG_TONES['blue'])
+        label, headline, detail = esc(step['label']), esc(step['headline']), esc(step['detail'])
+        parts.extend([f'<rect x="40" y="{y}" width="600" height="{height}" rx="8" fill="{fill}" stroke="{stroke}" stroke-width="0.8"/>',
+                      f'<rect x="52" y="{y + 10}" width="66" height="22" rx="4" fill="{stroke}"/>',
+                      f'<text x="85" y="{y + 25}" text-anchor="middle" fill="{ink}" font-size="11" font-weight="600">{label}</text>',
+                      f'<text x="132" y="{y + 26}" fill="{accent}" font-size="12" font-weight="600">{headline}</text>',
+                      f'<text x="132" y="{y + 51}" fill="#5F5E5A" font-size="11">{detail}</text>'])
+        if i + 1 < len(steps):
+            parts.append(f'<path d="M 340 {y + height + 2} L 340 {y + height + gap - 2}" fill="none" stroke="#888780" stroke-width="1.5" marker-end="url(#arrow)"/>')
+    parts.extend([f'<rect x="40" y="365" width="600" height="42" rx="6" fill="#F1EFE8" stroke="#B4B2A9" stroke-width="0.6"/>',
+                  f'<text x="55" y="391" fill="#2C2C2A" font-size="12" font-weight="600">{note}</text>', '</svg>'])
+    svg = ''.join(parts)
     try:
         root = ET.fromstring(svg)
     except ET.ParseError as e:
@@ -121,7 +147,7 @@ def make_svg_art(post: dict, *, kind: str) -> str | None:
     if root.tag.rsplit('}', 1)[-1].lower() != 'svg' or 'viewBox' not in root.attrib:
         log('[xhs-svg] 缺少 svg 根节点或 viewBox，改用本地渐变封面')
         return None
-    log('[xhs-svg] LongCat SVG 已生成')
+    log('[xhs-svg] LongCat 图示计划已生成，SVG 已渲染')
     return base64.b64encode(svg.encode('utf-8')).decode('ascii')
 
 RANK_SCHEMA = {'type':'object','properties':{'ranking':{'type':'array','items':{'type':'object','properties':{'id':{'type':'string'},'audience':{'type':'integer'},'hook':{'type':'integer'},'discuss':{'type':'integer'},'save':{'type':'integer'},'reason':{'type':'string'}},'required':['id','audience','hook','discuss','save','reason'],'additionalProperties':False}}},'required':['ranking'],'additionalProperties':False}
