@@ -28,11 +28,32 @@
       } catch (e) {}
     </script>
     <!-- build:jsonld -->
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "AI 是怎么学会捏 3D 模型的：生成式 3D 六年演进", "description": "从 NeRF 到 3DGS，从 SDS 到原生 mesh 生成，再到 2026 年的 flow matching：生成式 3D 这六年没有一步是拍脑袋想出来的，每一步都是被上一步的缺陷逼出来的。按缺陷驱动的顺序串起学术脉络与商业战场，附 8 张机制图与论文速查表。", "url": "https://lgystoic.github.io/notes/generative-3d-ai/", "mainEntityOfPage": "https://lgystoic.github.io/notes/generative-3d-ai/", "inLanguage": "zh-CN", "dateModified": "2026-09-24", "datePublished": "2026-09-24", "keywords": "3D Generation, NeRF, 3DGS, Mesh, Flow Matching", "isBasedOn": "论文与产品资料整理 / 生成式 3D 学术与产业", "author": {"@type": "Person", "name": "Anaxagore", "url": "https://lgystoic.github.io/about/"}, "publisher": {"@type": "Person", "name": "Anaxagore", "url": "https://lgystoic.github.io/"}, "image": "https://lgystoic.github.io/assets/og/notes.png"}</script>
     <!-- /build:jsonld -->
   </head>
   <body>
     <!-- 统一页头由 tools/build.py 注入，不要手写 -->
     <!-- build:header -->
+    <header class="site-header">
+      <div class="wrap">
+        <a class="brand" href="../../" aria-label="首页">
+          <span class="brand-mark">A</span>
+          <span>Anaxagore</span>
+        </a>
+        <nav class="site-nav" aria-label="主导航">
+          <a href="../../notes/" aria-current="page">笔记</a>
+          <a href="../../radar/">雷达</a>
+          <a href="../../radar/tracks/">专题</a>
+          <a href="../../radar/events/">活动</a>
+          <a href="../../radar/jobs/">工作</a>
+          <a href="../../guides/">指南</a>
+          <a href="../../about/">关于</a>
+          <button class="theme-toggle" type="button" data-theme-toggle aria-label="切换深浅色">
+            <span data-theme-icon>◑</span>
+          </button>
+        </nav>
+      </div>
+    </header>
     <!-- /build:header -->
 
     <main class="wrap note">
@@ -933,17 +954,38 @@
       </section>
 
       <!-- build:comments -->
-      <!-- /build:comments -->
+
+    <!-- /build:comments -->
     </main>
 
     <footer class="site-footer">
       <div class="wrap">
-        <span>© 2026 <!-- build:site-name --><!-- /build:site-name --></span>
+        <span>© 2026 <!-- build:site-name -->
+Anaxagore
+    <!-- /build:site-name --></span>
         <span><a href="../">笔记</a></span>
       </div>
     </footer>
     <script src="../../site.js" defer></script>
     <!-- build:analytics -->
+    <script data-goatcounter="https://anaxagore.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+    <script>(function(){
+  function gc(){return window.goatcounter&&window.goatcounter.count?window.goatcounter:null}
+  function send(path,title){var g=gc();if(g)g.count({path:path,title:title||path,event:true})}
+  document.addEventListener("click",function(e){
+    var a=e.target.closest&&e.target.closest("a");
+    if(!a)return;
+    var offer=a.closest(".offer");
+    if(a.hasAttribute("data-aff-link")||a.hasAttribute("data-aff")||(a.rel||"").indexOf("sponsored")>-1){
+      var key=(offer&&offer.getAttribute("data-aff"))||a.getAttribute("data-aff")||"link";
+      send("aff/"+key,"推荐位："+key+" @ "+location.pathname);return}
+    if(a.host&&a.host!==location.host){send("out/"+a.host,"外链："+a.host+" @ "+location.pathname)}
+  });
+  document.addEventListener("click",function(e){
+    var b=e.target.closest&&e.target.closest("[data-share-copy],[data-share-native]");
+    if(b)send("share/"+(b.hasAttribute("data-share-copy")?"copy":"native"),"分享 @ "+location.pathname)
+  });
+})();</script>
     <!-- /build:analytics -->
   </body>
 </html>
