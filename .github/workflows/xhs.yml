@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
     inputs:
       date: {description: 生成日期 YYYY-MM-DD（留空为今天）, required: false, default: ""}
-      images: {description: 生成封面图的条数（0 关闭生图）, required: false, default: "4"}
+      images: {description: 生成封面图的条数（0 关闭封面）, required: false, default: "4"}
       check_model: {description: 只检查 LongCat 文本模型连通性（排查用）, type: boolean, default: false}
       preview: {description: 把第 1 条标题和正文打到日志里（检查文风用）, type: boolean, default: false}
       mode: {description: cards=每日学习卡片（含专题日报） jobs=岗位周报 tracks=只出专题日报 all=都跑, type: choice, options: [cards, jobs, tracks, all], default: cards}
@@ -44,9 +44,6 @@ jobs:
           RADAR_DATE: ${{ inputs.date }}
           XHS_IMAGES: ${{ inputs.images || '4' }}
           XHS_PREVIEW: ${{ inputs.preview && '1' || '0' }}
-          GEMINI_IMAGE_API_KEY: ${{ secrets.GEMINI_IMAGE_API_KEY }}
-          GEMINI_IMAGE_MODEL: ${{ vars.GEMINI_IMAGE_MODEL || 'gemini-3.1-flash-image,gemini-2.5-flash-image' }}
-          GEMINI_IMAGEN_MODEL: ${{ vars.GEMINI_IMAGEN_MODEL }}
         run: RADAR_DATE="${RADAR_DATE:-$(TZ=Asia/Shanghai date +%F)}" python3 tools/xhs.py
       - name: 岗位周报
         if: ${{ !inputs.check_model && (inputs.mode == 'jobs' || inputs.mode == 'all' || github.event.schedule == '53 1 * * 1') }}
@@ -58,8 +55,6 @@ jobs:
           RADAR_DATE: ${{ inputs.date }}
           XHS_JOBS_REGION: ${{ inputs.jobs_region }}
           XHS_PREVIEW: ${{ inputs.preview && '1' || '0' }}
-          GEMINI_IMAGE_API_KEY: ${{ secrets.GEMINI_IMAGE_API_KEY }}
-          GEMINI_IMAGE_MODEL: ${{ vars.GEMINI_IMAGE_MODEL || 'gemini-3.1-flash-image,gemini-2.5-flash-image' }}
         run: RADAR_DATE="${RADAR_DATE:-$(TZ=Asia/Shanghai date +%F)}" python3 tools/xhs.py --jobs
       - name: 专题日报（有料才发）
         if: ${{ !inputs.check_model && (inputs.mode == '' || inputs.mode == 'cards' || inputs.mode == 'tracks' || inputs.mode == 'all') && github.event.schedule != '53 1 * * 1' }}
@@ -70,8 +65,6 @@ jobs:
           INBOX_REPO: ${{ vars.INBOX_REPO || 'lgyStoic/radar-inbox' }}
           RADAR_DATE: ${{ inputs.date }}
           XHS_PREVIEW: ${{ inputs.preview && '1' || '0' }}
-          GEMINI_IMAGE_API_KEY: ${{ secrets.GEMINI_IMAGE_API_KEY }}
-          GEMINI_IMAGE_MODEL: ${{ vars.GEMINI_IMAGE_MODEL || 'gemini-3.1-flash-image,gemini-2.5-flash-image' }}
         run: RADAR_DATE="${RADAR_DATE:-$(TZ=Asia/Shanghai date +%F)}" python3 tools/xhs.py --tracks
       - name: 封面图留档（7 天）
         if: ${{ !inputs.check_model && hashFiles('radar/data/xhs/**/*.jpg') != '' }}

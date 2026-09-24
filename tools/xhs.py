@@ -9,14 +9,14 @@
                  → posts/jobs/<日期>.md、posts/jobs/<日期>/cover.jpg
   每次运行后重写 posts/README.md（两类最近 30 期的索引）。本地各留一份 radar/data/xhs-*.md（已 gitignore）。
 
-封面：文字用 HTML 排版、Playwright 截图；若配置了独立 Gemini 生图 key，则用它生成无文字配图，否则退回纯色渐变。
+封面：文字用 HTML 排版、Playwright 截图，使用本地渐变设计，不依赖生图 API。
 
 用法：
   RADAR_DATE=2026-09-19 python3 tools/xhs.py            # cards
   python3 tools/xhs.py --jobs                            # jobs；XHS_JOBS_REGION=cn|overseas 只挑国内/海外远程
-  python3 tools/xhs.py --list-models                     # 打印当前 key 能用的模型（--list-image-models 只看生图）
+  python3 tools/xhs.py --check-llm                       # 检查 LongCat 文本模型连通性
   XHS_IMAGES=0 python3 tools/xhs.py                      # cards 只出文稿不出图
-环境：LONGCAT_API_KEY（必需，文稿生成）、GEMINI_IMAGE_API_KEY（可选，仅配图）、INBOX_TOKEN / INBOX_REPO（写私有仓库；没有就只写本地）、PW_CHROMIUM、XHS_PREVIEW=1（第 1 条打日志）。
+环境：LONGCAT_API_KEY（必需，文稿生成）、INBOX_TOKEN / INBOX_REPO（写私有仓库；没有就只写本地）、PW_CHROMIUM、XHS_PREVIEW=1（第 1 条打日志）。
 """
 import base64, html, json, os, re, sys, urllib.request, urllib.error
 from datetime import datetime
@@ -226,9 +226,6 @@ def episode_number(repo: str, token: str, kind: str, date: str) -> int | None:
         log(f'[xhs] 期数查询失败：{e}'); return None
 ANON_RE = re.compile(r'^某|知名|保密|不便公开|匿名')
 
-API = 'https://generativelanguage.googleapis.com/v1beta'
-
-
 def gh_put(repo, path, data: bytes, token, message):
     url = f'https://api.github.com/repos/{repo}/contents/{path}'
     hdr = {'Authorization': f'Bearer {token}', 'Accept': 'application/vnd.github+json'}
@@ -265,61 +262,6 @@ def update_index(repo, token):
         lines += [f'- [{m}]({d}/{m}.md)' for m in mds] or ['- （暂无）']
         lines.append('')
     gh_put(repo, 'posts/README.md', '\n'.join(lines).encode('utf-8'), token, 'posts index')
-
-# ---------------------------------------------------------------- 生图
-def _gemini_post(path, body, key, timeout=120):
-    req = urllib.request.Request(f'{API}/{path}', data=json.dumps(body).encode(), headers={'Content-Type': 'application/json', 'x-goog-api-key': key}, method='POST')
-    with urllib.request.urlopen(req, timeout=timeout) as r: return json.load(r)
-
-
-def list_image_models(key, everything=False):
-    """列账号可用模型；默认只列生图相关，everything=True 列全部（含别名解析）。"""
-    try:
-        with urllib.request.urlopen(urllib.request.Request(f'{API}/models?pageSize=200', headers={'x-goog-api-key': key}), timeout=30) as r:
-            models = json.load(r).get('models', [])
-    except urllib.error.HTTPError as e:
-        detail = e.read().decode('utf-8', 'replace').strip()
-        raise SystemExit(f'Gemini 模型列表请求失败：HTTP {e.code}：{detail[:1000]}') from e
-    for m in sorted(models, key=lambda m: m.get('name', '')):
-        name = m.get('name', '').replace('models/', '')
-        if everything or 'image' in name or 'imagen' in name:
-            print(f"{name:45s} {m.get('version', ''):16s} {','.join(m.get('supportedGenerationMethods', []))}")
-    if everything:
-        for alias in ('gemini-pro-latest', 'gemini-flash-latest'):
-            try:
-                with urllib.request.urlopen(urllib.request.Request(f'{API}/models/{alias}', headers={'x-goog-api-key': key}), timeout=30) as r:
-                    m = json.load(r); print(f"别名 {alias} → version={m.get('version')} displayName={m.get('displayName')}")
-            except Exception as e: print(f'别名 {alias} 查询失败：{e}')
-
-
-def gemini_image(prompt: str, key: str) -> bytes | None:
-    """依次试原生生图模型（generateContent 回 inlineData），再试可选的 Imagen predict；都不行返回 None。"""
-    models = [m.strip() for m in os.environ.get('GEMINI_IMAGE_MODEL', 'gemini-3.1-flash-image,gemini-2.5-flash-image').split(',') if m.strip()]
-    for model in models:
-        try:
-            r = _gemini_post(f'models/{model}:generateContent', {'contents': [{'parts': [{'text': prompt}]}], 'generationConfig': {'responseModalities': ['IMAGE', 'TEXT']}}, key)
-            for part in (r.get('candidates') or [{}])[0].get('content', {}).get('parts', []):
-                if part.get('inlineData', {}).get('data'):
-                    log(f'[xhs] 配图：{model}'); return base64.b64decode(part['inlineData']['data'])
-            log(f'[xhs] {model} 没有返回图片：{str(r)[:160]}')
-        except urllib.error.HTTPError as e:
-            log(f'[xhs] {model} HTTP {e.code}：{e.read().decode("utf-8", "replace")[:160]}')
-        except Exception as e:
-            log(f'[xhs] {model} 失败：{e}')
-    imagen = os.environ.get('GEMINI_IMAGEN_MODEL', '').strip()  # 账号没有 Imagen 时留空
-    if imagen:
-        try:
-            r = _gemini_post(f'models/{imagen}:predict', {'instances': [{'prompt': prompt}], 'parameters': {'sampleCount': 1, 'aspectRatio': '1:1'}}, key)
-            b64 = (r.get('predictions') or [{}])[0].get('bytesBase64Encoded')
-            if b64:
-                log(f'[xhs] 配图：{imagen}'); return base64.b64decode(b64)
-            log(f'[xhs] {imagen} 没有返回图片：{str(r)[:160]}')
-        except urllib.error.HTTPError as e:
-            log(f'[xhs] {imagen} HTTP {e.code}：{e.read().decode("utf-8", "replace")[:160]}')
-        except Exception as e:
-            log(f'[xhs] {imagen} 失败：{e}')
-    return None
-
 
 SERIES_TAG = 'AIInfra学习卡片'
 LABEL_RE = re.compile(r'^[ \t\*#]*(标题|开头|发生了什么|为什么值得学|我会怎么验证/实践|我会怎么验证|实践|结尾提问|结尾|信息来源)\s*[:：]\s*\**\s*', re.M)
@@ -432,7 +374,7 @@ def publish(kind: str, date: str, content: str, files: list[Path]):
     return repo if token else md_local
 
 
-def run_cards(date: str, key: str):
+def run_cards(date: str):
     src = DATA / f'{date}.json'
     if not src.exists(): raise SystemExit(f'没有 {src}')
     data = json.loads(src.read_text())
@@ -443,7 +385,7 @@ def run_cards(date: str, key: str):
     hist_txt = ('\n\n近 7 天已写过的主题（entity｜日期｜是否已发布｜标题）：\n' + '\n'.join(f"{h['entity']}｜{h['date']}｜{'已发' if h['posted'] else '未发'}｜{h['title'][:40]}" for h in hist[:60])) if hist else '\n\n近 7 天没有已写过的主题，novelty 全部填 new。'
     prompt = '以下是今日条目 JSON，请逐条生成：\n' + json.dumps([{'id': x.get('id'), 'title': x.get('title'), 'summary': x.get('summary'), 'why': x.get('why'), 'link': x.get('link'), 'tags': x.get('tags', [])} for x in items], ensure_ascii=False) + hist_txt
     result = call_llm_json(SYSTEM, prompt, SCHEMA, label='xhs')
-    if not result: raise SystemExit('Gemini 未返回文稿')
+    if not result: raise SystemExit('文本模型未返回文稿')
     byid = {x['id']: x for x in items}
     posts = [clean_post(p) for p in result.get('posts', []) if p.get('id') in byid]
     posts = apply_novelty(posts, hist)
@@ -453,14 +395,12 @@ def run_cards(date: str, key: str):
     episode = episode_number(repo, token, 'cards', date)
 
     n_images = int(os.environ.get('XHS_IMAGES', '4'))
-    jobs, art_used = [], 0
+    jobs = []
     for i, post in enumerate(posts[:n_images], 1):
-        art = gemini_image(post.get('image_prompt') or f"minimal flat illustration about {post.get('headline','AI infrastructure')}, warm off-white background, rust accent, no text, no letters, no logos", key) if key and n_images else None
-        if art: art_used += 1
-        jobs.append((post['id'], card_html(i, post, byid[post['id']], date, base64.b64encode(art).decode() if art else None, episode=episode)))
+        jobs.append((post['id'], card_html(i, post, byid[post['id']], date, None, episode=episode)))
     _, img_dir, _, _ = out_paths('cards', date)
     files = render_cards(jobs, img_dir) if jobs else []
-    log(f'[xhs] 封面图 {len(files)} 张（其中 {art_used} 张带生图配图）')
+    log(f'[xhs] 封面图 {len(files)} 张（本地渐变设计）')
 
     preview = os.environ.get('XHS_PREVIEW') == '1'
     lines = [f'# AI 信息学习卡片 · {date}' + (f' · 第 {episode} 天' if episode else ''), '', '> 自动生成初稿，请人工核对事实和语气后再发布。**已按小红书发布价值排序**：前 3 条标「今日必发」，封面图给前几条。每条：封面 → 标题 → 正文 → 话题标签，复制即发；原文链接单独列出，是否放评论区自己定。', '', '## 今日发布顺序', '', '| 序 | 标题 | 主体 | 总分 | 受众 | 钩子 | 讨论 | 收藏 | 热度 | 理由 |', '|---|---|---|---|---|---|---|---|---|---|']
@@ -502,7 +442,7 @@ def pick_jobs(jobs: list[dict], region: str = '', n: int = 12, per_company: int 
     return out
 
 
-def run_jobs(date: str, key: str):
+def run_jobs(date: str):
     src = DATA / 'jobs.json'
     if not src.exists(): raise SystemExit(f'没有 {src}')
     data = json.loads(src.read_text())
@@ -512,12 +452,12 @@ def run_jobs(date: str, key: str):
     total = sum(1 for j in data.get('jobs', []) if not j.get('stale'))
     prompt = f'本周可选岗位 {len(picked)} 条（站点共 {total} 条在更新），请生成一篇：\n' + json.dumps([{'company': j['company'], 'title': j['title'], 'location': j.get('location'), 'tags': [t for t in j.get('tags', []) if t not in ('匹配高', '匹配中', '匹配低')], 'reasons': j.get('reasons', []), 'source': j.get('source')} for j in picked], ensure_ascii=False)
     result = call_llm_json(JOBS_SYSTEM, prompt, JOBS_SCHEMA, label='xhs-jobs')
-    if not result: raise SystemExit('Gemini 未返回岗位文稿')
+    if not result: raise SystemExit('文本模型未返回岗位文稿')
     post = clean_post(dict(result)); post['id'] = 'cover'
     shorten_titles([post])
     post['tags'] = [JOBS_TAG] + [t for t in post['tags'] if t not in (JOBS_TAG, SERIES_TAG)][:4]
     post['highlights'] = [h for h in result.get('highlights', []) if h.strip()][:6]
-    art = gemini_image(post.get('image_prompt') or 'minimal flat illustration of a city skyline made of circuit traces and GPU chips, warm off-white background, rust accent, no text, no letters, no logos', key) if key else None
+    art = None
     _, img_dir, _, _ = out_paths('jobs', date)
     episode = episode_number(os.environ.get('INBOX_REPO', 'lgyStoic/radar-inbox'), os.environ.get('INBOX_TOKEN', '').strip(), 'jobs', date)
     files = render_cards([('cover', card_html(1, post, {'jobs': picked}, date, base64.b64encode(art).decode() if art else None, kind='jobs', episode=episode))], img_dir)
@@ -544,7 +484,7 @@ def last_issue_date(repo: str, token: str, kind_dir: str, date: str) -> str | No
         log(f'[xhs] 上一期查询失败：{e}'); return None
 
 
-def run_track_post(track: dict, date: str, key: str):
+def run_track_post(track: dict, date: str):
     """专题日报：自上一期以来的新条目（最多回看 3 天）→ 模型先判值不值得发 → 值得才出文稿 + 封面。"""
     from datetime import timedelta
     src = DATA / 'tracks' / f"{track['id']}.json"
@@ -560,14 +500,14 @@ def run_track_post(track: dict, date: str, key: str):
     prompt = json.dumps({'since_last_issue': f'{since} ~ {date}', 'entries': [{'date': e['date'], 'entity': e.get('entity', ''), 'kind': e.get('kind', ''), 'title': e['title'], 'summary': e.get('summary', ''), 'why': e.get('why', ''), 'source': e.get('source', '')} for e in recent[:40]],
                          'context_digest': (d.get('digest') or {}).get('text', ''), 'context_sota': (d.get('sota') or [])[:8]}, ensure_ascii=False)
     result = call_llm_json(TRACK_SYSTEM.format(name=track['name'], tag=tag), prompt, TRACK_SCHEMA, label=f"xhs-track-{track['id']}")
-    if not result: raise SystemExit('Gemini 未返回专题日报')
+    if not result: raise SystemExit('文本模型未返回专题日报')
     if not result.get('worth'):
         log(f"[xhs] {track['name']}：今天不值得发（{result.get('worth_reason', '')[:60]}），{len(recent)} 条候选"); return
     post = clean_post(dict(result)); post['id'] = 'cover'
     shorten_titles([post])
     post['tags'] = [re.sub(r'[\s#]+', '', tag)] + [t for t in post['tags'] if t not in (tag, SERIES_TAG, JOBS_TAG)][:4]
     post['highlights'] = [h for h in result.get('highlights', []) if h.strip()][:6]
-    art = gemini_image(post.get('image_prompt') or f"minimal flat illustration about {track['name']}, film frames and a timeline, warm off-white background, rust accent, no text, no letters, no logos", key) if key else None
+    art = None
     _, img_dir, _, _ = out_paths(kind_dir, date)
     episode = episode_number(repo, token, kind_dir, date)
     files = render_cards([('cover', card_html(1, post, {'track_name': track['name'], 'track_id': track['id'], 'n': len(recent)}, date, base64.b64encode(art).decode() if art else None, kind='track', episode=episode))], img_dir)
@@ -583,22 +523,18 @@ def run_track_post(track: dict, date: str, key: str):
 
 
 def main():
-    key = os.environ.get('GEMINI_IMAGE_API_KEY', '').strip()
     if '--check-llm' in sys.argv:
         check = call_llm_json('你是连通性检测器。', '只返回 {"ok": true}。', {'type':'object', 'properties':{'ok':{'type':'boolean'}}, 'required':['ok'], 'additionalProperties':False}, label='xhs-check')
         if not check or check.get('ok') is not True: raise SystemExit('LongCat 未返回有效检测结果')
         print('LongCat 文本模型可用'); return
-    if '--list-image-models' in sys.argv or '--list-models' in sys.argv:
-        if not key: raise SystemExit('需要 GEMINI_IMAGE_API_KEY')
-        list_image_models(key, everything='--list-models' in sys.argv); return
     date = os.environ.get('RADAR_DATE') or datetime.now().strftime('%Y-%m-%d')
-    if '--jobs' in sys.argv: run_jobs(date, key)
+    if '--jobs' in sys.argv: run_jobs(date)
     elif '--tracks' in sys.argv:
         for t in load_tracks():
             if t.get('post'):
-                try: run_track_post(t, date, key)
+                try: run_track_post(t, date)
                 except SystemExit as e: log(f"[xhs] {t['name']} 日报失败：{e}")
-    else: run_cards(date, key)
+    else: run_cards(date)
 
 
 if __name__ == '__main__':
