@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-21T06:40:41+00:00",
+  "updated": "2026-09-24T06:33:26+00:00",
   "model": "gemini-3.1-pro-preview",
   "repos": [
     {
@@ -8668,7 +8668,8 @@
         "entry": "gemini-3.1-pro-preview",
         "tasks": "gemini-3.1-pro-preview"
       },
-      "model": "gemini-3.1-pro-preview"
+      "model": "gemini-3.1-pro-preview",
+      "stale": true
     },
     {
       "repo": "vllm-project/vllm",
@@ -31017,8 +31018,18 @@
         "entry": "gemini-3.1-pro-preview",
         "tasks": "gemini-3.1-pro-preview"
       },
-      "model": "gemini-3.1-pro-preview"
+      "model": "gemini-3.1-pro-preview",
+      "stale": true
     }
   ],
-  "failures": []
+  "failures": [
+    {
+      "repo": "sgl-project/sglang-omni",
+      "error": "RuntimeError: LLMChapterFailed:entry"
+    },
+    {
+      "repo": "THU-MIG/edge-dit.cpp",
+      "error": "RuntimeError: LLMChapterFailed:entry"
+    }
+  ]
 }
