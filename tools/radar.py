@@ -464,6 +464,33 @@ def call_llm_json(system: str, user_msg: str, schema: dict, *, label: str = "llm
     return None
 
 
+def parse_model_json(text: str) -> dict:
+    """Parse a JSON object even when a chat model wraps it in a code fence.
+
+    The prompt asks for raw JSON, but OpenAI-compatible providers sometimes add
+    `````json`` fences or a one-line preface.  Accept one JSON object embedded
+    in that presentation while keeping schema validation at the caller.
+    """
+    text = (text or "").strip()
+    if text.startswith("```"):
+        line_end = text.find("\n")
+        if line_end >= 0:
+            text = text[line_end + 1 :]
+        if text.rstrip().endswith("```"):
+            text = text.rstrip()[:-3]
+        text = text.strip()
+    try:
+        value = json.loads(text)
+    except json.JSONDecodeError:
+        start = text.find("{")
+        if start < 0:
+            raise
+        value, _ = json.JSONDecoder().raw_decode(text[start:])
+    if not isinstance(value, dict):
+        raise ValueError("模型输出不是 JSON 对象")
+    return value
+
+
 def call_longcat_json(system: str, user_msg: str, schema: dict, *, label: str = "llm") -> tuple[dict, str] | None:
     """LongCat 官方 OpenAI 兼容 Chat Completions；结构化结果由提示词约束并在本地解析。"""
     api_key = os.environ.get("LONGCAT_API_KEY", "").strip()
@@ -512,8 +539,8 @@ def call_longcat_json(system: str, user_msg: str, schema: dict, *, label: str = 
             return None
         try:
             text = data["choices"][0]["message"]["content"]
-            parsed = json.loads(text)
-        except (KeyError, IndexError, TypeError, json.JSONDecodeError) as e:
+            parsed = parse_model_json(text)
+        except (KeyError, IndexError, TypeError, ValueError, json.JSONDecodeError) as e:
             log(f"[{label}] LongCat 返回无法解析（{e}；{str(data)[:240]}）")
             return None
         usage = data.get("usage") or {}
