@@ -2,8 +2,126 @@
  "id": "world",
  "name": "世界模型",
  "blurb": "可交互的生成式世界模拟：Genie、Cosmos、V-JEPA、Dreamer、GameNGen、Oasis、Matrix-Game、HunyuanWorld 等，以及动作条件视频生成、4D 生成与具身仿真。",
- "updated": "2026-09-23T02:01:21+00:00",
+ "updated": "2026-09-24T02:44:14+00:00",
  "entries": [
+  {
+   "id": "a5f612a426982b82",
+   "date": "2026-09-24",
+   "title": "QuantWM: Temporally Consistent 2-Bit KV Cache Quantization for World Models and Video Generation",
+   "link": "https://arxiv.org/abs/2609.26425",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "high",
+   "summary": "QuantWM 提出 2-bit KV Cache 量化方法，解决世界模型和视频生成的时序闪烁问题。",
+   "why": "KV Cache 量化直接影响视频生成推理显存与性能，与工作直接相关。",
+   "tags": [
+    "KV Cache",
+    "量化",
+    "视频生成"
+   ],
+   "entity": "QuantWM",
+   "kind": "paper"
+  },
+  {
+   "id": "f1d6f038896c11bf",
+   "date": "2026-09-24",
+   "title": "人人都在造世界模型，HappyWorld‑Bench 试着给出一张统一考卷",
+   "link": "https://www.infoq.cn/article/3rXojuNPmJANFv8iWqI8",
+   "source": "InfoQ 中文",
+   "priority": "medium",
+   "summary": "HappyWorld-Bench 试图为世界模型提供统一评测基准。",
+   "why": "3D/视频生成相关评测，值得关注。",
+   "tags": [
+    "世界模型",
+    "评测",
+    "HappyWorld-Bench"
+   ],
+   "entity": "HappyWorld-Bench",
+   "kind": "benchmark"
+  },
+  {
+   "id": "ac39796390c1da6f",
+   "date": "2026-09-24",
+   "title": "人人都在造世界模型，HappyWorld‑Bench 试着给出一张统一考卷 - infoq.cn",
+   "link": "https://www.infoq.cn/news/3rXojuNPmJANFv8iWqI8",
+   "source": "新闻 · 世界模型（中文）",
+   "priority": "medium",
+   "summary": "InfoQ 中文：HappyWorld-Bench 尝试为世界模型提供统一评测",
+   "why": "世界模型评测方法，对 3D/视频生成评估有参考价值",
+   "tags": [
+    "HappyWorld-Bench",
+    "世界模型",
+    "评测"
+   ],
+   "entity": "HappyWorld-Bench",
+   "kind": "benchmark"
+  },
+  {
+   "id": "10931d9862d886bd",
+   "date": "2026-09-24",
+   "title": "NVIDIA Cosmos 3 Explained: The Next Generation of Physical AI - Blockchain Council",
+   "link": "https://www.blockchain-council.org/ai/nvidia-cosmos-3-explained/",
+   "source": "新闻 · 世界模型（英文）",
+   "priority": "medium",
+   "summary": "Blockchain Council 解读 NVIDIA Cosmos 3：下一代 Physical AI",
+   "why": "NVIDIA 世界模型平台新版本，但来源非一手",
+   "tags": [
+    "NVIDIA Cosmos 3",
+    "Physical AI"
+   ],
+   "entity": "Cosmos 3",
+   "kind": "news"
+  },
+  {
+   "id": "6132034ce3311958",
+   "date": "2026-09-24",
+   "title": "World Model: The Foundational First Year of AGI for Robots - eu.36kr.com",
+   "link": "https://eu.36kr.com/en/p/3995758367232135",
+   "source": "新闻 · 世界模型（英文）",
+   "priority": "medium",
+   "summary": "36Kr 欧洲站：世界模型是机器人 AGI 的基础第一年",
+   "why": "观点性文章，了解世界模型行业叙事",
+   "tags": [
+    "世界模型",
+    "机器人",
+    "AGI"
+   ],
+   "entity": "36Kr",
+   "kind": "news"
+  },
+  {
+   "id": "cb1051bfc539d49e",
+   "date": "2026-09-24",
+   "title": "越大越强，不再是 LLM 的专利：PixVerse R2 攻克实时世界模型 Scaling 难题 - 雷峰网",
+   "link": "https://www.leiphone.com/category/industrynews/jwslHV7CO64eAJ4C.html",
+   "source": "新闻 · 世界模型（中文）",
+   "priority": "medium",
+   "summary": "雷峰网：PixVerse R2 攻克实时世界模型 Scaling 难题",
+   "why": "国产实时世界模型 Scaling 突破，值得关注",
+   "tags": [
+    "PixVerse R2",
+    "Scaling",
+    "实时世界模型"
+   ],
+   "entity": "PixVerse R2",
+   "kind": "news"
+  },
+  {
+   "id": "5785d56b9b0a6c6e",
+   "date": "2026-09-24",
+   "title": "Cell｜生物医学世界模型 - 智源社区",
+   "link": "https://hub.baai.ac.cn/view/58200",
+   "source": "新闻 · 世界模型（中文）",
+   "priority": "medium",
+   "summary": "智源社区：Cell 生物医学世界模型",
+   "why": "世界模型在生物医学领域应用，拓展视野",
+   "tags": [
+    "Cell",
+    "生物医学",
+    "世界模型"
+   ],
+   "entity": "智源社区",
+   "kind": "news"
+  },
   {
    "id": "2db531190271c775",
    "date": "2026-09-23",
@@ -1321,6 +1439,10 @@
    "bc3a19dbc2c54e80",
    "e85b0a26fa78cf4b"
   ],
+  "HappyWorld-Bench": [
+   "f1d6f038896c11bf",
+   "ac39796390c1da6f"
+  ],
   "WorldRoamBench": [
    "798cdb02de83cd51",
    "27e878c24349d7c0"
@@ -1348,6 +1470,21 @@
   "魔芯科技": [
    "fe9d33edf0701555",
    "92ea4301b3012f12"
+  ],
+  "QuantWM": [
+   "a5f612a426982b82"
+  ],
+  "Cosmos 3": [
+   "10931d9862d886bd"
+  ],
+  "36Kr": [
+   "6132034ce3311958"
+  ],
+  "PixVerse R2": [
+   "cb1051bfc539d49e"
+  ],
+  "智源社区": [
+   "5785d56b9b0a6c6e"
   ],
   "Matrix-Game 3.5": [
    "b2ea95cb1858118e"

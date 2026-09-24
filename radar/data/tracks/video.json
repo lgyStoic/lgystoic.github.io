@@ -2,8 +2,76 @@
  "id": "video",
  "name": "视频生成模型",
  "blurb": "文生视频、图生视频、视频 VAE 与 DiT 加速：Wan、Sora、Veo、可灵、海螺、Seedance、Vidu、LTX、HunyuanVideo 等的发布、论文、benchmark 与推理框架支持。",
- "updated": "2026-09-23T02:01:21+00:00",
+ "updated": "2026-09-24T02:44:14+00:00",
  "entries": [
+  {
+   "id": "0cc1ae11826a2db5",
+   "date": "2026-09-24",
+   "title": "谷歌(GOOGL.US)Vids免费AI视频生成扩容：套餐订阅用户享高级功能与更高限额提供者智通财经 - 英为财情 Investing.com",
+   "link": "https://cn.investing.com/news/stock-market-news/article-3580889",
+   "source": "新闻 · 视频生成（中文）",
+   "priority": "high",
+   "summary": "智通财经/英为财情：谷歌 Vids 免费 AI 视频生成扩容，订阅用户享更高限额",
+   "why": "权威财经媒体确认 Google 视频生成商业化策略变化",
+   "tags": [
+    "Google Vids",
+    "商业化",
+    "扩容"
+   ],
+   "entity": "Google Vids",
+   "kind": "news"
+  },
+  {
+   "id": "a008930e840f83ca",
+   "date": "2026-09-24",
+   "title": "Alphabet将Google Vids的免费AI视频生成功能向所有用户开放 - 富途牛牛",
+   "link": "https://news.futunn.com/post/1000115130/alphabet-expands-free-ai-video-generation-to-all-users-in",
+   "source": "新闻 · 视频生成（中文）",
+   "priority": "high",
+   "summary": "富途牛牛：Alphabet 将 Google Vids 免费 AI 视频生成向所有用户开放",
+   "why": "权威财经源确认 Google 视频生成全面开放策略",
+   "tags": [
+    "Google Vids",
+    "Alphabet",
+    "免费开放"
+   ],
+   "entity": "Google Vids",
+   "kind": "news"
+  },
+  {
+   "id": "a5f612a426982b82",
+   "date": "2026-09-24",
+   "title": "QuantWM: Temporally Consistent 2-Bit KV Cache Quantization for World Models and Video Generation",
+   "link": "https://arxiv.org/abs/2609.26425",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "high",
+   "summary": "QuantWM 提出 2-bit KV Cache 量化方法，解决世界模型和视频生成的时序闪烁问题。",
+   "why": "KV Cache 量化直接影响视频生成推理显存与性能，与工作直接相关。",
+   "tags": [
+    "KV Cache",
+    "量化",
+    "视频生成"
+   ],
+   "entity": "QuantWM",
+   "kind": "paper"
+  },
+  {
+   "id": "9289c3929adc1bbf",
+   "date": "2026-09-24",
+   "title": "TBC Neuron-Derived AI Video Model: 5x Faster on AWS [2026] - tech-insider.org",
+   "link": "https://tech-insider.org/tbc-neuron-derived-ai-video-model-aws-2026/",
+   "source": "新闻 · 视频生成（英文）",
+   "priority": "medium",
+   "summary": "Tech Insider 称 TBC 神经元衍生 AI 视频模型在 AWS 上快 5 倍",
+   "why": "涉及推理加速，但来源非一手，谨慎参考",
+   "tags": [
+    "TBC",
+    "AWS",
+    "5x faster"
+   ],
+   "entity": "TBC",
+   "kind": "news"
+  },
   {
    "id": "4de16cb3cffdd50b",
    "date": "2026-09-23",
@@ -982,6 +1050,10 @@
    "e3e37d24c382772e",
    "b3cd147d851410fb"
   ],
+  "Google Vids": [
+   "0cc1ae11826a2db5",
+   "a008930e840f83ca"
+  ],
   "ECCV2026": [
    "ef865c252f9d05f6",
    "d68c738c749b09d7"
@@ -997,6 +1069,12 @@
   "字节跳动": [
    "3a06f956823425ca",
    "782c2b2a23d1da73"
+  ],
+  "QuantWM": [
+   "a5f612a426982b82"
+  ],
+  "TBC": [
+   "9289c3929adc1bbf"
   ],
   "Biological Computing": [
    "4de16cb3cffdd50b"
