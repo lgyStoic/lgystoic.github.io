@@ -307,7 +307,17 @@ def gh_put(repo, path, data: bytes, token, message):
     body = {'message': message, 'content': base64.b64encode(data).decode()}
     if sha: body['sha'] = sha
     req = urllib.request.Request(url, data=json.dumps(body).encode(), headers={**hdr, 'Content-Type': 'application/json'}, method='PUT')
-    with urllib.request.urlopen(req, timeout=60): pass
+    try:
+        with urllib.request.urlopen(req, timeout=60): pass
+    except urllib.error.HTTPError as e:
+        # GitHub puts the actionable reason (token scope, repository rules,
+        # secondary rate limit, etc.) in the response body and often exposes
+        # the required permission in this header.  The old traceback discarded
+        # both, making a 403 impossible to diagnose from Actions logs.
+        detail = e.read().decode('utf-8', 'replace')[:800]
+        required = e.headers.get('X-Accepted-GitHub-Permissions', '')
+        log(f'[xhs] inbox 写入失败：HTTP {e.code} path={path} required={required or "unknown"} detail={detail}')
+        raise
 
 
 
