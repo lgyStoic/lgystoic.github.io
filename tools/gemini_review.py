@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
-"""Run an evidence-first Gemini review for a supplied Git diff."""
+"""Run an evidence-first LLM review for a supplied Git diff."""
 
 import argparse
 import json
 from pathlib import Path
 
-from radar import call_gemini_json
+import radar
 
 
 SCHEMA = {
@@ -57,7 +57,7 @@ If there are no supported findings, return an empty findings list and approve.""
 
 def render(review: dict, model: str) -> str:
     lines = [
-        "# Gemini code review",
+        "# LLM code review",
         "",
         f"Model: `{model}`",
         "",
@@ -97,12 +97,11 @@ def main():
     args = parser.parse_args()
     diff = args.diff.read_text(encoding="utf-8")
     if not diff.strip():
-        raise SystemExit("Diff is empty; refusing to ask Gemini for a review.")
-    result = call_gemini_json(SYSTEM, f"Review this patch:\n\n{diff}", SCHEMA, label="code-review")
-    if result is None:
-        raise SystemExit("Gemini did not return a structured code review.")
-    review, model = result
-    args.out.write_text(render(review, model), encoding="utf-8")
+        raise SystemExit("Diff is empty; refusing to ask the model for a review.")
+    review = radar.call_llm_json(SYSTEM, f"Review this patch:\n\n{diff}", SCHEMA, label="code-review")
+    if review is None:
+        raise SystemExit("The model did not return a structured code review.")
+    args.out.write_text(render(review, radar.LAST_MODEL_USED or "unknown"), encoding="utf-8")
 
 
 if __name__ == "__main__":

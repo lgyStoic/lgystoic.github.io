@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""GitHub signals -> Gemini task cards -> project-specific contribution pages."""
+"""GitHub signals -> LLM task cards -> project-specific contribution pages."""
 import base64, html, json, os, re, urllib.error, urllib.parse, urllib.request
 from datetime import datetime, timezone
 from pathlib import Path
@@ -290,7 +290,7 @@ def run_analysis(ev, label):
     for key, title, schema in CHAPTERS:
         out=radar.call_llm_json('你是资深开源维护者与 AI 系统架构师，擅长读懂陌生仓库并规划切入路径。只依据证据，不编造。',
                                 chapter_prompt(ev, key, title, CHAPTER_BRIEF[key], done), schema, label=f'{label}-{key}')
-        if not out: raise RuntimeError(f'GeminiChapterFailed:{key}')
+        if not out: raise RuntimeError(f'LLMChapterFailed:{key}')
         done[key]=out; models[key]=radar.LAST_MODEL_USED
     return done, models
 
@@ -467,14 +467,14 @@ def scrub_channels(items, corpus):
 
 
 def analyze_repo(name, opts=None):
-    """单个仓库：抓证据 → Gemini 出卡 → 校验。返回 (结果 or None, 失败详情 or None)。"""
+    """单个仓库：抓证据 → LLM 出卡 → 校验。返回 (结果 or None, 失败详情 or None)。"""
     try:
         evidence=collect_repo(name, opts)
         label='contribution-'+name.replace('/','-')
         analysis, models=run_analysis(evidence, label)
         system='你是资深开源维护者与 AI 系统工程师。把真实 GitHub Issue 变成严谨、可执行、可验证的贡献计划。'
         generated=radar.call_llm_json(system,task_prompt(evidence, analysis),REPO_SCHEMA,label=label+'-tasks')
-        if not generated: raise RuntimeError('GeminiGenerationFailed')
+        if not generated: raise RuntimeError('LLMGenerationFailed')
         generated['repo']=name; generated=valid_tasks(generated,evidence)
         models['tasks']=radar.LAST_MODEL_USED
         # 重点仓库不满 8 张、普通仓库不满 4 张：只拿剩余候选池再补一轮

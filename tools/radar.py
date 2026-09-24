@@ -7,10 +7,9 @@
     RADAR_FIXTURE_DIR=./fixtures python3 tools/radar.py   # 用本地 XML 代替网络请求（测试用）
 
 环境变量：
-    ANTHROPIC_API_KEY   有则调用 Claude 做优先级判断和中文摘要（优先）。
-    GEMINI_API_KEY      没有 Anthropic key 时改用 Gemini。默认 gemini-flash-latest（Flash 线最新，2026-09 解析为 3.8 Flash），
-                        遇到配额或服务错误自动降级到 gemini-pro-latest（2026-09 解析为 3.1 Pro）；可用 GEMINI_MODEL /
-                        GEMINI_FALLBACK_MODEL 覆盖。
+    LONGCAT_API_KEY     有则调用 LongCat 做优先级判断、去重与中文摘要（优先）。默认 LongCat-2.0；可用
+                        LONGCAT_MODEL 覆盖。接口走 LongCat 官方 OpenAI 兼容端点。
+    ANTHROPIC_API_KEY   LongCat 不可用时才调用 Claude。
                         两个都没有则退回关键词规则，每条摘要取原文描述的前 160 字。
     RADAR_WINDOW_HOURS  覆盖 sources.json 里的 window_hours，首次运行或补漏时可以放大到 168。
 
@@ -49,6 +48,8 @@ FETCH_TIMEOUT = 20
 SEEN_RETENTION_DAYS = 120
 SUMMARY_FALLBACK_CHARS = 160
 CLAUDE_MODEL = "claude-opus-5"
+LONGCAT_MODEL = os.environ.get("LONGCAT_MODEL", "LongCat-2.0")
+LONGCAT_TIMEOUT = int(os.environ.get("LONGCAT_TIMEOUT", "300"))
 GEMINI_MODEL = os.environ.get("GEMINI_MODEL", "gemini-flash-latest")
 GEMINI_FALLBACK_MODEL = os.environ.get("GEMINI_FALLBACK_MODEL", "gemini-pro-latest")
 LAST_MODEL_USED = ""  # 本次运行实际用到的模型，写进当天数据文件
@@ -448,18 +449,77 @@ trend 类条目的输入只有仓库 / 模型名、一句描述和 star / likes 
 
 
 def call_llm_json(system: str, user_msg: str, schema: dict, *, label: str = "llm") -> dict | None:
-    """统一入口：有 Anthropic key 用 Claude，否则有 Gemini key 用 Gemini，都没有返回 None。"""
+    """统一入口：LongCat 优先；Claude 为可选后备。"""
     global LAST_MODEL_USED
+    if os.environ.get("LONGCAT_API_KEY", "").strip():
+        result = call_longcat_json(system, user_msg, schema, label=label)
+        if result is not None:
+            data, LAST_MODEL_USED = result
+            return data
     if os.environ.get("ANTHROPIC_API_KEY", "").strip():
         data = call_claude_json(system, user_msg, schema, label=label)
         if data is not None:
             LAST_MODEL_USED = CLAUDE_MODEL
             return data
-    if os.environ.get("GEMINI_API_KEY", "").strip():
-        result = call_gemini_json(system, user_msg, schema, label=label)
-        if result is not None:
-            data, LAST_MODEL_USED = result
-            return data
+    return None
+
+
+def call_longcat_json(system: str, user_msg: str, schema: dict, *, label: str = "llm") -> tuple[dict, str] | None:
+    """LongCat 官方 OpenAI 兼容 Chat Completions；结构化结果由提示词约束并在本地解析。"""
+    api_key = os.environ.get("LONGCAT_API_KEY", "").strip()
+    if not api_key:
+        return None
+    schema_text = json.dumps(schema, ensure_ascii=False, separators=(",", ":"))
+    constrained_system = (
+        system
+        + "\n\n只返回一个合法 JSON 对象，不要 Markdown、解释或代码块。"
+        + "它必须满足这个 JSON Schema：\n"
+        + schema_text
+    )
+    body = {
+        "model": LONGCAT_MODEL,
+        "messages": [
+            {"role": "system", "content": constrained_system},
+            {"role": "user", "content": user_msg},
+        ],
+        "temperature": 0.2,
+        "max_tokens": int(os.environ.get("LONGCAT_MAX_TOKENS", "16384")),
+        "thinking": {"type": "disabled"},
+    }
+    req = urllib.request.Request(
+        "https://api.longcat.chat/openai/v1/chat/completions",
+        data=json.dumps(body, ensure_ascii=False).encode("utf-8"),
+        headers={"Content-Type": "application/json", "Authorization": f"Bearer {api_key}"},
+        method="POST",
+    )
+    for attempt in range(2):
+        try:
+            with urllib.request.urlopen(req, timeout=LONGCAT_TIMEOUT) as resp:
+                data = json.load(resp)
+        except urllib.error.HTTPError as e:
+            detail = e.read().decode("utf-8", "replace")[:300]
+            transient = e.code == 429 or e.code >= 500
+            log(f"[{label}] LongCat {LONGCAT_MODEL} HTTP {e.code}：{detail}")
+            if transient and attempt == 0:
+                time.sleep(10)
+                continue
+            return None
+        except (urllib.error.URLError, TimeoutError, OSError) as e:
+            log(f"[{label}] LongCat 网络错误：{e}")
+            if attempt == 0:
+                time.sleep(10)
+                continue
+            return None
+        try:
+            text = data["choices"][0]["message"]["content"]
+            parsed = json.loads(text)
+        except (KeyError, IndexError, TypeError, json.JSONDecodeError) as e:
+            log(f"[{label}] LongCat 返回无法解析（{e}；{str(data)[:240]}）")
+            return None
+        usage = data.get("usage") or {}
+        version = data.get("model") or LONGCAT_MODEL
+        log(f"[{label}] LongCat 完成（{version}）：prompt={usage.get('prompt_tokens')} output={usage.get('completion_tokens')}")
+        return parsed, version
     return None
 
 
@@ -608,7 +668,7 @@ def call_claude_json(system: str, user_msg: str, schema: dict, *, label: str = "
 
 
 def ai_available() -> bool:
-    return bool(os.environ.get("ANTHROPIC_API_KEY", "").strip() or os.environ.get("GEMINI_API_KEY", "").strip())
+    return bool(os.environ.get("LONGCAT_API_KEY", "").strip() or os.environ.get("ANTHROPIC_API_KEY", "").strip())
 
 
 def enrich_with_ai(items: list[dict]) -> dict[str, dict] | None:

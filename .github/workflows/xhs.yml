@@ -4,7 +4,7 @@ on:
     inputs:
       date: {description: 生成日期 YYYY-MM-DD（留空为今天）, required: false, default: ""}
       images: {description: 生成封面图的条数（0 关闭生图）, required: false, default: "4"}
-      list_models: {description: 只列出账号可用的全部模型与别名指向（排查用）, type: boolean, default: false}
+      check_model: {description: 只检查 LongCat 文本模型连通性（排查用）, type: boolean, default: false}
       preview: {description: 把第 1 条标题和正文打到日志里（检查文风用）, type: boolean, default: false}
       mode: {description: cards=每日学习卡片（含专题日报） jobs=岗位周报 tracks=只出专题日报 all=都跑, type: choice, options: [cards, jobs, tracks, all], default: cards}
       jobs_region: {description: 岗位周报地区（空=全部 cn=国内 overseas=海外远程）, required: false, default: ""}
@@ -21,57 +21,59 @@ jobs:
         with: {ref: master}
       - uses: actions/setup-python@v5
         with: {python-version: "3.12"}
-      - name: 列出可用模型
-        if: ${{ inputs.list_models }}
-        env: {GEMINI_API_KEY: "${{ secrets.GEMINI_API_KEY }}"}
-        run: python3 tools/xhs.py --list-models
+      - name: 检查 LongCat 文本模型
+        if: ${{ inputs.check_model }}
+        env:
+          LONGCAT_API_KEY: ${{ secrets.LONGCAT_API_KEY }}
+          LONGCAT_MODEL: ${{ vars.LONGCAT_MODEL || 'LongCat-2.0' }}
+        run: python3 tools/xhs.py --check-llm
       - name: 安装封面渲染依赖（Playwright + 中文字体）
-        if: ${{ !inputs.list_models }}
+        if: ${{ !inputs.check_model }}
         run: |
           sudo apt-get update -qq && sudo apt-get install -y -qq fonts-noto-cjk >/dev/null
           pip install -q playwright
           python -m playwright install --with-deps chromium
       - name: 每日学习卡片
-        if: ${{ !inputs.list_models && (inputs.mode == '' || inputs.mode == 'cards' || inputs.mode == 'all') && github.event.schedule != '40 1 * * 1' }}
+        if: ${{ !inputs.check_model && (inputs.mode == '' || inputs.mode == 'cards' || inputs.mode == 'all') && github.event.schedule != '53 1 * * 1' }}
         env:
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          GEMINI_MODEL: ${{ vars.GEMINI_MODEL || 'gemini-flash-latest' }}
-          GEMINI_FALLBACK_MODEL: ${{ vars.GEMINI_FALLBACK_MODEL || 'gemini-pro-latest' }}
-          GEMINI_MAX_OUTPUT_TOKENS: "32768"
+          LONGCAT_API_KEY: ${{ secrets.LONGCAT_API_KEY }}
+          LONGCAT_MODEL: ${{ vars.LONGCAT_MODEL || 'LongCat-2.0' }}
+          LONGCAT_MAX_TOKENS: "32768"
           INBOX_TOKEN: ${{ secrets.INBOX_TOKEN }}
           INBOX_REPO: ${{ vars.INBOX_REPO || 'lgyStoic/radar-inbox' }}
           RADAR_DATE: ${{ inputs.date }}
           XHS_IMAGES: ${{ inputs.images || '4' }}
           XHS_PREVIEW: ${{ inputs.preview && '1' || '0' }}
+          GEMINI_IMAGE_API_KEY: ${{ secrets.GEMINI_IMAGE_API_KEY }}
           GEMINI_IMAGE_MODEL: ${{ vars.GEMINI_IMAGE_MODEL || 'gemini-3.1-flash-image,gemini-2.5-flash-image' }}
           GEMINI_IMAGEN_MODEL: ${{ vars.GEMINI_IMAGEN_MODEL }}
         run: RADAR_DATE="${RADAR_DATE:-$(TZ=Asia/Shanghai date +%F)}" python3 tools/xhs.py
       - name: 岗位周报
-        if: ${{ !inputs.list_models && (inputs.mode == 'jobs' || inputs.mode == 'all' || github.event.schedule == '40 1 * * 1') }}
+        if: ${{ !inputs.check_model && (inputs.mode == 'jobs' || inputs.mode == 'all' || github.event.schedule == '53 1 * * 1') }}
         env:
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          GEMINI_MODEL: ${{ vars.GEMINI_MODEL || 'gemini-flash-latest' }}
-          GEMINI_FALLBACK_MODEL: ${{ vars.GEMINI_FALLBACK_MODEL || 'gemini-pro-latest' }}
+          LONGCAT_API_KEY: ${{ secrets.LONGCAT_API_KEY }}
+          LONGCAT_MODEL: ${{ vars.LONGCAT_MODEL || 'LongCat-2.0' }}
           INBOX_TOKEN: ${{ secrets.INBOX_TOKEN }}
           INBOX_REPO: ${{ vars.INBOX_REPO || 'lgyStoic/radar-inbox' }}
           RADAR_DATE: ${{ inputs.date }}
           XHS_JOBS_REGION: ${{ inputs.jobs_region }}
           XHS_PREVIEW: ${{ inputs.preview && '1' || '0' }}
+          GEMINI_IMAGE_API_KEY: ${{ secrets.GEMINI_IMAGE_API_KEY }}
           GEMINI_IMAGE_MODEL: ${{ vars.GEMINI_IMAGE_MODEL || 'gemini-3.1-flash-image,gemini-2.5-flash-image' }}
         run: RADAR_DATE="${RADAR_DATE:-$(TZ=Asia/Shanghai date +%F)}" python3 tools/xhs.py --jobs
       - name: 专题日报（有料才发）
-        if: ${{ !inputs.list_models && (inputs.mode == '' || inputs.mode == 'cards' || inputs.mode == 'tracks' || inputs.mode == 'all') && github.event.schedule != '40 1 * * 1' }}
+        if: ${{ !inputs.check_model && (inputs.mode == '' || inputs.mode == 'cards' || inputs.mode == 'tracks' || inputs.mode == 'all') && github.event.schedule != '53 1 * * 1' }}
         env:
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          GEMINI_MODEL: ${{ vars.GEMINI_MODEL || 'gemini-flash-latest' }}
-          GEMINI_FALLBACK_MODEL: ${{ vars.GEMINI_FALLBACK_MODEL || 'gemini-pro-latest' }}
+          LONGCAT_API_KEY: ${{ secrets.LONGCAT_API_KEY }}
+          LONGCAT_MODEL: ${{ vars.LONGCAT_MODEL || 'LongCat-2.0' }}
           INBOX_TOKEN: ${{ secrets.INBOX_TOKEN }}
           INBOX_REPO: ${{ vars.INBOX_REPO || 'lgyStoic/radar-inbox' }}
           RADAR_DATE: ${{ inputs.date }}
           XHS_PREVIEW: ${{ inputs.preview && '1' || '0' }}
+          GEMINI_IMAGE_API_KEY: ${{ secrets.GEMINI_IMAGE_API_KEY }}
           GEMINI_IMAGE_MODEL: ${{ vars.GEMINI_IMAGE_MODEL || 'gemini-3.1-flash-image,gemini-2.5-flash-image' }}
         run: RADAR_DATE="${RADAR_DATE:-$(TZ=Asia/Shanghai date +%F)}" python3 tools/xhs.py --tracks
       - name: 封面图留档（7 天）
-        if: ${{ !inputs.list_models && hashFiles('radar/data/xhs/**/*.jpg') != '' }}
+        if: ${{ !inputs.check_model && hashFiles('radar/data/xhs/**/*.jpg') != '' }}
         uses: actions/upload-artifact@v4
         with: {name: xhs-cards, path: radar/data/xhs/, retention-days: 7}
