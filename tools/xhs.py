@@ -567,7 +567,7 @@ def run_jobs(date: str):
     art = make_svg_art(post, kind='jobs')
     _, img_dir, _, _ = out_paths('jobs', date)
     episode = episode_number(os.environ.get('INBOX_REPO', 'lgyStoic/radar-inbox'), os.environ.get('INBOX_TOKEN', '').strip(), 'jobs', date)
-    files = render_cards([('cover', card_html(1, post, {'jobs': picked}, date, base64.b64encode(art).decode() if art else None, kind='jobs', episode=episode))], img_dir)
+    files = render_cards([('cover', card_html(1, post, {'jobs': picked}, date, art, kind='jobs', episode=episode))], img_dir)
 
     tags = ' '.join(f'#{t}' for t in post['tags'])
     lines = [f'# AI infra 岗位精选 · {date}', '', '> 自动生成初稿：岗位事实以文末明细表（含链接）为准，发布前逐条核对公司名和岗位名；正文不放链接，不写薪资，不提内推。', '']
@@ -617,7 +617,7 @@ def run_track_post(track: dict, date: str):
     art = make_svg_art(post, kind='track')
     _, img_dir, _, _ = out_paths(kind_dir, date)
     episode = episode_number(repo, token, kind_dir, date)
-    files = render_cards([('cover', card_html(1, post, {'track_name': track['name'], 'track_id': track['id'], 'n': len(recent)}, date, base64.b64encode(art).decode() if art else None, kind='track', episode=episode))], img_dir)
+    files = render_cards([('cover', card_html(1, post, {'track_name': track['name'], 'track_id': track['id'], 'n': len(recent)}, date, art, kind='track', episode=episode))], img_dir)
     tags = ' '.join(f'#{t}' for t in post['tags'])
     lines = [f"# {track['name']}日报 · {date}" + (f' · 第 {episode} 期' if episode else ''), '', f'> 自动生成初稿：事实以文末条目明细（含链接）为准，发布前逐条核对模型名和数字；正文不放链接。覆盖 {since} 之后的新条目；模型判定值得发的理由：{result.get("worth_reason", "")}。专题页：https://lgystoic.github.io/radar/tracks/{track["id"]}/', '']
     if files: lines += [f'![封面](./{date}/cover.jpg)', '']
