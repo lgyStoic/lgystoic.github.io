@@ -208,8 +208,19 @@ def shorten_titles(posts: list[dict], limit: int = 20) -> None:
     for p in long_:
         t = new.get(p['id'])
         if t and len(t) <= limit: p['title'] = t
-        else: log(f'[xhs] 标题仍超 {limit} 字，发布前请手改：{p["title"]}')
+        elif t and len(t) > limit: p['title'] = truncate_title(t, limit)  # 模型改完仍超长，本地截断兜底
+        else: p['title'] = truncate_title(p['title'], limit)
     log(f'[xhs] 改短标题 {sum(1 for p in long_ if len(p["title"]) <= limit)}/{len(long_)} 条')
+
+
+def truncate_title(title: str, limit: int = 20) -> str:
+    """本地兜底：按字符截断到 limit，优先在标点/空格处断开，末尾不加省略号（小红书标题截断后仍可读）。"""
+    if len(title) <= limit: return title
+    cut = title[:limit]
+    for sep in ('｜', '|', '：', ':', '，', ',', ' ', '、', '。'):
+        i = cut.rfind(sep)
+        if i >= limit - 4: cut = cut[:i]; break
+    return cut.rstrip('｜|：:，, 、。·-—')
 
 
 def gh_get_text(repo, path, token) -> str:
