@@ -13,6 +13,7 @@
 
 ## 笔记
 
+- [AI 是怎么学会捏 3D 模型的：生成式 3D 六年演进](https://lgystoic.github.io/notes/generative-3d-ai/): 从 NeRF 到 3DGS，从 SDS 到原生 mesh 生成，再到 2026 年的 flow matching：生成式 3D 这六年没有一步是拍脑袋想出来的，每一步都是被上一步的缺陷逼出来的。按缺陷驱动的顺序串起学术脉络与商业战场，附 8 张机制图与论文速查表。（更新 2026-09-24）
 - [用 VLM 把家庭摄像头压成状态序列：一个看护记录系统的设计](https://lgystoic.github.io/notes/home-camera-vlm-pipeline/): 三个家用摄像头接一个视觉模型，把连续画面变成可查询的状态序列。记录其中的取舍：帧差闸门如何把模型调用压到接近零、输出格式为什么不用 JSON、状态机为什么必须忽略 unknown，以及门口那一路为什么从轮询改成边沿触发。（更新 2026-09-19）
 - [深圳地铁 200 米内住宅画像：南山 / 宝安 / 光明](https://lgystoic.github.io/notes/2026-08-17-metro200m-residential-profile/): 对南山、宝安、光明三区地铁 200 米内 461 个地块做住宅粗筛，并深挖 120 个候选盘的户数、车位、户型、回迁房与学位风险。（更新 2026-08-18）
 - [Ring Collectives](https://lgystoic.github.io/notes/ring-collectives/): Interactive visual explanation of ring all-reduce, reduce-scatter, all-gather, all-to-all, and NCCL bus bandwidth factors.（更新 2026-08-13）
