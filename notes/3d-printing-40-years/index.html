@@ -1,0 +1,583 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>3D 打印的四十年：瓶颈换了四次位 | Anaxagore</title>
+    <meta
+      name="description"
+      content="从 1981 年到 2026 年，3D 打印这个行业经历了四次瓶颈的换位：能不能做出来、买不买得起、会不会用、打什么。前三个基本解决了，而最后一个——内容——现在由 AI 接管。"
+    />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="3D 打印的四十年：瓶颈换了四次位 | Anaxagore" />
+    <meta property="og:description" content="从 1981 年到 2026 年，3D 打印这个行业经历了四次瓶颈的换位：工艺→成本→易用→内容。最后一个由 AI 接管。" />
+    <meta property="og:url" content="https://lgystoic.github.io/notes/3d-printing-40-years/" />
+    <meta property="og:image" content="https://lgystoic.github.io/assets/og/notes.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="canonical" href="https://lgystoic.github.io/notes/3d-printing-40-years/" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231b1b1a'/%3E%3Ctext x='32' y='43' text-anchor='middle' font-size='30' font-family='Helvetica,Arial' font-weight='700' fill='white'%3EA%3C/text%3E%3C/svg%3E"
+    />
+    <link rel="stylesheet" href="../../site.css" />
+    <link rel="stylesheet" href="./styles.css" />
+    <script>
+      try {
+        var t = localStorage.getItem("theme");
+        if (t === "dark" || t === "light") document.documentElement.dataset.theme = t;
+      } catch (e) {}
+    </script>
+    <!-- build:jsonld -->
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "3D 打印的四十年：瓶颈换了四次位", "description": "从 1981 年到 2026 年，3D 打印这个行业经历了四次瓶颈的换位：能不能做出来、买不买得起、会不会用、打什么。前三个基本解决了，最后一个由 AI 接管。覆盖专利到期、价格崩盘、拓竹冲击波、FDM vs 光固化双产线、Tripo vs Meshy 路线对决。", "url": "https://lgystoic.github.io/notes/3d-printing-40-years/", "mainEntityOfPage": "https://lgystoic.github.io/notes/3d-printing-40-years/", "inLanguage": "zh-CN", "dateModified": "2026-09-25", "datePublished": "2026-09-25", "keywords": "3D Printing, FDM, SLA, Bambu Lab, Tripo, Meshy, Tech History", "isBasedOn": "3D 打印行业历史 / Tripo Meshy 产品资料 / Bambu Lab 公开信息", "author": {"@type": "Person", "name": "Anaxagore", "url": "https://lgystoic.github.io/about/"}, "publisher": {"@type": "Person", "name": "Anaxagore", "url": "https://lgystoic.github.io/"}, "image": "https://lgystoic.github.io/assets/og/notes.png"}</script>
+    <!-- /build:jsonld -->
+</head>
+<body>
+    <!-- build:header -->
+    <header class="site-header">
+      <div class="wrap">
+        <a class="brand" href="../../" aria-label="首页">
+          <span class="brand-mark">A</span>
+          <span>Anaxagore</span>
+        </a>
+        <nav class="site-nav" aria-label="主导航">
+          <a href="../../notes/" aria-current="page">笔记</a>
+          <a href="../../radar/">雷达</a>
+          <a href="../../radar/tracks/">专题</a>
+          <a href="../../radar/events/">活动</a>
+          <a href="../../radar/jobs/">工作</a>
+          <a href="../../guides/">指南</a>
+          <a href="../../about/">关于</a>
+          <button class="theme-toggle" type="button" data-theme-toggle aria-label="切换深浅色">
+            <span data-theme-icon>◑</span>
+          </button>
+        </nav>
+      </div>
+    </header>
+    <!-- /build:header -->
+
+    <main class="wrap note">
+      <section class="hero">
+        <p class="eyebrow">3D Printing · 1981–2026</p>
+        <h1>一台打印机，四十年，四个瓶颈轮流坐庄。</h1>
+        <p class="lead">
+          过去四十年，3D 打印这个行业一直在解决同一类问题——能不能做出来、买不买得起、好不好用。这三件事基本都解决了。而那个从头到尾没被解决的问题，是<strong>打什么</strong>。有意思的是，现在接管这件事的，是另一种技术。
+        </p>
+        <div class="hero-facts" aria-label="关键参数">
+          <span>1981 小玉秀男第一篇论文</span>
+          <span>2009 专利到期，价格崩一个数量级</span>
+          <span>2022 拓竹 X1 众筹 700 万美元</span>
+          <span>2024 AI 接管"打什么"</span>
+        </div>
+      </section>
+
+      <!-- ═══ 序 ═══ -->
+      <section class="section">
+        <h2>序</h2>
+        <p>
+          你有一台打印机。它能打任何东西。0.1 毫米一层，每秒 500 毫米，十六种颜色一起上。你打开模型网站，往下翻。翻了二十分钟。你关掉了网页。<strong>这就是这篇文章要讲的事。</strong>
+        </p>
+        <p>
+          那不是一个关于技术进步的故事。那是一个关于<strong>专利和垄断</strong>的故事。也是一个<strong>四个瓶颈轮流坐庄</strong>的故事。但在讲它之前，你得先明白一件事：为什么这东西曾经只有工厂买得起，今天一台入门机只卖一千块人民币。
+        </p>
+      </section>
+
+      <!-- ═══ 一 ═══ -->
+      <section class="section">
+        <h2>一、你发明了"把三维问题变成二维问题"</h2>
+
+        <h3>你面对的是一个死局</h3>
+        <p>
+          你想做一个立体的东西。你手上有车床、铣床、刨床、磨床——全是"减材"的活儿：拿一块料，把不要的部分削掉。于是你立刻撞上两堵墙。
+        </p>
+        <p>
+          第一，<strong>内部结构做不了</strong>。你想在零件里挖一条弯弯曲曲的冷却通道，刀具伸不进去。第二，<strong>越复杂越贵</strong>。形状每复杂一分，加工步骤就多一步，钱就多一层。你很自然地想：有没有一种办法，让"复杂"不再等于"贵"？
+        </p>
+
+        <h3>你把三维切成了二维</h3>
+        <p>
+          一个东西不好做，那就<strong>把它切成一千片薄的</strong>。每一片都很薄，薄到没有内部结构，薄到容易做。做一千片，再粘起来。<strong>复杂消失了。</strong>因为每一片都是平的，而平面的复杂度和立体的复杂度根本不是一回事。
+        </p>
+
+        <figure>
+          <img src="./diagrams/anim_slicing.gif" alt="动画：一个立体被切成三十层薄片" loading="lazy" />
+          <figcaption>
+            动画演示——一个立体被水平切成三十层，每一片单独抽出、层层堆叠。这就是快速成型的全部秘密：三维的复杂度消失了，只剩一堆二维薄片。
+          </figcaption>
+        </figure>
+
+        <p>
+          你给自己这个办法起了个名字，叫<strong>快速成型</strong>。1981 年 5 月，名古屋市工业研究所的小玉秀男把这件事写成了论文发表。这是人类第一篇关于快速成型的论文。<strong>然后没有任何人理他。</strong>
+        </p>
+
+        <h3>三年后，另一个人把它变成了专利</h3>
+        <p>
+          1984 年，一个叫 Chuck Hull 的美国人申请了几乎同样的东西——用紫外激光去照一池液态光敏树脂，照到的地方变硬，一层层堆起来。你管这叫<strong>光固化</strong>（SLA）。1986 年 3 月 11 日，专利授权。
+        </p>
+
+        <h3>他顺手定了一个格式，这个格式比他活得久</h3>
+        <p>
+          Hull 很快就遇到一个很实际的问题：他的机器要读文件，但当时<strong>没有任何一种文件格式能描述一个立体</strong>。于是他顺手定义了一个。用一堆三角形拼出任何表面。这个格式叫 <strong>STL</strong>。
+        </p>
+        <p>
+          今天你在任何一个 AI 建模网站上点"下载"，得到的还是它，或者它的后代（OBJ、3MF）。<strong>顺手发明的东西，往往比主体活得久。</strong>
+        </p>
+
+        <h3>你把机器做出来了，然后标了个天价</h3>
+        <p>
+          1988 年，第一台商用光固化机 SLA-1 卖了出去。同一年，Scott Crump 想了个更便宜的路子：直接用喷嘴挤熔化的塑料丝——这就是 <strong>FDM</strong>（熔融沉积）。同年 Carl Deckard 又想了一个：用粉末，激光把粉末烧结起来，就是 <strong>SLS</strong>。三条路都通了。然后你把它们全锁进了专利里。一台 Stratasys 的桌面机，一万五千美金。你想自己造一台？<strong>等着被告。</strong>
+        </p>
+
+        <h3>你等了整整二十年</h3>
+        <p>
+          这二十年里，这三条路的技术其实没有什么大突破。一直被卡的，是<strong>谁能造</strong>。转折点在 2005 年。英国巴斯大学一个叫 Adrian Bowyer 的人发起了一个项目，叫 <strong>RepRap</strong>。目标很疯：造一台能打印自己的 3D 打印机——不算螺丝螺母，它身上大约<strong>一半</strong>的零件，可以由另一台 RepRap 打出来。
+        </p>
+        <p>
+          2009 年，FDM 的核心专利到期。<strong>价格从一万美金掉到了一千美金以下。</strong>同年 4 月，MakerBot 的 Cupcake 卖 750 美元。而它的对手，Stratasys 的 uPrint，卖 <strong>14,900 美元</strong>。专利到期后，Stratasys 只提了一个要求——<strong>别用 FDM 这个商标名</strong>。于是 Bowyer 造了一个新词：<strong>FFF</strong>（熔融制丝）。
+        </p>
+
+        <figure>
+          <img src="./diagrams/01-price-cliff.png" alt="2009 年价格断崖" loading="lazy" />
+          <figcaption>
+            2009 年那道陡坡——Stratasys uPrint 卖 $14,900，同年 MakerBot Cupcake 卖 $750。价格掉了一个数量级，不是因为技术突然进步了，而是因为专利到期了。
+          </figcaption>
+        </figure>
+
+        <h3>与此同时，地球另一边的人在用另一种办法解决同一个问题</h3>
+        <p>
+          中国这条线开始得晚，晚了大概七年。1988 年，清华的颜永年建了国内第一个激光快速成形中心。但真正能说明那个年代有多难的，是西安交大的卢秉恒。1994 年，他建研究所，启动资金<strong>大约 23 万元人民币</strong>。买一台进口设备？想都不用想。<strong>那就自己做。</strong>
+        </p>
+        <p>
+          他联合兄弟院校，花 3 万块造了一台激光器。树脂从进口的 2000 元一公斤，硬压到 100 元。1995 年，他拿到 250 万元的攻关资助，做出了中国第一台光固化原型机。1997 年，第一台商品化的机器出来了，售价 <strong>150 万人民币</strong>——同期的日本设备 48 万美元，美国设备 72 万美元。第一批客户是长安汽车和比亚迪。
+        </p>
+        <p>
+          你发现没有：一边是"等专利到期，价格自己掉下来"；一边是"没得等，从头自己造"。两条路完全不一样。但它们最后指向的是同一件事——让更多人手上有机器。
+        </p>
+
+        <figure>
+          <img src="./diagrams/08-china-line.png" alt="两条线殊途同归" loading="lazy" />
+          <figcaption>
+            上面是专利线——1984 年 SLA 专利锁死二十年，2009 年到期价格崩盘；下面是自研线——1988 年清华交大起步，买不起就自己造，1997 年做出 150 万的商品机。两条路不同，但都指向同一件事：让更多人手上有机器。
+          </figcaption>
+        </figure>
+
+        <p>
+          到这里，前两个瓶颈都被撬开了。<strong>"能不能做出来"和"买不买得起"这两件事，从 2009 年起就不再是问题了。问题变成了：会不会用。</strong>而且你会发现，换位到这里还没有完。
+        </p>
+
+        <figure>
+          <img src="./diagrams/02-bottleneck-shifts.png" alt="四十年四个瓶颈轮流坐庄" loading="lazy" />
+          <figcaption>
+            四十年的四个瓶颈。每一次换位，都是因为上一个被解决了——而最后一个，到今天还没被解决。
+          </figcaption>
+        </figure>
+      </section>
+
+      <!-- ═══ 二 ═══ -->
+      <section class="section">
+        <h2>二、2022，你想让打印机像家电</h2>
+
+        <h3>你买了台一千块的机器，然后发现它不听话</h3>
+        <p>
+          便宜是便宜了。但你想打出一个像样的东西，得先学会一堆东西：调平、防翘边、调回抽、算流量、认材料、认温度……出一件废品是常态。<strong>机器便宜了，但没有变简单。</strong>
+        </p>
+
+        <h3>你决定把这些麻烦全部自动化</h3>
+        <p>
+          2020 年 11 月，一家叫拓竹的公司在深圳成立。创始人陶冶，之前在大疆管消费级无人机。<strong>这个出身很重要。</strong>做消费级无人机的人，习惯了一件事：把极其复杂的飞控，塞进一个普通人拆开就能飞的东西里。
+        </p>
+        <p>
+          2022 年 4 月底，X1 正式发布；5 月 31 日，它上了 Kickstarter。它做对的不是某一个参数，而是<strong>三件事同时成立</strong>：
+        </p>
+        <ol>
+          <li><strong>速度</strong>：500 毫米每秒，加速度 20,000 毫米每平方秒。当时主流机器的速度是它的几分之一——对比一下就懂。</li>
+          <li><strong>多色</strong>：AMS 四卷料，一次十六色。</li>
+          <li><strong>自动</strong>：激光雷达 + NPU，自动校准。官方给的成功率是 98%。</li>
+        </ol>
+        <p>
+          众筹成绩：5575 个人，5497 万港元（约 4700 万人民币）。外媒当时的形容是：<strong>几乎所有厂商都得连夜给自己的机器提速、改定价。</strong>
+        </p>
+
+        <h3>老牌厂商的反扑，为什么没追上</h3>
+        <p>
+          Prusa 是这条赛道上口碑最好的品牌。它的应对是 MK4——但只补了一半。它第一台封闭式 CoreXY 机型（Core One），2024 年 11 月才发布、2025 年 1 月才发货，比 X1C 晚了大约两年半。2026 年 3 月，它裁掉了研发团队近四分之一的人。
+        </p>
+        <p>
+          其他几家更直接：AnkerMake 停售，BCN3D 破产，Castor 清算。市场分析机构 CONTEXT 给这个现象取了个名字，叫<strong>"竹子效应"</strong>。
+        </p>
+
+        <figure>
+          <img src="./diagrams/03-bamboo-effect.png" alt="竹子效应" loading="lazy" />
+          <figcaption>
+            同一年的同一批市场。低价机不是把中高端"抢走"了，而是把整个蛋糕的形状改了——入门级暴涨，中端和高端一起缩。
+          </figcaption>
+        </figure>
+
+        <h3>然后你发现，他们把入口锁了</h3>
+        <p>
+          2025 年 1 月，拓竹推了一套"授权与认证保护机制"。意思是：局域网打印、温控、AMS 配置、校准、远程视频、固件升级，<strong>都得经过它的 Bambu Connect 授权</strong>。后果是，OrcaSlicer 这类第三方切片器被踢出了直接控制。
+        </p>
+        <p class="callout">
+          <strong>一个让开源社区反胃的细节：</strong>
+          <span>OrcaSlicer 本身，是从拓竹自己按 AGPL 开源的 Bambu Studio 分叉出来的。你开源了，别人基于你的代码做了个东西，然后你把门关了。</span>
+        </p>
+        <p>
+          拓竹的立场只有一句话：<strong>"代码的许可证不是访问我们云基础设施的通行证。"</strong>2026 年 4 月，事情升级成法律事件：对开发者发 cease-and-desist，Software Freedom Conservancy 认定拓竹违反 AGPLv3。这一行的"墨水盒时刻"到了。
+        </p>
+
+        <h3>机器的问题解决了，你回到最开始那个问题</h3>
+        <p>
+          你有了机器。它很快，很准，能打十六种颜色，放在桌上就像一个家电。你打开模型网站。往下翻。<strong>你又翻了二十分钟。</strong>于是瓶颈第三次换位：<strong>从"会不会用"，变成了"打什么"。</strong>
+        </p>
+      </section>
+
+      <!-- ═══ 三 ═══ -->
+      <section class="section">
+        <h2>三、你把"打什么"这件事，外包给了一个模型</h2>
+
+        <h3>2024 年以前，这件事根本不存在</h3>
+        <p>
+          你想打一个"坐在南瓜上的猫"。以前的做法：打开 Blender，学三个月，做出来。或者：上模型站找，找到就用，找不到就换个想法。<strong>你的想象力被"有没有现成模型"这件事框住了。</strong>
+        </p>
+        <p>
+          2024 年之后，你有了第三个选项：<strong>打字</strong>。一句话，或者一张图，几秒钟到一分钟，一个网格。但你真的去用的时候会发现：市面上的两家，做法几乎是相反的。
+        </p>
+
+        <h3>路线 A：把"快"推到极限</h3>
+        <p>
+          第一家公司叫 Tripo，团队 2023 年 1 月成立。他们干的第一件让人记住的事，是 2024 年 3 月和 Stability AI 一起开源了 <strong>TripoSR</strong>——单张图片进去，<strong>0.5 秒</strong>出来一个网格。
+        </p>
+        <p>后面他们的版本线：</p>
+        <ul>
+          <li>Tripo 1.0（2024 初）：8 秒</li>
+          <li>v2.0（2024-09）→ v2.5（2025-01）</li>
+          <li><strong>v3.0（2025-08）：200 亿参数</strong></li>
+          <li>H3.1（2026-02）</li>
+          <li><strong>P1.0（2026-03）：约 2 秒</strong>，48 到 20,000 面</li>
+          <li><strong>P2.0（2026-09）：10–40 秒</strong>，最多四张视图输入，直接给四边面拓扑，卖点是"<strong>免重拓扑</strong>"</li>
+        </ul>
+        <p>
+          还有一件事值得单独说：<strong>他们几乎把所有东西都开源了。</strong> TripoSR、TripoSG、TripoSF、ComfyUI 插件。在这条赛道上，这是目前最大的开源贡献者之一。
+        </p>
+
+        <h3>路线 B：把"准"推到极限</h3>
+        <p>
+          第二家公司叫 Meshy，2021 年成立，创始人胡渊鸣。（如果你听说过"太极"这门编程语言，就是他写的。）他们的版本线更整齐：Meshy 1 到 Meshy 7，一步一代。真正的分歧出现在 <strong>Meshy 7（2026-08-10）</strong>——那一次他们选的方向不是更快，是<strong>更准</strong>。
+        </p>
+        <p>具体差多少？两个数就够了：</p>
+        <div class="stat-grid">
+          <div><b>Tripo P1 ≈ 2 秒</b><span>生成速度</span></div>
+          <div><b>Meshy 7 ≈ 1 分钟</b><span>生成速度</span></div>
+          <div><b>慢 30 倍</b><span>多花的一分钟花在"对齐"上</span></div>
+        </div>
+        <p><strong>一家在卖"快"，一家在卖"位置对"。</strong></p>
+
+        <figure>
+          <img src="./diagrams/04-two-timelines.png" alt="双时间线对比" loading="lazy" />
+          <figcaption>
+            同一条时间轴，两条完全不同的节奏。上面那条线越走密，下面那条线越走越慢——因为慢下来的那一分钟，花在了对齐上。
+          </figcaption>
+        </figure>
+
+        <h3>但这些数字都是他们自己跑的</h3>
+        <p>
+          Meshy 公布过一个数字：<strong>盲测胜率 63.8%</strong>，赢的是 Tripo 3.1。还有三个对齐分：81.0%、79.7%、59.8%。<strong>这些全部是厂商自跑。</strong>
+        </p>
+        <p>
+          第三方评测机构 Crafiq 的 3D Arena（2026-08 数据，社区盲投 ELO）给出的排序是这样的：
+        </p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>#</th><th>模型</th><th>ELO</th><th>来源</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>1</td><td>Tripo H3.1</td><td>1790</td><td>VAST</td></tr>
+              <tr><td>2</td><td>Hunyuan3D 3.1</td><td>1776</td><td>Tencent</td></tr>
+              <tr><td>3</td><td>Hi3D v3.0</td><td>1686</td><td>Math Magic</td></tr>
+              <tr><td>4</td><td>Rodin 2.5</td><td>1625</td><td>Hyper3D</td></tr>
+              <tr><td>5</td><td>Meshy 6</td><td>1594</td><td>Meshy</td></tr>
+              <tr><td>6</td><td>Meshy 7</td><td>1585</td><td>Meshy</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>
+          注意两个细节：在这份榜上，<strong>排第一的是 Tripo H3.1</strong>；而 Meshy 7 不但排在它后面，还排在自家上一代 Meshy 6 后面——不过两边票数都不多，误差棒重叠，别过度解读。
+        </p>
+        <p class="callout">
+          <strong>关键信号：</strong>
+          <span>在这条赛道上，"谁更强"目前没有中立裁判。厂商自己的榜单排厂商自己的第一；社区盲投的 ELO 又给了另一份答案。选模型之前先看评测是谁出钱跑的。</span>
+        </p>
+      </section>
+
+      <!-- ═══ 四 ═══ -->
+      <section class="section">
+        <h2>四、你回到那两条路，然后发现它们各有各的代价</h2>
+
+        <h3>你回到第一性原理</h3>
+        <p>
+          第一章里，你遇到了三条路：挤塑料丝（FDM）、照液体（SLA）、烧粉末（SLS）。现在你手上有一个网格，你要把它变成实物。<strong>你得选一条。</strong>
+        </p>
+        <p>
+          不过第三条路（SLS，激光烧粉末）至今还锁在工业端——粉末、激光、防爆腔体，哪样都不是放在桌上的东西。所以真正的选择只有两条。
+        </p>
+
+        <h3>第一条路：挤</h3>
+        <p>
+          最直接的办法是什么？把塑料加热融化，从一个小孔里挤出来，一层层画上去。跟热熔胶枪没什么本质区别。这就是你在第一章见过的 <strong>FDM</strong>。
+        </p>
+        <p>
+          但你的喷嘴有 0.4 毫米粗——这就是问题所在。你的"像素"——你能分辨的最小单位——<strong>由喷嘴直径决定</strong>。0.4 毫米。你想打一张脸，打出来是一团被圆角化的东西。轮廓是对的，细节全是软的。想细一点？换 0.2 毫米的喷嘴。<strong>然后打印时间翻四倍。</strong>
+        </p>
+
+        <h3>于是你发明了第二条路：不挤，照</h3>
+        <p>
+          你换了个思路。固体线材不好控制，那<strong>用液体</strong>。你弄一池光敏树脂，用紫外光按层去照它。照到的地方，几秒钟之内变硬。关键差别在这里：<strong>你不是一次画一个点，你一次照亮整整一层。</strong>
+        </p>
+
+        <figure>
+          <img src="./diagrams/anim_fdm_resin.gif" alt="FDM 逐层画 vs 光固化整层照" loading="lazy" />
+          <figcaption>
+            左边——喷嘴一圈圈画圆，画完一层再画下一层，一个小件要 27 秒；右边——整层一闪固化，同样的小件只要 0.6 秒。"逐层画"和"整层照"，差了两个数量级。
+          </figcaption>
+        </figure>
+
+        <p>
+          你的"像素"不再是喷嘴，而是屏幕上的一个像素。一块 16K 屏，218 毫米的幅面上一万六千个像素。算一下：<strong>13 微米。你和上面那条路，差了大概 30 倍。</strong>
+        </p>
+
+        <h3>然后你发现了代价</h3>
+        <p>
+          <strong>它脆。</strong>标准树脂摔一下就裂。<strong>它得洗。</strong>打完出来表面全是未固化的树脂，得用 95% 以上的酒精泡、摇、冲。<strong>它得二次固化。</strong>洗完还要拿紫外灯再照一遍。
+        </p>
+        <p>
+          酒精、手套、固化站、废液处理——全是 FDM 那边根本不存在的开销。<strong>而真正的成本，就藏在这两步里。</strong>
+        </p>
+
+        <h3>三个反直觉的结论</h3>
+
+        <p><strong>第一个：FDM 的弱点不是"强度"，是"方向"。</strong></p>
+        <p>
+          同一块 PPA-CF 材料，沿 XY 方向拉伸能到 81.7 MPa。沿 Z 方向——也就是层和层之间——只有 <strong>30.2 MPa</strong>。<strong>掉了六成。</strong>因为层与层之间不是长在一起的，是"焊"上去的。所以对 FDM 来说，<strong>模型怎么摆，本身就是一个设计变量</strong>。同一个模型，横着打和竖着打，强度能差一倍。
+        </p>
+
+        <p><strong>第二个：光固化的"大"和"精"，是互斥的。</strong></p>
+        <p>
+          它的精度吃的是屏幕像素。而屏幕做不大——<strong>幅面一大，像素就得变大，精度就掉</strong>。所以你会看到一个很别扭的现象：15 寸的大屏机，分辨率写着 8K，听着很唬人，但换算到 XY 上只有 <strong>43 微米</strong>。而 10 寸的小屏机写着 16K，是 <strong>14 微米</strong>。<strong>差三倍。</strong>
+        </p>
+
+        <p><strong>第三个：光固化真正贵的地方，是"洗"和"固"。</strong></p>
+        <p>
+          而且这里有个细节，九成新手会踩：<strong>干燥。</strong>洗完不能直接照紫外线——表面残留的酒精会被瞬间封在里面，过几天模型就裂了，或者发白。得先用气枪吹干，再静置 15 到 30 分钟。<strong>这一步没人当回事，但它决定了你的模型三天后是好的还是裂的。</strong>
+        </p>
+
+        <h3>现在，把 AI 生成的那个网格扔进去</h3>
+        <figure>
+          <img src="./diagrams/06-one-mesh-two-paths.png" alt="一个网格两条路" loading="lazy" />
+          <figcaption>
+            上面那一个网格是 AI 给你的，它自己不知道要往哪条路上走。往下两条分支，是两种完全不同的准备工作——尤其注意面数的要求正好是相反的。
+          </figcaption>
+        </figure>
+
+        <p>
+          <strong>投 FDM</strong>：面数往下压，50 万以下就够（0.4 毫米的喷嘴吃不下更细的）。但<strong>必须水密</strong>，切片器要靠它判断哪里是实体。壁厚低于 1.2 毫米，直接打不出来。
+        </p>
+        <p>
+          <strong>投光固化</strong>：面数反而要留，100 到 150 万，保住表面细节。同样要水密，但<strong>更怕悬浮几何</strong>——没连上的碎片会在槽里掉下来。<strong>大于 40 毫米必须掏空</strong>，壁厚 2 毫米，还要<strong>至少打一个排液孔</strong>，不然里面的残液永远固不了。再加一条：模型要旋转 30 到 45 度，减小大平面的吸力，否则会被拉脱。
+        </p>
+        <p class="callout">
+          <strong>到这里，你终于理解了 Tripo 那句"水密模型免修直接切片"到底在说什么。</strong>
+          <span>它说的是 FDM 那条路的痛点。而光固化那条路的痛点，是掏空、排液孔和吸力。两家 AI 公司在同一件事上的着力点，其实取决于它们默认服务的是哪条产线。</span>
+        </p>
+      </section>
+
+      <!-- ═══ 五 ═══ -->
+      <section class="section">
+        <h2>五、你的网格还缺三样东西</h2>
+
+        <h3>AI 给你的那个东西，打不了</h3>
+        <p>
+          前一章你已经看到，AI 几秒钟就能给你一个网格。但你想把它扔进打印机或者游戏引擎的时候，会撞上三堵墙。<strong>第一，它没颜色。</strong>一个灰不溜秋的模型，要贴图。<strong>第二，它的面是乱的。</strong>三角面胡乱交织，有的小到离谱，有的拉伸成面条。这种拓扑，动画做不了，细分做不了，渲染也省不了。<strong>第三，它不会动。</strong>你要让角色走路、挥手、跳舞——就得绑骨、画权重、做动画。这三件事，是网格从"能看"到"能用"之间的三步。
+        </p>
+        <p>
+          前两步直接卡在打印产线上，这一章讲。第三步（绑骨）离打印最远，是游戏和动画那边的事，留到下一章。
+        </p>
+
+        <h3>拓扑：生成完，还得再修一遍</h3>
+        <p>
+          生成的时候，AI 只管形状——它不知道你后面要干嘛。所以它给的拓扑，通常是<strong>一堆三角面糊在一起</strong>。但你的下游不认这个：动画需要四边面，关节弯曲才不撕裂；游戏引擎需要低面数，不然跑不动；3D 打印需要水密 manifold，不然切片就炸。所以你得重新拓扑。
+        </p>
+
+        <figure>
+          <img src="./diagrams/10-topo-comparison.png" alt="低模路线对比" loading="lazy" />
+          <figcaption>
+            左边 Tripo 追求"生成即所得"——P1.0 约 2 秒出 48-20,000 面，P2.0 推到 10-40 秒、最多 4 视图输入、四边面免重拓扑；右边 Meshy 追求"高自由度"——生成完再修，三档可选：Low Poly Mode（直进引擎）、Smart Topology（100-15,000 面四边面）、Remesh（最多 30 万面）。
+          </figcaption>
+        </figure>
+
+        <p><strong>Tripo：一步到位。</strong></p>
+        <p>
+          它的 P1.0 约 2 秒出 48 到 20,000 面；P2.0 推到 10 到 40 秒，最多四张视图输入，直接给四边面拓扑——卖点就一个词："免重拓扑"。
+        </p>
+        <p><strong>Meshy：生成完再修，三档可选。</strong></p>
+        <ul>
+          <li><strong>Low Poly Mode</strong>：免重拓扑，直进引擎</li>
+          <li><strong>Smart Topology</strong>（<code>meshy-t2</code>）：100 到 15,000 面（默认 4,000），干净四边面</li>
+          <li><strong>Remesh API</strong>：100 到 300,000 面（默认 30,000），三角面/四边面可选</li>
+        </ul>
+        <p>
+          <strong>核心差异</strong>：Tripo 帮你做决定，Meshy 让你做决定。前者适合"我想要一个能直接用的模型"，后者适合"我想要不同精度选一个"。
+        </p>
+
+        <h3>贴图：给模型穿上衣服</h3>
+        <p>
+          有了干净的网格，下一步是颜色和材质。这里有一个很有意思的现状：<strong>贴图对齐的质量，目前没有公开基准。</strong>几何上谁对得更好，各家发过分数；但颜色、花纹、材质贴上去准不准——没人比。这意味着：<strong>买模型的时候，你实际上是在盲测贴图质量。</strong>
+        </p>
+
+        <h3>谁来补上这两步</h3>
+        <p>
+          回头看这一章，你会发现：<strong>AI 解决的只是"有形状"。</strong>形状后面的拓扑和贴图——还是得有人做。有的厂商选"往前一步"：把拓扑做到极致，免掉你后面的工序（Tripo）。有的厂商选"往后走一步"：把整条产线做了，从生成到打印到绑骨一条龙（Meshy）。<strong>这不只是产品差异。</strong>这是在"一个网格到底应该卖多少钱"这件事上的不同判断。
+        </p>
+      </section>
+
+      <!-- ═══ 六 ═══ -->
+      <section class="section">
+        <h2>六、你回头看，会发现真正值钱的位置不在你站的地方</h2>
+
+        <h3>硬件厂在做两手准备</h3>
+        <p>
+          你可能会想：模型厂把东西做好，硬件厂用起来，这不是挺好的合作吗？问题在于——<strong>硬件厂不打算把入口交给任何一家。</strong>以拓竹为例。它的 MakerWorld，现在同时接了：腾讯混元、Tripo、Meshy、Hi3D、Rodin。<strong>五家。</strong>
+        </p>
+        <p>
+          而且拓竹内部的软件团队规模，<strong>已经超过了硬件团队</strong>。翻成一句话：<strong>对模型厂来说，你在这一层是"被比稿的零件"，不是品牌。</strong>
+        </p>
+        <p>
+          反过来看创想三维：走的是自研路线。它的创想云 MakeNow 用腾讯混元打底，自研了九款 AI 工具；设备端的缺陷识别把算法优化周期从 60 天压到 15 天。<strong>同一件事，两种完全不同的答案。</strong>
+        </p>
+
+        <h3>所以模型厂只有两条出路</h3>
+        <figure>
+          <img src="./diagrams/09-vendor-positions.png" alt="模型厂的两种活法" loading="lazy" />
+          <figcaption>
+            同一层被比稿，不如自己占一层。左边 Tripo 往前绑硬件（黑格 HeyVerse），右边 Meshy 往后做成品（Creative Lab 工厂直邮）。
+          </figcaption>
+        </figure>
+
+        <p><strong>往前移：绑硬件。</strong></p>
+        <p>
+          Tripo 走的是这条。2026 年 7 月和黑格科技战略合作，黑格的全彩内容平台 HeyVerse 接入 Tripo。
+        </p>
+        <p><strong>往后移：做成品。</strong></p>
+        <p>
+          Meshy 走的是这条。它搞了个 Creative Lab——<strong>不卖模型，卖印好的实物</strong>。钥匙扣、冰箱贴、键帽、手办、拼图板。你下个单，合作工厂负责修复、打印、后处理，然后直接寄到你家。
+        </p>
+        <p>
+          <strong>但这目前还是一个极其小众的生意。</strong>根据公开信息，Creative Lab 的月订单只有大约 <strong>20 单</strong>——全部品类加在一起。这意味着绝大多数用户还是把它当"AI 建模工具"用，"一键下单成品"更多是姿态，不是习惯。方向对了，但路还远。
+        </p>
+
+        <h3>顺便说一个我觉得最有意思的变化</h3>
+        <p>
+          "开源还是闭源"这件事，在这条赛道上传到 2026 年，已经<strong>不只是技术偏好了</strong>。它变成了监管和信任议题。Prusa 的创始人公开宣布"开源桌面 3D 打印已死"，矛头指向中国的补贴和专利环境；拓竹的固件门被 Software Freedom Conservancy 认定违反 AGPLv3。
+        </p>
+        <p>
+          在这个语境下：<strong>Tripo 的一堆开源资产，是"可验证、低阻力"的故事。而 Meshy 的全闭源，就得更靠产品力和合规叙事来补。</strong>同一个技术选择，在不同的环境下值完全不同。
+        </p>
+
+        <h3>你引用之前，有三个坑必须核</h3>
+        <p><strong>一、"消费级市场份额"有好几个口径，绝对不能混。</strong></p>
+        <ul>
+          <li>FDM 占 <strong>77%</strong>（华西证券 2026-01 报告，指的是消费级的技术结构）</li>
+          <li>还有第三方给的：FDM 58% / SLA 35% / SLS 7%</li>
+          <li>还有树脂机约占装机 <strong>24%</strong></li>
+        </ul>
+        <p>三个数说的不是一回事。</p>
+
+        <p><strong>二、所有厂商自跑的数字，都要标来源。</strong></p>
+        <ul>
+          <li>Meshy 的 63.8% 盲测胜率</li>
+          <li>3D 打印的"97% 切片通过率"（而且那 75 个样本里还含一次自动修复）</li>
+          <li>树脂的"耐温 238℃"——那是低应力、短时间的测试条件，不等于长期工作温度</li>
+        </ul>
+
+        <p><strong>三、"合作伙伴"这个词，两家都用得很宽。</strong></p>
+        <p>
+          从"内置进对方软件"，到"这个客户用过我们的东西"，都算。判断标准只有一个：<strong>有没有产品级的集成公告，有没有具体到机型和按钮。</strong>
+        </p>
+      </section>
+
+      <!-- ═══ 收尾 ═══ -->
+      <section class="section">
+        <h2>收尾：三个视角</h2>
+        <div class="cards">
+          <article>
+            <h3>如果你是模型厂</h3>
+            <ul>
+              <li>你在做的不是"更好的生成"，是"更少的下游工序"</li>
+              <li>你的对手不只是另一家模型厂，还有硬件厂的自研团队</li>
+              <li>开源是你的筹码，但也意味着别人可以分叉你</li>
+            </ul>
+          </article>
+          <article>
+            <h3>如果你是硬件厂</h3>
+            <ul>
+              <li>你不缺机器了，你缺的是"打开机器之后有没有东西可打"</li>
+              <li>但你也不会把入口交给一家——所以你会同时接五家</li>
+              <li>真正的护城河是：换掉某一家之后，用户能不能感知到差别</li>
+            </ul>
+          </article>
+          <article>
+            <h3>如果你是用户</h3>
+            <ul>
+              <li>机器已经足够好，好到它不再是你的瓶颈</li>
+              <li>你要先想清楚：你要的是"小而精"，还是"大而结实"</li>
+              <li>这件事决定了你该走哪条产线，也决定了你该怎么准备那个模型</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>最后一句</h2>
+        <p>
+          这四十年里，3D 打印爆发过四次。<strong>1988 年</strong>，第一台商用机卖出去——工艺通了。<strong>2009 年</strong>，专利到期，价格掉了一个数量级——成本通了。<strong>2022 年</strong>，一台千元机放到了普通人桌上——门槛通了。<strong>2024 年</strong>，AI 接管了"打什么"——内容通了。
+        </p>
+        <p>
+          每一次爆发，都发生在某个瓶颈刚刚被打通的那一年。而第四次和前三不同：它不是造了一台更好的机器。<strong>是让机器有东西可打。</strong>
+        </p>
+        <p>
+          现在轮到你了。打开你手边的随便一个东西——一个杯子、一个手机壳、一句话——丢进任意一个 AI 建模网站。等几秒。然后想一下：<strong>我拿这个模型，能直接打印吗？还是得修？</strong>如果你答不上来，那就说明四十年过去了，这个行业还有很多事没做完。而你正在见证它做完的过程。
+        </p>
+      </section>
+
+      <!-- build:comments -->
+
+    <!-- /build:comments -->
+    </main>
+
+    <!-- build:site-name -->
+Anaxagore
+    <!-- /build:site-name -->
+    <script src="../../site.js" defer></script>
+    <!-- build:analytics -->
+    <script data-goatcounter="https://anaxagore.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+    <script>(function(){
+  function gc(){return window.goatcounter&&window.goatcounter.count?window.goatcounter:null}
+  function send(path,title){var g=gc();if(g)g.count({path:path,title:title||path,event:true})}
+  document.addEventListener("click",function(e){
+    var a=e.target.closest&&e.target.closest("a");
+    if(!a)return;
+    var offer=a.closest(".offer");
+    if(a.hasAttribute("data-aff-link")||a.hasAttribute("data-aff")||(a.rel||"").indexOf("sponsored")>-1){
+      var key=(offer&&offer.getAttribute("data-aff"))||a.getAttribute("data-aff")||"link";
+      send("aff/"+key,"推荐位："+key+" @ "+location.pathname);return}
+    if(a.host&&a.host!==location.host){send("out/"+a.host,"外链："+a.host+" @ "+location.pathname)}
+  });
+  document.addEventListener("click",function(e){
+    var b=e.target.closest&&e.target.closest("[data-share-copy],[data-share-native]");
+    if(b)send("share/"+(b.hasAttribute("data-share-copy")?"copy":"native"),"分享 @ "+location.pathname)
+  });
+})();</script>
+    <!-- /build:analytics -->
+  </body>
+</html>
