@@ -1,0 +1,341 @@
+/* 本篇专用样式：站点框架与配色来自 ../../site.css，这里只补正文排版与图示。
+   所有颜色走 site.css 的 CSS 变量，深浅色切换自动生效。 */
+
+.note {
+  padding-block: 8px 48px;
+}
+
+.note .hero,
+.note .section {
+  /* grid/flex 语境下 min-width:auto 会被 pre 里不换行的长代码行撑开整个轨道，
+     导致手机端横向溢出；显式允许收缩，pre 的 overflow-x 才真正生效 */
+  min-width: 0;
+}
+
+.note .hero {
+  /* hero 不是 .section，自己画一条底线；后面的分隔线由 site.css 的 .section 负责 */
+  margin-top: 26px;
+  padding-bottom: 30px;
+  border-bottom: 1px solid var(--line-soft);
+}
+
+.note .eyebrow {
+  margin: 0 0 10px;
+  color: var(--accent);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.note h1 {
+  margin: 0;
+  font-size: clamp(1.7rem, 6vw, 2.3rem);
+  line-height: 1.24;
+  letter-spacing: -0.01em;
+}
+
+.note h2 {
+  margin: 0 0 14px;
+  font-size: clamp(1.15rem, 4.2vw, 1.4rem);
+  line-height: 1.35;
+}
+
+.note h3 {
+  margin: 22px 0 10px;
+  font-size: 1rem;
+}
+
+.note p {
+  margin: 0;
+  color: var(--ink-soft);
+}
+
+.note .lead {
+  margin-top: 16px;
+  color: var(--muted);
+  font-size: 1.02rem;
+}
+
+.note .section > * + p,
+.note .section > p + *,
+.note .section > * + ul,
+.note .section > * + ol,
+.note .section > * + .cards,
+.note .section > * + .stat-grid,
+.note .section > * + .table-wrap,
+.note .section > * + .callout,
+.note .section > * + pre {
+  margin-top: 16px;
+}
+
+
+
+.hero-facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+.hero-facts span {
+  padding: 5px 11px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--bg-tint);
+  color: var(--muted);
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.note ul,
+.note ol {
+  margin: 0;
+  padding-left: 20px;
+  color: var(--ink-soft);
+}
+
+.note li + li {
+  margin-top: 8px;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.cards article {
+  min-width: 0;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.cards h3 {
+  margin: 0 0 6px;
+  font-size: 0.95rem;
+}
+
+.cards p {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.note pre {
+  min-width: 0;
+  overflow-x: auto;
+  margin: 0;
+  padding: 14px 16px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--bg-tint);
+  color: var(--ink-soft);
+  font-family: var(--mono);
+  font-size: 0.82rem;
+  line-height: 1.65;
+}
+
+.note p code,
+.note li code,
+.note td code {
+  padding: 1px 5px;
+  border-radius: 4px;
+  background: var(--bg-tint);
+  color: var(--accent);
+  font-family: var(--mono);
+  font-size: 0.86em;
+}
+
+.note figure {
+  margin: 20px 0 0;
+}
+
+.note figure svg,
+.note img {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+}
+
+.note figcaption {
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.callout {
+  padding: 15px 17px;
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--radius);
+  background: var(--accent-soft);
+}
+
+.callout strong {
+  color: var(--accent);
+}
+
+.callout > span {
+  display: block;
+  margin-top: 5px;
+  color: var(--ink-soft);
+}
+
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.stat-grid div {
+  min-width: 0;
+  padding: 14px 10px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  text-align: center;
+}
+
+.stat-grid b {
+  display: block;
+  color: var(--accent);
+  font-size: 1.25rem;
+  line-height: 1.35;
+}
+
+.stat-grid span {
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+.table-wrap {
+  min-width: 0;
+  overflow-x: auto;
+}
+
+.note table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+}
+
+.note th,
+.note td {
+  padding: 9px 11px;
+  border-bottom: 1px solid var(--line-soft);
+  text-align: left;
+  vertical-align: top;
+}
+
+.note th {
+  color: var(--ink);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.note td {
+  color: var(--muted);
+}
+
+.note tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* ── 架构图：颜色全部走变量，深色模式自动适配 ── */
+.note figure svg {
+  --dia-ok: #0f7a6d;
+}
+
+[data-theme="dark"] .note figure svg {
+  --dia-ok: #5fc9b6;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .note figure svg {
+    --dia-ok: #5fc9b6;
+  }
+}
+
+.n-box {
+  fill: var(--surface);
+  stroke: var(--line);
+  stroke-width: 1.5;
+}
+
+.n-box-dash {
+  fill: var(--surface);
+  stroke: var(--muted);
+  stroke-width: 1.5;
+  stroke-dasharray: 6 4;
+}
+
+.n-box-ok {
+  fill: var(--bg-tint);
+  stroke: var(--dia-ok);
+  stroke-width: 1.5;
+}
+
+.n-box-hot {
+  fill: var(--accent-soft);
+  stroke: var(--accent);
+  stroke-width: 1.5;
+}
+
+.n-t {
+  fill: var(--ink);
+}
+
+.n-s {
+  fill: var(--muted);
+}
+
+.n-ok,
+.n-ok-s {
+  fill: var(--dia-ok);
+}
+
+.n-hot,
+.n-hot-s {
+  fill: var(--accent);
+}
+
+.n-e {
+  stroke: var(--muted);
+  stroke-width: 1.5;
+}
+
+.n-e.n-dash {
+  stroke-dasharray: 5 4;
+}
+
+.n-e-ok {
+  stroke: var(--dia-ok);
+  stroke-width: 1.5;
+}
+
+.n-e-hot {
+  stroke: var(--accent);
+  stroke-width: 1.5;
+}
+
+.n-mk {
+  fill: var(--muted);
+}
+
+.n-mk-ok {
+  fill: var(--dia-ok);
+}
+
+.n-mk-hot {
+  fill: var(--accent);
+}
+
+@media (max-width: 640px) {
+  .cards,
+  .stat-grid {
+    grid-template-columns: 1fr;
+  }
+}
