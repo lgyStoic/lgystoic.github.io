@@ -2,8 +2,128 @@
  "id": "video",
  "name": "视频生成模型",
  "blurb": "文生视频、图生视频、视频 VAE 与 DiT 加速：Wan、Sora、Veo、可灵、海螺、Seedance、Vidu、LTX、HunyuanVideo 等的发布、论文、benchmark 与推理框架支持。",
- "updated": "2026-09-24T02:44:14+00:00",
+ "updated": "2026-09-25T03:01:47+00:00",
  "entries": [
+  {
+   "id": "0334f842876e5854",
+   "date": "2026-09-25",
+   "title": "Google Vids unlocks free HD AI video generation for all personal Google accounts - Chrome Unboxed",
+   "link": "https://chromeunboxed.com/google-vids-unlocks-free-hd-ai-video-generation-for-all-personal-google-accounts/",
+   "source": "新闻 · 视频生成（英文）",
+   "priority": "high",
+   "summary": "Google Vids 向所有个人 Google 账号开放免费 HD AI 视频生成。",
+   "why": "头部厂免费开放 HD 视频生成，直接影响产品竞争格局。",
+   "tags": [
+    "Google Vids",
+    "AI video",
+    "free release"
+   ],
+   "entity": "Google Vids",
+   "kind": "release"
+  },
+  {
+   "id": "f904fe0bdc6d8a35",
+   "date": "2026-09-25",
+   "title": "OpenRouter Highlights New Benchmarks for AI Video Model Performance - TipRanks",
+   "link": "https://www.tipranks.com/news/private-companies/openrouter-highlights-new-benchmarks-for-ai-video-model-performance",
+   "source": "新闻 · 视频生成（英文）",
+   "priority": "high",
+   "summary": "OpenRouter 发布 AI 视频模型性能新基准。",
+   "why": "新 benchmark 直接影响模型选型与优化方向评估。",
+   "tags": [
+    "benchmark",
+    "video model",
+    "OpenRouter"
+   ],
+   "entity": "OpenRouter",
+   "kind": "benchmark"
+  },
+  {
+   "id": "4609c5e15372ab19",
+   "date": "2026-09-25",
+   "title": "音视频生成提速54倍！TurboT2VA：分布蒸馏与轨迹蒸馏的联合蒸馏方案 - 搜狐网",
+   "link": "https://m.sohu.com/a/1080447922_610300?scm=10001.325_13-325_13.0.0-0-0-0-0.5_1334",
+   "source": "新闻 · 视频生成（中文）",
+   "priority": "high",
+   "summary": "TurboT2VA：分布蒸馏+轨迹蒸馏联合方案，音视频生成提速 54×。",
+   "why": "蒸馏加速直接可用于训练/推理性能优化。",
+   "tags": [
+    "distillation",
+    "acceleration",
+    "54x"
+   ],
+   "entity": "TurboT2VA",
+   "kind": "paper"
+  },
+  {
+   "id": "4ce3eab8bc068fe7",
+   "date": "2026-09-25",
+   "title": "Latent evolving World Action Model",
+   "link": "https://arxiv.org/abs/2609.27455",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "high",
+   "summary": "arXiv 论文 Latent evolving World Action Model：分析 VDM 表征对 WAM 动作生成的影响。",
+   "why": "直接研究 VDM 训练效率与动作建模，对训练优化有强参考。",
+   "tags": [
+    "WAM",
+    "VDM",
+    "latent",
+    "arXiv"
+   ],
+   "entity": "Latent evolving World Action Model",
+   "kind": "paper"
+  },
+  {
+   "id": "073b467f4bbba63f",
+   "date": "2026-09-25",
+   "title": "Automating coherent long-form video generation - Google Research",
+   "link": "https://research.google/blog/coherent-long-form-video-generation/",
+   "source": "新闻 · 视频生成（英文）",
+   "priority": "medium",
+   "summary": "Google Research 发布「自动化长时连贯视频生成」研究。",
+   "why": "Google 官方博客，对视频生成训练管线有参考价值。",
+   "tags": [
+    "video generation",
+    "Google Research",
+    "long-form"
+   ],
+   "entity": "Google Research",
+   "kind": "paper"
+  },
+  {
+   "id": "3e1604072fd9da9c",
+   "date": "2026-09-25",
+   "title": "实时互动、实时改视频、探索空间视频，Vidu S2一次放了三个大招 - 风闻",
+   "link": "https://user.guancha.cn/main/content?id=1737308",
+   "source": "新闻 · 视频生成（中文）",
+   "priority": "medium",
+   "summary": "Vidu S2 发布：支持实时互动、实时改视频与空间视频。",
+   "why": "国产头部视频模型大更新，可关注其工程实现。",
+   "tags": [
+    "Vidu",
+    "video generation",
+    "实时"
+   ],
+   "entity": "Vidu S2",
+   "kind": "release"
+  },
+  {
+   "id": "9b97cb2c5f298593",
+   "date": "2026-09-25",
+   "title": "The Past Frames the Future: Memory for Autoregressive Video Generation - alphaXiv",
+   "link": "https://www.alphaxiv.org/abs/2609.28466",
+   "source": "新闻 · 视频生成（英文）",
+   "priority": "medium",
+   "summary": "alphaXiv 论文：用 Memory 改进自回归视频生成。",
+   "why": "自回归视频生成架构研究，可启发训练侧优化。",
+   "tags": [
+    "video generation",
+    "autoregressive",
+    "memory"
+   ],
+   "entity": "The Past Frames the Future",
+   "kind": "paper"
+  },
   {
    "id": "0cc1ae11826a2db5",
    "date": "2026-09-24",
@@ -1051,8 +1171,13 @@
    "b3cd147d851410fb"
   ],
   "Google Vids": [
+   "0334f842876e5854",
    "0cc1ae11826a2db5",
    "a008930e840f83ca"
+  ],
+  "Vidu S2": [
+   "3e1604072fd9da9c",
+   "21e91c67e227ac4b"
   ],
   "ECCV2026": [
    "ef865c252f9d05f6",
@@ -1069,6 +1194,21 @@
   "字节跳动": [
    "3a06f956823425ca",
    "782c2b2a23d1da73"
+  ],
+  "OpenRouter": [
+   "f904fe0bdc6d8a35"
+  ],
+  "TurboT2VA": [
+   "4609c5e15372ab19"
+  ],
+  "Latent evolving World Action Model": [
+   "4ce3eab8bc068fe7"
+  ],
+  "Google Research": [
+   "073b467f4bbba63f"
+  ],
+  "The Past Frames the Future": [
+   "9b97cb2c5f298593"
   ],
   "QuantWM": [
    "a5f612a426982b82"
@@ -1108,9 +1248,6 @@
   ],
   "Intel Arc Pro B70 Creator 32GB": [
    "a3c77994b3d6781a"
-  ],
-  "Vidu S2": [
-   "21e91c67e227ac4b"
   ],
   "MiniMax-H3-Singularity-GGUF": [
    "43410583ddeee2f2"
