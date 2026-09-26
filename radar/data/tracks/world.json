@@ -2,8 +2,231 @@
  "id": "world",
  "name": "世界模型",
  "blurb": "可交互的生成式世界模拟：Genie、Cosmos、V-JEPA、Dreamer、GameNGen、Oasis、Matrix-Game、HunyuanWorld 等，以及动作条件视频生成、4D 生成与具身仿真。",
- "updated": "2026-09-25T03:01:47+00:00",
+ "updated": "2026-09-26T01:45:03+00:00",
  "entries": [
+  {
+   "id": "cc98f8c5dbb21f34",
+   "date": "2026-09-26",
+   "title": "Visual Representation and History Modeling for Navigation World Models",
+   "link": "https://arxiv.org/abs/2609.29555",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "high",
+   "summary": "研究导航世界模型的视觉表征与历史建模，用 flow-transformer 框架。",
+   "why": "条件 flow-transformer 框架，对视频生成架构有参考。",
+   "tags": [
+    "世界模型",
+    "flow-transformer",
+    "导航"
+   ],
+   "entity": "flow-transformer",
+   "kind": "paper"
+  },
+  {
+   "id": "7c9ab761bf4658cc",
+   "date": "2026-09-26",
+   "title": "Training Object Permanence in World Models",
+   "link": "https://arxiv.org/abs/2609.28654",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "high",
+   "summary": "WROP：用认知科学启发的数据集训练视频模型的物体永久性。",
+   "why": "视频生成模型物理推理能力研究，方向相关。",
+   "tags": [
+    "视频生成",
+    "世界模型",
+    "物理推理"
+   ],
+   "entity": "WROP",
+   "kind": "paper"
+  },
+  {
+   "id": "deba2a890fead855",
+   "date": "2026-09-26",
+   "title": "Do World Models Make Better Robots? A Survey of Evaluation Benchmarks for Predictive Embodied Intelligence",
+   "link": "https://arxiv.org/abs/2609.29669",
+   "source": "arXiv cs.RO（专题）",
+   "priority": "high",
+   "summary": "综述论文：世界模型是否让机器人更好？系统梳理预测具身智能评测基准。",
+   "why": "直接回答 world model 的闭环价值，对做生成式世界模型很有参考。",
+   "tags": [
+    "world model",
+    "robotics",
+    "benchmark",
+    "survey"
+   ],
+   "entity": "",
+   "kind": "paper"
+  },
+  {
+   "id": "3d7e40b47306a8c4",
+   "date": "2026-09-26",
+   "title": "DeltaWAM: Delta World Action Models for Bimanual Manipulation",
+   "link": "https://arxiv.org/abs/2609.28811",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "medium",
+   "summary": "DeltaWAM：用视觉 delta 与动作联合建模改进双手操作世界动作模型。",
+   "why": "视频生成先验用于机器人控制，思路可借鉴。",
+   "tags": [
+    "世界模型",
+    "机器人",
+    "视频生成"
+   ],
+   "entity": "DeltaWAM",
+   "kind": "paper"
+  },
+  {
+   "id": "65d1367e2e8a672b",
+   "date": "2026-09-26",
+   "title": "HelloWorld: Towards Practical Applications of Generative Driving World Models",
+   "link": "https://arxiv.org/abs/2609.28931",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "medium",
+   "summary": "HelloWorld：2B 驾驶世界模型系统，支持多传感器与可控生成。",
+   "why": "世界模型系统设计，但偏驾驶场景。",
+   "tags": [
+    "世界模型",
+    "自动驾驶",
+    "2B模型"
+   ],
+   "entity": "HelloWorld",
+   "kind": "paper"
+  },
+  {
+   "id": "6cb849761d1f7a08",
+   "date": "2026-09-26",
+   "title": "SplatLabel: Pseudo-Labelling through 4D Gaussian Splatting",
+   "link": "https://arxiv.org/abs/2609.29836",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "medium",
+   "summary": "SplatLabel：用 4D Gaussian Splatting 做伪标注，提取 LiDAR 分割。",
+   "why": "4DGS 用于自动标注，与 3D 生成有一定关联。",
+   "tags": [
+    "4DGS",
+    "伪标注",
+    "3D"
+   ],
+   "entity": "SplatLabel",
+   "kind": "paper"
+  },
+  {
+   "id": "f9f7fe82058a4a40",
+   "date": "2026-09-26",
+   "title": "ADATEX4D: adaptive texture capacity allocation for 4D gaussian splatting",
+   "link": "https://arxiv.org/abs/2609.29963",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "medium",
+   "summary": "AdaTex4D：4D Gaussian Splatting 的自适应纹理容量分配。",
+   "why": "4DGS 纹理存储优化，对 3D 生成效率有参考价值。",
+   "tags": [
+    "4DGS",
+    "纹理优化",
+    "3D生成"
+   ],
+   "entity": "AdaTex4D",
+   "kind": "paper"
+  },
+  {
+   "id": "c9b9729bd588408d",
+   "date": "2026-09-26",
+   "title": "Representation World Model: Learning States, Transition and Executable Plans in Representation",
+   "link": "https://arxiv.org/abs/2609.29171",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "medium",
+   "summary": "Representation World Model (RWM) 直接在表征空间学习状态、转移与可执行规划。",
+   "why": "将规划融入表征几何，思路对生成式世界模型有借鉴价值。",
+   "tags": [
+    "world model",
+    "representation learning",
+    "planning"
+   ],
+   "entity": "Representation World Model",
+   "kind": "paper"
+  },
+  {
+   "id": "1491ac8472c14832",
+   "date": "2026-09-26",
+   "title": "NVIDIA OmniDreams: Real-Time Generative World Model for Closed-Loop Autonomous Vehicle Simulation",
+   "link": "https://arxiv.org/abs/2606.03159",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "medium",
+   "summary": "NVIDIA 发布 OmniDreams，面向闭环自动驾驶仿实时生成式世界模型。",
+   "why": "NVIDIA 出品且聚焦生成式仿真，与生成模型方向相关。",
+   "tags": [
+    "NVIDIA",
+    "world model",
+    "autonomous driving",
+    "simulation"
+   ],
+   "entity": "OmniDreams",
+   "kind": "release"
+  },
+  {
+   "id": "754e9d0a64c69b9b",
+   "date": "2026-09-26",
+   "title": "Streaming-WAM: Action-Conditioned World-Action Model for Asynchronous Robot Manipulation",
+   "link": "https://arxiv.org/abs/2609.28927",
+   "source": "arXiv cs.RO（专题）",
+   "priority": "medium",
+   "summary": "Streaming-WAM 将动作条件世界建模与异步机器人操控结合。",
+   "why": "异步推理与动作条件预测思路对实时生成系统有启发。",
+   "tags": [
+    "world model",
+    "robotics",
+    "async inference"
+   ],
+   "entity": "Streaming-WAM",
+   "kind": "paper"
+  },
+  {
+   "id": "d2eefe47657647f9",
+   "date": "2026-09-26",
+   "title": "Aim Short to Reach Far: Your Frozen World Model Can Plan Better Than You Think",
+   "link": "https://arxiv.org/abs/2609.30036",
+   "source": "arXiv cs.RO（专题）",
+   "priority": "medium",
+   "summary": "Anchored Planning：用中间目标提升冻结世界模型的规划能力。",
+   "why": "揭示 world model 规划局限并提出改进，对生成式规划有启发。",
+   "tags": [
+    "world model",
+    "planning",
+    "robotics"
+   ],
+   "entity": "Anchored Planning",
+   "kind": "paper"
+  },
+  {
+   "id": "1cc3e4a15361282c",
+   "date": "2026-09-26",
+   "title": "AD-WM: Action-Discriminative World Models for Counterfactual Model Predictive Control",
+   "link": "https://arxiv.org/abs/2609.30264",
+   "source": "arXiv cs.RO（专题）",
+   "priority": "medium",
+   "summary": "AD-WM：面向反事实 MPC 的动作判别式联合嵌入世界模型。",
+   "why": "显式建模动作区分度，对基于 world model 的控制系统有价值。",
+   "tags": [
+    "world model",
+    "MPC",
+    "latent dynamics"
+   ],
+   "entity": "AD-WM",
+   "kind": "paper"
+  },
+  {
+   "id": "9c3ae82085976664",
+   "date": "2026-09-26",
+   "title": "中国生数科技获2.9亿美元融资 推动模拟人类感知的「世界模型」 - CTIMES",
+   "link": "https://www.ctimes.com.tw:8443/DispArt/cn/%E6%9C%BA%E5%99%A8%E4%BA%BA/26041210041C.shtml",
+   "source": "新闻 · 世界模型（中文）",
+   "priority": "medium",
+   "summary": "生数科技获 2.9 亿美元融资，推动世界模型研发。",
+   "why": "国内世界模型赛道大额融资，值得关注。",
+   "tags": [
+    "生数科技",
+    "融资",
+    "世界模型"
+   ],
+   "entity": "生数科技",
+   "kind": "news"
+  },
   {
    "id": "6c1df0eaaeb4e9f7",
    "date": "2026-09-25",
@@ -1591,6 +1814,42 @@
    "fe9d33edf0701555",
    "92ea4301b3012f12"
   ],
+  "flow-transformer": [
+   "cc98f8c5dbb21f34"
+  ],
+  "WROP": [
+   "7c9ab761bf4658cc"
+  ],
+  "DeltaWAM": [
+   "3d7e40b47306a8c4"
+  ],
+  "HelloWorld": [
+   "65d1367e2e8a672b"
+  ],
+  "SplatLabel": [
+   "6cb849761d1f7a08"
+  ],
+  "AdaTex4D": [
+   "f9f7fe82058a4a40"
+  ],
+  "Representation World Model": [
+   "c9b9729bd588408d"
+  ],
+  "OmniDreams": [
+   "1491ac8472c14832"
+  ],
+  "Streaming-WAM": [
+   "754e9d0a64c69b9b"
+  ],
+  "Anchored Planning": [
+   "d2eefe47657647f9"
+  ],
+  "AD-WM": [
+   "1cc3e4a15361282c"
+  ],
+  "生数科技": [
+   "9c3ae82085976664"
+  ],
   "Runway WorldPrompt": [
    "6c1df0eaaeb4e9f7"
   ],
@@ -1740,18 +1999,37 @@
   ]
  },
  "digest": {
-  "text": "本周世界模型领域呈现出车端智驾落地与多视角/可交互生成算法并进的态势。车企端，零跑发布LWM、Momenta R7与蔚来NWM推进车型量产上车，高德则发布原生3D城市模型ABot-Earth 0.7与漫游基准WorldRoamBench。研究侧，Zing-0.5探索了5B规模下的实时按键/文本交互式世界生成，AlayaVista与World in World分别聚焦全景流式演化与长时漫游推演。此外，媒体虽热议李飞飞Atlas及高估值创投动态，但核心初创商业与架构细节多未披露，噱头多于实质交付。",
+  "text": "本周世界模型方向新条目密集，约40条，但真正有实质进展的不多。最值得注意的是推理加速侧的 QuantWM，提出 2-bit KV Cache 量化并解决时序闪烁，直接命中推理工程师关心的部署问题。系统侧，NVIDIA 发布 OmniDreams 面向闭环自动驾驶仿真的实时生成式世界模型，Runway 的 WorldPrompt 主打实时视频/音频世界生成，二者代表工业界对实时性的追求。评测侧出现 HappyWorld-Bench 和 WorldRoamBench 两个基准，试图统一长程稳定性与多维度评测，但尚未形成共识。其余大量条目为论文（如 DeltaWAM、Streaming-WAM、Anchored Planning、AD-WM 等）聚焦机器人操控与规划，以及 4DGS 相关（SplatLabel、AdaTex4D、4DGS-Fixer），属于场景表示工具而非世界模型本体。行业层面，生数科技获 2.9 亿美元融资、World Labs 与 AMI Labs 共获 23 亿美元、极佳视界冲刺港股 IPO，但多家公司对商业化路径保持沉默，噱头成分较大。整体看，本周是论文+融资热闹、但可落地突破集中在量化与实时系统两端的典型一周。",
   "highlights": [
-   "Zing-0.5发布，5B自回归架构支持键盘及文本实时控制交互世界生成",
-   "高德发布ABot-Earth 0.7原生3D世界模型及长时漫游基准WorldRoamBench",
-   "零跑正式公布LWM自研世界模型，Momenta R7落地奔驰与荣威量产车型",
-   "开源工具PWM与SolarWM涌现，探索显式状态可编程渲染与长视界视频生成"
+   "QuantWM 提出 2-bit KV Cache 量化，解决世界模型时序闪烁",
+   "NVIDIA 发布 OmniDreams 实时生成式世界模型，面向闭环自动驾驶仿真",
+   "Runway WorldPrompt 实现实时视频/音频世界模型生成",
+   "HappyWorld-Bench 与 WorldRoamBench 尝试统一世界模型评测",
+   "生数科技获 2.9 亿美元融资，极佳视界冲刺港股 IPO"
   ],
-  "week": "2026-09-12 ~ 2026-09-19",
-  "generated_at": "2026-09-19T09:25:16+00:00",
-  "model": ""
+  "week": "2026-09-19 ~ 2026-09-26",
+  "generated_at": "2026-09-26T01:45:03+00:00",
+  "model": "LongCat-2.0"
  },
  "sota": [
+  {
+   "model": "OmniDreams",
+   "org": "NVIDIA",
+   "date": "2026-09-26",
+   "open_weights": false,
+   "spec": "实时生成式世界模型，面向闭环自动驾驶仿真",
+   "link": "https://arxiv.org/abs/2606.03159",
+   "note": "工业级实时闭环仿真系统"
+  },
+  {
+   "model": "WorldPrompt",
+   "org": "Runway",
+   "date": "2026-09-25",
+   "open_weights": false,
+   "spec": "实时视频/音频世界模型生成",
+   "link": "https://www.latent.space/p/runway",
+   "note": "实时多模态世界生成"
+  },
   {
    "model": "Zing-0.5",
    "org": "—",

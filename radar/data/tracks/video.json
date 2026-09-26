@@ -2,8 +2,143 @@
  "id": "video",
  "name": "视频生成模型",
  "blurb": "文生视频、图生视频、视频 VAE 与 DiT 加速：Wan、Sora、Veo、可灵、海螺、Seedance、Vidu、LTX、HunyuanVideo 等的发布、论文、benchmark 与推理框架支持。",
- "updated": "2026-09-25T03:01:47+00:00",
+ "updated": "2026-09-26T01:45:03+00:00",
  "entries": [
+  {
+   "id": "b3a8489bbd8bbe32",
+   "date": "2026-09-26",
+   "title": "音视频生成提速54倍！TurboT2VA：分布蒸馏与轨迹蒸馏的联合蒸馏方案 - 智源社区",
+   "link": "https://hub.baai.ac.cn/view/58268",
+   "source": "新闻 · 视频生成（中文）",
+   "priority": "high",
+   "summary": "TurboT2VA：分布蒸馏+轨迹蒸馏联合方案，音视频生成提速 54 倍。",
+   "why": "蒸馏加速视频生成，对推理优化有参考价值。",
+   "tags": [
+    "蒸馏",
+    "视频生成",
+    "加速"
+   ],
+   "entity": "TurboT2VA",
+   "kind": "paper"
+  },
+  {
+   "id": "9c10e7489d63a8e2",
+   "date": "2026-09-26",
+   "title": "ViRDM: Taming Representation Distribution Matching for Few-Step Causal Video Generation",
+   "link": "https://arxiv.org/abs/2609.28923",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "high",
+   "summary": "ViRDM：将表示分布蒸馏用于少步因果视频生成，去掉 teacher-critic 栈。",
+   "why": "少步视频生成蒸馏新方法，对加速推理有直接价值。",
+   "tags": [
+    "视频生成",
+    "蒸馏",
+    "少步生成"
+   ],
+   "entity": "ViRDM",
+   "kind": "paper"
+  },
+  {
+   "id": "a38dc86b4c4a43f8",
+   "date": "2026-09-26",
+   "title": "AV-GRPO: Modality-Anchored Decoupling Diffusion Reinforcement Learning for Joint Audio-Video Generation",
+   "link": "https://arxiv.org/abs/2609.29816",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "high",
+   "summary": "AV-GRPO：用模态解耦的扩散 RL 做联合音视频生成。",
+   "why": "扩散模型 RL 后训练用于音视频生成，技术方向高度相关。",
+   "tags": [
+    "扩散模型",
+    "RL",
+    "音视频生成"
+   ],
+   "entity": "AV-GRPO",
+   "kind": "paper"
+  },
+  {
+   "id": "0b7127284a575e62",
+   "date": "2026-09-26",
+   "title": "Accelerating Video Diffusion via Training-Free Trajectory Routing",
+   "link": "https://arxiv.org/abs/2609.30096",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "high",
+   "summary": "TRACK：训练无关的轨迹感知路由，大小模型异构去噪加速视频扩散。",
+   "why": "免训练加速视频扩散推理，对 GPU 推理优化有直接价值。",
+   "tags": [
+    "视频扩散",
+    "推理加速",
+    "异构去噪"
+   ],
+   "entity": "TRACK",
+   "kind": "paper"
+  },
+  {
+   "id": "7c9ab761bf4658cc",
+   "date": "2026-09-26",
+   "title": "Training Object Permanence in World Models",
+   "link": "https://arxiv.org/abs/2609.28654",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "high",
+   "summary": "WROP：用认知科学启发的数据集训练视频模型的物体永久性。",
+   "why": "视频生成模型物理推理能力研究，方向相关。",
+   "tags": [
+    "视频生成",
+    "世界模型",
+    "物理推理"
+   ],
+   "entity": "WROP",
+   "kind": "paper"
+  },
+  {
+   "id": "48ed5d53175a2a3a",
+   "date": "2026-09-26",
+   "title": "WanPE: Towards Cinematic Prompt Enhancement for Modern Text-to-Video Generation",
+   "link": "https://huggingface.co/papers/2609.30221",
+   "source": "HF Papers 日榜",
+   "priority": "high",
+   "summary": "WanPE：397B 参数 prompt 增强模型，用于文本到视频生成的电影级分镜规划。",
+   "why": "直接面向视频生成 pipeline，prompt 增强可提升生成质量。",
+   "tags": [
+    "text-to-video",
+    "prompt-enhancement",
+    "WanPE"
+   ],
+   "entity": "WanPE",
+   "kind": "paper"
+  },
+  {
+   "id": "49abe111c32a29f9",
+   "date": "2026-09-26",
+   "title": "AI Video Generation Gets Human: A New Survey Maps the Field’s Biggest Hurdles - bioengineer.org",
+   "link": "https://bioengineer.org/ai-video-generation-gets-human-a-new-survey-maps-the-fields-biggest-hurdles/",
+   "source": "新闻 · 视频生成（英文）",
+   "priority": "medium",
+   "summary": "新综述梳理 AI 视频生成领域的核心障碍。",
+   "why": "视频生成方向综述，可快速了解领域痛点。",
+   "tags": [
+    "视频生成",
+    "综述"
+   ],
+   "entity": "",
+   "kind": "news"
+  },
+  {
+   "id": "fe7eb26bc25284ed",
+   "date": "2026-09-26",
+   "title": "Seedance 2.0 and Seedance 2.5: The latest innovations in AI video generation - London Daily News",
+   "link": "https://www.londondaily.news/seedance-2-0-and-seedance-2-5-the-latest-innovations-in-ai-video-generation/",
+   "source": "新闻 · 视频生成（英文）",
+   "priority": "medium",
+   "summary": "Seedance 2.0 和 2.5 发布，推进 AI 视频生成。",
+   "why": "字节视频生成模型新版本，关注竞争格局。",
+   "tags": [
+    "Seedance",
+    "字节",
+    "视频生成"
+   ],
+   "entity": "Seedance 2.0",
+   "kind": "news"
+  },
   {
    "id": "0334f842876e5854",
    "date": "2026-09-25",
@@ -1175,6 +1310,10 @@
    "0cc1ae11826a2db5",
    "a008930e840f83ca"
   ],
+  "TurboT2VA": [
+   "b3a8489bbd8bbe32",
+   "4609c5e15372ab19"
+  ],
   "Vidu S2": [
    "3e1604072fd9da9c",
    "21e91c67e227ac4b"
@@ -1195,11 +1334,26 @@
    "3a06f956823425ca",
    "782c2b2a23d1da73"
   ],
+  "ViRDM": [
+   "9c10e7489d63a8e2"
+  ],
+  "AV-GRPO": [
+   "a38dc86b4c4a43f8"
+  ],
+  "TRACK": [
+   "0b7127284a575e62"
+  ],
+  "WROP": [
+   "7c9ab761bf4658cc"
+  ],
+  "WanPE": [
+   "48ed5d53175a2a3a"
+  ],
+  "Seedance 2.0": [
+   "fe7eb26bc25284ed"
+  ],
   "OpenRouter": [
    "f904fe0bdc6d8a35"
-  ],
-  "TurboT2VA": [
-   "4609c5e15372ab19"
   ],
   "Latent evolving World Action Model": [
    "4ce3eab8bc068fe7"
@@ -1329,18 +1483,37 @@
   ]
  },
  "digest": {
-  "text": "本周视频生成领域聚焦于推理加速与架构轻量化。核心进展包括：Video DeltaNet 结合局部 Softmax 与帧级线性显存注意力加速实时生成；LynnReal-Omni 推出 32B 原生多模态扩散 Transformer 并实现 4 步快速推理；Mask Forcing 开源了用于自回归扩散模型蒸馏的双噪声掩码方案；社区还涌现了 FastH3-V2 GGUF 量化和 3 步 ComfyUI 推理管线。高德开源了 2K 音视频协同模型 DreamX-Creator，智象未来与 MiniMax 围绕物理规律导向与统一模态发布了新模型。需注意，本周搜索源中混入了多条借 AI 视频增速炒作的博彩平台引流营销，属于噪音干扰。",
+  "text": "本周视频生成领域进展密集，核心主线是推理加速与实时化：TurboT2VA 用分布蒸馏+轨迹蒸馏联合方案将音视频生成提速 54 倍；ViRDM 将表示分布蒸馏用于少步因果视频生成并去掉 teacher-critic 栈；TRACK 提出训练无关的轨迹感知路由，用大小模型异构去噪加速扩散；Video DeltaNet 以局部 Softmax+帧级线性显存混合注意力面向低显存实时直播；Mask Forcing 开源双噪声掩码展开的自回归扩散蒸馏。产品侧，字节 Seedance 2.5 上线 480P 验证+1080P 出图的 Draft 模式并支持单图生成可交互 3D 世界，Vidu S2 发布支持实时互动、实时改视频与空间视频，Google Vids 免费 HD 生成向所有个人账号开放，Runway 计划转向实时可交互流式输出。此外 QuantWM 提出 2-bit KV Cache 量化解决时序闪烁，WanPE 以 397B 参数做电影级分镜规划，DreamX-Creator 开源 2K 原生音视频协同生成。噱头方面，部分社区 GGUF 量化仓库和营销号宣称的「神经元衍生 5 倍提速」缺乏可验证细节，需谨慎看待。",
   "highlights": [
-   "Video DeltaNet 提出局部与线性显存混合注意力，服务直播实时视频生成",
-   "LynnReal-Omni 开源 32B 视频生成框架，支持 4 步快速推理",
-   "Mask Forcing 开源官方代码，优化自回归视频扩散蒸馏加速",
-   "高德开源 DreamX-Creator，支持 2K 原生音视频协同生成"
+   "TurboT2VA 联合蒸馏实现音视频生成 54 倍提速",
+   "Seedance 2.5 上线 Draft 模式与单图 3D 世界生成",
+   "Vidu S2 发布：实时互动、实时改视频、空间视频",
+   "TRACK 训练无关轨迹路由加速视频扩散",
+   "QuantWM 提出 2-bit KV Cache 量化消除时序闪烁"
   ],
-  "week": "2026-09-12 ~ 2026-09-19",
-  "generated_at": "2026-09-19T09:25:16+00:00",
-  "model": ""
+  "week": "2026-09-19 ~ 2026-09-26",
+  "generated_at": "2026-09-26T01:45:03+00:00",
+  "model": "LongCat-2.0"
  },
  "sota": [
+  {
+   "model": "Seedance 2.5",
+   "org": "ByteDance",
+   "date": "2026-09-20",
+   "open_weights": false,
+   "spec": "支持 480P 验证+1080P 出图 Draft 模式，单图生成可交互 3D 世界",
+   "link": "https://news.google.com/rss/articles/CBMie0FVX3lxTE5DVkZnLTdDa0l6cmkwNnhoNVBmNkVwblhiMmtObWNzc3JtVzdUaUhUVXB3dkpJQlJrWnI2cnBrRFRCNzhRaTk3WWUtMFdmb2lPQnFMQXdYeU1jZzJyOXRPUWNwOVptVVJSZzNmRmtPVGx1dzhZZ1Y1WE5fQQ?oc=5",
+   "note": "本周更新最频繁的旗舰，Draft 模式降低试错成本"
+  },
+  {
+   "model": "Vidu S2",
+   "org": "生数科技",
+   "date": "2026-09-25",
+   "open_weights": false,
+   "spec": "实时互动、实时改视频、空间视频，实时 720P 数字人生成",
+   "link": "https://user.guancha.cn/main/content?id=1737308",
+   "note": "主打实时交互与编辑的闭源新旗舰"
+  },
   {
    "model": "LynnReal-Omni",
    "org": "LynnReal-AI",
@@ -1360,15 +1533,6 @@
    "note": "闭源全模态旗舰，衍生社区生态活跃"
   },
   {
-   "model": "HiDream-O1-Video-1.0",
-   "org": "智象未来",
-   "date": "2026-09-16",
-   "open_weights": false,
-   "spec": "原生全模态、物理规律导向",
-   "link": "https://www.qbitai.com/2026/09/489389.html",
-   "note": "主打物理规律导向的原生全模态模型"
-  },
-  {
    "model": "DreamX-Creator",
    "org": "AMAP-ML",
    "date": "2026-09",
@@ -1376,6 +1540,15 @@
    "spec": "2K 分辨率原生音视频协同生成",
    "link": "https://github.com/AMAP-ML/DreamX-Creator",
    "note": "高德开源的原生高分辨率音视频模型"
+  },
+  {
+   "model": "LTX-2.5-22b",
+   "org": "Lightricks",
+   "date": "2026-09",
+   "open_weights": true,
+   "spec": "22B 参数量，配动图生成 LoRA",
+   "link": "https://huggingface.co/Lightricks/LTX-2.5-22b-LoRA-Cinemagraph",
+   "note": "大参数量开源动图生成基模"
   },
   {
    "model": "Video DeltaNet",
@@ -1396,15 +1569,6 @@
    "note": "自回归视频扩散推理蒸馏加速工具"
   },
   {
-   "model": "FastH3-V2",
-   "org": "realrebelai",
-   "date": "2026-09",
-   "open_weights": true,
-   "spec": "提供 GGUF 格式量化权重",
-   "link": "https://huggingface.co/realrebelai/FastH3-V2_GGUFs",
-   "note": "端侧/消费级显卡部署优化模型"
-  },
-  {
    "model": "TaoMate-H3",
    "org": "TaoLiveAIGC",
    "date": "2026-09",
@@ -1414,13 +1578,22 @@
    "note": "主打快速少步采样的文生视频模型"
   },
   {
-   "model": "LTX-2.5-22b",
-   "org": "Lightricks",
+   "model": "FastH3-V2",
+   "org": "realrebelai",
    "date": "2026-09",
    "open_weights": true,
-   "spec": "22B 参数量，配动图生成 LoRA",
-   "link": "https://huggingface.co/Lightricks/LTX-2.5-22b-LoRA-Cinemagraph",
-   "note": "大参数量开源动图生成基模"
+   "spec": "提供 GGUF 格式量化权重",
+   "link": "https://huggingface.co/realrebelai/FastH3-V2_GGUFs",
+   "note": "端侧/消费级显卡部署优化模型"
+  },
+  {
+   "model": "HiDream-O1-Video-1.0",
+   "org": "智象未来",
+   "date": "2026-09-16",
+   "open_weights": false,
+   "spec": "原生全模态、物理规律导向",
+   "link": "https://www.qbitai.com/2026/09/489389.html",
+   "note": "主打物理规律导向的原生全模态模型"
   }
  ]
 }
