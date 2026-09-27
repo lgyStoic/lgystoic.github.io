@@ -2,8 +2,78 @@
  "id": "video",
  "name": "视频生成模型",
  "blurb": "文生视频、图生视频、视频 VAE 与 DiT 加速：Wan、Sora、Veo、可灵、海螺、Seedance、Vidu、LTX、HunyuanVideo 等的发布、论文、benchmark 与推理框架支持。",
- "updated": "2026-09-26T01:45:03+00:00",
+ "updated": "2026-09-27T01:41:44+00:00",
  "entries": [
+  {
+   "id": "823053f4b1321bc6",
+   "date": "2026-09-27",
+   "title": "Google Just Made Free 1080p AI Video Generation Available to Anyone - Decrypt",
+   "link": "https://decrypt.co/379353/google-free-1080p-ai-video-generation",
+   "source": "新闻 · 视频生成（英文）",
+   "priority": "high",
+   "summary": "Google 向所有用户免费开放 1080p AI 视频生成（Decrypt 报道）。",
+   "why": "Google 视频生成服务重大策略变化，直接影响行业竞争格局。",
+   "tags": [
+    "Google",
+    "Vids",
+    "1080p",
+    "free"
+   ],
+   "entity": "Google",
+   "kind": "news"
+  },
+  {
+   "id": "cf98509f3e46a962",
+   "date": "2026-09-27",
+   "title": "WanPE: Towards Cinematic Prompt Enhancement for Modern Text-to-Video Generation",
+   "link": "https://arxiv.org/abs/2609.30221",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "high",
+   "summary": "WanPE：397B 参数 prompt 增强模型，用 105 万视频训练，提升文生视频导演级规划。",
+   "why": "大规模 prompt 增强方案，对视频生成工作流有直接参考价值。",
+   "tags": [
+    "WanPE",
+    "prompt enhancement",
+    "text-to-video",
+    "GRPO"
+   ],
+   "entity": "WanPE",
+   "kind": "paper"
+  },
+  {
+   "id": "ecb1278e5cb853d2",
+   "date": "2026-09-27",
+   "title": "SurgVeo：面向手术视频生成的专家引导基准与合理性金字塔框架——揭示生成式AI从视觉保真到手术逻辑的鸿沟 - 生物通",
+   "link": "https://www.ebiotrade.com/newsf/2026-9/20260927044046838.htm",
+   "source": "新闻 · 视频生成（中文）",
+   "priority": "medium",
+   "summary": "SurgVeo 提出面向手术视频生成的专家引导基准与合理性金字塔框架。",
+   "why": "视频生成在垂直领域的评估基准，对生成质量评估有参考。",
+   "tags": [
+    "SurgVeo",
+    "手术视频",
+    "benchmark"
+   ],
+   "entity": "SurgVeo",
+   "kind": "benchmark"
+  },
+  {
+   "id": "b6dedf8295b79f06",
+   "date": "2026-09-27",
+   "title": "Veda-Sparse/Minimax-H3-T2VA-Veda-8NFE-600Step-Preview",
+   "link": "https://huggingface.co/Veda-Sparse/Minimax-H3-T2VA-Veda-8NFE-600Step-Preview",
+   "source": "HF 热榜 · 文生视频",
+   "priority": "medium",
+   "summary": "Minimax-H3-T2VA-Veda-8NFE-600Step-Preview 登上 HF 文生视频热榜（likes 17）。",
+   "why": "Minimax 新预览模型，关注视频生成能力演进。",
+   "tags": [
+    "Minimax",
+    "text-to-video",
+    "HF Trending"
+   ],
+   "entity": "Minimax-H3-T2VA-Veda-8NFE-600Step-Preview",
+   "kind": "release"
+  },
   {
    "id": "b3a8489bbd8bbe32",
    "date": "2026-09-26",
@@ -1310,6 +1380,10 @@
    "0cc1ae11826a2db5",
    "a008930e840f83ca"
   ],
+  "WanPE": [
+   "cf98509f3e46a962",
+   "48ed5d53175a2a3a"
+  ],
   "TurboT2VA": [
    "b3a8489bbd8bbe32",
    "4609c5e15372ab19"
@@ -1334,6 +1408,15 @@
    "3a06f956823425ca",
    "782c2b2a23d1da73"
   ],
+  "Google": [
+   "823053f4b1321bc6"
+  ],
+  "SurgVeo": [
+   "ecb1278e5cb853d2"
+  ],
+  "Minimax-H3-T2VA-Veda-8NFE-600Step-Preview": [
+   "b6dedf8295b79f06"
+  ],
   "ViRDM": [
    "9c10e7489d63a8e2"
   ],
@@ -1345,9 +1428,6 @@
   ],
   "WROP": [
    "7c9ab761bf4658cc"
-  ],
-  "WanPE": [
-   "48ed5d53175a2a3a"
   ],
   "Seedance 2.0": [
    "fe7eb26bc25284ed"
