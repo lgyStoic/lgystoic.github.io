@@ -55,7 +55,7 @@
 ## 开源贡献路线
 
 - [总览](https://lgystoic.github.io/radar/contributions/): 14 个 AI 推理 / kernel 仓库的五章分析（定位、架构、本地运行、社区、切入）与可认领任务卡
-- [sgl-project/sglang](https://lgystoic.github.io/radar/contributions/sgl-project--sglang/): SGLang 是由 LMSYS 孵化的高性能大语言模型（LLM）、视觉语言模型（VLM）及扩散模型（Diffusion/DiT）推理服务框架。它的核心设计理念是通过极致的显存管理（如原生的 RadixAttention 前缀缓存）和复杂的调
+- [sgl-project/sglang](https://lgystoic.github.io/radar/contributions/sgl-project--sglang/): SGLang（sgl-project/sglang，LMSYS 非营利组织托管）是高性能大模型与多模态模型推理服务框架，2024 年初以 RadixAttention 前缀缓存起家，README 自称支撑全球 40 万+ GPU、日产数万亿
 - [sgl-project/sglang-omni](https://lgystoic.github.io/radar/contributions/sgl-project--sglang-omni/): SGLang-Omni 是一个专为全模态（Omni）和语音模型（TTS、ASR）设计的高性能多阶段推理服务框架。对于你这位资深 GPU kernel 与训练性能工程师而言，这个项目完美契合你的技术栈（DiT、算子融合、分布式性能），但你的硬
 - [vllm-project/vllm](https://lgystoic.github.io/radar/contributions/vllm-project--vllm/): vLLM 是目前开源大模型推理与服务领域的绝对标杆（De facto standard），由 UC Berkeley Sky Computing Lab 发起，现已拥有超 2000 名贡献者。它的核心价值在于通过 PagedAttentio
 - [flashinfer-ai/flashinfer](https://lgystoic.github.io/radar/contributions/flashinfer-ai--flashinfer/): FlashInfer 是一个专为 LLM 推理服务设计的高性能 GPU 算子库，提供 Attention、GEMM 和 MoE 的统一 API。对于你这样具备 CuTe/CUTLASS 和底层优化经验的资深 Kernel 工程师来说，这是一
