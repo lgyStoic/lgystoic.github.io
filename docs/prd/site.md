@@ -35,9 +35,9 @@
 
 | 工作流 | 触发（UTC） | 内容 |
 |---|---|---|
-| `radar.yml` AI 信息雷达 | 23:17、00:43、02:31 三个槽 + `guard` 任务（当天跑过就跳过）| 雷达 → 活动 → 专题 → 收件箱 → 自检 → 提交；作业上限 40 分钟，活动模型抽取限 600 秒且单次 LongCat 请求限 60 秒 |
-| `health.yml` 定时兜底 | 00:35、02:20 | 当天没有任何运行则 `gh workflow run radar.yml` |
-| `radar-alert.yml` 雷达邮件告警 | 第二次失败完成后；每天 10:17 复核（北京时间 18:17） | 同时核对当天雷达 JSON 与已提交的 `last-run.json`，缺失时发邮件；不触发补跑 |
+| `radar.yml` AI 信息雷达 | 23:17、00:43、02:31 三个槽 + 阶段产物 guard | 雷达主数据、活动、专题、私有 inbox 分 job；雷达主数据先提交，专题等待它，最后独立巡检。活动详情页抓取预算 240 秒、模型抽取启动预算 600 秒、单次 LongCat 请求限 60 秒；各 job 单独计时和显示结果 |
+| `health.yml` 定时兜底 | 01:11、03:07 | 雷达、活动或专题缺少当天已提交产物时触发 `radar.yml`；阶段 guard 只执行缺失部分 |
+| `radar-alert.yml` 雷达邮件告警 | 第二次失败完成后；每天 10:17 复核（北京时间 18:17） | 同时核对当天雷达 JSON、已提交的 `last-run.json` 与工作流结果，主数据缺失或后续阶段失败时发邮件；不触发补跑 |
 | `jobs.yml` 工作机会 | 00:35 | 岗位抓取、外部适配器、AI 去重、渲染、提交 |
 | `contributions.yml` 开源贡献 | 周一 01:20 全量、周四 01:20 重点 | 见 contributions.md |
 | `xhs.yml` 小红书文稿 | 01:10 | 由当天雷达生成学习卡片，写入私有仓库 |
@@ -47,6 +47,7 @@
 - cron 不放在整点（GitHub 整点丢任务），关键流水线有兜底槽。
 - **推送策略**：由 `tools/publish_results.py` 提交；被拒时只恢复本管线拥有且本轮变化的数据，回到最新 master 用最新代码重建，最多三次。radar 不恢复 jobs/contributions 数据；源配置只合并自动停用字段，保留远端其他配置与人工状态修改。
 - `concurrency` 按工作流分组，不取消进行中的运行。
+- 定时重复触发仅跳过已经提交当日产物的雷达、活动和专题阶段；任何阶段失败可在下一个槽位单独补缺，不以 `last-run.json` 代表全流程成功。私有 inbox 每轮查询增量，检查阶段按 job 结果写报告。
 - 每个 job 有 `timeout-minutes`；外部 CLI 调用有 `timeout` 和连续失败即止损。
 - 雷达邮件告警需在仓库 Actions secrets 配置 `RADAR_ALERT_SMTP_HOST`、`RADAR_ALERT_SMTP_USER`、`RADAR_ALERT_SMTP_PASSWORD`、`RADAR_ALERT_EMAIL_TO`；可选 `RADAR_ALERT_SMTP_PORT`（默认 465）和 `RADAR_ALERT_EMAIL_FROM`。凭据缺失时告警作业失败并列出缺少的 secret 名称，不会假称邮件已发送。
 - Secrets：`GEMINI_API_KEY`（必需）、`ANTHROPIC_API_KEY`（可选，有则优先）、`INBOX_TOKEN`（私有仓库 PAT）、`ADZUNA_APP_ID/KEY`、`BOOLEAN_TAVILY_API_KEY`（可选）。`GITHUB_TOKEN` 用默认的，`permissions: contents: write`。

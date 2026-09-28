@@ -163,11 +163,15 @@ def main():
         log("[tracks] 没有配置专题"); return
     days = load_days()
     today = now_utc()
+    failures = []
     for t in tracks:
         try:
             build_track(t, days, today)
         except Exception as e:  # 单个专题失败不拖垮其他
             log(f"[tracks] {t.get('name')} 失败：{e}")
+            failures.append(t.get("id") or t.get("name") or "unknown")
+    if failures:
+        raise RuntimeError("专题阶段部分失败：" + ", ".join(failures))
 
 
 if __name__ == "__main__":

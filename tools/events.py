@@ -577,8 +577,12 @@ def main() -> None:
 
     # page 源的链接只有标题甚至没有标题，抓一下详情页
     budget = site.get("max_detail_fetch", 40)
+    detail_deadline = time.monotonic() + int(os.environ.get("EVENTS_DETAIL_BUDGET_SECONDS", "240"))
     for c in cands:
         if c["kind"] == "page" and budget > 0:
+            if time.monotonic() >= detail_deadline:
+                log("[events] 详情页时间预算已用完，其余候选使用列表页信息")
+                break
             c["detail"] = fetch_detail(c["link"])
             budget -= 1
             if c["detail"].get("title") and not c["title"]:
@@ -611,8 +615,13 @@ def main() -> None:
     src_by_id = {s["id"]: s for s in config["sources"]}
     undated = [ev for ev in events.values() if not ev.get("start") and not ev.get("deadline") and not ev.get("refreshed")][:15]
     if undated and radar.ai_available():
+        refreshed_count = 0
         for ev in undated:  # 重抽有自己的预算，不和新候选抢
+            if time.monotonic() >= detail_deadline:
+                log("[events] 详情页时间预算已用完，旧活动重抽留待下次运行")
+                break
             ev["refreshed"] = True
+            refreshed_count += 1
             detail = fetch_detail(ev["link"])
             desc = detail.get("description", "")
             text = detail.get("text", "")
@@ -628,7 +637,7 @@ def main() -> None:
                     "kind": "refresh", "detail": detail, "_existing": ev,
                 }
             )
-        log(f"[events] 重抽 {len(undated)} 条没有日期的旧活动")
+        log(f"[events] 重抽 {refreshed_count} 条没有日期的旧活动")
 
     ai = enrich_events(cands, today) if cands and radar.ai_available() else {}
     model = radar.LAST_MODEL_USED if ai else ""

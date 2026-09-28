@@ -51,6 +51,21 @@ class RadarAlertTests(unittest.TestCase):
             self.assertIn("2026-09-28", message["Subject"])
             self.assertIn("https://example.test/run/123", message.get_content())
 
+    def test_full_workflow_success_suppresses_alert_but_partial_failure_does_not(self):
+        failed = [{"id": i, "conclusion": "cancelled", "url": f"https://example.test/{i}"}
+                  for i in (2, 1)]
+        with patch.object(radar_alert, "delivered", return_value=True), \
+             patch.object(radar_alert, "runs_today", return_value=[{"id": 3, "conclusion": "success"}, *failed]), \
+             patch.object(radar_alert, "send_alert") as send:
+            radar_alert.main()
+            send.assert_not_called()
+        with patch.dict(radar_alert.os.environ, {"GITHUB_EVENT_NAME": "workflow_run"}), \
+             patch.object(radar_alert, "delivered", return_value=True), \
+             patch.object(radar_alert, "runs_today", return_value=failed), \
+             patch.object(radar_alert, "send_alert") as send:
+            radar_alert.main()
+            self.assertTrue(send.call_args.args[2])
+
 
 if __name__ == "__main__":
     unittest.main()

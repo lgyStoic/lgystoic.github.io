@@ -56,7 +56,8 @@ def main() -> None:
     # ---- 源健康 ----
     problems, fixed = [], []
     configs = {"radar": (SOURCES, load(SOURCES, {})), "events": (EVENT_SOURCES, load(EVENT_SOURCES, {}))}
-    statuses = {"radar": day.get("sources", []), "events": events.get("sources", [])}
+    events_current = events.get("today") == today
+    statuses = {"radar": day.get("sources", []), "events": events.get("sources", []) if events_current else []}
     for kind, rows in statuses.items():
         cfg_path, cfg = configs[kind]
         by_id = {s["id"]: s for s in cfg.get("sources", [])}
@@ -105,6 +106,13 @@ def main() -> None:
             health["schedule_miss_streak"] = 0
     if not ai_ok:
         problems.append(f"AI 退回规则（连续 {health['ai_fallback_streak']} 天）")
+    if not events_current:
+        problems.append("活动数据尚未更新到今日")
+    stage_results = {name: os.environ.get(f"RADAR_STAGE_{name.upper()}", "")
+                     for name in ("radar", "events", "tracks", "inbox")}
+    for name, result in stage_results.items():
+        if result in {"failure", "cancelled"}:
+            problems.append(f"{name} 阶段{result}，见 Actions 作业日志")
 
     # ---- 脚本崩溃：日志里有 Traceback 就是最高优先级 ----
     log_text = (DATA / "last-run.log").read_text(encoding="utf-8", errors="replace") if (DATA / "last-run.log").exists() else ""
@@ -147,6 +155,8 @@ def main() -> None:
         "已修：" + ("；".join(fixed) if fixed else "无"),
         "待人决定：" + ("；".join(decide) if decide else "无"),
     ]
+    if any(stage_results.values()):
+        lines.insert(2, "阶段：" + "；".join(f"{name}={result}" for name, result in stage_results.items() if result))
     CHECKS.mkdir(parents=True, exist_ok=True)
     (CHECKS / f"{today}.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
 

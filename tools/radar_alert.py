@@ -28,7 +28,7 @@ def delivered(root: Path, day: str) -> bool:
         return False
 
 
-def failed_runs_today(day: str) -> list[dict]:
+def runs_today(day: str) -> list[dict]:
     repo = os.environ["GITHUB_REPOSITORY"]
     token = os.environ["GITHUB_TOKEN"]
     url = f"https://api.github.com/repos/{repo}/actions/workflows/radar.yml/runs?per_page=30"
@@ -40,14 +40,13 @@ def failed_runs_today(day: str) -> list[dict]:
     with urllib.request.urlopen(req, timeout=20) as response:
         runs = json.load(response).get("workflow_runs", [])
     return [
-        {"id": run["id"], "conclusion": run["conclusion"], "url": run["html_url"]}
+        {"id": run["id"], "conclusion": run.get("conclusion"), "url": run["html_url"]}
         for run in runs
-        if run.get("conclusion") in {"failure", "cancelled", "timed_out"}
-        and datetime.fromisoformat(run["created_at"].replace("Z", "+00:00")).astimezone(TZ).date().isoformat() == day
+        if datetime.fromisoformat(run["created_at"].replace("Z", "+00:00")).astimezone(TZ).date().isoformat() == day
     ]
 
 
-def send_alert(day: str, failures: list[dict]) -> None:
+def send_alert(day: str, failures: list[dict], core_delivered: bool = False) -> None:
     names = ("RADAR_ALERT_SMTP_HOST", "RADAR_ALERT_SMTP_USER",
              "RADAR_ALERT_SMTP_PASSWORD", "RADAR_ALERT_EMAIL_TO")
     missing = [name for name in names if not os.environ.get(name)]
@@ -55,10 +54,11 @@ def send_alert(day: str, failures: list[dict]) -> None:
         raise RuntimeError("邮件告警未配置 GitHub Actions secrets: " + ", ".join(missing))
     repo = os.environ["GITHUB_REPOSITORY"]
     msg = EmailMessage()
-    msg["Subject"] = f"[雷达告警] {day} 内容仍未落库"
+    msg["Subject"] = f"[雷达告警] {day} 流程未完整交付"
     msg["From"] = os.environ.get("RADAR_ALERT_EMAIL_FROM") or os.environ["RADAR_ALERT_SMTP_USER"]
     msg["To"] = os.environ["RADAR_ALERT_EMAIL_TO"]
-    lines = [f"北京时间 {day} 的雷达数据与完整运行记录尚未同时落库。",
+    state = "雷达主数据已落库，但后续阶段未全部成功" if core_delivered else "雷达主数据尚未落库"
+    lines = [f"北京时间 {day}：{state}。",
              f"检查位置：https://github.com/{repo}/actions/workflows/radar.yml", "",
              "当日失败或取消的运行："]
     lines += [f"- {run['id']} {run['conclusion']} {run['url']}" for run in failures]
@@ -80,16 +80,18 @@ def should_alert(event: str, failed_count: int) -> bool:
 
 def main() -> None:
     day = datetime.now(TZ).date().isoformat()
-    if delivered(ROOT, day):
-        print(f"{day} 雷达已落库，无需告警")
+    core_delivered = delivered(ROOT, day)
+    runs = runs_today(day)
+    failures = [run for run in runs if run["conclusion"] in {"failure", "cancelled", "timed_out"}]
+    if core_delivered and runs and runs[0]["conclusion"] == "success":
+        print(f"{day} 雷达及后续阶段已完成，无需告警")
         return
-    failures = failed_runs_today(day)
     event = os.environ.get("GITHUB_EVENT_NAME", "")
     if not should_alert(event, len(failures)):
         print(f"{day} 尚未落库；{len(failures)} 次失败/取消，本次不重复发信")
         return
-    send_alert(day, failures)
-    print(f"{day} 未落库；已发送邮件告警，失败/取消运行 {len(failures)} 次")
+    send_alert(day, failures, core_delivered)
+    print(f"{day} 流程未完整交付；已发送邮件告警，失败/取消运行 {len(failures)} 次")
 
 
 if __name__ == "__main__":
