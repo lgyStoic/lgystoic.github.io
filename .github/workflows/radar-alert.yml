@@ -8,6 +8,12 @@ on:
     # 北京时间 18:17 复核当天产物，覆盖雷达调度完全未触发的情况。
     - cron: "17 10 * * *"
   workflow_dispatch:
+    inputs:
+      send_test_email:
+        description: "发送一封 Gmail SMTP 配置测试邮件"
+        required: false
+        type: boolean
+        default: false
 
 permissions:
   actions: read
@@ -34,4 +40,5 @@ jobs:
           RADAR_ALERT_SMTP_PASSWORD: ${{ secrets.RADAR_ALERT_SMTP_PASSWORD }}
           RADAR_ALERT_EMAIL_FROM: ${{ secrets.RADAR_ALERT_EMAIL_FROM }}
           RADAR_ALERT_EMAIL_TO: ${{ secrets.RADAR_ALERT_EMAIL_TO }}
+          RADAR_ALERT_TEST_EMAIL: ${{ inputs.send_test_email && '1' || '' }}
         run: python3 tools/radar_alert.py

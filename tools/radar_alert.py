@@ -73,6 +73,28 @@ def send_alert(day: str, failures: list[dict], core_delivered: bool = False) -> 
         smtp.send_message(msg)
 
 
+def send_test_email(day: str) -> None:
+    names = ("RADAR_ALERT_SMTP_HOST", "RADAR_ALERT_SMTP_USER",
+             "RADAR_ALERT_SMTP_PASSWORD", "RADAR_ALERT_EMAIL_TO")
+    missing = [name for name in names if not os.environ.get(name)]
+    if missing:
+        raise RuntimeError("邮件告警未配置 GitHub Actions secrets: " + ", ".join(missing))
+    msg = EmailMessage()
+    msg["Subject"] = f"[雷达告警测试] {day} Gmail SMTP 配置成功"
+    msg["From"] = os.environ.get("RADAR_ALERT_EMAIL_FROM") or os.environ["RADAR_ALERT_SMTP_USER"]
+    msg["To"] = os.environ["RADAR_ALERT_EMAIL_TO"]
+    msg.set_content(
+        "这是一封手动触发的配置测试邮件。\n\n"
+        "GitHub Actions 已通过 Gmail SMTP 完成认证并提交邮件。\n"
+        "此测试没有触发采集、补跑或生产告警。\n"
+    )
+    host = os.environ["RADAR_ALERT_SMTP_HOST"]
+    port = int(os.environ.get("RADAR_ALERT_SMTP_PORT", "465"))
+    with smtplib.SMTP_SSL(host, port, timeout=20) as smtp:
+        smtp.login(os.environ["RADAR_ALERT_SMTP_USER"], os.environ["RADAR_ALERT_SMTP_PASSWORD"])
+        smtp.send_message(msg)
+
+
 def should_alert(event: str, failed_count: int) -> bool:
     # 第二次失败立即告警；晚间兜底始终复查未落库，避免监控任务自身漏跑。
     return (event == "workflow_run" and failed_count == 2) or event != "workflow_run"
@@ -80,6 +102,10 @@ def should_alert(event: str, failed_count: int) -> bool:
 
 def main() -> None:
     day = datetime.now(TZ).date().isoformat()
+    if os.environ.get("RADAR_ALERT_TEST_EMAIL") == "1":
+        send_test_email(day)
+        print(f"{day} Gmail SMTP 测试邮件已提交")
+        return
     core_delivered = delivered(ROOT, day)
     runs = runs_today(day)
     failures = [run for run in runs if run["conclusion"] in {"failure", "cancelled", "timed_out"}]
