@@ -66,6 +66,14 @@ class RadarAlertTests(unittest.TestCase):
             radar_alert.main()
             self.assertTrue(send.call_args.args[2])
 
+    def test_manual_email_test_bypasses_delivery_check(self):
+        with patch.dict(radar_alert.os.environ, {"RADAR_ALERT_TEST_EMAIL": "1"}), \
+             patch.object(radar_alert, "send_test_email") as send, \
+             patch.object(radar_alert, "runs_today") as runs:
+            radar_alert.main()
+            send.assert_called_once()
+            runs.assert_not_called()
+
 
 if __name__ == "__main__":
     unittest.main()
