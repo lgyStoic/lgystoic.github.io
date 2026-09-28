@@ -63,7 +63,7 @@ jobs:
     needs: guard
     if: needs.guard.outputs.skip != 'true'
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 40
     steps:
       - uses: actions/checkout@v4
         with:
@@ -108,6 +108,8 @@ jobs:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           LONGCAT_API_KEY: ${{ secrets.LONGCAT_API_KEY }}
           LONGCAT_MODEL: ${{ vars.LONGCAT_MODEL || 'LongCat-2.0' }}
+          LONGCAT_TIMEOUT: "60"
+          EVENTS_AI_BUDGET_SECONDS: "600"
         shell: bash
         run: set -o pipefail; python3 tools/events.py 2>&1 | tee -a radar/data/last-run.log
 
