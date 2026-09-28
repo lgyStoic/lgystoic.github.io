@@ -2,8 +2,208 @@
  "id": "video",
  "name": "视频生成模型",
  "blurb": "文生视频、图生视频、视频 VAE 与 DiT 加速：Wan、Sora、Veo、可灵、海螺、Seedance、Vidu、LTX、HunyuanVideo 等的发布、论文、benchmark 与推理框架支持。",
- "updated": "2026-09-27T01:41:44+00:00",
+ "updated": "2026-09-28T07:10:07+00:00",
  "entries": [
+  {
+   "id": "d2ef344d93f18451",
+   "date": "2026-09-28",
+   "title": "MVAgent: Multi-Agent Video Generation via Consistent Condition Construction and Shot-Level Policy Optimization",
+   "link": "https://arxiv.org/abs/2609.30609",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "high",
+   "summary": "MVAgent：多智能体协作管线，通过typed conditioning解决多镜头视频生成一致性问题。",
+   "why": "直接解决多镜头视频生成中角色/布局一致性问题，对视频生成工程师有参考价值。",
+   "tags": [
+    "多智能体",
+    "视频生成",
+    "一致性"
+   ],
+   "entity": "MVAgent",
+   "kind": "paper"
+  },
+  {
+   "id": "705ddaddd5f840c0",
+   "date": "2026-09-28",
+   "title": "Where and When to Force: Routed Forcing for Streaming Avatars",
+   "link": "https://arxiv.org/abs/2609.30963",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "high",
+   "summary": "Routed Forcing：解决Self Forcing中DMD导致streaming avatar动态坍缩的问题。",
+   "why": "直接改进streaming avatar生成的动态多样性，对扩散蒸馏和实时生成有参考价值。",
+   "tags": [
+    "streaming avatar",
+    "DMD",
+    "扩散蒸馏"
+   ],
+   "entity": "Routed Forcing",
+   "kind": "paper"
+  },
+  {
+   "id": "68c105174b62ab21",
+   "date": "2026-09-28",
+   "title": "Where Compute Matters: Heterogeneous Attention for Efficient Video Diffusion",
+   "link": "https://arxiv.org/abs/2609.31050",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "high",
+   "summary": "HetA-DiT：异构注意力机制，按token难度自适应分配全局/稀疏注意力计算。",
+   "why": "直接优化视频扩散模型的注意力计算效率，对GPU kernel和推理优化有直接影响。",
+   "tags": [
+    "视频扩散",
+    "高效注意力",
+    "计算分配"
+   ],
+   "entity": "HetA-DiT",
+   "kind": "paper"
+  },
+  {
+   "id": "17ea202c33ffc9e9",
+   "date": "2026-09-28",
+   "title": "DyMD: Preserving Interaction Dynamics through Distribution Matching Distillation in Few-Step Video World Models",
+   "link": "https://arxiv.org/abs/2609.31349",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "high",
+   "summary": "DyMD：解决DMD蒸馏视频世界模型时抑制机器人-物体交互动态的问题。",
+   "why": "揭示DMD在少步视频生成中丢失交互动态的机理并提出改进，对扩散蒸馏有直接参考价值。",
+   "tags": [
+    "DMD",
+    "扩散蒸馏",
+    "交互动态"
+   ],
+   "entity": "DyMD",
+   "kind": "paper"
+  },
+  {
+   "id": "fb806435f50fdc91",
+   "date": "2026-09-28",
+   "title": "Google Research Introduces an AI Video Co-Director: 4 Agentic Frameworks for Coherent, Minutes-Long Video Generation - MarkTechPost",
+   "link": "https://www.marktechpost.com/2026/09/27/google-research-introduces-an-ai-video-co-director-4-agentic-frameworks-for-coherent-minutes-long-video-generation/",
+   "source": "新闻 · 视频生成（英文）",
+   "priority": "high",
+   "summary": "Google Research Introduces an AI Video Co-Director: 4 Agentic Frameworks for Coherent, Minutes-Long Video Generation MarkTechPost",
+   "why": "",
+   "tags": [
+    "video generation",
+    "agent",
+    "agentic"
+   ],
+   "entity": "Google Research",
+   "kind": "news"
+  },
+  {
+   "id": "0baac1abcd9618b7",
+   "date": "2026-09-28",
+   "title": "Veo 3 pricing Android App Latest Release - Học viện Nông nghiệp Việt Nam",
+   "link": "https://vnua.edu.vn/Article/092857770.aspx",
+   "source": "新闻 · 视频生成（英文）",
+   "priority": "high",
+   "summary": "Veo 3 pricing Android App Latest Release Học viện Nông nghiệp Việt Nam",
+   "why": "",
+   "tags": [],
+   "entity": "Veo 3",
+   "kind": "news"
+  },
+  {
+   "id": "c0f860f96db2011f",
+   "date": "2026-09-28",
+   "title": "TrafficImag: A Benchmark for Counterfactual Roadside Traffic Video Generation",
+   "link": "https://arxiv.org/abs/2609.30722",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "medium",
+   "summary": "TrafficImag：首个反事实路边交通视频生成基准，含9002张标注图和7043条视频。",
+   "why": "新基准但偏自动驾驶感知，与生成模型训练优化关联有限。",
+   "tags": [
+    "基准",
+    "交通视频",
+    "反事实生成"
+   ],
+   "entity": "TrafficImag",
+   "kind": "benchmark"
+  },
+  {
+   "id": "07ecf082d3c23d3d",
+   "date": "2026-09-28",
+   "title": "Rebalancing Reference Frame Dominance to Improve Motion in Image-to-Video Models",
+   "link": "https://arxiv.org/abs/2605.19398",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "medium",
+   "summary": "DyMoS：通过重新平衡参考帧自注意力解决I2V模型运动不足问题。",
+   "why": "分析I2V模型运动抑制的注意力机制原因，对视频生成质量优化有参考价值。",
+   "tags": [
+    "I2V",
+    "运动抑制",
+    "注意力"
+   ],
+   "entity": "DyMoS",
+   "kind": "paper"
+  },
+  {
+   "id": "dc96ea9646061b19",
+   "date": "2026-09-28",
+   "title": "Auteur: Language-Driven Cinematographic Framing for Human-Centric Video Generation",
+   "link": "https://arxiv.org/abs/2606.01900",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "medium",
+   "summary": "Auteur：语言驱动的人物中心电影化镜头控制生成方法。",
+   "why": "视频生成中摄像机控制新方法，对3D/视频生成工程师有参考价值。",
+   "tags": [
+    "视频生成",
+    "摄像机控制",
+    "电影化"
+   ],
+   "entity": "Auteur",
+   "kind": "paper"
+  },
+  {
+   "id": "cbec8292ab91f59e",
+   "date": "2026-09-28",
+   "title": "NavGen: Visual Generative Models as a Scalable Data Engine for Embodied 3D Navigation",
+   "link": "https://arxiv.org/abs/2609.30770",
+   "source": "arXiv cs.RO（专题）",
+   "priority": "medium",
+   "summary": "NavGen：用高保真视觉生成模型作为具身3D导航的可扩展数据引擎。",
+   "why": "生成模型用于导航数据增强，偏具身智能，与视频生成训练关联弱。",
+   "tags": [
+    "具身导航",
+    "数据生成",
+    "VLN"
+   ],
+   "entity": "NavGen",
+   "kind": "paper"
+  },
+  {
+   "id": "0574593c39c1d082",
+   "date": "2026-09-28",
+   "title": "Keep the Future, Drop the Rollout: RIFT for World Action Models",
+   "link": "https://arxiv.org/abs/2608.11521",
+   "source": "arXiv cs.RO（专题）",
+   "priority": "medium",
+   "summary": "RIFT：世界动作模型中复用固定最终K/V缓存替代完整rollout，降低部署延迟。",
+   "why": "减少世界模型推理延迟，对推理优化有一定参考价值。",
+   "tags": [
+    "世界模型",
+    "推理优化",
+    "KV缓存"
+   ],
+   "entity": "RIFT",
+   "kind": "paper"
+  },
+  {
+   "id": "15e452e7bfab44be",
+   "date": "2026-09-28",
+   "title": "Grounded Action Model: 3D Grounding as a Foundation for Robotics",
+   "link": "https://arxiv.org/abs/2609.23863",
+   "source": "arXiv cs.RO（专题）",
+   "priority": "medium",
+   "summary": "Grounded Action Model：以3D grounding为基石的机器人基础模型新范式。",
+   "why": "机器人基础模型新范式，偏具身智能，与视频生成/GPU优化关联弱。",
+   "tags": [
+    "机器人",
+    "3D grounding",
+    "基础模型"
+   ],
+   "entity": "Grounded Action Model",
+   "kind": "paper"
+  },
   {
    "id": "823053f4b1321bc6",
    "date": "2026-09-27",
@@ -1380,6 +1580,10 @@
    "0cc1ae11826a2db5",
    "a008930e840f83ca"
   ],
+  "Google Research": [
+   "fb806435f50fdc91",
+   "073b467f4bbba63f"
+  ],
   "WanPE": [
    "cf98509f3e46a962",
    "48ed5d53175a2a3a"
@@ -1407,6 +1611,39 @@
   "字节跳动": [
    "3a06f956823425ca",
    "782c2b2a23d1da73"
+  ],
+  "MVAgent": [
+   "d2ef344d93f18451"
+  ],
+  "Routed Forcing": [
+   "705ddaddd5f840c0"
+  ],
+  "HetA-DiT": [
+   "68c105174b62ab21"
+  ],
+  "DyMD": [
+   "17ea202c33ffc9e9"
+  ],
+  "Veo 3": [
+   "0baac1abcd9618b7"
+  ],
+  "TrafficImag": [
+   "c0f860f96db2011f"
+  ],
+  "DyMoS": [
+   "07ecf082d3c23d3d"
+  ],
+  "Auteur": [
+   "dc96ea9646061b19"
+  ],
+  "NavGen": [
+   "cbec8292ab91f59e"
+  ],
+  "RIFT": [
+   "0574593c39c1d082"
+  ],
+  "Grounded Action Model": [
+   "15e452e7bfab44be"
   ],
   "Google": [
    "823053f4b1321bc6"
@@ -1437,9 +1674,6 @@
   ],
   "Latent evolving World Action Model": [
    "4ce3eab8bc068fe7"
-  ],
-  "Google Research": [
-   "073b467f4bbba63f"
   ],
   "The Past Frames the Future": [
    "9b97cb2c5f298593"

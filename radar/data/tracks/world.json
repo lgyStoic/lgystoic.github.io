@@ -2,8 +2,205 @@
  "id": "world",
  "name": "世界模型",
  "blurb": "可交互的生成式世界模拟：Genie、Cosmos、V-JEPA、Dreamer、GameNGen、Oasis、Matrix-Game、HunyuanWorld 等，以及动作条件视频生成、4D 生成与具身仿真。",
- "updated": "2026-09-27T01:41:44+00:00",
+ "updated": "2026-09-28T07:10:07+00:00",
  "entries": [
+  {
+   "id": "dbbe122690667353",
+   "date": "2026-09-28",
+   "title": "索辰科技加码世界模型前沿技术 与美梦空间联合发布具身模型与物理测评标准 - 证券之星",
+   "link": "http://stock.stockstar.com/IG2026092800013990.shtml",
+   "source": "新闻 · 世界模型（中文）",
+   "priority": "high",
+   "summary": "索辰科技加码世界模型前沿技术 与美梦空间联合发布具身模型与物理测评标准 证券之星",
+   "why": "",
+   "tags": [],
+   "entity": "索辰科技",
+   "kind": "news"
+  },
+  {
+   "id": "17ea202c33ffc9e9",
+   "date": "2026-09-28",
+   "title": "DyMD: Preserving Interaction Dynamics through Distribution Matching Distillation in Few-Step Video World Models",
+   "link": "https://arxiv.org/abs/2609.31349",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "high",
+   "summary": "DyMD：解决DMD蒸馏视频世界模型时抑制机器人-物体交互动态的问题。",
+   "why": "揭示DMD在少步视频生成中丢失交互动态的机理并提出改进，对扩散蒸馏有直接参考价值。",
+   "tags": [
+    "DMD",
+    "扩散蒸馏",
+    "交互动态"
+   ],
+   "entity": "DyMD",
+   "kind": "paper"
+  },
+  {
+   "id": "2f7f10b52dd7e706",
+   "date": "2026-09-28",
+   "title": "索辰科技加码世界模型前沿技术，与战略投资企业美梦空间联合发布具身模型与物理测评标准 - 新浪财经",
+   "link": "https://finance.sina.com.cn/roll/2026-09-28/doc-initirzi8832973.shtml",
+   "source": "新闻 · 世界模型（中文）",
+   "priority": "high",
+   "summary": "索辰科技加码世界模型前沿技术，与战略投资企业美梦空间联合发布具身模型与物理测评标准 新浪财经",
+   "why": "",
+   "tags": [],
+   "entity": "索辰科技",
+   "kind": "news"
+  },
+  {
+   "id": "932e79ffe554a720",
+   "date": "2026-09-28",
+   "title": "蔚来世界模型智驾，陌生狭窄路况选道精准丝滑 - 手机新浪网",
+   "link": "https://k.sina.com.cn/article_7879923946_m1d5ae18ea03303v896.html?from=news",
+   "source": "新闻 · 世界模型（中文）",
+   "priority": "medium",
+   "summary": "蔚来世界模型智驾，陌生狭窄路况选道精准丝滑 手机新浪网",
+   "why": "",
+   "tags": [],
+   "entity": "蔚来",
+   "kind": "news"
+  },
+  {
+   "id": "c284858846db00fe",
+   "date": "2026-09-28",
+   "title": "Action Forcing: Training World Models on Unsupervised Video by Recovering Underlying Egomotion Bases",
+   "link": "https://arxiv.org/abs/2609.30595",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "medium",
+   "summary": "Action Forcing：用PCA从无标注视频恢复自运动基，训练可控世界模型。",
+   "why": "无监督世界模型训练新方法，但偏自动驾驶，与视频生成关联弱。",
+   "tags": [
+    "世界模型",
+    "自运动",
+    "无监督"
+   ],
+   "entity": "Action Forcing",
+   "kind": "paper"
+  },
+  {
+   "id": "35f6bea3a3ab0922",
+   "date": "2026-09-28",
+   "title": "StarWM: Self-Supervised Trained Attention Routing for Robust World Models",
+   "link": "https://arxiv.org/abs/2609.30667",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "medium",
+   "summary": "StarWM：用自监督动态训练的cross-attention模块决定世界模型中哪些区域做重建。",
+   "why": "世界模型表征优化，但偏自动驾驶场景，与扩散/FM关联较弱。",
+   "tags": [
+    "世界模型",
+    "注意力路由",
+    "自监督"
+   ],
+   "entity": "StarWM",
+   "kind": "paper"
+  },
+  {
+   "id": "ee52d849b20c8ae1",
+   "date": "2026-09-28",
+   "title": "OneWorld: Learning Consistent Physics Across Actions in World Models",
+   "link": "https://arxiv.org/abs/2609.30946",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "medium",
+   "summary": "OneWorld：解决动作条件世界模型中不同干预下物理属性不一致的问题。",
+   "why": "世界模型物理一致性研究，偏自动驾驶规划，与视频生成关联弱。",
+   "tags": [
+    "世界模型",
+    "物理一致性",
+    "动作条件"
+   ],
+   "entity": "OneWorld",
+   "kind": "paper"
+  },
+  {
+   "id": "3c7d8f12053d37d7",
+   "date": "2026-09-28",
+   "title": "WALT: Learning World-Model-Aligned Latent Trajectories for Autonomous Driving",
+   "link": "https://arxiv.org/abs/2609.30436",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "medium",
+   "summary": "WALT：从冻结的驾驶世界模型学习紧凑的生成轨迹潜在空间用于规划。",
+   "why": "世界模型与规划结合，偏自动驾驶，与视频生成优化关联弱。",
+   "tags": [
+    "世界模型",
+    "轨迹规划",
+    "自动驾驶"
+   ],
+   "entity": "WALT",
+   "kind": "paper"
+  },
+  {
+   "id": "da1c7c57b2f309ac",
+   "date": "2026-09-28",
+   "title": "Holo-World: Unified Camera, Object and Weather Control for Video World Model",
+   "link": "https://arxiv.org/abs/2606.20083",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "medium",
+   "summary": "Holo-World：统一摄像机、物体和天气控制的视频世界模型。",
+   "why": "多条件视频生成控制，但偏世界模型，与扩散/FM训练优化关联有限。",
+   "tags": [
+    "世界模型",
+    "多条件控制",
+    "天气"
+   ],
+   "entity": "Holo-World",
+   "kind": "paper"
+  },
+  {
+   "id": "75e693e41dfef842",
+   "date": "2026-09-28",
+   "title": "广和通完成对飞渡科技战略投资 布局空间智能与世界模型领域 - 观点网",
+   "link": "https://www.guandian.cn/article/20260928/607386.html",
+   "source": "新闻 · 世界模型（中文）",
+   "priority": "medium",
+   "summary": "广和通完成对飞渡科技战略投资 布局空间智能与世界模型领域 观点网",
+   "why": "",
+   "tags": [],
+   "entity": "广和通",
+   "kind": "news"
+  },
+  {
+   "id": "e4fbb7ba244e7284",
+   "date": "2026-09-28",
+   "title": "【视频】Momenta 与神龙汽车科技达成全球战略合作，R7 世界模型将上车 - 汽车之家",
+   "link": "https://chejiahao.autohome.com.cn/info/26555692?reply=reply",
+   "source": "新闻 · 世界模型（中文）",
+   "priority": "medium",
+   "summary": "【视频】Momenta 与神龙汽车科技达成全球战略合作，R7 世界模型将上车 汽车之家",
+   "why": "",
+   "tags": [],
+   "entity": "Momenta",
+   "kind": "news"
+  },
+  {
+   "id": "bbbb19720a799dbb",
+   "date": "2026-09-28",
+   "title": "Momenta与神龙汽车达成全球战略合作，R7世界模型将上车标致、Jeep - 砍柴网",
+   "link": "https://news.ikanchai.com/2026/0928/668363.shtml",
+   "source": "新闻 · 世界模型（中文）",
+   "priority": "medium",
+   "summary": "Momenta与神龙汽车达成全球战略合作，R7世界模型将上车标致、Jeep 砍柴网",
+   "why": "",
+   "tags": [
+    "3D"
+   ],
+   "entity": "Momenta",
+   "kind": "news"
+  },
+  {
+   "id": "513973711ff96a2f",
+   "date": "2026-09-28",
+   "title": "广和通战略投资飞渡科技，深化空间智能与世界模型布局 - 搜狐网",
+   "link": "https://m.sohu.com/a/1081667922_121613636?scm=10001.325_13-325_13.0.0-0-0-0-0.5_1334",
+   "source": "新闻 · 世界模型（中文）",
+   "priority": "medium",
+   "summary": "广和通战略投资飞渡科技，深化空间智能与世界模型布局 搜狐网",
+   "why": "",
+   "tags": [
+    "3D"
+   ],
+   "entity": "广和通",
+   "kind": "news"
+  },
   {
    "id": "fe1b7625279c42ef",
    "date": "2026-09-27",
@@ -1806,6 +2003,11 @@
    "e75127ac9b8a9daf",
    "5fddcaf95312567c"
   ],
+  "索辰科技": [
+   "dbbe122690667353",
+   "2f7f10b52dd7e706",
+   "fe1b7625279c42ef"
+  ],
   "极佳视界": [
    "708fceb9660b3088",
    "b7a54cf38a39b91f",
@@ -1815,6 +2017,18 @@
    "8e8e423feb906223",
    "bc3a19dbc2c54e80",
    "e85b0a26fa78cf4b"
+  ],
+  "蔚来": [
+   "932e79ffe554a720",
+   "018bbcc4c745dd50"
+  ],
+  "广和通": [
+   "75e693e41dfef842",
+   "513973711ff96a2f"
+  ],
+  "Momenta": [
+   "e4fbb7ba244e7284",
+   "bbbb19720a799dbb"
   ],
   "HappyWorld-Bench": [
    "f1d6f038896c11bf",
@@ -1848,8 +2062,23 @@
    "fe9d33edf0701555",
    "92ea4301b3012f12"
   ],
-  "索辰科技": [
-   "fe1b7625279c42ef"
+  "DyMD": [
+   "17ea202c33ffc9e9"
+  ],
+  "Action Forcing": [
+   "c284858846db00fe"
+  ],
+  "StarWM": [
+   "35f6bea3a3ab0922"
+  ],
+  "OneWorld": [
+   "ee52d849b20c8ae1"
+  ],
+  "WALT": [
+   "3c7d8f12053d37d7"
+  ],
+  "Holo-World": [
+   "da1c7c57b2f309ac"
   ],
   "object-permanence": [
    "eb32e9f076f872a5"
@@ -1988,9 +2217,6 @@
   ],
   "中国国际经济交流中心": [
    "429df59901fcdf12"
-  ],
-  "蔚来": [
-   "018bbcc4c745dd50"
   ],
   "新浪财经": [
    "9d8c6444896b1b84"

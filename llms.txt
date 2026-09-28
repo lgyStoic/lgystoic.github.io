@@ -30,23 +30,23 @@
 
 - [雷达首页与往期](https://lgystoic.github.io/radar/)
 - [RSS](https://lgystoic.github.io/radar/feed.xml)
+- [2026-09-28](https://lgystoic.github.io/radar/2026-09-28/): 30 条，必看：索辰科技加码世界模型前沿技术 与美梦空间联合发布具身模型与物理测评标准 - 证券之星；MiniMax最新模型M3.1-Flash-Preview上线 - 搜狐网；MVAgent: Multi-Agent Video Generation via Consistent Condition Construction and Shot-Level Policy Optimization；Where an
 - [2026-09-27](https://lgystoic.github.io/radar/2026-09-27/): 20 条，必看：Google Just Made Free 1080p AI Video Generation Available to Anyone - Decrypt；谷歌TPU跑Kimi比英伟达GPU快57%！用的还是DeepSeek推理框架 - 手机新浪网；David Sacks Says Anthropic Needs 'a Psychiatrist, Not a Banker' as AI Token
 - [2026-09-26](https://lgystoic.github.io/radar/2026-09-26/): 30 条，必看：音视频生成提速54倍！TurboT2VA：分布蒸馏与轨迹蒸馏的联合蒸馏方案 - 智源社区；OpenAI, Google and Anthropic to launch AI safety organisation by early 2027: Report - CNBC TV18；ViRDM: Taming Representation Distribution Matching for Few-
 - [2026-09-25](https://lgystoic.github.io/radar/2026-09-25/): 30 条，必看：Runway’s WorldPrompt and the Engineering of Real-Time Worlds；Anthropic launches Claude Opus 5.5 with lower costs - IT Brief Asia；Google Vids unlocks free HD AI video generation for all personal Google
 - [2026-09-24](https://lgystoic.github.io/radar/2026-09-24/): 30 条，必看：谷歌(GOOGL.US)Vids免费AI视频生成扩容：套餐订阅用户享高级功能与更高限额提供者智通财经 - 英为财情 Investing.com；DeepSeek拟采用Huawei芯片训练大模型 规划推出8万亿参数模型 - digitaltoday.co.kr；AI race accelerates as OpenAI and Anthropic launch GPT-6 and Claude Op
 - [2026-09-23](https://lgystoic.github.io/radar/2026-09-23/): 30 条，必看：The Biological Computing Partners With AWS To Launch AI Video Model With 5x Faster Generation And 80% Lower Costs - Pulse 2.0；Better prompt caching for GPT-6；What’s New for Game Developers: DLSS 5 wit
 - [2026-09-22](https://lgystoic.github.io/radar/2026-09-22/): 30 条，必看：浪潮信息发布元脑SD200 Ultra：单机承载2.8万亿参数Kimi K3 - 凤凰网科技；v0.30.0；Simplifying Model Serving Across Multiple GPUs with NVIDIA TensorRT Multi-Device Integration in NVIDIA Dynamo-Triton；亚马逊AWS旗下Bedrock官宣接入Kimi K3模型
-- [2026-09-21](https://lgystoic.github.io/radar/2026-09-21/): 11 条，必看：阶跃星辰发布Step 5 Preview，面向真实世界Agentic 任务的旗舰基座模型- OSCHINA - 开源 × AI · 开发者生态社区 - OSCHINA；Aether AI发布首个因果世界模型，世界模型开始思考“行动背后的因果”｜甲子光年 - Sohu；Qwen/Qwen-Image-2.1
 
 ## 专题追踪
 
 - [专题总览](https://lgystoic.github.io/radar/tracks/): 视频生成模型、世界模型等专题的累积时间线、线程、每周综述与现状表
-- [视频生成模型](https://lgystoic.github.io/radar/tracks/video/): 文生视频、图生视频、视频 VAE 与 DiT 加速：Wan、Sora、Veo、可灵、海螺、Seedance、Vidu、LTX、HunyuanVideo 等的发布、论文、benchmark 与推理框架支；累计 80 条；本周综述：本周视频生成领域进展密集，核心主线是推理加速与实时化：TurboT2VA 用分布蒸馏+轨迹蒸馏联合方案将音视频生成提速 54 倍；ViRDM 将表示分布蒸馏用于少步因果视频生成并去掉 teacher-critic 栈；TRACK 提出训练无关的轨迹感知路由，用大小模型异构去噪加速扩散；Video DeltaNet 以局
-- [世界模型](https://lgystoic.github.io/radar/tracks/world/): 可交互的生成式世界模拟：Genie、Cosmos、V-JEPA、Dreamer、GameNGen、Oasis、Matrix-Game、HunyuanWorld 等，以及动作条件视频生成、4D 生成与具；累计 105 条；本周综述：本周世界模型方向新条目密集，约40条，但真正有实质进展的不多。最值得注意的是推理加速侧的 QuantWM，提出 2-bit KV Cache 量化并解决时序闪烁，直接命中推理工程师关心的部署问题。系统侧，NVIDIA 发布 OmniDreams 面向闭环自动驾驶仿真的实时生成式世界模型，Runway 的 WorldPr
+- [视频生成模型](https://lgystoic.github.io/radar/tracks/video/): 文生视频、图生视频、视频 VAE 与 DiT 加速：Wan、Sora、Veo、可灵、海螺、Seedance、Vidu、LTX、HunyuanVideo 等的发布、论文、benchmark 与推理框架支；累计 92 条；本周综述：本周视频生成领域进展密集，核心主线是推理加速与实时化：TurboT2VA 用分布蒸馏+轨迹蒸馏联合方案将音视频生成提速 54 倍；ViRDM 将表示分布蒸馏用于少步因果视频生成并去掉 teacher-critic 栈；TRACK 提出训练无关的轨迹感知路由，用大小模型异构去噪加速扩散；Video DeltaNet 以局
+- [世界模型](https://lgystoic.github.io/radar/tracks/world/): 可交互的生成式世界模拟：Genie、Cosmos、V-JEPA、Dreamer、GameNGen、Oasis、Matrix-Game、HunyuanWorld 等，以及动作条件视频生成、4D 生成与具；累计 118 条；本周综述：本周世界模型方向新条目密集，约40条，但真正有实质进展的不多。最值得注意的是推理加速侧的 QuantWM，提出 2-bit KV Cache 量化并解决时序闪烁，直接命中推理工程师关心的部署问题。系统侧，NVIDIA 发布 OmniDreams 面向闭环自动驾驶仿真的实时生成式世界模型，Runway 的 WorldPr
 
 ## 活动清单
 
-- [深圳 / 广州 / 香港及线上的 AI 活动](https://lgystoic.github.io/radar/events/): 目前即将发生 119 个，页面内含 schema.org Event 数据
+- [深圳 / 广州 / 香港及线上的 AI 活动](https://lgystoic.github.io/radar/events/): 目前即将发生 132 个，页面内含 schema.org Event 数据
 
 ## 工作机会
 

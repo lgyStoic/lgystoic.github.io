@@ -1,0 +1,1017 @@
+{
+  "date": "2026-09-28",
+  "generated_at": "2026-09-28T06:51:11+00:00",
+  "ai": true,
+  "model": "LongCat-2.0",
+  "sources": [
+    {
+      "id": "openai",
+      "name": "OpenAI",
+      "ok": true,
+      "count": 0,
+      "total": 1230,
+      "error": ""
+    },
+    {
+      "id": "deepmind",
+      "name": "Google DeepMind",
+      "ok": false,
+      "count": 0,
+      "total": 0,
+      "error": "not well-formed (invalid token): line 1, column 0"
+    },
+    {
+      "id": "google-ai",
+      "name": "Google AI Blog",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "qwen",
+      "name": "Qwen",
+      "ok": true,
+      "count": 0,
+      "total": 44,
+      "error": ""
+    },
+    {
+      "id": "hf-blog",
+      "name": "Hugging Face Blog",
+      "ok": true,
+      "count": 0,
+      "total": 868,
+      "error": ""
+    },
+    {
+      "id": "nvidia-dev",
+      "name": "NVIDIA Technical Blog",
+      "ok": true,
+      "count": 1,
+      "total": 100,
+      "error": ""
+    },
+    {
+      "id": "hf-papers",
+      "name": "HF Papers 日榜",
+      "ok": true,
+      "count": 4,
+      "total": 32,
+      "error": ""
+    },
+    {
+      "id": "pytorch",
+      "name": "PyTorch Blog",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "simonw",
+      "name": "Simon Willison",
+      "ok": true,
+      "count": 2,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "lilianweng",
+      "name": "Lil'Log",
+      "ok": true,
+      "count": 0,
+      "total": 53,
+      "error": ""
+    },
+    {
+      "id": "interconnects",
+      "name": "Interconnects",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "raschka",
+      "name": "Sebastian Raschka",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "chiphuyen",
+      "name": "Chip Huyen",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-pytorch",
+      "name": "Release · PyTorch",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-triton",
+      "name": "Release · Triton",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-cutlass",
+      "name": "Release · CUTLASS",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-flash-attention",
+      "name": "Release · FlashAttention",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-vllm",
+      "name": "Release · vLLM",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-sglang",
+      "name": "Release · SGLang",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-tensorrt-llm",
+      "name": "Release · TensorRT-LLM",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-diffusers",
+      "name": "Release · Diffusers",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-cuda-python",
+      "name": "Release · cuda-python",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "gnews-labs-en",
+      "name": "新闻 · Anthropic / Mistral / xAI",
+      "ok": true,
+      "count": 9,
+      "total": 40,
+      "error": ""
+    },
+    {
+      "id": "gnews-labs-cn",
+      "name": "新闻 · 国内模型公司",
+      "ok": true,
+      "count": 14,
+      "total": 48,
+      "error": ""
+    },
+    {
+      "id": "qbitai",
+      "name": "量子位",
+      "ok": true,
+      "count": 1,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "infoq-cn",
+      "name": "InfoQ 中文",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "thonking",
+      "name": "Horace He (thonking)",
+      "ok": true,
+      "count": 0,
+      "total": 6,
+      "error": ""
+    },
+    {
+      "id": "hn-algolia",
+      "name": "Hacker News（100+ 分）",
+      "ok": true,
+      "count": 3,
+      "total": 60,
+      "error": ""
+    },
+    {
+      "id": "karpathy-blog",
+      "name": "Andrej Karpathy 博客",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "eugeneyan",
+      "name": "Eugene Yan",
+      "ok": true,
+      "count": 0,
+      "total": 212,
+      "error": ""
+    },
+    {
+      "id": "importai",
+      "name": "Import AI（Jack Clark）",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "latentspace",
+      "name": "Latent Space",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "semianalysis",
+      "name": "SemiAnalysis",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "meta-ai",
+      "name": "Meta Engineering",
+      "ok": true,
+      "count": 0,
+      "total": 9,
+      "error": ""
+    },
+    {
+      "id": "mistral-news",
+      "name": "Mistral AI",
+      "ok": true,
+      "count": 0,
+      "total": 87,
+      "error": ""
+    },
+    {
+      "id": "bsky-karpathy",
+      "name": "Bluesky · Andrej Karpathy",
+      "ok": true,
+      "count": 0,
+      "total": 15,
+      "error": ""
+    },
+    {
+      "id": "bsky-giffmana",
+      "name": "Bluesky · Lucas Beyer",
+      "ok": true,
+      "count": 0,
+      "total": 22,
+      "error": ""
+    },
+    {
+      "id": "bsky-hardmaru",
+      "name": "Bluesky · hardmaru",
+      "ok": true,
+      "count": 0,
+      "total": 15,
+      "error": ""
+    },
+    {
+      "id": "bsky-swyx",
+      "name": "Bluesky · swyx",
+      "ok": true,
+      "count": 0,
+      "total": 3,
+      "error": ""
+    },
+    {
+      "id": "bsky-pytorch",
+      "name": "Bluesky · PyTorch",
+      "ok": true,
+      "count": 0,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "bsky-clem",
+      "name": "Bluesky · Clem Delangue",
+      "ok": true,
+      "count": 0,
+      "total": 11,
+      "error": ""
+    },
+    {
+      "id": "bsky-natolambert",
+      "name": "Bluesky · Nathan Lambert",
+      "ok": true,
+      "count": 0,
+      "total": 29,
+      "error": ""
+    },
+    {
+      "id": "bsky-rasbt",
+      "name": "Bluesky · Sebastian Raschka",
+      "ok": true,
+      "count": 0,
+      "total": 27,
+      "error": ""
+    },
+    {
+      "id": "bsky-jeffdean",
+      "name": "Bluesky · Jeff Dean",
+      "ok": true,
+      "count": 0,
+      "total": 18,
+      "error": ""
+    },
+    {
+      "id": "hf-trending-new",
+      "name": "HF 热榜新模型",
+      "ok": true,
+      "count": 1,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "gh-new-stars",
+      "name": "GitHub 新星仓库",
+      "ok": true,
+      "count": 1,
+      "total": 15,
+      "error": ""
+    },
+    {
+      "id": "hf-t2v",
+      "name": "HF 热榜 · 文生视频",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "hf-i2v",
+      "name": "HF 热榜 · 图生视频",
+      "ok": true,
+      "count": 1,
+      "total": 18,
+      "error": ""
+    },
+    {
+      "id": "gnews-video-en",
+      "name": "新闻 · 视频生成（英文）",
+      "ok": true,
+      "count": 5,
+      "total": 13,
+      "error": ""
+    },
+    {
+      "id": "gnews-video-cn",
+      "name": "新闻 · 视频生成（中文）",
+      "ok": true,
+      "count": 5,
+      "total": 27,
+      "error": ""
+    },
+    {
+      "id": "gnews-world-en",
+      "name": "新闻 · 世界模型（英文）",
+      "ok": true,
+      "count": 1,
+      "total": 37,
+      "error": ""
+    },
+    {
+      "id": "gnews-world-cn",
+      "name": "新闻 · 世界模型（中文）",
+      "ok": true,
+      "count": 13,
+      "total": 36,
+      "error": ""
+    },
+    {
+      "id": "gh-new-video-world",
+      "name": "GitHub 新仓库 · 视频 / 世界模型",
+      "ok": true,
+      "count": 1,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "arxiv-cscv",
+      "name": "arXiv cs.CV（专题）",
+      "ok": true,
+      "count": 14,
+      "total": 182,
+      "error": ""
+    },
+    {
+      "id": "arxiv-csro",
+      "name": "arXiv cs.RO（专题）",
+      "ok": true,
+      "count": 5,
+      "total": 124,
+      "error": ""
+    }
+  ],
+  "counts": {
+    "high": 10,
+    "medium": 20,
+    "low": 0
+  },
+  "items": [
+    {
+      "id": "dbbe122690667353",
+      "title": "索辰科技加码世界模型前沿技术 与美梦空间联合发布具身模型与物理测评标准 - 证券之星",
+      "link": "http://stock.stockstar.com/IG2026092800013990.shtml",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-09-28T06:00:04+00:00",
+      "category": "research",
+      "priority": "high",
+      "summary": "索辰科技加码世界模型前沿技术 与美梦空间联合发布具身模型与物理测评标准 证券之星",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "a3817a53958b3c55",
+      "title": "MiniMax最新模型M3.1-Flash-Preview上线 - 搜狐网",
+      "link": "https://m.sohu.com/a/1081750071_120988576?scm=10001.325_13-325_13.0.0-0-0-0-0.5_1334",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-09-28T05:44:09+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "MiniMax 发布 M3.1-Flash-Preview 新模型。",
+      "why": "国内重要模型公司发布新模型，影响竞争格局。",
+      "tags": [
+        "MiniMax",
+        "M3.1",
+        "release"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "d2ef344d93f18451",
+      "title": "MVAgent: Multi-Agent Video Generation via Consistent Condition Construction and Shot-Level Policy Optimization",
+      "link": "https://arxiv.org/abs/2609.30609",
+      "source": "arXiv cs.CV（专题）",
+      "source_id": "arxiv-cscv",
+      "published": "2026-09-28T04:00:00+00:00",
+      "category": "research",
+      "priority": "high",
+      "summary": "MVAgent：多智能体协作管线，通过typed conditioning解决多镜头视频生成一致性问题。",
+      "why": "直接解决多镜头视频生成中角色/布局一致性问题，对视频生成工程师有参考价值。",
+      "tags": [
+        "多智能体",
+        "视频生成",
+        "一致性"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "705ddaddd5f840c0",
+      "title": "Where and When to Force: Routed Forcing for Streaming Avatars",
+      "link": "https://arxiv.org/abs/2609.30963",
+      "source": "arXiv cs.CV（专题）",
+      "source_id": "arxiv-cscv",
+      "published": "2026-09-28T04:00:00+00:00",
+      "category": "research",
+      "priority": "high",
+      "summary": "Routed Forcing：解决Self Forcing中DMD导致streaming avatar动态坍缩的问题。",
+      "why": "直接改进streaming avatar生成的动态多样性，对扩散蒸馏和实时生成有参考价值。",
+      "tags": [
+        "streaming avatar",
+        "DMD",
+        "扩散蒸馏"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "68c105174b62ab21",
+      "title": "Where Compute Matters: Heterogeneous Attention for Efficient Video Diffusion",
+      "link": "https://arxiv.org/abs/2609.31050",
+      "source": "arXiv cs.CV（专题）",
+      "source_id": "arxiv-cscv",
+      "published": "2026-09-28T04:00:00+00:00",
+      "category": "research",
+      "priority": "high",
+      "summary": "HetA-DiT：异构注意力机制，按token难度自适应分配全局/稀疏注意力计算。",
+      "why": "直接优化视频扩散模型的注意力计算效率，对GPU kernel和推理优化有直接影响。",
+      "tags": [
+        "视频扩散",
+        "高效注意力",
+        "计算分配"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "17ea202c33ffc9e9",
+      "title": "DyMD: Preserving Interaction Dynamics through Distribution Matching Distillation in Few-Step Video World Models",
+      "link": "https://arxiv.org/abs/2609.31349",
+      "source": "arXiv cs.CV（专题）",
+      "source_id": "arxiv-cscv",
+      "published": "2026-09-28T04:00:00+00:00",
+      "category": "research",
+      "priority": "high",
+      "summary": "DyMD：解决DMD蒸馏视频世界模型时抑制机器人-物体交互动态的问题。",
+      "why": "揭示DMD在少步视频生成中丢失交互动态的机理并提出改进，对扩散蒸馏有直接参考价值。",
+      "tags": [
+        "DMD",
+        "扩散蒸馏",
+        "交互动态"
+      ],
+      "tracks": [
+        "video",
+        "world"
+      ]
+    },
+    {
+      "id": "fb806435f50fdc91",
+      "title": "Google Research Introduces an AI Video Co-Director: 4 Agentic Frameworks for Coherent, Minutes-Long Video Generation - MarkTechPost",
+      "link": "https://www.marktechpost.com/2026/09/27/google-research-introduces-an-ai-video-co-director-4-agentic-frameworks-for-coherent-minutes-long-video-generation/",
+      "source": "新闻 · 视频生成（英文）",
+      "source_id": "gnews-video-en",
+      "published": "2026-09-28T02:44:27+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "Google Research Introduces an AI Video Co-Director: 4 Agentic Frameworks for Coherent, Minutes-Long Video Generation MarkTechPost",
+      "why": "",
+      "tags": [
+        "video generation",
+        "agent",
+        "agentic"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "2f7f10b52dd7e706",
+      "title": "索辰科技加码世界模型前沿技术，与战略投资企业美梦空间联合发布具身模型与物理测评标准 - 新浪财经",
+      "link": "https://finance.sina.com.cn/roll/2026-09-28/doc-initirzi8832973.shtml",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-09-28T00:20:00+00:00",
+      "category": "research",
+      "priority": "high",
+      "summary": "索辰科技加码世界模型前沿技术，与战略投资企业美梦空间联合发布具身模型与物理测评标准 新浪财经",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "f593bc70e2908dd0",
+      "title": "Anthropic Launches Claude Marketplace With More Than 2,000 Connectors and Plugins - gHacks",
+      "link": "https://www.ghacks.net/2026/09/27/anthropic-launches-claude-marketplace-with-more-than-2000-connectors-and-plugins/",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-09-27T19:46:30+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "Anthropic 推出 Claude Marketplace，含 2000+ 连接器与插件。",
+      "why": "Claude 生态重大产品发布，影响模型集成与应用生态。",
+      "tags": [
+        "Anthropic",
+        "Claude",
+        "marketplace",
+        "plugins"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "0baac1abcd9618b7",
+      "title": "Veo 3 pricing Android App Latest Release - Học viện Nông nghiệp Việt Nam",
+      "link": "https://vnua.edu.vn/Article/092857770.aspx",
+      "source": "新闻 · 视频生成（英文）",
+      "source_id": "gnews-video-en",
+      "published": "2026-09-27T12:55:19+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "Veo 3 pricing Android App Latest Release Học viện Nông nghiệp Việt Nam",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "ec0b9396ef0b4dcd",
+      "title": "中国大模型日调用量持续霸榜，神秘的“玉兔”大模型来自MiniMax？ - thepaper.cn",
+      "link": "https://www.thepaper.cn/newsDetail_forward_34163982",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-09-28T05:16:00+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "中国大模型日调用量霸榜，匿名模型“玉兔”疑来自 MiniMax。",
+      "why": "国内模型竞争格局变化，值得关注。",
+      "tags": [
+        "MiniMax",
+        "China",
+        "LLM"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "932e79ffe554a720",
+      "title": "蔚来世界模型智驾，陌生狭窄路况选道精准丝滑 - 手机新浪网",
+      "link": "https://k.sina.com.cn/article_7879923946_m1d5ae18ea03303v896.html?from=news",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-09-28T05:13:27+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "蔚来世界模型智驾，陌生狭窄路况选道精准丝滑 手机新浪网",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "c284858846db00fe",
+      "title": "Action Forcing: Training World Models on Unsupervised Video by Recovering Underlying Egomotion Bases",
+      "link": "https://arxiv.org/abs/2609.30595",
+      "source": "arXiv cs.CV（专题）",
+      "source_id": "arxiv-cscv",
+      "published": "2026-09-28T04:00:00+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "Action Forcing：用PCA从无标注视频恢复自运动基，训练可控世界模型。",
+      "why": "无监督世界模型训练新方法，但偏自动驾驶，与视频生成关联弱。",
+      "tags": [
+        "世界模型",
+        "自运动",
+        "无监督"
+      ],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "35f6bea3a3ab0922",
+      "title": "StarWM: Self-Supervised Trained Attention Routing for Robust World Models",
+      "link": "https://arxiv.org/abs/2609.30667",
+      "source": "arXiv cs.CV（专题）",
+      "source_id": "arxiv-cscv",
+      "published": "2026-09-28T04:00:00+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "StarWM：用自监督动态训练的cross-attention模块决定世界模型中哪些区域做重建。",
+      "why": "世界模型表征优化，但偏自动驾驶场景，与扩散/FM关联较弱。",
+      "tags": [
+        "世界模型",
+        "注意力路由",
+        "自监督"
+      ],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "c0f860f96db2011f",
+      "title": "TrafficImag: A Benchmark for Counterfactual Roadside Traffic Video Generation",
+      "link": "https://arxiv.org/abs/2609.30722",
+      "source": "arXiv cs.CV（专题）",
+      "source_id": "arxiv-cscv",
+      "published": "2026-09-28T04:00:00+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "TrafficImag：首个反事实路边交通视频生成基准，含9002张标注图和7043条视频。",
+      "why": "新基准但偏自动驾驶感知，与生成模型训练优化关联有限。",
+      "tags": [
+        "基准",
+        "交通视频",
+        "反事实生成"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "ee52d849b20c8ae1",
+      "title": "OneWorld: Learning Consistent Physics Across Actions in World Models",
+      "link": "https://arxiv.org/abs/2609.30946",
+      "source": "arXiv cs.CV（专题）",
+      "source_id": "arxiv-cscv",
+      "published": "2026-09-28T04:00:00+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "OneWorld：解决动作条件世界模型中不同干预下物理属性不一致的问题。",
+      "why": "世界模型物理一致性研究，偏自动驾驶规划，与视频生成关联弱。",
+      "tags": [
+        "世界模型",
+        "物理一致性",
+        "动作条件"
+      ],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "3c7d8f12053d37d7",
+      "title": "WALT: Learning World-Model-Aligned Latent Trajectories for Autonomous Driving",
+      "link": "https://arxiv.org/abs/2609.30436",
+      "source": "arXiv cs.CV（专题）",
+      "source_id": "arxiv-cscv",
+      "published": "2026-09-28T04:00:00+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "WALT：从冻结的驾驶世界模型学习紧凑的生成轨迹潜在空间用于规划。",
+      "why": "世界模型与规划结合，偏自动驾驶，与视频生成优化关联弱。",
+      "tags": [
+        "世界模型",
+        "轨迹规划",
+        "自动驾驶"
+      ],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "07ecf082d3c23d3d",
+      "title": "Rebalancing Reference Frame Dominance to Improve Motion in Image-to-Video Models",
+      "link": "https://arxiv.org/abs/2605.19398",
+      "source": "arXiv cs.CV（专题）",
+      "source_id": "arxiv-cscv",
+      "published": "2026-09-28T04:00:00+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "DyMoS：通过重新平衡参考帧自注意力解决I2V模型运动不足问题。",
+      "why": "分析I2V模型运动抑制的注意力机制原因，对视频生成质量优化有参考价值。",
+      "tags": [
+        "I2V",
+        "运动抑制",
+        "注意力"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "dc96ea9646061b19",
+      "title": "Auteur: Language-Driven Cinematographic Framing for Human-Centric Video Generation",
+      "link": "https://arxiv.org/abs/2606.01900",
+      "source": "arXiv cs.CV（专题）",
+      "source_id": "arxiv-cscv",
+      "published": "2026-09-28T04:00:00+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "Auteur：语言驱动的人物中心电影化镜头控制生成方法。",
+      "why": "视频生成中摄像机控制新方法，对3D/视频生成工程师有参考价值。",
+      "tags": [
+        "视频生成",
+        "摄像机控制",
+        "电影化"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "da1c7c57b2f309ac",
+      "title": "Holo-World: Unified Camera, Object and Weather Control for Video World Model",
+      "link": "https://arxiv.org/abs/2606.20083",
+      "source": "arXiv cs.CV（专题）",
+      "source_id": "arxiv-cscv",
+      "published": "2026-09-28T04:00:00+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "Holo-World：统一摄像机、物体和天气控制的视频世界模型。",
+      "why": "多条件视频生成控制，但偏世界模型，与扩散/FM训练优化关联有限。",
+      "tags": [
+        "世界模型",
+        "多条件控制",
+        "天气"
+      ],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "cbec8292ab91f59e",
+      "title": "NavGen: Visual Generative Models as a Scalable Data Engine for Embodied 3D Navigation",
+      "link": "https://arxiv.org/abs/2609.30770",
+      "source": "arXiv cs.RO（专题）",
+      "source_id": "arxiv-csro",
+      "published": "2026-09-28T04:00:00+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "NavGen：用高保真视觉生成模型作为具身3D导航的可扩展数据引擎。",
+      "why": "生成模型用于导航数据增强，偏具身智能，与视频生成训练关联弱。",
+      "tags": [
+        "具身导航",
+        "数据生成",
+        "VLN"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "0574593c39c1d082",
+      "title": "Keep the Future, Drop the Rollout: RIFT for World Action Models",
+      "link": "https://arxiv.org/abs/2608.11521",
+      "source": "arXiv cs.RO（专题）",
+      "source_id": "arxiv-csro",
+      "published": "2026-09-28T04:00:00+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "RIFT：世界动作模型中复用固定最终K/V缓存替代完整rollout，降低部署延迟。",
+      "why": "减少世界模型推理延迟，对推理优化有一定参考价值。",
+      "tags": [
+        "世界模型",
+        "推理优化",
+        "KV缓存"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "15e452e7bfab44be",
+      "title": "Grounded Action Model: 3D Grounding as a Foundation for Robotics",
+      "link": "https://arxiv.org/abs/2609.23863",
+      "source": "arXiv cs.RO（专题）",
+      "source_id": "arxiv-csro",
+      "published": "2026-09-28T04:00:00+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "Grounded Action Model：以3D grounding为基石的机器人基础模型新范式。",
+      "why": "机器人基础模型新范式，偏具身智能，与视频生成/GPU优化关联弱。",
+      "tags": [
+        "机器人",
+        "3D grounding",
+        "基础模型"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "decbf3076b2873a1",
+      "title": "中国AI大模型调用量连续二十二周领跑：匿名模型“太空兔”冲进前三，测试显示其可能来自MiniMax；小米MiMo-V2.5、腾讯Hy3跌出榜单 - 每日经济新闻",
+      "link": "https://www.nbd.com.cn/articles/2026-09-28/4592714.html",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-09-28T02:25:00+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "中国 AI 大模型调用量连续 22 周领跑，“太空兔”冲进前三。",
+      "why": "国内模型榜单重要变化，MiniMax 新势力崛起。",
+      "tags": [
+        "MiniMax",
+        "China",
+        "LLM ranking"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "75e693e41dfef842",
+      "title": "广和通完成对飞渡科技战略投资 布局空间智能与世界模型领域 - 观点网",
+      "link": "https://www.guandian.cn/article/20260928/607386.html",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-09-28T02:24:52+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "广和通完成对飞渡科技战略投资 布局空间智能与世界模型领域 观点网",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "e4fbb7ba244e7284",
+      "title": "【视频】Momenta 与神龙汽车科技达成全球战略合作，R7 世界模型将上车 - 汽车之家",
+      "link": "https://chejiahao.autohome.com.cn/info/26555692?reply=reply",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-09-28T02:18:23+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "【视频】Momenta 与神龙汽车科技达成全球战略合作，R7 世界模型将上车 汽车之家",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "bbbb19720a799dbb",
+      "title": "Momenta与神龙汽车达成全球战略合作，R7世界模型将上车标致、Jeep - 砍柴网",
+      "link": "https://news.ikanchai.com/2026/0928/668363.shtml",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-09-28T02:09:00+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "Momenta与神龙汽车达成全球战略合作，R7世界模型将上车标致、Jeep 砍柴网",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "2f976ab1bd7ef9e8",
+      "title": "OpenAI失控智能体曾找中国大模型“帮忙” - 手机新浪网",
+      "link": "https://k.sina.com.cn/article_5953190046_162d6789e06703t7eg.html?from=tech",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-09-28T02:05:10+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "报道称 OpenAI 失控智能体曾联系中国大模型求助。",
+      "why": "AI 安全事件，与研究方向间接相关。",
+      "tags": [
+        "OpenAI",
+        "agent",
+        "safety"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "4ea8b72eee1a5264",
+      "title": "港股大模型板块走低，MINIMAX-W(00100.HK)跌超10%，智谱(02513.H - 富途牛牛",
+      "link": "https://news.futunn.com/flash/1000253721/the-large-model-sector-in-hong-kong-stocks-declined-with",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-09-28T02:03:40+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "港股大模型板块走低，MiniMax-W 与智谱跌超 10%。",
+      "why": "国内模型公司股价异动，反映市场情绪。",
+      "tags": [
+        "MiniMax",
+        "智谱",
+        "stock"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "513973711ff96a2f",
+      "title": "广和通战略投资飞渡科技，深化空间智能与世界模型布局 - 搜狐网",
+      "link": "https://m.sohu.com/a/1081667922_121613636?scm=10001.325_13-325_13.0.0-0-0-0-0.5_1334",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-09-28T01:39:22+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "广和通战略投资飞渡科技，深化空间智能与世界模型布局 搜狐网",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": [
+        "world"
+      ]
+    }
+  ]
+}
