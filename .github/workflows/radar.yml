@@ -2,19 +2,17 @@ name: AI 信息雷达
 
 on:
   schedule:
-    # GitHub 的 cron 高峰期会延迟甚至跳过；避开整点和常见分钟位，并一天给三次机会（北京时间 07:17 / 08:43 / 10:31）。
-    # guard 作业保证同一天只真正跑一次：后面的定时触发发现当天已跑过就直接结束。
+    # 北京时间 07:17 / 08:43 / 10:31。各阶段只跳过已提交的当天产物。
     - cron: "17 23 * * *"
     - cron: "43 0 * * *"
     - cron: "31 2 * * *"
   push:
-    branches: [master]       # 只认 master 上的触发文件，功能分支推送不触发
-    paths:
-      - radar/trigger        # 没有 API 权限的 agent 改这个文件并 push 即可触发一次
+    branches: [master]
+    paths: [radar/trigger]
   workflow_dispatch:
     inputs:
       window_hours:
-        description: "抓取时间窗口（小时）。留空用 sources.json 的默认值；首次或补漏可填 168"
+        description: "抓取时间窗口（小时）；留空使用默认值"
         required: false
         default: ""
       reason:
@@ -33,67 +31,52 @@ jobs:
   guard:
     runs-on: ubuntu-latest
     outputs:
-      skip: ${{ steps.probe.outputs.skip }}
+      skip_radar: ${{ steps.probe.outputs.skip_radar }}
+      skip_events: ${{ steps.probe.outputs.skip_events }}
+      skip_tracks: ${{ steps.probe.outputs.skip_tracks }}
     steps:
       - uses: actions/checkout@v4
         with:
           ref: master
-          sparse-checkout: radar/data/last-run.json
-          sparse-checkout-cone-mode: false
-      - name: 定时触发时，当天已跑过就跳过
-        id: probe
-        env:
-          EVENT: ${{ github.event_name }}
-        run: |
-          python3 - <<'EOF' >> "$GITHUB_OUTPUT"
-          import json, os, datetime, zoneinfo, pathlib
-          skip = False
-          if os.environ["EVENT"] == "schedule":
-              p = pathlib.Path("radar/data/last-run.json")
-              if p.exists():
-                  tz = zoneinfo.ZoneInfo("Asia/Shanghai")
-                  run = json.loads(p.read_text())
-                  started = datetime.datetime.fromisoformat(run["started_at"]).astimezone(tz)
-                  skip = started.strftime("%Y-%m-%d") == datetime.datetime.now(tz).strftime("%Y-%m-%d")
-          print(f"skip={'true' if skip else 'false'}")
-          print("今天已有一期，跳过" if skip else "今天还没跑，继续", file=__import__("sys").stderr)
-          EOF
-
-  radar:
-    needs: guard
-    if: needs.guard.outputs.skip != 'true'
-    runs-on: ubuntu-latest
-    timeout-minutes: 40
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          ref: master
-
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+      - name: 核对各阶段已提交产物
+        id: probe
+        run: python3 tools/radar_stage_guard.py >> "$GITHUB_OUTPUT"
 
-      - name: 安装 anthropic SDK（仅在配置了 key 时使用）
+  radar:
+    needs: guard
+    if: needs.guard.outputs.skip_radar != 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: master
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: 安装可选模型 SDK
         run: pip install --quiet anthropic
-
       - name: 记录本次运行元数据
         run: |
-          mkdir -p radar/data
           python3 - <<'EOF'
           import json, os, datetime
-          json.dump({
+          from pathlib import Path
+          path = Path("radar/data/last-run.json")
+          path.parent.mkdir(parents=True, exist_ok=True)
+          path.write_text(json.dumps({
             "run_id": int(os.environ["GITHUB_RUN_ID"]),
             "run_number": int(os.environ["GITHUB_RUN_NUMBER"]),
             "event": os.environ["GITHUB_EVENT_NAME"],
             "sha": os.environ["GITHUB_SHA"],
             "started_at": datetime.datetime.now(datetime.timezone.utc).isoformat(timespec="seconds"),
             "url": f"{os.environ['GITHUB_SERVER_URL']}/{os.environ['GITHUB_REPOSITORY']}/actions/runs/{os.environ['GITHUB_RUN_ID']}",
-          }, open("radar/data/last-run.json", "w"), ensure_ascii=False, indent=2)
+          }, ensure_ascii=False, indent=2) + "\n")
           EOF
           : > radar/data/last-run.log
-
       - name: 抓取并打分
-        continue-on-error: true
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           LONGCAT_API_KEY: ${{ secrets.LONGCAT_API_KEY }}
@@ -101,58 +84,134 @@ jobs:
           RADAR_WINDOW_HOURS: ${{ inputs.window_hours }}
         shell: bash
         run: set -o pipefail; python3 tools/radar.py 2>&1 | tee -a radar/data/last-run.log
+      - name: 渲染雷达页面
+        run: python3 tools/build.py
+      - name: 提交雷达结果
+        run: |
+          git config user.name "radar-bot"
+          git config user.email "radar-bot@users.noreply.github.com"
+          python3 tools/publish_results.py radar --message "雷达：更新每日数据"
 
+  events:
+    needs: guard
+    if: needs.guard.outputs.skip_events != 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: master
+      - uses: actions/setup-python@v5
+        id: setup
+        with:
+          python-version: "3.12"
+      - name: 安装可选模型 SDK
+        run: pip install --quiet anthropic
       - name: 找活动
-        continue-on-error: true
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           LONGCAT_API_KEY: ${{ secrets.LONGCAT_API_KEY }}
           LONGCAT_MODEL: ${{ vars.LONGCAT_MODEL || 'LongCat-2.0' }}
           LONGCAT_TIMEOUT: "60"
           EVENTS_AI_BUDGET_SECONDS: "600"
-        shell: bash
-        run: set -o pipefail; python3 tools/events.py 2>&1 | tee -a radar/data/last-run.log
+          EVENTS_DETAIL_BUDGET_SECONDS: "240"
+        run: python3 tools/events.py
+      - name: 渲染活动页面
+        if: always() && steps.setup.outcome == 'success'
+        id: build
+        run: python3 tools/build.py
+      - name: 提交活动结果
+        if: always() && steps.build.outcome == 'success'
+        run: |
+          git config user.name "radar-bot"
+          git config user.email "radar-bot@users.noreply.github.com"
+          python3 tools/publish_results.py radar --message "雷达：更新活动数据"
 
-      - name: 专题追踪（累积时间线 / 周综述）
-        continue-on-error: true
+  tracks:
+    needs: [guard, radar]
+    if: always() && needs.guard.result == 'success' && (needs.radar.result == 'success' || needs.radar.result == 'skipped') && needs.guard.outputs.skip_tracks != 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: master
+      - uses: actions/setup-python@v5
+        id: setup
+        with:
+          python-version: "3.12"
+      - name: 安装可选模型 SDK
+        run: pip install --quiet anthropic
+      - name: 更新专题
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           LONGCAT_API_KEY: ${{ secrets.LONGCAT_API_KEY }}
           LONGCAT_MODEL: ${{ vars.LONGCAT_MODEL || 'LongCat-2.0' }}
           TRACKS_FORCE_DIGEST: ${{ inputs.reason == 'tracks-digest' && '1' || '' }}
-        shell: bash
-        run: set -o pipefail; python3 tools/tracks.py 2>&1 | tee -a radar/data/last-run.log
+        run: python3 tools/tracks.py
+      - name: 渲染专题页面
+        if: always() && steps.setup.outcome == 'success'
+        id: build
+        run: python3 tools/build.py
+      - name: 提交已完成的专题结果
+        if: always() && steps.build.outcome == 'success'
+        run: |
+          git config user.name "radar-bot"
+          git config user.email "radar-bot@users.noreply.github.com"
+          python3 tools/publish_results.py radar --message "雷达：更新专题数据"
 
-      - name: 整理私有收件箱（未配置 INBOX_TOKEN 时跳过）
-        continue-on-error: true
+  inbox:
+    needs: guard
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: master
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: 安装可选模型 SDK
+        run: pip install --quiet anthropic
+      - name: 整理私有收件箱
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           LONGCAT_API_KEY: ${{ secrets.LONGCAT_API_KEY }}
           LONGCAT_MODEL: ${{ vars.LONGCAT_MODEL || 'LongCat-2.0' }}
           INBOX_TOKEN: ${{ secrets.INBOX_TOKEN }}
           INBOX_REPO: ${{ vars.INBOX_REPO || 'lgyStoic/radar-inbox' }}
-        shell: bash
-        run: set -o pipefail; python3 tools/inbox.py 2>&1 | tee -a radar/data/last-run.log
+        run: python3 tools/inbox.py
 
-      - name: 自检并写巡检报告
+  audit:
+    needs: [guard, radar, events, tracks, inbox]
+    if: always() && needs.guard.result == 'success' && (needs.radar.result == 'success' || needs.radar.result == 'skipped')
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: master
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: 写逐阶段巡检报告
         env:
           RADAR_TRIGGER_REASON: ${{ inputs.reason }}
-        shell: bash
-        run: set -o pipefail; python3 tools/check.py 2>&1 | tee -a radar/data/last-run.log
-
+          RADAR_STAGE_RADAR: ${{ needs.radar.result }}
+          RADAR_STAGE_EVENTS: ${{ needs.events.result }}
+          RADAR_STAGE_TRACKS: ${{ needs.tracks.result }}
+          RADAR_STAGE_INBOX: ${{ needs.inbox.result }}
+        run: python3 tools/check.py
       - name: 渲染页面
-        shell: bash
-        run: set -o pipefail; python3 tools/build.py 2>&1 | tee -a radar/data/last-run.log
-
-      - name: 提交并推送
-        # 运行期间 master 可能已有新提交（合并 PR）。生成的 HTML 会和它们冲突，
-        # 所以不 rebase 生成物：只保留本次产出的数据，回到最新 master 重新渲染再提交。
+        run: python3 tools/build.py
+      - name: 提交巡检结果
+        id: publish
         run: |
           git config user.name "radar-bot"
           git config user.email "radar-bot@users.noreply.github.com"
-          python3 tools/publish_results.py radar --message "雷达：更新每日数据"
-      - name: 通知 IndexNow（Bing 索引，当天有变化的页面）
-        if: success()
+          python3 tools/publish_results.py radar --message "雷达：更新巡检报告"
+      - name: 通知 IndexNow
+        if: steps.publish.outcome == 'success'
         continue-on-error: true
         env:
           INDEXNOW_ALL: ${{ github.event.inputs.reason == 'indexnow-all' && '1' || '' }}

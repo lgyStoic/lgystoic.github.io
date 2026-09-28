@@ -1,6 +1,7 @@
 import importlib.util
 import sys
 import unittest
+from unittest.mock import patch
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -12,6 +13,22 @@ spec.loader.exec_module(tracks)
 
 
 class TracksTests(unittest.TestCase):
+    def test_partial_failure_keeps_other_tracks_running_and_reports_failure(self):
+        configured = [{'id': 'a', 'name': 'A'}, {'id': 'b', 'name': 'B'}]
+        completed = []
+
+        def build(track, _days, _today):
+            completed.append(track['id'])
+            if track['id'] == 'a':
+                raise ValueError('source unavailable')
+
+        with patch.object(tracks, 'load_tracks', return_value=configured), \
+             patch.object(tracks, 'load_days', return_value=[]), \
+             patch.object(tracks, 'build_track', side_effect=build):
+            with self.assertRaisesRegex(RuntimeError, 'a'):
+                tracks.main()
+        self.assertEqual(completed, ['a', 'b'])
+
     def test_digest_records_actual_model(self):
         original = tracks.call_llm_json
 

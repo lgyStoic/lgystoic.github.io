@@ -1,7 +1,6 @@
 name: 定时兜底
 
-# 每天 09:11 和 11:07（北京时间）各看一眼当天有没有跑过；没有就补跑一次。
-# GitHub 的 cron 在高峰期会延迟甚至跳过，这一层保证每天至少有一期。
+# 每天 09:11 和 11:07（北京时间）核对各阶段已提交产物；有缺口才补触发。
 on:
   schedule:
     - cron: "11 1 * * *"
@@ -19,21 +18,14 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: master
-      - name: 检查今天是否已有定时运行
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: 检查当天雷达、活动和专题产物
         id: probe
-        run: |
-          python3 - <<'EOF' >> "$GITHUB_OUTPUT"
-          import json, datetime, zoneinfo, pathlib
-          p = pathlib.Path("radar/data/last-run.json")
-          today = datetime.datetime.now(zoneinfo.ZoneInfo("Asia/Shanghai")).strftime("%Y-%m-%d")
-          ok = False
-          if p.exists():
-              run = json.loads(p.read_text())
-              started = datetime.datetime.fromisoformat(run["started_at"]).astimezone(zoneinfo.ZoneInfo("Asia/Shanghai"))
-              # 当天已有任何一次运行（定时、补跑或手动）都算有，避免重复补跑
-              ok = started.strftime("%Y-%m-%d") == today
-          print(f"missing={'false' if ok else 'true'}")
-          EOF
+        env:
+          RADAR_GUARD_MODE: health
+        run: python3 tools/radar_stage_guard.py >> "$GITHUB_OUTPUT"
       - name: 补跑
         if: steps.probe.outputs.missing == 'true'
         env:
