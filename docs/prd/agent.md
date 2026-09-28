@@ -35,7 +35,7 @@ radar/data/               数据（<日期>.json, events.json, jobs.json, contri
 radar/checks/*.md         巡检报告
 notes/notes.json          笔记索引；templates/note/ 模板
 guides/{guides,links}.json 指南篇目、推荐链接注册表
-.github/workflows/{radar,health,jobs,contributions,xhs}.yml
+.github/workflows/{radar,health,radar-alert,jobs,contributions,xhs}.yml
 projects/                 外部 fork 的 submodule 控制面；源码与 Git 历史不进入 Pages
 .github/agents/daily-check.md  判断层手册（边界）
 docs/prd/*.md             本目录
@@ -65,6 +65,7 @@ python3 tools/check_mobile.py --all    # 手机宽度溢出检查（需 pip inst
 4. 需要数据的改动：手动触发对应 workflow（`actions_run_trigger`），用 `api.github.com/.../runs` 轮询，读 `get_job_logs` 验证。
 
 工作流通用：cron 不在整点；`concurrency` 按工作流。radar/jobs/contributions 共用 `tools/publish_results.py`：冲突只恢复本管线变更数据，源停用按字段合并，最新代码重建再推，最多三次；不整目录覆盖其他管线数据。xhs 分阶段串行执行，每阶段 40 分钟；私有 `posts/.pipeline/` 保存恢复状态，已交付文稿不覆盖。见 xhs.md §13、site.md §10。
+雷达作业上限 40 分钟；活动模型抽取使用时间预算，超出部分走规则默认值。`radar-alert.yml` 独立核对当天已提交产物，第二次失败或晚间仍缺更时发邮件；SMTP secrets 配置见 site.md §4。
 
 AI 模型：`call_llm_json` 走 Claude（有 key）否则 Gemini；高频任务由仓库变量 `vars.GEMINI_MODEL` / `vars.GEMINI_FALLBACK_MODEL` 覆盖，默认 Flash 优先、Pro 备选。开源贡献路线为保证深度，单独使用 `CONTRIBUTIONS_GEMINI_MODEL` / `CONTRIBUTIONS_GEMINI_FALLBACK_MODEL`，默认 Pro 优先、Flash 备选。可用模型清单看 site.md §5 或跑 `xhs.yml list_models`。日志出现 `finishReason=MAX_TOKENS` → 调大 `GEMINI_MAX_OUTPUT_TOKENS`。
 

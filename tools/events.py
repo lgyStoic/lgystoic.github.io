@@ -23,6 +23,7 @@ import json
 import os
 import re
 import sys
+import time
 import urllib.error
 import urllib.request
 from datetime import datetime, timedelta, timezone
@@ -411,7 +412,11 @@ EVENT_SYSTEM = """你在为一位住在深圳、做 GPU kernel 与训练性能�
 
 def enrich_events(cands: list[dict], today: str) -> dict[str, dict]:
     out: dict[str, dict] = {}
+    deadline = time.monotonic() + int(os.environ.get("EVENTS_AI_BUDGET_SECONDS", "600"))
     for i in range(0, len(cands), 30):
+        if time.monotonic() >= deadline:
+            log(f"[events] AI 时间预算已用完，剩余 {len(cands) - i} 条使用规则默认值")
+            break
         batch = cands[i : i + 30]
         payload = [
             {

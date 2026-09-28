@@ -1,0 +1,37 @@
+name: 雷达交付邮件告警
+
+on:
+  workflow_run:
+    workflows: [AI 信息雷达]
+    types: [completed]
+  schedule:
+    # 北京时间 18:17 复核当天产物，覆盖雷达调度完全未触发的情况。
+    - cron: "17 10 * * *"
+  workflow_dispatch:
+
+permissions:
+  actions: read
+  contents: read
+
+jobs:
+  check-delivery:
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.head_branch == 'master'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: master
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: 核对产物并按条件发送邮件
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          RADAR_ALERT_SMTP_HOST: ${{ secrets.RADAR_ALERT_SMTP_HOST }}
+          RADAR_ALERT_SMTP_PORT: ${{ secrets.RADAR_ALERT_SMTP_PORT }}
+          RADAR_ALERT_SMTP_USER: ${{ secrets.RADAR_ALERT_SMTP_USER }}
+          RADAR_ALERT_SMTP_PASSWORD: ${{ secrets.RADAR_ALERT_SMTP_PASSWORD }}
+          RADAR_ALERT_EMAIL_FROM: ${{ secrets.RADAR_ALERT_EMAIL_FROM }}
+          RADAR_ALERT_EMAIL_TO: ${{ secrets.RADAR_ALERT_EMAIL_TO }}
+        run: python3 tools/radar_alert.py
