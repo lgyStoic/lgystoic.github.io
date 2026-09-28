@@ -13,67 +13,90 @@ on:
     - cron: "37 1 * * *"   # 每日学习卡片（北京时间 09:37）
     - cron: "53 1 * * 1"   # 周一岗位周报（北京时间 09:53）
 permissions: {contents: read}
+# 所有模式共用私有索引，跨运行及阶段串行写入，不取消正在生成的内容。
+concurrency:
+  group: xhs
+  cancel-in-progress: false
 jobs:
-  xhs:
+  plan:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    outputs:
+      stages: ${{ steps.plan.outputs.stages }}
+      date: ${{ steps.plan.outputs.date }}
     steps:
       - uses: actions/checkout@v4
-        with: {ref: master}
+        with: {ref: '${{ github.ref }}'}
+      - id: plan
+        env:
+          MODE: ${{ inputs.mode }}
+          SCHEDULE: ${{ github.event.schedule }}
+          CHECK_MODEL: ${{ inputs.check_model }}
+          CHECK_SVG: ${{ inputs.check_svg }}
+          INPUT_DATE: ${{ inputs.date }}
+        run: |
+          python3 - <<'PYTHON' >> "$GITHUB_OUTPUT"
+          import datetime, json, os, zoneinfo
+          stages = []
+          if os.environ['CHECK_MODEL'] == 'true': stages.append('check-model')
+          if os.environ['CHECK_SVG'] == 'true': stages.append('check-svg')
+          if not stages:
+              mode = os.environ['MODE'] or ('jobs' if os.environ['SCHEDULE'] == '53 1 * * 1' else 'cards')
+              if mode in ('cards', 'all'): stages.append('cards')
+              if mode in ('jobs', 'all'): stages.append('jobs')
+              if mode in ('cards', 'tracks', 'all'):
+                  tracks = json.load(open('radar/tracks.json'))['tracks']
+                  stages += ['track:' + t['id'] for t in tracks if t.get('post')]
+          date = os.environ['INPUT_DATE'] or datetime.datetime.now(zoneinfo.ZoneInfo('Asia/Shanghai')).strftime('%Y-%m-%d')
+          datetime.date.fromisoformat(date)
+          print('stages=' + json.dumps(stages))
+          print('date=' + date)
+          PYTHON
+
+  generate:
+    needs: plan
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    strategy:
+      fail-fast: false
+      max-parallel: 1
+      matrix:
+        stage: ${{ fromJSON(needs.plan.outputs.stages) }}
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: '${{ github.ref }}'}
       - uses: actions/setup-python@v5
-        with: {python-version: "3.12"}
-      - name: 检查 LongCat 文本模型
-        if: ${{ inputs.check_model }}
-        env:
-          LONGCAT_API_KEY: ${{ secrets.LONGCAT_API_KEY }}
-          LONGCAT_MODEL: ${{ vars.LONGCAT_MODEL || 'LongCat-2.0' }}
-        run: python3 tools/xhs.py --check-llm
-      - name: 检查 LongCat SVG
-        if: ${{ inputs.check_svg }}
-        env:
-          LONGCAT_API_KEY: ${{ secrets.LONGCAT_API_KEY }}
-          LONGCAT_MODEL: ${{ vars.LONGCAT_MODEL || 'LongCat-2.0' }}
-        run: python3 tools/xhs.py --check-svg
-      - name: 安装封面渲染依赖（Playwright + 中文字体）
-        if: ${{ !inputs.check_model && !inputs.check_svg }}
+        with: {python-version: '3.12'}
+      - name: 安装封面渲染依赖
+        if: ${{ !startsWith(matrix.stage, 'check-') }}
         run: |
           sudo apt-get update -qq && sudo apt-get install -y -qq fonts-noto-cjk >/dev/null
           pip install -q playwright
           python -m playwright install --with-deps chromium
-      - name: 每日学习卡片
-        if: ${{ !inputs.check_model && !inputs.check_svg && (inputs.mode == '' || inputs.mode == 'cards' || inputs.mode == 'all') && github.event.schedule != '53 1 * * 1' }}
+      - name: 生成或恢复当前阶段
         env:
+          STAGE: ${{ matrix.stage }}
           LONGCAT_API_KEY: ${{ secrets.LONGCAT_API_KEY }}
           LONGCAT_MODEL: ${{ vars.LONGCAT_MODEL || 'LongCat-2.0' }}
-          LONGCAT_MAX_TOKENS: "32768"
+          LONGCAT_MAX_TOKENS: '32768'
           INBOX_TOKEN: ${{ secrets.INBOX_TOKEN }}
           INBOX_REPO: ${{ vars.INBOX_REPO || 'lgyStoic/radar-inbox' }}
-          RADAR_DATE: ${{ inputs.date }}
+          RADAR_DATE: ${{ needs.plan.outputs.date }}
           XHS_IMAGES: ${{ inputs.images || '4' }}
-          XHS_PREVIEW: ${{ inputs.preview && '1' || '0' }}
-        run: RADAR_DATE="${RADAR_DATE:-$(TZ=Asia/Shanghai date +%F)}" python3 tools/xhs.py
-      - name: 岗位周报
-        if: ${{ !inputs.check_model && !inputs.check_svg && (inputs.mode == 'jobs' || inputs.mode == 'all' || github.event.schedule == '53 1 * * 1') }}
-        env:
-          LONGCAT_API_KEY: ${{ secrets.LONGCAT_API_KEY }}
-          LONGCAT_MODEL: ${{ vars.LONGCAT_MODEL || 'LongCat-2.0' }}
-          INBOX_TOKEN: ${{ secrets.INBOX_TOKEN }}
-          INBOX_REPO: ${{ vars.INBOX_REPO || 'lgyStoic/radar-inbox' }}
-          RADAR_DATE: ${{ inputs.date }}
           XHS_JOBS_REGION: ${{ inputs.jobs_region }}
           XHS_PREVIEW: ${{ inputs.preview && '1' || '0' }}
-        run: RADAR_DATE="${RADAR_DATE:-$(TZ=Asia/Shanghai date +%F)}" python3 tools/xhs.py --jobs
-      - name: 专题日报（有料才发）
-        if: ${{ !inputs.check_model && !inputs.check_svg && (inputs.mode == '' || inputs.mode == 'cards' || inputs.mode == 'tracks' || inputs.mode == 'all') && github.event.schedule != '53 1 * * 1' }}
-        env:
-          LONGCAT_API_KEY: ${{ secrets.LONGCAT_API_KEY }}
-          LONGCAT_MODEL: ${{ vars.LONGCAT_MODEL || 'LongCat-2.0' }}
-          INBOX_TOKEN: ${{ secrets.INBOX_TOKEN }}
-          INBOX_REPO: ${{ vars.INBOX_REPO || 'lgyStoic/radar-inbox' }}
-          RADAR_DATE: ${{ inputs.date }}
-          XHS_PREVIEW: ${{ inputs.preview && '1' || '0' }}
-        run: RADAR_DATE="${RADAR_DATE:-$(TZ=Asia/Shanghai date +%F)}" python3 tools/xhs.py --tracks
+        run: |
+          case "$STAGE" in
+            check-model) python3 tools/xhs.py --check-llm ;;
+            check-svg) python3 tools/xhs.py --check-svg ;;
+            cards) python3 tools/xhs.py ;;
+            jobs) python3 tools/xhs.py --jobs ;;
+            track:*) python3 tools/xhs.py --track "${STAGE#track:}" ;;
+            *) exit 1 ;;
+          esac
       - name: 封面图留档（7 天）
-        if: ${{ !inputs.check_model && !inputs.check_svg && hashFiles('radar/data/xhs/**/*.jpg') != '' }}
+        if: ${{ always() && hashFiles('radar/data/xhs/**/*.jpg') != '' }}
         uses: actions/upload-artifact@v4
-        with: {name: xhs-cards, path: radar/data/xhs/, retention-days: 7}
+        with:
+          name: xhs-covers-${{ strategy.job-index }}
+          path: radar/data/xhs/
+          retention-days: 7

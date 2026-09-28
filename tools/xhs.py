@@ -21,15 +21,60 @@ from __future__ import annotations
   XHS_IMAGES=0 python3 tools/xhs.py                      # cards 只出文稿不出图
 环境：LONGCAT_API_KEY（必需，文稿生成）、INBOX_TOKEN / INBOX_REPO（写私有仓库；没有就只写本地）、PW_CHROMIUM、XHS_PREVIEW=1（第 1 条打日志）。
 """
-import base64, html, json, os, re, sys, urllib.request, urllib.error
+import base64, hashlib, html, json, os, re, sys, urllib.request, urllib.error
 import xml.etree.ElementTree as ET
 from datetime import datetime
 from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from radar import call_llm_json, log, load_tracks
+from radar import call_llm_json as _call_llm_json, log, load_tracks
+from xhs_state import RunState
 
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / 'radar/data'
+CURRENT_RUN = None
+
+
+def call_llm_json(system, user_msg, schema, *, label='llm'):
+    if CURRENT_RUN is not None:
+        return CURRENT_RUN.model_call(_call_llm_json, system, user_msg, schema, label=label)
+    return _call_llm_json(system, user_msg, schema, label=label)
+
+
+def pinned(key, factory):
+    return CURRENT_RUN.pin(key, factory) if CURRENT_RUN is not None else factory()
+
+
+def run_stage(kind, date, callback):
+    """已写文稿不可重排覆盖；未写完阶段从私有检查点继续。"""
+    global CURRENT_RUN
+    token = os.environ.get('INBOX_TOKEN', '').strip()
+    repo = os.environ.get('INBOX_REPO', 'lgyStoic/radar-inbox')
+    read = (lambda path: gh_get_text(repo, path, token)) if token else None
+    write = (lambda path, data: gh_put(repo, path, data, token, f'文稿恢复状态：{kind} {date}')) if token else None
+    state = RunState(kind, date, DATA / 'xhs-state', read, write)
+    md_local, _, md_remote, _ = out_paths(kind, date)
+    existing = read(md_remote) if read else (md_local.read_text() if md_local.exists() else '')
+    previous = CURRENT_RUN
+    CURRENT_RUN = state
+    try:
+        if existing:
+            # 上次可能在写完 md、保存 topics 或完成标记之前中断。
+            topics_update = state.data['values'].get('topics_update')
+            delivery = state.data['values'].get('delivery')
+            if delivery and hashlib.sha256(existing.encode()).hexdigest() != delivery['sha256']:
+                raise ValueError('已交付文稿与恢复状态不同，保留原稿并停止自动更新关联')
+            if topics_update and state.data.get('status') != 'completed':
+                save_topics(repo, token, topics_update['topics'], date, topics_update['posts'])
+            if state.data.get('status') != 'completed':
+                state.finish('completed')
+            log(f'[xhs] {kind}/{date} 已有文稿，保留原版本与序号')
+            return 'existing'
+        status = callback() or 'completed'
+        state.finish(status)
+        return status
+    finally:
+        CURRENT_RUN = previous
+
 SCHEMA = {'type':'object','properties':{'posts':{'type':'array','items':{'type':'object','properties':{'id':{'type':'string'},'headline':{'type':'string'},'takeaways':{'type':'array','items':{'type':'string'}},'title':{'type':'string'},'body':{'type':'string'},'tags':{'type':'array','items':{'type':'string'}},'image_prompt':{'type':'string'},'entity':{'type':'string'},'novelty':{'type':'string','enum':['new','update','same']},'followup_of':{'type':'string'}},'required':['id','headline','takeaways','title','body','tags','image_prompt','entity','novelty','followup_of'],'additionalProperties':False}}},'required':['posts'],'additionalProperties':False}
 SYSTEM = '''你是一个在小红书分享 AI infra 学习笔记的工程师。读者是想学 AI 基础设施、GPU kernel、训练/推理加速、DiT、端侧部署的同行。根据输入的新闻条目，逐条产出可以直接复制粘贴发布的小红书笔记。不要编造输入没有的事实，不要夸大，不要用“震惊”“天花板”“炸裂”这类词。
 
@@ -238,14 +283,15 @@ def load_topic_history(repo: str, token: str, date: str, days: int = 7) -> tuple
         topics = json.loads(gh_get_text(repo, 'posts/topics.json', token) or '{}')
     except json.JSONDecodeError:
         topics = {}
-    posted = set(re.findall(r'\b(cards/\d{4}-\d{2}-\d{2}#\d{2})\b', gh_get_text(repo, 'posts/stats.md', token) or ''))
+    stats = gh_get_text(repo, 'posts/stats.md', token) or ''
+    posted = set(re.findall(r'\b(cards/\d{4}-\d{2}-\d{2}(?:#\d{2}|@[a-zA-Z0-9_-]+))\b', stats))
     cutoff = (datetime.strptime(date, '%Y-%m-%d') - timedelta(days=days)).strftime('%Y-%m-%d')
     hist = []
     for d, rows in sorted(topics.items(), reverse=True):
         if d < cutoff or d >= date: continue
         for r in rows:
             if r.get('entity'):
-                hist.append({'date': d, 'entity': r['entity'], 'title': r.get('title', ''), 'posted': f"cards/{d}#{r.get('seq', 0):02d}" in posted})
+                hist.append({'date': d, 'entity': r['entity'], 'title': r.get('title', ''), 'posted': (f"cards/{d}#{r.get('seq', 0):02d}" in posted or f"cards/{d}@{r.get('id', '')}" in posted)})
     return hist, topics
 
 
@@ -286,14 +332,19 @@ def dedupe_same_day(posts: list[dict]) -> list[dict]:
 
 def save_topics(repo: str, token: str, topics: dict, date: str, posts: list[dict]):
     if not token: return
-    topics[date] = [{'seq': i, 'id': p['id'], 'entity': p.get('entity', ''), 'title': p.get('title', ''), 'novelty': p.get('novelty', 'new')} for i, p in enumerate(posts, 1)]
+    # 从最新远端合并，保护其他日期；同日已交付顺序不得改变。
+    current = json.loads(gh_get_text(repo, 'posts/topics.json', token) or '{}')
+    old = current.get(date, [])
+    if old and [p['id'] for p in old] != [p['id'] for p in posts]:
+        raise ValueError(f'{date} 已有主题顺序，拒绝覆盖发布关联')
+    topics = {**topics, **current}
+    topics[date] = [{'seq': i, 'id': p['id'], 'material_id': f"cards/{date}@{p['id']}",
+                     'entity': p.get('entity', ''), 'title': p.get('title', ''),
+                     'novelty': p.get('novelty', 'new')} for i, p in enumerate(posts, 1)]
     from datetime import timedelta
     cutoff = (datetime.strptime(date, '%Y-%m-%d') - timedelta(days=45)).strftime('%Y-%m-%d')
     topics = {d: v for d, v in topics.items() if d >= cutoff}
-    try:
-        gh_put(repo, 'posts/topics.json', json.dumps(topics, ensure_ascii=False, indent=1).encode('utf-8'), token, f'topics: {date}')
-    except Exception as e:
-        log(f'[xhs] topics.json 写入失败：{e}')
+    gh_put(repo, 'posts/topics.json', json.dumps(topics, ensure_ascii=False, indent=1).encode('utf-8'), token, f'文稿主题：{date}')
 
 
 def episode_number(repo: str, token: str, kind: str, date: str) -> int | None:
@@ -311,7 +362,13 @@ def gh_put(repo, path, data: bytes, token, message):
     url = f'https://api.github.com/repos/{repo}/contents/{path}'
     hdr = {'Authorization': f'Bearer {token}', 'Accept': 'application/vnd.github+json'}
     try:
-        with urllib.request.urlopen(urllib.request.Request(url, headers=hdr), timeout=20) as r: sha = json.load(r).get('sha')
+        with urllib.request.urlopen(urllib.request.Request(url, headers=hdr), timeout=20) as r:
+            previous = json.load(r)
+        sha = previous.get('sha')
+        if re.fullmatch(r'posts/(?:cards|jobs|tracks/[^/]+)/\d{4}-\d{2}-\d{2}\.md', path):
+            if base64.b64decode(previous.get('content', '')) == data:
+                return
+            raise ValueError(f'已交付文稿不可覆盖：{path}')
     except urllib.error.HTTPError as e:
         if e.code != 404: raise
         sha = None
@@ -497,6 +554,8 @@ def out_paths(kind: str, date: str):
 
 def publish(kind: str, date: str, content: str, files: list[Path]):
     md_local, _, md_remote, img_remote = out_paths(kind, date)
+    if CURRENT_RUN is not None:
+        CURRENT_RUN.put('delivery', {'path': md_remote, 'sha256': hashlib.sha256(content.encode()).hexdigest()})
     md_local.write_text(content, encoding='utf-8')
     token, repo = os.environ.get('INBOX_TOKEN', '').strip(), os.environ.get('INBOX_REPO', 'lgyStoic/radar-inbox')
     if token:
@@ -511,11 +570,11 @@ def publish(kind: str, date: str, content: str, files: list[Path]):
 def run_cards(date: str):
     src = DATA / f'{date}.json'
     if not src.exists(): raise SystemExit(f'没有 {src}')
-    data = json.loads(src.read_text())
+    data = pinned('source', lambda: json.loads(src.read_text()))
     items = [x for x in data.get('items', []) if x.get('priority') in ('high', 'medium')][:20]
-    if not items: log('[xhs] 没有 high/medium 条目'); return
+    if not items: log('[xhs] 没有 high/medium 条目'); return 'skipped'
     token, repo = os.environ.get('INBOX_TOKEN', '').strip(), os.environ.get('INBOX_REPO', 'lgyStoic/radar-inbox')
-    hist, topics = load_topic_history(repo, token, date)
+    hist, topics = pinned('history', lambda: load_topic_history(repo, token, date))
     hist_txt = ('\n\n近 7 天已写过的主题（entity｜日期｜是否已发布｜标题）：\n' + '\n'.join(f"{h['entity']}｜{h['date']}｜{'已发' if h['posted'] else '未发'}｜{h['title'][:40]}" for h in hist[:60])) if hist else '\n\n近 7 天没有已写过的主题，novelty 全部填 new。'
     # LongCat occasionally emits malformed JSON for a large 20-post response.
     # Generate small batches, then retry only missing posts individually so a
@@ -529,7 +588,8 @@ def run_cards(date: str):
         valid = []
         for post in result.get('posts', []):
             pid = post.get('id')
-            if pid in source_byid and pid not in generated:
+            if (pid in {row['id'] for row in rows} and pid not in generated
+                    and all(isinstance(post.get(k), str) and post[k].strip() for k in ('title', 'body', 'headline'))):
                 generated[pid] = post
                 valid.append(post)
         return valid
@@ -544,13 +604,21 @@ def run_cards(date: str):
                 request_posts([row], 'xhs-single-retry')
     if not generated: raise SystemExit('LongCat 未生成任何有效文稿')
     if len(generated) < len(items):
-        log(f'[xhs] 仅生成 {len(generated)}/{len(items)} 条，继续处理已成功文稿')
+        raise SystemExit(f'已保存 {len(generated)}/{len(items)} 条检查点；重跑补齐后再交付，避免序号变化')
     byid = {x['id']: x for x in items}
     posts = [clean_post(generated[x['id']]) for x in items if x['id'] in generated and x['id'] in byid]
     posts = apply_novelty(posts, hist)
     shorten_titles(posts)
     posts = rank_posts(posts, byid)  # 按小红书发布价值排序，前几条就是今天该发的
     posts = dedupe_same_day(posts)
+    posts = pinned('final_posts', lambda: posts)
+    # 防止已存在主题记录而文稿缺失时重新排序，先保护旧发布关联。
+    current_topics = json.loads(gh_get_text(repo, 'posts/topics.json', token) or '{}') if token else {}
+    old_order = current_topics.get(date, [])
+    if old_order and [p['id'] for p in old_order] != [p['id'] for p in posts]:
+        raise ValueError(f'{date} 已有主题顺序，需恢复原文稿，不能重新排序')
+    if CURRENT_RUN is not None:
+        CURRENT_RUN.put('topics_update', {'topics': topics, 'posts': posts})
     episode = episode_number(repo, token, 'cards', date)
 
     n_images = int(os.environ.get('XHS_IMAGES', '4'))
@@ -577,7 +645,7 @@ def run_cards(date: str):
     for i, post in enumerate(posts, 1):
         s = byid[post['id']]
         tags = ' '.join(f'#{t}' for t in post.get('tags', []))
-        lines += [f'## {i:02d} {"🔥 今日必发 · " if i <= 3 else ""}{post.get("headline", "")}', '']
+        lines += [f'## {i:02d} {"🔥 今日必发 · " if i <= 3 else ""}{post.get("headline", "")}', '', f"<!-- material_id: cards/{date}@{post['id']} -->", '']
         if post.get('note'): lines += [f'> ⚠️ {post["note"]}', '']
         if post['id'] in have_img: lines += [f'![封面](./{date}/{post["id"]}.jpg)', '']
         lines += ['**标题**', '', post.get('title', ''), '', '**正文**', '', post.get('body', '').strip(), '', tags, '', f'原文：{s.get("title", "")}', f'链接：{s.get("link", "")}', '', '<details><summary>封面要点</summary>', '']
@@ -610,10 +678,10 @@ def pick_jobs(jobs: list[dict], region: str = '', n: int = 12, per_company: int 
 def run_jobs(date: str):
     src = DATA / 'jobs.json'
     if not src.exists(): raise SystemExit(f'没有 {src}')
-    data = json.loads(src.read_text())
-    region = os.environ.get('XHS_JOBS_REGION', '').strip()
+    data = pinned('source', lambda: json.loads(src.read_text()))
+    region = pinned('region', lambda: os.environ.get('XHS_JOBS_REGION', '').strip())
     picked = pick_jobs(data.get('jobs', []), region)
-    if len(picked) < 5: log(f'[xhs] 可用岗位只有 {len(picked)} 条，跳过岗位周报'); return
+    if len(picked) < 5: log(f'[xhs] 可用岗位只有 {len(picked)} 条，跳过岗位周报'); return 'skipped'
     total = sum(1 for j in data.get('jobs', []) if not j.get('stale'))
     prompt = f'本周可选岗位 {len(picked)} 条（站点共 {total} 条在更新），请生成一篇：\n' + json.dumps([{'company': j['company'], 'title': j['title'], 'location': j.get('location'), 'tags': [t for t in j.get('tags', []) if t not in ('匹配高', '匹配中', '匹配低')], 'reasons': j.get('reasons', []), 'source': j.get('source')} for j in picked], ensure_ascii=False)
     result = call_llm_json(JOBS_SYSTEM, prompt, JOBS_SCHEMA, label='xhs-jobs')
@@ -653,21 +721,21 @@ def run_track_post(track: dict, date: str):
     """专题日报：自上一期以来的新条目（最多回看 3 天）→ 模型先判值不值得发 → 值得才出文稿 + 封面。"""
     from datetime import timedelta
     src = DATA / 'tracks' / f"{track['id']}.json"
-    if not src.exists(): log(f"[xhs] 没有 {src}，先跑 tools/tracks.py"); return
-    d = json.loads(src.read_text())
+    if not src.exists(): raise SystemExit(f'没有 {src}，先跑 tools/tracks.py')
+    d = pinned('source', lambda: json.loads(src.read_text()))
     kind_dir = f"tracks/{track['id']}"
     token, repo = os.environ.get('INBOX_TOKEN', '').strip(), os.environ.get('INBOX_REPO', 'lgyStoic/radar-inbox')
     floor = (datetime.strptime(date, '%Y-%m-%d') - timedelta(days=3)).strftime('%Y-%m-%d')
-    since = max(last_issue_date(repo, token, kind_dir, date) or floor, floor)
+    since = pinned('since', lambda: max(last_issue_date(repo, token, kind_dir, date) or floor, floor))
     recent = [e for e in d.get('entries', []) if since < e.get('date', '') <= date]
-    if len(recent) < 2: log(f"[xhs] {track['name']}：{since} 之后只有 {len(recent)} 条，今天不发"); return
+    if len(recent) < 2: log(f"[xhs] {track['name']}：{since} 之后只有 {len(recent)} 条，今天不发"); return 'skipped'
     tag = TRACK_TAG.get(track['id'], f"{track['name']}日报")
     prompt = json.dumps({'since_last_issue': f'{since} ~ {date}', 'entries': [{'date': e['date'], 'entity': e.get('entity', ''), 'kind': e.get('kind', ''), 'title': e['title'], 'summary': e.get('summary', ''), 'why': e.get('why', ''), 'source': e.get('source', '')} for e in recent[:40]],
                          'context_digest': (d.get('digest') or {}).get('text', ''), 'context_sota': (d.get('sota') or [])[:8]}, ensure_ascii=False)
     result = call_llm_json(TRACK_SYSTEM.format(name=track['name'], tag=tag), prompt, TRACK_SCHEMA, label=f"xhs-track-{track['id']}")
     if not result: raise SystemExit('文本模型未返回专题日报')
     if not result.get('worth'):
-        log(f"[xhs] {track['name']}：今天不值得发（{result.get('worth_reason', '')[:60]}），{len(recent)} 条候选"); return
+        log(f"[xhs] {track['name']}：今天不值得发（{result.get('worth_reason', '')[:60]}），{len(recent)} 条候选"); return 'skipped'
     post = clean_post(dict(result)); post['id'] = 'cover'
     shorten_titles([post])
     post['tags'] = [re.sub(r'[\s#]+', '', tag)] + [t for t in post['tags'] if t not in (tag, SERIES_TAG, JOBS_TAG)][:4]
@@ -696,14 +764,27 @@ def main():
         art = make_svg_art({'headline': 'Ring Attention 的 KV 环形传递', 'title': 'Ring Attention', 'takeaways': ['Q 保持本地不动', 'KV 块逐轮传递', '局部结果在线融合']}, kind='cards')
         if not art: raise SystemExit('LongCat 未返回可用 SVG')
         print('LongCat SVG 可用'); return
-    date = os.environ.get('RADAR_DATE') or datetime.now().strftime('%Y-%m-%d')
-    if '--jobs' in sys.argv: run_jobs(date)
-    elif '--tracks' in sys.argv:
-        for t in load_tracks():
-            if t.get('post'):
-                try: run_track_post(t, date)
-                except SystemExit as e: log(f"[xhs] {t['name']} 日报失败：{e}")
-    else: run_cards(date)
+    from zoneinfo import ZoneInfo
+    date = os.environ.get('RADAR_DATE') or datetime.now(ZoneInfo('Asia/Shanghai')).strftime('%Y-%m-%d')
+    datetime.strptime(date, '%Y-%m-%d')
+    if '--jobs' in sys.argv:
+        run_stage('jobs', date, lambda: run_jobs(date))
+    elif '--tracks' in sys.argv or '--track' in sys.argv:
+        selected = sys.argv[sys.argv.index('--track') + 1] if '--track' in sys.argv else None
+        tracks = [t for t in load_tracks() if t.get('post') and (selected is None or t['id'] == selected)]
+        if selected and not tracks:
+            raise SystemExit(f'未知或未启用的专题：{selected}')
+        failures = []
+        for t in tracks:
+            try:
+                run_stage(f"tracks/{t['id']}", date, lambda: run_track_post(t, date))
+            except (SystemExit, Exception) as e:
+                failures.append(t['id'])
+                log(f"[xhs] {t['name']} 日报失败：{e}")
+        if failures:
+            raise SystemExit('待补专题：' + ', '.join(failures))
+    else:
+        run_stage('cards', date, lambda: run_cards(date))
 
 
 if __name__ == '__main__':

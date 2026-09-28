@@ -44,7 +44,7 @@
 共同约定：
 
 - cron 不放在整点（GitHub 整点丢任务），关键流水线有兜底槽。
-- **推送策略**：机器人提交前 `git add -A`；被拒时不 rebase 生成物，而是保留本次数据文件、`reset --hard origin/master`、重新 `build.py`、再提交，最多三次。
+- **推送策略**：由 `tools/publish_results.py` 提交；被拒时只恢复本管线拥有且本轮变化的数据，回到最新 master 用最新代码重建，最多三次。radar 不恢复 jobs/contributions 数据；源配置只合并自动停用字段，保留远端其他配置与人工状态修改。
 - `concurrency` 按工作流分组，不取消进行中的运行。
 - 每个 job 有 `timeout-minutes`；外部 CLI 调用有 `timeout` 和连续失败即止损。
 - Secrets：`GEMINI_API_KEY`（必需）、`ANTHROPIC_API_KEY`（可选，有则优先）、`INBOX_TOKEN`（私有仓库 PAT）、`ADZUNA_APP_ID/KEY`、`BOOLEAN_TAVILY_API_KEY`（可选）。`GITHUB_TOKEN` 用默认的，`permissions: contents: write`。
@@ -95,3 +95,11 @@ python3 -m http.server 8765       # 本地预览
 | 改站长验证码 | `site.json.seo.verification`（bing / google / baidu / sogou / shenma），build 注入首页 |
 | 改 OG 图 | `assets/og/`；各页 `<head>` |
 | 改机器人推送策略 | 各 workflow 的「提交结果」步骤（四个工作流写法一致，改一处要同步） |
+
+
+## 10. 管线提交与回归（2026-09-28）
+
+- radar、jobs、contributions 共用 `tools/publish_results.py <owner> --message <中文说明>`；xhs 通过 GitHub API 写私有仓库，采用独立的检查点机制。
+- radar 拥有当日 JSON、seen、活动、专题、health、last-run 与巡检报告；jobs 仅拥有 jobs.json；contributions 仅拥有 contributions.json。恢复只覆盖本轮变更的归属文件；保留其他管线与最新主分支的数据，随后重新构建页面。
+- 源自动停用按 source id 合并 disabled/disabled_reason 字段；若远端同时改了这些字段，保留远端状态并记录日志，避免抹去人工决定。
+- `check.yml` 在 PR 和手动触发时运行离线回归与构建，不需要生产凭据。`tests/test_publish_results.py` 使用临时裸仓库与两个 checkout 重现并验证交错推送。

@@ -148,29 +148,7 @@ jobs:
         run: |
           git config user.name "radar-bot"
           git config user.email "radar-bot@users.noreply.github.com"
-          for attempt in 1 2 3; do
-            git add -A
-            if git diff --cached --quiet; then
-              echo "没有变化，跳过提交"
-              exit 0
-            fi
-            DATE=$(TZ=Asia/Shanghai date +%F)
-            git commit -q -m "radar: ${DATE}"
-            if git push origin HEAD:master; then
-              exit 0
-            fi
-            echo "推送被拒（master 有新提交），第 ${attempt} 次：保留数据，回到最新 master 重新渲染"
-            rm -rf /tmp/radar-out && mkdir -p /tmp/radar-out
-            cp -r radar/data /tmp/radar-out/data
-            [ -d radar/checks ] && cp -r radar/checks /tmp/radar-out/checks
-            git fetch origin master
-            git reset -q --hard origin/master
-            rm -rf radar/data && cp -r /tmp/radar-out/data radar/data
-            [ -d /tmp/radar-out/checks ] && rm -rf radar/checks && cp -r /tmp/radar-out/checks radar/checks
-            python3 tools/build.py
-          done
-          echo "连续三次都没推上去"
-          exit 1
+          python3 tools/publish_results.py radar --message "雷达：更新每日数据"
       - name: 通知 IndexNow（Bing 索引，当天有变化的页面）
         if: success()
         continue-on-error: true
