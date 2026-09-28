@@ -23,6 +23,8 @@ tools/jobs.py             岗位主抓取；import_liepin.py / import_ats_jobs.p
 tools/contributions.py    开源贡献：采集→五章→任务卡→校验→渲染（含 arch_svg/flow_svg）
 tools/tracks.py           专题追踪：累积时间线 / 主体线程 / 周综述 / 现状表 → radar/data/tracks/
 tools/inbox.py tools/xhs.py 私有收件箱、小红书文稿 + 封面卡片（写私有仓库 digest/ posts/；xhs --jobs 岗位周报、--tracks 专题日报有料才发）
+tools/publish_results.py  按管线归属保存/恢复结果并推送
+tools/xhs_state.py        私有文稿检查点（输入锁定、响应复用、恢复状态）
 tools/check.py            自检（源健康、自动停用、巡检报告）
 tools/prd_index.py        生成 docs/prd/index.html
 tools/probe.py            源探针：试抓 URL 打印状态/条数（Actions 里用 probe.yml）
@@ -38,14 +40,14 @@ projects/                 外部 fork 的 submodule 控制面；源码与 Git �
 .github/agents/daily-check.md  判断层手册（边界）
 docs/prd/*.md             本目录
 docs/tasks/*.md           进行中的任务说明（自包含，先读 agent.md 再读它）
-tests/test_jobs.py        唯一单测
+tests/test_*.py           岗位、专题、提交冲突与文稿恢复回归
 ```
 
 ## 2. 命令
 
 ```bash
 python3 tools/build.py                 # 幂等全站重建；改渲染器后必须跑并提交产物
-python3 -m pytest -q tests             # 5 个单测
+python3 -m pytest -q tests             # 离线回归
 python3 tools/radar.py --dry-run       # RADAR_FIXTURE_DIR=tests/fixtures 可离线
 python3 tools/events.py --dry-run
 python3 tools/contributions.py --list [--focus] | --only owner/repo --out f.json | --merge dir [--scope focus]
@@ -62,7 +64,7 @@ python3 tools/check_mobile.py --all    # 手机宽度溢出检查（需 pip inst
 3. 提交（中文标题 + 要点），push，开 PR，squash 合并到 master；合并后把分支重置到 origin/master。
 4. 需要数据的改动：手动触发对应 workflow（`actions_run_trigger`），用 `api.github.com/.../runs` 轮询，读 `get_job_logs` 验证。
 
-工作流通用：cron 不在整点；`concurrency` 按工作流；机器人推送被拒 → 保留数据文件 → `reset --hard origin/master` → `build.py` → 再推，三次。改这段要四个工作流同步。
+工作流通用：cron 不在整点；`concurrency` 按工作流。radar/jobs/contributions 共用 `tools/publish_results.py`：冲突只恢复本管线变更数据，源停用按字段合并，最新代码重建再推，最多三次；不整目录覆盖其他管线数据。xhs 分阶段串行执行，每阶段 40 分钟；私有 `posts/.pipeline/` 保存恢复状态，已交付文稿不覆盖。见 xhs.md §13、site.md §10。
 
 AI 模型：`call_llm_json` 走 Claude（有 key）否则 Gemini；高频任务由仓库变量 `vars.GEMINI_MODEL` / `vars.GEMINI_FALLBACK_MODEL` 覆盖，默认 Flash 优先、Pro 备选。开源贡献路线为保证深度，单独使用 `CONTRIBUTIONS_GEMINI_MODEL` / `CONTRIBUTIONS_GEMINI_FALLBACK_MODEL`，默认 Pro 优先、Flash 备选。可用模型清单看 site.md §5 或跑 `xhs.yml list_models`。日志出现 `finishReason=MAX_TOKENS` → 调大 `GEMINI_MAX_OUTPUT_TOKENS`。
 
@@ -76,7 +78,7 @@ AI 模型：`call_llm_json` 走 Claude（有 key）否则 Gemini；高频任务�
 | 岗位 | `jobs.py main` → 适配器 → `jobs_ai.py` | `job_sources.json`（profile.directions/title_terms/exclude_title/max_per_company(_cn)；sources kind 12 种；disabled+disabled_reason；search_links） | `jobs.json` | jobs.yml 00:35 UTC | `match, region_of, limit_jobs, fetch_source(feishu_csrf, feishu_site_path), collect` | `源失败`, `岗位：N；来源成功`, `猎聘：`, `jobs-ai：` |
 | 开源贡献 | `contributions.py main` | `contribution_repos.json`（str 或 {repo,focus,young}） | `contributions.json` | contributions.yml 周一/周四 01:20 UTC；inputs scope, reuse_run_id | `collect_repo, run_analysis, task_prompt, valid_tasks, merge_tasks, scrub_channels, assemble, render, arch_svg, flow_svg` | `[contribution-<owner>-<repo>-<stage>]`, `丢弃…`, `降级到` |
 | 收件箱 | `inbox.py` | env INBOX_TOKEN, INBOX_REPO | 私有仓库 digest/, state.json | radar.yml 第三步 | `fetch_comments, enrich, render_day_md` | `[inbox]` |
-| 小红书文稿 | `xhs.py run_cards / run_jobs(--jobs)` | env XHS_IMAGES(4), XHS_JOBS_REGION, GEMINI_IMAGE_MODEL；xhs.yml inputs date, images, mode, jobs_region, preview, list_models | 私有仓库 posts/cards/<日期>.md+/<id>.jpg、posts/jobs/<日期>.md+/cover.jpg、posts/tracks/<id>/<日期>.md、posts/topics.json（主体历史）、posts/README.md（本地 radar/data/xhs* 已 gitignore） | xhs.yml 01:10 UTC 每日卡片 + 专题日报（模型判 worth，有料才发）；周一 01:40 岗位周报 | `load_topic_history/apply_novelty(跨天去重: same 已发丢、未发降权、update 承接), rank_posts(0.5 量表+0.3 热度+0.2 优先级), episode_number, pick_jobs, clean_post, gemini_image, card_html, render_cards, publish, update_index` | `[xhs] 配图：`, `[xhs] 封面图 N 张`, `[xhs] 岗位周报`, `[xhs] 标题超 20 字` |
+| 小红书文稿 | `xhs.py run_cards / run_jobs(--jobs)` | env XHS_IMAGES(4), XHS_JOBS_REGION, GEMINI_IMAGE_MODEL；xhs.yml inputs date, images, mode, jobs_region, preview, list_models | 私有仓库 posts/cards/<日期>.md+/<id>.jpg、posts/jobs/<日期>.md+/cover.jpg、posts/tracks/<id>/<日期>.md、posts/topics.json（主体历史）、posts/README.md（本地 radar/data/xhs* 已 gitignore） | xhs.yml 01:37 UTC 每日卡片 + 独立专题阶段（有料才发）；周一 01:53 岗位周报 | `load_topic_history/apply_novelty(跨天去重: same 已发丢、未发降权、update 承接), rank_posts(0.5 量表+0.3 热度+0.2 优先级), episode_number, pick_jobs, clean_post, gemini_image, card_html, render_cards, publish, update_index` | `[xhs] 配图：`, `[xhs] 封面图 N 张`, `[xhs] 岗位周报`, `[xhs] 标题超 20 字` |
 | 巡检 | `check.py` | `DISABLE_AFTER=3`, `DISABLE_ZERO_AFTER` | `health.json`, `radar/checks/*.md`, `last-run.json` | radar.yml 末步；health.yml 00:35/02:20 UTC | `main` | 报告 ≤8 行 |
 | 笔记 | `build.py` | `notes/notes.json` | — | — | `render_latest, render_archive, render_tag_filters` | — |
 | 指南 | `build.py build_guides` | `guides/guides.json`, `guides/links.json` | — | — | `apply_affiliate_links, apply_guide_support, render_guide_jsonld` | `guides/<id>: 推荐位 N 个已填` |

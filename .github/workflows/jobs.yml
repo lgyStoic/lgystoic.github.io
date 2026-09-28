@@ -7,6 +7,9 @@ on:
     # 北京时间 08:27；避免和健康检查及整点批量任务争抢调度。
     - cron: "27 0 * * *"
 permissions: {contents: write}
+concurrency:
+  group: jobs
+  cancel-in-progress: false
 jobs:
   jobs:
     runs-on: ubuntu-latest
@@ -72,23 +75,4 @@ jobs:
         run: |
           git config user.name radar-bot
           git config user.email radar-bot@users.noreply.github.com
-          for attempt in 1 2 3; do
-            git add -A
-            if git diff --cached --quiet; then
-              echo "没有变化，跳过提交"
-              exit 0
-            fi
-            git commit -q -m "jobs: refresh"
-            if git push origin HEAD:master; then
-              exit 0
-            fi
-            echo "推送被拒（master 有新提交），第 ${attempt} 次：保留数据，回到最新 master 重新渲染"
-            rm -rf /tmp/keep && mkdir -p /tmp/keep
-            [ -e radar/data/jobs.json ] && cp -r radar/data/jobs.json /tmp/keep/radar__data__jobs.json
-            git fetch origin master
-            git reset -q --hard origin/master
-            [ -e /tmp/keep/radar__data__jobs.json ] && rm -rf radar/data/jobs.json && cp -r /tmp/keep/radar__data__jobs.json radar/data/jobs.json
-            python3 tools/build.py
-          done
-          echo "连续三次都没推上去"
-          exit 1
+          python3 tools/publish_results.py jobs --message "岗位：更新聚合结果"

@@ -105,24 +105,4 @@ jobs:
         run: |
           git config user.name radar-bot
           git config user.email radar-bot@users.noreply.github.com
-          for attempt in 1 2 3; do
-            git add -A
-            git reset -q -- results
-            if git diff --cached --quiet; then
-              echo "没有变化，跳过提交"
-              exit 0
-            fi
-            git commit -q -m "roadmap: refresh contribution plan"
-            if git push origin HEAD:master; then
-              exit 0
-            fi
-            echo "推送被拒（master 有新提交），第 ${attempt} 次：保留数据，回到最新 master 重新渲染"
-            rm -rf /tmp/keep && mkdir -p /tmp/keep
-            cp radar/data/contributions.json /tmp/keep/contributions.json
-            git fetch origin master
-            git reset -q --hard origin/master
-            cp /tmp/keep/contributions.json radar/data/contributions.json
-            python3 tools/build.py
-          done
-          echo "连续三次都没推上去"
-          exit 1
+          python3 tools/publish_results.py contributions --message "贡献路线：更新分析结果"

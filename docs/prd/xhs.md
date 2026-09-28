@@ -1,6 +1,6 @@
 # PRD：小红书文稿（每日学习卡片 + 周一岗位精选 + 专题日报）
 
-> 代码：`tools/xhs.py`；工作流：`.github/workflows/xhs.yml`（每天 01:10 UTC 学习卡片；每周一 01:40 UTC 岗位周报；手动可选 mode / date / 地区）；产物只进私有仓库 `lgyStoic/radar-inbox` 的 `posts/cards/`、`posts/jobs/`，`posts/README.md` 是自动索引。公开仓库只放代码，`radar/data/xhs/`、`radar/data/xhs-*.md` 已 gitignore。收件箱见 [inbox.md](inbox.md)。
+> 代码：`tools/xhs.py`、`tools/xhs_state.py`；工作流：`.github/workflows/xhs.yml`（每天 01:37 UTC 学习卡片及专题；每周一 01:53 UTC 岗位周报）。初稿、封面与恢复检查点只写私有仓库。2026-09-28 的执行、恢复和编号规则见 §13。
 
 ## 1. 目标与非目标
 
@@ -152,3 +152,16 @@ radar/data/<日期>.json ─筛 high/medium 前20─▶ call_llm_json(SYSTEM, SC
 | 改岗位筛选（条数 / 每家上限 / 匿名规则） | `pick_jobs`、`ANON_RE` |
 | 改岗位文案规则 | `JOBS_SYSTEM` |
 | 改发布排序量表 / 权重 | `RANK_SYSTEM`、`rank_posts` 里的 0.5/0.3/0.2、`BRAND_RE`、`CAT_HEAT` |
+
+
+## 13. 分阶段执行、恢复与稿件身份（2026-09-28）
+
+- 工作流先锁定本次北京时间日期，再按模式生成 cards、jobs、每个启用专题的独立 matrix job。每阶段最多 40 分钟，`fail-fast: false`，某阶段失败仍执行其他阶段。整个工作流与 matrix 写入均串行，避免私有索引被多个生成任务并发改写。
+- `cards` 模式仍包含专题；`tracks` 只补专题；`all` 包含卡片、岗位、专题。命令 `--track <id>` 可只处理一个专题，`--tracks` 处理所有专题且有失败时返回非零。无值得发的进展或岗位不足属于 skipped。
+- `posts/.pipeline/<kind>/<日期>.json` 是私有恢复检查点：固定输入及历史、成功模型响应、最终排序、交付内容哈希、执行状态。每次成功响应保存后再继续；下次 runner 从远端恢复。失败响应不缓存；检查点保存失败时停止本阶段。格式损坏明确报错，不当成空状态覆盖。
+- 本地检查点在 `radar/data/xhs-state/`，已 gitignore；没有 INBOX_TOKEN 时仅能从同一本地目录恢复。不得上传检查点为公开仓库 artifact，也不得提交到公开仓库。封面留档仍使用现有 artifact，分阶段命名。
+- 卡片先补齐本批所有选中条目的有效初稿，再排序交付；缺项时保留检查点并失败，重跑只生成缺少的响应。成功交付后的文稿不再自动覆盖或重排：同日期重跑直接保留原稿；如在写 md 后、更新 topics 前中断，会核对哈希并补齐关联。编辑新版本需另行明确处理，常规补跑不改已交付内容。
+- 每条卡片的稳定 ID 为 `cards/<日期>@<来源id>`，保存在 Markdown 注释与 topics.json 的 material_id 字段；反馈既支持稳定 ID，也继续支持原有 `cards/<日期>#NN`。旧序号通过保持已交付文稿顺序兼容，不自动重新解释旧反馈。
+- topics.json 合并远端最新历史，同日 ID 顺序不同则拒绝覆盖。现有私有发布队列仍消费原有路径和序号，不需要重置发布或预约状态。
+- 本轮未迁移旧文稿，也未修复此前可能已经发生的序号错位。人工核验旧反馈后才能更正对应关系。
+- 验证：`python3 -m pytest -q tests` 覆盖 runner 丢失、分批失败续跑、输入变化、写稿后中断、不可覆盖稿件、旧反馈兼容及工作流模式选择。
