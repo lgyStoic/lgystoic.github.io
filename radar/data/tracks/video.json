@@ -2,8 +2,44 @@
  "id": "video",
  "name": "视频生成模型",
  "blurb": "文生视频、图生视频、视频 VAE 与 DiT 加速：Wan、Sora、Veo、可灵、海螺、Seedance、Vidu、LTX、HunyuanVideo 等的发布、论文、benchmark 与推理框架支持。",
- "updated": "2026-09-28T07:10:07+00:00",
+ "updated": "2026-09-29T02:40:14+00:00",
  "entries": [
+  {
+   "id": "3953fb952383379e",
+   "date": "2026-09-29",
+   "title": "加速“进化” 快手可灵发布Kling4.0 支持单次生成视频最长可达30秒 - 东方财富",
+   "link": "https://finance.eastmoney.com/a/202609293886092892.html",
+   "source": "新闻 · 视频生成（中文）",
+   "priority": "high",
+   "summary": "快手可灵发布 Kling 4.0，支持单次生成视频最长 30 秒。",
+   "why": "主流视频生成模型重要版本更新，直接影响竞品格局。",
+   "tags": [
+    "Kling4.0",
+    "快手",
+    "视频生成",
+    "30秒"
+   ],
+   "entity": "Kling 4.0",
+   "kind": "release"
+  },
+  {
+   "id": "067dd77df64a9c8e",
+   "date": "2026-09-29",
+   "title": "AWS Trainium Runs Real-Time AI Video Generation Without NVIDIA: NKI Kernel Playbook Published - Tech Times",
+   "link": "https://www.techtimes.com/articles/328113/20260928/aws-trainium-runs-real-time-ai-video-generation-without-nvidia-nki-kernel-playbook-published.htm",
+   "source": "新闻 · 视频生成（英文）",
+   "priority": "high",
+   "summary": "AWS Trainium 实现实时 AI 视频生成，发布 NKI Kernel Playbook。",
+   "why": "非 NVIDIA GPU 上跑视频生成的 kernel 优化实践，直接相关。",
+   "tags": [
+    "Trainium",
+    "NKI",
+    "Kernel",
+    "非NVIDIA"
+   ],
+   "entity": "AWS Trainium",
+   "kind": "tool"
+  },
   {
    "id": "d2ef344d93f18451",
    "date": "2026-09-28",
@@ -1611,6 +1647,12 @@
   "字节跳动": [
    "3a06f956823425ca",
    "782c2b2a23d1da73"
+  ],
+  "Kling 4.0": [
+   "3953fb952383379e"
+  ],
+  "AWS Trainium": [
+   "067dd77df64a9c8e"
   ],
   "MVAgent": [
    "d2ef344d93f18451"

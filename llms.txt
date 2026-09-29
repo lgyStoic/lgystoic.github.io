@@ -41,8 +41,8 @@
 ## 专题追踪
 
 - [专题总览](https://lgystoic.github.io/radar/tracks/): 视频生成模型、世界模型等专题的累积时间线、线程、每周综述与现状表
-- [视频生成模型](https://lgystoic.github.io/radar/tracks/video/): 文生视频、图生视频、视频 VAE 与 DiT 加速：Wan、Sora、Veo、可灵、海螺、Seedance、Vidu、LTX、HunyuanVideo 等的发布、论文、benchmark 与推理框架支；累计 92 条；本周综述：本周视频生成领域进展密集，核心主线是推理加速与实时化：TurboT2VA 用分布蒸馏+轨迹蒸馏联合方案将音视频生成提速 54 倍；ViRDM 将表示分布蒸馏用于少步因果视频生成并去掉 teacher-critic 栈；TRACK 提出训练无关的轨迹感知路由，用大小模型异构去噪加速扩散；Video DeltaNet 以局
-- [世界模型](https://lgystoic.github.io/radar/tracks/world/): 可交互的生成式世界模拟：Genie、Cosmos、V-JEPA、Dreamer、GameNGen、Oasis、Matrix-Game、HunyuanWorld 等，以及动作条件视频生成、4D 生成与具；累计 118 条；本周综述：本周世界模型方向新条目密集，约40条，但真正有实质进展的不多。最值得注意的是推理加速侧的 QuantWM，提出 2-bit KV Cache 量化并解决时序闪烁，直接命中推理工程师关心的部署问题。系统侧，NVIDIA 发布 OmniDreams 面向闭环自动驾驶仿真的实时生成式世界模型，Runway 的 WorldPr
+- [视频生成模型](https://lgystoic.github.io/radar/tracks/video/): 文生视频、图生视频、视频 VAE 与 DiT 加速：Wan、Sora、Veo、可灵、海螺、Seedance、Vidu、LTX、HunyuanVideo 等的发布、论文、benchmark 与推理框架支；累计 94 条；本周综述：本周视频生成领域进展密集，核心主线是推理加速与实时化：TurboT2VA 用分布蒸馏+轨迹蒸馏联合方案将音视频生成提速 54 倍；ViRDM 将表示分布蒸馏用于少步因果视频生成并去掉 teacher-critic 栈；TRACK 提出训练无关的轨迹感知路由，用大小模型异构去噪加速扩散；Video DeltaNet 以局
+- [世界模型](https://lgystoic.github.io/radar/tracks/world/): 可交互的生成式世界模拟：Genie、Cosmos、V-JEPA、Dreamer、GameNGen、Oasis、Matrix-Game、HunyuanWorld 等，以及动作条件视频生成、4D 生成与具；累计 133 条；本周综述：本周世界模型方向新条目密集，约40条，但真正有实质进展的不多。最值得注意的是推理加速侧的 QuantWM，提出 2-bit KV Cache 量化并解决时序闪烁，直接命中推理工程师关心的部署问题。系统侧，NVIDIA 发布 OmniDreams 面向闭环自动驾驶仿真的实时生成式世界模型，Runway 的 WorldPr
 
 ## 活动清单
 
