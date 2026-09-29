@@ -1,0 +1,1035 @@
+{
+  "date": "2026-09-29",
+  "generated_at": "2026-09-29T02:34:58+00:00",
+  "ai": true,
+  "model": "LongCat-2.0",
+  "sources": [
+    {
+      "id": "openai",
+      "name": "OpenAI",
+      "ok": true,
+      "count": 4,
+      "total": 1234,
+      "error": ""
+    },
+    {
+      "id": "deepmind",
+      "name": "Google DeepMind",
+      "ok": true,
+      "count": 0,
+      "total": 100,
+      "error": ""
+    },
+    {
+      "id": "google-ai",
+      "name": "Google AI Blog",
+      "ok": true,
+      "count": 1,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "qwen",
+      "name": "Qwen",
+      "ok": true,
+      "count": 0,
+      "total": 44,
+      "error": ""
+    },
+    {
+      "id": "hf-blog",
+      "name": "Hugging Face Blog",
+      "ok": true,
+      "count": 1,
+      "total": 869,
+      "error": ""
+    },
+    {
+      "id": "nvidia-dev",
+      "name": "NVIDIA Technical Blog",
+      "ok": true,
+      "count": 2,
+      "total": 100,
+      "error": ""
+    },
+    {
+      "id": "hf-papers",
+      "name": "HF Papers 日榜",
+      "ok": true,
+      "count": 4,
+      "total": 27,
+      "error": ""
+    },
+    {
+      "id": "pytorch",
+      "name": "PyTorch Blog",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "simonw",
+      "name": "Simon Willison",
+      "ok": true,
+      "count": 0,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "lilianweng",
+      "name": "Lil'Log",
+      "ok": true,
+      "count": 0,
+      "total": 53,
+      "error": ""
+    },
+    {
+      "id": "interconnects",
+      "name": "Interconnects",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "raschka",
+      "name": "Sebastian Raschka",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "chiphuyen",
+      "name": "Chip Huyen",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-pytorch",
+      "name": "Release · PyTorch",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-triton",
+      "name": "Release · Triton",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-cutlass",
+      "name": "Release · CUTLASS",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-flash-attention",
+      "name": "Release · FlashAttention",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-vllm",
+      "name": "Release · vLLM",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-sglang",
+      "name": "Release · SGLang",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-tensorrt-llm",
+      "name": "Release · TensorRT-LLM",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-diffusers",
+      "name": "Release · Diffusers",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-cuda-python",
+      "name": "Release · cuda-python",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "gnews-labs-en",
+      "name": "新闻 · Anthropic / Mistral / xAI",
+      "ok": true,
+      "count": 15,
+      "total": 86,
+      "error": ""
+    },
+    {
+      "id": "gnews-labs-cn",
+      "name": "新闻 · 国内模型公司",
+      "ok": true,
+      "count": 21,
+      "total": 83,
+      "error": ""
+    },
+    {
+      "id": "qbitai",
+      "name": "量子位",
+      "ok": true,
+      "count": 2,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "infoq-cn",
+      "name": "InfoQ 中文",
+      "ok": true,
+      "count": 1,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "thonking",
+      "name": "Horace He (thonking)",
+      "ok": true,
+      "count": 0,
+      "total": 6,
+      "error": ""
+    },
+    {
+      "id": "hn-algolia",
+      "name": "Hacker News（100+ 分）",
+      "ok": true,
+      "count": 5,
+      "total": 60,
+      "error": ""
+    },
+    {
+      "id": "karpathy-blog",
+      "name": "Andrej Karpathy 博客",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "eugeneyan",
+      "name": "Eugene Yan",
+      "ok": true,
+      "count": 0,
+      "total": 212,
+      "error": ""
+    },
+    {
+      "id": "importai",
+      "name": "Import AI（Jack Clark）",
+      "ok": true,
+      "count": 1,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "latentspace",
+      "name": "Latent Space",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "semianalysis",
+      "name": "SemiAnalysis",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "meta-ai",
+      "name": "Meta Engineering",
+      "ok": true,
+      "count": 0,
+      "total": 9,
+      "error": ""
+    },
+    {
+      "id": "mistral-news",
+      "name": "Mistral AI",
+      "ok": true,
+      "count": 1,
+      "total": 88,
+      "error": ""
+    },
+    {
+      "id": "bsky-karpathy",
+      "name": "Bluesky · Andrej Karpathy",
+      "ok": true,
+      "count": 0,
+      "total": 15,
+      "error": ""
+    },
+    {
+      "id": "bsky-giffmana",
+      "name": "Bluesky · Lucas Beyer",
+      "ok": true,
+      "count": 0,
+      "total": 22,
+      "error": ""
+    },
+    {
+      "id": "bsky-hardmaru",
+      "name": "Bluesky · hardmaru",
+      "ok": true,
+      "count": 0,
+      "total": 15,
+      "error": ""
+    },
+    {
+      "id": "bsky-swyx",
+      "name": "Bluesky · swyx",
+      "ok": true,
+      "count": 0,
+      "total": 3,
+      "error": ""
+    },
+    {
+      "id": "bsky-pytorch",
+      "name": "Bluesky · PyTorch",
+      "ok": true,
+      "count": 1,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "bsky-clem",
+      "name": "Bluesky · Clem Delangue",
+      "ok": true,
+      "count": 0,
+      "total": 11,
+      "error": ""
+    },
+    {
+      "id": "bsky-natolambert",
+      "name": "Bluesky · Nathan Lambert",
+      "ok": true,
+      "count": 0,
+      "total": 29,
+      "error": ""
+    },
+    {
+      "id": "bsky-rasbt",
+      "name": "Bluesky · Sebastian Raschka",
+      "ok": true,
+      "count": 0,
+      "total": 27,
+      "error": ""
+    },
+    {
+      "id": "bsky-jeffdean",
+      "name": "Bluesky · Jeff Dean",
+      "ok": true,
+      "count": 0,
+      "total": 18,
+      "error": ""
+    },
+    {
+      "id": "hf-trending-new",
+      "name": "HF 热榜新模型",
+      "ok": true,
+      "count": 2,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "gh-new-stars",
+      "name": "GitHub 新星仓库",
+      "ok": true,
+      "count": 1,
+      "total": 15,
+      "error": ""
+    },
+    {
+      "id": "hf-t2v",
+      "name": "HF 热榜 · 文生视频",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "hf-i2v",
+      "name": "HF 热榜 · 图生视频",
+      "ok": true,
+      "count": 2,
+      "total": 19,
+      "error": ""
+    },
+    {
+      "id": "gnews-video-en",
+      "name": "新闻 · 视频生成（英文）",
+      "ok": true,
+      "count": 5,
+      "total": 23,
+      "error": ""
+    },
+    {
+      "id": "gnews-video-cn",
+      "name": "新闻 · 视频生成（中文）",
+      "ok": true,
+      "count": 16,
+      "total": 36,
+      "error": ""
+    },
+    {
+      "id": "gnews-world-en",
+      "name": "新闻 · 世界模型（英文）",
+      "ok": true,
+      "count": 10,
+      "total": 50,
+      "error": ""
+    },
+    {
+      "id": "gnews-world-cn",
+      "name": "新闻 · 世界模型（中文）",
+      "ok": true,
+      "count": 46,
+      "total": 90,
+      "error": ""
+    },
+    {
+      "id": "gh-new-video-world",
+      "name": "GitHub 新仓库 · 视频 / 世界模型",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "arxiv-cscv",
+      "name": "arXiv cs.CV（专题）",
+      "ok": true,
+      "count": 0,
+      "total": 182,
+      "error": ""
+    },
+    {
+      "id": "arxiv-csro",
+      "name": "arXiv cs.RO（专题）",
+      "ok": true,
+      "count": 0,
+      "total": 124,
+      "error": ""
+    }
+  ],
+  "counts": {
+    "high": 10,
+    "medium": 20,
+    "low": 0
+  },
+  "items": [
+    {
+      "id": "3953fb952383379e",
+      "title": "加速“进化” 快手可灵发布Kling4.0 支持单次生成视频最长可达30秒 - 东方财富",
+      "link": "https://finance.eastmoney.com/a/202609293886092892.html",
+      "source": "新闻 · 视频生成（中文）",
+      "source_id": "gnews-video-cn",
+      "published": "2026-09-29T01:38:53+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "快手可灵发布 Kling 4.0，支持单次生成视频最长 30 秒。",
+      "why": "主流视频生成模型重要版本更新，直接影响竞品格局。",
+      "tags": [
+        "Kling4.0",
+        "快手",
+        "视频生成",
+        "30秒"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "9a956d2d2318032e",
+      "title": "AMD acquires world model developer World Labs for $8.2B - SiliconANGLE",
+      "link": "https://siliconangle.com/2026/09/28/amd-acquires-world-model-developer-world-labs-for-8-2b/",
+      "source": "新闻 · 世界模型（英文）",
+      "source_id": "gnews-world-en",
+      "published": "2026-09-29T00:22:00+00:00",
+      "category": "industry",
+      "priority": "high",
+      "summary": "AMD 以 82 亿美元收购世界模型开发商 World Labs。",
+      "why": "重大行业并购，直接影响 NVIDIA Cosmos 竞争格局。",
+      "tags": [
+        "AMD",
+        "World Labs",
+        "收购",
+        "82亿美元"
+      ],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "9284a2ff91fb334a",
+      "title": "基于 DeepSeek Harness，这个开源项目搭了一套可私有化的企业 Agent 平台 - 53AI",
+      "link": "https://www.53ai.com/news/OpenSourceLLM/2026092918430.html",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-09-28T22:51:33+00:00",
+      "category": "infra",
+      "priority": "high",
+      "summary": "基于 DeepSeek Harness 的开源项目搭建可私有化企业 Agent 平台。",
+      "why": "DeepSeek 生态 + 私有化 agent 平台，与 infra 直接相关。",
+      "tags": [
+        "DeepSeek",
+        "Harness",
+        "agent platform"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "1d5585b8c940f618",
+      "title": "贾国龙之子入股西贝旗下公司；MiniMax最新模型M3.1-Flash-Preview上线｜未来商业早参 - 21财经",
+      "link": "https://www.21jingji.com/article/20260929/herald/0dee7bd6a4cbde892ec7824a632fabfb.html",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-09-28T22:40:00+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "MiniMax 最新模型 M3.1-Flash-Preview 上线。",
+      "why": "国内重要模型发布，Flash 系列值得关注。",
+      "tags": [
+        "MiniMax",
+        "M3.1-Flash",
+        "release"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "cf44eda526008216",
+      "title": "NVIDIA partners with Anthropic to launch AI agent security tools, claiming they can prevent Hugging Face-style attacks. - 富途牛牛",
+      "link": "https://news.futunn.com/en/post/1000317934/nvidia-partners-with-anthropic-to-launch-ai-agent-security-tools",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-09-28T22:28:31+00:00",
+      "category": "infra",
+      "priority": "high",
+      "summary": "NVIDIA 与 Anthropic 合作推出 AI agent 安全工具，声称可防 HuggingFace 式攻击。",
+      "why": "NVIDIA + Anthropic 官方合作，agent 安全基础设施。",
+      "tags": [
+        "NVIDIA",
+        "Anthropic",
+        "agent security"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "1cfb892d0e4d54fb",
+      "title": "Anthropic Releases Its Second New AI Model in Less Than a Week - Gizmodo",
+      "link": "https://gizmodo.com/anthropic-releases-its-second-new-ai-model-in-less-than-a-week-2000818514",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-09-28T21:55:59+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "Anthropic 一周内发布第二款新 AI 模型（Claude Sonnet 5.5）。",
+      "why": "重要模型发布，Gizmodo 报道具时效性。",
+      "tags": [
+        "Anthropic",
+        "Claude Sonnet 5.5",
+        "release"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "008c9a35126e42d4",
+      "title": "AMD Buys Fei-Fei Li’s World Labs for $8.2 Billion - trendingtopics.eu",
+      "link": "https://www.trendingtopics.eu/amd-buys-world-labs/",
+      "source": "新闻 · 世界模型（英文）",
+      "source_id": "gnews-world-en",
+      "published": "2026-09-28T20:30:42+00:00",
+      "category": "industry",
+      "priority": "high",
+      "summary": "AMD 以 82 亿美元全股票交易收购李飞飞的 World Labs。",
+      "why": "世界模型赛道最大并购，直接影响 3D/空间智能生态。",
+      "tags": [
+        "AMD",
+        "World Labs",
+        "收购",
+        "空间智能"
+      ],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "067dd77df64a9c8e",
+      "title": "AWS Trainium Runs Real-Time AI Video Generation Without NVIDIA: NKI Kernel Playbook Published - Tech Times",
+      "link": "https://www.techtimes.com/articles/328113/20260928/aws-trainium-runs-real-time-ai-video-generation-without-nvidia-nki-kernel-playbook-published.htm",
+      "source": "新闻 · 视频生成（英文）",
+      "source_id": "gnews-video-en",
+      "published": "2026-09-28T15:18:49+00:00",
+      "category": "infra",
+      "priority": "high",
+      "summary": "AWS Trainium 实现实时 AI 视频生成，发布 NKI Kernel Playbook。",
+      "why": "非 NVIDIA GPU 上跑视频生成的 kernel 优化实践，直接相关。",
+      "tags": [
+        "Trainium",
+        "NKI",
+        "Kernel",
+        "非NVIDIA"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "5463d672d9900075",
+      "title": "群核科技开源两款空间大模型，想解决 Genie3 没能彻底解决的问题 - 极客公园",
+      "link": "https://www.geekpark.net/news/371286",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-09-28T13:03:55+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "群核科技开源两款空间大模型，目标解决 Genie3 未彻底解决的问题。",
+      "why": "开源空间大模型，与 3D/视频生成方向直接相关。",
+      "tags": [
+        "开源",
+        "空间大模型",
+        "Genie3"
+      ],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "a5ba262b5bc1f356",
+      "title": "创业一年后，李飞飞推出首款可商用世界模型 Marble，任意模态都可生成 3D 世界 - 极客公园",
+      "link": "https://www.geekpark.net/news/371259",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-09-28T12:53:53+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "李飞飞推出首款可商用世界模型 Marble，任意模态可生成 3D 世界。",
+      "why": "3D 世界生成新模型，直接相关。",
+      "tags": [
+        "World Labs",
+        "Marble",
+        "3D 生成",
+        "世界模型"
+      ],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "74ae373c2465c8cd",
+      "title": "字节京东布局世界模型，瞄准空间计算生态卡位 - 搜狐网",
+      "link": "https://m.sohu.com/a/1082095783_122014422?scm=10001.325_13-325_13.0.0-0-0-0-0.5_1334",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-09-29T01:57:00+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "字节、京东布局世界模型，瞄准空间计算生态。",
+      "why": "国内大厂跟进世界模型，生态卡位信号。",
+      "tags": [
+        "字节跳动",
+        "京东",
+        "世界模型",
+        "空间计算"
+      ],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "ccf504d228f9b7d2",
+      "title": "百万上下文、原生多模态！MiniMax M3.1公测，疑似“太空兔”本尊 - 手机新浪网",
+      "link": "https://k.sina.com.cn/article_5953466437_162dab0450670bdqm0.html?from=tech",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-09-29T01:38:00+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "MiniMax M3.1 公测，支持百万上下文与原生多模态。",
+      "why": "国内重要模型发布，可关注。",
+      "tags": [
+        "MiniMax",
+        "M3.1",
+        "多模态"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "c1b44c306dd8f4be",
+      "title": "李飞飞创业公司被苏姿丰550亿收购！世界模型最大交易落地",
+      "link": "https://www.qbitai.com/2026/09/499098.html",
+      "source": "量子位",
+      "source_id": "qbitai",
+      "published": "2026-09-29T00:49:30+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "李飞飞公司 World Labs 被 AMD 收购，将入职任首席科学家。",
+      "why": "世界模型领域重大收购，但非直接技术发布。",
+      "tags": [
+        "World Labs",
+        "AMD",
+        "李飞飞"
+      ],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "882bf8a22acd36be",
+      "title": "AMD拟以82亿美元收购世界模型AI公司WorldLabs - 디지털투데이",
+      "link": "https://www.digitaltoday.co.kr/cn/view/108270/amd-to-buy-worldlabs-world-model-developer-for-8-2-billion-dollars-why",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-09-28T21:49:40+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "AMD 拟以 82 亿美元收购世界模型 AI 公司 WorldLabs。",
+      "why": "与 38e8a069 重复报道，韩媒来源。",
+      "tags": [
+        "AMD",
+        "WorldLabs",
+        "收购"
+      ],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "df2cd10fa4d41851",
+      "title": "Imagination 发布 E 系列 GPU IP 新进展：一套架构支持图形、计算与AI",
+      "link": "https://www.infoq.cn/article/5Xfeqshw0hwfUD95JpWE",
+      "source": "InfoQ 中文",
+      "source_id": "infoq-cn",
+      "published": "2026-09-28T18:23:47+00:00",
+      "category": "infra",
+      "priority": "medium",
+      "summary": "Imagination 发布 E 系列 GPU IP，统一支持图形、计算与 AI。",
+      "why": "GPU IP 新进展，但离训练/推理优化较远。",
+      "tags": [
+        "Imagination",
+        "GPU IP",
+        "架构"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "aa7604c2b56c9e76",
+      "title": "NVIDIA Cosmos 3 on AWS: Omnimodal World Models for Physical AI - Amazon Web Services (AWS)",
+      "link": "https://aws.amazon.com/blogs/physical-ai/nvidia-cosmos-3-on-aws-omnimodal-world-models-for-physical-ai/",
+      "source": "新闻 · 世界模型（英文）",
+      "source_id": "gnews-world-en",
+      "published": "2026-09-28T18:00:00+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "NVIDIA Cosmos 3 上线 AWS，提供多模态世界模型用于 Physical AI。",
+      "why": "世界模型重要版本发布，但为云托管服务，与直接工作关联中等。",
+      "tags": [
+        "Cosmos3",
+        "AWS",
+        "世界模型",
+        "Physical AI"
+      ],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "d525ecb6226127aa",
+      "title": "NVIDIA Open Agent Safety Platform: A Reference for Continuous In-Silicon Agent Monitoring",
+      "link": "https://developer.nvidia.com/blog/nvidia-open-agent-safety-platform-a-reference-for-continuous-in-silicon-agent-monitoring",
+      "source": "NVIDIA Technical Blog",
+      "source_id": "nvidia-dev",
+      "published": "2026-09-28T17:24:46+00:00",
+      "category": "infra",
+      "priority": "medium",
+      "summary": "NVIDIA 发布 Open Agent Safety Platform，提供芯片级 agent 持续监控参考方案。",
+      "why": "NVIDIA 官方 agent 安全基础设施，值得关注。",
+      "tags": [
+        "NVIDIA",
+        "agent safety",
+        "infra"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "ddeb70adc7032de9",
+      "title": "Nvidia wants to put a watchdog chip next to every AI agent",
+      "link": "https://news.ycombinator.com/item?id=49879883",
+      "source": "Hacker News（100+ 分）",
+      "source_id": "hn-algolia",
+      "published": "2026-09-28T15:46:36+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "Nvidia 计划为每个 AI Agent 旁放置看门狗芯片。",
+      "why": "反映 Agent 基础设施安全趋势，但无技术细节。",
+      "tags": [
+        "Nvidia",
+        "Agent",
+        "芯片"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "438ad61fef853504",
+      "title": "Add Runtime Controls to AI Agents with NVIDIA OpenShell",
+      "link": "https://developer.nvidia.com/blog/add-runtime-controls-to-ai-agents-with-nvidia-openshell",
+      "source": "NVIDIA Technical Blog",
+      "source_id": "nvidia-dev",
+      "published": "2026-09-28T15:10:06+00:00",
+      "category": "infra",
+      "priority": "medium",
+      "summary": "NVIDIA 发布 OpenShell，为 AI agent 增加运行时控制能力。",
+      "why": "NVIDIA agent 运行时工具，与 infra 方向相关。",
+      "tags": [
+        "NVIDIA",
+        "OpenShell",
+        "agent"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "ab3cce075b9cb2e8",
+      "title": "从真机到世界模型,具身智能正在补一条看不见的数据产线-yeeyi - yeeyi",
+      "link": "https://www.yeeyi.com/news/details/3236030/",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-09-28T14:30:51+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "从真机到世界模型，具身智能正在补一条看不见的数据产线。",
+      "why": "具身世界模型数据管线探讨，有参考价值。",
+      "tags": [
+        "具身智能",
+        "数据管线",
+        "世界模型"
+      ],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "059eaa8c1b308158",
+      "title": "从真机到世界模型，具身智能正在补一条看不见的数据产线 - 搜狐网",
+      "link": "https://m.sohu.com/a/1081940358_121207965?scm=10001.325_13-325_13.0.0-0-0-0-0.5_1334",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-09-28T14:16:00+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "从真机到世界模型，具身智能补齐数据产线。",
+      "why": "具身智能数据管线，值得关注。",
+      "tags": [
+        "具身智能",
+        "世界模型",
+        "数据"
+      ],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "1782216a1c47f006",
+      "title": "月之暗面 Kimi K3.1 模型前端标识泄露，预计将在近期发布 - t.cj.sina.cn",
+      "link": "https://t.cj.sina.cn/articles/view/1826017320/6cd6d02804001xajy?from=tech",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-09-28T13:42:28+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "月之暗面 Kimi K3.1 前端标识泄露，预计近期发布。",
+      "why": "主流基模新版本动向，值得关注但尚未正式发布。",
+      "tags": [
+        "Kimi",
+        "K3.1",
+        "月之暗面"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "70768dfb8c3760bb",
+      "title": "Import AI 474: Platonic mindspace; TPUs in space; Zhipu starts an outer RSI loop",
+      "link": "https://jack-clark.net/2026/09/28/import-ai-474-platonic-mindspace-tpus-in-space-zhipu-starts-an-outer-rsi-loop",
+      "source": "Import AI（Jack Clark）",
+      "source_id": "importai",
+      "published": "2026-09-28T12:32:03+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "Import AI 474 期：Platonic 心智、太空 TPU、智谱启动外循环 RSI。",
+      "why": "研究综述含基础设施与训练动态，值得扫一眼。",
+      "tags": [
+        "Import AI",
+        "TPU",
+        "智谱"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "8106697634ed70ff",
+      "title": "Codex 72%的用户不写代码，基模公司开始押注通用 Agent - 极客公园",
+      "link": "https://www.geekpark.net/news/371189",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-09-28T12:23:44+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "Codex 72% 用户不写代码，基模公司押注通用 Agent。",
+      "why": "反映基模应用趋势，但无具体技术发布。",
+      "tags": [
+        "Codex",
+        "Agent",
+        "基模"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "13d767ce35d06cb4",
+      "title": "万字科普：一千个「世界模型」在发布，到底什么是世界模型？ - 极客公园",
+      "link": "https://www.geekpark.net/news/371172",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-09-28T12:18:42+00:00",
+      "category": "people",
+      "priority": "medium",
+      "summary": "极客公园万字科普：到底什么是世界模型。",
+      "why": "概念梳理，但非技术突破。",
+      "tags": [
+        "世界模型",
+        "科普"
+      ],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "9dac2f9e5d6d4fce",
+      "title": "对话陈炜鹏：Loopit 有了 1500 万件作品之后，我们决定做自己的互动世界模型 - 极客公园",
+      "link": "https://www.geekpark.net/news/371149",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-09-28T12:08:38+00:00",
+      "category": "people",
+      "priority": "medium",
+      "summary": "Loopit 基于 1500 万件作品打造互动世界模型。",
+      "why": "互动世界模型新尝试，值得关注。",
+      "tags": [
+        "Loopit",
+        "世界模型",
+        "互动"
+      ],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "3765bbca36f0486e",
+      "title": "全都是泡沫？对话伯克利教授Allen Yang：人形机器人、世界模型、 机器人商业落地与中美竞合 - 虎嗅网",
+      "link": "https://www.huxiu.com/article/4893930.html",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-09-28T10:00:00+00:00",
+      "category": "people",
+      "priority": "medium",
+      "summary": "伯克利教授 Allen Yang 谈人形机器人与世界模型商业化。",
+      "why": "学术观点，但非技术突破。",
+      "tags": [
+        "世界模型",
+        "具身智能",
+        "Allen Yang"
+      ],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "b402a6f2ca511330",
+      "title": "Holo4: powering generalist computer-use agents",
+      "link": "https://huggingface.co/blog/Hcompany/holo4",
+      "source": "Hugging Face Blog",
+      "source_id": "hf-blog",
+      "published": "2026-09-28T09:44:05+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Hugging Face Blog 介绍 Holo4，面向通用计算机操作智能体。",
+      "why": "通用 agent 方向，可快速扫一眼。",
+      "tags": [
+        "HuggingFace",
+        "Holo4",
+        "agent"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "38e8a0693e9f914e",
+      "title": "苏妈李飞飞强强联手！AMD豪掷550亿收购世界模型 芯片AI双巨头重磅合作引爆科技圈 - 36Kr",
+      "link": "https://eu.36kr.com/zh/p/4003672762126217",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-09-28T09:38:00+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "AMD 拟以 82 亿美元收购世界模型 AI 公司 WorldLabs。",
+      "why": "AMD 收购世界模型公司，影响行业格局。",
+      "tags": [
+        "AMD",
+        "WorldLabs",
+        "收购"
+      ],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "6334a861fb33f77b",
+      "title": "上汽大众ID. ERA 9X获推OTA升级，Momenta R7世界模型正式推送 - 凤凰网",
+      "link": "https://i.ifeng.com/c/8wn6SBi6HHy",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-09-28T09:30:25+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "ID.ERA 9X 获推 OTA 升级，Momenta R7 世界模型正式推送。",
+      "why": "Momenta R7 首次 OTA 推送，可关注落地进展。",
+      "tags": [
+        "Momenta",
+        "OTA",
+        "世界模型"
+      ],
+      "tracks": [
+        "world"
+      ]
+    }
+  ]
+}
