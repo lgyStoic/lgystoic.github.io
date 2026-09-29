@@ -4,11 +4,14 @@
 from __future__ import annotations
 
 import json
+import imaplib
 import os
 import smtplib
+import time
 import urllib.request
 from datetime import datetime
 from email.message import EmailMessage
+from email.utils import make_msgid
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
@@ -46,7 +49,38 @@ def runs_today(day: str) -> list[dict]:
     ]
 
 
-def send_alert(day: str, failures: list[dict], core_delivered: bool = False) -> None:
+def _send_message(msg: EmailMessage) -> str:
+    msg["Message-ID"] = make_msgid(domain=os.environ["RADAR_ALERT_SMTP_USER"].split("@")[-1])
+    host = os.environ["RADAR_ALERT_SMTP_HOST"]
+    port = int(os.environ.get("RADAR_ALERT_SMTP_PORT", "465"))
+    with smtplib.SMTP_SSL(host, port, timeout=20) as smtp:
+        smtp.login(os.environ["RADAR_ALERT_SMTP_USER"], os.environ["RADAR_ALERT_SMTP_PASSWORD"])
+        smtp.send_message(msg)
+    return msg["Message-ID"]
+
+
+def verify_inbox_delivery(message_id: str, attempts: int = 6, delay_seconds: int = 5) -> bool:
+    """Confirm that Gmail placed this exact message in the authenticated INBOX."""
+    user = os.environ["RADAR_ALERT_SMTP_USER"]
+    recipients = {item.strip().lower() for item in os.environ["RADAR_ALERT_EMAIL_TO"].split(",")}
+    if user.lower() not in recipients:
+        raise RuntimeError("无法自检收件：RADAR_ALERT_EMAIL_TO 必须包含 SMTP 登录邮箱")
+    host = os.environ.get("RADAR_ALERT_IMAP_HOST", "imap.gmail.com")
+    for attempt in range(attempts):
+        with imaplib.IMAP4_SSL(host, 993, timeout=20) as mailbox:
+            mailbox.login(user, os.environ["RADAR_ALERT_SMTP_PASSWORD"])
+            status, _ = mailbox.select("INBOX", readonly=True)
+            if status != "OK":
+                raise RuntimeError("Gmail IMAP 无法读取 INBOX")
+            status, matches = mailbox.uid("search", None, "HEADER", "Message-ID", message_id)
+            if status == "OK" and matches and matches[0].strip():
+                return True
+        if attempt + 1 < attempts:
+            time.sleep(delay_seconds)
+    return False
+
+
+def send_alert(day: str, failures: list[dict], core_delivered: bool = False) -> str:
     names = ("RADAR_ALERT_SMTP_HOST", "RADAR_ALERT_SMTP_USER",
              "RADAR_ALERT_SMTP_PASSWORD", "RADAR_ALERT_EMAIL_TO")
     missing = [name for name in names if not os.environ.get(name)]
@@ -66,14 +100,10 @@ def send_alert(day: str, failures: list[dict], core_delivered: bool = False) -> 
         lines.append("- 未查到当日失败或取消记录；请检查调度是否触发及产物提交。")
     lines += ["", "此邮件不触发采集补跑；请先核对 Actions 日志和远端产物。"]
     msg.set_content("\n".join(lines))
-    host = os.environ["RADAR_ALERT_SMTP_HOST"]
-    port = int(os.environ.get("RADAR_ALERT_SMTP_PORT", "465"))
-    with smtplib.SMTP_SSL(host, port, timeout=20) as smtp:
-        smtp.login(os.environ["RADAR_ALERT_SMTP_USER"], os.environ["RADAR_ALERT_SMTP_PASSWORD"])
-        smtp.send_message(msg)
+    return _send_message(msg)
 
 
-def send_test_email(day: str) -> None:
+def send_test_email(day: str) -> str:
     names = ("RADAR_ALERT_SMTP_HOST", "RADAR_ALERT_SMTP_USER",
              "RADAR_ALERT_SMTP_PASSWORD", "RADAR_ALERT_EMAIL_TO")
     missing = [name for name in names if not os.environ.get(name)]
@@ -88,11 +118,12 @@ def send_test_email(day: str) -> None:
         "GitHub Actions 已通过 Gmail SMTP 完成认证并提交邮件。\n"
         "此测试没有触发采集、补跑或生产告警。\n"
     )
-    host = os.environ["RADAR_ALERT_SMTP_HOST"]
-    port = int(os.environ.get("RADAR_ALERT_SMTP_PORT", "465"))
-    with smtplib.SMTP_SSL(host, port, timeout=20) as smtp:
-        smtp.login(os.environ["RADAR_ALERT_SMTP_USER"], os.environ["RADAR_ALERT_SMTP_PASSWORD"])
-        smtp.send_message(msg)
+    return _send_message(msg)
+
+
+def confirm_delivery(message_id: str) -> None:
+    if not verify_inbox_delivery(message_id):
+        raise RuntimeError("邮件已通过 SMTP 提交，但在等待窗口内未出现在 Gmail 收件箱")
 
 
 def should_alert(event: str, failed_count: int) -> bool:
@@ -103,8 +134,9 @@ def should_alert(event: str, failed_count: int) -> bool:
 def main() -> None:
     day = datetime.now(TZ).date().isoformat()
     if os.environ.get("RADAR_ALERT_TEST_EMAIL") == "1":
-        send_test_email(day)
-        print(f"{day} Gmail SMTP 测试邮件已提交")
+        message_id = send_test_email(day)
+        confirm_delivery(message_id)
+        print(f"{day} Gmail SMTP 测试邮件已提交，并由 IMAP 确认进入收件箱")
         return
     core_delivered = delivered(ROOT, day)
     runs = runs_today(day)
@@ -116,8 +148,9 @@ def main() -> None:
     if not should_alert(event, len(failures)):
         print(f"{day} 尚未落库；{len(failures)} 次失败/取消，本次不重复发信")
         return
-    send_alert(day, failures, core_delivered)
-    print(f"{day} 流程未完整交付；已发送邮件告警，失败/取消运行 {len(failures)} 次")
+    message_id = send_alert(day, failures, core_delivered)
+    confirm_delivery(message_id)
+    print(f"{day} 流程未完整交付；邮件已由 IMAP 确认进入收件箱，失败/取消运行 {len(failures)} 次")
 
 
 if __name__ == "__main__":
