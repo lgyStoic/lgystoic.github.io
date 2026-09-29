@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AI 视频会拍镜头 为什么还拍不好故事 | Anaxagore</title>
+    <meta name="description" content="AI 视频的难题正在从生成一个漂亮镜头，变成控制许多镜头的误差。用同一个两镜头案例拆解导演、分镜、生成、场记、审片和接戏六个 Agent 的工作。" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="AI 视频会拍镜头 为什么还拍不好故事 | Anaxagore" />
+    <meta property="og:description" content="多镜头 AI 视频不只是记忆问题，而是状态控制问题：系统必须比较叙事意图与画面事实，在误差扩散前决定接受、修正还是重拍。" />
+    <meta property="og:url" content="https://lgystoic.github.io/notes/ai-video-shot-continuity/" />
+    <meta property="og:image" content="https://lgystoic.github.io/notes/ai-video-shot-continuity/hero.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="canonical" href="https://lgystoic.github.io/notes/ai-video-shot-continuity/" />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231b1b1a'/%3E%3Ctext x='32' y='43' text-anchor='middle' font-size='30' font-family='Helvetica,Arial' font-weight='700' fill='white'%3EA%3C/text%3E%3C/svg%3E" />
+    <link rel="stylesheet" href="../../site.css" />
+    <link rel="stylesheet" href="./styles.css" />
+    <script>
+      try {
+        var t = localStorage.getItem("theme");
+        if (t === "dark" || t === "light") document.documentElement.dataset.theme = t;
+      } catch (e) {}
+    </script>
+    <!-- build:jsonld -->
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "AI 视频会拍镜头 为什么还拍不好故事", "description": "AI 视频的难题正在从生成一个漂亮镜头，变成控制许多镜头的误差。用同一个案例拆解导演、分镜、生成、场记、审片和接戏六个 Agent 怎样维护叙事意图与画面事实。", "url": "https://lgystoic.github.io/notes/ai-video-shot-continuity/", "mainEntityOfPage": "https://lgystoic.github.io/notes/ai-video-shot-continuity/", "inLanguage": "zh-CN", "dateModified": "2026-09-29", "datePublished": "2026-09-29", "keywords": "AI Video, Multi-Agent, Video Generation, Continuity, System Design", "isBasedOn": "Google Research / Co-Director / CANVAS / A²RD / VQQA / MVAgent", "author": {"@type": "Person", "name": "Anaxagore", "url": "https://lgystoic.github.io/about/"}, "publisher": {"@type": "Person", "name": "Anaxagore", "url": "https://lgystoic.github.io/"}, "image": "https://lgystoic.github.io/assets/og/notes.png"}</script>
+    <!-- /build:jsonld -->
+  </head>
+  <body>
+    <!-- build:header -->
+    <header class="site-header">
+      <div class="wrap">
+        <a class="brand" href="../../" aria-label="首页">
+          <span class="brand-mark">A</span>
+          <span>Anaxagore</span>
+        </a>
+        <nav class="site-nav" aria-label="主导航">
+          <a href="../../notes/" aria-current="page">笔记</a>
+          <a href="../../radar/">雷达</a>
+          <a href="../../radar/tracks/">专题</a>
+          <a href="../../radar/events/">活动</a>
+          <a href="../../radar/jobs/">工作</a>
+          <a href="../../guides/">指南</a>
+          <a href="../../about/">关于</a>
+          <button class="theme-toggle" type="button" data-theme-toggle aria-label="切换深浅色">
+            <span data-theme-icon>◑</span>
+          </button>
+        </nav>
+      </div>
+    </header>
+    <!-- /build:header -->
+
+    <main class="wrap note">
+      <section class="hero">
+        <p class="eyebrow">AI VIDEO · MULTI-SHOT CONTINUITY</p>
+        <h1>AI 视频会拍镜头<br />为什么还拍不好故事</h1>
+        <p class="lead">
+          今天的模型已经很会制造瞬间，但一切镜头，人物、房间和动作经常一起漂移。
+          问题不只是模型记不住，而是系统没有持续比较<strong>剧本希望发生什么</strong>与<strong>画面实际发生什么</strong>。
+        </p>
+        <p class="meta">更新于 2026-09-29 · 论文与系统机制整理</p>
+        <figure class="hero-image">
+          <img src="./hero.png" alt="同一位蓝衣女性在两个连续镜头中出现细微身份与道具漂移的概念画面" />
+          <figcaption>AI 生成概念图：同一人物、同一道具、相邻镜头，细小偏差足以让故事断裂。人物为虚构形象。</figcaption>
+        </figure>
+        <div class="tldr">
+          <strong>TL;DR</strong>
+          <ul>
+            <li>生成画面和维持一个世界，是两种能力。</li>
+            <li>可靠系统要维护两本账：叙事意图与画面事实。</li>
+            <li>真正可用的长视频系统，不要求每次都生成正确，而要尽早发现错误、限制错误传播，并知道什么时候重拍。</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>漂亮片段为什么连不成故事</h2>
+        <p>一束光穿过窗户，一个人回头，风吹动衣角。单看几秒，画面已经很像电影。可镜头一切，魔法经常就散了。</p>
+        <p>同一个人换了脸，外套多了一排扣子；刚才还在右手的杯子，下一镜头跑到左手；人物明明已经走到门边，切过去却又站回桌旁。每一段都像电影，连起来却不像同一个故事。</p>
+        <figure>
+          <img src="./failures.png" alt="身份漂移、空间漂移和动作漂移三类连续性错误" />
+          <figcaption>自绘问题示意：连续性错误至少发生在身份、空间和动作状态三个层面；图中不是真实模型输出。</figcaption>
+        </figure>
+        <p>一句“同一个女人穿着蓝色外套走进厨房”，只能描述语义，不能唯一确定她的脸、外套剪裁、房间几何，也不能说明上一镜头真正生成到了哪里。</p>
+        <p class="callout"><strong>生成画面，和维持一个世界，是两种能力。</strong><span>文字告诉模型“发生什么”，但故事还需要一套系统保存“这个世界现在是什么样”。</span></p>
+      </section>
+
+      <section class="section">
+        <h2>真正难的不是记住 而是纠正偏差</h2>
+        <p>剧本要求人物走到门口，模型却只让她走到沙发边。下一步并不是机械地“记住末帧”，而要做一个制作决定：</p>
+        <div class="decision-grid">
+          <article><span>接受</span><p>让下一镜头从沙发边继续，随后重写动作。</p></article>
+          <article><span>修正</span><p>增加一个从沙发到门口的过渡镜头。</p></article>
+          <article><span>重拍</span><p>把当前位置作为失败原因，重新生成当前镜头。</p></article>
+        </div>
+        <p>因此，多镜头生成更像一个<strong>状态控制问题</strong>。系统同时维护两本账：一本记录叙事意图，一本记录画面事实。导演判断两者允许偏离多少，场记发现偏离，生成模型负责重拍或接下去。</p>
+      </section>
+
+      <section class="section">
+        <h2>六个 Agent 到底各自做什么</h2>
+        <p>还是用“蓝衣女人右手拿杯子，从沙发走到门口”这个镜头。Agent 不是六个会聊天的小人，而是六个职责明确的制作模块。</p>
+        <div class="agent-list">
+          <article><b>01</b><div><h3>导演 Agent</h3><p>把剧情变成验收条件：人物、蓝色外套、右手杯子不能变，最后必须停在门边。</p></div></article>
+          <article><b>02</b><div><h3>分镜 Agent</h3><p>固定人物脸、外套剪裁、沙发和门的位置，并画出镜头起点与终点。</p></div></article>
+          <article><b>03</b><div><h3>生成 Agent</h3><p>根据分镜产生多个候选。它负责交作业，不负责证明作业正确。</p></div></article>
+          <article><b>04</b><div><h3>场记 Agent</h3><p>从成片末帧读取人物位置、朝向、道具和服装，记录实际结果而不是照抄剧本。</p></div></article>
+          <article><b>05</b><div><h3>审片 Agent</h3><p>比较两本账，指出是身份、道具还是关键动作失败，给出可执行的返工意见。</p></div></article>
+          <article><b>06</b><div><h3>接戏 Agent</h3><p>把验收后的末态交给下一镜头；若接受偏差，就同步修改后续分镜。</p></div></article>
+        </div>
+        <figure>
+          <img src="./agent-workflow.gif" alt="六个 Agent 依次处理同一条镜头的循环动画" />
+          <figcaption>原创动态示意：用同一个镜头展示六种职责。这是帮助理解工作流的抽象，不表示下述论文采用完全相同的模块名称。</figcaption>
+        </figure>
+        <p class="callout"><strong>最重要的分工，是把生成和验收拆开。</strong><span>让同一个模型既交作业又给自己打分，很容易把“看起来不错”误当成“满足了剧情”。</span></p>
+      </section>
+
+      <section class="section">
+        <h2>五项研究分别补上哪一环</h2>
+        <figure>
+          <img src="./system.png" alt="Co-Director、CANVAS、A²RD、VQQA 和 MVAgent 在多镜头视频控制回路中的位置" />
+          <figcaption>自绘研究地图：五项研究可以理解为同一个控制回路中的不同部件——确定意图、保存状态、观察结果、判断误差，再决定继续还是返工。</figcaption>
+        </figure>
+        <div class="research-list">
+          <article><h3><a href="https://arxiv.org/abs/2604.24842">Co-Director</a>：守住全片方向</h3><p>先确定创意策略、叙事模式和审美方向，让故事线、关键帧、视频和音频共享同一目标。论文主实验仍是四镜头、12 秒虚构广告，不能外推成任意长片已经能够一键生成。</p></article>
+          <article><h3><a href="https://arxiv.org/abs/2604.13452">CANVAS</a>：保存角色、背景和道具</h3><p>给人物、地点和道具建立视觉锚点。故事再次回到同一地点时，系统检索原来的世界，而不是重新想象一间“差不多的房间”。</p></article>
+          <article><h3><a href="https://arxiv.org/abs/2605.06924">A²RD</a>：处理长时记忆</h3><p>在推动剧情的“外推”和保持人物环境的“插值”之间选择，并在每一段后检索、生成、修正、更新。它用额外候选和测试时计算换取更长的状态维持。</p></article>
+          <article><h3><a href="https://arxiv.org/abs/2603.12310">VQQA</a>：审片和返工</h3><p>先让视觉语言模型判断哪里没有满足目标，再修改条件、重新采样并从候选中选择。上限同时受审片模型和基础视频模型影响。</p></article>
+          <article><h3><a href="https://arxiv.org/abs/2609.30609">MVAgent</a>：从真实末态接下一镜</h3><p>观察上一镜头真正结束时的人物位置、朝向、动作与转场条件，再构造下一镜头输入，重点解决黑盒视频生成器之间不共享内部状态的问题。</p></article>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>论文图里能看到什么</h2>
+        <div class="wide-figure" tabindex="0" aria-label="可横向滚动查看完整论文对比图">
+          <img src="./canvas-figure-1.png" alt="CANVAS 与 AutoStudio、Gemini 的博物馆盗窃故事板连续性对比" />
+        </div>
+        <p class="caption">CANVAS Figure 1。作者用同一段博物馆盗窃故事对比 AutoStudio、Gemini 与 CANVAS：前两者分别出现帽子消失、房间变化和道具外观变化，CANVAS 在这组作者实验中保持了角色、背景与道具的一致。图片来自 Ishani Mondal、Yiwen Song、Mihir Parmar、Palash Goyal、Jordan Boyd-Graber、Tomas Pfister、Yale Song，按 CC BY 4.0 引用；这是论文作者示例，不是本站实测。<a href="https://arxiv.org/html/2604.13452#S1.F1">查看原论文</a></p>
+        <p>论文在故事板任务上报告，相对最佳基线，背景、角色和道具连续性分别提升 21.6%、9.6% 和 7.6%。它首先证明的是故事板与关键帧更稳定，并没有证明完整视频里的运动、表演和物理接触都已经解决。</p>
+      </section>
+
+      <section class="section">
+        <h2>连续性变好 为什么成本也会上升</h2>
+        <p>连续性不是模型顺手得到的能力。系统需要角色参考图、场景多视角、道具状态、上一镜头末帧和故事长期记忆；还要生成多个候选，让视觉模型评分，再进行返工。</p>
+        <p>记忆本身也会犯错。如果观察模块误以为杯子在右手，错误就会作为“事实”传给下一镜头；如果评分模型过度关注局部瑕疵，反复优化后还可能偏离原来的故事目标。</p>
+        <p class="callout"><strong>竞争点正在变化。</strong><span>关键不只是生成更高清的几秒钟，而是谁能更便宜地发现偏差，并在错误扩散之前把世界拉回正轨。</span></p>
+      </section>
+
+      <section class="section">
+        <h2>今天做多镜头视频 可以先改什么</h2>
+        <p>不要只保存每个镜头的提示词。为项目建立两列记录：左边是镜头必须完成的叙事意图，右边是实际生成结果。再记录角色、服装、道具、场景布局和镜头结束时的人物状态。</p>
+        <ol>
+          <li>下一镜头从上一镜头的真实结尾开始。</li>
+          <li>把错误分成身份、空间、道具和动作，再决定补参考、改条件还是重拍。</li>
+          <li>预先写清哪些偏差必须重做，哪些偏差可以被后续剧情吸收。</li>
+        </ol>
+        <p><strong>AI 视频正在从生成问题变成控制问题。</strong> 模型负责提出镜头，系统负责判断镜头是否仍然属于这个故事。</p>
+      </section>
+
+      <section class="section sources">
+        <h2>来源与边界</h2>
+        <ol>
+          <li><a href="https://research.google/blog/coherent-long-form-video-generation/">Google Research：Automating coherent long-form video generation</a>，2026-09-24。</li>
+          <li><a href="https://arxiv.org/abs/2604.24842">Co-Director</a>：全局创意搜索与多阶段生产。</li>
+          <li><a href="https://arxiv.org/abs/2604.13452">CANVAS</a>：视觉故事板中的角色、背景和道具连续性。</li>
+          <li><a href="https://arxiv.org/abs/2605.06924">A²RD</a>：分段长视频与多模态记忆。</li>
+          <li><a href="https://arxiv.org/abs/2603.12310">VQQA</a>：生成后视频评价与条件迭代。</li>
+          <li><a href="https://arxiv.org/abs/2609.30609">MVAgent</a>：跨镜头条件构造与策略优化。</li>
+        </ol>
+        <p>本站未对上述系统进行同输入复现。所有数字均为论文作者在各自任务、模型和指标下报告的结果，不用于横向排名。</p>
+      </section>
+
+      <!-- build:comments -->
+
+    <!-- /build:comments -->
+    </main>
+
+    <footer class="site-footer"><div class="wrap"><span>© 2026 <!-- build:site-name -->
+Anaxagore
+    <!-- /build:site-name --></span><span><a href="../">笔记</a></span></div></footer>
+    <script src="../../site.js" defer></script>
+    <!-- build:analytics -->
+    <script data-goatcounter="https://anaxagore.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+    <script>(function(){
+  function gc(){return window.goatcounter&&window.goatcounter.count?window.goatcounter:null}
+  function send(path,title){var g=gc();if(g)g.count({path:path,title:title||path,event:true})}
+  document.addEventListener("click",function(e){
+    var a=e.target.closest&&e.target.closest("a");
+    if(!a)return;
+    var offer=a.closest(".offer");
+    if(a.hasAttribute("data-aff-link")||a.hasAttribute("data-aff")||(a.rel||"").indexOf("sponsored")>-1){
+      var key=(offer&&offer.getAttribute("data-aff"))||a.getAttribute("data-aff")||"link";
+      send("aff/"+key,"推荐位："+key+" @ "+location.pathname);return}
+    if(a.host&&a.host!==location.host){send("out/"+a.host,"外链："+a.host+" @ "+location.pathname)}
+  });
+  document.addEventListener("click",function(e){
+    var b=e.target.closest&&e.target.closest("[data-share-copy],[data-share-native]");
+    if(b)send("share/"+(b.hasAttribute("data-share-copy")?"copy":"native"),"分享 @ "+location.pathname)
+  });
+})();</script>
+    <!-- /build:analytics -->
+  </body>
+</html>
