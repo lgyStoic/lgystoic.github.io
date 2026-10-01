@@ -57,7 +57,7 @@
 
 - [总览](https://lgystoic.github.io/radar/contributions/): 14 个 AI 推理 / kernel 仓库的五章分析（定位、架构、本地运行、社区、切入）与可认领任务卡
 - [sgl-project/sglang](https://lgystoic.github.io/radar/contributions/sgl-project--sglang/): SGLang（sgl-project/sglang，LMSYS 非营利组织托管）是高性能大模型与多模态模型推理服务框架，2024 年初以 RadixAttention 前缀缓存起家，README 自称支撑全球 40 万+ GPU、日产数万亿
-- [sgl-project/sglang-omni](https://lgystoic.github.io/radar/contributions/sgl-project--sglang-omni/): SGLang-Omni 是一个专为全模态（Omni）和语音模型（TTS、ASR）设计的高性能多阶段推理服务框架。对于你这位资深 GPU kernel 与训练性能工程师而言，这个项目完美契合你的技术栈（DiT、算子融合、分布式性能），但你的硬
+- [sgl-project/sglang-omni](https://lgystoic.github.io/radar/contributions/sgl-project--sglang-omni/): SGLang-Omni 是 sgl-project 下的多阶段（multi-stage）推理服务框架，专门面向 omni 模型、TTS 语音生成、ASR 语音转录以及统一多模态模型。它不是从零重写一个推理引擎，而是在 SGLang 高性能自
 - [vllm-project/vllm](https://lgystoic.github.io/radar/contributions/vllm-project--vllm/): vLLM 是目前开源大模型推理与服务领域的绝对标杆（De facto standard），由 UC Berkeley Sky Computing Lab 发起，现已拥有超 2000 名贡献者。它的核心价值在于通过 PagedAttentio
 - [flashinfer-ai/flashinfer](https://lgystoic.github.io/radar/contributions/flashinfer-ai--flashinfer/): FlashInfer 是一个专为 LLM 推理服务设计的高性能 GPU 算子库，提供 Attention、GEMM 和 MoE 的统一 API。对于你这样具备 CuTe/CUTLASS 和底层优化经验的资深 Kernel 工程师来说，这是一
 - [Dao-AILab/flash-attention](https://lgystoic.github.io/radar/contributions/dao-ailab--flash-attention/): FlashAttention 是目前深度学习领域事实上的标准注意力机制底层实现。它的核心价值在于通过 Tiling（分块）和 Recomputation（重计算）技术，将标准 Attention 的 O(N^2) 显存复杂度降为 O(N)，
@@ -69,7 +69,7 @@
 - [JeffreyXiang/FlexGEMM](https://lgystoic.github.io/radar/contributions/jeffreyxiang--flexgemm/): FlexGEMM 是一个专为 3D 稀疏卷积（3D sparse convolutions）设计的高性能、基于 Triton 的 GEMM 后端。在 3D 深度学习（如体素化点云、3D 生成模型）中，数据通常具有高度不规则的稀疏性，传统的密
 - [NVIDIA-NeMo/labs-molt](https://lgystoic.github.io/radar/contributions/nvidia-nemo--labs-molt/): Molt 是 NVIDIA-NeMo 团队推出的一个以智能体为中心（Agentic-first）、原生 PyTorch 架构的强化学习研究框架。它的核心价值在于用极简的代码量（约 9.2K 行）串联起 Ray（异步调度）、vLLM（推理采样
 - [RightNow-AI/autokernel](https://lgystoic.github.io/radar/contributions/rightnow-ai--autokernel/): AutoKernel 是一个受 Karpathy `autoresearch` 启发的 GPU 算子自动优化 AI 代理框架。它的核心理念是：给定任意 PyTorch 模型，AI Agent 会自动分析瓶颈、提取算子，并在一个无限循环中（修
-- [THU-MIG/edge-dit.cpp](https://lgystoic.github.io/radar/contributions/thu-mig--edge-dit.cpp/): edge-dit.cpp 是一个专为 Diffusion Transformers (DiT) 设计的轻量级 C/C++ 原生推理引擎。它基于 ggml 构建，在运行时完全脱离 Python 和 PyTorch 依赖。该项目旨在解决现代大参
+- [THU-MIG/edge-dit.cpp](https://lgystoic.github.io/radar/contributions/thu-mig--edge-dit.cpp/): edge-dit.cpp 是 THU-MIG 实验室在 2026 年 5 月底启动的 C/C++ 原生 DiT 推理引擎，定位为「把 Diffusion Transformer 搬到本地和资源受限设备上」。它基于 ggml 张量/图运行时构
 
 ## 公开数据（JSON）
 
