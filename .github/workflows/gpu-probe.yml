@@ -12,7 +12,7 @@ jobs:
     timeout-minutes: 5
     steps:
       - name: 检查显卡与开发环境
-        shell: pwsh
+        shell: powershell
         run: |
           $ErrorActionPreference = 'Continue'
           Write-Output "=== 操作系统 ==="
