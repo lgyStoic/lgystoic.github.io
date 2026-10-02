@@ -6,7 +6,7 @@ on:
       mode:
         description: "prepare-wsl 启用 WSL 前置条件但不重启；verify-docker 验证 Linux GPU 容器"
         type: choice
-        options: [verify-docker, prepare-wsl]
+        options: [verify-docker, prepare-wsl, reboot]
         default: verify-docker
 
 permissions:
@@ -17,6 +17,15 @@ jobs:
     runs-on: [self-hosted, Windows, X64, dd-lgystoic]
     timeout-minutes: 15
     steps:
+      - name: 重启 5090（仅手动选择 reboot）
+        if: inputs.mode == 'reboot'
+        shell: powershell -NoProfile -NonInteractive -ExecutionPolicy Bypass -File {0}
+        run: |
+          $ErrorActionPreference = 'Stop'
+          Get-Service -Name 'actions.runner.*' -ErrorAction SilentlyContinue | Select-Object Name, Status, StartType
+          Write-Output 'Scheduling the user-authorized reboot in 60 seconds so this job can finish.'
+          & shutdown.exe /r /t 60 /c 'User-authorized reboot to activate WSL2 for GPU Docker.'
+          if ($LASTEXITCODE -ne 0) { throw "Reboot scheduling failed: $LASTEXITCODE" }
       - name: 准备 WSL2（不自动重启）
         if: inputs.mode == 'prepare-wsl'
         shell: powershell -NoProfile -NonInteractive -ExecutionPolicy Bypass -File {0}
