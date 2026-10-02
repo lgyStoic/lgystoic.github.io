@@ -38,7 +38,9 @@ jobs:
               Write-Output "$feature : enable requested; restart required: $($result.RestartNeeded)"
             }
           }
-          if ($restartRequired) {
+          $pendingReboot = Test-Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Component Based Servicing\RebootPending'
+          $hypervisorActive = (Get-CimInstance Win32_ComputerSystem).HypervisorPresent
+          if ($restartRequired -or $pendingReboot -or -not $hypervisorActive) {
             Write-Output 'Windows features enabled; awaiting reboot. No reboot performed and WSL installation deferred until after reboot.'
             exit 0
           }
