@@ -15,9 +15,11 @@ jobs:
         shell: powershell -NoProfile -NonInteractive -ExecutionPolicy Bypass -File {0}
         run: |
           $ErrorActionPreference = 'Continue'
-          Write-Output "=== 操作系统 ==="
+          Write-Output "=== OS ==="
           [System.Environment]::OSVersion.VersionString
-          Write-Output "=== NVIDIA GPU / 驱动 ==="
+          Get-CimInstance Win32_ComputerSystem | Select-Object HypervisorPresent
+          Get-CimInstance Win32_Processor | Select-Object VirtualizationFirmwareEnabled, SecondLevelAddressTranslationExtensions
+          Write-Output "=== NVIDIA GPU / driver ==="
           $smi = Get-Command nvidia-smi -ErrorAction SilentlyContinue
           if (-not $smi) {
             $candidate = Join-Path $env:SystemRoot 'System32/nvidia-smi.exe'
@@ -27,7 +29,7 @@ jobs:
             & $smi --query-gpu=name,driver_version,memory.total --format=csv
             & $smi
           } else {
-            Write-Output '未找到 nvidia-smi；需要进一步核实 NVIDIA 驱动和 PATH。'
+            Write-Output 'nvidia-smi not found; check driver and PATH.'
           }
           Write-Output "=== CUDA toolkit ==="
           if (Get-Command nvcc -ErrorAction SilentlyContinue) { nvcc --version }
@@ -36,17 +38,26 @@ jobs:
             $command = Get-Command $tool -ErrorAction SilentlyContinue
             if ($command) {
               Write-Output "$tool : $($command.Source)"
-              if ($tool -eq 'wsl') { & $tool --list --verbose }
+              if ($tool -eq 'wsl') {
+                & $tool --status
+                & $tool --list --verbose
+                $distros = (& $tool --list --quiet 2>$null) -join ''
+                $distros = $distros.Replace([string][char]0, '').Trim()
+                if ($distros -match 'Ubuntu|Debian|docker-desktop') {
+                  & $tool --exec sh -lc 'uname -r; command -v docker; command -v python3; /usr/lib/wsl/lib/nvidia-smi --query-gpu=name,driver_version,memory.total --format=csv'
+                }
+              }
+              elseif ($tool -eq 'docker') { & $tool version }
               else { & $tool --version }
-            } else { Write-Output "$tool : 未在 PATH 找到" }
+            } else { Write-Output "$tool : not found in PATH" }
           }
-          Write-Output "=== PyTorch CUDA 计算检查（只使用已安装环境） ==="
+          Write-Output "=== PyTorch CUDA smoke test (existing installation only) ==="
           $python = Get-Command python -ErrorAction SilentlyContinue
           if ($python) {
             @'
           import importlib.util
           if importlib.util.find_spec('torch') is None:
-              print('未安装 PyTorch；本检查不安装依赖。')
+              print('PyTorch not installed; probe does not install dependencies.')
               raise SystemExit(0)
           import torch
           print('torch:', torch.__version__, 'CUDA runtime:', torch.version.cuda)
@@ -63,6 +74,6 @@ jobs:
                       assert result[0, 0].item() == 32
                       print('CUDA matrix multiplication: PASS')
           '@ | & $python -
-            if ($LASTEXITCODE -ne 0) { throw 'PyTorch CUDA 检查失败，请查看前面的错误。' }
+            if ($LASTEXITCODE -ne 0) { throw 'PyTorch CUDA probe failed; inspect errors above.' }
           }
           $global:LASTEXITCODE = 0
