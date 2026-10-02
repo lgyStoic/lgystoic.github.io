@@ -9,7 +9,7 @@ import os
 import smtplib
 import time
 import urllib.request
-from datetime import datetime
+from datetime import datetime, timedelta
 from email.message import EmailMessage
 from email.utils import make_msgid
 from pathlib import Path
@@ -19,6 +19,21 @@ ROOT = Path(__file__).resolve().parents[1]
 TZ = ZoneInfo("Asia/Shanghai")
 
 
+def delivery_day(now: datetime, event: str, payload: dict) -> str:
+    """Select a delivery deadline that has elapsed, rather than a new calendar day."""
+    local = now.astimezone(TZ)
+    if event == "schedule":
+        # 与 radar-alert.yml 的 10:17 UTC 同步；跨午夜延迟仍检查上一交付日。
+        deadline = local.replace(hour=18, minute=17, second=0, microsecond=0)
+        if local < deadline:
+            deadline -= timedelta(days=1)
+        return deadline.date().isoformat()
+    if event == "workflow_run":
+        created = payload["workflow_run"]["created_at"]
+        return datetime.fromisoformat(created.replace("Z", "+00:00")).astimezone(TZ).date().isoformat()
+    return local.date().isoformat()
+
+
 def delivered(root: Path, day: str) -> bool:
     data_path = root / "radar" / "data" / f"{day}.json"
     run_path = root / "radar" / "data" / "last-run.json"
@@ -26,7 +41,8 @@ def delivered(root: Path, day: str) -> bool:
         data = json.loads(data_path.read_text(encoding="utf-8"))
         run = json.loads(run_path.read_text(encoding="utf-8"))
         started = datetime.fromisoformat(run["started_at"]).astimezone(TZ)
-        return data.get("date") == day and started.date().isoformat() == day
+        # 延迟检查历史日期时，last-run 可能已被下一天成功采集覆盖。
+        return data.get("date") == day and started.date().isoformat() >= day
     except (OSError, ValueError, KeyError, TypeError):
         return False
 
@@ -132,19 +148,25 @@ def should_alert(event: str, failed_count: int) -> bool:
 
 
 def main() -> None:
-    day = datetime.now(TZ).date().isoformat()
+    now = datetime.now(TZ)
+    day = now.date().isoformat()
     if os.environ.get("RADAR_ALERT_TEST_EMAIL") == "1":
         message_id = send_test_email(day)
         confirm_delivery(message_id)
         print(f"{day} Gmail SMTP 测试邮件已提交，并由 IMAP 确认进入收件箱")
         return
+    event = os.environ.get("GITHUB_EVENT_NAME", "")
+    payload = {}
+    if event == "workflow_run":
+        payload = json.loads(Path(os.environ["GITHUB_EVENT_PATH"]).read_text(encoding="utf-8"))
+    day = delivery_day(now, event, payload)
+    print(f"检查交付日期 {day}；触发方式 {event or 'manual'}；执行时间 {now.isoformat()}")
     core_delivered = delivered(ROOT, day)
     runs = runs_today(day)
     failures = [run for run in runs if run["conclusion"] in {"failure", "cancelled", "timed_out"}]
     if core_delivered and runs and runs[0]["conclusion"] == "success":
         print(f"{day} 雷达及后续阶段已完成，无需告警")
         return
-    event = os.environ.get("GITHUB_EVENT_NAME", "")
     if not should_alert(event, len(failures)):
         print(f"{day} 尚未落库；{len(failures)} 次失败/取消，本次不重复发信")
         return

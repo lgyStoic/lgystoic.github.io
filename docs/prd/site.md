@@ -50,6 +50,7 @@
 - 定时重复触发仅跳过已经提交当日产物的雷达、活动和专题阶段；任何阶段失败可在下一个槽位单独补缺，不以 `last-run.json` 代表全流程成功。私有 inbox 每轮查询增量，检查阶段按 job 结果写报告。
 - 每个 job 有 `timeout-minutes`；外部 CLI 调用有 `timeout` 和连续失败即止损。
 - 雷达邮件告警需在仓库 Actions secrets 配置 `RADAR_ALERT_SMTP_HOST`、`RADAR_ALERT_SMTP_USER`、`RADAR_ALERT_SMTP_PASSWORD`、`RADAR_ALERT_EMAIL_TO`；可选 `RADAR_ALERT_SMTP_PORT`（默认 465）和 `RADAR_ALERT_EMAIL_FROM`。凭据缺失时告警作业失败并列出缺少的 secret 名称，不会假称邮件已发送。
+- 告警定时检查按北京时间最近已到期的 18:17 交付日核对；延迟跨午夜或次日上午执行时检查上一天，不把尚未开始采集的新一天判为失败。失败运行触发按原运行 `created_at` 的北京时间日期核对；手动检查仍检查当天，邮件配置测试不变。历史交付日的数据须存在，`last-run.json` 日期不得早于交付日，允许其已被次日采集更新；仍核对目标日期的工作流结果，缺失或后续阶段失败的告警保留。
 - Secrets：`GEMINI_API_KEY`（必需）、`ANTHROPIC_API_KEY`（可选，有则优先）、`INBOX_TOKEN`（私有仓库 PAT）、`ADZUNA_APP_ID/KEY`、`BOOLEAN_TAVILY_API_KEY`（可选）。`GITHUB_TOKEN` 用默认的，`permissions: contents: write`。
 
 ## 5. AI 调用层（`tools/radar.py`，所有模块共用）
