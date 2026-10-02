@@ -1,0 +1,54 @@
+name: GPU Docker 环境准备
+
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "prepare-wsl 启用 WSL 前置条件但不重启；verify-docker 验证 Linux GPU 容器"
+        type: choice
+        options: [verify-docker, prepare-wsl]
+        default: verify-docker
+
+permissions:
+  contents: read
+
+jobs:
+  setup:
+    runs-on: [self-hosted, Windows, X64, dd-lgystoic]
+    timeout-minutes: 15
+    steps:
+      - name: 准备 WSL2（不自动重启）
+        if: inputs.mode == 'prepare-wsl'
+        shell: powershell -NoProfile -NonInteractive -ExecutionPolicy Bypass -File {0}
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $principal = New-Object Security.Principal.WindowsPrincipal([Security.Principal.WindowsIdentity]::GetCurrent())
+          if (-not $principal.IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
+            throw 'WSL setup requires an elevated runner. No system changes were made.'
+          }
+          foreach ($feature in @('Microsoft-Windows-Subsystem-Linux', 'VirtualMachinePlatform')) {
+            $state = Get-WindowsOptionalFeature -Online -FeatureName $feature
+            Write-Output "$feature : $($state.State)"
+            if ($state.State -ne 'Enabled') {
+              $result = Enable-WindowsOptionalFeature -Online -FeatureName $feature -All -NoRestart
+              Write-Output "$feature : $($result.State); restart required: $($result.RestartNeeded)"
+            }
+          }
+          & wsl.exe --install --no-distribution --no-reboot
+          if ($LASTEXITCODE -notin @(0, 3010)) { throw "WSL installation failed: $LASTEXITCODE" }
+          Write-Output 'WSL preparation complete. No reboot performed. Reboot Windows before installing a Linux distribution and Docker Engine.'
+          $global:LASTEXITCODE = 0
+      - name: 验证 Linux GPU 容器
+        if: inputs.mode == 'verify-docker'
+        shell: powershell -NoProfile -NonInteractive -ExecutionPolicy Bypass -File {0}
+        run: |
+          $ErrorActionPreference = 'Stop'
+          if (-not (Get-Command docker -ErrorAction SilentlyContinue)) {
+            throw 'Docker CLI is not available in this runner PATH. Complete WSL2 and Docker installation first.'
+          }
+          $os = & docker info --format '{{.OSType}}'
+          if ($LASTEXITCODE -ne 0 -or $os.Trim() -ne 'linux') {
+            throw 'A running Linux Docker daemon is required.'
+          }
+          & docker run --rm --gpus all nvidia/cuda:12.8.1-base-ubuntu24.04 nvidia-smi --query-gpu=name,driver_version,memory.total --format=csv
+          if ($LASTEXITCODE -ne 0) { throw 'Linux container GPU access failed.' }

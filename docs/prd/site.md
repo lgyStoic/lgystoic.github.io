@@ -39,6 +39,7 @@
 | `health.yml` 定时兜底 | 01:11、03:07 | 雷达、活动或专题缺少当天已提交产物时触发 `radar.yml`；阶段 guard 只执行缺失部分 |
 | `radar-alert.yml` 雷达邮件告警 | 第二次失败完成后；每天 10:17 复核（北京时间 18:17） | 同时核对当天雷达 JSON、已提交的 `last-run.json` 与工作流结果，主数据缺失或后续阶段失败时发邮件；不触发补跑 |
 | `gpu-probe.yml` GPU runner 环境检查 | 仅手动触发 | 在 Windows `dd-lgystoic` runner 上检查 NVIDIA GPU、驱动、CUDA toolkit、Python、WSL、Docker 和已安装 PyTorch 的 CUDA 矩阵计算；不 checkout 项目、不安装依赖、不注入仓库 secrets |
+| `gpu-docker.yml` GPU Docker 环境准备 | 仅手动触发，默认 verify-docker | prepare-wsl 在管理员 runner 中启用 WSL 与 VirtualMachinePlatform 并安装 WSL，不自动重启；verify-docker 验证已安装的 Linux Docker daemon 与 CUDA 12.8 GPU 容器，不停止现有模型服务 |
 | `jobs.yml` 工作机会 | 00:35 | 岗位抓取、外部适配器、AI 去重、渲染、提交 |
 | `contributions.yml` 开源贡献 | 周一 01:20 全量、周四 01:20 重点 | 见 contributions.md |
 | `xhs.yml` 小红书文稿 | 01:10 | 由当天雷达生成学习卡片，写入私有仓库 |
