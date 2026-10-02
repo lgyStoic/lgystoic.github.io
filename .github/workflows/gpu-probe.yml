@@ -12,7 +12,7 @@ jobs:
     timeout-minutes: 5
     steps:
       - name: 检查显卡与开发环境
-        shell: powershell
+        shell: powershell -NoProfile -NonInteractive -ExecutionPolicy Bypass -File {0}
         run: |
           $ErrorActionPreference = 'Continue'
           Write-Output "=== 操作系统 ==="
