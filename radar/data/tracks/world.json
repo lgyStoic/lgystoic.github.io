@@ -2,8 +2,195 @@
  "id": "world",
  "name": "世界模型",
  "blurb": "可交互的生成式世界模拟：Genie、Cosmos、V-JEPA、Dreamer、GameNGen、Oasis、Matrix-Game、HunyuanWorld 等，以及动作条件视频生成、4D 生成与具身仿真。",
- "updated": "2026-10-01T02:15:33+00:00",
+ "updated": "2026-10-02T02:19:39+00:00",
  "entries": [
+  {
+   "id": "c1b0920138ae9f83",
+   "date": "2026-10-02",
+   "title": "LongTake: Learning to Sustain Dynamics in Long-Horizon Video Generation",
+   "link": "https://arxiv.org/abs/2609.38562",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "high",
+   "summary": "arXiv论文：LongTake，长视频生成的两阶段训练管线。",
+   "why": "直接解决长视频扩散生成质量问题。",
+   "tags": [
+    "长视频生成",
+    "扩散模型",
+    "训练"
+   ],
+   "entity": "LongTake",
+   "kind": "paper"
+  },
+  {
+   "id": "19668b54d1066e5e",
+   "date": "2026-10-02",
+   "title": "AMD以82亿美元收购世界模型开发商World Labs - 搜狐网",
+   "link": "https://m.sohu.com/a/1083186969_114765?scm=10001.325_13-325_13.0.0-0-0-0-0.5_1334",
+   "source": "新闻 · 世界模型（中文）",
+   "priority": "medium",
+   "summary": "AMD以82亿美元收购世界模型开发商World Labs。",
+   "why": "重大行业收购，影响AI生态格局。",
+   "tags": [
+    "AMD",
+    "World Labs",
+    "收购"
+   ],
+   "entity": "World Labs",
+   "kind": "news"
+  },
+  {
+   "id": "439d057160ef1e62",
+   "date": "2026-10-02",
+   "title": "AIsphere Launches PixVerse R2, a Real-Time World Model That Remembers What Happens in a Session - pandaily.com",
+   "link": "https://pandaily.com/aisphere-pixverse-r2-real-time-world-model-omni-causal-ar",
+   "source": "新闻 · 世界模型（英文）",
+   "priority": "medium",
+   "summary": "AIsphere发布PixVerse R2实时世界模型，可记忆会话内容。",
+   "why": "新模型发布，但非知名机构，影响有限。",
+   "tags": [
+    "PixVerse",
+    "世界模型",
+    "实时"
+   ],
+   "entity": "PixVerse R2",
+   "kind": "release"
+  },
+  {
+   "id": "6b6827d500098fda",
+   "date": "2026-10-02",
+   "title": "Audible World Models: Spatially Aware Sound Generation for 3D Worlds",
+   "link": "https://arxiv.org/abs/2609.38444",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "medium",
+   "summary": "arXiv论文：Audible World Models，3D世界声音生成框架。",
+   "why": "3D世界生成相关，但偏音频非核心方向。",
+   "tags": [
+    "世界模型",
+    "音频生成",
+    "3D"
+   ],
+   "entity": "Audible World Models",
+   "kind": "paper"
+  },
+  {
+   "id": "fd85adb2101edbd2",
+   "date": "2026-10-02",
+   "title": "VR-JEPA: Learning Contrastive-State Latent Guidance for Generation-based Video Reasoning",
+   "link": "https://arxiv.org/abs/2609.40129",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "medium",
+   "summary": "arXiv论文：VR-JEPA，对比态潜在引导的视频推理生成。",
+   "why": "视频推理生成，偏推理非核心优化方向。",
+   "tags": [
+    "JEPA",
+    "视频推理",
+    "生成"
+   ],
+   "entity": "VR-JEPA",
+   "kind": "paper"
+  },
+  {
+   "id": "e04998da76944724",
+   "date": "2026-10-02",
+   "title": "LOCI: Spatial Linear Memory for Streaming World Models",
+   "link": "https://arxiv.org/abs/2609.40222",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "medium",
+   "summary": "LOCI 提出混合空间记忆架构，在视频世界模型中同时保留 KV cache 与循环记忆。",
+   "why": "视频生成/世界模型方向，对长视频生成有参考价值。",
+   "tags": [
+    "world model",
+    "video generation",
+    "memory"
+   ],
+   "entity": "LOCI",
+   "kind": "paper"
+  },
+  {
+   "id": "6cab452810f79cec",
+   "date": "2026-10-02",
+   "title": "Physis-Lang: Self-Evolving Language as a Physical Representation for Video World Model",
+   "link": "https://arxiv.org/abs/2609.40358",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "medium",
+   "summary": "Physis-Lang 用自演化物理语言作为视频世界模型的共享可优化表示。",
+   "why": "视频世界模型新思路，与生成模型方向相关。",
+   "tags": [
+    "world model",
+    "video",
+    "language"
+   ],
+   "entity": "Physis-Lang",
+   "kind": "paper"
+  },
+  {
+   "id": "0593b18d11e1cf8f",
+   "date": "2026-10-02",
+   "title": "World-as-Graph: Relational World Modeling Through Latent Space Graphs",
+   "link": "https://arxiv.org/abs/2609.38927",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "medium",
+   "summary": "World-as-Graph 提出基于图的物体中心世界模型，引入关系归纳偏置。",
+   "why": "世界模型架构研究，与视频生成方向相关。",
+   "tags": [
+    "world model",
+    "graph",
+    "object-centric"
+   ],
+   "entity": "World-as-Graph",
+   "kind": "paper"
+  },
+  {
+   "id": "506beff8e506dab8",
+   "date": "2026-10-02",
+   "title": "The Planning Limits of Latent World Models",
+   "link": "https://arxiv.org/abs/2609.39235",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "medium",
+   "summary": "研究潜空间世界模型在机器人规划中的失效边界，基于五种自监督视觉骨干。",
+   "why": "世界模型理论分析，与核心工程方向关联较弱。",
+   "tags": [
+    "world model",
+    "planning",
+    "robotics"
+   ],
+   "entity": "The Planning Limits of Latent World Models",
+   "kind": "paper"
+  },
+  {
+   "id": "6837d67674d08580",
+   "date": "2026-10-02",
+   "title": "MotionWeave: Learning Motion-Centered Future Dynamics for Vision-Language-Action Policies",
+   "link": "https://arxiv.org/abs/2609.39324",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "medium",
+   "summary": "MotionWeave 提出运动中心的未来动态框架，用于 VLA 策略的 action-chunk 预测。",
+   "why": "视频-动作建模研究，与生成方向关联有限。",
+   "tags": [
+    "VLA",
+    "motion",
+    "policy"
+   ],
+   "entity": "MotionWeave",
+   "kind": "paper"
+  },
+  {
+   "id": "ce17c2207eb7c61f",
+   "date": "2026-10-02",
+   "title": "Language-Conditioned World Modeling for Visual Navigation",
+   "link": "https://arxiv.org/abs/2603.26741",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "medium",
+   "summary": "研究语言条件视觉导航，发布含 39,016 条轨迹的 LCVN 数据集。",
+   "why": "具身导航方向，与核心生成方向关联较弱。",
+   "tags": [
+    "navigation",
+    "language",
+    "dataset"
+   ],
+   "entity": "LCVN",
+   "kind": "paper"
+  },
   {
    "id": "e99132d77d7fa286",
    "date": "2026-10-01",
@@ -2538,6 +2725,7 @@
  ],
  "threads": {
   "World Labs": [
+   "19668b54d1066e5e",
    "e99132d77d7fa286",
    "c14204daba3690ec",
    "5cac54899f8e4b58",
@@ -2581,6 +2769,10 @@
    "708fceb9660b3088",
    "b7a54cf38a39b91f",
    "7159f77e0350e3bf"
+  ],
+  "PixVerse R2": [
+   "439d057160ef1e62",
+   "cb1051bfc539d49e"
   ],
   "General Intuition": [
    "f064edbace15a5e8",
@@ -2629,6 +2821,33 @@
   "魔芯科技": [
    "fe9d33edf0701555",
    "92ea4301b3012f12"
+  ],
+  "LongTake": [
+   "c1b0920138ae9f83"
+  ],
+  "Audible World Models": [
+   "6b6827d500098fda"
+  ],
+  "VR-JEPA": [
+   "fd85adb2101edbd2"
+  ],
+  "LOCI": [
+   "e04998da76944724"
+  ],
+  "Physis-Lang": [
+   "6cab452810f79cec"
+  ],
+  "World-as-Graph": [
+   "0593b18d11e1cf8f"
+  ],
+  "The Planning Limits of Latent World Models": [
+   "506beff8e506dab8"
+  ],
+  "MotionWeave": [
+   "6837d67674d08580"
+  ],
+  "LCVN": [
+   "ce17c2207eb7c61f"
   ],
   "DreamFold": [
    "5061f6cf0534d7ba"
@@ -2734,9 +2953,6 @@
   ],
   "36Kr": [
    "6132034ce3311958"
-  ],
-  "PixVerse R2": [
-   "cb1051bfc539d49e"
   ],
   "智源社区": [
    "5785d56b9b0a6c6e"
@@ -2851,19 +3067,37 @@
   ]
  },
  "digest": {
-  "text": "本周世界模型方向新条目密集，约40条，但真正有实质进展的不多。最值得注意的是推理加速侧的 QuantWM，提出 2-bit KV Cache 量化并解决时序闪烁，直接命中推理工程师关心的部署问题。系统侧，NVIDIA 发布 OmniDreams 面向闭环自动驾驶仿真的实时生成式世界模型，Runway 的 WorldPrompt 主打实时视频/音频世界生成，二者代表工业界对实时性的追求。评测侧出现 HappyWorld-Bench 和 WorldRoamBench 两个基准，试图统一长程稳定性与多维度评测，但尚未形成共识。其余大量条目为论文（如 DeltaWAM、Streaming-WAM、Anchored Planning、AD-WM 等）聚焦机器人操控与规划，以及 4DGS 相关（SplatLabel、AdaTex4D、4DGS-Fixer），属于场景表示工具而非世界模型本体。行业层面，生数科技获 2.9 亿美元融资、World Labs 与 AMI Labs 共获 23 亿美元、极佳视界冲刺港股 IPO，但多家公司对商业化路径保持沉默，噱头成分较大。整体看，本周是论文+融资热闹、但可落地突破集中在量化与实时系统两端的典型一周。",
+  "text": "本周世界模型赛道的核心事件是AMD以82亿美元全股票收购李飞飞的World Labs，李飞飞将加入AMD任首席科学家，这是世界模型领域最大的一笔交易，标志着AI芯片竞争正式延伸到世界模型层面。与此同时，World Labs发布了其首款可商用世界模型Marble，支持任意模态生成3D世界。NVIDIA Cosmos 3上线AWS，面向Physical AI提供多模态世界模型能力。融资方面，General Intuition完成2.2亿美元融资用于物理AI世界模型。国内智驾世界模型密集落地：Momenta R7上车标致、Jeep并出海欧洲，蔚来NWM推送，零跑发布自研LWM。学术方面涌现大量新工作，包括LOCI的混合空间记忆架构、World-as-Graph的图结构关系建模、LongTake长视频两阶段训练管线、VR-JEPA对比态引导视频推理，以及阿里DAMO对世界模型交互可靠性短板的分析。整体看，本周产业侧的并购与量产落地是真正的进展，学术侧则集中在长时序一致性、记忆机制和物理合理性等核心瓶颈。",
   "highlights": [
-   "QuantWM 提出 2-bit KV Cache 量化，解决世界模型时序闪烁",
-   "NVIDIA 发布 OmniDreams 实时生成式世界模型，面向闭环自动驾驶仿真",
-   "Runway WorldPrompt 实现实时视频/音频世界模型生成",
-   "HappyWorld-Bench 与 WorldRoamBench 尝试统一世界模型评测",
-   "生数科技获 2.9 亿美元融资，极佳视界冲刺港股 IPO"
+   "AMD 82亿美元收购World Labs，李飞飞加入任首席科学家",
+   "NVIDIA Cosmos 3上线AWS，多模态世界模型面向Physical AI",
+   "Momenta R7世界模型出海欧洲，上车标致Jeep",
+   "LOCI提出混合空间记忆架构用于流式世界模型",
+   "World Labs发布首款可商用3D世界模型Marble"
   ],
-  "week": "2026-09-19 ~ 2026-09-26",
-  "generated_at": "2026-09-26T01:45:03+00:00",
+  "week": "2026-09-25 ~ 2026-10-02",
+  "generated_at": "2026-10-02T02:19:39+00:00",
   "model": "LongCat-2.0"
  },
  "sota": [
+  {
+   "model": "Marble",
+   "org": "World Labs",
+   "date": "2026-09-29",
+   "open_weights": false,
+   "spec": "任意模态生成3D世界，可商用世界模型",
+   "link": "https://www.geekpark.net/news/371259",
+   "note": "李飞飞创业公司首款商用3D世界模型，已被AMD收购"
+  },
+  {
+   "model": "Cosmos 3",
+   "org": "NVIDIA",
+   "date": "2026-09-29",
+   "open_weights": false,
+   "spec": "多模态世界模型，面向Physical AI，已上线AWS",
+   "link": "https://aws.amazon.com/blogs/physical-ai/nvidia-cosmos-3-on-aws-omnimodal-world-models-for-physical-ai/",
+   "note": "工业级多模态世界模型平台，云化部署"
+  },
   {
    "model": "OmniDreams",
    "org": "NVIDIA",
@@ -2872,6 +3106,15 @@
    "spec": "实时生成式世界模型，面向闭环自动驾驶仿真",
    "link": "https://arxiv.org/abs/2606.03159",
    "note": "工业级实时闭环仿真系统"
+  },
+  {
+   "model": "PixVerse R2",
+   "org": "AIsphere",
+   "date": "2026-10-02",
+   "open_weights": false,
+   "spec": "实时世界模型，可记忆会话内容",
+   "link": "https://pandaily.com/aisphere-pixverse-r2-real-time-world-model-omni-causal-ar",
+   "note": "实时生成且具备会话记忆能力"
   },
   {
    "model": "WorldPrompt",
@@ -2897,17 +3140,8 @@
    "date": "2026-09-19",
    "open_weights": false,
    "spec": "原生3D城市世界模型",
-   "link": "https://news.google.com/rss/articles/CBMibkFVX3lxTE9rTmdEY2piX1ROMjBBb1FrNnRZYVdyVEdRdURaTFJXRzBaTW9Ya3phb2RWX2pORlR1dnN4eGlmWW82d3pfbHA5MnpIYWs4ZjEzYUtlaTA4S0VQZ1dBQlhMajFWMjN0cjJOZlp4TXdB?oc=5",
+   "link": "https://pandaily.com/amap-releases-abot-earth-0-7-3d-native-urban-world-model",
    "note": "面向城市尺度的原生3D世界模型"
-  },
-  {
-   "model": "LWM",
-   "org": "零跑",
-   "date": "2026-09-19",
-   "open_weights": false,
-   "spec": "—",
-   "link": "https://news.google.com/rss/articles/CBMickFVX3lxTE5uUWg2bmFZSkdEQjhTRGJRcmpudjNZNUk3S3NabWhMM3U3VWJ0bjlraVYtNDBJTFhjQjZncnpESTJoR2NXczlzR3RnbVB1ak9ZZ3NZVUtWQUwzWHY0LXF3Z0FmOUZTTE5pSFUxNEdpdFNjdw?oc=5",
-   "note": "车端量产部署的自研智驾世界模型"
   },
   {
    "model": "Momenta R7",
@@ -2915,8 +3149,17 @@
    "date": "2026-09-19",
    "open_weights": false,
    "spec": "—",
-   "link": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE1FUVFRdThyVXBSY2ZvS3BxMFNoMjJkUnNPR1FIS3k5enkwQzlpSEVBT0N2RmxtaDgtQjN1RjB0dUx5bl9YQVVNVEcyUUM2cGNmVDdVOWNVdzFGUTQ?oc=5",
-   "note": "配套奔驰与荣威等量产车型的智驾世界模型"
+   "link": "https://chejiahao.autohome.com.cn/info/26555692?reply=reply",
+   "note": "已上车奔驰、荣威、标致、Jeep，出海欧洲"
+  },
+  {
+   "model": "LWM",
+   "org": "零跑",
+   "date": "2026-09-19",
+   "open_weights": false,
+   "spec": "—",
+   "link": "https://chejiahao.autohome.com.cn/",
+   "note": "零跑自研智驾世界模型，配套LEAP5.0架构"
   },
   {
    "model": "NWM",
@@ -2924,26 +3167,8 @@
    "date": "2026-09-19",
    "open_weights": false,
    "spec": "—",
-   "link": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE1fZUs1eUo3Wm1iMWxDS3lWX29ERjFGUkl4STBnX1N4MTdDSURpNjZvOXRFTW1SMzA3TGJ3SE5wN3VmOVBRZ29qRmxybUpJa1dnWTN2S3E1S1ZyeTA?oc=5",
+   "link": "https://chejiahao.autohome.com.cn/",
    "note": "已落地乐道L90智驾泊车及掉头场景"
-  },
-  {
-   "model": "AlayaVista",
-   "org": "—",
-   "date": "2026-09-16",
-   "open_weights": false,
-   "spec": "全景世界演化与透视观察解耦，流式视频架构",
-   "link": "https://huggingface.co/papers/2609.14462",
-   "note": "解耦状态演化与视角观察的流式视频世界模型"
-  },
-  {
-   "model": "World in World",
-   "org": "—",
-   "date": "2026-09-14",
-   "open_weights": false,
-   "spec": "免训练推理接口，支持自回归视频长时探索",
-   "link": "https://huggingface.co/papers/2609.11548",
-   "note": "免训练长时新视角推理接口方案"
   },
   {
    "model": "PWM",
@@ -2962,15 +3187,6 @@
    "spec": "长视界视频世界模型",
    "link": "https://github.com/Junchao-cs/SolarWM",
    "note": "主打长时序视频推演的开源项目"
-  },
-  {
-   "model": "Recursive Code World Models",
-   "org": "—",
-   "date": "2026-09-14",
-   "open_weights": false,
-   "spec": "递归场景程序与全局局部解算器，单图输入",
-   "link": "https://huggingface.co/papers/2609.11499",
-   "note": "基于代码程序表征的递归3D世界生成方法"
   }
  ]
 }

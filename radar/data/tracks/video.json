@@ -2,8 +2,229 @@
  "id": "video",
  "name": "视频生成模型",
  "blurb": "文生视频、图生视频、视频 VAE 与 DiT 加速：Wan、Sora、Veo、可灵、海螺、Seedance、Vidu、LTX、HunyuanVideo 等的发布、论文、benchmark 与推理框架支持。",
- "updated": "2026-10-01T02:15:33+00:00",
+ "updated": "2026-10-02T02:19:39+00:00",
  "entries": [
+  {
+   "id": "c1b0920138ae9f83",
+   "date": "2026-10-02",
+   "title": "LongTake: Learning to Sustain Dynamics in Long-Horizon Video Generation",
+   "link": "https://arxiv.org/abs/2609.38562",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "high",
+   "summary": "arXiv论文：LongTake，长视频生成的两阶段训练管线。",
+   "why": "直接解决长视频扩散生成质量问题。",
+   "tags": [
+    "长视频生成",
+    "扩散模型",
+    "训练"
+   ],
+   "entity": "LongTake",
+   "kind": "paper"
+  },
+  {
+   "id": "2e30c5e21f23ffdc",
+   "date": "2026-10-02",
+   "title": "No Corners Cut: State-Grounded Transitions for Mid-Stream Prompt Switches in Video Generation",
+   "link": "https://arxiv.org/abs/2609.38691",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "high",
+   "summary": "arXiv论文：SEGUE，流式视频生成中提示切换的状态忠实过渡。",
+   "why": "解决流式生成中prompt切换的关键问题。",
+   "tags": [
+    "流式生成",
+    "prompt切换",
+    "视频"
+   ],
+   "entity": "SEGUE",
+   "kind": "paper"
+  },
+  {
+   "id": "df2dc258d94fd6eb",
+   "date": "2026-10-02",
+   "title": "PARK: Accurate Block Retrieval for Sparse Attention in Video Diffusion Transformers",
+   "link": "https://arxiv.org/abs/2609.38978",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "high",
+   "summary": "arXiv论文：PARK，视频DiT稀疏注意力的精确块检索。",
+   "why": "直接优化DiT视频生成的注意力计算效率。",
+   "tags": [
+    "DiT",
+    "稀疏注意力",
+    "视频生成"
+   ],
+   "entity": "PARK",
+   "kind": "paper"
+  },
+  {
+   "id": "900eb93769c9ab25",
+   "date": "2026-10-02",
+   "title": "DeCoPrune: Efficient KV-Cache Pruning for Autoregressive Video Diffusion via Denoising Consistency",
+   "link": "https://arxiv.org/abs/2609.39096",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "high",
+   "summary": "arXiv论文：DeCoPrune，自回归视频扩散的KV Cache剪枝。",
+   "why": "直接优化自回归视频生成的推理效率。",
+   "tags": [
+    "KV Cache",
+    "剪枝",
+    "自回归视频"
+   ],
+   "entity": "DeCoPrune",
+   "kind": "paper"
+  },
+  {
+   "id": "a0b8dbf32878050e",
+   "date": "2026-10-02",
+   "title": "Uncertainty-Aware Consistency Distillation for Few-Step Video Generation",
+   "link": "https://arxiv.org/abs/2609.39132",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "high",
+   "summary": "arXiv论文：不确定性感知一致性蒸馏用于少步视频生成。",
+   "why": "提升视频蒸馏质量，直接影响推理速度。",
+   "tags": [
+    "一致性蒸馏",
+    "少步生成",
+    "视频"
+   ],
+   "entity": "Uncertainty-Aware Consistency Distillation",
+   "kind": "paper"
+  },
+  {
+   "id": "6673b8758cd51a82",
+   "date": "2026-10-02",
+   "title": "Utopai Studios Launches PAI Production Platform and Utopai X Video Model - awn.com",
+   "link": "https://www.awn.com/news/utopai-studios-launches-pai-production-platform-and-utopai-x-video-model",
+   "source": "新闻 · 视频生成（英文）",
+   "priority": "medium",
+   "summary": "Utopai Studios 发布 PAI 制作平台和 Utopai X 视频模型。",
+   "why": "新视频生成模型发布，但非知名机构，热度待观察。",
+   "tags": [
+    "Utopai",
+    "视频生成",
+    "发布"
+   ],
+   "entity": "Utopai Studios",
+   "kind": "news"
+  },
+  {
+   "id": "a95a51f193ed47ce",
+   "date": "2026-10-02",
+   "title": "FrameMorrow: Future-guided Frame Selection with Prospective Tokens for Long-Horizon Video Generation",
+   "link": "https://arxiv.org/abs/2609.38839",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "medium",
+   "summary": "arXiv论文：FrameMorrow，面向未来的帧选择用于长视频生成。",
+   "why": "长视频生成历史选择策略，有一定参考价值。",
+   "tags": [
+    "长视频生成",
+    "帧选择",
+    "历史利用"
+   ],
+   "entity": "FrameMorrow",
+   "kind": "paper"
+  },
+  {
+   "id": "8e1ecfc0c6f1d011",
+   "date": "2026-10-02",
+   "title": "MindWorldBench: Evaluating Mental-State-to-Behavior Reasoning in Image-to-Video Generation",
+   "link": "https://arxiv.org/abs/2609.39147",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "medium",
+   "summary": "arXiv论文：MindWorldBench，心理状态到行为的视频生成评测。",
+   "why": "新评测基准，偏认知推理非核心方向。",
+   "tags": [
+    "评测",
+    "心理状态",
+    "视频生成"
+   ],
+   "entity": "MindWorldBench",
+   "kind": "paper"
+  },
+  {
+   "id": "fd85adb2101edbd2",
+   "date": "2026-10-02",
+   "title": "VR-JEPA: Learning Contrastive-State Latent Guidance for Generation-based Video Reasoning",
+   "link": "https://arxiv.org/abs/2609.40129",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "medium",
+   "summary": "arXiv论文：VR-JEPA，对比态潜在引导的视频推理生成。",
+   "why": "视频推理生成，偏推理非核心优化方向。",
+   "tags": [
+    "JEPA",
+    "视频推理",
+    "生成"
+   ],
+   "entity": "VR-JEPA",
+   "kind": "paper"
+  },
+  {
+   "id": "f20f12862e691c62",
+   "date": "2026-10-02",
+   "title": "GLARE: Generating Listening Heads with Appropriate Reactions",
+   "link": "https://arxiv.org/abs/2609.40317",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "medium",
+   "summary": "GLARE 研究生成对话中听众自然反应，构建约 147 小时 speaker-listener 配对数据集。",
+   "why": "视频生成下游应用，但与核心方向关联较弱。",
+   "tags": [
+    "talking head",
+    "listener",
+    "dataset"
+   ],
+   "entity": "GLARE",
+   "kind": "paper"
+  },
+  {
+   "id": "f080498806ebeff1",
+   "date": "2026-10-02",
+   "title": "ViTeX-Bench: Benchmarking High-Fidelity Video Scene Text Editing",
+   "link": "https://arxiv.org/abs/2609.40356",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "medium",
+   "summary": "ViTeX-Bench 提出视频场景文本编辑基准，关注时序一致性与局部编辑保真度。",
+   "why": "视频编辑评测，与扩散/生成方向相关但非核心。",
+   "tags": [
+    "video editing",
+    "benchmark",
+    "text"
+   ],
+   "entity": "ViTeX-Bench",
+   "kind": "paper"
+  },
+  {
+   "id": "6cab452810f79cec",
+   "date": "2026-10-02",
+   "title": "Physis-Lang: Self-Evolving Language as a Physical Representation for Video World Model",
+   "link": "https://arxiv.org/abs/2609.40358",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "medium",
+   "summary": "Physis-Lang 用自演化物理语言作为视频世界模型的共享可优化表示。",
+   "why": "视频世界模型新思路，与生成模型方向相关。",
+   "tags": [
+    "world model",
+    "video",
+    "language"
+   ],
+   "entity": "Physis-Lang",
+   "kind": "paper"
+  },
+  {
+   "id": "639f24031f9321d6",
+   "date": "2026-10-02",
+   "title": "PISCO: Precise Video Instance Insertion with Sparse Control",
+   "link": "https://arxiv.org/abs/2602.08277",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "medium",
+   "summary": "PISCO 研究视频中精确实例插入，保持场景完整性与物理一致性。",
+   "why": "视频生成精细控制，与扩散模型应用相关。",
+   "tags": [
+    "video editing",
+    "instance insertion",
+    "control"
+   ],
+   "entity": "PISCO",
+   "kind": "paper"
+  },
   {
    "id": "233da7ca3052d044",
    "date": "2026-10-01",
@@ -1836,6 +2057,45 @@
    "3a06f956823425ca",
    "782c2b2a23d1da73"
   ],
+  "LongTake": [
+   "c1b0920138ae9f83"
+  ],
+  "SEGUE": [
+   "2e30c5e21f23ffdc"
+  ],
+  "PARK": [
+   "df2dc258d94fd6eb"
+  ],
+  "DeCoPrune": [
+   "900eb93769c9ab25"
+  ],
+  "Uncertainty-Aware Consistency Distillation": [
+   "a0b8dbf32878050e"
+  ],
+  "Utopai Studios": [
+   "6673b8758cd51a82"
+  ],
+  "FrameMorrow": [
+   "a95a51f193ed47ce"
+  ],
+  "MindWorldBench": [
+   "8e1ecfc0c6f1d011"
+  ],
+  "VR-JEPA": [
+   "fd85adb2101edbd2"
+  ],
+  "GLARE": [
+   "f20f12862e691c62"
+  ],
+  "ViTeX-Bench": [
+   "f080498806ebeff1"
+  ],
+  "Physis-Lang": [
+   "6cab452810f79cec"
+  ],
+  "PISCO": [
+   "639f24031f9321d6"
+  ],
   "H3": [
    "b6f58078d1dba713"
   ],
@@ -2027,27 +2287,36 @@
   ]
  },
  "digest": {
-  "text": "本周视频生成领域进展密集，核心主线是推理加速与实时化：TurboT2VA 用分布蒸馏+轨迹蒸馏联合方案将音视频生成提速 54 倍；ViRDM 将表示分布蒸馏用于少步因果视频生成并去掉 teacher-critic 栈；TRACK 提出训练无关的轨迹感知路由，用大小模型异构去噪加速扩散；Video DeltaNet 以局部 Softmax+帧级线性显存混合注意力面向低显存实时直播；Mask Forcing 开源双噪声掩码展开的自回归扩散蒸馏。产品侧，字节 Seedance 2.5 上线 480P 验证+1080P 出图的 Draft 模式并支持单图生成可交互 3D 世界，Vidu S2 发布支持实时互动、实时改视频与空间视频，Google Vids 免费 HD 生成向所有个人账号开放，Runway 计划转向实时可交互流式输出。此外 QuantWM 提出 2-bit KV Cache 量化解决时序闪烁，WanPE 以 397B 参数做电影级分镜规划，DreamX-Creator 开源 2K 原生音视频协同生成。噱头方面，部分社区 GGUF 量化仓库和营销号宣称的「神经元衍生 5 倍提速」缺乏可验证细节，需谨慎看待。",
+  "text": "本周视频生成领域密集发布，核心看点集中在三条线：一是产品端，快手可灵 Kling 4.0 开启内测，支持 30 秒原生片段与多参考控制；生数科技 Vidu S2 发布，主打实时互动、实时改视频与空间视频；Google 向所有个人账号免费开放 1080p AI 视频生成。二是加速与效率，多篇论文聚焦少步生成与推理优化，包括 TurboT2VA 联合蒸馏提速 54 倍、ViRDM 去掉 teacher-critic 栈、DeCoPrune 的 KV Cache 剪枝、PARK 的稀疏注意力块检索、HetA-DiT 异构注意力、TRACK 训练无关轨迹路由等，这些是真正可落地的工程进展。三是长视频与一致性，LongTake、FrameMorrow、SEGUE、MVAgent 等围绕长时连贯与流式提示切换提出新方案。噱头方面，部分新闻标题夸大\"反超\"\"300%提速\"，实际多为社区二创或营销话术，需谨慎看待。整体看，少步蒸馏、稀疏注意力、KV Cache 优化是本周最具工程价值的方向。",
   "highlights": [
-   "TurboT2VA 联合蒸馏实现音视频生成 54 倍提速",
-   "Seedance 2.5 上线 Draft 模式与单图 3D 世界生成",
+   "Kling 4.0 内测：30 秒原生片段 + 多参考控制",
    "Vidu S2 发布：实时互动、实时改视频、空间视频",
-   "TRACK 训练无关轨迹路由加速视频扩散",
-   "QuantWM 提出 2-bit KV Cache 量化消除时序闪烁"
+   "TurboT2VA：联合蒸馏音视频生成提速 54 倍",
+   "DeCoPrune：自回归视频扩散 KV Cache 剪枝",
+   "Google 免费开放 1080p AI 视频生成"
   ],
-  "week": "2026-09-19 ~ 2026-09-26",
-  "generated_at": "2026-09-26T01:45:03+00:00",
+  "week": "2026-09-25 ~ 2026-10-02",
+  "generated_at": "2026-10-02T02:19:39+00:00",
   "model": "LongCat-2.0"
  },
  "sota": [
+  {
+   "model": "Kling 4.0",
+   "org": "快手",
+   "date": "2026-09-29",
+   "open_weights": false,
+   "spec": "支持 30 秒原生片段与多参考控制",
+   "link": "https://finance.eastmoney.com/a/202609293886092892.html",
+   "note": "本周最新旗舰，时长与控制能力升级"
+  },
   {
    "model": "Seedance 2.5",
    "org": "ByteDance",
    "date": "2026-09-20",
    "open_weights": false,
-   "spec": "支持 480P 验证+1080P 出图 Draft 模式，单图生成可交互 3D 世界",
-   "link": "https://news.google.com/rss/articles/CBMie0FVX3lxTE5DVkZnLTdDa0l6cmkwNnhoNVBmNkVwblhiMmtObWNzc3JtVzdUaUhUVXB3dkpJQlJrWnI2cnBrRFRCNzhRaTk3WWUtMFdmb2lPQnFMQXdYeU1jZzJyOXRPUWNwOVptVVJSZzNmRmtPVGx1dzhZZ1Y1WE5fQQ?oc=5",
-   "note": "本周更新最频繁的旗舰，Draft 模式降低试错成本"
+   "spec": "480P 验证 + 1080P 出图 Draft 模式，单图生成可交互 3D 世界",
+   "link": "https://www.londondaily.news/seedance-2-0-and-seedance-2-5-the-latest-innovations-in-ai-video-generation/",
+   "note": "Draft 模式降低试错成本，更新频繁"
   },
   {
    "model": "Vidu S2",
@@ -2059,6 +2328,15 @@
    "note": "主打实时交互与编辑的闭源新旗舰"
   },
   {
+   "model": "MiniMax-H3",
+   "org": "MiniMax",
+   "date": "2026-09",
+   "open_weights": false,
+   "spec": "全模态统一生成模型，强调物理世界推理",
+   "link": "https://huggingface.co/papers/2609.18323",
+   "note": "闭源全模态旗舰，社区衍生生态活跃"
+  },
+  {
    "model": "LynnReal-Omni",
    "org": "LynnReal-AI",
    "date": "2026-09",
@@ -2066,15 +2344,6 @@
    "spec": "32B 多模态扩散 Transformer，支持 4 步快速推理",
    "link": "https://github.com/LynnReal-AI/LynnReal-Omni",
    "note": "开源少步数快速推理多模态视频框架"
-  },
-  {
-   "model": "MiniMax-H3",
-   "org": "MiniMax",
-   "date": "2026-09",
-   "open_weights": false,
-   "spec": "全模态统一生成模型，强调物理世界推理",
-   "link": "https://huggingface.co/papers/2609.18323",
-   "note": "闭源全模态旗舰，衍生社区生态活跃"
   },
   {
    "model": "DreamX-Creator",
@@ -2095,40 +2364,40 @@
    "note": "大参数量开源动图生成基模"
   },
   {
-   "model": "Video DeltaNet",
+   "model": "TurboT2VA",
    "org": "—",
-   "date": "2026-09",
+   "date": "2026-09-26",
    "open_weights": false,
-   "spec": "局部 Softmax 与帧级线性显存混合注意力",
-   "link": "https://huggingface.co/papers/2609.20744",
-   "note": "面向低显存实时直播生成的架构方案"
+   "spec": "分布蒸馏 + 轨迹蒸馏联合方案，音视频生成提速 54 倍",
+   "link": "https://hub.baai.ac.cn/view/58268",
+   "note": "本周少步生成加速代表性工作"
   },
   {
-   "model": "Mask Forcing",
-   "org": "delaprada",
-   "date": "2026-09",
-   "open_weights": true,
-   "spec": "双噪声掩码展开的自回归扩散蒸馏方案",
-   "link": "https://github.com/delaprada/Mask-Forcing",
-   "note": "自回归视频扩散推理蒸馏加速工具"
+   "model": "DeCoPrune",
+   "org": "—",
+   "date": "2026-10-02",
+   "open_weights": false,
+   "spec": "基于去噪一致性的自回归视频扩散 KV Cache 剪枝",
+   "link": "https://arxiv.org/abs/2609.39096",
+   "note": "推理内存优化的实用方向"
   },
   {
-   "model": "TaoMate-H3",
-   "org": "TaoLiveAIGC",
-   "date": "2026-09",
-   "open_weights": true,
-   "spec": "支持 3 步快速采样推理管线",
-   "link": "https://huggingface.co/TaoLiveAIGC/TaoMate-H3",
-   "note": "主打快速少步采样的文生视频模型"
+   "model": "PARK",
+   "org": "—",
+   "date": "2026-10-02",
+   "open_weights": false,
+   "spec": "视频 DiT 稀疏注意力的精确块检索",
+   "link": "https://arxiv.org/abs/2609.38978",
+   "note": "长视频注意力效率优化"
   },
   {
-   "model": "FastH3-V2",
-   "org": "realrebelai",
-   "date": "2026-09",
-   "open_weights": true,
-   "spec": "提供 GGUF 格式量化权重",
-   "link": "https://huggingface.co/realrebelai/FastH3-V2_GGUFs",
-   "note": "端侧/消费级显卡部署优化模型"
+   "model": "HetA-DiT",
+   "org": "—",
+   "date": "2026-09-28",
+   "open_weights": false,
+   "spec": "按 token 难度自适应分配全局/稀疏注意力",
+   "link": "https://arxiv.org/abs/2609.31050",
+   "note": "异构注意力机制提升扩散效率"
   },
   {
    "model": "HiDream-O1-Video-1.0",
