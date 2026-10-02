@@ -36,6 +36,7 @@ radar/checks/*.md         巡检报告
 notes/notes.json          笔记索引；templates/note/ 模板
 guides/{guides,links}.json 指南篇目、推荐链接注册表
 .github/workflows/{radar,health,radar-alert,jobs,contributions,xhs}.yml
+.github/workflows/gpu-probe.yml  手动检查 Windows dd-lgystoic GPU runner 的驱动、工具链和已安装 PyTorch CUDA 计算
 projects/                 外部 fork 的 submodule 控制面；源码与 Git 历史不进入 Pages
 .github/agents/daily-check.md  判断层手册（边界）
 docs/prd/*.md             本目录

@@ -1,0 +1,68 @@
+name: GPU runner 环境检查
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: [self-hosted, Windows, X64, dd-lgystoic]
+    timeout-minutes: 5
+    steps:
+      - name: 检查显卡与开发环境
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Continue'
+          Write-Output "=== 操作系统 ==="
+          [System.Environment]::OSVersion.VersionString
+          Write-Output "=== NVIDIA GPU / 驱动 ==="
+          $smi = Get-Command nvidia-smi -ErrorAction SilentlyContinue
+          if (-not $smi) {
+            $candidate = Join-Path $env:SystemRoot 'System32/nvidia-smi.exe'
+            if (Test-Path $candidate) { $smi = $candidate }
+          }
+          if ($smi) {
+            & $smi --query-gpu=name,driver_version,memory.total --format=csv
+            & $smi
+          } else {
+            Write-Output '未找到 nvidia-smi；需要进一步核实 NVIDIA 驱动和 PATH。'
+          }
+          Write-Output "=== CUDA toolkit ==="
+          if (Get-Command nvcc -ErrorAction SilentlyContinue) { nvcc --version }
+          Write-Output "=== Python / Git / Docker / WSL ==="
+          foreach ($tool in @('python', 'py', 'git', 'docker', 'wsl')) {
+            $command = Get-Command $tool -ErrorAction SilentlyContinue
+            if ($command) {
+              Write-Output "$tool : $($command.Source)"
+              if ($tool -eq 'wsl') { & $tool --list --verbose }
+              else { & $tool --version }
+            } else { Write-Output "$tool : 未在 PATH 找到" }
+          }
+          Write-Output "=== PyTorch CUDA 计算检查（只使用已安装环境） ==="
+          $python = Get-Command python -ErrorAction SilentlyContinue
+          if ($python) {
+            @'
+          import importlib.util
+          if importlib.util.find_spec('torch') is None:
+              print('未安装 PyTorch；本检查不安装依赖。')
+              raise SystemExit(0)
+          import torch
+          print('torch:', torch.__version__, 'CUDA runtime:', torch.version.cuda)
+          print('CUDA available:', torch.cuda.is_available())
+          if torch.cuda.is_available():
+              print('compiled architectures:', torch.cuda.get_arch_list())
+              for index in range(torch.cuda.device_count()):
+                  print('GPU:', index, torch.cuda.get_device_name(index),
+                        'capability:', torch.cuda.get_device_capability(index))
+                  with torch.cuda.device(index):
+                      x = torch.ones((32, 32), device='cuda')
+                      result = x @ x
+                      torch.cuda.synchronize()
+                      assert result[0, 0].item() == 32
+                      print('CUDA matrix multiplication: PASS')
+          '@ | & $python -
+            if ($LASTEXITCODE -ne 0) { throw 'PyTorch CUDA 检查失败，请查看前面的错误。' }
+          }
+          $global:LASTEXITCODE = 0
