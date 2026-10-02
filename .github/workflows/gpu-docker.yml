@@ -26,13 +26,23 @@ jobs:
           if (-not $principal.IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
             throw 'WSL setup requires an elevated runner. No system changes were made.'
           }
+          $restartRequired = $false
           foreach ($feature in @('Microsoft-Windows-Subsystem-Linux', 'VirtualMachinePlatform')) {
             $state = Get-WindowsOptionalFeature -Online -FeatureName $feature
             Write-Output "$feature : $($state.State)"
-            if ($state.State -ne 'Enabled') {
+            if ($state.State -eq 'EnablePending') {
+              $restartRequired = $true
+            } elseif ($state.State -ne 'Enabled') {
               $result = Enable-WindowsOptionalFeature -Online -FeatureName $feature -All -NoRestart
-              Write-Output "$feature : $($result.State); restart required: $($result.RestartNeeded)"
+              $restartRequired = $restartRequired -or $result.RestartNeeded
+              Write-Output "$feature : enable requested; restart required: $($result.RestartNeeded)"
             }
+          }
+          $pendingReboot = Test-Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Component Based Servicing\RebootPending'
+          $hypervisorActive = (Get-CimInstance Win32_ComputerSystem).HypervisorPresent
+          if ($restartRequired -or $pendingReboot -or -not $hypervisorActive) {
+            Write-Output 'Windows features enabled; awaiting reboot. No reboot performed and WSL installation deferred until after reboot.'
+            exit 0
           }
           & wsl.exe --install --no-distribution --no-reboot
           if ($LASTEXITCODE -notin @(0, 3010)) { throw "WSL installation failed: $LASTEXITCODE" }
