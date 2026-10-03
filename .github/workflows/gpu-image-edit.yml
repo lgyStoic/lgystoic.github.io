@@ -120,11 +120,20 @@ jobs:
           }
           Get-Process -Name 'Docker Desktop','com.docker.backend' -ErrorAction SilentlyContinue | Stop-Process -Force
           Start-Sleep -Seconds 2
-          Start-Process 'C:\Program Files\Docker\Docker\Docker Desktop.exe'
+          $launch = @'
+          import os, subprocess
+          child_env = os.environ.copy()
+          child_env.pop('RUNNER_TRACKING_ID', None)
+          subprocess.Popen([r'C:\Program Files\Docker\Docker\Docker Desktop.exe'], env=child_env,
+                           creationflags=subprocess.DETACHED_PROCESS | subprocess.CREATE_NEW_PROCESS_GROUP)
+          '@
+          & 'C:\Program Files\Python312\python.exe' -c $launch
           $ready = $false
           for ($i = 0; $i -lt 45; $i++) {
-            & docker info --format 'CPUs={{.NCPU}} Memory={{.MemTotal}}' 2>$null
-            if ($LASTEXITCODE -eq 0) { $ready = $true; break }
+            try {
+              & docker info --format 'CPUs={{.NCPU}} Memory={{.MemTotal}}' 2>$null
+              if ($LASTEXITCODE -eq 0) { $ready = $true; break }
+            } catch { Write-Output 'Docker startup pending.' }
             Start-Sleep -Seconds 2
           }
           if (-not $ready) {
