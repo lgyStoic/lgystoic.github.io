@@ -59,9 +59,10 @@ jobs:
           }
           $compatFile = Join-Path $env:RUNNER_TEMP 'gpu-image-hf-utils.py'
           & docker cp gpu-image-edit:/sgl-workspace/sglang/python/sglang/multimodal_gen/runtime/utils/hf_diffusers_utils.py $compatFile
-          if ($LASTEXITCODE -eq 0) {
-            Get-Item $compatFile | Select-Object Name, Length
-            Get-Content $compatFile -TotalCount 20
+          Write-Output "COMPAT_COPY_EXIT: $LASTEXITCODE"
+          if (Test-Path $compatFile) {
+            Write-Output ("COMPAT_BYTES: " + (Get-Item $compatFile).Length)
+            Write-Output ([System.IO.File]::ReadAllText($compatFile).Substring(0, [Math]::Min(1500, (Get-Item $compatFile).Length)))
             Get-Content $compatFile | Select-String -Pattern '_WEIGHT_FILE_PATTERNS' -Context 0,12
           }
           $script = @'
