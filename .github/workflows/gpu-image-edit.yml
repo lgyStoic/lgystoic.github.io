@@ -5,7 +5,7 @@ on:
       mode:
         type: choice
         description: "probe 检查；status 查看进度；repair-download 恢复下载；deploy 部署验证"
-        options: [probe, status, repair-download, deploy]
+        options: [probe, status, repair-download, deploy, verify]
         default: deploy
 permissions:
   contents: read
@@ -20,7 +20,7 @@ jobs:
       - uses: actions/checkout@v4
         if: inputs.mode != 'status'
       - name: 检查资源并准备推理镜像
-        if: inputs.mode != 'status'
+        if: inputs.mode != 'status' && inputs.mode != 'verify'
         shell: powershell -NoProfile -NonInteractive -ExecutionPolicy Bypass -File {0}
         run: |
           $ErrorActionPreference = 'Stop'
@@ -149,15 +149,27 @@ jobs:
           & docker cp tools/gpu/image_edit.py gpu-image-edit:/opt/image_edit.py
           if ($LASTEXITCODE -ne 0) { throw 'Cannot copy service script.' }
           & docker start gpu-image-edit
-          & docker exec gpu-image-edit python /opt/image_edit.py verify
-          $verifyCode = $LASTEXITCODE
-          & docker logs --tail 150 gpu-image-edit
-          if ($verifyCode -ne 0) { throw 'Real image-edit verification failed; inspect service logs.' }
+      - name: 独立客户端执行真实图像编辑验收
+        if: inputs.mode == 'deploy' || inputs.mode == 'verify'
+        shell: powershell -NoProfile -NonInteractive -ExecutionPolicy Bypass -File {0}
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $client = "gpu-image-verify-$env:GITHUB_RUN_ID"
+          & docker create --name $client --network container:gpu-image-edit -v gpu-image-outputs:/outputs lmsysorg/sglang:nightly-dev-cu13-20261002-67eab570 python /opt/image_edit.py verify
+          if ($LASTEXITCODE -ne 0) { throw 'Cannot create verification client.' }
+          & docker cp tools/gpu/image_edit.py "${client}:/opt/image_edit.py"
+          if ($LASTEXITCODE -ne 0) { throw 'Cannot copy verification script.' }
+          & docker start -a $client
+          $state = & docker inspect $client --format '{{json .State}}' | ConvertFrom-Json
+          & docker logs --tail 200 gpu-image-edit
+          & docker inspect gpu-image-edit --format '{{json .State}}'
+          if ($state.Running -or $state.ExitCode -ne 0) { throw 'Real image-edit verification failed; inspect service logs.' }
+          & docker rm $client
           New-Item -ItemType Directory -Force -Path gpu-edit-results | Out-Null
           & docker cp gpu-image-edit:/outputs/. gpu-edit-results
           if ($LASTEXITCODE -ne 0) { throw 'Cannot retrieve edit result.' }
       - uses: actions/upload-artifact@v4
-        if: inputs.mode == 'deploy' && success()
+        if: (inputs.mode == 'deploy' || inputs.mode == 'verify') && success()
         with:
           name: gpu-edit-results
           path: gpu-edit-results
