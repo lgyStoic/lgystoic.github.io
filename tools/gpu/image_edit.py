@@ -238,6 +238,16 @@ def create_runtime_layout():
             target.symlink_to(checkpoint)
 
 
+def atomic_source_patch(path, content):
+    """Avoid leaving an empty runtime source if a startup is interrupted."""
+    temporary = path.with_suffix('.compat.tmp')
+    temporary.write_text(content)
+    if temporary.stat().st_size != len(content.encode()):
+        raise RuntimeError(f'Incomplete compatibility write: {path}')
+    temporary.replace(path)
+    print('RUNTIME_PATCH_WRITTEN:', path, path.stat().st_size, flush=True)
+
+
 def enable_gguf_directory_validation():
     """Pinned runtime's completeness checker omitted its supported GGUF format."""
     import importlib
@@ -248,13 +258,12 @@ def enable_gguf_directory_validation():
     original = '_WEIGHT_FILE_PATTERNS = (\n    "*.safetensors",\n    "*.bin",\n    "*.pt",\n    "*.pth",\n    "*.ckpt",\n)'
     updated = original[:-1] + '    "*.gguf",\n)'
     if original in content:
-        source.write_text(content.replace(original, updated, 1))
+        atomic_source_patch(source, content.replace(original, updated, 1))
         print('RUNTIME_COMPATIBILITY: enabled GGUF component completeness checks', flush=True)
     elif updated not in content:
         raise RuntimeError('Pinned runtime completeness checker changed; review compatibility patch')
     # The BF16-only fused-QKV fast path must skip packed quantized layers.
-    dit_source = Path(importlib.util.find_spec(
-        'sglang.multimodal_gen.runtime.models.dits.qwen_image21').origin)
+    dit_source = source.parent.parent / 'models/dits/qwen_image21.py'
     content = dit_source.read_text()
     original = '        q, k, v = self.to_q.weight, self.to_k.weight, self.to_v.weight'
     updated = ('        if not all(hasattr(layer, "weight") for layer in '
@@ -263,7 +272,7 @@ def enable_gguf_directory_validation():
     if updated not in content:
         if original not in content:
             raise RuntimeError('Pinned QKV packing implementation changed')
-        dit_source.write_text(content.replace(original, updated, 1))
+        atomic_source_patch(dit_source, content.replace(original, updated, 1))
     print('RUNTIME_COMPATIBILITY: skip BF16-only QKV packing for GGUF layers', flush=True)
     index = json.loads((RUNTIME / 'model_index.json').read_text())
     for name, entry in index.items():
