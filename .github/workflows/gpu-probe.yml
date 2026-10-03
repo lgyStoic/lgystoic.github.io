@@ -49,6 +49,19 @@ jobs:
           foreach ($log in @('Microsoft-Windows-CodeIntegrity/Operational', 'Microsoft-Windows-AppLocker/EXE and DLL')) {
             Get-WinEvent -FilterHashtable @{LogName=$log; StartTime=(Get-Date).AddHours(-4)} -MaxEvents 30 -ErrorAction SilentlyContinue | Where-Object {$_.Message -match 'wsl.exe|docker'} | Select-Object TimeCreated, Id, Message | Format-List
           }
+          Write-Output '=== WSL launcher metadata ==='
+          Get-Item $wslLauncher -Force | Select-Object FullName, Length, Attributes, LinkType, Target, VersionInfo | Format-List
+          Get-AuthenticodeSignature $wslLauncher | Select-Object Status, StatusMessage | Format-List
+          Get-AppxPackage '*WindowsSubsystemForLinux*' | Select-Object Name, Version, Status, InstallLocation | Format-List
+          Write-Output '=== Ubuntu filesystem access ==='
+          $ubuntuRelease = '\\wsl.localhost\Ubuntu\etc\os-release'
+          try { Get-Content $ubuntuRelease -ErrorAction Stop | Select-Object -First 8 } catch { Write-Output $_.Exception.Message }
+          Write-Output '=== WSL installation permissions ==='
+          $installedWsl = Join-Path $env:ProgramFiles 'WSL'
+          if (Test-Path $installedWsl) {
+            Get-Acl $installedWsl | Select-Object Owner, AccessToString | Format-List
+            Get-ChildItem $installedWsl -Filter wsl.exe | Select-Object FullName, Length, Attributes | Format-List
+          }
           Write-Output "=== Python / Git / Docker / WSL ==="
           foreach ($tool in @('python', 'py', 'git', 'docker', 'wsl')) {
             $command = Get-Command $tool -ErrorAction SilentlyContinue
