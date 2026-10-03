@@ -236,7 +236,8 @@ def serve():
             raise RuntimeError('Unexpected SGLang weight pattern layout')
         atomic_source_patch(completeness_check, original.replace(before, after, 1))
     elif after not in original:
-        raise RuntimeError('SGLang weight pattern layout changed')
+        marker = original.find('_WEIGHT_FILE_PATTERNS')
+        raise RuntimeError(f'SGLang weight pattern layout changed: path={completeness_check}, bytes={len(original)}, excerpt={original[marker:marker + 240]!r}')
 
     # The BF16-only fused-QKV fast path cannot read quantized layer weights.
     dit_source = completeness_check.parent.parent / 'models/dits/qwen_image21.py'
