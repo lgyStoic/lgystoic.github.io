@@ -19,9 +19,9 @@ jobs:
           & docker info --format 'CPUs={{.NCPU}} Memory={{.MemTotal}} Root={{.DockerRootDir}}'
           & docker ps --format '{{.Names}} {{.Image}} {{.Status}}'
           & docker run --rm ghcr.io/astral-sh/uv:python3.12-bookworm df -h /
-          & docker pull lmsysorg/sglang:nightly
+          & docker pull lmsysorg/sglang:nightly-dev-cu13-20261002-67eab570
           if ($LASTEXITCODE -ne 0) { throw 'Runtime image pull failed.' }
-          & docker image inspect lmsysorg/sglang:nightly --format '{{json .RepoDigests}}'
+          & docker image inspect lmsysorg/sglang:nightly-dev-cu13-20261002-67eab570 --format '{{json .RepoDigests}}'
           $script = @'
           import subprocess, sys, importlib.util
           import torch
@@ -33,5 +33,5 @@ jobs:
               print(module, importlib.util.find_spec(module), flush=True)
           subprocess.run(['df','-h','/'],check=True)
           '@
-          $script | & docker run --rm --gpus all -i lmsysorg/sglang:nightly python -
+          $script | & docker run --rm --gpus all -i lmsysorg/sglang:nightly-dev-cu13-20261002-67eab570 python -
           if ($LASTEXITCODE -ne 0) { throw 'Runtime compatibility probe failed.' }
