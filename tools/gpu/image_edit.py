@@ -33,7 +33,7 @@ def prepare():
         source = hf_hub_download('leejet/Qwen-Image-2.1-GGUF',
                                 'qwen_image_2.1-Q4_0.gguf', revision=DIT_REVISION)
         # Cache and export share one volume; hardlinks avoid a second large copy.
-        os.link(source, DIT)
+        os.link(Path(source).resolve(), DIT)
     if not ENCODER.exists():
         snapshot_download('Qwen/Qwen-Image-2.1', revision=REVISION,
                           local_dir=str(BASE), allow_patterns=['text_encoder/*'])
