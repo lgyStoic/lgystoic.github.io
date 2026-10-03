@@ -38,7 +38,7 @@ guides/{guides,links}.json 指南篇目、推荐链接注册表
 .github/workflows/{radar,health,radar-alert,jobs,contributions,xhs}.yml
 .github/workflows/gpu-probe.yml  手动检查 Windows dd-lgystoic GPU runner 的驱动、工具链和已安装 PyTorch CUDA 计算
 .github/workflows/gpu-docker.yml  手动准备 WSL 前置条件（不重启）或验证 Linux GPU 容器
-.github/workflows/gpu-image-edit.yml  手动检查资源或部署本机四位图像编辑容器，启动时识别组件 GGUF，保存实际编辑验收图片与镜像 digest
+.github/workflows/gpu-image-edit.yml  手动复用服务编辑单张示例图、检查资源或部署本机四位图像编辑容器，启动时识别组件 GGUF，保存实际编辑验收图片与镜像 digest
 projects/                 外部 fork 的 submodule 控制面；源码与 Git 历史不进入 Pages
 .github/agents/daily-check.md  判断层手册（边界）
 docs/prd/*.md             本目录
