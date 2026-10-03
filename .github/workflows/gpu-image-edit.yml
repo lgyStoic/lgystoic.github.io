@@ -58,9 +58,13 @@ jobs:
             & docker stats --no-stream $name --format '{{.Name}} CPU={{.CPUPerc}} Memory={{.MemUsage}} Network={{.NetIO}} Disk={{.BlockIO}}'
           }
           Write-Output 'WINDOWS_GPU_AND_VM_EVENTS:'
-          Get-WinEvent -FilterHashtable @{LogName='System'; StartTime=(Get-Date).AddMinutes(-30)} -ErrorAction SilentlyContinue | Where-Object { $_.ProviderName -match 'Display|nvlddmkm|Hyper-V|Lxss' } | Select-Object -First 12 TimeCreated, ProviderName, Id, Message | Format-List
+          Get-WinEvent -FilterHashtable @{LogName='System'; StartTime=(Get-Date).AddMinutes(-30)} -ErrorAction SilentlyContinue | Where-Object { $_.ProviderName -match 'Display|nvlddmkm|Hyper-V-Compute|Lxss' } | Select-Object -First 12 TimeCreated, ProviderName, Id, Message | Format-List
           Write-Output 'WSL_KERNEL_LOG:'
-          & wsl -d docker-desktop -u root -- dmesg -T | Select-Object -Last 80
+          & docker run --rm --privileged ghcr.io/astral-sh/uv:python3.12-bookworm dmesg | Select-Object -Last 100
+          $vmLog = Join-Path $env:LOCALAPPDATA 'Docker\log\vm\console.log'
+          if (Test-Path $vmLog) { Get-Content $vmLog -Tail 160 }
+          $hostLog = Join-Path $env:LOCALAPPDATA 'Docker\log\host\com.docker.backend.exe.log'
+          if (Test-Path $hostLog) { Get-Content $hostLog -Tail 100 }
           $compatFile = Join-Path $env:RUNNER_TEMP 'gpu-image-hf-utils.py'
           & docker cp gpu-image-edit:/sgl-workspace/sglang/python/sglang/multimodal_gen/runtime/utils/hf_diffusers_utils.py $compatFile
           Write-Output "COMPAT_COPY_EXIT: $LASTEXITCODE"
