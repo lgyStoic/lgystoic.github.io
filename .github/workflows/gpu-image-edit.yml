@@ -9,9 +9,9 @@ on:
         default: sample
       sample_source:
         type: choice
-        description: "sample 输入：真实汽车照片或原来的简笔杯子"
-        options: [photo, mug]
-        default: photo
+        description: "sample 输入：西湖双图人像、真实汽车照片或简笔杯子"
+        options: [westlake, photo, mug]
+        default: westlake
 permissions:
   contents: read
 concurrency:
@@ -45,8 +45,15 @@ jobs:
             & docker cp tools/gpu/samples/red-car.jpg gpu-image-edit:/tmp/gpu-image-real-photo.jpg
             if ($LASTEXITCODE -ne 0) { throw 'Cannot copy the real photo into the running container.' }
           }
+          if ('${{ inputs.sample_source }}' -eq 'westlake') {
+            & docker cp tools/gpu/samples/west-lake.jpg gpu-image-edit:/tmp/gpu-image-west-lake.jpg
+            if ($LASTEXITCODE -ne 0) { throw 'Cannot copy the West Lake photo into the running container.' }
+            & docker cp tools/gpu/samples/person-portrait.jpg gpu-image-edit:/tmp/gpu-image-person-portrait.jpg
+            if ($LASTEXITCODE -ne 0) { throw 'Cannot copy the portrait into the running container.' }
+          }
           $script = @'
-          import base64, json, os, pathlib, time
+          import base64, json, os, pathlib, shutil, time
+          from contextlib import ExitStack
           import requests
           from PIL import Image, ImageDraw, ImageOps
 
@@ -54,10 +61,23 @@ jobs:
           out.mkdir(parents=True, exist_ok=True)
           reference = out / 'reference.png'
           source = os.environ['IMAGE_EDIT_SAMPLE_SOURCE']
-          if source == 'photo':
+          size = '768x768' if source == 'westlake' else '512x512'
+          if source == 'westlake':
+              background = out / 'reference-west-lake.jpg'
+              portrait = out / 'reference-person.jpg'
+              shutil.copyfile('/tmp/gpu-image-west-lake.jpg', background)
+              shutil.copyfile('/tmp/gpu-image-person-portrait.jpg', portrait)
+              references = [background, portrait]
+              prompt = ('Use Image 1 as the real West Lake, Hangzhou background with its lakeside pavilion and sunset sky. '
+                        'Place the woman from Image 2 in the foreground as the main subject, keeping her face, hairstyle and black outfit recognizable. '
+                        'Create a tasteful photorealistic editorial travel portrait with natural golden-hour light, realistic scale and shadows. '
+                        'Preserve the recognizable West Lake scenery; do not retain the greenery from Image 2.')
+          elif source == 'photo':
               with Image.open('/tmp/gpu-image-real-photo.jpg') as original:
                   canvas = ImageOps.fit(original.convert('RGB'), (512, 512), method=Image.Resampling.LANCZOS)
               prompt = 'Change only the red car paint to deep blue. Keep the car shape, windows, wheels, license plate, lighting, and street background unchanged.'
+              canvas.save(reference)
+              references = [reference]
           else:
               canvas = Image.new('RGB', (512, 512), 'white')
               draw = ImageDraw.Draw(canvas)
@@ -65,27 +85,31 @@ jobs:
               draw.arc((270, 170, 385, 330), 270, 90, fill='red', width=25)
               draw.ellipse((140, 120, 320, 170), fill='#aa0000')
               prompt = 'Change the red mug to blue. Keep the mug shape and white background unchanged.'
-          canvas.save(reference)
+              canvas.save(reference)
+              references = [reference]
           session = requests.Session()
           session.trust_env = False
           endpoint = 'http://127.0.0.1:30010'
           session.get(endpoint + '/health', timeout=10).raise_for_status()
           start = time.monotonic()
-          with reference.open('rb') as image:
+          with ExitStack() as stack:
+              files = [('image[]', (path.name, stack.enter_context(path.open('rb')),
+                         'image/jpeg' if path.suffix == '.jpg' else 'image/png')) for path in references]
               response = session.post(endpoint + '/v1/images/edits',
-                  files={'image[]': ('reference.png', image, 'image/png')},
+                  files=files,
                   data={'prompt': prompt,
-                        'size': '512x512', 'num_inference_steps': '20',
+                        'size': size, 'num_inference_steps': '20',
                         'n': '1', 'response_format': 'b64_json'}, timeout=1200)
           response.raise_for_status()
           payload = base64.b64decode(response.json()['data'][0]['b64_json'], validate=True)
           elapsed = round(time.monotonic() - start, 2)
-          target = out / 'edited-512x512-20.png'
+          target = out / ('edited-' + size + '-20.png')
           target.write_bytes(payload)
           with Image.open(target) as edited:
               edited.load()
-              assert edited.size == (512, 512)
-          report = {'elapsed_seconds': elapsed, 'size': '512x512', 'steps': 20, 'source': source,
+              assert edited.size == tuple(map(int, size.split('x')))
+          report = {'elapsed_seconds': elapsed, 'size': size, 'steps': 20, 'source': source,
+                    'input_images': [path.name for path in references],
                     'bytes': len(payload), 'output': target.name}
           (out / 'verification.json').write_text(json.dumps(report, indent=2))
           print(json.dumps(report), flush=True)

@@ -1,8 +1,9 @@
 # 本机图像编辑服务
 
-在 Actions 手动运行「GPU 图像编辑部署」。服务已经运行时选 `mode=sample`，直接复用现有容器编辑一张 512px/20 步示例图，记录请求耗时并检查容器没有重启。`sample_source=photo` 使用真实红色汽车照片将车漆改蓝；`sample_source=mug` 保留原来的简笔杯子测试。下载 `gpu-edit-sample` artifact 查看输入、输出和耗时。只有首次部署或更新服务时选 `mode=deploy`；`probe` 仅检查容器资源和运行兼容性，`status` 查看后台容器日志、已缓存权重与量化 manifest。
+在 Actions 手动运行「GPU 图像编辑部署」。服务已经运行时选 `mode=sample`，直接复用现有容器编辑示例图，记录请求耗时并检查容器没有重启。`sample_source=westlake` 使用西湖实景与人像两张输入生成 768px/20 步艺术照；`sample_source=photo` 使用真实红色汽车照片将车漆改蓝；`sample_source=mug` 保留原来的简笔杯子测试。下载 `gpu-edit-sample` artifact 查看输入、输出和耗时。只有首次部署或更新服务时选 `mode=deploy`；`probe` 仅检查容器资源和运行兼容性，`status` 查看后台容器日志、已缓存权重与量化 manifest。
 
 真实照片：[Carro rojo.jpg](https://commons.wikimedia.org/wiki/File:Carro_rojo.jpg)，作者 Santiglzt，CC0；仓库中的 `samples/red-car.jpg` 是 Wikimedia Commons 提供的 960px 缩略图。
+西湖背景：[West Lake Sunset.jpg](https://commons.wikimedia.org/wiki/File:West_Lake_Sunset.jpg)，作者 Takashishin，CC BY 4.0；人物：[Brunette woman portrait (Unsplash).jpg](https://commons.wikimedia.org/wiki/File:Brunette_woman_portrait_(Unsplash).jpg)，作者 Christopher Campbell，CC0。仓库中保存的是 Wikimedia Commons 提供的 960px 缩略图。
 
 当前方案使用 Qwen-Image-2.1 原生管线，固定基础模型和权重 revision：
 
