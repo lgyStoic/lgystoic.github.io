@@ -2,6 +2,8 @@
 
 在 Actions 手动运行「GPU 图像编辑部署」。服务已经运行时选 `mode=sample`，直接复用现有容器编辑示例图，记录请求耗时并检查容器没有重启。`sample_source=westlake` 使用西湖实景与人像两张输入生成 768px/20 步艺术照；`sample_source=photo` 使用真实红色汽车照片将车漆改蓝；`sample_source=mug` 保留原来的简笔杯子测试。下载 `gpu-edit-sample` artifact 查看输入、输出和耗时。只有首次部署或更新服务时选 `mode=deploy`；`probe` 仅检查容器资源和运行兼容性，`status` 查看后台容器日志、已缓存权重与量化 manifest。
 
+手动调图选 `mode=ui-deploy`。它构建并启动独立的、带口令的 Gradio 页面，支持上传 1–10 张参考图，调整提示词、尺寸、步数、seed 和 True CFG；分享地址会写进 Actions 摘要。UI 通过 `gpu-image-net` 连接已在线的模型容器，部署和停止 UI 都不会重启模型。用 `ui-status` 重看链接及日志，用 `ui-stop` 关闭页面。公网分享链接是临时地址；页面请求由本机执行，Gradio 分享服务器只转发流量。仓库需配置 `GPU_IMAGE_UI_PASSWORD` secret。
+
 真实照片：[Carro rojo.jpg](https://commons.wikimedia.org/wiki/File:Carro_rojo.jpg)，作者 Santiglzt，CC0；仓库中的 `samples/red-car.jpg` 是 Wikimedia Commons 提供的 960px 缩略图。
 西湖背景：[West Lake Sunset.jpg](https://commons.wikimedia.org/wiki/File:West_Lake_Sunset.jpg)，作者 Takashishin，CC BY 4.0；人物：[Brunette woman portrait (Unsplash).jpg](https://commons.wikimedia.org/wiki/File:Brunette_woman_portrait_(Unsplash).jpg)，作者 Christopher Campbell，CC0。仓库中保存的是 Wikimedia Commons 提供的 960px 缩略图。
 
