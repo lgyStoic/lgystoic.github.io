@@ -252,6 +252,19 @@ def enable_gguf_directory_validation():
         print('RUNTIME_COMPATIBILITY: enabled GGUF component completeness checks', flush=True)
     elif updated not in content:
         raise RuntimeError('Pinned runtime completeness checker changed; review compatibility patch')
+    # The BF16-only fused-QKV fast path must skip packed quantized layers.
+    dit_source = Path(importlib.util.find_spec(
+        'sglang.multimodal_gen.runtime.models.dits.qwen_image21').origin)
+    content = dit_source.read_text()
+    original = '        q, k, v = self.to_q.weight, self.to_k.weight, self.to_v.weight'
+    updated = ('        if not all(hasattr(layer, "weight") for layer in '
+               '(self.to_q, self.to_k, self.to_v)):\n'
+               '            return None\n' + original)
+    if updated not in content:
+        if original not in content:
+            raise RuntimeError('Pinned QKV packing implementation changed')
+        dit_source.write_text(content.replace(original, updated, 1))
+    print('RUNTIME_COMPATIBILITY: skip BF16-only QKV packing for GGUF layers', flush=True)
     index = json.loads((RUNTIME / 'model_index.json').read_text())
     for name, entry in index.items():
         if not name.startswith('_') and isinstance(entry, list) and len(entry) == 2 and any(entry):
