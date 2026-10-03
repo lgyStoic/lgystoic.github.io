@@ -118,6 +118,8 @@ python3 -m http.server 8765       # 本地预览
 
 `gpu-image-edit.yml` 仅手动运行于 Windows `dd-lgystoic` 自托管 runner，`sample` 不拉镜像也不重启服务，复用运行中的容器编辑一张 512px/20 步示例图并记录耗时及容器启动时间，`probe` 检查资源与 CUDA，`status` 查看容器日志、资源占用、模型缓存大小与量化 manifest，`deploy` 准备组件并执行一次真实图像编辑；`repair-download` 保留完成分片，恢复停滞的编码器下载，核对官方 SHA256 后继续量化。模型默认直接 HTTP 下载，避免分块下载器停滞。使用固定版本 CUDA 13 推理镜像并记录 digest；模型缓存与服务独立于静态网站。
 
+`ui-deploy` 在独立容器启动带口令的 Gradio 调试页，通过 Docker 内网复用在线模型，支持 1–10 张参考图以及提示词、尺寸、步数、seed、True CFG 调节。临时分享地址写入 Actions 摘要；`ui-status` 查看状态，`ui-stop` 只移除 UI 容器。UI 生命周期不改变模型容器的启动状态。
+
 `tools/gpu/image_edit.py` 固定官方基础模型与 DiT 导出的 revision。DiT 使用原生名称 Q4_0 GGUF；编码器从官方 safetensors 导出，252 个语言注意力/MLP 矩阵 Q4_0，视觉、嵌入与归一化等保留原生精度；VAE 使用管线原生 BF16 配置。导出成功后写 manifest，重跑复用缓存；存在运行中的准备容器时直接续接，Actions 取消不向容器转发终止信号。`gpu-image-models` 与 `gpu-image-outputs` 为持久 Docker volumes。
 
 准备时无损拆分 DiT GGUF 的融合 MLP 张量以匹配原生层名；服务启动前将 DiT 和编码器 GGUF 链接进对应组件目录，并在固定推理镜像内扩展本地模型完整性检查的权重后缀识别。组件仍由显式 GGUF 路径加载；BF16 专用 QKV 打包跳过量化层，镜像检查布局变动时快速失败。

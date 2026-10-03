@@ -5,7 +5,7 @@ on:
       mode:
         type: choice
         description: "sample 复用运行中服务跑一张图；deploy 才准备镜像并重新部署"
-        options: [sample, probe, status, stop, repair-download, deploy]
+        options: [sample, ui-deploy, ui-status, ui-stop, probe, status, stop, repair-download, deploy]
         default: sample
       sample_source:
         type: choice
@@ -31,7 +31,58 @@ jobs:
           if ($running) { & docker stop gpu-image-edit }
           if ($LASTEXITCODE -ne 0) { throw 'Could not stop image-edit service.' }
       - uses: actions/checkout@v4
-        if: inputs.mode != 'status' && inputs.mode != 'stop'
+        if: inputs.mode != 'status' && inputs.mode != 'stop' && inputs.mode != 'ui-status' && inputs.mode != 'ui-stop'
+      - name: 部署独立 Gradio 调试页
+        if: inputs.mode == 'ui-deploy'
+        shell: powershell -NoProfile -NonInteractive -ExecutionPolicy Bypass -File {0}
+        env:
+          GRADIO_PASSWORD: ${{ secrets.GPU_IMAGE_UI_PASSWORD }}
+        run: |
+          $ErrorActionPreference = 'Stop'
+          if (-not $env:GRADIO_PASSWORD) { throw 'Repository secret GPU_IMAGE_UI_PASSWORD is required.' }
+          $running = & docker inspect gpu-image-edit --format '{{.State.Running}}'
+          if ($LASTEXITCODE -ne 0 -or $running.Trim() -ne 'true') { throw 'Image-edit service is not running; deploy it first.' }
+          & docker network inspect gpu-image-net *> $null
+          if ($LASTEXITCODE -ne 0) { & docker network create gpu-image-net }
+          $modelNetworks = & docker inspect gpu-image-edit --format '{{json .NetworkSettings.Networks}}'
+          if ($modelNetworks -notmatch 'gpu-image-net') { & docker network connect gpu-image-net gpu-image-edit }
+          & docker build -f tools/gpu/image-edit-ui.Dockerfile -t gpu-image-edit-ui:latest .
+          if ($LASTEXITCODE -ne 0) { throw 'Gradio UI image build failed.' }
+          $existing = & docker ps -a --filter name=^gpu-image-edit-ui$ --format '{{.Names}}'
+          if ($existing) { & docker rm -f gpu-image-edit-ui }
+          & docker run -d --name gpu-image-edit-ui --restart unless-stopped --network gpu-image-net `
+            -p 127.0.0.1:7860:7860 -e GRADIO_USERNAME=lgystoic -e GRADIO_PASSWORD=$env:GRADIO_PASSWORD `
+            gpu-image-edit-ui:latest
+          if ($LASTEXITCODE -ne 0) { throw 'Gradio UI container failed to start.' }
+          $url = $null
+          for ($attempt = 0; $attempt -lt 24; $attempt++) {
+            Start-Sleep -Seconds 5
+            $logs = & docker logs gpu-image-edit-ui 2>&1
+            $match = [regex]::Match(($logs -join "`n"), 'https://[a-z0-9-]+\.gradio\.live')
+            if ($match.Success) { $url = $match.Value; break }
+            $state = & docker inspect gpu-image-edit-ui --format '{{.State.Status}}'
+            if ($state.Trim() -ne 'running') { break }
+          }
+          & docker logs --tail 120 gpu-image-edit-ui
+          if (-not $url) { throw 'Gradio share URL was not created.' }
+          "## 5090 图像编辑台`n`n$url`n`n用户名：``lgystoic``" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append -Encoding utf8
+          Write-Output "GRADIO_URL=$url"
+      - name: 查看 Gradio 调试页
+        if: inputs.mode == 'ui-status'
+        shell: powershell -NoProfile -NonInteractive -ExecutionPolicy Bypass -File {0}
+        run: |
+          $ErrorActionPreference = 'Stop'
+          & docker ps -a --filter name=^gpu-image-edit-ui$ --format '{{.Names}} {{.Status}} {{.Ports}}'
+          & docker logs --tail 120 gpu-image-edit-ui
+          if ($LASTEXITCODE -ne 0) { throw 'Gradio UI container is unavailable.' }
+      - name: 停止 Gradio 调试页
+        if: inputs.mode == 'ui-stop'
+        shell: powershell -NoProfile -NonInteractive -ExecutionPolicy Bypass -File {0}
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $existing = & docker ps -a --filter name=^gpu-image-edit-ui$ --format '{{.Names}}'
+          if ($existing) { & docker rm -f gpu-image-edit-ui }
+          if ($LASTEXITCODE -ne 0) { throw 'Could not stop Gradio UI.' }
       - name: 用现有服务编辑一张示例图
         if: inputs.mode == 'sample'
         shell: powershell -NoProfile -NonInteractive -ExecutionPolicy Bypass -File {0}
@@ -123,7 +174,7 @@ jobs:
           & docker cp "gpu-image-edit:/outputs/sample-$env:GITHUB_RUN_ID/." gpu-edit-sample-results
           if ($LASTEXITCODE -ne 0) { throw 'Cannot retrieve sample result.' }
       - name: 检查资源并准备推理镜像
-        if: inputs.mode != 'status' && inputs.mode != 'stop' && inputs.mode != 'sample'
+        if: inputs.mode == 'probe' || inputs.mode == 'repair-download' || inputs.mode == 'deploy'
         shell: powershell -NoProfile -NonInteractive -ExecutionPolicy Bypass -File {0}
         run: |
           $ErrorActionPreference = 'Stop'
