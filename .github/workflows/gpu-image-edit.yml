@@ -163,12 +163,13 @@ jobs:
         run: |
           $ErrorActionPreference = 'Stop'
           $client = "gpu-image-verify-$env:GITHUB_RUN_ID"
-          & docker create --name $client --network container:gpu-image-edit -v gpu-image-outputs:/outputs lmsysorg/sglang:nightly-dev-cu13-20261002-67eab570 python /opt/image_edit.py verify
+          & docker create --name $client --network container:gpu-image-edit -v gpu-image-outputs:/outputs ghcr.io/astral-sh/uv:python3.12-bookworm uv run --with requests --with pillow python /opt/image_edit.py verify
           if ($LASTEXITCODE -ne 0) { throw 'Cannot create verification client.' }
           & docker cp tools/gpu/image_edit.py "${client}:/opt/image_edit.py"
           if ($LASTEXITCODE -ne 0) { throw 'Cannot copy verification script.' }
           & docker start -a $client
           $state = & docker inspect $client --format '{{json .State}}' | ConvertFrom-Json
+          & nvidia-smi --query-gpu=memory.used,memory.free --format=csv
           & docker logs --tail 200 gpu-image-edit
           & docker inspect gpu-image-edit --format '{{json .State}}'
           if ($state.Running -or $state.ExitCode -ne 0) { throw 'Real image-edit verification failed; inspect service logs.' }

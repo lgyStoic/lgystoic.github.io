@@ -294,6 +294,8 @@ def serve():
                '--component-weights-paths.transformer', str(DIT),
                '--component-weights-paths.text_encoder', str(ENCODER),
                '--performance-mode', 'manual', '--text-encoder-cpu-offload', 'true',
+               '--dit-cpu-offload', 'true', '--vae-cpu-offload', 'true',
+               '--pin-cpu-memory', 'false',
                '--warmup-mode', 'off']
     print('SERVE:', ' '.join(command), flush=True)
     os.execvp(command[0], command)
@@ -302,12 +304,16 @@ def serve():
 def verify():
     from PIL import Image, ImageDraw
     import requests
+    print('VERIFY_CLIENT_STARTED', flush=True)
     url = 'http://127.0.0.1:30010'
+    session = requests.Session()
+    session.trust_env = False
     deadline = time.monotonic() + 1200
     while time.monotonic() < deadline:
         try:
-            response = requests.get(url + '/health', timeout=10)
+            response = session.get(url + '/health', timeout=10)
             if response.ok:
+                print('VERIFY_SERVICE_HEALTHY', flush=True)
                 break
         except requests.RequestException:
             pass
@@ -325,9 +331,10 @@ def verify():
     canvas.save(reference)
     cases = []
     for size, steps in [('512x512', 20), ('1024x1024', 40)]:
+        print('EDIT_REQUEST:', size, steps, flush=True)
         start = time.monotonic()
         with reference.open('rb') as image:
-            response = requests.post(url + '/v1/images/edits',
+            response = session.post(url + '/v1/images/edits',
                                      files={'image[]': ('reference.png', image, 'image/png')},
                                      data={'prompt': 'Change the red mug to blue. Keep the mug shape and white background unchanged.',
                                            'size': size, 'num_inference_steps': str(steps),
@@ -350,7 +357,9 @@ def verify():
         cases.append(report)
         (out / 'verification.json').write_text(json.dumps({'cases': cases}, indent=2))
         print(json.dumps(report, indent=2), flush=True)
-        subprocess.run(['nvidia-smi', '--query-gpu=memory.used,memory.free', '--format=csv'], check=True)
+        import shutil
+        if shutil.which('nvidia-smi'):
+            subprocess.run(['nvidia-smi', '--query-gpu=memory.used,memory.free', '--format=csv'], check=True)
 
 
 if __name__ == '__main__':
