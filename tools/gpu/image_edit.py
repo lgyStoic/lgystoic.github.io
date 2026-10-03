@@ -213,9 +213,14 @@ def enable_gguf_directory_validation():
         print('RUNTIME_COMPATIBILITY: enabled GGUF component completeness checks', flush=True)
     elif updated not in content:
         raise RuntimeError('Pinned runtime completeness checker changed; review compatibility patch')
-    module = importlib.reload(importlib.import_module(module_name))
-    if not module._verify_diffusers_model_complete(str(RUNTIME)):
-        raise RuntimeError('Prepared GGUF pipeline directory is incomplete')
+    index = json.loads((RUNTIME / 'model_index.json').read_text())
+    for name, entry in index.items():
+        if not name.startswith('_') and isinstance(entry, list) and len(entry) == 2 and any(entry):
+            if not (RUNTIME / name).exists():
+                raise RuntimeError(f'Missing pipeline component directory: {name}')
+    for name in ['transformer', 'text_encoder', 'vae']:
+        if not any((RUNTIME / name).glob('*.gguf')) and not any((RUNTIME / name).glob('*.safetensors')):
+            raise RuntimeError(f'Missing actual pipeline weights: {name}')
     print('GGUF_PIPELINE_DIRECTORY: validated', RUNTIME, flush=True)
 
 
