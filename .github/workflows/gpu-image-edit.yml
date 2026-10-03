@@ -5,7 +5,7 @@ on:
       mode:
         type: choice
         description: "probe 检查；status 查看进度；repair-download 恢复下载；deploy 部署验证"
-        options: [probe, status, repair-download, deploy, verify]
+        options: [probe, status, repair-download, deploy, verify, reset-runtime]
         default: deploy
 permissions:
   contents: read
@@ -20,7 +20,7 @@ jobs:
       - uses: actions/checkout@v4
         if: inputs.mode != 'status'
       - name: 检查资源并准备推理镜像
-        if: inputs.mode != 'status' && inputs.mode != 'verify'
+        if: inputs.mode == 'probe' || inputs.mode == 'deploy' || inputs.mode == 'repair-download'
         shell: powershell -NoProfile -NonInteractive -ExecutionPolicy Bypass -File {0}
         run: |
           $ErrorActionPreference = 'Stop'
@@ -107,6 +107,20 @@ jobs:
           '@
           $script | & docker run --rm -i -v gpu-image-models:/models:ro ghcr.io/astral-sh/uv:python3.12-bookworm python -
           if ($LASTEXITCODE -ne 0) { throw 'Cannot inspect cached model preparation progress.' }
+      - name: 释放编辑运行时的主机提交内存
+        if: inputs.mode == 'reset-runtime'
+        shell: powershell -NoProfile -NonInteractive -ExecutionPolicy Bypass -File {0}
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $foreign = @(& docker ps --format '{{.Names}}' | Where-Object { $_ -notlike 'gpu-image-*' })
+          if ($foreign.Count -gt 0) { throw 'Other running containers found; runtime reset would affect them.' }
+          Get-CimInstance Win32_PerfFormattedData_PerfOS_Memory | Select-Object CommittedBytes, CommitLimit, AvailableMBytes | Format-List
+          $existing = & docker ps -a --filter name=^gpu-image-edit$ --format '{{.Names}}'
+          if ($existing) { & docker rm -f gpu-image-edit }
+          & docker desktop restart --timeout 120
+          if ($LASTEXITCODE -ne 0) { throw 'Docker runtime restart failed.' }
+          & docker info --format 'CPUs={{.NCPU}} Memory={{.MemTotal}}'
+          Get-CimInstance Win32_PerfFormattedData_PerfOS_Memory | Select-Object CommittedBytes, CommitLimit, AvailableMBytes | Format-List
       - name: 恢复停滞的编码器下载并核对官方校验值
         if: inputs.mode == 'repair-download'
         shell: powershell -NoProfile -NonInteractive -ExecutionPolicy Bypass -File {0}
@@ -159,7 +173,7 @@ jobs:
           $ErrorActionPreference = 'Stop'
           $existing = & docker ps -a --filter name=^gpu-image-edit$ --format '{{.Names}}'
           if ($existing) { & docker rm -f gpu-image-edit }
-          & docker create --name gpu-image-edit --restart unless-stopped --gpus all --ipc=host -p 127.0.0.1:30010:30010 -e HF_HOME=/models/hf -v gpu-image-models:/models -v gpu-image-outputs:/outputs lmsysorg/sglang:nightly-dev-cu13-20261002-67eab570 python /opt/image_edit.py serve
+          & docker create --name gpu-image-edit --memory 16g --memory-swap 16g --restart unless-stopped --gpus all --ipc=host -p 127.0.0.1:30010:30010 -e HF_HOME=/models/hf -v gpu-image-models:/models -v gpu-image-outputs:/outputs lmsysorg/sglang:nightly-dev-cu13-20261002-67eab570 python /opt/image_edit.py serve
           if ($LASTEXITCODE -ne 0) { throw 'Service container creation failed.' }
           & docker cp tools/gpu/image_edit.py gpu-image-edit:/opt/image_edit.py
           if ($LASTEXITCODE -ne 0) { throw 'Cannot copy service script.' }
@@ -170,7 +184,7 @@ jobs:
         run: |
           $ErrorActionPreference = 'Stop'
           $client = "gpu-image-verify-$env:GITHUB_RUN_ID"
-          & docker create --name $client --network container:gpu-image-edit -v gpu-image-outputs:/outputs ghcr.io/astral-sh/uv:python3.12-bookworm uv run --with requests --with pillow python /opt/image_edit.py verify
+          & docker create --name $client --memory 256m --memory-swap 256m --network container:gpu-image-edit -v gpu-image-outputs:/outputs ghcr.io/astral-sh/uv:python3.12-bookworm uv run --with requests --with pillow python /opt/image_edit.py verify
           if ($LASTEXITCODE -ne 0) { throw 'Cannot create verification client.' }
           & docker cp tools/gpu/image_edit.py "${client}:/opt/image_edit.py"
           if ($LASTEXITCODE -ne 0) { throw 'Cannot copy verification script.' }
