@@ -83,6 +83,15 @@ jobs:
           if (Get-Command docker -ErrorAction SilentlyContinue) {
             & docker context ls --format '{{.Name}} {{.DockerEndpoint}}'
           }
+          Write-Output '=== Running Ubuntu filesystem ==='
+          foreach ($root in @('\\wsl.localhost\Ubuntu', '\\wsl$\Ubuntu')) {
+            try {
+              Get-ChildItem $root -ErrorAction Stop | Select-Object -First 20 Name, Mode | Format-Table -AutoSize
+              Get-Content "$root\etc\os-release" -ErrorAction Stop | Select-Object -First 6
+              Write-Output "Native Docker unit: $(Test-Path "$root\usr\lib\systemd\system\docker.service")"
+              Write-Output "Docker socket: $(Test-Path "$root\var\run\docker.sock")"
+            } catch { Write-Output $_.Exception.Message }
+          }
           Write-Output '=== Loopback Docker API (existing listeners only) ==='
           $listeners = Get-NetTCPConnection -State Listen -ErrorAction SilentlyContinue | Where-Object {$_.LocalPort -eq 2375 -and $_.LocalAddress -in @('127.0.0.1','0.0.0.0','::','::1')}
           if ($listeners) {
