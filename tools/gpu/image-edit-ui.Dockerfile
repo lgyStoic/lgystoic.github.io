@@ -6,6 +6,7 @@ COPY tools/gpu/image_edit_ui.py /app/image_edit_ui.py
 
 ENV GRADIO_ANALYTICS_ENABLED=False \
     GRADIO_SHARE=True \
+    PYTHONUNBUFFERED=1 \
     IMAGE_EDIT_MODEL_URL=http://gpu-image-edit:30010
 EXPOSE 7860
 CMD ["python", "/app/image_edit_ui.py"]

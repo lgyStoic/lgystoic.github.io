@@ -91,7 +91,7 @@ def health():
         return f"模型不可用：{exc}"
 
 
-with gr.Blocks(title="5090 图像编辑台", theme=gr.themes.Soft()) as demo:
+with gr.Blocks(title="5090 图像编辑台") as demo:
     gr.Markdown(
         "# 5090 图像编辑台\n"
         "上传 1–10 张参考图，提示词里可用“图 1、图 2”说明各自用途。"
@@ -141,5 +141,6 @@ if __name__ == "__main__":
         server_port=7860,
         share=os.getenv("GRADIO_SHARE", "true").lower() == "true",
         auth=(username, password),
+        theme=gr.themes.Soft(),
         show_error=True,
     )
