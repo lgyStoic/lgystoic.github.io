@@ -1,6 +1,6 @@
 # 本机图像编辑服务
 
-在 Actions 手动运行「GPU 图像编辑部署」，`mode=deploy`。`probe` 仅检查容器资源和运行兼容性；`status` 查看后台容器日志、已缓存权重与量化 manifest。
+在 Actions 手动运行「GPU 图像编辑部署」，`mode=deploy`。`probe` 仅检查容器资源和运行兼容性；`status` 查看后台容器日志、已缓存权重与量化 manifest；`verify` 用独立客户端容器验收已有服务。
 
 当前方案使用 Qwen-Image-2.1 原生管线，固定基础模型和权重 revision：
 
