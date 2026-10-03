@@ -62,6 +62,18 @@ jobs:
             Get-Acl $installedWsl | Select-Object Owner, AccessToString | Format-List
             Get-ChildItem $installedWsl -Filter wsl.exe | Select-Object FullName, Length, Attributes | Format-List
           }
+          Write-Output '=== Installed WSL package CLI diagnostic ==='
+          $packageWsl = Join-Path $installedWsl 'wsl.exe'
+          if (Test-Path $packageWsl) {
+            $signature = Get-AuthenticodeSignature $packageWsl
+            $signature | Select-Object Status, StatusMessage | Format-List
+            if ($signature.Status -eq 'Valid') {
+              try {
+                & $packageWsl --version
+                & $packageWsl -d Ubuntu -u root --exec bash -lc 'uname -r; command -v docker; test -d /run/systemd/system; /usr/lib/wsl/lib/nvidia-smi --query-gpu=name,memory.total --format=csv'
+              } catch { Write-Output $_.Exception.Message }
+            }
+          }
           Write-Output "=== Python / Git / Docker / WSL ==="
           foreach ($tool in @('python', 'py', 'git', 'docker', 'wsl')) {
             $command = Get-Command $tool -ErrorAction SilentlyContinue
