@@ -1,6 +1,12 @@
 name: GPU 图像编辑部署
 on:
   workflow_dispatch:
+    inputs:
+      mode:
+        type: choice
+        description: "probe 检查运行环境；deploy 准备量化组件并验证编辑服务"
+        options: [probe, deploy]
+        default: deploy
 permissions:
   contents: read
 concurrency:
@@ -11,6 +17,7 @@ jobs:
     runs-on: [self-hosted, Windows, X64, dd-lgystoic]
     timeout-minutes: 120
     steps:
+      - uses: actions/checkout@v4
       - name: 检查资源并准备推理镜像
         shell: powershell -NoProfile -NonInteractive -ExecutionPolicy Bypass -File {0}
         run: |
@@ -35,3 +42,44 @@ jobs:
           '@
           $script | & docker run --rm --gpus all -i lmsysorg/sglang:nightly-dev-cu13-20261002-67eab570 python -
           if ($LASTEXITCODE -ne 0) { throw 'Runtime compatibility probe failed.' }
+      - name: 下载组件并导出原生四位编码器
+        if: inputs.mode == 'deploy'
+        shell: powershell -NoProfile -NonInteractive -ExecutionPolicy Bypass -File {0}
+        run: |
+          $ErrorActionPreference = 'Stop'
+          & docker volume create gpu-image-models
+          & docker volume create gpu-image-outputs
+          $name = "gpu-image-prepare-$env:GITHUB_RUN_ID"
+          & docker create --name $name --gpus all --ipc=host -e HF_HOME=/models/hf -e TMPDIR=/models -v gpu-image-models:/models lmsysorg/sglang:nightly-dev-cu13-20261002-67eab570 python /opt/image_edit.py prepare
+          if ($LASTEXITCODE -ne 0) { throw 'Preparation container creation failed.' }
+          & docker cp tools/gpu/image_edit.py "${name}:/opt/image_edit.py"
+          if ($LASTEXITCODE -ne 0) { throw 'Cannot copy deployment script.' }
+          & docker start -a $name
+          $code = & docker inspect $name --format '{{.State.ExitCode}}'
+          if ($LASTEXITCODE -ne 0 -or $code.Trim() -ne '0') { throw 'Quantized component preparation failed.' }
+          & docker rm $name
+      - name: 启动本机服务并实测图像编辑
+        if: inputs.mode == 'deploy'
+        shell: powershell -NoProfile -NonInteractive -ExecutionPolicy Bypass -File {0}
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $existing = & docker ps -a --filter name=^gpu-image-edit$ --format '{{.Names}}'
+          if ($existing) { & docker rm -f gpu-image-edit }
+          & docker create --name gpu-image-edit --restart unless-stopped --gpus all --ipc=host -p 127.0.0.1:30010:30010 -e HF_HOME=/models/hf -v gpu-image-models:/models -v gpu-image-outputs:/outputs lmsysorg/sglang:nightly-dev-cu13-20261002-67eab570 python /opt/image_edit.py serve
+          if ($LASTEXITCODE -ne 0) { throw 'Service container creation failed.' }
+          & docker cp tools/gpu/image_edit.py gpu-image-edit:/opt/image_edit.py
+          if ($LASTEXITCODE -ne 0) { throw 'Cannot copy service script.' }
+          & docker start gpu-image-edit
+          & docker exec gpu-image-edit python /opt/image_edit.py verify
+          $verifyCode = $LASTEXITCODE
+          & docker logs --tail 150 gpu-image-edit
+          if ($verifyCode -ne 0) { throw 'Real image-edit verification failed; inspect service logs.' }
+          New-Item -ItemType Directory -Force -Path gpu-edit-results | Out-Null
+          & docker cp gpu-image-edit:/outputs/. gpu-edit-results
+          if ($LASTEXITCODE -ne 0) { throw 'Cannot retrieve edit result.' }
+      - uses: actions/upload-artifact@v4
+        if: inputs.mode == 'deploy' && success()
+        with:
+          name: gpu-edit-results
+          path: gpu-edit-results
+          retention-days: 3
