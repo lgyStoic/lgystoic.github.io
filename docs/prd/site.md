@@ -116,7 +116,7 @@ python3 -m http.server 8765       # 本地预览
 
 ### GPU 图像编辑运行准备
 
-`gpu-image-edit.yml` 仅手动运行于 Windows `dd-lgystoic` 自托管 runner，`probe` 检查资源与 CUDA，`status` 查看准备与服务容器日志，`deploy` 准备组件并执行一次真实图像编辑。使用固定版本 CUDA 13 推理镜像并记录 digest；模型缓存与服务独立于静态网站。
+`gpu-image-edit.yml` 仅手动运行于 Windows `dd-lgystoic` 自托管 runner，`probe` 检查资源与 CUDA，`status` 查看容器日志、资源占用、模型缓存大小与量化 manifest，`deploy` 准备组件并执行一次真实图像编辑。使用固定版本 CUDA 13 推理镜像并记录 digest；模型缓存与服务独立于静态网站。
 
 `tools/gpu/image_edit.py` 固定官方基础模型与 DiT 导出的 revision。DiT 使用原生名称 Q4_0 GGUF；编码器从官方 safetensors 导出，252 个语言注意力/MLP 矩阵 Q4_0，视觉、嵌入与归一化等保留原生精度；VAE 使用管线原生 BF16 配置。导出成功后写 manifest，重跑复用缓存；存在运行中的准备容器时直接续接，Actions 取消不向容器转发终止信号。`gpu-image-models` 与 `gpu-image-outputs` 为持久 Docker volumes。
 
