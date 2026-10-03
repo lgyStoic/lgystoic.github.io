@@ -201,9 +201,10 @@ def create_runtime_layout():
 
 def enable_gguf_directory_validation():
     """Pinned runtime's completeness checker omitted its supported GGUF format."""
+    import importlib
     import importlib.util
-    package = Path(next(iter(importlib.util.find_spec('sglang').submodule_search_locations)))
-    source = package / 'multimodal_gen/runtime/utils/hf_diffusers_utils.py'
+    module_name = 'sglang.multimodal_gen.runtime.utils.hf_diffusers_utils'
+    source = Path(importlib.util.find_spec(module_name).origin)
     content = source.read_text()
     original = '_WEIGHT_FILE_PATTERNS = (\n    "*.safetensors",\n    "*.bin",\n    "*.pt",\n    "*.pth",\n    "*.ckpt",\n)'
     updated = original[:-1] + '    "*.gguf",\n)'
@@ -212,8 +213,8 @@ def enable_gguf_directory_validation():
         print('RUNTIME_COMPATIBILITY: enabled GGUF component completeness checks', flush=True)
     elif updated not in content:
         raise RuntimeError('Pinned runtime completeness checker changed; review compatibility patch')
-    from sglang.multimodal_gen.runtime.utils.hf_diffusers_utils import _verify_diffusers_model_complete
-    if not _verify_diffusers_model_complete(str(RUNTIME)):
+    module = importlib.reload(importlib.import_module(module_name))
+    if not module._verify_diffusers_model_complete(str(RUNTIME)):
         raise RuntimeError('Prepared GGUF pipeline directory is incomplete')
     print('GGUF_PIPELINE_DIRECTORY: validated', RUNTIME, flush=True)
 
