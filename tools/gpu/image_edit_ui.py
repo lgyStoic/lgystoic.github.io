@@ -26,7 +26,7 @@ def _paths(items):
     return paths
 
 
-def edit_images(items, prompt, size, steps, seed, true_cfg_scale):
+def edit_images(items, prompt, size, steps, seed):
     references = _paths(items)
     prompt = (prompt or "").strip()
     if not references:
@@ -54,7 +54,6 @@ def edit_images(items, prompt, size, steps, seed, true_cfg_scale):
                 "size": size,
                 "num_inference_steps": str(int(steps)),
                 "seed": str(int(seed)),
-                "true_cfg_scale": str(float(true_cfg_scale)),
                 "n": "1",
                 "response_format": "b64_json",
             },
@@ -118,16 +117,14 @@ with gr.Blocks(title="5090 图像编辑台") as demo:
                     label="输出尺寸",
                 )
                 steps = gr.Slider(4, 50, value=20, step=1, label="推理步数")
-            with gr.Row():
-                seed = gr.Number(value=42, precision=0, label="Seed")
-                true_cfg_scale = gr.Slider(1.0, 8.0, value=4.0, step=0.1, label="True CFG")
+            seed = gr.Number(value=42, precision=0, label="Seed")
             run = gr.Button("开始生成", variant="primary")
         with gr.Column(scale=5):
             result = gr.Image(label="生成结果", type="filepath", format="png", height=640)
             details = gr.Markdown("等待生成。")
     run.click(
         edit_images,
-        inputs=[references, prompt, size, steps, seed, true_cfg_scale],
+        inputs=[references, prompt, size, steps, seed],
         outputs=[result, details],
         api_name="edit",
     )
