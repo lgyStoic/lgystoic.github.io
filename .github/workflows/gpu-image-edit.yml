@@ -6,7 +6,7 @@ on:
         type: choice
         description: "sample 复用运行中服务跑一张图；deploy 才准备镜像并重新部署"
         options: [sample, probe, status, stop, repair-download, deploy]
-        default: deploy
+        default: sample
 permissions:
   contents: read
 concurrency:
