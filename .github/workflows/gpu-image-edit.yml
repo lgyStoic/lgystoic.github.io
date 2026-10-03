@@ -63,6 +63,12 @@ jobs:
           Get-CimInstance Win32_ComputerSystem | Select-Object TotalPhysicalMemory, AutomaticManagedPagefile | Format-List
           Get-Process | Sort-Object PrivateMemorySize64 -Descending | Select-Object -First 8 Name, PrivateMemorySize64, WorkingSet64 | Format-Table -AutoSize
           Get-Command uv, python -ErrorAction SilentlyContinue | Select-Object Name, Source | Format-Table -AutoSize
+          Write-Output 'WINDOWS_STARTUP_AND_SECURITY:'
+          & whoami /groups
+          Get-MpPreference -ErrorAction SilentlyContinue | Select-Object EnableControlledFolderAccess | Format-List
+          Get-WinEvent -FilterHashtable @{LogName='Microsoft-Windows-Windows Defender/Operational'; Id=1123,1121; StartTime=(Get-Date).AddMinutes(-30)} -ErrorAction SilentlyContinue | Select-Object -First 4 TimeCreated, Id, Message | Format-List
+          Get-ScheduledTask -ErrorAction SilentlyContinue | Where-Object { $_.TaskName -match 'Docker|Startup' } | Select-Object TaskName, TaskPath, State, @{Name='User';Expression={$_.Principal.UserId}}, @{Name='LogonType';Expression={$_.Principal.LogonType}} | Format-List
+          Get-Acl (Join-Path $env:USERPROFILE '.docker') | Select-Object Owner, AccessToString | Format-List
           Write-Output 'WINDOWS_GPU_AND_VM_EVENTS:'
           Get-WinEvent -FilterHashtable @{LogName='System'; StartTime=(Get-Date).AddMinutes(-30)} -ErrorAction SilentlyContinue | Where-Object { $_.ProviderName -match 'Display|nvlddmkm|Hyper-V-Compute|Lxss' } | Select-Object -First 12 TimeCreated, ProviderName, Id, Message | Format-List
           Write-Output 'WSL_KERNEL_LOG:'
