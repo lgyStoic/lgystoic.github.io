@@ -15,7 +15,8 @@ BASE = ROOT / 'Qwen-Image-2.1'
 RUNTIME = ROOT / 'Qwen-Image-2.1-runtime'
 REVISION = 'd26bb61231c349cf6b7896fa83353113880e1ba3'
 DIT_REVISION = 'cc11433936a06e9765f7c0c0b1f0436cfd2b9856'
-DIT = ROOT / 'qwen_image_2.1-Q4_0.gguf'
+DIT_SOURCE = ROOT / 'qwen_image_2.1-Q4_0.gguf'
+DIT = ROOT / 'qwen_image_2.1-native-Q4_0.gguf'
 ENCODER = ROOT / 'qwen_image_2.1-encoder-Q4_0.gguf'
 
 
@@ -31,11 +32,12 @@ def prepare():
     snapshot_download('Qwen/Qwen-Image-2.1', revision=REVISION,
                       local_dir=str(BASE), allow_patterns=['*.json', 'processor/*',
                       'scheduler/*', 'text_encoder/*.json', 'transformer/*.json', 'vae/*'])
-    if not DIT.exists():
+    if not DIT_SOURCE.exists():
         source = hf_hub_download('leejet/Qwen-Image-2.1-GGUF',
                                 'qwen_image_2.1-Q4_0.gguf', revision=DIT_REVISION)
         # Cache and export share one volume; hardlinks avoid a second large copy.
-        os.link(Path(source).resolve(), DIT)
+        os.link(Path(source).resolve(), DIT_SOURCE)
+    normalize_dit()
     if not ENCODER.exists():
         snapshot_download('Qwen/Qwen-Image-2.1', revision=REVISION,
                           local_dir=str(BASE), allow_patterns=['text_encoder/*'])
@@ -86,6 +88,41 @@ def prepare():
     create_runtime_layout()
     (ROOT / 'manifest.json').write_text(json.dumps(report, indent=2))
     print(json.dumps(report, indent=2), flush=True)
+
+
+def normalize_dit():
+    """Split fused gate/up packed rows, preserving every quantized byte.
+
+    stable-diffusion.cpp qwen_image_2_1.hpp assigns chunk 0 to gate and
+    chunk 1 to value, matching native gate_layer and proj respectively.
+    """
+    if DIT.exists():
+        return
+    import gguf
+    reader = gguf.GGUFReader(str(DIT_SOURCE))
+    output = DIT.with_suffix('.partial.gguf')
+    writer = gguf.GGUFWriter(str(output), 'qwen_image', use_temp_file=True)
+    writer.add_name('Native diffusion Q4_0 (lossless fused MLP split)')
+    count = 0
+    for tensor in reader.tensors:
+        if tensor.name.endswith('.img_mlp.gate_up.weight'):
+            if tensor.tensor_type != gguf.GGMLQuantizationType.Q4_0 or tensor.data.shape[0] % 2:
+                raise RuntimeError(f'Unexpected fused MLP layout: {tensor.name}')
+            half = tensor.data.shape[0] // 2
+            for suffix, data in [('gate_layer', tensor.data[:half]), ('proj', tensor.data[half:])]:
+                name = tensor.name.replace('gate_up.weight', suffix + '.weight')
+                writer.add_tensor(name, data, raw_dtype=tensor.tensor_type)
+            count += 1
+        else:
+            writer.add_tensor(tensor.name, tensor.data, raw_dtype=tensor.tensor_type)
+    if count != 32:
+        raise RuntimeError(f'Expected 32 fused MLP matrices, got {count}')
+    writer.write_header_to_file()
+    writer.write_kv_data_to_file()
+    writer.write_tensors_to_file(progress=True)
+    writer.close()
+    output.replace(DIT)
+    print('DIT_NATIVE_LAYOUT: split 32 fused MLP matrices without requantization', flush=True)
 
 
 def repair_download():
@@ -195,6 +232,8 @@ def create_runtime_layout():
             if not config.name.endswith('.safetensors.index.json'):
                 shutil.copy2(config, directory / config.name)
         target = directory / 'model.gguf'
+        if target.is_symlink() and target.resolve() != checkpoint.resolve():
+            target.unlink()
         if not target.exists():
             target.symlink_to(checkpoint)
 
