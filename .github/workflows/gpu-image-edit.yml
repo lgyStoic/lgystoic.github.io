@@ -4,9 +4,9 @@ on:
     inputs:
       mode:
         type: choice
-        description: "probe 检查；status 查看进度；repair-download 恢复下载；deploy 部署验证"
-        options: [probe, status, stop, repair-download, deploy]
-        default: deploy
+        description: "sample 复用运行中服务跑一张图；deploy 才准备镜像并重新部署"
+        options: [sample, probe, status, stop, repair-download, deploy]
+        default: sample
 permissions:
   contents: read
 concurrency:
@@ -26,9 +26,64 @@ jobs:
           if ($running) { & docker stop gpu-image-edit }
           if ($LASTEXITCODE -ne 0) { throw 'Could not stop image-edit service.' }
       - uses: actions/checkout@v4
-        if: inputs.mode != 'status' && inputs.mode != 'stop'
+        if: inputs.mode != 'status' && inputs.mode != 'stop' && inputs.mode != 'sample'
+      - name: 用现有服务编辑一张示例图
+        if: inputs.mode == 'sample'
+        shell: powershell -NoProfile -NonInteractive -ExecutionPolicy Bypass -File {0}
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $before = & docker inspect gpu-image-edit --format '{{.State.StartedAt}}'
+          if ($LASTEXITCODE -ne 0) { throw 'Image-edit service does not exist; use deploy first.' }
+          $running = & docker inspect gpu-image-edit --format '{{.State.Running}}'
+          if ($LASTEXITCODE -ne 0 -or $running.Trim() -ne 'true') { throw 'Image-edit service is not running; use deploy first.' }
+          $script = @'
+          import base64, json, os, pathlib, time
+          import requests
+          from PIL import Image, ImageDraw
+
+          out = pathlib.Path('/outputs') / ('sample-' + os.environ['IMAGE_EDIT_SAMPLE_RUN_ID'])
+          out.mkdir(parents=True, exist_ok=True)
+          reference = out / 'reference.png'
+          canvas = Image.new('RGB', (512, 512), 'white')
+          draw = ImageDraw.Draw(canvas)
+          draw.rounded_rectangle((140, 140, 320, 370), radius=24, fill='red')
+          draw.arc((270, 170, 385, 330), 270, 90, fill='red', width=25)
+          draw.ellipse((140, 120, 320, 170), fill='#aa0000')
+          canvas.save(reference)
+          session = requests.Session()
+          session.trust_env = False
+          endpoint = 'http://127.0.0.1:30010'
+          session.get(endpoint + '/health', timeout=10).raise_for_status()
+          start = time.monotonic()
+          with reference.open('rb') as image:
+              response = session.post(endpoint + '/v1/images/edits',
+                  files={'image[]': ('reference.png', image, 'image/png')},
+                  data={'prompt': 'Change the red mug to blue. Keep the mug shape and white background unchanged.',
+                        'size': '512x512', 'num_inference_steps': '20',
+                        'n': '1', 'response_format': 'b64_json'}, timeout=1200)
+          response.raise_for_status()
+          payload = base64.b64decode(response.json()['data'][0]['b64_json'], validate=True)
+          elapsed = round(time.monotonic() - start, 2)
+          target = out / 'edited-512x512-20.png'
+          target.write_bytes(payload)
+          with Image.open(target) as edited:
+              edited.load()
+              assert edited.size == (512, 512)
+          report = {'elapsed_seconds': elapsed, 'size': '512x512', 'steps': 20,
+                    'bytes': len(payload), 'output': target.name}
+          (out / 'verification.json').write_text(json.dumps(report, indent=2))
+          print(json.dumps(report), flush=True)
+          '@
+          $script | & docker exec -i -e IMAGE_EDIT_SAMPLE_RUN_ID=$env:GITHUB_RUN_ID gpu-image-edit python -
+          if ($LASTEXITCODE -ne 0) { throw 'Single-image request failed.' }
+          $after = & docker inspect gpu-image-edit --format '{{.State.StartedAt}}'
+          if ($LASTEXITCODE -ne 0 -or $before -ne $after) { throw 'Service restarted during the sample request.' }
+          Write-Output "Service stayed online: $after"
+          New-Item -ItemType Directory -Force -Path gpu-edit-sample-results | Out-Null
+          & docker cp "gpu-image-edit:/outputs/sample-$env:GITHUB_RUN_ID/." gpu-edit-sample-results
+          if ($LASTEXITCODE -ne 0) { throw 'Cannot retrieve sample result.' }
       - name: 检查资源并准备推理镜像
-        if: inputs.mode != 'status' && inputs.mode != 'stop'
+        if: inputs.mode != 'status' && inputs.mode != 'stop' && inputs.mode != 'sample'
         shell: powershell -NoProfile -NonInteractive -ExecutionPolicy Bypass -File {0}
         run: |
           $ErrorActionPreference = 'Stop'
@@ -157,8 +212,8 @@ jobs:
           & docker cp gpu-image-edit:/outputs/. gpu-edit-results
           if ($LASTEXITCODE -ne 0) { throw 'Cannot retrieve edit result.' }
       - uses: actions/upload-artifact@v4
-        if: inputs.mode == 'deploy' && success()
+        if: (inputs.mode == 'deploy' || inputs.mode == 'sample') && success()
         with:
-          name: gpu-edit-results
-          path: gpu-edit-results
+          name: ${{ inputs.mode == 'sample' && 'gpu-edit-sample' || 'gpu-edit-results' }}
+          path: ${{ inputs.mode == 'sample' && 'gpu-edit-sample-results' || 'gpu-edit-results' }}
           retention-days: 3
