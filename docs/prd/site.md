@@ -42,6 +42,8 @@
 | `gpu-docker.yml` GPU Docker 环境准备 | 仅手动触发，默认 verify-docker | prepare-wsl 启用 WSL 前置条件，等待重启；verify-docker 验证 Linux GPU 容器；reboot 必须显式选择，延迟 60 秒重启 Windows，会中断现有模型服务 |
 
 GPU Docker：重启完成后，`install-docker` 在当前 runner 身份下创建独立 `GPU-Runner-Ubuntu` WSL2 发行版（Ubuntu 24.04.4 官方镜像，校验固定 SHA256），启用 systemd，从 Docker 与 NVIDIA 官方签名软件源安装 Docker Engine、Compose、Buildx 与 NVIDIA Container Toolkit，并验证 CUDA 12.8 容器访问 GPU。后续用 `verify-wsl-docker` 复验。容器任务通过 `wsl.exe -d GPU-Runner-Ubuntu -u root --exec docker ...` 执行；不安装 Docker Desktop、不改其他发行版。发行版归当前 runner 的 Windows 身份所有，runner 换用户后需重新配置。
+
+Windows Docker 已实测通过 CUDA 容器识别 5090（运行 37080408367）；可以直接用 Windows `docker` CLI 调用 Linux 容器。`verify-uv` 使用官方 uv Python 3.12 Debian 容器，实际验证虚拟环境、下载 packaging、uv run、Git 初始化与 GCC 编译，不安装主机依赖。
 | `jobs.yml` 工作机会 | 00:35 | 岗位抓取、外部适配器、AI 去重、渲染、提交 |
 | `contributions.yml` 开源贡献 | 周一 01:20 全量、周四 01:20 重点 | 见 contributions.md |
 | `xhs.yml` 小红书文稿 | 01:10 | 由当天雷达生成学习卡片，写入私有仓库 |

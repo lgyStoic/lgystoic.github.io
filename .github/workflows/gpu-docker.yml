@@ -6,7 +6,7 @@ on:
       mode:
         description: "prepare-wsl 启用 WSL 前置条件但不重启；verify-docker 验证 Linux GPU 容器"
         type: choice
-        options: [verify-docker, prepare-wsl, install-docker, verify-wsl-docker, reboot]
+        options: [verify-docker, verify-uv, prepare-wsl, install-docker, verify-wsl-docker, reboot]
         default: verify-docker
 
 permissions:
@@ -17,6 +17,43 @@ jobs:
     runs-on: [self-hosted, Windows, X64, dd-lgystoic]
     timeout-minutes: 30
     steps:
+      - name: 验证容器内 uv 与开发工具
+        if: inputs.mode == 'verify-uv'
+        shell: powershell -NoProfile -NonInteractive -ExecutionPolicy Bypass -File {0}
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $script = @'
+          import pathlib
+          import subprocess
+          import sys
+          import tempfile
+          def run(*args):
+              print('RUN:', ' '.join(args), flush=True)
+              subprocess.run(args, check=True, timeout=180)
+          run('uv', '--version')
+          run(sys.executable, '--version')
+          run('git', '--version')
+          run('gcc', '--version')
+          run('curl', '--version')
+          with tempfile.TemporaryDirectory() as directory:
+              root = pathlib.Path(directory)
+              venv = root / '.venv'
+              run('uv', 'venv', str(venv))
+              python = str(venv / 'bin/python')
+              run('uv', 'pip', 'install', '--python', python, 'packaging')
+              check = root / 'check.py'
+              check.write_text('from packaging.version import Version\nassert Version("2.10") > Version("2.9")\nprint("uv installed package and ran Python: PASS")\n')
+              run('uv', 'run', '--no-project', '--python', python, str(check))
+              source = root / 'hello.c'
+              source.write_text('#include <stdio.h>\nint main(void) { puts("C compilation: PASS"); return 0; }\n')
+              binary = str(root / 'hello')
+              run('gcc', str(source), '-o', binary)
+              run(binary)
+              run('git', 'init', str(root / 'repo'))
+          print('uv, Python, package download, Git and C compiler: PASS', flush=True)
+          '@
+          $script | & docker run --rm -i ghcr.io/astral-sh/uv:python3.12-bookworm python -
+          if ($LASTEXITCODE -ne 0) { throw 'Container uv and development tools verification failed.' }
       - name: 重启 5090（仅手动选择 reboot）
         if: inputs.mode == 'reboot'
         shell: powershell -NoProfile -NonInteractive -ExecutionPolicy Bypass -File {0}
