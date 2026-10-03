@@ -4,8 +4,8 @@ on:
     inputs:
       mode:
         type: choice
-        description: "probe 检查环境；status 查看容器进度；deploy 部署并验证"
-        options: [probe, status, deploy]
+        description: "probe 检查；status 查看进度；repair-download 恢复下载；deploy 部署验证"
+        options: [probe, status, repair-download, deploy]
         default: deploy
 permissions:
   contents: read
@@ -68,7 +68,10 @@ jobs:
                   continue
               if not path.name.endswith(('.gguf', '.safetensors', '.incomplete')):
                   continue
-              stat = path.stat()
+              try:
+                  stat = path.stat()
+              except FileNotFoundError:
+                  continue
               if stat.st_ino in seen:
                   continue
               seen.add(stat.st_ino)
@@ -81,6 +84,25 @@ jobs:
           '@
           $script | & docker run --rm -i -v gpu-image-models:/models:ro ghcr.io/astral-sh/uv:python3.12-bookworm python -
           if ($LASTEXITCODE -ne 0) { throw 'Cannot inspect cached model preparation progress.' }
+      - name: 恢复停滞的编码器下载并核对官方校验值
+        if: inputs.mode == 'repair-download'
+        shell: powershell -NoProfile -NonInteractive -ExecutionPolicy Bypass -File {0}
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $running = & docker ps --filter name=gpu-image-prepare- --filter status=running --format '{{.Names}}'
+          foreach ($name in $running) {
+            & docker stop --timeout 15 $name
+            if ($LASTEXITCODE -ne 0) { throw 'Cannot stop stalled preparation before recovery.' }
+          }
+          $name = "gpu-image-prepare-http-$env:GITHUB_RUN_ID"
+          & docker create --name $name --gpus all --ipc=host -e HF_HOME=/models/hf -e HF_HUB_DISABLE_XET=1 -e TMPDIR=/models -v gpu-image-models:/models lmsysorg/sglang:nightly-dev-cu13-20261002-67eab570 python /opt/image_edit.py repair_download
+          if ($LASTEXITCODE -ne 0) { throw 'Cannot create encoder recovery container.' }
+          & docker cp tools/gpu/image_edit.py "${name}:/opt/image_edit.py"
+          if ($LASTEXITCODE -ne 0) { throw 'Cannot copy recovery script.' }
+          & docker start $name
+          if ($LASTEXITCODE -ne 0) { throw 'Cannot start encoder recovery.' }
+          & docker logs --tail 20 $name
+          Write-Output "Recovery continues in background: $name. Check status; deploy once manifest is ready."
       - name: 下载组件并导出原生四位编码器
         if: inputs.mode == 'deploy'
         shell: powershell -NoProfile -NonInteractive -ExecutionPolicy Bypass -File {0}
@@ -96,7 +118,7 @@ jobs:
             & docker logs --tail 15 $name
           } else {
             $name = "gpu-image-prepare-$env:GITHUB_RUN_ID"
-            & docker create --name $name --gpus all --ipc=host -e HF_HOME=/models/hf -e TMPDIR=/models -v gpu-image-models:/models lmsysorg/sglang:nightly-dev-cu13-20261002-67eab570 python /opt/image_edit.py prepare
+            & docker create --name $name --gpus all --ipc=host -e HF_HOME=/models/hf -e HF_HUB_DISABLE_XET=1 -e TMPDIR=/models -v gpu-image-models:/models lmsysorg/sglang:nightly-dev-cu13-20261002-67eab570 python /opt/image_edit.py prepare
             if ($LASTEXITCODE -ne 0) { throw 'Preparation container creation failed.' }
             & docker cp tools/gpu/image_edit.py "${name}:/opt/image_edit.py"
             if ($LASTEXITCODE -ne 0) { throw 'Cannot copy deployment script.' }

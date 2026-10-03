@@ -43,3 +43,5 @@ docker start gpu-image-edit
 ```
 
 工作流验收输出保存在 `gpu-image-outputs` volume，工作流 artifact 使用脚本生成的演示图。
+
+准备流程使用直接 HTTP 下载。若历史下载器停滞，可运行 `repair-download`：仅停止本工作流的准备容器，保留已完成分片，恢复剩余官方编码器文件并核对全部 SHA256，然后继续导出四位权重。查看 `status` 的 manifest，准备完成后运行 `deploy`。
