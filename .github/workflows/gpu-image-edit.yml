@@ -4,7 +4,7 @@ on:
     inputs:
       mode:
         type: choice
-        description: "probe 检查环境；status 查看容器进度；deploy 部署并验证"
+        description: "probe 检查；status 查看进度；repair-download 恢复下载；deploy 部署验证"
         options: [probe, status, repair-download, deploy]
         default: deploy
 permissions:
@@ -57,45 +57,8 @@ jobs:
             & docker inspect $name --format '{{json .State}}'
             & docker stats --no-stream $name --format '{{.Name}} CPU={{.CPUPerc}} Memory={{.MemUsage}} Network={{.NetIO}} Disk={{.BlockIO}}'
           }
-          $diagnostic = @'
-          import json, re, time, urllib.request
-          from collections import deque
-          from pathlib import Path
-          for folder in ['/root/.cache/huggingface/xet/logs', '/models/hf/xet/logs']:
-              logs = sorted(Path(folder).glob('*.log'))
-              print('XET_LOG_FILES:', folder, len(logs), flush=True)
-              for logfile in logs[-1:]:
-                  with logfile.open(errors='replace') as stream:
-                      recent = list(deque(stream, maxlen=40))
-                  for line in recent:
-                      try:
-                          entry = json.loads(line)
-                      except ValueError:
-                          continue
-                      if entry.get('level') in ('WARN', 'ERROR'):
-                          message = str(entry.get('fields', {}).get('message', ''))
-                          message = re.sub(r'https?://[^\s]+', '<download-url>', message)
-                          message = re.sub(r'eyJ[A-Za-z0-9_.-]+', '<download-token>', message)
-                          print('XET_RETRY:', entry.get('timestamp'), message[:700], flush=True)
-          url = 'https://huggingface.co/Qwen/Qwen-Image-2.1/resolve/d26bb61231c349cf6b7896fa83353113880e1ba3/text_encoder/model-00001-of-00004.safetensors?download_probe=1'
-          start = time.monotonic()
-          try:
-              request = urllib.request.Request(url, headers={'Range': 'bytes=0-8388607'})
-              with urllib.request.urlopen(request, timeout=15) as response:
-                  data = response.read(8388608)
-                  print('DIRECT_HTTP_PROBE:', response.status, response.headers.get('Content-Range'), len(data), round(time.monotonic() - start, 2), flush=True)
-          except Exception as error:
-              print('DIRECT_HTTP_PROBE_ERROR:', type(error).__name__, flush=True)
-          '@
-          $running = & docker ps --filter name=gpu-image-prepare- --filter status=running --format '{{.Names}}'
-          foreach ($name in $running) {
-            $diagnostic | & docker exec -i $name python -
-            if ($LASTEXITCODE -ne 0) { throw 'Download diagnostics failed.' }
-          }
           $script = @'
           import json
-          import re
-          from collections import deque
           from pathlib import Path
           root = Path('/models')
           files = []
@@ -113,21 +76,6 @@ jobs:
                   continue
               seen.add(stat.st_ino)
               files.append({'path': str(path.relative_to(root)), 'MiB': round(stat.st_size / 2**20, 1), 'allocated_MiB': round(stat.st_blocks * 512 / 2**20, 1)})
-          log_files = sorted((root / 'hf/xet/logs').glob('*.log'))
-          for logfile in log_files[-1:]:
-              with logfile.open(errors='replace') as stream:
-                  recent = list(deque(stream, maxlen=50))
-              for line in recent:
-                  try:
-                      record = json.loads(line)
-                  except ValueError:
-                      continue
-                  level = record.get('level', '')
-                  message = str(record.get('fields', {}).get('message', ''))
-                  message = re.sub(r'https?://[^\s]+', '<download-url>', message)
-                  message = re.sub(r'eyJ[A-Za-z0-9_.-]+', '<download-token>', message)
-                  if level in ('WARN', 'ERROR'):
-                      print('DOWNLOAD_DIAGNOSTIC:', record.get('timestamp'), level, message[:700], flush=True)
           manifest = root / 'manifest.json'
           index = root / 'Qwen-Image-2.1/text_encoder/model.safetensors.index.json'
           encoder_total = json.loads(index.read_text())['metadata']['total_size'] if index.exists() else None
@@ -143,7 +91,7 @@ jobs:
           $ErrorActionPreference = 'Stop'
           $running = & docker ps --filter name=gpu-image-prepare- --filter status=running --format '{{.Names}}'
           foreach ($name in $running) {
-            & docker stop --time 15 $name
+            & docker stop --timeout 15 $name
             if ($LASTEXITCODE -ne 0) { throw 'Cannot stop stalled preparation before recovery.' }
           }
           $name = "gpu-image-prepare-http-$env:GITHUB_RUN_ID"
@@ -170,7 +118,7 @@ jobs:
             & docker logs --tail 15 $name
           } else {
             $name = "gpu-image-prepare-$env:GITHUB_RUN_ID"
-            & docker create --name $name --gpus all --ipc=host -e HF_HOME=/models/hf -e TMPDIR=/models -v gpu-image-models:/models lmsysorg/sglang:nightly-dev-cu13-20261002-67eab570 python /opt/image_edit.py prepare
+            & docker create --name $name --gpus all --ipc=host -e HF_HOME=/models/hf -e HF_HUB_DISABLE_XET=1 -e TMPDIR=/models -v gpu-image-models:/models lmsysorg/sglang:nightly-dev-cu13-20261002-67eab570 python /opt/image_edit.py prepare
             if ($LASTEXITCODE -ne 0) { throw 'Preparation container creation failed.' }
             & docker cp tools/gpu/image_edit.py "${name}:/opt/image_edit.py"
             if ($LASTEXITCODE -ne 0) { throw 'Cannot copy deployment script.' }

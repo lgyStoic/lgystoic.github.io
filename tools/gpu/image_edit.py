@@ -19,6 +19,7 @@ ENCODER = ROOT / 'qwen_image_2.1-encoder-Q4_0.gguf'
 
 
 def prepare():
+    os.environ.setdefault('HF_HUB_DISABLE_XET', '1')
     from huggingface_hub import hf_hub_download, snapshot_download
     import gguf
     import numpy as np
