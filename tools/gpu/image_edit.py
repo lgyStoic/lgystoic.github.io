@@ -12,6 +12,7 @@ import urllib.request
 
 ROOT = Path('/models')
 BASE = ROOT / 'Qwen-Image-2.1'
+RUNTIME = ROOT / 'Qwen-Image-2.1-4bit'
 REVISION = 'd26bb61231c349cf6b7896fa83353113880e1ba3'
 DIT_REVISION = 'cc11433936a06e9765f7c0c0b1f0436cfd2b9856'
 DIT = ROOT / 'qwen_image_2.1-Q4_0.gguf'
@@ -82,6 +83,7 @@ def prepare():
     report['base_revision'] = REVISION
     report['dit_revision'] = DIT_REVISION
     report['vae_runtime_dtype'] = 'bf16 (native precision exceptions retained)'
+    create_runtime_layout()
     (ROOT / 'manifest.json').write_text(json.dumps(report, indent=2))
     print(json.dumps(report, indent=2), flush=True)
 
@@ -177,12 +179,54 @@ def repair_download():
     prepare()
 
 
+def create_runtime_layout():
+    """Keep architecture metadata with actual GGUF component checkpoints."""
+    import shutil
+    RUNTIME.mkdir(exist_ok=True)
+    shutil.copy2(BASE / 'model_index.json', RUNTIME / 'model_index.json')
+    for name in ['processor', 'scheduler', 'vae']:
+        target = RUNTIME / name
+        if not target.exists():
+            target.symlink_to(BASE / name, target_is_directory=True)
+    for name, checkpoint in [('transformer', DIT), ('text_encoder', ENCODER)]:
+        directory = RUNTIME / name
+        directory.mkdir(exist_ok=True)
+        for config in (BASE / name).glob('*.json'):
+            if not config.name.endswith('.safetensors.index.json'):
+                shutil.copy2(config, directory / config.name)
+        target = directory / 'model.gguf'
+        if not target.exists():
+            target.symlink_to(checkpoint)
+
+
+def enable_gguf_directory_validation():
+    """Pinned runtime's completeness checker omitted its supported GGUF format."""
+    import importlib.util
+    package = Path(next(iter(importlib.util.find_spec('sglang').submodule_search_locations)))
+    source = package / 'multimodal_gen/runtime/utils/hf_diffusers_utils.py'
+    content = source.read_text()
+    original = '_WEIGHT_FILE_PATTERNS = (\n    "*.safetensors",\n    "*.bin",\n    "*.pt",\n    "*.pth",\n    "*.ckpt",\n)'
+    updated = original[:-1] + '    "*.gguf",\n)'
+    if original in content:
+        source.write_text(content.replace(original, updated, 1))
+        print('RUNTIME_COMPATIBILITY: enabled GGUF component completeness checks', flush=True)
+    elif updated not in content:
+        raise RuntimeError('Pinned runtime completeness checker changed; review compatibility patch')
+    from sglang.multimodal_gen.runtime.utils.hf_diffusers_utils import _verify_diffusers_model_complete
+    if not _verify_diffusers_model_complete(str(RUNTIME)):
+        raise RuntimeError('Prepared GGUF pipeline directory is incomplete')
+    print('GGUF_PIPELINE_DIRECTORY: validated', RUNTIME, flush=True)
+
+
 def serve():
-    command = ['sglang', 'serve', '--model-path', str(BASE), '--model-id', 'Qwen-Image-2.1',
+    create_runtime_layout()
+    enable_gguf_directory_validation()
+    command = ['sglang', 'serve', '--model-path', str(RUNTIME), '--model-id', 'Qwen-Image-2.1',
                '--host', '0.0.0.0', '--port', '30010', '--attention-backend', 'torch_sdpa',
                '--component-weights-paths.transformer', str(DIT),
                '--component-weights-paths.text_encoder', str(ENCODER),
-               '--performance-mode', 'manual', '--text-encoder-cpu-offload', 'true']
+               '--performance-mode', 'manual', '--text-encoder-cpu-offload', 'true',
+               '--warmup-mode', 'off']
     print('SERVE:', ' '.join(command), flush=True)
     os.execvp(command[0], command)
 
