@@ -57,6 +57,41 @@ jobs:
             & docker inspect $name --format '{{json .State}}'
             & docker stats --no-stream $name --format '{{.Name}} CPU={{.CPUPerc}} Memory={{.MemUsage}} Network={{.NetIO}} Disk={{.BlockIO}}'
           }
+          $diagnostic = @'
+          import json, re, time, urllib.request
+          from collections import deque
+          from pathlib import Path
+          for folder in ['/root/.cache/huggingface/xet/logs', '/models/hf/xet/logs']:
+              logs = sorted(Path(folder).glob('*.log'))
+              print('XET_LOG_FILES:', folder, len(logs), flush=True)
+              for logfile in logs[-1:]:
+                  with logfile.open(errors='replace') as stream:
+                      recent = list(deque(stream, maxlen=40))
+                  for line in recent:
+                      try:
+                          entry = json.loads(line)
+                      except ValueError:
+                          continue
+                      if entry.get('level') in ('WARN', 'ERROR'):
+                          message = str(entry.get('fields', {}).get('message', ''))
+                          message = re.sub(r'https?://[^\s]+', '<download-url>', message)
+                          message = re.sub(r'eyJ[A-Za-z0-9_.-]+', '<download-token>', message)
+                          print('XET_RETRY:', entry.get('timestamp'), message[:700], flush=True)
+          url = 'https://huggingface.co/Qwen/Qwen-Image-2.1/resolve/d26bb61231c349cf6b7896fa83353113880e1ba3/text_encoder/model-00001-of-00004.safetensors?download_probe=1'
+          start = time.monotonic()
+          try:
+              request = urllib.request.Request(url, headers={'Range': 'bytes=0-8388607'})
+              with urllib.request.urlopen(request, timeout=15) as response:
+                  data = response.read(8388608)
+                  print('DIRECT_HTTP_PROBE:', response.status, response.headers.get('Content-Range'), len(data), round(time.monotonic() - start, 2), flush=True)
+          except Exception as error:
+              print('DIRECT_HTTP_PROBE_ERROR:', type(error).__name__, flush=True)
+          '@
+          $running = & docker ps --filter name=gpu-image-prepare- --filter status=running --format '{{.Names}}'
+          foreach ($name in $running) {
+            $diagnostic | & docker exec -i $name python -
+            if ($LASTEXITCODE -ne 0) { throw 'Download diagnostics failed.' }
+          }
           $script = @'
           import json
           import re
