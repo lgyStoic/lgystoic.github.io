@@ -120,4 +120,6 @@ python3 -m http.server 8765       # 本地预览
 
 `tools/gpu/image_edit.py` 固定官方基础模型与 DiT 导出的 revision。DiT 使用 Q4_0 GGUF，合并的 gate/up 按原始实现顺序拆为原生 gate_layer/proj，直接保留量化字节；编码器从官方 safetensors 导出，252 个语言注意力/MLP 矩阵 Q4_0，视觉、嵌入与归一化等保留原生精度；VAE 使用管线原生 BF16 配置。导出成功后写 manifest，重跑复用缓存；存在运行中的准备容器时直接续接，Actions 取消不向容器转发终止信号。`gpu-image-models` 与 `gpu-image-outputs` 为持久 Docker volumes。原始基础目录与运行目录分离；运行目录使用普通 runtime 名称，并显式选择原生后端和管线，避免旧版按 `-4bit` 名称误路由到 Diffusers；运行目录保留原生配置、实际 GGUF 组件与原生 VAE，不包含指向未下载 BF16 DiT 的分片索引。固定镜像的完整性检查缺少 GGUF 扩展名，启动时以原子写入方式执行受版本检查保护的格式兼容修正；BF16 融合 QKV 路径跳过 GGUF 量化层，继续使用量化计算路径，并验证运行目录完整性。显式关闭启动预热，验收按 512px 后 1024px 顺序执行。
 
-独立 `gpu-image-edit` 容器使用 GPU、编码器 CPU offload、自动重启，只映射 `127.0.0.1:30010`，保留其他服务。再次 deploy 仅替换同名编辑容器。验收使用公开可分享的脚本生成杯子图，调用 `/v1/images/edits`（先 512px/20 步，再 1024px/40 步），验证返回图片尺寸与可解码性，保存前后图片与耗时报告，记录请求后的显存，Actions artifact 保留 3 天。工作流成功仅代表接口完成，图像编辑质量须查看结果。
+独立 `gpu-image-edit` 容器使用 GPU、各阶段 CPU offload、关闭锁页内存、16GB RAM 上限与自动重启，只映射 `127.0.0.1:30010`，保留其他服务。再次 deploy 仅替换同名编辑容器。验收使用公开可分享的脚本生成杯子图，调用 `/v1/images/edits`（先 512px/20 步，再 1024px/40 步），验证返回图片尺寸与可解码性，保存前后图片与耗时报告，记录请求后的显存，Actions artifact 保留 3 天。工作流成功仅代表接口完成，图像编辑质量须查看结果。
+
+2026-10-03 实测：量化组件完整，原生管线及所有组件加载成功；真实编辑因 Windows 提交内存压力失败，尚未产出验收图片。Docker Desktop 重置后被 Windows 启动权限阻断，需要在 Windows 桌面恢复 Linux engine，再验收新的容器内存上限。
