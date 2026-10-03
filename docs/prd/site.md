@@ -41,7 +41,7 @@
 | `gpu-probe.yml` GPU runner 环境检查 | 仅手动触发 | 在 Windows `dd-lgystoic` runner 上检查 NVIDIA GPU、驱动、CUDA toolkit、Python、WSL、Docker 和已安装 PyTorch 的 CUDA 矩阵计算；不 checkout 项目、不安装依赖、不注入仓库 secrets |
 | `gpu-docker.yml` GPU Docker 环境准备 | 仅手动触发，默认 verify-docker | prepare-wsl 启用 WSL 前置条件，等待重启；verify-docker 验证 Linux GPU 容器；reboot 必须显式选择，延迟 60 秒重启 Windows，会中断现有模型服务 |
 
-GPU Docker：重启完成后，`install-docker` 在当前 runner 身份下创建独立 `GPU-Runner-Ubuntu` WSL2 发行版（Ubuntu 24.04.4 官方镜像，校验固定 SHA256），启用 systemd，从 Docker 与 NVIDIA 官方签名软件源安装 Docker Engine、Compose、Buildx 与 NVIDIA Container Toolkit，并验证 CUDA 12.8 容器访问 GPU。后续用 `verify-wsl-docker` 复验。容器任务通过 `wsl.exe -d GPU-Runner-Ubuntu -u root --exec docker ...` 执行；不安装 Docker Desktop、不改其他发行版。发行版归当前 runner 的 Windows 身份所有，runner 换用户后需重新配置。
+GPU Docker：使用已有 `Ubuntu` WSL2 发行版，不重新安装或导入发行版。`install-docker` 先验证发行版可访问、systemd 与 GPU，再从 Docker 与 NVIDIA 官方签名软件源安装 Docker Engine、Compose、Buildx 与 NVIDIA Container Toolkit，并验证 CUDA 容器。软件源按 Ubuntu 实际版本选择。后续用 `verify-wsl-docker` 复验。Docker Desktop 卸载须等独立 Engine 可用并迁移模型缓存后执行。
 
 Windows Docker 已实测通过 CUDA 容器识别 5090（运行 37080408367）；可以直接用 Windows `docker` CLI 调用 Linux 容器。`verify-uv` 使用官方 uv Python 3.12 Debian 容器，实际验证虚拟环境、下载 packaging、uv run、Git 初始化与 GCC 编译，不安装主机依赖。
 | `jobs.yml` 工作机会 | 00:35 | 岗位抓取、外部适配器、AI 去重、渲染、提交 |
@@ -122,4 +122,4 @@ python3 -m http.server 8765       # 本地预览
 
 独立 `gpu-image-edit` 容器使用 GPU、各阶段 CPU offload、关闭锁页内存、16GB RAM 上限与自动重启，只映射 `127.0.0.1:30010`，保留其他服务。再次 deploy 仅替换同名编辑容器。验收使用公开可分享的脚本生成杯子图，调用 `/v1/images/edits`（先 512px/20 步，再 1024px/40 步），验证返回图片尺寸与可解码性，保存前后图片与耗时报告，记录请求后的显存，Actions artifact 保留 3 天。工作流成功仅代表接口完成，图像编辑质量须查看结果。
 
-2026-10-03 实测：量化组件完整，原生管线及所有组件加载成功；真实编辑因 Windows 提交内存压力失败，尚未产出验收图片。Docker Desktop 重置后被 Windows 启动权限阻断，需要在 Windows 桌面恢复 Linux engine，再验收新的容器内存上限。
+2026-10-03 实测：量化组件完整，原生管线及所有组件加载成功；真实编辑因 Windows 提交内存压力失败，尚未产出验收图片。Docker Desktop 重置后被 Windows 启动权限阻断，现改为已有 Ubuntu 内的 Docker Engine 路线；runner 执行 wsl.exe 仍被拒绝，尚未完成缓存迁移、Desktop 卸载或新内存上限验收。
