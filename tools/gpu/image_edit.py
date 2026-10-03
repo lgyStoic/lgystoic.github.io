@@ -178,6 +178,33 @@ def repair_download():
 
 
 def serve():
+    # This image's SGLang completeness check only recognizes conventional
+    # weight suffixes. The actual transformer and encoder weights are GGUF
+    # files passed through --component-weights-paths below.
+    for component, source in [('transformer', DIT), ('text_encoder', ENCODER)]:
+        if not source.is_file():
+            raise FileNotFoundError(f'Missing {component} GGUF weights: {source}')
+        component_dir = BASE / component
+        component_dir.mkdir(exist_ok=True)
+        link = component_dir / source.name
+        if link.is_symlink() and link.resolve() != source:
+            link.unlink()
+        if not link.exists():
+            link.symlink_to(source)
+        if link.resolve() != source:
+            raise RuntimeError(f'Unexpected {component} weight link: {link}')
+
+    completeness_check = Path('/sgl-workspace/sglang/python/sglang/multimodal_gen/runtime/utils/hf_diffusers_utils.py')
+    original = completeness_check.read_text()
+    before = '    "*.ckpt",\n)\n'
+    after = '    "*.ckpt",\n    "*.gguf",\n)\n'
+    if before in original:
+        if original.count(before) != 1:
+            raise RuntimeError('Unexpected SGLang weight pattern layout')
+        completeness_check.write_text(original.replace(before, after, 1))
+    elif after not in original:
+        raise RuntimeError('SGLang weight pattern layout changed')
+
     command = ['sglang', 'serve', '--model-path', str(BASE), '--model-id', 'Qwen-Image-2.1',
                '--host', '0.0.0.0', '--port', '30010', '--attention-backend', 'torch_sdpa',
                '--component-weights-paths.transformer', str(DIT),
