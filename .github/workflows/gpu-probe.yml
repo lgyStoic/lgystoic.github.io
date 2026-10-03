@@ -33,6 +33,14 @@ jobs:
           }
           Write-Output "=== CUDA toolkit ==="
           if (Get-Command nvcc -ErrorAction SilentlyContinue) { nvcc --version }
+          Write-Output "=== Registered WSL distributions and launcher permissions ==="
+          $wslRegistry = 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Lxss'
+          if (Test-Path $wslRegistry) {
+            Get-ChildItem $wslRegistry | ForEach-Object { Get-ItemProperty $_.PSPath } | Select-Object DistributionName, Version | Format-Table -AutoSize
+          }
+          Get-Service WslService,LxssManager -ErrorAction SilentlyContinue | Select-Object Name, Status | Format-Table -AutoSize
+          $wslLauncher = Join-Path $env:SystemRoot 'System32\wsl.exe'
+          Get-Acl $wslLauncher | Select-Object Owner, AccessToString | Format-List
           Write-Output "=== Python / Git / Docker / WSL ==="
           foreach ($tool in @('python', 'py', 'git', 'docker', 'wsl')) {
             $command = Get-Command $tool -ErrorAction SilentlyContinue
@@ -42,7 +50,7 @@ jobs:
                 & $tool --status
                 & $tool --list --verbose
                 $distros = (& $tool --list --quiet 2>$null) -join ''
-                $distros = $distros.Replace([string][char]0, '').Trim()
+                $distros = ([string]$distros).Replace([string][char]0, '').Trim()
                 if ($distros -match 'Ubuntu|Debian|docker-desktop') {
                   & $tool --exec sh -lc 'uname -r; command -v docker; command -v python3; /usr/lib/wsl/lib/nvidia-smi --query-gpu=name,driver_version,memory.total --format=csv'
                 }
