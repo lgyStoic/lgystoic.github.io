@@ -42,8 +42,9 @@ jobs:
           if (-not $env:GRADIO_PASSWORD) { throw 'Repository secret GPU_IMAGE_UI_PASSWORD is required.' }
           $running = & docker inspect gpu-image-edit --format '{{.State.Running}}'
           if ($LASTEXITCODE -ne 0 -or $running.Trim() -ne 'true') { throw 'Image-edit service is not running; deploy it first.' }
-          & docker network inspect gpu-image-net *> $null
-          if ($LASTEXITCODE -ne 0) { & docker network create gpu-image-net }
+          $network = & docker network ls --filter name=^gpu-image-net$ --format '{{.Name}}'
+          if (-not $network) { & docker network create gpu-image-net }
+          if ($LASTEXITCODE -ne 0) { throw 'Could not prepare the UI network.' }
           $modelNetworks = & docker inspect gpu-image-edit --format '{{json .NetworkSettings.Networks}}'
           if ($modelNetworks -notmatch 'gpu-image-net') { & docker network connect gpu-image-net gpu-image-edit }
           & docker build -f tools/gpu/image-edit-ui.Dockerfile -t gpu-image-edit-ui:latest .
