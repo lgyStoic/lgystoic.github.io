@@ -113,3 +113,7 @@ python3 -m http.server 8765       # 本地预览
 - radar 拥有当日 JSON、seen、活动、专题、health、last-run 与巡检报告；jobs 仅拥有 jobs.json；contributions 仅拥有 contributions.json。恢复只覆盖本轮变更的归属文件；保留其他管线与最新主分支的数据，随后重新构建页面。
 - 源自动停用按 source id 合并 disabled/disabled_reason 字段；若远端同时改了这些字段，保留远端状态并记录日志，避免抹去人工决定。
 - `check.yml` 在 PR 和手动触发时运行离线回归与构建，不需要生产凭据。`tests/test_publish_results.py` 使用临时裸仓库与两个 checkout 重现并验证交错推送。
+
+### GPU 图像编辑运行准备
+
+`gpu-image-edit.yml` 仅手动运行于 Windows `dd-lgystoic` 自托管 runner，检查显存、Docker 内存和磁盘，拉取推理 nightly 镜像并记录 digest，验证 CUDA、GPU 架构及原生图像模块。此阶段不启动服务、不修改现有推理进程。模型缓存与推理服务独立于静态网站。
