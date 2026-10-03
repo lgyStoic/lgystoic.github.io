@@ -85,6 +85,97 @@ def prepare():
     print(json.dumps(report, indent=2), flush=True)
 
 
+def repair_download():
+    """Resume stalled encoder shards with byte ranges and official SHA256."""
+    import hashlib
+    import shutil
+    from concurrent.futures import ThreadPoolExecutor
+    import requests
+
+    shards = [
+        ('model-00001-of-00004.safetensors', 4998056552, 'dde00291b5f7fb92013895310a3da0ddba78674df9f10d505d375243dc01fc6f'),
+        ('model-00002-of-00004.safetensors', 4915962464, '9047faccc0a6d98496a52d55f27be1c94a9c259d1e283fbea0128d054a948d42'),
+        ('model-00003-of-00004.safetensors', 4915962496, '8c54187654c0176b73ae73785bf791dc9a14c9df7fb4310083a09d42048cb57e'),
+        ('model-00004-of-00004.safetensors', 2704357976, '5311532aaaeae3259eb6a7b2c600636be1159adf7ded35f53579f7d0e7d43cdd'),
+    ]
+    directory = BASE / 'text_encoder'
+    directory.mkdir(parents=True, exist_ok=True)
+    cache = BASE / '.cache/huggingface/download/text_encoder'
+
+    def digest(path):
+        checksum = hashlib.sha256()
+        with path.open('rb') as stream:
+            for block in iter(lambda: stream.read(16 * 2**20), b''):
+                checksum.update(block)
+        return checksum.hexdigest()
+
+    def download(item):
+        name, expected_size, expected_hash = item
+        destination = directory / name
+        if destination.exists() and destination.stat().st_size == expected_size and digest(destination) == expected_hash:
+            print('HTTP_ALREADY_VERIFIED:', name, flush=True)
+            return
+        temporary = directory / (name + '.http.incomplete')
+        backups = []
+        if not temporary.exists():
+            candidates = sorted(cache.glob(f'*.{expected_hash}.*.incomplete'), key=lambda p: p.stat().st_size, reverse=True)
+            if candidates:
+                source = candidates[0]
+                stat = source.stat()
+                if stat.st_blocks * 512 >= stat.st_size and stat.st_size <= expected_size:
+                    shutil.copyfile(source, temporary)
+                    backup = Path(str(source) + '.xet-backup')
+                    source.rename(backup)
+                    backups.append(backup)
+                    print('HTTP_RESUME_PREFIX:', name, stat.st_size, flush=True)
+        for attempt in range(6):
+            offset = temporary.stat().st_size if temporary.exists() else 0
+            if offset < expected_size:
+                url = f'https://huggingface.co/Qwen/Qwen-Image-2.1/resolve/{REVISION}/text_encoder/{name}?http_resume={time.time_ns()}'
+                headers = {'Range': f'bytes={offset}-'} if offset else {}
+                try:
+                    with requests.get(url, headers=headers, stream=True, timeout=(20, 60)) as response:
+                        if response.status_code not in (200, 206):
+                            raise RuntimeError(f'HTTP transfer rejected: {name}, status={response.status_code}')
+                        if response.status_code == 206:
+                            content_range = response.headers.get('Content-Range', '')
+                            if not content_range.startswith(f'bytes {offset}-') or not content_range.endswith(f'/{expected_size}'):
+                                raise RuntimeError(f'Unexpected byte range for {name}')
+                        elif offset:
+                            offset = 0
+                        mode = 'ab' if offset else 'wb'
+                        downloaded = offset
+                        next_report = offset + 256 * 2**20
+                        with temporary.open(mode) as stream:
+                            for block in response.iter_content(chunk_size=8 * 2**20):
+                                stream.write(block)
+                                downloaded += len(block)
+                                if downloaded > expected_size:
+                                    raise RuntimeError(f'Oversized encoder download: {name}')
+                                if downloaded >= next_report:
+                                    print('HTTP_PROGRESS:', name, downloaded, expected_size, flush=True)
+                                    next_report = downloaded + 256 * 2**20
+                except requests.RequestException as error:
+                    print('HTTP_RETRY:', name, attempt + 1, type(error).__name__, flush=True)
+                    time.sleep(min(2 ** attempt, 30))
+                    continue
+            if temporary.stat().st_size == expected_size and digest(temporary) == expected_hash:
+                temporary.replace(destination)
+                for backup in backups:
+                    backup.unlink(missing_ok=True)
+                print('HTTP_SHA256_VERIFIED:', name, expected_hash, flush=True)
+                return
+            print('HTTP_RETRY_HASH:', name, flush=True)
+            # A damaged prefix must never become a model checkpoint.
+            temporary.unlink(missing_ok=True)
+        raise RuntimeError(f'Could not recover official encoder shard: {name}')
+
+    with ThreadPoolExecutor(max_workers=2) as pool:
+        list(pool.map(download, shards))
+    os.environ['HF_HUB_DISABLE_XET'] = '1'
+    prepare()
+
+
 def serve():
     command = ['sglang', 'serve', '--model-path', str(BASE), '--model-id', 'Qwen-Image-2.1',
                '--host', '0.0.0.0', '--port', '30010', '--attention-backend', 'torch_sdpa',
@@ -151,6 +242,6 @@ def verify():
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('mode', choices=['prepare', 'serve', 'verify'])
+    parser.add_argument('mode', choices=['prepare', 'repair_download', 'serve', 'verify'])
     mode = parser.parse_args().mode
     globals()[mode]()
