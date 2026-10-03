@@ -57,6 +57,12 @@ jobs:
             & docker inspect $name --format '{{json .State}}'
             & docker stats --no-stream $name --format '{{.Name}} CPU={{.CPUPerc}} Memory={{.MemUsage}} Network={{.NetIO}} Disk={{.BlockIO}}'
           }
+          Write-Output 'WINDOWS_MEMORY:'
+          Get-CimInstance Win32_PerfFormattedData_PerfOS_Memory | Select-Object CommittedBytes, CommitLimit, AvailableMBytes, PercentCommittedBytesInUse | Format-List
+          Get-CimInstance Win32_PageFileUsage | Select-Object Name, AllocatedBaseSize, CurrentUsage, PeakUsage | Format-List
+          Get-CimInstance Win32_ComputerSystem | Select-Object TotalPhysicalMemory, AutomaticManagedPagefile | Format-List
+          Get-Process | Sort-Object PrivateMemorySize64 -Descending | Select-Object -First 8 Name, PrivateMemorySize64, WorkingSet64 | Format-Table -AutoSize
+          Get-Command uv, python -ErrorAction SilentlyContinue | Select-Object Name, Source | Format-Table -AutoSize
           Write-Output 'WINDOWS_GPU_AND_VM_EVENTS:'
           Get-WinEvent -FilterHashtable @{LogName='System'; StartTime=(Get-Date).AddMinutes(-30)} -ErrorAction SilentlyContinue | Where-Object { $_.ProviderName -match 'Display|nvlddmkm|Hyper-V-Compute|Lxss' } | Select-Object -First 12 TimeCreated, ProviderName, Id, Message | Format-List
           Write-Output 'WSL_KERNEL_LOG:'
@@ -64,7 +70,8 @@ jobs:
           $vmLog = Join-Path $env:LOCALAPPDATA 'Docker\log\vm\console.log'
           if (Test-Path $vmLog) { Get-Content $vmLog -Tail 160 }
           $hostLog = Join-Path $env:LOCALAPPDATA 'Docker\log\host\com.docker.backend.exe.log'
-          if (Test-Path $hostLog) { Get-Content $hostLog -Tail 100 }
+          if (Test-Path $hostLog) { Get-Content $hostLog | Select-String -Pattern 'out of memory|panic|crash|fatal|WSL exited|restarting' | Select-Object -Last 20 }
+          Get-ChildItem (Join-Path $env:LOCALAPPDATA 'Docker\log\vm') -ErrorAction SilentlyContinue | Select-Object Name, Length | Format-Table -AutoSize
           $compatFile = Join-Path $env:RUNNER_TEMP 'gpu-image-hf-utils.py'
           & docker cp gpu-image-edit:/sgl-workspace/sglang/python/sglang/multimodal_gen/runtime/utils/hf_diffusers_utils.py $compatFile
           Write-Output "COMPAT_COPY_EXIT: $LASTEXITCODE"
