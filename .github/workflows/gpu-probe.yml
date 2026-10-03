@@ -41,6 +41,14 @@ jobs:
           Get-Service WslService,LxssManager -ErrorAction SilentlyContinue | Select-Object Name, Status | Format-Table -AutoSize
           $wslLauncher = Join-Path $env:SystemRoot 'System32\wsl.exe'
           Get-Acl $wslLauncher | Select-Object Owner, AccessToString | Format-List
+          Write-Output '=== Desktop data inventory and disk space ==='
+          Get-PSDrive -PSProvider FileSystem | Select-Object Name, Used, Free | Format-Table -AutoSize
+          Get-ChildItem "$env:LOCALAPPDATA\Docker\wsl" -Filter *.vhdx -Recurse -ErrorAction SilentlyContinue | Select-Object FullName, Length, LastWriteTime | Format-List
+          Get-ChildItem $wslRegistry | ForEach-Object { Get-ItemProperty $_.PSPath } | Select-Object DistributionName, BasePath | Format-List
+          Write-Output '=== Application execution policy events ==='
+          foreach ($log in @('Microsoft-Windows-CodeIntegrity/Operational', 'Microsoft-Windows-AppLocker/EXE and DLL')) {
+            Get-WinEvent -FilterHashtable @{LogName=$log; StartTime=(Get-Date).AddHours(-4)} -MaxEvents 30 -ErrorAction SilentlyContinue | Where-Object {$_.Message -match 'wsl.exe|docker'} | Select-Object TimeCreated, Id, Message | Format-List
+          }
           Write-Output "=== Python / Git / Docker / WSL ==="
           foreach ($tool in @('python', 'py', 'git', 'docker', 'wsl')) {
             $command = Get-Command $tool -ErrorAction SilentlyContinue
