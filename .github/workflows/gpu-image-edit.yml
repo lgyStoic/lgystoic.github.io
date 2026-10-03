@@ -58,13 +58,13 @@ jobs:
           $url = $null
           for ($attempt = 0; $attempt -lt 24; $attempt++) {
             Start-Sleep -Seconds 5
-            $logs = & docker logs gpu-image-edit-ui 2>&1
+            $logs = & cmd.exe /d /c "docker logs gpu-image-edit-ui 2>&1"
             $match = [regex]::Match(($logs -join "`n"), 'https://[a-z0-9-]+\.gradio\.live')
             if ($match.Success) { $url = $match.Value; break }
             $state = & docker inspect gpu-image-edit-ui --format '{{.State.Status}}'
             if ($state.Trim() -ne 'running') { break }
           }
-          & docker logs --tail 120 gpu-image-edit-ui
+          & cmd.exe /d /c "docker logs --tail 120 gpu-image-edit-ui 2>&1"
           if (-not $url) { throw 'Gradio share URL was not created.' }
           "## 5090 图像编辑台`n`n$url`n`n用户名：``lgystoic``" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append -Encoding utf8
           Write-Output "GRADIO_URL=$url"
@@ -74,7 +74,7 @@ jobs:
         run: |
           $ErrorActionPreference = 'Stop'
           & docker ps -a --filter name=^gpu-image-edit-ui$ --format '{{.Names}} {{.Status}} {{.Ports}}'
-          & docker logs --tail 120 gpu-image-edit-ui
+          & cmd.exe /d /c "docker logs --tail 120 gpu-image-edit-ui 2>&1"
           if ($LASTEXITCODE -ne 0) { throw 'Gradio UI container is unavailable.' }
       - name: 停止 Gradio 调试页
         if: inputs.mode == 'ui-stop'
