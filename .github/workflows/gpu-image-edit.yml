@@ -59,6 +59,8 @@ jobs:
           }
           $script = @'
           import json
+          import re
+          from collections import deque
           from pathlib import Path
           root = Path('/models')
           files = []
@@ -73,6 +75,21 @@ jobs:
                   continue
               seen.add(stat.st_ino)
               files.append({'path': str(path.relative_to(root)), 'MiB': round(stat.st_size / 2**20, 1), 'allocated_MiB': round(stat.st_blocks * 512 / 2**20, 1)})
+          log_files = sorted((root / 'hf/xet/logs').glob('*.log'))
+          for logfile in log_files[-1:]:
+              with logfile.open(errors='replace') as stream:
+                  recent = list(deque(stream, maxlen=50))
+              for line in recent:
+                  try:
+                      record = json.loads(line)
+                  except ValueError:
+                      continue
+                  level = record.get('level', '')
+                  message = str(record.get('fields', {}).get('message', ''))
+                  message = re.sub(r'https?://[^\s]+', '<download-url>', message)
+                  message = re.sub(r'eyJ[A-Za-z0-9_.-]+', '<download-token>', message)
+                  if level in ('WARN', 'ERROR'):
+                      print('DOWNLOAD_DIAGNOSTIC:', record.get('timestamp'), level, message[:700], flush=True)
           manifest = root / 'manifest.json'
           index = root / 'Qwen-Image-2.1/text_encoder/model.safetensors.index.json'
           encoder_total = json.loads(index.read_text())['metadata']['total_size'] if index.exists() else None
