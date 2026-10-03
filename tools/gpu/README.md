@@ -48,4 +48,4 @@ docker start gpu-image-edit
 
 截至 2026-10-03 的实测状态：基础组件下载、官方编码器分片 SHA256、252 个编码器 Q4_0 矩阵导出均通过；DiT 无损拆分后为 297 个张量、224 个 Q4_0 矩阵。原生服务已成功加载 DiT、编码器和 BF16 VAE，但 512px 编辑请求因 Windows 提交内存到达上限而失败，尚无成功出图结果。新的容器内存上限待继续验收。
 
-主机恢复：Docker Desktop 重置后的启动被 Windows 拒绝（配置文件重命名及 wsl.exe 均 Access is denied）。当前 runner 为普通权限；需要在 Windows 桌面以管理员身份启动 Docker Desktop，确认 Linux engine 就绪后，再运行 `deploy`。模型 volumes 与 Windows llama 服务保留。不要把容器健康或权重加载成功视为编辑验收完成。
+主机迁移：使用已注册的 `Ubuntu` WSL2，在其中安装独立 Docker Engine。Desktop 数据盘已于 2026-10-03 离线复制到 `D:\gpu-runner\backup\docker_data.vhdx`（82,852,184,064 字节），原盘与备份 SHA256 相同；这只是磁盘备份，尚未导入 Ubuntu 的 Docker volumes。当前 runner 对 Windows 系统及已安装软件包的两个 WSL 命令入口均报告 Access is denied，无法启动 Ubuntu；根因未确定，不应直接判为普通权限或 Desktop 导致。需先核实本机普通 PowerShell 执行 `wsl -d Ubuntu -- uname -r` 是否正常，再处理对应启动故障、迁移缓存并验证 GPU 容器，最后卸载 Desktop。Windows llama 服务保留。不要把备份、容器健康或权重加载成功视为编辑验收完成。
