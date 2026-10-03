@@ -4,8 +4,8 @@ on:
     inputs:
       mode:
         type: choice
-        description: "probe 检查运行环境；deploy 准备量化组件并验证编辑服务"
-        options: [probe, deploy]
+        description: "probe 检查环境；status 查看容器进度；deploy 部署并验证"
+        options: [probe, status, deploy]
         default: deploy
 permissions:
   contents: read
@@ -42,6 +42,18 @@ jobs:
           '@
           $script | & docker run --rm --gpus all -i lmsysorg/sglang:nightly-dev-cu13-20261002-67eab570 python -
           if ($LASTEXITCODE -ne 0) { throw 'Runtime compatibility probe failed.' }
+      - name: 查看已启动的编辑与准备容器
+        if: inputs.mode == 'status'
+        shell: powershell -NoProfile -NonInteractive -ExecutionPolicy Bypass -File {0}
+        run: |
+          $ErrorActionPreference = 'Stop'
+          & docker ps -a --filter name=gpu-image --format '{{.Names}} {{.Status}}'
+          $names = & docker ps -a --filter name=gpu-image --format '{{.Names}}'
+          foreach ($name in $names) {
+            Write-Output "CONTAINER: $name"
+            & docker logs --tail 60 $name
+            & docker inspect $name --format '{{json .State}}'
+          }
       - name: 下载组件并导出原生四位编码器
         if: inputs.mode == 'deploy'
         shell: powershell -NoProfile -NonInteractive -ExecutionPolicy Bypass -File {0}
@@ -49,14 +61,24 @@ jobs:
           $ErrorActionPreference = 'Stop'
           & docker volume create gpu-image-models
           & docker volume create gpu-image-outputs
-          $name = "gpu-image-prepare-$env:GITHUB_RUN_ID"
-          & docker create --name $name --gpus all --ipc=host -e HF_HOME=/models/hf -e TMPDIR=/models -v gpu-image-models:/models lmsysorg/sglang:nightly-dev-cu13-20261002-67eab570 python /opt/image_edit.py prepare
-          if ($LASTEXITCODE -ne 0) { throw 'Preparation container creation failed.' }
-          & docker cp tools/gpu/image_edit.py "${name}:/opt/image_edit.py"
-          if ($LASTEXITCODE -ne 0) { throw 'Cannot copy deployment script.' }
-          & docker start -a $name
-          $code = & docker inspect $name --format '{{.State.ExitCode}}'
-          if ($LASTEXITCODE -ne 0 -or $code.Trim() -ne '0') { throw 'Quantized component preparation failed.' }
+          $running = @(& docker ps --filter name=gpu-image-prepare- --filter status=running --format '{{.Names}}')
+          if ($running.Count -gt 1) { throw 'Multiple preparation containers found; inspect status before proceeding.' }
+          if ($running.Count -eq 1) {
+            $name = $running[0]
+            Write-Output "Resuming preparation container: $name"
+            & docker logs --tail 15 $name
+          } else {
+            $name = "gpu-image-prepare-$env:GITHUB_RUN_ID"
+            & docker create --name $name --gpus all --ipc=host -e HF_HOME=/models/hf -e TMPDIR=/models -v gpu-image-models:/models lmsysorg/sglang:nightly-dev-cu13-20261002-67eab570 python /opt/image_edit.py prepare
+            if ($LASTEXITCODE -ne 0) { throw 'Preparation container creation failed.' }
+            & docker cp tools/gpu/image_edit.py "${name}:/opt/image_edit.py"
+            if ($LASTEXITCODE -ne 0) { throw 'Cannot copy deployment script.' }
+            & docker start $name
+            if ($LASTEXITCODE -ne 0) { throw 'Cannot start preparation container.' }
+          }
+          & docker attach --sig-proxy=false $name
+          $state = & docker inspect $name --format '{{json .State}}' | ConvertFrom-Json
+          if ($LASTEXITCODE -ne 0 -or $state.Running -or $state.ExitCode -ne 0) { throw 'Quantized component preparation failed.' }
           & docker rm $name
       - name: 启动本机服务并实测图像编辑
         if: inputs.mode == 'deploy'
