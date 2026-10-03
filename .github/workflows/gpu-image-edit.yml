@@ -74,7 +74,10 @@ jobs:
         run: |
           $ErrorActionPreference = 'Stop'
           & docker ps -a --filter name=^gpu-image-edit-ui$ --format '{{.Names}} {{.Status}} {{.Ports}}'
+          & docker top gpu-image-edit-ui
           & cmd.exe /d /c "docker logs --tail 120 gpu-image-edit-ui 2>&1"
+          & curl.exe --fail --silent --show-error --max-time 10 http://127.0.0.1:7860/ -o NUL
+          if ($LASTEXITCODE -ne 0) { throw 'Gradio local HTTP endpoint is unavailable.' }
           if ($LASTEXITCODE -ne 0) { throw 'Gradio UI container is unavailable.' }
       - name: 停止 Gradio 调试页
         if: inputs.mode == 'ui-stop'
