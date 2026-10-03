@@ -119,27 +119,34 @@ def verify():
     draw.arc((270, 170, 385, 330), 270, 90, fill='red', width=25)
     draw.ellipse((140, 120, 320, 170), fill='#aa0000')
     canvas.save(reference)
-    start = time.monotonic()
-    with reference.open('rb') as image:
-        response = requests.post(url + '/v1/images/edits',
-                                 files={'image[]': ('reference.png', image, 'image/png')},
-                                 data={'prompt': 'Change the red mug to blue. Keep the mug shape and white background unchanged.',
-                                       'size': '512x512', 'num_inference_steps': '20',
-                                       'n': '1', 'response_format': 'b64_json'}, timeout=1200)
-    response.raise_for_status()
-    result = response.json()
-    payload = base64.b64decode(result['data'][0]['b64_json'], validate=True)
-    target = out / 'edited.png'
-    target.write_bytes(payload)
-    with Image.open(target) as edited:
-        edited.load()
-        if edited.size != (512, 512):
-            raise RuntimeError(f'Unexpected output size: {edited.size}')
-    report = {'elapsed_seconds': round(time.monotonic() - start, 2),
-              'reference': reference.name, 'output': target.name, 'bytes': len(payload),
-              'endpoint': '/v1/images/edits', 'steps': 20, 'size': '512x512'}
-    (out / 'verification.json').write_text(json.dumps(report, indent=2))
-    print(json.dumps(report, indent=2), flush=True)
+    cases = []
+    for size, steps in [('512x512', 20), ('1024x1024', 40)]:
+        start = time.monotonic()
+        with reference.open('rb') as image:
+            response = requests.post(url + '/v1/images/edits',
+                                     files={'image[]': ('reference.png', image, 'image/png')},
+                                     data={'prompt': 'Change the red mug to blue. Keep the mug shape and white background unchanged.',
+                                           'size': size, 'num_inference_steps': str(steps),
+                                           'n': '1', 'response_format': 'b64_json'}, timeout=1200)
+        if not response.ok:
+            print('EDIT_ERROR:', response.status_code, response.text[:2000], flush=True)
+        response.raise_for_status()
+        result = response.json()
+        payload = base64.b64decode(result['data'][0]['b64_json'], validate=True)
+        target = out / f'edited-{size}-{steps}.png'
+        target.write_bytes(payload)
+        (out / 'edited.png').write_bytes(payload)
+        with Image.open(target) as edited:
+            edited.load()
+            if edited.size != tuple(map(int, size.split('x'))):
+                raise RuntimeError(f'Unexpected output size: {edited.size}')
+        report = {'elapsed_seconds': round(time.monotonic() - start, 2),
+                  'reference': reference.name, 'output': target.name, 'bytes': len(payload),
+                  'endpoint': '/v1/images/edits', 'steps': steps, 'size': size}
+        cases.append(report)
+        (out / 'verification.json').write_text(json.dumps({'cases': cases}, indent=2))
+        print(json.dumps(report, indent=2), flush=True)
+        subprocess.run(['nvidia-smi', '--query-gpu=memory.used,memory.free', '--format=csv'], check=True)
 
 
 if __name__ == '__main__':

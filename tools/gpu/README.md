@@ -33,7 +33,7 @@ curl.exe http://127.0.0.1:30010/v1/images/edits `
   -o edited-response.json
 ```
 
-工作流使用脚本生成的参考图验收，结果 artifact `gpu-edit-results` 保留 3 天，包含 `reference.png`、`edited.png` 和 `verification.json`。接口成功、图片可解码与编辑效果是不同验收项目：效果应查看前后图片。首次验收选择 512px/20 步；更高分辨率与步数需另行实测显存和质量。
+工作流使用脚本生成的参考图验收，结果 artifact `gpu-edit-results` 保留 3 天，包含 `reference.png`、两种尺寸的 `edited-<尺寸>-<步数>.png`、最后一张 `edited.png` 和 `verification.json`。接口成功、图片可解码与编辑效果是不同验收项目：效果应查看前后图片。验收依次运行 512px/20 步与 1024px/40 步，并记录耗时、图片尺寸和请求后的显存。图片质量通过查看前后结果确认。
 
 暂停与恢复服务（缓存保留）：
 
