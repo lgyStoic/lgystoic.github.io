@@ -12,7 +12,7 @@ import urllib.request
 
 ROOT = Path('/models')
 BASE = ROOT / 'Qwen-Image-2.1'
-RUNTIME = ROOT / 'Qwen-Image-2.1-4bit'
+RUNTIME = ROOT / 'Qwen-Image-2.1-runtime'
 REVISION = 'd26bb61231c349cf6b7896fa83353113880e1ba3'
 DIT_REVISION = 'cc11433936a06e9765f7c0c0b1f0436cfd2b9856'
 DIT = ROOT / 'qwen_image_2.1-Q4_0.gguf'
@@ -228,7 +228,8 @@ def serve():
     create_runtime_layout()
     enable_gguf_directory_validation()
     command = ['sglang', 'serve', '--model-path', str(RUNTIME), '--model-id', 'Qwen-Image-2.1',
-               '--host', '0.0.0.0', '--port', '30010', '--attention-backend', 'torch_sdpa',
+               '--host', '0.0.0.0', '--port', '30010', '--backend', 'sglang',
+               '--pipeline-class-name', 'QwenImage21Pipeline', '--attention-backend', 'torch_sdpa',
                '--component-weights-paths.transformer', str(DIT),
                '--component-weights-paths.text_encoder', str(ENCODER),
                '--performance-mode', 'manual', '--text-encoder-cpu-offload', 'true',
