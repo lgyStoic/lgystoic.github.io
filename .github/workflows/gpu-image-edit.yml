@@ -57,6 +57,11 @@ jobs:
             & docker inspect $name --format '{{json .State}}'
             & docker stats --no-stream $name --format '{{.Name}} CPU={{.CPUPerc}} Memory={{.MemUsage}} Network={{.NetIO}} Disk={{.BlockIO}}'
           }
+          $compatFile = Join-Path $env:RUNNER_TEMP 'gpu-image-hf-utils.py'
+          & docker cp gpu-image-edit:/sgl-workspace/sglang/python/sglang/multimodal_gen/runtime/utils/hf_diffusers_utils.py $compatFile
+          if ($LASTEXITCODE -eq 0) {
+            Get-Content $compatFile | Select-String -Pattern '_WEIGHT_FILE_PATTERNS' -Context 0,12
+          }
           $script = @'
           import json
           from pathlib import Path
