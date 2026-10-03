@@ -74,6 +74,20 @@ jobs:
               } catch { Write-Output $_.Exception.Message }
             }
           }
+          Write-Output '=== Existing WSL attach endpoints ==='
+          Get-Process -Name vmmemWSL,wslhost,wslservice,ubuntu,'com.docker.backend' -ErrorAction SilentlyContinue | Select-Object Name, Id | Format-Table -AutoSize
+          Get-NetTCPConnection -State Listen -ErrorAction SilentlyContinue | Where-Object {$_.LocalPort -in @(22,2222,2375,2376,30010)} | Select-Object LocalAddress, LocalPort, OwningProcess | Format-Table -AutoSize
+          foreach ($share in @('\\wsl.localhost\Ubuntu\', '\\wsl$\Ubuntu\')) {
+            try { Write-Output "$share : $(Test-Path $share -ErrorAction Stop)" } catch { Write-Output $_.Exception.Message }
+          }
+          if (Get-Command docker -ErrorAction SilentlyContinue) {
+            & docker context ls --format '{{.Name}} {{.DockerEndpoint}}'
+          }
+          Write-Output '=== Loopback Docker API (existing listeners only) ==='
+          $listeners = Get-NetTCPConnection -State Listen -ErrorAction SilentlyContinue | Where-Object {$_.LocalPort -eq 2375 -and $_.LocalAddress -in @('127.0.0.1','0.0.0.0','::','::1')}
+          if ($listeners) {
+            try { (Invoke-WebRequest -UseBasicParsing -Uri 'http://127.0.0.1:2375/_ping' -TimeoutSec 3).Content } catch { Write-Output $_.Exception.Message }
+          }
           Write-Output "=== Python / Git / Docker / WSL ==="
           foreach ($tool in @('python', 'py', 'git', 'docker', 'wsl')) {
             $command = Get-Command $tool -ErrorAction SilentlyContinue
