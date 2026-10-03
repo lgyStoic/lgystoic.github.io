@@ -5,7 +5,7 @@ on:
       mode:
         type: choice
         description: "probe 检查；status 查看进度；repair-download 恢复下载；deploy 部署验证"
-        options: [probe, status, repair-download, deploy]
+        options: [probe, status, stop, repair-download, deploy]
         default: deploy
 permissions:
   contents: read
@@ -17,10 +17,18 @@ jobs:
     runs-on: [self-hosted, Windows, X64, dd-lgystoic]
     timeout-minutes: 120
     steps:
+      - name: 停止图像编辑服务
+        if: inputs.mode == 'stop'
+        shell: powershell -NoProfile -NonInteractive -ExecutionPolicy Bypass -File {0}
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $running = & docker ps --filter name=^gpu-image-edit$ --format '{{.Names}}'
+          if ($running) { & docker stop gpu-image-edit }
+          if ($LASTEXITCODE -ne 0) { throw 'Could not stop image-edit service.' }
       - uses: actions/checkout@v4
-        if: inputs.mode != 'status'
+        if: inputs.mode != 'status' && inputs.mode != 'stop'
       - name: 检查资源并准备推理镜像
-        if: inputs.mode != 'status'
+        if: inputs.mode != 'status' && inputs.mode != 'stop'
         shell: powershell -NoProfile -NonInteractive -ExecutionPolicy Bypass -File {0}
         run: |
           $ErrorActionPreference = 'Stop'

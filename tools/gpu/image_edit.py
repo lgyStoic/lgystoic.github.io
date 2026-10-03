@@ -14,7 +14,8 @@ ROOT = Path('/models')
 BASE = ROOT / 'Qwen-Image-2.1'
 REVISION = 'd26bb61231c349cf6b7896fa83353113880e1ba3'
 DIT_REVISION = 'cc11433936a06e9765f7c0c0b1f0436cfd2b9856'
-DIT = ROOT / 'qwen_image_2.1-Q4_0.gguf'
+DIT_SOURCE = ROOT / 'qwen_image_2.1-Q4_0.gguf'
+DIT = ROOT / 'qwen_image_2.1-native-Q4_0.gguf'
 ENCODER = ROOT / 'qwen_image_2.1-encoder-Q4_0.gguf'
 
 
@@ -30,11 +31,12 @@ def prepare():
     snapshot_download('Qwen/Qwen-Image-2.1', revision=REVISION,
                       local_dir=str(BASE), allow_patterns=['*.json', 'processor/*',
                       'scheduler/*', 'text_encoder/*.json', 'transformer/*.json', 'vae/*'])
-    if not DIT.exists():
+    if not DIT_SOURCE.exists():
         source = hf_hub_download('leejet/Qwen-Image-2.1-GGUF',
                                 'qwen_image_2.1-Q4_0.gguf', revision=DIT_REVISION)
         # Cache and export share one volume; hardlinks avoid a second large copy.
-        os.link(Path(source).resolve(), DIT)
+        os.link(Path(source).resolve(), DIT_SOURCE)
+    normalize_dit()
     if not ENCODER.exists():
         snapshot_download('Qwen/Qwen-Image-2.1', revision=REVISION,
                           local_dir=str(BASE), allow_patterns=['text_encoder/*'])
@@ -84,6 +86,37 @@ def prepare():
     report['vae_runtime_dtype'] = 'bf16 (native precision exceptions retained)'
     (ROOT / 'manifest.json').write_text(json.dumps(report, indent=2))
     print(json.dumps(report, indent=2), flush=True)
+
+
+def normalize_dit():
+    """Split fused MLP rows into the native layer names without requantizing."""
+    if DIT.exists():
+        return
+    import gguf
+    reader = gguf.GGUFReader(str(DIT_SOURCE))
+    output = DIT.with_suffix('.partial.gguf')
+    writer = gguf.GGUFWriter(str(output), 'qwen_image', use_temp_file=True)
+    writer.add_name('Native diffusion Q4_0 (lossless fused MLP split)')
+    count = 0
+    for tensor in reader.tensors:
+        if tensor.name.endswith('.img_mlp.gate_up.weight'):
+            if tensor.tensor_type != gguf.GGMLQuantizationType.Q4_0 or tensor.data.shape[0] % 2:
+                raise RuntimeError(f'Unexpected fused MLP layout: {tensor.name}')
+            half = tensor.data.shape[0] // 2
+            for suffix, data in [('gate_layer', tensor.data[:half]), ('proj', tensor.data[half:])]:
+                name = tensor.name.replace('gate_up.weight', suffix + '.weight')
+                writer.add_tensor(name, data, raw_dtype=tensor.tensor_type)
+            count += 1
+        else:
+            writer.add_tensor(tensor.name, tensor.data, raw_dtype=tensor.tensor_type)
+    if count != 32:
+        raise RuntimeError(f'Expected 32 fused MLP matrices, got {count}')
+    writer.write_header_to_file()
+    writer.write_kv_data_to_file()
+    writer.write_tensors_to_file(progress=True)
+    writer.close()
+    output.replace(DIT)
+    print('DIT_NATIVE_LAYOUT: split 32 fused MLP matrices without requantization', flush=True)
 
 
 def repair_download():
@@ -178,13 +211,64 @@ def repair_download():
 
 
 def serve():
+    # This image's SGLang completeness check only recognizes conventional
+    # weight suffixes. The actual transformer and encoder weights are GGUF
+    # files passed through --component-weights-paths below.
+    for component, source in [('transformer', DIT), ('text_encoder', ENCODER)]:
+        if not source.is_file():
+            raise FileNotFoundError(f'Missing {component} GGUF weights: {source}')
+        component_dir = BASE / component
+        component_dir.mkdir(exist_ok=True)
+        link = component_dir / source.name
+        if link.is_symlink() and link.resolve() != source:
+            link.unlink()
+        if not link.exists():
+            link.symlink_to(source)
+        if link.resolve() != source:
+            raise RuntimeError(f'Unexpected {component} weight link: {link}')
+
+    completeness_check = Path('/sgl-workspace/sglang/python/sglang/multimodal_gen/runtime/utils/hf_diffusers_utils.py')
+    original = completeness_check.read_text()
+    before = '    "*.ckpt",\n)\n'
+    after = '    "*.ckpt",\n    "*.gguf",\n)\n'
+    if before in original:
+        if original.count(before) != 1:
+            raise RuntimeError('Unexpected SGLang weight pattern layout')
+        atomic_source_patch(completeness_check, original.replace(before, after, 1))
+    elif after not in original:
+        marker = original.find('_WEIGHT_FILE_PATTERNS')
+        raise RuntimeError(f'SGLang weight pattern layout changed: path={completeness_check}, bytes={len(original)}, excerpt={original[marker:marker + 240]!r}')
+
+    # The BF16-only fused-QKV fast path cannot read quantized layer weights.
+    dit_source = completeness_check.parent.parent / 'models/dits/qwen_image21.py'
+    original = dit_source.read_text()
+    before = '        q, k, v = self.to_q.weight, self.to_k.weight, self.to_v.weight'
+    after = ('        if not all(hasattr(layer, "weight") for layer in '
+             '(self.to_q, self.to_k, self.to_v)):\n'
+             '            return None\n' + before)
+    if after not in original:
+        if original.count(before) != 1:
+            raise RuntimeError('SGLang QKV packing layout changed')
+        atomic_source_patch(dit_source, original.replace(before, after, 1))
+
     command = ['sglang', 'serve', '--model-path', str(BASE), '--model-id', 'Qwen-Image-2.1',
                '--host', '0.0.0.0', '--port', '30010', '--attention-backend', 'torch_sdpa',
                '--component-weights-paths.transformer', str(DIT),
                '--component-weights-paths.text_encoder', str(ENCODER),
-               '--performance-mode', 'manual', '--text-encoder-cpu-offload', 'true']
+               '--performance-mode', 'memory', '--text-encoder-cpu-offload', 'true',
+               '--dit-layerwise-offload', 'true', '--dit-layerwise-resident-layers', '0',
+               '--vae-cpu-offload', 'true', '--pin-cpu-memory', 'false',
+               '--warmup-mode', 'off']
     print('SERVE:', ' '.join(command), flush=True)
     os.execvp(command[0], command)
+
+
+def atomic_source_patch(path, content):
+    temporary = path.with_suffix('.compat.tmp')
+    temporary.write_text(content)
+    if temporary.stat().st_size != len(content.encode()):
+        raise RuntimeError(f'Incomplete compatibility write: {path}')
+    temporary.replace(path)
 
 
 def verify():

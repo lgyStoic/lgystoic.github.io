@@ -12,6 +12,8 @@
 
 编码器先下载完整官方权重再导出；首次准备约需 23GB 模型下载，后续复用 `gpu-image-models` volume 的权重与 manifest。服务容器名为 `gpu-image-edit`，编码器使用 CPU offload，保留现有其他容器和 Windows 推理服务。部署会替换同名编辑容器。
 
+准备时无损拆分 DiT 原始 GGUF 的融合 MLP 张量，使名称匹配原生管线；启动时将 DiT 和编码器 GGUF 链接进对应组件目录，并让当前推理镜像的本地模型完整性检查识别 GGUF。实际加载仍使用明确传入的组件权重路径。镜像内的 BF16 专用 QKV 打包路径会跳过量化层。服务启用分层 DiT CPU offload、VAE CPU offload 和内存模式，并关闭默认 1024px 预热，避免预热先耗尽显存。若推理镜像的检查代码布局改变，启动会明确报错。
+
 Windows 本机入口为 `http://127.0.0.1:30010`，没有对外开放。检查状态：
 
 ```powershell

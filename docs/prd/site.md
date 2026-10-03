@@ -120,4 +120,6 @@ python3 -m http.server 8765       # 本地预览
 
 `tools/gpu/image_edit.py` 固定官方基础模型与 DiT 导出的 revision。DiT 使用原生名称 Q4_0 GGUF；编码器从官方 safetensors 导出，252 个语言注意力/MLP 矩阵 Q4_0，视觉、嵌入与归一化等保留原生精度；VAE 使用管线原生 BF16 配置。导出成功后写 manifest，重跑复用缓存；存在运行中的准备容器时直接续接，Actions 取消不向容器转发终止信号。`gpu-image-models` 与 `gpu-image-outputs` 为持久 Docker volumes。
 
-独立 `gpu-image-edit` 容器使用 GPU、编码器 CPU offload、自动重启，只映射 `127.0.0.1:30010`，保留其他服务。再次 deploy 仅替换同名编辑容器。验收使用公开可分享的脚本生成杯子图，调用 `/v1/images/edits`（先 512px/20 步，再 1024px/40 步），验证返回图片尺寸与可解码性，保存前后图片与耗时报告，记录请求后的显存，Actions artifact 保留 3 天。工作流成功仅代表接口完成，图像编辑质量须查看结果。
+准备时无损拆分 DiT GGUF 的融合 MLP 张量以匹配原生层名；服务启动前将 DiT 和编码器 GGUF 链接进对应组件目录，并在固定推理镜像内扩展本地模型完整性检查的权重后缀识别。组件仍由显式 GGUF 路径加载；BF16 专用 QKV 打包跳过量化层，镜像检查布局变动时快速失败。
+
+独立 `gpu-image-edit` 容器使用 GPU、编码器和 VAE CPU offload、分层 DiT CPU offload 与内存模式，关闭默认 1024px 预热；服务自动重启，只映射 `127.0.0.1:30010`，保留其他服务。再次 deploy 仅替换同名编辑容器。验收使用公开可分享的脚本生成杯子图，调用 `/v1/images/edits`（先 512px/20 步，再 1024px/40 步），验证返回图片尺寸与可解码性，保存前后图片与耗时报告，记录请求后的显存，Actions artifact 保留 3 天。工作流成功仅代表接口完成，图像编辑质量须查看结果。
