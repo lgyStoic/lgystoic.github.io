@@ -1,0 +1,1026 @@
+{
+  "date": "2026-10-03",
+  "generated_at": "2026-10-03T01:59:00+00:00",
+  "ai": true,
+  "model": "LongCat-2.0",
+  "sources": [
+    {
+      "id": "openai",
+      "name": "OpenAI",
+      "ok": true,
+      "count": 2,
+      "total": 1245,
+      "error": ""
+    },
+    {
+      "id": "deepmind",
+      "name": "Google DeepMind",
+      "ok": true,
+      "count": 0,
+      "total": 100,
+      "error": ""
+    },
+    {
+      "id": "google-ai",
+      "name": "Google AI Blog",
+      "ok": true,
+      "count": 1,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "qwen",
+      "name": "Qwen",
+      "ok": true,
+      "count": 0,
+      "total": 44,
+      "error": ""
+    },
+    {
+      "id": "hf-blog",
+      "name": "Hugging Face Blog",
+      "ok": true,
+      "count": 2,
+      "total": 872,
+      "error": ""
+    },
+    {
+      "id": "nvidia-dev",
+      "name": "NVIDIA Technical Blog",
+      "ok": true,
+      "count": 0,
+      "total": 100,
+      "error": ""
+    },
+    {
+      "id": "hf-papers",
+      "name": "HF Papers 日榜",
+      "ok": true,
+      "count": 28,
+      "total": 33,
+      "error": ""
+    },
+    {
+      "id": "pytorch",
+      "name": "PyTorch Blog",
+      "ok": true,
+      "count": 2,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "simonw",
+      "name": "Simon Willison",
+      "ok": true,
+      "count": 0,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "lilianweng",
+      "name": "Lil'Log",
+      "ok": true,
+      "count": 0,
+      "total": 53,
+      "error": ""
+    },
+    {
+      "id": "interconnects",
+      "name": "Interconnects",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "raschka",
+      "name": "Sebastian Raschka",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "chiphuyen",
+      "name": "Chip Huyen",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-pytorch",
+      "name": "Release · PyTorch",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-triton",
+      "name": "Release · Triton",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-cutlass",
+      "name": "Release · CUTLASS",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-flash-attention",
+      "name": "Release · FlashAttention",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-vllm",
+      "name": "Release · vLLM",
+      "ok": true,
+      "count": 2,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-sglang",
+      "name": "Release · SGLang",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-tensorrt-llm",
+      "name": "Release · TensorRT-LLM",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-diffusers",
+      "name": "Release · Diffusers",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-cuda-python",
+      "name": "Release · cuda-python",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "gnews-labs-en",
+      "name": "新闻 · Anthropic / Mistral / xAI",
+      "ok": true,
+      "count": 3,
+      "total": 63,
+      "error": ""
+    },
+    {
+      "id": "gnews-labs-cn",
+      "name": "新闻 · 国内模型公司",
+      "ok": true,
+      "count": 5,
+      "total": 48,
+      "error": ""
+    },
+    {
+      "id": "qbitai",
+      "name": "量子位",
+      "ok": true,
+      "count": 1,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "infoq-cn",
+      "name": "InfoQ 中文",
+      "ok": true,
+      "count": 1,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "thonking",
+      "name": "Horace He (thonking)",
+      "ok": true,
+      "count": 0,
+      "total": 6,
+      "error": ""
+    },
+    {
+      "id": "hn-algolia",
+      "name": "Hacker News（100+ 分）",
+      "ok": true,
+      "count": 4,
+      "total": 60,
+      "error": ""
+    },
+    {
+      "id": "karpathy-blog",
+      "name": "Andrej Karpathy 博客",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "eugeneyan",
+      "name": "Eugene Yan",
+      "ok": true,
+      "count": 0,
+      "total": 212,
+      "error": ""
+    },
+    {
+      "id": "importai",
+      "name": "Import AI（Jack Clark）",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "latentspace",
+      "name": "Latent Space",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "semianalysis",
+      "name": "SemiAnalysis",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "meta-ai",
+      "name": "Meta Engineering",
+      "ok": true,
+      "count": 0,
+      "total": 9,
+      "error": ""
+    },
+    {
+      "id": "mistral-news",
+      "name": "Mistral AI",
+      "ok": true,
+      "count": 0,
+      "total": 88,
+      "error": ""
+    },
+    {
+      "id": "bsky-karpathy",
+      "name": "Bluesky · Andrej Karpathy",
+      "ok": true,
+      "count": 0,
+      "total": 15,
+      "error": ""
+    },
+    {
+      "id": "bsky-giffmana",
+      "name": "Bluesky · Lucas Beyer",
+      "ok": true,
+      "count": 0,
+      "total": 22,
+      "error": ""
+    },
+    {
+      "id": "bsky-hardmaru",
+      "name": "Bluesky · hardmaru",
+      "ok": true,
+      "count": 0,
+      "total": 14,
+      "error": ""
+    },
+    {
+      "id": "bsky-swyx",
+      "name": "Bluesky · swyx",
+      "ok": true,
+      "count": 0,
+      "total": 3,
+      "error": ""
+    },
+    {
+      "id": "bsky-pytorch",
+      "name": "Bluesky · PyTorch",
+      "ok": true,
+      "count": 3,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "bsky-clem",
+      "name": "Bluesky · Clem Delangue",
+      "ok": true,
+      "count": 0,
+      "total": 11,
+      "error": ""
+    },
+    {
+      "id": "bsky-natolambert",
+      "name": "Bluesky · Nathan Lambert",
+      "ok": true,
+      "count": 1,
+      "total": 29,
+      "error": ""
+    },
+    {
+      "id": "bsky-rasbt",
+      "name": "Bluesky · Sebastian Raschka",
+      "ok": true,
+      "count": 0,
+      "total": 27,
+      "error": ""
+    },
+    {
+      "id": "bsky-jeffdean",
+      "name": "Bluesky · Jeff Dean",
+      "ok": true,
+      "count": 0,
+      "total": 18,
+      "error": ""
+    },
+    {
+      "id": "hf-trending-new",
+      "name": "HF 热榜新模型",
+      "ok": true,
+      "count": 4,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "gh-new-stars",
+      "name": "GitHub 新星仓库",
+      "ok": true,
+      "count": 1,
+      "total": 15,
+      "error": ""
+    },
+    {
+      "id": "hf-t2v",
+      "name": "HF 热榜 · 文生视频",
+      "ok": true,
+      "count": 1,
+      "total": 17,
+      "error": ""
+    },
+    {
+      "id": "hf-i2v",
+      "name": "HF 热榜 · 图生视频",
+      "ok": true,
+      "count": 0,
+      "total": 19,
+      "error": ""
+    },
+    {
+      "id": "gnews-video-en",
+      "name": "新闻 · 视频生成（英文）",
+      "ok": true,
+      "count": 1,
+      "total": 19,
+      "error": ""
+    },
+    {
+      "id": "gnews-video-cn",
+      "name": "新闻 · 视频生成（中文）",
+      "ok": true,
+      "count": 2,
+      "total": 18,
+      "error": ""
+    },
+    {
+      "id": "gnews-world-en",
+      "name": "新闻 · 世界模型（英文）",
+      "ok": true,
+      "count": 1,
+      "total": 56,
+      "error": ""
+    },
+    {
+      "id": "gnews-world-cn",
+      "name": "新闻 · 世界模型（中文）",
+      "ok": true,
+      "count": 8,
+      "total": 69,
+      "error": ""
+    },
+    {
+      "id": "gh-new-video-world",
+      "name": "GitHub 新仓库 · 视频 / 世界模型",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "arxiv-cscv",
+      "name": "arXiv cs.CV（专题）",
+      "ok": true,
+      "count": 31,
+      "total": 301,
+      "error": ""
+    },
+    {
+      "id": "arxiv-csro",
+      "name": "arXiv cs.RO（专题）",
+      "ok": true,
+      "count": 9,
+      "total": 158,
+      "error": ""
+    }
+  ],
+  "counts": {
+    "high": 10,
+    "medium": 20,
+    "low": 0
+  },
+  "items": [
+    {
+      "id": "e4120387dd9714a3",
+      "title": "Building a High-Performance and Portable vLLM Linear Backend with Helion",
+      "link": "https://pytorch.org/blog/building-a-high-performance-and-portable-vllm-linear-backend-with-helion",
+      "source": "PyTorch Blog",
+      "source_id": "pytorch",
+      "published": "2026-10-02T19:55:07+00:00",
+      "category": "infra",
+      "priority": "high",
+      "summary": "PyTorch 博客：用 Helion 构建高性能可移植 vLLM linear 后端。",
+      "why": "autotuned kernel DSL 直接优化 LLM 推理 linear 层，与 GPU kernel 工作高度相关。",
+      "tags": [
+        "Helion",
+        "vLLM",
+        "kernel DSL",
+        "autotuning"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "8e206c4d9ed6ea5b",
+      "title": "A model guide for the GPT-6 family",
+      "link": "https://openai.com/index/practical-guide-building-gpt-6",
+      "source": "OpenAI",
+      "source_id": "openai",
+      "published": "2026-10-02T16:15:00+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "OpenAI 发布 GPT-6 系列模型指南，覆盖模型选择、推理强度调优、工具编排与生产部署。",
+      "why": "GPT-6 是最新一代模型，直接影响训练与推理选型。",
+      "tags": [
+        "GPT-6",
+        "OpenAI",
+        "模型指南"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "7c5299d0999d01e0",
+      "title": "李飞飞：当视频生成、NVIDIA都自称世界模型，我们需要一个分类法|OpenAI|Genie|Sora|强化学习|英伟达_手机新浪网 - 新浪财经",
+      "link": "https://finance.sina.cn/stock/jdts/2026-06-04/detail-iniaffcx2775885.d.html?oid=whatsapp%E4%B8%AD%E6%96%87%E5%8F%AB%E4%BB%80%E4%B9%88%E4%B8%AD%E5%9B%BD%E5%A2%83%E5%86%85%E6%9C%89%E5%93%AA%E4%BA%9B%E7%A4%BE%E4%BA%A4%E8%BD%AF%E4%BB%B6%E5%8F%AF%E4%BB%A5%E7%94%A8%E2%96%88%E9%9C%80%E8%A6%81%E8%81%94%E7%B3%BBTG:@HHCH8%E6%92%9E%E5%BA%93%E6%95%B0%E6%8D%AE%E6%B8%97%E9%80%8F%E6%95%B0%E6%8D%AE%E6%B5%B7%E5%A4%96%E6%94%AF%E4%BB%98%E9%80%9A%E9%81%93%E2%96%88EExh&vt=4&cid=76993&node_id=76993",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-10-02T12:40:37+00:00",
+      "category": "people",
+      "priority": "high",
+      "summary": "李飞飞谈视频生成与世界模型分类法，引发行业讨论。",
+      "why": "权威观点，有助于厘清世界模型概念边界。",
+      "tags": [
+        "李飞飞",
+        "世界模型",
+        "分类法"
+      ],
+      "tracks": [
+        "video",
+        "world"
+      ]
+    },
+    {
+      "id": "8cc48c2d3596fe4b",
+      "title": "对标英伟达平台，DeepSeek开源华为昇腾全套基础设施组件 - 搜狐网",
+      "link": "https://m.sohu.com/a/1083440686_116237?scm=10001.325_13-325_13.0.0-0-0-0-0.5_1334",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-10-02T10:08:08+00:00",
+      "category": "infra",
+      "priority": "high",
+      "summary": "DeepSeek 开源华为昇腾全套基础设施组件，对标英伟达平台。",
+      "why": "国产 GPU 训练栈重大进展，直接影响训练基础设施选型与优化方向。",
+      "tags": [
+        "DeepSeek",
+        "华为昇腾",
+        "infra",
+        "GPU training"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "7764c27ab63e5640",
+      "title": "DramaAgent: Agentic Storytelling Video Generation",
+      "link": "https://arxiv.org/abs/2610.00097",
+      "source": "arXiv cs.CV（专题）",
+      "source_id": "arxiv-cscv",
+      "published": "2026-10-02T04:00:00+00:00",
+      "category": "research",
+      "priority": "high",
+      "summary": "DramaAgent 提出分层智能体长视频生成框架。",
+      "why": "长视频叙事一致性是视频生成核心难题。",
+      "tags": [
+        "text-to-video",
+        "agent",
+        "长视频"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "1f57e4748cc01238",
+      "title": "Ego2Act: Evaluating Goal-Directed Manipulation in Egocentric Video Generation",
+      "link": "https://arxiv.org/abs/2610.01092",
+      "source": "arXiv cs.CV（专题）",
+      "source_id": "arxiv-cscv",
+      "published": "2026-10-02T04:00:00+00:00",
+      "category": "research",
+      "priority": "high",
+      "summary": "Ego2Act 评估第一人称视频生成中的目标导向操作。",
+      "why": "视频生成作为世界模拟器的重要基准。",
+      "tags": [
+        "video generation",
+        "benchmark"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "6dc3b72f1a274343",
+      "title": "Token-Level Video Reinforcement Learning",
+      "link": "https://arxiv.org/abs/2610.01973",
+      "source": "arXiv cs.CV（专题）",
+      "source_id": "arxiv-cscv",
+      "published": "2026-10-02T04:00:00+00:00",
+      "category": "research",
+      "priority": "high",
+      "summary": "TVRL 提出 Token 级视频强化学习方法。",
+      "why": "细粒度视频生成优化，直接影响训练效率。",
+      "tags": [
+        "reinforcement learning",
+        "video generation"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "4e55cdd700404e41",
+      "title": "Generative Cinematographer: Composing Camera and Object Motion in 3D",
+      "link": "https://arxiv.org/abs/2610.02180",
+      "source": "arXiv cs.CV（专题）",
+      "source_id": "arxiv-cscv",
+      "published": "2026-10-02T04:00:00+00:00",
+      "category": "research",
+      "priority": "high",
+      "summary": "GenCine 将单图提升为可编辑 3D 场景，联合控制相机路径和前景物体 3D 运动。",
+      "why": "直接解决 3D+视频生成中相机与物体联合控制难题，对 3D 生成工作高度相关。",
+      "tags": [
+        "3D-scene",
+        "camera-control",
+        "video-generation"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "4c250b8da6ad5eee",
+      "title": "VideoWeaver: Evaluating and Evolving Skills for Agentic Long Video Generation",
+      "link": "https://arxiv.org/abs/2606.08091",
+      "source": "arXiv cs.CV（专题）",
+      "source_id": "arxiv-cscv",
+      "published": "2026-10-02T04:00:00+00:00",
+      "category": "research",
+      "priority": "high",
+      "summary": "VideoWeaver 提出 agent 框架和 benchmark，动态组合技能并生成超长视频。",
+      "why": "长视频生成的 agent 化方案，对视频生成系统工程落地有参考价值。",
+      "tags": [
+        "agent",
+        "long-video",
+        "skill-evolution"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "03cde4bb8c1a0a8f",
+      "title": "SAGA: Stable Acceleration Guidance for Autoregressive Video Generation",
+      "link": "https://arxiv.org/abs/2607.08020",
+      "source": "arXiv cs.CV（专题）",
+      "source_id": "arxiv-cscv",
+      "published": "2026-10-02T04:00:00+00:00",
+      "category": "research",
+      "priority": "high",
+      "summary": "SAGA 提出训练无关的稳定加速 guidance，解决自回归视频生成的时序漂移问题。",
+      "why": "直接针对自回归扩散视频生成的 flicker/jitter 问题，训练优化高度相关。",
+      "tags": [
+        "autoregressive-video",
+        "guidance",
+        "temporal-stability"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "0cfad945daaf2918",
+      "title": "v0.31.0rc5: [Misc] Add Transformers version upper bound in requirements (#59614)",
+      "link": "https://github.com/vllm-project/vllm/releases/tag/v0.31.0rc5",
+      "source": "Release · vLLM",
+      "source_id": "rel-vllm",
+      "published": "2026-10-02T22:18:12+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "vLLM v0.31.0rc5 发布，限制 Transformers 版本上限。",
+      "why": "依赖约束变更可能影响本地构建，需留意但非重大功能更新。",
+      "tags": [
+        "vLLM",
+        "release",
+        "Transformers"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "74e8e1edb77bab24",
+      "title": "Modern AI workloads rely on specialized GPU kernels, and no single backend is optimal across every operator. At #PyTorch",
+      "link": "https://bsky.app/profile/pytorch.org/post/3mww7jlrzmn2e",
+      "source": "Bluesky · PyTorch",
+      "source_id": "bsky-pytorch",
+      "published": "2026-10-02T20:28:00+00:00",
+      "category": "people",
+      "priority": "medium",
+      "summary": "PyTorchCon 预告：AMD 展示 FlyDSL 集成 TorchInductor 方案。",
+      "why": "GPU kernel 编译器与 DSL 生态动态，与训练优化工作相关。",
+      "tags": [
+        "FlyDSL",
+        "TorchInductor",
+        "AMD",
+        "PyTorchCon"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "740d725ef4118f38",
+      "title": "Helion, a PyTorch-native kernel DSL, powers a vLLM linear backend with per-shape autotuning. On Hopper, tuning plus hybr",
+      "link": "https://bsky.app/profile/pytorch.org/post/3mww6apgdyn2l",
+      "source": "Bluesky · PyTorch",
+      "source_id": "bsky-pytorch",
+      "published": "2026-10-02T20:05:00+00:00",
+      "category": "people",
+      "priority": "medium",
+      "summary": "PyTorch 发布 Helion 驱动 vLLM linear 后端，Hopper 上超越 CUTLASS 与 DeepGEMM。",
+      "why": "与 e4120387dd9714a3 博客内容重复，社交转发。",
+      "tags": [
+        "Helion",
+        "vLLM",
+        "CUTLASS",
+        "DeepGEMM"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "7e76a902519d163b",
+      "title": "AMD's $8.2B World Labs deal signals buy-over-build era for world models - Yahoo! Finance Canada",
+      "link": "https://ca.finance.yahoo.com/news/amds-8-2b-world-labs-190257395.html",
+      "source": "新闻 · 世界模型（英文）",
+      "source_id": "gnews-world-en",
+      "published": "2026-10-02T19:02:57+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "AMD 82 亿美元收购 World Labs，押注世界模型。",
+      "why": "行业大事件，反映世界模型赛道升温。",
+      "tags": [
+        "AMD",
+        "World Labs",
+        "收购"
+      ],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "60dd8ebb837ed0a4",
+      "title": "From the creator of Redis; run LLM locally with ds4",
+      "link": "https://news.ycombinator.com/item?id=49936575",
+      "source": "Hacker News（100+ 分）",
+      "source_id": "hn-algolia",
+      "published": "2026-10-02T18:01:16+00:00",
+      "category": "trend",
+      "priority": "medium",
+      "summary": "Redis 作者发布 ds4，本地运行 LLM 的工具登上 HN。",
+      "why": "本地 LLM 推理工具，与推理部署生态相关，值得扫一眼。",
+      "tags": [
+        "ds4",
+        "local LLM",
+        "Redis",
+        "inference"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "efcfd39f5c693a52",
+      "title": "Today we're unveiling Trillium Labs, a new non-profit to foster the open science of frontier AI. We're building open pos",
+      "link": "https://bsky.app/profile/natolambert.bsky.social/post/3mwvue7ger524",
+      "source": "Bluesky · Nathan Lambert",
+      "source_id": "bsky-natolambert",
+      "published": "2026-10-02T17:08:00+00:00",
+      "category": "people",
+      "priority": "medium",
+      "summary": "Nathan Lambert 发布 Trillium Labs 非营利组织，聚焦前沿 AI 开放科学。",
+      "why": "开放 post-training 与 infra 研究，与训练优化方向有潜在关联。",
+      "tags": [
+        "Trillium Labs",
+        "open science",
+        "post-training",
+        "infra"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "0847bf6df7b55f2e",
+      "title": "The Four Horsemen of Agentic Coding",
+      "link": "https://news.ycombinator.com/item?id=49934511",
+      "source": "Hacker News（100+ 分）",
+      "source_id": "hn-algolia",
+      "published": "2026-10-02T15:19:56+00:00",
+      "category": "trend",
+      "priority": "medium",
+      "summary": "文章讨论 Agentic Coding 的四个核心要素登上 HN。",
+      "why": "Agent 编码趋势与训练工作流工具化相关，可快速浏览。",
+      "tags": [
+        "agentic coding",
+        "LLM agents",
+        "HN"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "d599f0a282be129f",
+      "title": "Open-sourcing AstaBrief, the fast report-generation model in Asta",
+      "link": "https://huggingface.co/blog/allenai/astabrief",
+      "source": "Hugging Face Blog",
+      "source_id": "hf-blog",
+      "published": "2026-10-02T15:19:50+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Hugging Face 开源 Asta 中的快速报告生成模型 AstaBrief。",
+      "why": "开源模型，但非生成模型或训练基础设施方向。",
+      "tags": [
+        "Hugging Face",
+        "开源",
+        "报告生成"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "d26cbd17958291f7",
+      "title": "The latest AI news we announced in September 2026",
+      "link": "https://blog.google/innovation-and-ai/technology/ai/google-ai-updates-september-2026",
+      "source": "Google AI Blog",
+      "source_id": "google-ai",
+      "published": "2026-10-02T15:00:00+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "Google 发布 2026 年 9 月 AI 动态汇总视频。",
+      "why": "月度动态合集，需快速扫是否有重大发布。",
+      "tags": [
+        "Google",
+        "月度更新"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "e99e13faffdb5617",
+      "title": "FTC Investigates OpenAI and Anthropic Over Consumer Risks From Advanced AI Models - gbhackers.com",
+      "link": "https://gbhackers.com/ftc-investigates-openai-and-anthropic/",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-10-02T14:05:59+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "FTC 调查 OpenAI 与 Anthropic 高级 AI 模型消费者风险。",
+      "why": "监管动态可能影响模型发布节奏，需保持关注。",
+      "tags": [
+        "FTC",
+        "regulation",
+        "OpenAI",
+        "Anthropic"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "a04332b7488f7a19",
+      "title": "openJiuwen X-Router自演进模型路由技术首发，昇腾亲和，Agent越跑越省，实测减少50+%Token消耗",
+      "link": "https://www.qbitai.com/2026/10/500098.html",
+      "source": "量子位",
+      "source_id": "qbitai",
+      "published": "2026-10-02T07:34:15+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "openJiuwen X-Router 自演进模型路由技术首发，昇腾亲和，实测减 50%+ Token。",
+      "why": "模型路由与推理成本优化相关，但偏营销数据，可快速扫过。",
+      "tags": [
+        "openJiuwen",
+        "model routing",
+        "昇腾",
+        "token saving"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "d2b17daac266635a",
+      "title": "腾讯、字节、Kimi，都开始往客户现场派人|OpenClaw|开源软件|字节跳动|腾讯云|深圳市_手机新浪网 - 新浪财经",
+      "link": "https://finance.sina.cn/stock/jdts/2026-10-01/detail-inittekc5280620.d.html?oid=%E6%88%90%E9%83%BD%E9%87%91%E7%89%9B%E5%8C%BA%E6%9C%AC%E5%9C%B0%E4%BC%B4%E6%B8%B8%E4%BB%B7%E6%A0%BC%EF%BC%88%E7%A7%81%E4%BA%BA%E5%AE%9A%E5%88%B6%EF%BC%89%E9%AD%8F%E6%96%B0%E5%8A%A0V%EF%BC%881%E2%91%A0%E2%91%A678593%EF%BC%89%E7%9C%9F%E5%AE%9E%E5%A4%A7%E5%AD%A6%E7%94%9F%E5%9C%A8%E9%A3%9E%E7%A9%BA%E5%A7%90%E5%9C%A8%E8%81%8C%E4%BA%BA%E5%91%98Vv70Ml1mqeftyJHUzC0317&vt=4&cid=76993&node_id=76993",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-10-02T06:25:26+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "腾讯、字节、Kimi 开始向客户现场派驻人员做交付。",
+      "why": "国内大模型公司竞争与交付模式变化，反映行业趋势。",
+      "tags": [
+        "Tencent",
+        "ByteDance",
+        "Kimi",
+        "deployment"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "b686b3fa8132c019",
+      "title": "v0.31.0rc4",
+      "link": "https://github.com/vllm-project/vllm/releases/tag/v0.31.0rc4",
+      "source": "Release · vLLM",
+      "source_id": "rel-vllm",
+      "published": "2026-10-02T06:06:56+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "vLLM v0.31.0rc4 修复 HiSparse MTP acceptance collapse bug。",
+      "why": "涉及 MTP 推理路径稳定性，对使用 vLLM 训练推理者值得关注。",
+      "tags": [
+        "vLLM",
+        "bugfix",
+        "MTP",
+        "HiSparse"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "ff28d7b7a04b54fd",
+      "title": "AutoSynthData: Generating Training Data for Enterprise Agents",
+      "link": "https://huggingface.co/blog/ServiceNow-AI/autosynthdata",
+      "source": "Hugging Face Blog",
+      "source_id": "hf-blog",
+      "published": "2026-10-02T04:01:31+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "AutoSynthData：面向企业 Agent 的训练数据生成方案。",
+      "why": "训练数据生成，与训练流程相关但非核心方向。",
+      "tags": [
+        "训练数据",
+        "Agent",
+        "合成数据"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "df413b9055f9dde1",
+      "title": "Memorizon: Training World Models Beyond Their Context Window",
+      "link": "https://arxiv.org/abs/2610.00544",
+      "source": "arXiv cs.CV（专题）",
+      "source_id": "arxiv-cscv",
+      "published": "2026-10-02T04:00:00+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "Memorizon 训练世界模型突破上下文窗口限制。",
+      "why": "长序列训练方法，对视频生成有借鉴意义。",
+      "tags": [
+        "world model",
+        "长序列"
+      ],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "270fbfc7a4609d68",
+      "title": "Soundwich: Video Generation with Layered and Controllable Audio",
+      "link": "https://arxiv.org/abs/2610.00691",
+      "source": "arXiv cs.CV（专题）",
+      "source_id": "arxiv-cscv",
+      "published": "2026-10-02T04:00:00+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "Soundwich 实现视频生成中多音轨独立可控。",
+      "why": "音视频联合生成，训练无关框架。",
+      "tags": [
+        "audio-video",
+        "flow matching"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "6d7febe164c46adc",
+      "title": "Towards Subject Consistency over Dynamic Subject Sets in Video Generation",
+      "link": "https://arxiv.org/abs/2610.01052",
+      "source": "arXiv cs.CV（专题）",
+      "source_id": "arxiv-cscv",
+      "published": "2026-10-02T04:00:00+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "DynSC-Eval 提出动态主体集视频一致性评估。",
+      "why": "视频生成评估方法，关注主体一致性。",
+      "tags": [
+        "video generation",
+        "evaluation"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "abbe9074c244a892",
+      "title": "PhysicsLENS: Diagnosing Physical Property Blindness in Video Generation Models",
+      "link": "https://arxiv.org/abs/2610.01162",
+      "source": "arXiv cs.CV（专题）",
+      "source_id": "arxiv-cscv",
+      "published": "2026-10-02T04:00:00+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "PhysicsLENS 诊断视频生成模型的物理属性盲区。",
+      "why": "视频物理合理性评估，对世界模型很关键。",
+      "tags": [
+        "physics",
+        "video generation"
+      ],
+      "tracks": [
+        "video",
+        "world"
+      ]
+    },
+    {
+      "id": "319fe3a09f7fe77f",
+      "title": "PickMoment: Continuous-Time Single-Image-to-Video via Learning Deblurring and Blur-to-Video",
+      "link": "https://arxiv.org/abs/2610.01279",
+      "source": "arXiv cs.CV（专题）",
+      "source_id": "arxiv-cscv",
+      "published": "2026-10-02T04:00:00+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "PickMoment 提出连续时间单图到视频生成方法。",
+      "why": "图像到视频生成新思路，与 MeanFlow 类比。",
+      "tags": [
+        "image-to-video",
+        "continuous-time"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "6e7e40b8c8d79e61",
+      "title": "Oneira: From Open-Ended Generation to Open-World Interaction in Video World Models",
+      "link": "https://arxiv.org/abs/2610.01614",
+      "source": "arXiv cs.CV（专题）",
+      "source_id": "arxiv-cscv",
+      "published": "2026-10-02T04:00:00+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "Oneira 实现视频世界模型中的开放世界交互。",
+      "why": "视频生成世界模型的前沿探索。",
+      "tags": [
+        "world model",
+        "open-world"
+      ],
+      "tracks": [
+        "world"
+      ]
+    }
+  ]
+}
