@@ -5,7 +5,7 @@ on:
       mode:
         type: choice
         description: "probe 检查；status 查看进度；repair-download 恢复下载；deploy 部署验证"
-        options: [probe, status, repair-download, deploy, verify, reset-runtime]
+        options: [probe, status, repair-download, deploy, verify, reset-runtime, recover-runtime]
         default: deploy
 permissions:
   contents: read
@@ -107,6 +107,32 @@ jobs:
           '@
           $script | & docker run --rm -i -v gpu-image-models:/models:ro ghcr.io/astral-sh/uv:python3.12-bookworm python -
           if ($LASTEXITCODE -ne 0) { throw 'Cannot inspect cached model preparation progress.' }
+      - name: 恢复已停止的桌面运行时
+        if: inputs.mode == 'recover-runtime'
+        shell: powershell -NoProfile -NonInteractive -ExecutionPolicy Bypass -File {0}
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $daemonFile = Join-Path $env:USERPROFILE '.docker\daemon.json'
+          if (Test-Path $daemonFile) {
+            Get-Item $daemonFile | Select-Object FullName, Attributes, Length | Format-List
+            Get-Acl $daemonFile | Select-Object Owner, AccessToString | Format-List
+            if ((Get-Item $daemonFile).IsReadOnly) { (Get-Item $daemonFile).IsReadOnly = $false }
+          }
+          Get-Process -Name 'Docker Desktop','com.docker.backend' -ErrorAction SilentlyContinue | Stop-Process -Force
+          Start-Sleep -Seconds 2
+          Start-Process 'C:\Program Files\Docker\Docker\Docker Desktop.exe'
+          $ready = $false
+          for ($i = 0; $i -lt 45; $i++) {
+            & docker info --format 'CPUs={{.NCPU}} Memory={{.MemTotal}}' 2>$null
+            if ($LASTEXITCODE -eq 0) { $ready = $true; break }
+            Start-Sleep -Seconds 2
+          }
+          if (-not $ready) {
+            $hostLog = Join-Path $env:LOCALAPPDATA 'Docker\log\host\com.docker.backend.exe.log'
+            if (Test-Path $hostLog) { Get-Content $hostLog -Tail 30 }
+            throw 'Docker runtime recovery did not become ready.'
+          }
+          Get-CimInstance Win32_PerfFormattedData_PerfOS_Memory | Select-Object CommittedBytes, CommitLimit, AvailableMBytes | Format-List
       - name: 释放编辑运行时的主机提交内存
         if: inputs.mode == 'reset-runtime'
         shell: powershell -NoProfile -NonInteractive -ExecutionPolicy Bypass -File {0}
