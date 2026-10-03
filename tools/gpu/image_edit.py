@@ -255,7 +255,10 @@ def serve():
                '--host', '0.0.0.0', '--port', '30010', '--attention-backend', 'torch_sdpa',
                '--component-weights-paths.transformer', str(DIT),
                '--component-weights-paths.text_encoder', str(ENCODER),
-               '--performance-mode', 'manual', '--text-encoder-cpu-offload', 'true']
+               '--performance-mode', 'memory', '--text-encoder-cpu-offload', 'true',
+               '--dit-layerwise-offload', 'true', '--dit-layerwise-resident-layers', '0',
+               '--vae-cpu-offload', 'true', '--pin-cpu-memory', 'false',
+               '--warmup-mode', 'off']
     print('SERVE:', ' '.join(command), flush=True)
     os.execvp(command[0], command)
 
