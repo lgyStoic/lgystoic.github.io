@@ -6,7 +6,7 @@ on:
       mode:
         description: "prepare-wsl 启用 WSL 前置条件但不重启；verify-docker 验证 Linux GPU 容器"
         type: choice
-        options: [verify-docker, verify-uv, prepare-wsl, install-docker, verify-wsl-docker, reboot]
+        options: [verify-docker, verify-uv, prepare-wsl, install-docker, verify-wsl-docker, backup-desktop, reboot]
         default: verify-docker
 
 permissions:
@@ -108,7 +108,7 @@ jobs:
           }
           & docker run --rm --gpus all nvidia/cuda:12.8.1-base-ubuntu24.04 nvidia-smi --query-gpu=name,driver_version,memory.total --format=csv
           if ($LASTEXITCODE -ne 0) { throw 'Linux container GPU access failed.' }
-      - name: 安装独立 WSL2 Ubuntu 与 Docker Engine
+      - name: 在现有 Ubuntu 中安装 Docker Engine
         if: inputs.mode == 'install-docker'
         shell: powershell -NoProfile -NonInteractive -ExecutionPolicy Bypass -File {0}
         run: |
@@ -116,30 +116,9 @@ jobs:
           if (-not (Get-CimInstance Win32_ComputerSystem).HypervisorPresent) {
             throw 'Windows virtualization platform is not active; complete the reboot first.'
           }
-          & wsl.exe --install --no-distribution --no-reboot
-          if ($LASTEXITCODE -notin @(0, 3010)) { throw "WSL installation failed: $LASTEXITCODE" }
-          $distro = 'GPU-Runner-Ubuntu'
-          $distros = ((& wsl.exe --list --quiet) -join '').Replace([string][char]0, '')
-          if ($LASTEXITCODE -ne 0) { throw 'Cannot list WSL distributions.' }
-          if ($distros -notmatch [regex]::Escape($distro)) {
-            $base = Join-Path $env:SystemDrive 'gpu-runner'
-            New-Item -ItemType Directory -Force -Path "$base\downloads", "$base\wsl" | Out-Null
-            $image = "$base\downloads\ubuntu-24.04.4-wsl-amd64.wsl"
-            $expected = '9b2f7730dc68227dd04a9f3e5eab86ad85caf556b8606ad94f1f29ff5c4fd3f5'
-            if (-not (Test-Path $image)) {
-              & curl.exe --fail --location --retry 3 --output $image 'https://releases.ubuntu.com/24.04/ubuntu-24.04.4-wsl-amd64.wsl'
-              if ($LASTEXITCODE -ne 0) { throw 'Ubuntu image download failed.' }
-            }
-            if ((Get-FileHash $image -Algorithm SHA256).Hash.ToLowerInvariant() -ne $expected) {
-              throw 'Ubuntu image SHA256 mismatch; refusing import.'
-            }
-            & wsl.exe --import $distro "$base\wsl\Ubuntu" $image --version 2
-            if ($LASTEXITCODE -ne 0) { throw 'Ubuntu WSL import failed.' }
-            & wsl.exe -d $distro -u root --exec sh -c 'printf "[boot]\nsystemd=true\n" > /etc/wsl.conf'
-            if ($LASTEXITCODE -ne 0) { throw 'WSL systemd configuration failed.' }
-            & wsl.exe --terminate $distro
-            if ($LASTEXITCODE -ne 0) { throw 'WSL restart failed.' }
-          }
+          $distro = 'Ubuntu'
+          & wsl.exe -d $distro -u root --exec bash -lc 'set -eu; test "$(. /etc/os-release; echo $ID)" = ubuntu; test -d /run/systemd/system; /usr/lib/wsl/lib/nvidia-smi'
+          if ($LASTEXITCODE -ne 0) { throw 'Existing Ubuntu must be accessible with systemd and GPU support; no distribution was installed or replaced.' }
           $script = @'
           set -eu
           export DEBIAN_FRONTEND=noninteractive
@@ -148,7 +127,8 @@ jobs:
           install -m 0755 -d /etc/apt/keyrings
           curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
           chmod a+r /etc/apt/keyrings/docker.asc
-          printf '%s\n' 'deb [arch=amd64 signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu noble stable' > /etc/apt/sources.list.d/docker.list
+          . /etc/os-release
+          printf '%s\n' "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu $VERSION_CODENAME stable" > /etc/apt/sources.list.d/docker.list
           curl -fsSL https://nvidia.github.io/libnvidia-container/gpgkey | gpg --batch --yes --dearmor -o /etc/apt/keyrings/nvidia-container-toolkit.gpg
           curl -fsSL https://nvidia.github.io/libnvidia-container/stable/deb/nvidia-container-toolkit.list | sed 's#deb https://#deb [signed-by=/etc/apt/keyrings/nvidia-container-toolkit.gpg] https://#g' > /etc/apt/sources.list.d/nvidia-container-toolkit.list
           apt-get update
@@ -167,5 +147,27 @@ jobs:
         shell: powershell -NoProfile -NonInteractive -ExecutionPolicy Bypass -File {0}
         run: |
           $ErrorActionPreference = 'Stop'
-          & wsl.exe -d GPU-Runner-Ubuntu -u root --exec docker run --rm --gpus all nvidia/cuda:12.8.1-base-ubuntu24.04 nvidia-smi --query-gpu=name,driver_version,memory.total --format=csv
+          & wsl.exe -d Ubuntu -u root --exec docker run --rm --gpus all nvidia/cuda:12.8.1-base-ubuntu24.04 nvidia-smi --query-gpu=name,driver_version,memory.total --format=csv
           if ($LASTEXITCODE -ne 0) { throw 'WSL Docker GPU verification failed.' }
+      - name: 备份已停止的 Desktop 模型数据盘
+        if: inputs.mode == 'backup-desktop'
+        shell: powershell -NoProfile -NonInteractive -ExecutionPolicy Bypass -File {0}
+        run: |
+          $ErrorActionPreference = 'Stop'
+          if (Get-Process -Name 'Docker Desktop','com.docker.backend','vmmemWSL' -ErrorAction SilentlyContinue) { throw 'Stop Desktop and WSL before taking a consistent offline data backup.' }
+          $source = "$env:LOCALAPPDATA\Docker\wsl\disk\docker_data.vhdx"
+          $directory = 'D:\gpu-runner\backup'
+          New-Item -ItemType Directory -Force $directory | Out-Null
+          $destination = Join-Path $directory 'docker_data.vhdx'
+          if (Test-Path $destination) { throw 'Backup already exists; refusing overwrite.' }
+          $inputStream = [System.IO.File]::Open($source, 'Open', 'Read', 'None')
+          try {
+            $outputStream = [System.IO.File]::Open($destination, 'CreateNew', 'Write', 'None')
+            try { $inputStream.CopyTo($outputStream, 1048576); $outputStream.Flush($true) } finally { $outputStream.Dispose() }
+          } finally { $inputStream.Dispose() }
+          $originalHash = (Get-FileHash $source -Algorithm SHA256).Hash
+          $backupHash = (Get-FileHash $destination -Algorithm SHA256).Hash
+          if ($originalHash -ne $backupHash) { throw 'Backup hash mismatch; keep Desktop data.' }
+          "$originalHash  docker_data.vhdx" | Set-Content (Join-Path $directory 'docker_data.sha256') -Encoding ascii
+          Get-Item $destination | Select-Object FullName, Length
+          Write-Output 'Offline Desktop data backup verified. No uninstall performed.'

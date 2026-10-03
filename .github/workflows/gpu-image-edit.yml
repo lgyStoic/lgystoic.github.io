@@ -4,8 +4,8 @@ on:
     inputs:
       mode:
         type: choice
-        description: "probe 检查；status 查看进度；repair-download 恢复下载；deploy 部署验证"
-        options: [probe, status, repair-download, deploy]
+        description: "probe 检查；status 查看进度；repair-download 恢复下载；deploy 部署；verify 验收"
+        options: [probe, status, repair-download, deploy, verify]
         default: deploy
 permissions:
   contents: read
@@ -20,7 +20,7 @@ jobs:
       - uses: actions/checkout@v4
         if: inputs.mode != 'status'
       - name: 检查资源并准备推理镜像
-        if: inputs.mode != 'status'
+        if: inputs.mode == 'probe' || inputs.mode == 'deploy' || inputs.mode == 'repair-download'
         shell: powershell -NoProfile -NonInteractive -ExecutionPolicy Bypass -File {0}
         run: |
           $ErrorActionPreference = 'Stop'
@@ -56,6 +56,21 @@ jobs:
             & docker logs --tail 60 $name
             & docker inspect $name --format '{{json .State}}'
             & docker stats --no-stream $name --format '{{.Name}} CPU={{.CPUPerc}} Memory={{.MemUsage}} Network={{.NetIO}} Disk={{.BlockIO}}'
+          }
+          Write-Output 'WINDOWS_MEMORY:'
+          Get-CimInstance Win32_PerfFormattedData_PerfOS_Memory | Select-Object CommittedBytes, CommitLimit, AvailableMBytes, PercentCommittedBytesInUse | Format-List
+          Get-CimInstance Win32_PageFileUsage | Select-Object Name, AllocatedBaseSize, CurrentUsage, PeakUsage | Format-List
+          Get-CimInstance Win32_ComputerSystem | Select-Object TotalPhysicalMemory, AutomaticManagedPagefile | Format-List
+          Get-Process | Sort-Object PrivateMemorySize64 -Descending | Select-Object -First 8 Name, PrivateMemorySize64, WorkingSet64 | Format-Table -AutoSize
+          Get-Command uv, python -ErrorAction SilentlyContinue | Select-Object Name, Source | Format-Table -AutoSize
+          $dockerReady = $false
+          try {
+            & docker info --format '{{.OSType}}' 2>$null
+            $dockerReady = $LASTEXITCODE -eq 0
+          } catch {}
+          if (-not $dockerReady) {
+            Write-Output 'Docker API is unavailable. Start Docker Desktop from Windows before deploying.'
+            exit 0
           }
           $script = @'
           import json
@@ -129,27 +144,40 @@ jobs:
           $state = & docker inspect $name --format '{{json .State}}' | ConvertFrom-Json
           if ($LASTEXITCODE -ne 0 -or $state.Running -or $state.ExitCode -ne 0) { throw 'Quantized component preparation failed.' }
           & docker rm $name
-      - name: 启动本机服务并实测图像编辑
+      - name: 启动本机编辑服务
         if: inputs.mode == 'deploy'
         shell: powershell -NoProfile -NonInteractive -ExecutionPolicy Bypass -File {0}
         run: |
           $ErrorActionPreference = 'Stop'
           $existing = & docker ps -a --filter name=^gpu-image-edit$ --format '{{.Names}}'
           if ($existing) { & docker rm -f gpu-image-edit }
-          & docker create --name gpu-image-edit --restart unless-stopped --gpus all --ipc=host -p 127.0.0.1:30010:30010 -e HF_HOME=/models/hf -v gpu-image-models:/models -v gpu-image-outputs:/outputs lmsysorg/sglang:nightly-dev-cu13-20261002-67eab570 python /opt/image_edit.py serve
+          & docker create --name gpu-image-edit --memory 16g --memory-swap 16g --restart unless-stopped --gpus all --ipc=host -p 127.0.0.1:30010:30010 -e HF_HOME=/models/hf -v gpu-image-models:/models -v gpu-image-outputs:/outputs lmsysorg/sglang:nightly-dev-cu13-20261002-67eab570 python /opt/image_edit.py serve
           if ($LASTEXITCODE -ne 0) { throw 'Service container creation failed.' }
           & docker cp tools/gpu/image_edit.py gpu-image-edit:/opt/image_edit.py
           if ($LASTEXITCODE -ne 0) { throw 'Cannot copy service script.' }
           & docker start gpu-image-edit
-          & docker exec gpu-image-edit python /opt/image_edit.py verify
-          $verifyCode = $LASTEXITCODE
-          & docker logs --tail 150 gpu-image-edit
-          if ($verifyCode -ne 0) { throw 'Real image-edit verification failed; inspect service logs.' }
+      - name: 独立客户端执行真实图像编辑验收
+        if: inputs.mode == 'deploy' || inputs.mode == 'verify'
+        shell: powershell -NoProfile -NonInteractive -ExecutionPolicy Bypass -File {0}
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $client = "gpu-image-verify-$env:GITHUB_RUN_ID"
+          & docker create --name $client --memory 256m --memory-swap 256m --network container:gpu-image-edit -v gpu-image-outputs:/outputs ghcr.io/astral-sh/uv:python3.12-bookworm uv run --with requests --with pillow python /opt/image_edit.py verify
+          if ($LASTEXITCODE -ne 0) { throw 'Cannot create verification client.' }
+          & docker cp tools/gpu/image_edit.py "${client}:/opt/image_edit.py"
+          if ($LASTEXITCODE -ne 0) { throw 'Cannot copy verification script.' }
+          & docker start -a $client
+          $state = & docker inspect $client --format '{{json .State}}' | ConvertFrom-Json
+          & nvidia-smi --query-gpu=memory.used,memory.free --format=csv
+          & docker logs --tail 200 gpu-image-edit
+          & docker inspect gpu-image-edit --format '{{json .State}}'
+          if ($state.Running -or $state.ExitCode -ne 0) { throw 'Real image-edit verification failed; inspect service logs.' }
+          & docker rm $client
           New-Item -ItemType Directory -Force -Path gpu-edit-results | Out-Null
           & docker cp gpu-image-edit:/outputs/. gpu-edit-results
           if ($LASTEXITCODE -ne 0) { throw 'Cannot retrieve edit result.' }
       - uses: actions/upload-artifact@v4
-        if: inputs.mode == 'deploy' && success()
+        if: (inputs.mode == 'deploy' || inputs.mode == 'verify') && success()
         with:
           name: gpu-edit-results
           path: gpu-edit-results

@@ -1,16 +1,16 @@
 # 本机图像编辑服务
 
-在 Actions 手动运行「GPU 图像编辑部署」，`mode=deploy`。`probe` 仅检查容器资源和运行兼容性；`status` 查看后台容器日志、已缓存权重与量化 manifest。
+在 Actions 手动运行「GPU 图像编辑部署」，`mode=deploy`。`probe` 仅检查容器资源和运行兼容性；`status` 查看后台容器日志、已缓存权重与量化 manifest；`verify` 用独立客户端容器验收已有服务。
 
 当前方案使用 Qwen-Image-2.1 原生管线，固定基础模型和权重 revision：
 
 | 组件 | 存储 / 运行精度 |
 | --- | --- |
-| DiT | 原生张量名称的 Q4_0 GGUF；非量化张量保留原生精度 |
+| DiT | Q4_0 GGUF；合并 MLP 无损拆为原生层名称；非量化张量保留原生精度 |
 | 编码器 | 官方权重导出；252 个语言注意力/MLP 矩阵 Q4_0；视觉、嵌入等保持原生精度 |
 | VAE | 官方权重；管线原生 BF16，保留必要的原生精度例外 |
 
-编码器先下载完整官方权重再导出；首次准备约需 23GB 模型下载，后续复用 `gpu-image-models` volume 的权重与 manifest。服务容器名为 `gpu-image-edit`，编码器使用 CPU offload，保留现有其他容器和 Windows 推理服务。部署会替换同名编辑容器。
+编码器先下载完整官方权重再导出；首次准备约需 23GB 模型下载，后续复用 `gpu-image-models` volume 的权重与 manifest。服务容器名为 `gpu-image-edit`，DiT、编码器和 VAE 使用阶段 CPU offload，关闭锁页内存；编辑容器 RAM 上限 16GB、无容器交换区，验收客户端上限 256MB。保留现有其他容器和 Windows 推理服务。部署会替换同名编辑容器。
 
 Windows 本机入口为 `http://127.0.0.1:30010`，没有对外开放。检查状态：
 
@@ -45,3 +45,7 @@ docker start gpu-image-edit
 工作流验收输出保存在 `gpu-image-outputs` volume，工作流 artifact 使用脚本生成的演示图。
 
 准备流程使用直接 HTTP 下载。若历史下载器停滞，可运行 `repair-download`：仅停止本工作流的准备容器，保留已完成分片，恢复剩余官方编码器文件并核对全部 SHA256，然后继续导出四位权重。查看 `status` 的 manifest，准备完成后运行 `deploy`。
+
+截至 2026-10-03 的实测状态：基础组件下载、官方编码器分片 SHA256、252 个编码器 Q4_0 矩阵导出均通过；DiT 无损拆分后为 297 个张量、224 个 Q4_0 矩阵。原生服务已成功加载 DiT、编码器和 BF16 VAE，但 512px 编辑请求因 Windows 提交内存到达上限而失败，尚无成功出图结果。新的容器内存上限待继续验收。
+
+主机迁移：使用已注册的 `Ubuntu` WSL2，在其中安装独立 Docker Engine。Desktop 数据盘已于 2026-10-03 离线复制到 `D:\gpu-runner\backup\docker_data.vhdx`（82,852,184,064 字节），原盘与备份 SHA256 相同；这只是磁盘备份，尚未导入 Ubuntu 的 Docker volumes。当前 runner 对 Windows 系统及已安装软件包的两个 WSL 命令入口均报告 Access is denied，无法启动 Ubuntu；根因未确定，不应直接判为普通权限或 Desktop 导致。需先核实本机普通 PowerShell 执行 `wsl -d Ubuntu -- uname -r` 是否正常，再处理对应启动故障、迁移缓存并验证 GPU 容器，最后卸载 Desktop。Windows llama 服务保留。不要把备份、容器健康或权重加载成功视为编辑验收完成。

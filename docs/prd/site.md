@@ -41,7 +41,7 @@
 | `gpu-probe.yml` GPU runner 环境检查 | 仅手动触发 | 在 Windows `dd-lgystoic` runner 上检查 NVIDIA GPU、驱动、CUDA toolkit、Python、WSL、Docker 和已安装 PyTorch 的 CUDA 矩阵计算；不 checkout 项目、不安装依赖、不注入仓库 secrets |
 | `gpu-docker.yml` GPU Docker 环境准备 | 仅手动触发，默认 verify-docker | prepare-wsl 启用 WSL 前置条件，等待重启；verify-docker 验证 Linux GPU 容器；reboot 必须显式选择，延迟 60 秒重启 Windows，会中断现有模型服务 |
 
-GPU Docker：重启完成后，`install-docker` 在当前 runner 身份下创建独立 `GPU-Runner-Ubuntu` WSL2 发行版（Ubuntu 24.04.4 官方镜像，校验固定 SHA256），启用 systemd，从 Docker 与 NVIDIA 官方签名软件源安装 Docker Engine、Compose、Buildx 与 NVIDIA Container Toolkit，并验证 CUDA 12.8 容器访问 GPU。后续用 `verify-wsl-docker` 复验。容器任务通过 `wsl.exe -d GPU-Runner-Ubuntu -u root --exec docker ...` 执行；不安装 Docker Desktop、不改其他发行版。发行版归当前 runner 的 Windows 身份所有，runner 换用户后需重新配置。
+GPU Docker：使用已有 `Ubuntu` WSL2 发行版，不重新安装或导入发行版。`install-docker` 先验证发行版可访问、systemd 与 GPU，再从 Docker 与 NVIDIA 官方签名软件源安装 Docker Engine、Compose、Buildx 与 NVIDIA Container Toolkit，并验证 CUDA 容器。软件源按 Ubuntu 实际版本选择。后续用 `verify-wsl-docker` 复验。Docker Desktop 卸载须等独立 Engine 可用并迁移模型缓存后执行。
 
 Windows Docker 已实测通过 CUDA 容器识别 5090（运行 37080408367）；可以直接用 Windows `docker` CLI 调用 Linux 容器。`verify-uv` 使用官方 uv Python 3.12 Debian 容器，实际验证虚拟环境、下载 packaging、uv run、Git 初始化与 GCC 编译，不安装主机依赖。
 | `jobs.yml` 工作机会 | 00:35 | 岗位抓取、外部适配器、AI 去重、渲染、提交 |
@@ -116,8 +116,10 @@ python3 -m http.server 8765       # 本地预览
 
 ### GPU 图像编辑运行准备
 
-`gpu-image-edit.yml` 仅手动运行于 Windows `dd-lgystoic` 自托管 runner，`probe` 检查资源与 CUDA，`status` 查看容器日志、资源占用、模型缓存大小与量化 manifest，`deploy` 准备组件并执行一次真实图像编辑；`repair-download` 保留完成分片，恢复停滞的编码器下载，核对官方 SHA256 后继续量化。模型默认直接 HTTP 下载，避免分块下载器停滞。使用固定版本 CUDA 13 推理镜像并记录 digest；模型缓存与服务独立于静态网站。
+`gpu-image-edit.yml` 仅手动运行于 Windows `dd-lgystoic` 自托管 runner，`probe` 检查资源与 CUDA，`status` 查看容器日志、资源占用、模型缓存大小与量化 manifest，`deploy` 准备组件并执行真实图像编辑；`verify` 通过独立客户端容器验收现有服务；`repair-download` 保留完成分片，恢复停滞的编码器下载，核对官方 SHA256 后继续量化。模型默认直接 HTTP 下载，避免分块下载器停滞。使用固定版本 CUDA 13 推理镜像并记录 digest；模型缓存与服务独立于静态网站。
 
-`tools/gpu/image_edit.py` 固定官方基础模型与 DiT 导出的 revision。DiT 使用原生名称 Q4_0 GGUF；编码器从官方 safetensors 导出，252 个语言注意力/MLP 矩阵 Q4_0，视觉、嵌入与归一化等保留原生精度；VAE 使用管线原生 BF16 配置。导出成功后写 manifest，重跑复用缓存；存在运行中的准备容器时直接续接，Actions 取消不向容器转发终止信号。`gpu-image-models` 与 `gpu-image-outputs` 为持久 Docker volumes。
+`tools/gpu/image_edit.py` 固定官方基础模型与 DiT 导出的 revision。DiT 使用 Q4_0 GGUF，合并的 gate/up 按原始实现顺序拆为原生 gate_layer/proj，直接保留量化字节；编码器从官方 safetensors 导出，252 个语言注意力/MLP 矩阵 Q4_0，视觉、嵌入与归一化等保留原生精度；VAE 使用管线原生 BF16 配置。导出成功后写 manifest，重跑复用缓存；存在运行中的准备容器时直接续接，Actions 取消不向容器转发终止信号。`gpu-image-models` 与 `gpu-image-outputs` 为持久 Docker volumes。原始基础目录与运行目录分离；运行目录使用普通 runtime 名称，并显式选择原生后端和管线，避免旧版按 `-4bit` 名称误路由到 Diffusers；运行目录保留原生配置、实际 GGUF 组件与原生 VAE，不包含指向未下载 BF16 DiT 的分片索引。固定镜像的完整性检查缺少 GGUF 扩展名，启动时以原子写入方式执行受版本检查保护的格式兼容修正；BF16 融合 QKV 路径跳过 GGUF 量化层，继续使用量化计算路径，并验证运行目录完整性。显式关闭启动预热，验收按 512px 后 1024px 顺序执行。
 
-独立 `gpu-image-edit` 容器使用 GPU、编码器 CPU offload、自动重启，只映射 `127.0.0.1:30010`，保留其他服务。再次 deploy 仅替换同名编辑容器。验收使用公开可分享的脚本生成杯子图，调用 `/v1/images/edits`（先 512px/20 步，再 1024px/40 步），验证返回图片尺寸与可解码性，保存前后图片与耗时报告，记录请求后的显存，Actions artifact 保留 3 天。工作流成功仅代表接口完成，图像编辑质量须查看结果。
+独立 `gpu-image-edit` 容器使用 GPU、各阶段 CPU offload、关闭锁页内存、16GB RAM 上限与自动重启，只映射 `127.0.0.1:30010`，保留其他服务。再次 deploy 仅替换同名编辑容器。验收使用公开可分享的脚本生成杯子图，调用 `/v1/images/edits`（先 512px/20 步，再 1024px/40 步），验证返回图片尺寸与可解码性，保存前后图片与耗时报告，记录请求后的显存，Actions artifact 保留 3 天。工作流成功仅代表接口完成，图像编辑质量须查看结果。
+
+2026-10-03 实测：量化组件完整，原生管线及所有组件加载成功；真实编辑因 Windows 提交内存压力失败，尚未产出验收图片。Docker Desktop 重置后被 Windows 启动权限阻断，现改为已有 Ubuntu 内的 Docker Engine 路线；runner 执行 wsl.exe 仍被拒绝，尚未完成缓存迁移、Desktop 卸载或新内存上限验收。

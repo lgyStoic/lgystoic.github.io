@@ -33,6 +33,70 @@ jobs:
           }
           Write-Output "=== CUDA toolkit ==="
           if (Get-Command nvcc -ErrorAction SilentlyContinue) { nvcc --version }
+          Write-Output "=== Registered WSL distributions and launcher permissions ==="
+          $wslRegistry = 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Lxss'
+          if (Test-Path $wslRegistry) {
+            Get-ChildItem $wslRegistry | ForEach-Object { Get-ItemProperty $_.PSPath } | Select-Object DistributionName, Version | Format-Table -AutoSize
+          }
+          Get-Service WslService,LxssManager -ErrorAction SilentlyContinue | Select-Object Name, Status | Format-Table -AutoSize
+          $wslLauncher = Join-Path $env:SystemRoot 'System32\wsl.exe'
+          Get-Acl $wslLauncher | Select-Object Owner, AccessToString | Format-List
+          Write-Output '=== Desktop data inventory and disk space ==='
+          Get-PSDrive -PSProvider FileSystem | Select-Object Name, Used, Free | Format-Table -AutoSize
+          Get-ChildItem "$env:LOCALAPPDATA\Docker\wsl" -Filter *.vhdx -Recurse -ErrorAction SilentlyContinue | Select-Object FullName, Length, LastWriteTime | Format-List
+          Get-ChildItem $wslRegistry | ForEach-Object { Get-ItemProperty $_.PSPath } | Select-Object DistributionName, BasePath | Format-List
+          Write-Output '=== Application execution policy events ==='
+          foreach ($log in @('Microsoft-Windows-CodeIntegrity/Operational', 'Microsoft-Windows-AppLocker/EXE and DLL')) {
+            Get-WinEvent -FilterHashtable @{LogName=$log; StartTime=(Get-Date).AddHours(-4)} -MaxEvents 30 -ErrorAction SilentlyContinue | Where-Object {$_.Message -match 'wsl.exe|docker'} | Select-Object TimeCreated, Id, Message | Format-List
+          }
+          Write-Output '=== WSL launcher metadata ==='
+          Get-Item $wslLauncher -Force | Select-Object FullName, Length, Attributes, LinkType, Target, VersionInfo | Format-List
+          Get-AuthenticodeSignature $wslLauncher | Select-Object Status, StatusMessage | Format-List
+          Get-AppxPackage '*WindowsSubsystemForLinux*' | Select-Object Name, Version, Status, InstallLocation | Format-List
+          Write-Output '=== Ubuntu filesystem access ==='
+          $ubuntuRelease = '\\wsl.localhost\Ubuntu\etc\os-release'
+          try { Get-Content $ubuntuRelease -ErrorAction Stop | Select-Object -First 8 } catch { Write-Output $_.Exception.Message }
+          Write-Output '=== WSL installation permissions ==='
+          $installedWsl = Join-Path $env:ProgramFiles 'WSL'
+          if (Test-Path $installedWsl) {
+            Get-Acl $installedWsl | Select-Object Owner, AccessToString | Format-List
+            Get-ChildItem $installedWsl -Filter wsl.exe | Select-Object FullName, Length, Attributes | Format-List
+          }
+          Write-Output '=== Installed WSL package CLI diagnostic ==='
+          $packageWsl = Join-Path $installedWsl 'wsl.exe'
+          if (Test-Path $packageWsl) {
+            $signature = Get-AuthenticodeSignature $packageWsl
+            $signature | Select-Object Status, StatusMessage | Format-List
+            if ($signature.Status -eq 'Valid') {
+              try {
+                & $packageWsl --version
+                & $packageWsl -d Ubuntu -u root --exec bash -lc 'uname -r; command -v docker; test -d /run/systemd/system; /usr/lib/wsl/lib/nvidia-smi --query-gpu=name,memory.total --format=csv'
+              } catch { Write-Output $_.Exception.Message }
+            }
+          }
+          Write-Output '=== Existing WSL attach endpoints ==='
+          Get-Process -Name vmmemWSL,wslhost,wslservice,ubuntu,'com.docker.backend' -ErrorAction SilentlyContinue | Select-Object Name, Id | Format-Table -AutoSize
+          Get-NetTCPConnection -State Listen -ErrorAction SilentlyContinue | Where-Object {$_.LocalPort -in @(22,2222,2375,2376,30010)} | Select-Object LocalAddress, LocalPort, OwningProcess | Format-Table -AutoSize
+          foreach ($share in @('\\wsl.localhost\Ubuntu\', '\\wsl$\Ubuntu\')) {
+            try { Write-Output "$share : $(Test-Path $share -ErrorAction Stop)" } catch { Write-Output $_.Exception.Message }
+          }
+          if (Get-Command docker -ErrorAction SilentlyContinue) {
+            & docker context ls --format '{{.Name}} {{.DockerEndpoint}}'
+          }
+          Write-Output '=== Running Ubuntu filesystem ==='
+          foreach ($root in @('\\wsl.localhost\Ubuntu', '\\wsl$\Ubuntu')) {
+            try {
+              Get-ChildItem $root -ErrorAction Stop | Select-Object -First 20 Name, Mode | Format-Table -AutoSize
+              Get-Content "$root\etc\os-release" -ErrorAction Stop | Select-Object -First 6
+              Write-Output "Native Docker unit: $(Test-Path "$root\usr\lib\systemd\system\docker.service")"
+              Write-Output "Docker socket: $(Test-Path "$root\var\run\docker.sock")"
+            } catch { Write-Output $_.Exception.Message }
+          }
+          Write-Output '=== Loopback Docker API (existing listeners only) ==='
+          $listeners = Get-NetTCPConnection -State Listen -ErrorAction SilentlyContinue | Where-Object {$_.LocalPort -eq 2375 -and $_.LocalAddress -in @('127.0.0.1','0.0.0.0','::','::1')}
+          if ($listeners) {
+            try { (Invoke-WebRequest -UseBasicParsing -Uri 'http://127.0.0.1:2375/_ping' -TimeoutSec 3).Content } catch { Write-Output $_.Exception.Message }
+          }
           Write-Output "=== Python / Git / Docker / WSL ==="
           foreach ($tool in @('python', 'py', 'git', 'docker', 'wsl')) {
             $command = Get-Command $tool -ErrorAction SilentlyContinue
@@ -42,7 +106,7 @@ jobs:
                 & $tool --status
                 & $tool --list --verbose
                 $distros = (& $tool --list --quiet 2>$null) -join ''
-                $distros = $distros.Replace([string][char]0, '').Trim()
+                $distros = ([string]$distros).Replace([string][char]0, '').Trim()
                 if ($distros -match 'Ubuntu|Debian|docker-desktop') {
                   & $tool --exec sh -lc 'uname -r; command -v docker; command -v python3; /usr/lib/wsl/lib/nvidia-smi --query-gpu=name,driver_version,memory.total --format=csv'
                 }

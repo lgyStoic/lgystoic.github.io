@@ -12,9 +12,11 @@ import urllib.request
 
 ROOT = Path('/models')
 BASE = ROOT / 'Qwen-Image-2.1'
+RUNTIME = ROOT / 'Qwen-Image-2.1-runtime'
 REVISION = 'd26bb61231c349cf6b7896fa83353113880e1ba3'
 DIT_REVISION = 'cc11433936a06e9765f7c0c0b1f0436cfd2b9856'
-DIT = ROOT / 'qwen_image_2.1-Q4_0.gguf'
+DIT_SOURCE = ROOT / 'qwen_image_2.1-Q4_0.gguf'
+DIT = ROOT / 'qwen_image_2.1-native-Q4_0.gguf'
 ENCODER = ROOT / 'qwen_image_2.1-encoder-Q4_0.gguf'
 
 
@@ -30,11 +32,12 @@ def prepare():
     snapshot_download('Qwen/Qwen-Image-2.1', revision=REVISION,
                       local_dir=str(BASE), allow_patterns=['*.json', 'processor/*',
                       'scheduler/*', 'text_encoder/*.json', 'transformer/*.json', 'vae/*'])
-    if not DIT.exists():
+    if not DIT_SOURCE.exists():
         source = hf_hub_download('leejet/Qwen-Image-2.1-GGUF',
                                 'qwen_image_2.1-Q4_0.gguf', revision=DIT_REVISION)
         # Cache and export share one volume; hardlinks avoid a second large copy.
-        os.link(Path(source).resolve(), DIT)
+        os.link(Path(source).resolve(), DIT_SOURCE)
+    normalize_dit()
     if not ENCODER.exists():
         snapshot_download('Qwen/Qwen-Image-2.1', revision=REVISION,
                           local_dir=str(BASE), allow_patterns=['text_encoder/*'])
@@ -82,8 +85,44 @@ def prepare():
     report['base_revision'] = REVISION
     report['dit_revision'] = DIT_REVISION
     report['vae_runtime_dtype'] = 'bf16 (native precision exceptions retained)'
+    create_runtime_layout()
     (ROOT / 'manifest.json').write_text(json.dumps(report, indent=2))
     print(json.dumps(report, indent=2), flush=True)
+
+
+def normalize_dit():
+    """Split fused gate/up packed rows, preserving every quantized byte.
+
+    stable-diffusion.cpp qwen_image_2_1.hpp assigns chunk 0 to gate and
+    chunk 1 to value, matching native gate_layer and proj respectively.
+    """
+    if DIT.exists():
+        return
+    import gguf
+    reader = gguf.GGUFReader(str(DIT_SOURCE))
+    output = DIT.with_suffix('.partial.gguf')
+    writer = gguf.GGUFWriter(str(output), 'qwen_image', use_temp_file=True)
+    writer.add_name('Native diffusion Q4_0 (lossless fused MLP split)')
+    count = 0
+    for tensor in reader.tensors:
+        if tensor.name.endswith('.img_mlp.gate_up.weight'):
+            if tensor.tensor_type != gguf.GGMLQuantizationType.Q4_0 or tensor.data.shape[0] % 2:
+                raise RuntimeError(f'Unexpected fused MLP layout: {tensor.name}')
+            half = tensor.data.shape[0] // 2
+            for suffix, data in [('gate_layer', tensor.data[:half]), ('proj', tensor.data[half:])]:
+                name = tensor.name.replace('gate_up.weight', suffix + '.weight')
+                writer.add_tensor(name, data, raw_dtype=tensor.tensor_type)
+            count += 1
+        else:
+            writer.add_tensor(tensor.name, tensor.data, raw_dtype=tensor.tensor_type)
+    if count != 32:
+        raise RuntimeError(f'Expected 32 fused MLP matrices, got {count}')
+    writer.write_header_to_file()
+    writer.write_kv_data_to_file()
+    writer.write_tensors_to_file(progress=True)
+    writer.close()
+    output.replace(DIT)
+    print('DIT_NATIVE_LAYOUT: split 32 fused MLP matrices without requantization', flush=True)
 
 
 def repair_download():
@@ -177,12 +216,87 @@ def repair_download():
     prepare()
 
 
+def create_runtime_layout():
+    """Keep architecture metadata with actual GGUF component checkpoints."""
+    import shutil
+    RUNTIME.mkdir(exist_ok=True)
+    shutil.copy2(BASE / 'model_index.json', RUNTIME / 'model_index.json')
+    for name in ['processor', 'scheduler', 'vae']:
+        target = RUNTIME / name
+        if not target.exists():
+            target.symlink_to(BASE / name, target_is_directory=True)
+    for name, checkpoint in [('transformer', DIT), ('text_encoder', ENCODER)]:
+        directory = RUNTIME / name
+        directory.mkdir(exist_ok=True)
+        for config in (BASE / name).glob('*.json'):
+            if not config.name.endswith('.safetensors.index.json'):
+                shutil.copy2(config, directory / config.name)
+        target = directory / 'model.gguf'
+        if target.is_symlink() and target.resolve() != checkpoint.resolve():
+            target.unlink()
+        if not target.exists():
+            target.symlink_to(checkpoint)
+
+
+def atomic_source_patch(path, content):
+    """Avoid leaving an empty runtime source if a startup is interrupted."""
+    temporary = path.with_suffix('.compat.tmp')
+    temporary.write_text(content)
+    if temporary.stat().st_size != len(content.encode()):
+        raise RuntimeError(f'Incomplete compatibility write: {path}')
+    temporary.replace(path)
+    print('RUNTIME_PATCH_WRITTEN:', path, path.stat().st_size, flush=True)
+
+
+def enable_gguf_directory_validation():
+    """Pinned runtime's completeness checker omitted its supported GGUF format."""
+    import importlib
+    import importlib.util
+    module_name = 'sglang.multimodal_gen.runtime.utils.hf_diffusers_utils'
+    source = Path(importlib.util.find_spec(module_name).origin)
+    content = source.read_text()
+    original = '_WEIGHT_FILE_PATTERNS = (\n    "*.safetensors",\n    "*.bin",\n    "*.pt",\n    "*.pth",\n    "*.ckpt",\n)'
+    updated = original[:-1] + '    "*.gguf",\n)'
+    if original in content:
+        atomic_source_patch(source, content.replace(original, updated, 1))
+        print('RUNTIME_COMPATIBILITY: enabled GGUF component completeness checks', flush=True)
+    elif updated not in content:
+        raise RuntimeError('Pinned runtime completeness checker changed; review compatibility patch')
+    # The BF16-only fused-QKV fast path must skip packed quantized layers.
+    dit_source = source.parent.parent / 'models/dits/qwen_image21.py'
+    content = dit_source.read_text()
+    original = '        q, k, v = self.to_q.weight, self.to_k.weight, self.to_v.weight'
+    updated = ('        if not all(hasattr(layer, "weight") for layer in '
+               '(self.to_q, self.to_k, self.to_v)):\n'
+               '            return None\n' + original)
+    if updated not in content:
+        if original not in content:
+            raise RuntimeError('Pinned QKV packing implementation changed')
+        atomic_source_patch(dit_source, content.replace(original, updated, 1))
+    print('RUNTIME_COMPATIBILITY: skip BF16-only QKV packing for GGUF layers', flush=True)
+    index = json.loads((RUNTIME / 'model_index.json').read_text())
+    for name, entry in index.items():
+        if not name.startswith('_') and isinstance(entry, list) and len(entry) == 2 and any(entry):
+            if not (RUNTIME / name).exists():
+                raise RuntimeError(f'Missing pipeline component directory: {name}')
+    for name in ['transformer', 'text_encoder', 'vae']:
+        if not any((RUNTIME / name).glob('*.gguf')) and not any((RUNTIME / name).glob('*.safetensors')):
+            raise RuntimeError(f'Missing actual pipeline weights: {name}')
+    print('GGUF_PIPELINE_DIRECTORY: validated', RUNTIME, flush=True)
+
+
 def serve():
-    command = ['sglang', 'serve', '--model-path', str(BASE), '--model-id', 'Qwen-Image-2.1',
-               '--host', '0.0.0.0', '--port', '30010', '--attention-backend', 'torch_sdpa',
+    create_runtime_layout()
+    enable_gguf_directory_validation()
+    command = ['sglang', 'serve', '--model-path', str(RUNTIME), '--model-id', 'Qwen-Image-2.1',
+               '--host', '0.0.0.0', '--port', '30010', '--backend', 'sglang',
+               '--pipeline-class-name', 'QwenImage21Pipeline', '--attention-backend', 'torch_sdpa',
                '--component-weights-paths.transformer', str(DIT),
                '--component-weights-paths.text_encoder', str(ENCODER),
-               '--performance-mode', 'manual', '--text-encoder-cpu-offload', 'true']
+               '--performance-mode', 'manual', '--text-encoder-cpu-offload', 'true',
+               '--dit-cpu-offload', 'true', '--vae-cpu-offload', 'true',
+               '--pin-cpu-memory', 'false',
+               '--warmup-mode', 'off']
     print('SERVE:', ' '.join(command), flush=True)
     os.execvp(command[0], command)
 
@@ -190,12 +304,16 @@ def serve():
 def verify():
     from PIL import Image, ImageDraw
     import requests
+    print('VERIFY_CLIENT_STARTED', flush=True)
     url = 'http://127.0.0.1:30010'
+    session = requests.Session()
+    session.trust_env = False
     deadline = time.monotonic() + 1200
     while time.monotonic() < deadline:
         try:
-            response = requests.get(url + '/health', timeout=10)
+            response = session.get(url + '/health', timeout=10)
             if response.ok:
+                print('VERIFY_SERVICE_HEALTHY', flush=True)
                 break
         except requests.RequestException:
             pass
@@ -213,9 +331,10 @@ def verify():
     canvas.save(reference)
     cases = []
     for size, steps in [('512x512', 20), ('1024x1024', 40)]:
+        print('EDIT_REQUEST:', size, steps, flush=True)
         start = time.monotonic()
         with reference.open('rb') as image:
-            response = requests.post(url + '/v1/images/edits',
+            response = session.post(url + '/v1/images/edits',
                                      files={'image[]': ('reference.png', image, 'image/png')},
                                      data={'prompt': 'Change the red mug to blue. Keep the mug shape and white background unchanged.',
                                            'size': size, 'num_inference_steps': str(steps),
@@ -238,7 +357,9 @@ def verify():
         cases.append(report)
         (out / 'verification.json').write_text(json.dumps({'cases': cases}, indent=2))
         print(json.dumps(report, indent=2), flush=True)
-        subprocess.run(['nvidia-smi', '--query-gpu=memory.used,memory.free', '--format=csv'], check=True)
+        import shutil
+        if shutil.which('nvidia-smi'):
+            subprocess.run(['nvidia-smi', '--query-gpu=memory.used,memory.free', '--format=csv'], check=True)
 
 
 if __name__ == '__main__':
