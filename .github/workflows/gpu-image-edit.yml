@@ -7,6 +7,11 @@ on:
         description: "sample 复用运行中服务跑一张图；deploy 才准备镜像并重新部署"
         options: [sample, probe, status, stop, repair-download, deploy]
         default: sample
+      sample_source:
+        type: choice
+        description: "sample 输入：真实汽车照片或原来的简笔杯子"
+        options: [photo, mug]
+        default: photo
 permissions:
   contents: read
 concurrency:
@@ -26,7 +31,7 @@ jobs:
           if ($running) { & docker stop gpu-image-edit }
           if ($LASTEXITCODE -ne 0) { throw 'Could not stop image-edit service.' }
       - uses: actions/checkout@v4
-        if: inputs.mode != 'status' && inputs.mode != 'stop' && inputs.mode != 'sample'
+        if: inputs.mode != 'status' && inputs.mode != 'stop'
       - name: 用现有服务编辑一张示例图
         if: inputs.mode == 'sample'
         shell: powershell -NoProfile -NonInteractive -ExecutionPolicy Bypass -File {0}
@@ -36,19 +41,30 @@ jobs:
           if ($LASTEXITCODE -ne 0) { throw 'Image-edit service does not exist; use deploy first.' }
           $running = & docker inspect gpu-image-edit --format '{{.State.Running}}'
           if ($LASTEXITCODE -ne 0 -or $running.Trim() -ne 'true') { throw 'Image-edit service is not running; use deploy first.' }
+          if ('${{ inputs.sample_source }}' -eq 'photo') {
+            & docker cp tools/gpu/samples/red-car.jpg gpu-image-edit:/tmp/gpu-image-real-photo.jpg
+            if ($LASTEXITCODE -ne 0) { throw 'Cannot copy the real photo into the running container.' }
+          }
           $script = @'
           import base64, json, os, pathlib, time
           import requests
-          from PIL import Image, ImageDraw
+          from PIL import Image, ImageDraw, ImageOps
 
           out = pathlib.Path('/outputs') / ('sample-' + os.environ['IMAGE_EDIT_SAMPLE_RUN_ID'])
           out.mkdir(parents=True, exist_ok=True)
           reference = out / 'reference.png'
-          canvas = Image.new('RGB', (512, 512), 'white')
-          draw = ImageDraw.Draw(canvas)
-          draw.rounded_rectangle((140, 140, 320, 370), radius=24, fill='red')
-          draw.arc((270, 170, 385, 330), 270, 90, fill='red', width=25)
-          draw.ellipse((140, 120, 320, 170), fill='#aa0000')
+          source = os.environ['IMAGE_EDIT_SAMPLE_SOURCE']
+          if source == 'photo':
+              with Image.open('/tmp/gpu-image-real-photo.jpg') as original:
+                  canvas = ImageOps.fit(original.convert('RGB'), (512, 512), method=Image.Resampling.LANCZOS)
+              prompt = 'Change only the red car paint to deep blue. Keep the car shape, windows, wheels, license plate, lighting, and street background unchanged.'
+          else:
+              canvas = Image.new('RGB', (512, 512), 'white')
+              draw = ImageDraw.Draw(canvas)
+              draw.rounded_rectangle((140, 140, 320, 370), radius=24, fill='red')
+              draw.arc((270, 170, 385, 330), 270, 90, fill='red', width=25)
+              draw.ellipse((140, 120, 320, 170), fill='#aa0000')
+              prompt = 'Change the red mug to blue. Keep the mug shape and white background unchanged.'
           canvas.save(reference)
           session = requests.Session()
           session.trust_env = False
@@ -58,7 +74,7 @@ jobs:
           with reference.open('rb') as image:
               response = session.post(endpoint + '/v1/images/edits',
                   files={'image[]': ('reference.png', image, 'image/png')},
-                  data={'prompt': 'Change the red mug to blue. Keep the mug shape and white background unchanged.',
+                  data={'prompt': prompt,
                         'size': '512x512', 'num_inference_steps': '20',
                         'n': '1', 'response_format': 'b64_json'}, timeout=1200)
           response.raise_for_status()
@@ -69,12 +85,12 @@ jobs:
           with Image.open(target) as edited:
               edited.load()
               assert edited.size == (512, 512)
-          report = {'elapsed_seconds': elapsed, 'size': '512x512', 'steps': 20,
+          report = {'elapsed_seconds': elapsed, 'size': '512x512', 'steps': 20, 'source': source,
                     'bytes': len(payload), 'output': target.name}
           (out / 'verification.json').write_text(json.dumps(report, indent=2))
           print(json.dumps(report), flush=True)
           '@
-          $script | & docker exec -i -e IMAGE_EDIT_SAMPLE_RUN_ID=$env:GITHUB_RUN_ID gpu-image-edit python -
+          $script | & docker exec -i -e IMAGE_EDIT_SAMPLE_RUN_ID=$env:GITHUB_RUN_ID -e IMAGE_EDIT_SAMPLE_SOURCE=${{ inputs.sample_source }} gpu-image-edit python -
           if ($LASTEXITCODE -ne 0) { throw 'Single-image request failed.' }
           $after = & docker inspect gpu-image-edit --format '{{.State.StartedAt}}'
           if ($LASTEXITCODE -ne 0 -or $before -ne $after) { throw 'Service restarted during the sample request.' }
