@@ -18,7 +18,9 @@ jobs:
     timeout-minutes: 120
     steps:
       - uses: actions/checkout@v4
+        if: inputs.mode != 'status'
       - name: 检查资源并准备推理镜像
+        if: inputs.mode != 'status'
         shell: powershell -NoProfile -NonInteractive -ExecutionPolicy Bypass -File {0}
         run: |
           $ErrorActionPreference = 'Stop'
@@ -53,7 +55,32 @@ jobs:
             Write-Output "CONTAINER: $name"
             & docker logs --tail 60 $name
             & docker inspect $name --format '{{json .State}}'
+            & docker stats --no-stream $name --format '{{.Name}} CPU={{.CPUPerc}} Memory={{.MemUsage}} Network={{.NetIO}} Disk={{.BlockIO}}'
           }
+          $script = @'
+          import json
+          from pathlib import Path
+          root = Path('/models')
+          files = []
+          seen = set()
+          for path in root.rglob('*'):
+              if path.is_symlink() or not path.is_file():
+                  continue
+              if not path.name.endswith(('.gguf', '.safetensors', '.incomplete')):
+                  continue
+              stat = path.stat()
+              if stat.st_ino in seen:
+                  continue
+              seen.add(stat.st_ino)
+              files.append({'path': str(path.relative_to(root)), 'MiB': round(stat.st_size / 2**20, 1), 'allocated_MiB': round(stat.st_blocks * 512 / 2**20, 1)})
+          manifest = root / 'manifest.json'
+          index = root / 'Qwen-Image-2.1/text_encoder/model.safetensors.index.json'
+          encoder_total = json.loads(index.read_text())['metadata']['total_size'] if index.exists() else None
+          encoder_cached = sum(item['allocated_MiB'] for item in files if '/text_encoder/' in item['path'])
+          print(json.dumps({'encoder_cached_MiB': round(encoder_cached, 1), 'encoder_total_bytes': encoder_total, 'files': files, 'manifest': json.loads(manifest.read_text()) if manifest.exists() else None}, indent=2), flush=True)
+          '@
+          $script | & docker run --rm -i -v gpu-image-models:/models:ro ghcr.io/astral-sh/uv:python3.12-bookworm python -
+          if ($LASTEXITCODE -ne 0) { throw 'Cannot inspect cached model preparation progress.' }
       - name: 下载组件并导出原生四位编码器
         if: inputs.mode == 'deploy'
         shell: powershell -NoProfile -NonInteractive -ExecutionPolicy Bypass -File {0}

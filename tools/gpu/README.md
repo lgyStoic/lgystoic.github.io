@@ -1,6 +1,6 @@
 # 本机图像编辑服务
 
-在 Actions 手动运行「GPU 图像编辑部署」，`mode=deploy`。`probe` 仅检查容器资源和运行兼容性。
+在 Actions 手动运行「GPU 图像编辑部署」，`mode=deploy`。`probe` 仅检查容器资源和运行兼容性；`status` 查看后台容器日志、已缓存权重与量化 manifest。
 
 当前方案使用 Qwen-Image-2.1 原生管线，固定基础模型和权重 revision：
 
@@ -42,4 +42,4 @@ docker stop gpu-image-edit
 docker start gpu-image-edit
 ```
 
-编辑输出保存在 `gpu-image-outputs` volume，工作流 artifact 使用脚本生成的演示图。
+工作流验收输出保存在 `gpu-image-outputs` volume，工作流 artifact 使用脚本生成的演示图。
