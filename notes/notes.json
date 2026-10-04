@@ -1,11 +1,35 @@
 [
   {
+    "title": "82 亿美元买的不是模型 而是下一代 AI 的工作负载",
+    "slug": "amd-world-labs-compute",
+    "url": "./notes/amd-world-labs-compute/",
+    "absoluteUrl": "/notes/amd-world-labs-compute/",
+    "source": "AMD / World Labs / Atlas technical note",
+    "tags": [
+      "AMD",
+      "World Labs",
+      "Spatial Intelligence",
+      "AI Compute",
+      "ROCm"
+    ],
+    "summary": "AMD 签约收购 World Labs。本文从 Atlas 的自回归、扩散和空间上下文出发，拆解模型研究如何经过负载、软件、硬件与用户任务五步转换，并明确目前没有公开跨平台性能证据。",
+    "status": "已发布",
+    "featured": true,
+    "updated": "2026-10-04"
+  },
+  {
     "title": "AI 视频会拍镜头 为什么还拍不好故事",
     "slug": "ai-video-shot-continuity",
     "url": "./notes/ai-video-shot-continuity/",
     "absoluteUrl": "/notes/ai-video-shot-continuity/",
     "source": "Google Research / Co-Director / CANVAS / A²RD / VQQA / MVAgent",
-    "tags": ["AI Video", "Multi-Agent", "Video Generation", "Continuity", "System Design"],
+    "tags": [
+      "AI Video",
+      "Multi-Agent",
+      "Video Generation",
+      "Continuity",
+      "System Design"
+    ],
     "summary": "AI 视频的难题正在从生成一个漂亮镜头，变成控制许多镜头的误差。用同一个案例拆解导演、分镜、生成、场记、审片和接戏六个 Agent 怎样维护叙事意图与画面事实。",
     "status": "已发布",
     "featured": true,
@@ -17,7 +41,15 @@
     "url": "./notes/3d-printing-40-years/",
     "absoluteUrl": "/notes/3d-printing-40-years/",
     "source": "3D 打印行业历史 / Tripo Meshy 产品资料 / Bambu Lab 公开信息",
-    "tags": ["3D Printing", "FDM", "SLA", "Bambu Lab", "Tripo", "Meshy", "Tech History"],
+    "tags": [
+      "3D Printing",
+      "FDM",
+      "SLA",
+      "Bambu Lab",
+      "Tripo",
+      "Meshy",
+      "Tech History"
+    ],
     "summary": "从 1981 年到 2026 年，3D 打印这个行业经历了四次瓶颈的换位：能不能做出来、买不买得起、会不会用、打什么。前三个基本解决了，最后一个由 AI 接管。覆盖专利到期、价格崩盘、拓竹冲击波、FDM vs 光固化双产线、Tripo vs Meshy 路线对决。",
     "status": "已发布",
     "featured": false,
@@ -29,7 +61,13 @@
     "url": "./notes/generative-3d-ai/",
     "absoluteUrl": "/notes/generative-3d-ai/",
     "source": "论文与产品资料整理 / 生成式 3D 学术与产业",
-    "tags": ["3D Generation", "NeRF", "3DGS", "Mesh", "Flow Matching"],
+    "tags": [
+      "3D Generation",
+      "NeRF",
+      "3DGS",
+      "Mesh",
+      "Flow Matching"
+    ],
     "summary": "从 NeRF 到 3DGS，从 SDS 到原生 mesh 生成，再到 2026 年的 flow matching：生成式 3D 这六年没有一步是拍脑袋想出来的，每一步都是被上一步的缺陷逼出来的。按缺陷驱动的顺序串起学术脉络与商业战场，附 8 张机制图与论文速查表。",
     "status": "已发布",
     "featured": false,
@@ -41,7 +79,13 @@
     "url": "./notes/home-camera-vlm-pipeline/",
     "absoluteUrl": "/notes/home-camera-vlm-pipeline/",
     "source": "ruirui-tracker / 自建家庭视觉管线",
-    "tags": ["VLM", "System Design", "成本优化", "状态机", "家庭自动化"],
+    "tags": [
+      "VLM",
+      "System Design",
+      "成本优化",
+      "状态机",
+      "家庭自动化"
+    ],
     "summary": "三个家用摄像头接一个视觉模型，把连续画面变成可查询的状态序列。记录其中的取舍：帧差闸门如何把模型调用压到接近零、输出格式为什么不用 JSON、状态机为什么必须忽略 unknown，以及门口那一路为什么从轮询改成边沿触发。",
     "status": "已发布",
     "featured": false,
@@ -53,7 +97,13 @@
     "url": "./notes/2026-08-17-metro200m-residential-profile/",
     "absoluteUrl": "/notes/2026-08-17-metro200m-residential-profile/",
     "source": "dalily_research / metro 200m residential profile",
-    "tags": ["深圳", "买房", "地铁", "住宅画像", "教育"],
+    "tags": [
+      "深圳",
+      "买房",
+      "地铁",
+      "住宅画像",
+      "教育"
+    ],
     "summary": "对南山、宝安、光明三区地铁 200 米内 461 个地块做住宅粗筛，并深挖 120 个候选盘的户数、车位、户型、回迁房与学位风险。",
     "status": "已发布",
     "featured": true,
@@ -65,7 +115,12 @@
     "url": "./notes/2026-08-10-shenzhen-metro-200m/",
     "absoluteUrl": "/notes/2026-08-10-shenzhen-metro-200m/",
     "source": "dalily_research / OSM metro 200m scan",
-    "tags": ["深圳", "地铁", "住房", "OpenStreetMap"],
+    "tags": [
+      "深圳",
+      "地铁",
+      "住房",
+      "OpenStreetMap"
+    ],
     "summary": "用 OSM 数据穷举深圳地铁出入口 200 米内的小区清单，覆盖 1150 个地块、261 个站点，并提供分区 CSV/JSON 下载。",
     "status": "已发布",
     "featured": false,
@@ -77,7 +132,12 @@
     "url": "./notes/ring-collectives/",
     "absoluteUrl": "/notes/ring-collectives/",
     "source": "Claude artifact / NCCL ring collectives explainer",
-    "tags": ["NCCL", "Distributed Training", "GPU", "Collectives"],
+    "tags": [
+      "NCCL",
+      "Distributed Training",
+      "GPU",
+      "Collectives"
+    ],
     "summary": "Interactive visual explanation of ring all-reduce, reduce-scatter, all-gather, all-to-all, and NCCL bus bandwidth factors.",
     "status": "已发布",
     "featured": false,
@@ -89,7 +149,13 @@
     "url": "./notes/swiglu-mlp-drop-h/",
     "absoluteUrl": "/notes/swiglu-mlp-drop-h/",
     "source": "meshy-research / B200 SwiGLU MLP optimization",
-    "tags": ["GPU", "Triton", "SwiGLU", "MLP", "B200"],
+    "tags": [
+      "GPU",
+      "Triton",
+      "SwiGLU",
+      "MLP",
+      "B200"
+    ],
     "summary": "B200 上 SwiGLU MLP drop-h 方案的公式、实现、性能与显存取舍。",
     "status": "已发布",
     "featured": false,
@@ -101,7 +167,12 @@
     "url": "./notes/pytorch-autograd-notes/",
     "absoluteUrl": "/notes/pytorch-autograd-notes/",
     "source": "PyTorch 官方文档与本地学习整理",
-    "tags": ["PyTorch", "Autograd", "Deep Learning", "Notes"],
+    "tags": [
+      "PyTorch",
+      "Autograd",
+      "Deep Learning",
+      "Notes"
+    ],
     "summary": "从 Tensor 底层结构到 grad_fn、saved tensors、version counter、no_grad、inference_mode 和自定义 Function 的 autograd 知识地图。",
     "status": "已发布",
     "featured": true,
@@ -113,7 +184,12 @@
     "url": "./notes/kernel-design-agents-skills/",
     "absoluteUrl": "/notes/kernel-design-agents-skills/",
     "source": "mit-han-lab/kernel-design-agents",
-    "tags": ["CUDA", "Blackwell", "KernelWiki", "Nsight Compute"],
+    "tags": [
+      "CUDA",
+      "Blackwell",
+      "KernelWiki",
+      "Nsight Compute"
+    ],
     "summary": "拆解 KDA 仓库中 KernelWiki 知识库和 ncu-report-skill profiling 工作流，整理它们如何服务 agentic kernel 优化循环。",
     "status": "已发布",
     "featured": true,
@@ -125,7 +201,12 @@
     "url": "./notes/mit-6s184-flow-diffusion/",
     "absoluteUrl": "/notes/mit-6s184-flow-diffusion/",
     "source": "MIT 6.S184",
-    "tags": ["Flow Matching", "Diffusion", "SDE", "CFG"],
+    "tags": [
+      "Flow Matching",
+      "Diffusion",
+      "SDE",
+      "CFG"
+    ],
     "summary": "基于 MIT 6.S184 讲义整理，覆盖生成即采样、ODE/SDE、Flow Matching、Score Matching、Classifier-Free Guidance、潜空间生成器和离散扩散语言模型。",
     "status": "已发布",
     "featured": true,
@@ -137,7 +218,12 @@
     "url": "./notes/swiglu-packed-save-factors/",
     "absoluteUrl": "/notes/swiglu-packed-save-factors/",
     "source": "meshy-research perf note",
-    "tags": ["Triton", "SwiGLU", "Blackwell", "CUDA"],
+    "tags": [
+      "Triton",
+      "SwiGLU",
+      "Blackwell",
+      "CUDA"
+    ],
     "summary": "B200 上 packed W1 + save-factors SwiGLU 融合实现笔记，覆盖 pack layout、CTA tile、forward/backward 数据流和显存收益。",
     "status": "已发布",
     "featured": false,
@@ -149,7 +235,13 @@
     "url": "./notes/swiglu-mlp-forward-backward-optimization/",
     "absoluteUrl": "/notes/swiglu-mlp-forward-backward-optimization/",
     "source": "B200 SwiGLU MLP backward fusion note",
-    "tags": ["SwiGLU", "MLP", "CUDA", "B200", "CuTe"],
+    "tags": [
+      "SwiGLU",
+      "MLP",
+      "CUDA",
+      "B200",
+      "CuTe"
+    ],
     "summary": "从前向 shape 到反向 4 个 GEMM + 1 组逐元素，解释 dout 不落 HBM 的 CuTe 融合优化。",
     "status": "已发布",
     "featured": false,
