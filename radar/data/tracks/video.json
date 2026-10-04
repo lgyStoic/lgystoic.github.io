@@ -2,8 +2,59 @@
  "id": "video",
  "name": "视频生成模型",
  "blurb": "文生视频、图生视频、视频 VAE 与 DiT 加速：Wan、Sora、Veo、可灵、海螺、Seedance、Vidu、LTX、HunyuanVideo 等的发布、论文、benchmark 与推理框架支持。",
- "updated": "2026-10-03T02:02:19+00:00",
+ "updated": "2026-10-04T02:42:31+00:00",
  "entries": [
+  {
+   "id": "81699000d923890d",
+   "date": "2026-10-04",
+   "title": "Ego2Act: Evaluating Goal-Directed Manipulation in Egocentric Video Generation",
+   "link": "https://huggingface.co/papers/2610.01092",
+   "source": "HF Papers 日榜",
+   "priority": "medium",
+   "summary": "Ego2Act：面向目标导向操作的 egocentric 视频生成评测基准，关注多步物理推理。",
+   "why": "视频生成评测，与 3D/视频生成方向相关，但非模型/权重发布。",
+   "tags": [
+    "video generation",
+    "benchmark",
+    "embodied"
+   ],
+   "entity": "Ego2Act",
+   "kind": "benchmark"
+  },
+  {
+   "id": "1021f4c21fcde61d",
+   "date": "2026-10-04",
+   "title": "Honeycomb: Constant-Size Scene Memory Representation for Video World Models",
+   "link": "https://huggingface.co/papers/2609.37690",
+   "source": "HF Papers 日榜",
+   "priority": "medium",
+   "summary": "Honeycomb：基于 HexMemory 低秩表示的恒定大小场景记忆，用于视频世界模型。",
+   "why": "视频世界模型记忆机制，与视频生成相关，但非直接可用的模型/权重。",
+   "tags": [
+    "video world model",
+    "scene memory",
+    "HexMemory"
+   ],
+   "entity": "Honeycomb",
+   "kind": "paper"
+  },
+  {
+   "id": "5bd52350fdfb5b6e",
+   "date": "2026-10-04",
+   "title": "ok66oqyea0fi8zqv/seedance2.5-seedance-2.5-api-cn",
+   "link": "https://github.com/ok66oqyea0fi8zqv/seedance2.5-seedance-2.5-api-cn",
+   "source": "GitHub 新仓库 · 视频 / 世界模型",
+   "priority": "medium",
+   "summary": "seedance2.5 API 中文文档仓库登 GitHub 热榜（⭐ 90）。",
+   "why": "Seedance 2.5 视频生成 API 文档，与视频生成方向相关。",
+   "tags": [
+    "Seedance",
+    "视频生成",
+    "API"
+   ],
+   "entity": "Seedance 2.5",
+   "kind": "tool"
+  },
   {
    "id": "7c5299d0999d01e0",
    "date": "2026-10-03",
@@ -2177,6 +2228,7 @@
  ],
  "threads": {
   "Seedance 2.5": [
+   "5bd52350fdfb5b6e",
    "2114e51ab5759a6d",
    "40de3cb577530044",
    "4ce3be4127e91b65",
@@ -2197,6 +2249,10 @@
    "0334f842876e5854",
    "0cc1ae11826a2db5",
    "a008930e840f83ca"
+  ],
+  "Ego2Act": [
+   "81699000d923890d",
+   "1f57e4748cc01238"
   ],
   "Vidu": [
    "233da7ca3052d044",
@@ -2238,14 +2294,14 @@
    "3a06f956823425ca",
    "782c2b2a23d1da73"
   ],
+  "Honeycomb": [
+   "1021f4c21fcde61d"
+  ],
   "李飞飞": [
    "7c5299d0999d01e0"
   ],
   "DramaAgent": [
    "7764c27ab63e5640"
-  ],
-  "Ego2Act": [
-   "1f57e4748cc01238"
   ],
   "TVRL": [
    "6dc3b72f1a274343"

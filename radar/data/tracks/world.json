@@ -2,8 +2,110 @@
  "id": "world",
  "name": "世界模型",
  "blurb": "可交互的生成式世界模拟：Genie、Cosmos、V-JEPA、Dreamer、GameNGen、Oasis、Matrix-Game、HunyuanWorld 等，以及动作条件视频生成、4D 生成与具身仿真。",
- "updated": "2026-10-03T02:02:19+00:00",
+ "updated": "2026-10-04T02:42:31+00:00",
  "entries": [
+  {
+   "id": "35380a738bd4d910",
+   "date": "2026-10-04",
+   "title": "李飞飞被买下？82亿美元砸向世界模型，AMD在英伟达后院点一把火 - 凤凰网科技",
+   "link": "https://tech.ifeng.com/c/8wvBxwd4zWl",
+   "source": "新闻 · 世界模型（中文）",
+   "priority": "high",
+   "summary": "AMD 以 82 亿美元收购李飞飞的 World Labs，押注 3D 世界模型算力。",
+   "why": "直接影响 3D 生成算力格局，与视频/3D 生成方向强相关。",
+   "tags": [
+    "AMD",
+    "World Labs",
+    "收购"
+   ],
+   "entity": "World Labs",
+   "kind": "news"
+  },
+  {
+   "id": "af2bcb82afb02508",
+   "date": "2026-10-04",
+   "title": "AMD 550亿元买下 World Labs，小派科技翁志斌：3D世界的算力时代正在到来 - 搜狐网",
+   "link": "https://m.sohu.com/a/1083753144_213766?scm=10001.325_13-325_13.0.0-0-0-0-0.5_1334",
+   "source": "新闻 · 世界模型（中文）",
+   "priority": "high",
+   "summary": "AMD 550 亿元收购 World Labs，3D 世界算力时代加速。",
+   "why": "与 35380a738bd4d910 同一事件，权威财经源确认交易金额。",
+   "tags": [
+    "AMD",
+    "World Labs",
+    "3D"
+   ],
+   "entity": "World Labs",
+   "kind": "news"
+  },
+  {
+   "id": "daa62b5377fa90bb",
+   "date": "2026-10-04",
+   "title": "巨头竞速AI4S：微软推出生物学世界模型 Anthropic、OpenAI等也都下场了 - 财联社",
+   "link": "https://www.cls.cn/detail/2497537",
+   "source": "新闻 · 世界模型（中文）",
+   "priority": "high",
+   "summary": "微软推出生物学世界模型，Anthropic、OpenAI 等纷纷入局 AI4S。",
+   "why": "世界模型赛道巨头竞速，与 3D/视频生成技术路线高度相关。",
+   "tags": [
+    "世界模型",
+    "AI4S",
+    "微软"
+   ],
+   "entity": "Microsoft",
+   "kind": "news"
+  },
+  {
+   "id": "fa45f6f1847878ca",
+   "date": "2026-10-04",
+   "title": "Latent-Foresight: End-to-End Learning Predictable Representations for Latent World Models",
+   "link": "https://huggingface.co/papers/2610.01942",
+   "source": "HF Papers 日榜",
+   "priority": "medium",
+   "summary": "Latent-Foresight：端到端学习可预测表示用于潜在世界模型，统一表征与时序预测。",
+   "why": "潜在世界模型表征学习，与视频生成相关，但非直接可用的模型/权重。",
+   "tags": [
+    "world model",
+    "latent representation",
+    "VFM"
+   ],
+   "entity": "Latent-Foresight",
+   "kind": "paper"
+  },
+  {
+   "id": "1021f4c21fcde61d",
+   "date": "2026-10-04",
+   "title": "Honeycomb: Constant-Size Scene Memory Representation for Video World Models",
+   "link": "https://huggingface.co/papers/2609.37690",
+   "source": "HF Papers 日榜",
+   "priority": "medium",
+   "summary": "Honeycomb：基于 HexMemory 低秩表示的恒定大小场景记忆，用于视频世界模型。",
+   "why": "视频世界模型记忆机制，与视频生成相关，但非直接可用的模型/权重。",
+   "tags": [
+    "video world model",
+    "scene memory",
+    "HexMemory"
+   ],
+   "entity": "Honeycomb",
+   "kind": "paper"
+  },
+  {
+   "id": "a08d19c8ce638fe3",
+   "date": "2026-10-04",
+   "title": "Memorizon: Training World Models Beyond Their Context Window",
+   "link": "https://huggingface.co/papers/2610.00544",
+   "source": "HF Papers 日榜",
+   "priority": "medium",
+   "summary": "Memorizon：训练世界模型超越上下文窗口，通过相机共视检索实现长跨度监督。",
+   "why": "视频世界模型长上下文训练，与视频生成相关，但非直接可用的模型/权重。",
+   "tags": [
+    "world model",
+    "long-horizon",
+    "training"
+   ],
+   "entity": "Memorizon",
+   "kind": "paper"
+  },
   {
    "id": "7c5299d0999d01e0",
    "date": "2026-10-03",
@@ -2807,6 +2909,8 @@
  ],
  "threads": {
   "World Labs": [
+   "35380a738bd4d910",
+   "af2bcb82afb02508",
    "7e76a902519d163b",
    "19668b54d1066e5e",
    "e99132d77d7fa286",
@@ -2852,6 +2956,10 @@
    "708fceb9660b3088",
    "b7a54cf38a39b91f",
    "7159f77e0350e3bf"
+  ],
+  "Memorizon": [
+   "a08d19c8ce638fe3",
+   "df413b9055f9dde1"
   ],
   "李飞飞": [
    "7c5299d0999d01e0",
@@ -2909,8 +3017,14 @@
    "fe9d33edf0701555",
    "92ea4301b3012f12"
   ],
-  "Memorizon": [
-   "df413b9055f9dde1"
+  "Microsoft": [
+   "daa62b5377fa90bb"
+  ],
+  "Latent-Foresight": [
+   "fa45f6f1847878ca"
+  ],
+  "Honeycomb": [
+   "1021f4c21fcde61d"
   ],
   "PhysicsLENS": [
    "abbe9074c244a892"
