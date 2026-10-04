@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="820" viewBox="0 0 1400 820" role="img" aria-labelledby="title desc">
+  <title id="title">Atlas 模型负载拆解</title><desc id="desc">输入文字图像相机和深度，经过自回归序列及多步 rectified flow，产生图像深度与三维输出，并映射为四类计算压力。</desc>
+  <rect width="1400" height="820" fill="#fbfaf8"/>
+  <g font-family="Arial,'PingFang SC',sans-serif">
+    <text x="70" y="82" font-size="42" font-weight="700" fill="#1b1b1a">Atlas 把四种计算压力叠在一起</text>
+    <text x="70" y="124" font-size="21" fill="#78746c">结构说明可以提出问题，不能替代性能测试</text>
+    <text x="70" y="196" font-size="18" font-weight="700" fill="#9a3412">多模态空间输入</text>
+    <g transform="translate(70 220)" font-size="21" fill="#1b1b1a"><rect width="250" height="62" rx="4" fill="#fff" stroke="#d8d3c9"/><text x="24" y="39">文字 · 图像序列</text><rect y="78" width="250" height="62" rx="4" fill="#fff" stroke="#d8d3c9"/><text x="24" y="117">相机位姿 · 深度</text></g>
+    <path d="M346 291h84" stroke="#9a3412" stroke-width="4"/><path d="m420 279 16 12-16 12" fill="none" stroke="#9a3412" stroke-width="4"/>
+    <g transform="translate(456 190)"><rect width="308" height="224" rx="8" fill="#1b1b1a"/><text x="28" y="48" font-size="18" fill="#f2b49a" font-weight="700">循环 A</text><text x="28" y="92" font-size="30" fill="#fff" font-weight="700">自回归序列</text><text x="28" y="132" font-size="19" fill="#d8d3c9">已有上下文 → 下一个元素</text><rect x="28" y="158" width="48" height="38" rx="4" fill="#9a3412"/><rect x="88" y="158" width="48" height="38" rx="4" fill="#b8562d"/><rect x="148" y="158" width="48" height="38" rx="4" fill="#d07b57"/><rect x="208" y="158" width="48" height="38" rx="4" fill="#e6b39c"/></g>
+    <path d="M790 302h84" stroke="#9a3412" stroke-width="4"/><path d="m864 290 16 12-16 12" fill="none" stroke="#9a3412" stroke-width="4"/>
+    <g transform="translate(900 190)"><rect width="250" height="224" rx="8" fill="#f5e8e1" stroke="#d9a48c"/><text x="24" y="48" font-size="18" fill="#9a3412" font-weight="700">循环 B</text><text x="24" y="92" font-size="27" fill="#1b1b1a" font-weight="700">多步去噪</text><text x="24" y="130" font-size="18" fill="#6b4b3e">rectified flow</text><path d="M35 171c40-52 78 52 118 0s72 0 72 0" fill="none" stroke="#9a3412" stroke-width="5"/></g>
+    <path d="M1176 291h72" stroke="#9a3412" stroke-width="4"/><path d="m1238 279 16 12-16 12" fill="none" stroke="#9a3412" stroke-width="4"/>
+    <g transform="translate(1270 204)" font-size="18" fill="#1b1b1a"><text font-weight="700" fill="#9a3412">空间输出</text><text y="47">新视角</text><text y="82">深度图</text><text y="117">点云 / 3D</text><text y="152">交互世界</text></g>
+    <line x1="70" y1="478" x2="1330" y2="478" stroke="#e6e2d9" stroke-width="2"/>
+    <text x="70" y="534" font-size="24" font-weight="700" fill="#1b1b1a">系统必须回答的四个问题</text>
+    <g transform="translate(70 570)"><rect width="290" height="150" rx="6" fill="#fff" stroke="#d8d3c9"/><text x="24" y="43" font-size="23" font-weight="700" fill="#1b1b1a">显存</text><text x="24" y="82" font-size="18" fill="#78746c">视图越多怎样增长？</text><text x="24" y="115" font-size="18" fill="#78746c">KV cache 占多少？</text></g>
+    <g transform="translate(393 570)"><rect width="290" height="150" rx="6" fill="#fff" stroke="#d8d3c9"/><text x="24" y="43" font-size="23" font-weight="700" fill="#1b1b1a">计算</text><text x="24" y="82" font-size="18" fill="#78746c">固定质量要几步？</text><text x="24" y="115" font-size="18" fill="#78746c">算子覆盖完整吗？</text></g>
+    <g transform="translate(716 570)"><rect width="290" height="150" rx="6" fill="#fff" stroke="#d8d3c9"/><text x="24" y="43" font-size="23" font-weight="700" fill="#1b1b1a">通信</text><text x="24" y="82" font-size="18" fill="#78746c">跨卡时间占多少？</text><text x="24" y="115" font-size="18" fill="#78746c">多机怎样扩展？</text></g>
+    <g transform="translate(1039 570)"><rect width="290" height="150" rx="6" fill="#fff" stroke="#d8d3c9"/><text x="24" y="43" font-size="23" font-weight="700" fill="#1b1b1a">端到端延迟</text><text x="24" y="82" font-size="18" fill="#78746c">首结果等多久？</text><text x="24" y="115" font-size="18" fill="#78746c">新视角等多久？</text></g>
+  </g>
+</svg>

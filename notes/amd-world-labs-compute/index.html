@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>82 亿美元买的不是模型 而是下一代 AI 的工作负载 | Anaxagore</title>
+  <meta name="description" content="AMD 签约收购 World Labs。拆解 Atlas 怎样成为可测负载，以及模型研究还要经过软件、硬件和用户任务哪些环节，才能成为计算平台优势。" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="82 亿美元买的不是模型 而是下一代 AI 的工作负载" />
+  <meta property="og:description" content="AMD 买到的是一份不断变化的未来工作负载说明书。平台优势仍需五步转换和可复现实验。" />
+  <meta property="og:url" content="https://lgystoic.github.io/notes/amd-world-labs-compute/" />
+  <meta property="og:image" content="https://lgystoic.github.io/notes/amd-world-labs-compute/assets/hero-imagegen.png" />
+  <link rel="canonical" href="https://lgystoic.github.io/notes/amd-world-labs-compute/" />
+  <link rel="stylesheet" href="../../site.css" />
+  <link rel="stylesheet" href="./styles.css" />
+  <script>try{var t=localStorage.getItem('theme');if(t==='dark'||t==='light')document.documentElement.dataset.theme=t}catch(e){}</script>
+  <!-- build:jsonld -->
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "82 亿美元买的不是模型 而是下一代 AI 的工作负载", "description": "AMD 签约收购 World Labs。本文从 Atlas 的自回归、扩散和空间上下文出发，拆解模型研究如何经过负载、软件、硬件与用户任务五步转换，并明确目前没有公开跨平台性能证据。", "url": "https://lgystoic.github.io/notes/amd-world-labs-compute/", "mainEntityOfPage": "https://lgystoic.github.io/notes/amd-world-labs-compute/", "inLanguage": "zh-CN", "dateModified": "2026-10-04", "datePublished": "2026-10-04", "keywords": "AMD, World Labs, Spatial Intelligence, AI Compute, ROCm", "isBasedOn": "AMD / World Labs / Atlas technical note", "author": {"@type": "Person", "name": "Anaxagore", "url": "https://lgystoic.github.io/about/"}, "publisher": {"@type": "Person", "name": "Anaxagore", "url": "https://lgystoic.github.io/"}, "image": "https://lgystoic.github.io/assets/og/notes.png"}</script>
+    <!-- /build:jsonld -->
+</head>
+<body>
+<!-- build:header -->
+    <header class="site-header">
+      <div class="wrap">
+        <a class="brand" href="../../" aria-label="首页">
+          <span class="brand-mark">A</span>
+          <span>Anaxagore</span>
+        </a>
+        <nav class="site-nav" aria-label="主导航">
+          <a href="../../notes/" aria-current="page">笔记</a>
+          <a href="../../radar/">雷达</a>
+          <a href="../../radar/tracks/">专题</a>
+          <a href="../../radar/events/">活动</a>
+          <a href="../../radar/jobs/">工作</a>
+          <a href="../../guides/">指南</a>
+          <a href="../../about/">关于</a>
+          <button class="theme-toggle" type="button" data-theme-toggle aria-label="切换深浅色">
+            <span data-theme-icon>◑</span>
+          </button>
+        </nav>
+      </div>
+    </header>
+    <!-- /build:header -->
+<main>
+  <header class="article-hero wrap">
+    <p class="eyebrow">SPATIAL INTELLIGENCE × AI COMPUTE</p>
+    <h1>82 亿美元买的不是模型<br />而是下一代 AI 的工作负载</h1>
+    <p class="lead">AMD 签下 World Labs，最稀缺的资产是一份不断变化的未来负载说明书，以及一支能解释它为何变化的研究团队。</p>
+    <div class="facts"><span><b>9 月 26 日</b>签署最终协议</span><span><b>约 82 亿美元</b>全股票交易</span><span><b>截至 10 月 4 日</b>尚未交割</span></div>
+  </header>
+  <figure class="hero-image"><img src="./assets/hero-imagegen.png" alt="空间世界悬在计算平台上方的概念图" /><figcaption>ImageGen 概念示意，不是产品截图或性能证据。</figcaption></figure>
+  <article class="wrap article">
+    <p class="standfirst">交易预计在 2026 年底前完成，仍受监管审批和其他惯常条件约束。现在能分析的是 AMD 为什么签下它；实际效果还没有发生到可以下结论。</p>
+
+    <section><p class="section-no">01</p><h2>为什么芯片公司要买一家模型实验室</h2>
+      <p>芯片公司的典型困境，是看见问题时已经晚了。一个模型先在研究团队里成形，再进入产品，最后成为 benchmark。等硬件厂商从公开测试中发现瓶颈，架构和用户习惯往往已经固定。</p>
+      <p>World Labs 给 AMD 的，是更靠前的观察位置。双方确认合作从 2025 年开始，起点就是在 AMD GPU 上做模型训练和推理优化。这能证明 AMD 接触过真实负载，却不能证明 Atlas 已经在 AMD 上跑赢其他平台。</p>
+      <blockquote>研究团队像一枚装在未来模型里的传感器：问题还没变成 benchmark，就能看见它怎样吃显存、等待数据和跨卡通信。</blockquote>
+    </section>
+
+    <section><p class="section-no">02</p><h2>Atlas 为什么不是又一个大语言模型</h2>
+      <p>Atlas 是多模态自回归扩散 Transformer。它一边像语言模型那样按顺序产生新元素，一边为每个连续输出反复去噪；输入还包含图像序列、相机位姿和深度，输出进入点云、Gaussian splat 或交互世界。</p>
+      <figure class="diagram"><img src="./assets/atlas-workload.svg" alt="Atlas 的输入、双循环和空间输出" /><figcaption>根据 World Labs 的 Atlas 技术说明自绘。图中是需要验证的问题，不是 AMD 实测结果。</figcaption></figure>
+      <div class="grid"><div><b>显存</b><span>视图增多后怎样增长</span></div><div><b>计算</b><span>固定质量需要几步</span></div><div><b>通信</b><span>多卡多机怎样扩展</span></div><div><b>延迟</b><span>首结果和新视角等多久</span></div></div>
+    </section>
+
+    <section><p class="section-no">03</p><h2>82 亿美元怎样才会变成平台优势</h2>
+      <figure class="diagram wide"><img src="./assets/conversion-chain.svg" alt="从模型到用户任务的五步转换" /><figcaption>实线是已有公开事实，虚线是未来必须验收的转换。</figcaption></figure>
+      <p>第一步，把模型变成可测负载。第二步，把测量结果变成 ROCm、编译器、算子、缓存和服务系统的改进。第三步，让经验进入 HBM、互连、芯片和机架的路线。第四步，让开发者能安装、迁移、调试和上线。第五步，在相同质量下证明时间、成本、能耗或开发工作量下降。</p>
+      <p><strong>公开证据目前只让我们看见第一步已经开始，第二步存在合作。后面三步仍是待验收项目。</strong></p>
+    </section>
+
+    <section><p class="section-no">04</p><h2>真正该看的不是峰值算力</h2>
+      <p>MI400、Helios 和 ROCm 说明 AMD 有承接大模型的基础，却不能替代 Atlas 实测。以后判断交易是否奏效，应固定输出质量，检查首结果延迟、连续视角延迟、显存增长、去噪步数、多机效率、成本能耗和迁移工作量。</p>
+      <div class="acceptance"><h3>一张够用的验收表</h3><ol><li>同质量下，生成是否更快？</li><li>视图增加时，显存和延迟怎样增长？</li><li>多机扩展有多少时间花在通信？</li><li>开发者要改多少代码、排多少兼容问题？</li><li>外部团队能否按相同条件复现？</li></ol></div>
+    </section>
+
+    <section><p class="section-no">05</p><h2>AMD 真正买的是提前量</h2>
+      <p>World Labs 每天都在制造新的系统问题：更长的空间上下文、更复杂的生成循环、更多模态、更连续的交互。若这些问题能更早进入软件和硬件设计，AMD 就不必等公开 benchmark 定型以后再追赶。</p>
+      <p class="closing">提前看见问题不等于解决问题。这笔交易真正值钱的时刻，是研究团队发现的瓶颈稳定地变成普通开发者感受到的时间、成本和工程难度下降。</p>
+    </section>
+
+    <section class="sources"><h2>一手来源与边界</h2><ul>
+      <li><a href="https://ir.amd.com/news-events/press-releases/detail/1299/amd-to-acquire-world-labs-to-advance-the-future-of-ai-compute">AMD 收购公告</a>与 <a href="https://ir.amd.com/financial-information/sec-filings/content/0000002488-26-000182/amd-20260926.htm">Form 8-K</a>：协议、对价和交割条件。</li>
+      <li><a href="https://www.worldlabs.ai/blog/amd-announcement">World Labs 交易声明</a>：2025 年开始的训练与推理优化合作。</li>
+      <li><a href="https://www.worldlabs.ai/blog/atlas">Atlas 技术说明</a>：模型结构、输入输出和服务优化方向。</li>
+      <li><a href="https://www.amd.com/en/products/accelerators/instinct/mi400.html">AMD MI400 / Helios</a>：平台公开规格，仅作背景，不作 Atlas 实测。</li>
+    </ul><p>核验截至 2026-10-04。没有公开的 Atlas 跨平台同条件性能数据。</p></section>
+  </article>
+</main>
+<!-- build:footer -->
+<footer class="site-footer"><div class="wrap">Anaxagore</div></footer>
+<!-- /build:footer -->
+</body></html>
