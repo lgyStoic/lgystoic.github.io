@@ -1,0 +1,797 @@
+{
+  "date": "2026-10-04",
+  "generated_at": "2026-10-04T02:40:38+00:00",
+  "ai": true,
+  "model": "LongCat-2.0",
+  "sources": [
+    {
+      "id": "openai",
+      "name": "OpenAI",
+      "ok": true,
+      "count": 0,
+      "total": 1245,
+      "error": ""
+    },
+    {
+      "id": "deepmind",
+      "name": "Google DeepMind",
+      "ok": true,
+      "count": 0,
+      "total": 100,
+      "error": ""
+    },
+    {
+      "id": "google-ai",
+      "name": "Google AI Blog",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "qwen",
+      "name": "Qwen",
+      "ok": true,
+      "count": 0,
+      "total": 44,
+      "error": ""
+    },
+    {
+      "id": "hf-blog",
+      "name": "Hugging Face Blog",
+      "ok": true,
+      "count": 1,
+      "total": 873,
+      "error": ""
+    },
+    {
+      "id": "nvidia-dev",
+      "name": "NVIDIA Technical Blog",
+      "ok": true,
+      "count": 0,
+      "total": 100,
+      "error": ""
+    },
+    {
+      "id": "hf-papers",
+      "name": "HF Papers 日榜",
+      "ok": true,
+      "count": 8,
+      "total": 50,
+      "error": ""
+    },
+    {
+      "id": "pytorch",
+      "name": "PyTorch Blog",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "simonw",
+      "name": "Simon Willison",
+      "ok": true,
+      "count": 2,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "lilianweng",
+      "name": "Lil'Log",
+      "ok": true,
+      "count": 0,
+      "total": 53,
+      "error": ""
+    },
+    {
+      "id": "interconnects",
+      "name": "Interconnects",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "raschka",
+      "name": "Sebastian Raschka",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "chiphuyen",
+      "name": "Chip Huyen",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-pytorch",
+      "name": "Release · PyTorch",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-triton",
+      "name": "Release · Triton",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-cutlass",
+      "name": "Release · CUTLASS",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-flash-attention",
+      "name": "Release · FlashAttention",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-vllm",
+      "name": "Release · vLLM",
+      "ok": true,
+      "count": 1,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-sglang",
+      "name": "Release · SGLang",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-tensorrt-llm",
+      "name": "Release · TensorRT-LLM",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-diffusers",
+      "name": "Release · Diffusers",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-cuda-python",
+      "name": "Release · cuda-python",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "gnews-labs-en",
+      "name": "新闻 · Anthropic / Mistral / xAI",
+      "ok": true,
+      "count": 10,
+      "total": 50,
+      "error": ""
+    },
+    {
+      "id": "gnews-labs-cn",
+      "name": "新闻 · 国内模型公司",
+      "ok": true,
+      "count": 6,
+      "total": 38,
+      "error": ""
+    },
+    {
+      "id": "qbitai",
+      "name": "量子位",
+      "ok": true,
+      "count": 1,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "infoq-cn",
+      "name": "InfoQ 中文",
+      "ok": true,
+      "count": 2,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "thonking",
+      "name": "Horace He (thonking)",
+      "ok": true,
+      "count": 0,
+      "total": 6,
+      "error": ""
+    },
+    {
+      "id": "hn-algolia",
+      "name": "Hacker News（100+ 分）",
+      "ok": true,
+      "count": 3,
+      "total": 60,
+      "error": ""
+    },
+    {
+      "id": "karpathy-blog",
+      "name": "Andrej Karpathy 博客",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "eugeneyan",
+      "name": "Eugene Yan",
+      "ok": true,
+      "count": 0,
+      "total": 212,
+      "error": ""
+    },
+    {
+      "id": "importai",
+      "name": "Import AI（Jack Clark）",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "latentspace",
+      "name": "Latent Space",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "semianalysis",
+      "name": "SemiAnalysis",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "meta-ai",
+      "name": "Meta Engineering",
+      "ok": true,
+      "count": 0,
+      "total": 9,
+      "error": ""
+    },
+    {
+      "id": "mistral-news",
+      "name": "Mistral AI",
+      "ok": true,
+      "count": 0,
+      "total": 88,
+      "error": ""
+    },
+    {
+      "id": "bsky-karpathy",
+      "name": "Bluesky · Andrej Karpathy",
+      "ok": true,
+      "count": 0,
+      "total": 15,
+      "error": ""
+    },
+    {
+      "id": "bsky-giffmana",
+      "name": "Bluesky · Lucas Beyer",
+      "ok": true,
+      "count": 0,
+      "total": 22,
+      "error": ""
+    },
+    {
+      "id": "bsky-hardmaru",
+      "name": "Bluesky · hardmaru",
+      "ok": true,
+      "count": 0,
+      "total": 14,
+      "error": ""
+    },
+    {
+      "id": "bsky-swyx",
+      "name": "Bluesky · swyx",
+      "ok": true,
+      "count": 0,
+      "total": 3,
+      "error": ""
+    },
+    {
+      "id": "bsky-pytorch",
+      "name": "Bluesky · PyTorch",
+      "ok": true,
+      "count": 1,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "bsky-clem",
+      "name": "Bluesky · Clem Delangue",
+      "ok": true,
+      "count": 0,
+      "total": 11,
+      "error": ""
+    },
+    {
+      "id": "bsky-natolambert",
+      "name": "Bluesky · Nathan Lambert",
+      "ok": true,
+      "count": 0,
+      "total": 29,
+      "error": ""
+    },
+    {
+      "id": "bsky-rasbt",
+      "name": "Bluesky · Sebastian Raschka",
+      "ok": true,
+      "count": 0,
+      "total": 27,
+      "error": ""
+    },
+    {
+      "id": "bsky-jeffdean",
+      "name": "Bluesky · Jeff Dean",
+      "ok": true,
+      "count": 0,
+      "total": 18,
+      "error": ""
+    },
+    {
+      "id": "hf-trending-new",
+      "name": "HF 热榜新模型",
+      "ok": true,
+      "count": 2,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "gh-new-stars",
+      "name": "GitHub 新星仓库",
+      "ok": true,
+      "count": 0,
+      "total": 15,
+      "error": ""
+    },
+    {
+      "id": "hf-t2v",
+      "name": "HF 热榜 · 文生视频",
+      "ok": true,
+      "count": 0,
+      "total": 17,
+      "error": ""
+    },
+    {
+      "id": "hf-i2v",
+      "name": "HF 热榜 · 图生视频",
+      "ok": true,
+      "count": 0,
+      "total": 19,
+      "error": ""
+    },
+    {
+      "id": "gnews-video-en",
+      "name": "新闻 · 视频生成（英文）",
+      "ok": true,
+      "count": 1,
+      "total": 12,
+      "error": ""
+    },
+    {
+      "id": "gnews-video-cn",
+      "name": "新闻 · 视频生成（中文）",
+      "ok": true,
+      "count": 0,
+      "total": 11,
+      "error": ""
+    },
+    {
+      "id": "gnews-world-en",
+      "name": "新闻 · 世界模型（英文）",
+      "ok": true,
+      "count": 0,
+      "total": 48,
+      "error": ""
+    },
+    {
+      "id": "gnews-world-cn",
+      "name": "新闻 · 世界模型（中文）",
+      "ok": true,
+      "count": 7,
+      "total": 41,
+      "error": ""
+    },
+    {
+      "id": "gh-new-video-world",
+      "name": "GitHub 新仓库 · 视频 / 世界模型",
+      "ok": true,
+      "count": 1,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "arxiv-cscv",
+      "name": "arXiv cs.CV（专题）",
+      "ok": true,
+      "count": 0,
+      "total": 0,
+      "error": ""
+    },
+    {
+      "id": "arxiv-csro",
+      "name": "arXiv cs.RO（专题）",
+      "ok": true,
+      "count": 0,
+      "total": 0,
+      "error": ""
+    }
+  ],
+  "counts": {
+    "high": 5,
+    "medium": 13,
+    "low": 0
+  },
+  "items": [
+    {
+      "id": "35380a738bd4d910",
+      "title": "李飞飞被买下？82亿美元砸向世界模型，AMD在英伟达后院点一把火 - 凤凰网科技",
+      "link": "https://tech.ifeng.com/c/8wvBxwd4zWl",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-10-04T00:40:50+00:00",
+      "category": "industry",
+      "priority": "high",
+      "summary": "AMD 以 82 亿美元收购李飞飞的 World Labs，押注 3D 世界模型算力。",
+      "why": "直接影响 3D 生成算力格局，与视频/3D 生成方向强相关。",
+      "tags": [
+        "AMD",
+        "World Labs",
+        "收购"
+      ],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "af2bcb82afb02508",
+      "title": "AMD 550亿元买下 World Labs，小派科技翁志斌：3D世界的算力时代正在到来 - 搜狐网",
+      "link": "https://m.sohu.com/a/1083753144_213766?scm=10001.325_13-325_13.0.0-0-0-0-0.5_1334",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-10-03T15:14:23+00:00",
+      "category": "industry",
+      "priority": "high",
+      "summary": "AMD 550 亿元收购 World Labs，3D 世界算力时代加速。",
+      "why": "与 35380a738bd4d910 同一事件，权威财经源确认交易金额。",
+      "tags": [
+        "AMD",
+        "World Labs",
+        "3D"
+      ],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "daa62b5377fa90bb",
+      "title": "巨头竞速AI4S：微软推出生物学世界模型 Anthropic、OpenAI等也都下场了 - 财联社",
+      "link": "https://www.cls.cn/detail/2497537",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-10-03T09:16:12+00:00",
+      "category": "industry",
+      "priority": "high",
+      "summary": "微软推出生物学世界模型，Anthropic、OpenAI 等纷纷入局 AI4S。",
+      "why": "世界模型赛道巨头竞速，与 3D/视频生成技术路线高度相关。",
+      "tags": [
+        "世界模型",
+        "AI4S",
+        "微软"
+      ],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "5f46bfefb87d04d2",
+      "title": "当「变大」不再是唯一的路，又一国产模型开源了|GLM-5|智谱|Hugging Face|开源模型|Qwen_手机新浪网 - 新浪财经",
+      "link": "https://finance.sina.cn/stock/jdts/2026-07-26/detail-inikcucw8672991.d.html?oid=3793510408636872&vt=4",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-10-03T02:34:26+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "智谱开源 GLM-5 模型，强调效率而非单纯扩大规模。",
+      "why": "国产重要模型开源，直接影响生成模型训练/推理生态。",
+      "tags": [
+        "GLM-5",
+        "开源",
+        "智谱"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "20a57e552aef7b98",
+      "title": "v0.31.0: [Misc] Add Transformers version upper bound in requirements (#59614)",
+      "link": "https://github.com/vllm-project/vllm/releases/tag/v0.31.0",
+      "source": "Release · vLLM",
+      "source_id": "rel-vllm",
+      "published": "2026-10-02T22:18:12+00:00",
+      "category": "infra",
+      "priority": "high",
+      "summary": "vLLM v0.31.0 发布：在 requirements 中添加 Transformers 版本上限约束。",
+      "why": "vLLM 是核心推理基础设施，版本约束直接影响部署兼容性。",
+      "tags": [
+        "vLLM",
+        "release",
+        "inference"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "a730dc743d2cb00b",
+      "title": "GPT-6要“吃掉”3D公司？这家公司不到2年ARR翻百倍，破1亿美元",
+      "link": "https://www.qbitai.com/2026/10/501451.html",
+      "source": "量子位",
+      "source_id": "qbitai",
+      "published": "2026-10-04T00:53:29+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "量子位：GPT-6 或冲击 3D 公司，某 3D 公司 2 年 ARR 破 $100M。",
+      "why": "3D 生成行业动态，与 3D 生成方向相关。",
+      "tags": [
+        "3D generation",
+        "ARR",
+        "industry"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "1fd944adb4f5b452",
+      "title": "PyTorch Foundation Ambassador Abdulsalam Bande will present a poster on ERRC (Entropy-Reinvested Residual Correction for",
+      "link": "https://bsky.app/profile/pytorch.org/post/3mwxtmmvwwo2q",
+      "source": "Bluesky · PyTorch",
+      "source_id": "bsky-pytorch",
+      "published": "2026-10-03T12:00:00+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "PyTorch Conf 将展示 ERRC：张量并行 LLM 通信的熵再投资残差校正。",
+      "why": "涉及 LLM 分布式通信优化，对训练性能有参考价值。",
+      "tags": [
+        "PyTorch",
+        "张量并行",
+        "通信优化"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "df8f3ad9a0fdc83f",
+      "title": "Aleph Alpha Kolibri: How the sovereign German LLM works",
+      "link": "https://news.ycombinator.com/item?id=49943034",
+      "source": "Hacker News（100+ 分）",
+      "source_id": "hn-algolia",
+      "published": "2026-10-03T10:43:51+00:00",
+      "category": "people",
+      "priority": "medium",
+      "summary": "Aleph Alpha 发布德国主权 LLM Kolibri 技术解读博客。",
+      "why": "欧洲主权模型代表，可了解非美路线，但与生成模型训练优化关联有限。",
+      "tags": [
+        "Aleph Alpha",
+        "Kolibri",
+        "主权LLM"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "25bf26b70f0783a6",
+      "title": "OpenAI, Anthropic and Google launch new AI healthcare tools - NewsBytes",
+      "link": "https://www.newsbytesapp.com/news/science/openai-anthropic-and-google-launch-new-ai-healthcare-tools/tldr",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-10-03T04:18:47+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "OpenAI、Anthropic、Google 发布新 AI 医疗工具。",
+      "why": "大厂 AI 医疗布局动态，但与 GPU kernel / 生成模型方向关联弱。",
+      "tags": [
+        "OpenAI",
+        "Anthropic",
+        "Google",
+        "healthcare"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "39fca8d1be7c42b5",
+      "title": "Anthropic to invest $100 million to train AI engineer talent - CNBC",
+      "link": "https://www.cnbc.com/2026/10/02/anthropic-to-invest-100-million-to-train-ai-engineer-talent.html",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-10-02T21:03:06+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "Anthropic 投资 $100M 培训 AI 工程师人才（CNBC 报道）。",
+      "why": "行业动态，反映大厂对 AI 人才投入趋势。",
+      "tags": [
+        "Anthropic",
+        "investment",
+        "engineering"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "926cc6f467f69ff0",
+      "title": "计算机行业深度报告：大模型系列深度（一）：国产大模型竞争重心转向效率与生态，智谱以GLM全栈体系卡位第一梯队 - 证券之星",
+      "link": "https://stock.stockstar.com/JC2026100300001012.shtml",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-10-02T15:59:00+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "证券之星报告：国产大模型竞争重心转向效率与生态，智谱 GLM 卡位第一梯队。",
+      "why": "国产大模型行业格局分析，与生成模型方向相关。",
+      "tags": [
+        "GLM",
+        "国产大模型",
+        "industry"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "a6d62efe29dd83c8",
+      "title": "Aleph-Alpha/Kolibri-1",
+      "link": "https://huggingface.co/Aleph-Alpha/Kolibri-1",
+      "source": "HF 热榜新模型",
+      "source_id": "hf-trending-new",
+      "published": "2026-10-02T05:54:02+00:00",
+      "category": "trend",
+      "priority": "medium",
+      "summary": "Aleph-Alpha/Kolibri-1 登上 HF 热榜（likes 257）。",
+      "why": "欧洲主权模型热度高，可关注但非生成模型方向。",
+      "tags": [
+        "Kolibri",
+        "HF Trending",
+        "LLM"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "81699000d923890d",
+      "title": "Ego2Act: Evaluating Goal-Directed Manipulation in Egocentric Video Generation",
+      "link": "https://huggingface.co/papers/2610.01092",
+      "source": "HF Papers 日榜",
+      "source_id": "hf-papers",
+      "published": "2026-09-30T20:00:00+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "Ego2Act：面向目标导向操作的 egocentric 视频生成评测基准，关注多步物理推理。",
+      "why": "视频生成评测，与 3D/视频生成方向相关，但非模型/权重发布。",
+      "tags": [
+        "video generation",
+        "benchmark",
+        "embodied"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "fa45f6f1847878ca",
+      "title": "Latent-Foresight: End-to-End Learning Predictable Representations for Latent World Models",
+      "link": "https://huggingface.co/papers/2610.01942",
+      "source": "HF Papers 日榜",
+      "source_id": "hf-papers",
+      "published": "2026-09-30T20:00:00+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "Latent-Foresight：端到端学习可预测表示用于潜在世界模型，统一表征与时序预测。",
+      "why": "潜在世界模型表征学习，与视频生成相关，但非直接可用的模型/权重。",
+      "tags": [
+        "world model",
+        "latent representation",
+        "VFM"
+      ],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "4f3f132032b5cba2",
+      "title": "Before It Fades: Reinforcing Temporal Representations at Inference Time in VideoLLMs",
+      "link": "https://huggingface.co/papers/2610.01595",
+      "source": "HF Papers 日榜",
+      "source_id": "hf-papers",
+      "published": "2026-09-30T20:00:00+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "论文分析 VideoLLM 时序推理弱点，定义时序发散向量 τ_l 定位失败层。",
+      "why": "VideoLLM 时序推理分析，与视频生成相关，但非模型/权重发布。",
+      "tags": [
+        "VideoLLM",
+        "temporal reasoning",
+        "analysis"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "1021f4c21fcde61d",
+      "title": "Honeycomb: Constant-Size Scene Memory Representation for Video World Models",
+      "link": "https://huggingface.co/papers/2609.37690",
+      "source": "HF Papers 日榜",
+      "source_id": "hf-papers",
+      "published": "2026-09-29T20:00:00+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "Honeycomb：基于 HexMemory 低秩表示的恒定大小场景记忆，用于视频世界模型。",
+      "why": "视频世界模型记忆机制，与视频生成相关，但非直接可用的模型/权重。",
+      "tags": [
+        "video world model",
+        "scene memory",
+        "HexMemory"
+      ],
+      "tracks": [
+        "video",
+        "world"
+      ]
+    },
+    {
+      "id": "a08d19c8ce638fe3",
+      "title": "Memorizon: Training World Models Beyond Their Context Window",
+      "link": "https://huggingface.co/papers/2610.00544",
+      "source": "HF Papers 日榜",
+      "source_id": "hf-papers",
+      "published": "2026-09-29T20:00:00+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "Memorizon：训练世界模型超越上下文窗口，通过相机共视检索实现长跨度监督。",
+      "why": "视频世界模型长上下文训练，与视频生成相关，但非直接可用的模型/权重。",
+      "tags": [
+        "world model",
+        "long-horizon",
+        "training"
+      ],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "5bd52350fdfb5b6e",
+      "title": "ok66oqyea0fi8zqv/seedance2.5-seedance-2.5-api-cn",
+      "link": "https://github.com/ok66oqyea0fi8zqv/seedance2.5-seedance-2.5-api-cn",
+      "source": "GitHub 新仓库 · 视频 / 世界模型",
+      "source_id": "gh-new-video-world",
+      "published": "2026-09-24T14:33:16+00:00",
+      "category": "trend",
+      "priority": "medium",
+      "summary": "seedance2.5 API 中文文档仓库登 GitHub 热榜（⭐ 90）。",
+      "why": "Seedance 2.5 视频生成 API 文档，与视频生成方向相关。",
+      "tags": [
+        "Seedance",
+        "视频生成",
+        "API"
+      ],
+      "tracks": [
+        "video"
+      ]
+    }
+  ]
+}
