@@ -1,0 +1,888 @@
+{
+  "date": "2026-10-05",
+  "generated_at": "2026-10-05T02:02:09+00:00",
+  "ai": true,
+  "model": "LongCat-2.0",
+  "sources": [
+    {
+      "id": "openai",
+      "name": "OpenAI",
+      "ok": true,
+      "count": 0,
+      "total": 1245,
+      "error": ""
+    },
+    {
+      "id": "deepmind",
+      "name": "Google DeepMind",
+      "ok": true,
+      "count": 0,
+      "total": 100,
+      "error": ""
+    },
+    {
+      "id": "google-ai",
+      "name": "Google AI Blog",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "qwen",
+      "name": "Qwen",
+      "ok": true,
+      "count": 0,
+      "total": 44,
+      "error": ""
+    },
+    {
+      "id": "hf-blog",
+      "name": "Hugging Face Blog",
+      "ok": true,
+      "count": 0,
+      "total": 873,
+      "error": ""
+    },
+    {
+      "id": "nvidia-dev",
+      "name": "NVIDIA Technical Blog",
+      "ok": true,
+      "count": 0,
+      "total": 100,
+      "error": ""
+    },
+    {
+      "id": "hf-papers",
+      "name": "HF Papers 日榜",
+      "ok": true,
+      "count": 0,
+      "total": 50,
+      "error": ""
+    },
+    {
+      "id": "pytorch",
+      "name": "PyTorch Blog",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "simonw",
+      "name": "Simon Willison",
+      "ok": true,
+      "count": 0,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "lilianweng",
+      "name": "Lil'Log",
+      "ok": true,
+      "count": 0,
+      "total": 53,
+      "error": ""
+    },
+    {
+      "id": "interconnects",
+      "name": "Interconnects",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "raschka",
+      "name": "Sebastian Raschka",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "chiphuyen",
+      "name": "Chip Huyen",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-pytorch",
+      "name": "Release · PyTorch",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-triton",
+      "name": "Release · Triton",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-cutlass",
+      "name": "Release · CUTLASS",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-flash-attention",
+      "name": "Release · FlashAttention",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-vllm",
+      "name": "Release · vLLM",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-sglang",
+      "name": "Release · SGLang",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-tensorrt-llm",
+      "name": "Release · TensorRT-LLM",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-diffusers",
+      "name": "Release · Diffusers",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-cuda-python",
+      "name": "Release · cuda-python",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "gnews-labs-en",
+      "name": "新闻 · Anthropic / Mistral / xAI",
+      "ok": true,
+      "count": 12,
+      "total": 53,
+      "error": ""
+    },
+    {
+      "id": "gnews-labs-cn",
+      "name": "新闻 · 国内模型公司",
+      "ok": true,
+      "count": 6,
+      "total": 36,
+      "error": ""
+    },
+    {
+      "id": "qbitai",
+      "name": "量子位",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "infoq-cn",
+      "name": "InfoQ 中文",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "thonking",
+      "name": "Horace He (thonking)",
+      "ok": true,
+      "count": 0,
+      "total": 6,
+      "error": ""
+    },
+    {
+      "id": "hn-algolia",
+      "name": "Hacker News（100+ 分）",
+      "ok": true,
+      "count": 2,
+      "total": 60,
+      "error": ""
+    },
+    {
+      "id": "karpathy-blog",
+      "name": "Andrej Karpathy 博客",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "eugeneyan",
+      "name": "Eugene Yan",
+      "ok": true,
+      "count": 0,
+      "total": 212,
+      "error": ""
+    },
+    {
+      "id": "importai",
+      "name": "Import AI（Jack Clark）",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "latentspace",
+      "name": "Latent Space",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "semianalysis",
+      "name": "SemiAnalysis",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "meta-ai",
+      "name": "Meta Engineering",
+      "ok": true,
+      "count": 0,
+      "total": 9,
+      "error": ""
+    },
+    {
+      "id": "mistral-news",
+      "name": "Mistral AI",
+      "ok": true,
+      "count": 0,
+      "total": 88,
+      "error": ""
+    },
+    {
+      "id": "bsky-karpathy",
+      "name": "Bluesky · Andrej Karpathy",
+      "ok": true,
+      "count": 0,
+      "total": 15,
+      "error": ""
+    },
+    {
+      "id": "bsky-giffmana",
+      "name": "Bluesky · Lucas Beyer",
+      "ok": true,
+      "count": 0,
+      "total": 22,
+      "error": ""
+    },
+    {
+      "id": "bsky-hardmaru",
+      "name": "Bluesky · hardmaru",
+      "ok": true,
+      "count": 1,
+      "total": 14,
+      "error": ""
+    },
+    {
+      "id": "bsky-swyx",
+      "name": "Bluesky · swyx",
+      "ok": true,
+      "count": 0,
+      "total": 3,
+      "error": ""
+    },
+    {
+      "id": "bsky-pytorch",
+      "name": "Bluesky · PyTorch",
+      "ok": true,
+      "count": 0,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "bsky-clem",
+      "name": "Bluesky · Clem Delangue",
+      "ok": true,
+      "count": 0,
+      "total": 11,
+      "error": ""
+    },
+    {
+      "id": "bsky-natolambert",
+      "name": "Bluesky · Nathan Lambert",
+      "ok": true,
+      "count": 0,
+      "total": 29,
+      "error": ""
+    },
+    {
+      "id": "bsky-rasbt",
+      "name": "Bluesky · Sebastian Raschka",
+      "ok": true,
+      "count": 0,
+      "total": 27,
+      "error": ""
+    },
+    {
+      "id": "bsky-jeffdean",
+      "name": "Bluesky · Jeff Dean",
+      "ok": true,
+      "count": 0,
+      "total": 18,
+      "error": ""
+    },
+    {
+      "id": "hf-trending-new",
+      "name": "HF 热榜新模型",
+      "ok": true,
+      "count": 1,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "gh-new-stars",
+      "name": "GitHub 新星仓库",
+      "ok": true,
+      "count": 1,
+      "total": 15,
+      "error": ""
+    },
+    {
+      "id": "hf-t2v",
+      "name": "HF 热榜 · 文生视频",
+      "ok": true,
+      "count": 3,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "hf-i2v",
+      "name": "HF 热榜 · 图生视频",
+      "ok": true,
+      "count": 1,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "gnews-video-en",
+      "name": "新闻 · 视频生成（英文）",
+      "ok": true,
+      "count": 3,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "gnews-video-cn",
+      "name": "新闻 · 视频生成（中文）",
+      "ok": true,
+      "count": 1,
+      "total": 9,
+      "error": ""
+    },
+    {
+      "id": "gnews-world-en",
+      "name": "新闻 · 世界模型（英文）",
+      "ok": true,
+      "count": 0,
+      "total": 49,
+      "error": ""
+    },
+    {
+      "id": "gnews-world-cn",
+      "name": "新闻 · 世界模型（中文）",
+      "ok": true,
+      "count": 7,
+      "total": 42,
+      "error": ""
+    },
+    {
+      "id": "gh-new-video-world",
+      "name": "GitHub 新仓库 · 视频 / 世界模型",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "arxiv-cscv",
+      "name": "arXiv cs.CV（专题）",
+      "ok": true,
+      "count": 0,
+      "total": 0,
+      "error": ""
+    },
+    {
+      "id": "arxiv-csro",
+      "name": "arXiv cs.RO（专题）",
+      "ok": true,
+      "count": 0,
+      "total": 0,
+      "error": ""
+    }
+  ],
+  "counts": {
+    "high": 6,
+    "medium": 20,
+    "low": 0
+  },
+  "items": [
+    {
+      "id": "0a57c7778f5a8b60",
+      "title": "AMD收购 World Labs，82 亿抢世界模型，物理 AI 新战局 - 搜狐网",
+      "link": "https://m.sohu.com/a/1083998973_121361416?scm=10001.325_13-325_13.0.0-0-0-0-0.5_1334",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-10-04T16:01:00+00:00",
+      "category": "industry",
+      "priority": "high",
+      "summary": "AMD 以 82 亿美元收购李飞飞的 World Labs，抢占世界模型赛道。",
+      "why": "巨头重注世界模型，影响行业格局与硬件生态。",
+      "tags": [
+        "AMD",
+        "World Labs",
+        "收购",
+        "世界模型"
+      ],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "1255f23e10db0638",
+      "title": "Anthropic Eyes Mid-November IPO, Aims to Launch Before U.S. Thanksgiving Holiday - CoinCodex",
+      "link": "https://coincodex.com/article/92987/anthropic-eyes-mid-november-ipo-aims-to-launch-before-us-thanksgiving-holiday/",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-10-04T12:00:00+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "Anthropic Eyes Mid-November IPO, Aims to Launch Before U.S. Thanksgiving Holiday CoinCodex",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "615df00a12f30a05",
+      "title": "Anthropic launches Claude Tag for Slack with channel reading AI - NewsBytes",
+      "link": "https://www.newsbytesapp.com/news/science/anthropic-launches-claude-tag-for-slack-with-channel-reading-ai/tldr",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-10-04T04:51:11+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "Anthropic launches Claude Tag for Slack with channel reading AI NewsBytes",
+      "why": "",
+      "tags": [
+        "llm"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "cc8be0e4e3332a19",
+      "title": "v0 ai for video generation APK Download for Mobile - Học viện Nông nghiệp Việt Nam",
+      "link": "https://vnua.edu.vn/archive/100472763/",
+      "source": "新闻 · 视频生成（英文）",
+      "source_id": "gnews-video-en",
+      "published": "2026-10-04T01:43:34+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "v0 ai for video generation APK Download for Mobile Học viện Nông nghiệp Việt Nam",
+      "why": "",
+      "tags": [
+        "video generation",
+        "llm"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "d97e2c8cc328e730",
+      "title": "Veo 3 alternatives Latest APK Release - Học viện Nông nghiệp Việt Nam",
+      "link": "https://vnua.edu.vn/content/100485436/",
+      "source": "新闻 · 视频生成（英文）",
+      "source_id": "gnews-video-en",
+      "published": "2026-10-03T18:18:25+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "Veo 3 alternatives Latest APK Release Học viện Nông nghiệp Việt Nam",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "a0b358fba4a985d3",
+      "title": "SOLRICKS/3D-Animation-Style-MiniMax-H3",
+      "link": "https://huggingface.co/SOLRICKS/3D-Animation-Style-MiniMax-H3",
+      "source": "HF 热榜 · 图生视频",
+      "source_id": "hf-i2v",
+      "published": "2026-09-27T09:29:59+00:00",
+      "category": "trend",
+      "priority": "high",
+      "summary": "image-to-video · likes 16 · trending 10",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "46dfc28437c571c0",
+      "title": "GPT-6 Luna vs Sonnet 5.5 vs Grok 4.7: 20x Price Gap [2026] - tech-insider.org",
+      "link": "https://tech-insider.org/ca/gpt-6-luna-vs-claude-sonnet-5-5-vs-grok-4-7-2026/",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-10-05T00:27:09+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "GPT-6 Luna vs Sonnet 5.5 vs Grok 4.7: 20x Price Gap [2026] tech-insider.org",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "0db30e0043f169e6",
+      "title": "DeepSeek回应“抄作业”：不是被迫或模仿 - 凤凰网科技",
+      "link": "https://tech.ifeng.com/c/8wy4KnRBLF2",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-10-05T00:15:45+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "DeepSeek回应“抄作业”：不是被迫或模仿 凤凰网科技",
+      "why": "",
+      "tags": [
+        "moe",
+        "llm"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "a657a24427210d70",
+      "title": "DeepSeek Harness国庆假期上新！90后负责人回应：希望做出让世界AI巨头跟进的创新 - 新浪新闻_手机新浪网",
+      "link": "https://news.sina.cn/2026-10-05/detail-iniucpwp4700537.d.html?vt=4&cid=56261&node_id=56261",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-10-05T00:11:00+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "DeepSeek Harness国庆假期上新！90后负责人回应：希望做出让世界AI巨头跟进的创新 新浪新闻_手机新浪网",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "e7d28d955f2d38df",
+      "title": "Registration now open: From World Models to Real-World AI Luma: luma.com/kjf0z516 Join us on October 26 in Tokyo for a s",
+      "link": "https://bsky.app/profile/hardmaru.bsky.social/post/3mx3kq6snoc2v",
+      "source": "Bluesky · hardmaru",
+      "source_id": "bsky-hardmaru",
+      "published": "2026-10-04T23:32:00+00:00",
+      "category": "people",
+      "priority": "medium",
+      "summary": "Registration now open: From World Models to Real-World AI Luma: luma.com/kjf0z516 Join us on October 26 in Tokyo for a symposium with Jürgen Schmidhuber, who…",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "a9dbb6b8d94f66c3",
+      "title": "Claude AI Account Black Market Thrives in China - 조선일보",
+      "link": "https://www.chosun.com/english/industry-en/2026/10/05/MHRLVIHE2NCQHNMYWCSRZTTV5M/",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-10-04T20:33:08+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Claude AI Account Black Market Thrives in China 조선일보",
+      "why": "",
+      "tags": [
+        "fp4"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "3a6e387e8e88700e",
+      "title": "告别选择困难！这个AI大模型聚合站口碑好到离谱 - CSDN",
+      "link": "https://www.csdn.net/article/2026-10-05/167107320",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-10-04T20:21:12+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "告别选择困难！这个AI大模型聚合站口碑好到离谱 CSDN",
+      "why": "",
+      "tags": [
+        "大模型",
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "9342936c051829c2",
+      "title": "Anthropic: Is Russia Using AI for Disinformation in CAR? - LatestLY",
+      "link": "https://www.latestly.com/technology/anthropic-is-russia-using-ai-for-disinformation-in-car-7632597.html",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-10-04T17:30:08+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Anthropic: Is Russia Using AI for Disinformation in CAR? LatestLY",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "64635ce97b64cc25",
+      "title": "Russia Accused of Using AI Model Claude in Pro-Russian Campaigns in Central Africa - Nacionale News",
+      "link": "https://www.nacionale.com/en/articles/russia-accused-using-ai-claude-pro-russian-campaigns-central-africa",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-10-04T17:24:32+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Russia Accused of Using AI Model Claude in Pro-Russian Campaigns in Central Africa Nacionale News",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "6eaead48fe25bf2e",
+      "title": "Anthropic Consults Swami Sarvapriyananda on Claude’s Ethics and AI Safety - The420.in",
+      "link": "https://the420.in/anthropic-claude-ethics-swami-sarvapriyananda-ai-safety-consultation/",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-10-04T13:36:28+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Anthropic Consults Swami Sarvapriyananda on Claude’s Ethics and AI Safety The420.in",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "47d34cc66ce49626",
+      "title": "Anthropic asks Claude users to share voice data for AI model training - BleepingComputer",
+      "link": "https://www.bleepingcomputer.com/news/artificial-intelligence/anthropic-asks-claude-users-to-share-voice-data-for-ai-model-training/",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-10-04T10:53:21+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Anthropic asks Claude users to share voice data for AI model training BleepingComputer",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "4908abf333419fe7",
+      "title": "SpaceX's First Full Public Quarter Hinges on Starlink Prices, Anthropic Cloud Fees and Falcon Tempo - SSBCrack",
+      "link": "https://news.ssbcrack.com/spacexs-first-full-public-quarter-hinges-on-starlink-prices-anthropic-cloud-fees-and-falcon-tempo/",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-10-04T09:49:56+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "SpaceX's First Full Public Quarter Hinges on Starlink Prices, Anthropic Cloud Fees and Falcon Tempo SSBCrack",
+      "why": "",
+      "tags": [
+        "gpu"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "c9361fa460f624b3",
+      "title": "贝森特：Kimi将中国机密传给Anthropic 帮了大忙 - 文学城",
+      "link": "https://m.wenxuecity.com/news/2026/10/04/126794486.html",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-10-04T06:25:32+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "贝森特：Kimi将中国机密传给Anthropic 帮了大忙 文学城",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "1258da1d6910a0a4",
+      "title": "【数智周报】中国大模型首次进入OpenAI企业付费结算体系；AMD斥资82亿美元收购李飞飞世界模型公司；Anthropic上市文件披露对亚马逊、谷歌依赖加深，2025年营收近46亿美元…… - 潮起网",
+      "link": "https://www.ichaoqi.com/guandian/2026/1004/88106.html",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-10-04T04:30:58+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "【数智周报】中国大模型首次进入OpenAI企业付费结算体系；AMD斥资82亿美元收购李飞飞世界模型公司；Anthropic上市文件披露对亚马逊、谷歌依赖加深，2025年营收近46亿美元…… 潮起网",
+      "why": "",
+      "tags": [
+        "大模型"
+      ],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "ce6b803f75bdd621",
+      "title": "中模型Kimi震撼全­球創辦人楊植麟何方神­聖？ | Sin Chew Daily - Northern Edition - PressReader",
+      "link": "https://www.pressreader.com/malaysia/sin-chew-daily-northern-edition/20261003/282939572232964",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-10-04T03:44:34+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "中模型Kimi震撼全­球創辦人楊植麟何方神­聖？ | Sin Chew Daily - Northern Edition PressReader",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "2f143fbb602358da",
+      "title": "OpenAI’s Sam Altman Takes A Dig At Anthropic’s Altercation With The Pope On AI Consciousness, Conveniently Forgetting His Own Antics That Have Leaned On Religious Symbolism - Wccftech",
+      "link": "https://wccftech.com/openais-sam-altman-takes-a-dig-at-anthropics-altercation-with-the-pope-on-ai-consciousness-conveniently-forgetting-his-own-antics-that-have-leaned-on-religious-symbolism/",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-10-04T02:27:26+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "OpenAI’s Sam Altman Takes A Dig At Anthropic’s Altercation With The Pope On AI Consciousness, Conveniently Forgetting His Own Antics That Have Leaned On…",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "53c8ffd18f3e8123",
+      "title": "Sora 2 Android Software Installer - Học viện Nông nghiệp Việt Nam",
+      "link": "https://vnua.edu.vn/page/100400810.aspx",
+      "source": "新闻 · 视频生成（英文）",
+      "source_id": "gnews-video-en",
+      "published": "2026-10-03T21:17:16+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Sora 2 Android Software Installer Học viện Nông nghiệp Việt Nam",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "23580177f1c7f05b",
+      "title": "WULF Stock In Focus: TeraWulf CEO Reportedly Says Anthropic Deal Is Just The ‘Tip Of The Iceberg’ For AI Infrastructure - Stocktwits",
+      "link": "https://stocktwits.com/news-articles/markets/equity/wulf-stock-in-focus-tera-wulf-ceo-reportedly-says-anthropic-deal-is-just-the-tip-of-the-iceberg-for-ai-infrastructure/cZmlIPmR7m9",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-10-03T20:35:20+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "WULF Stock In Focus: TeraWulf CEO Reportedly Says Anthropic Deal Is Just The ‘Tip Of The Iceberg’ For AI Infrastructure Stocktwits",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "7db7d5ae683f20ee",
+      "title": "Treachery in the Rodin Museum 3D scan verdict",
+      "link": "https://news.ycombinator.com/item?id=49946355",
+      "source": "Hacker News（100+ 分）",
+      "source_id": "hn-algolia",
+      "published": "2026-10-03T18:01:27+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "a6e3f646f6912c2f",
+      "title": "Agents don't need memory, they need documentation",
+      "link": "https://news.ycombinator.com/item?id=49945933",
+      "source": "Hacker News（100+ 分）",
+      "source_id": "hn-algolia",
+      "published": "2026-10-03T17:03:37+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "",
+      "why": "",
+      "tags": [
+        "agent"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "ae7438deb6dc4d43",
+      "title": "OpenAI Vs Anthropic: Sam Altman Takes A Jab Over \"Religious Force\" - NDTV",
+      "link": "https://www.ndtv.com/artificial-intelligence/openai-vs-anthropic-sam-altman-takes-a-jab-over-religious-force-12135027",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-10-03T16:29:08+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "OpenAI Vs Anthropic: Sam Altman Takes A Jab Over \"Religious Force\" NDTV",
+      "why": "",
+      "tags": [
+        "gpu",
+        "3D"
+      ],
+      "tracks": []
+    }
+  ]
+}
