@@ -52,6 +52,7 @@ jobs:
           else
             python3 tools/content_flow/receipt.py "$persisted" --timeout-hours 24
           fi
+          python3 tools/content_flow/package_delivery.py --root private-inbox --output delivery
       - name: 发送超时告警并验证 Gmail 收件
         if: ${{ failure() }}
         env:
@@ -74,4 +75,5 @@ jobs:
             handoff.json
             public-artifact-manifest.json
             private-artifact-manifest.json
+            delivery
           retention-days: 30
