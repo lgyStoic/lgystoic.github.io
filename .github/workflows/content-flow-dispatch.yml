@@ -77,3 +77,19 @@ jobs:
             private-artifact-manifest.json
             delivery
           retention-days: 30
+      - name: 发送交付通知并验证 Gmail 收件
+        if: ${{ success() }}
+        env:
+          RADAR_ALERT_SMTP_HOST: smtp.gmail.com
+          RADAR_ALERT_SMTP_USER: ${{ secrets.RADAR_ALERT_SMTP_USER }}
+          RADAR_ALERT_SMTP_PASSWORD: ${{ secrets.RADAR_ALERT_SMTP_PASSWORD }}
+          RADAR_ALERT_EMAIL_TO: ${{ secrets.RADAR_ALERT_EMAIL_TO }}
+          RADAR_ALERT_EMAIL_FROM: ${{ secrets.RADAR_ALERT_EMAIL_FROM }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          python3 - <<'PY'
+          import json, os
+          from tools.content_flow.delivery_notification import send
+          data = json.load(open("delivery/delivery.json"))
+          send(run_url=os.environ["RUN_URL"], artifact_name="content-flow-dispatch-${{ github.run_id }}", channels={k: v["status"] for k, v in data["channels"].items()})
+          PY
