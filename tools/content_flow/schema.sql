@@ -20,3 +20,12 @@ CREATE TABLE IF NOT EXISTS audit_log (
 );
 CREATE INDEX IF NOT EXISTS idx_handoffs_status ON handoffs(status);
 CREATE INDEX IF NOT EXISTS idx_audit_handoff ON audit_log(handoff_id);
+CREATE TABLE IF NOT EXISTS artifacts (
+  artifact_id TEXT NOT NULL,
+  version TEXT NOT NULL,
+  sha256 TEXT NOT NULL,
+  kind TEXT NOT NULL,
+  source_uri TEXT NOT NULL,
+  registered_at TEXT NOT NULL,
+  PRIMARY KEY (artifact_id, version)
+);

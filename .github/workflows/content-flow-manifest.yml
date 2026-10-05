@@ -1,0 +1,27 @@
+name: 内容产物登记
+
+on:
+  workflow_run:
+    workflows: ["AI 信息雷达", "小红书学习文稿"]
+    types: [completed]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  register:
+    if: ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: 生成不可变产物清单
+        run: python3 tools/content_flow/build_manifest.py --output artifact-manifest.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: content-artifact-manifest-${{ github.run_id }}
+          path: artifact-manifest.json
+          retention-days: 30
