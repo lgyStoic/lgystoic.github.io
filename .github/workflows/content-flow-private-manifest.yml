@@ -22,8 +22,15 @@ jobs:
         run: git clone --depth 1 "https://x-access-token:${INBOX_TOKEN}@github.com/${INBOX_REPO}.git" private-inbox
       - name: 生成私有产物清单
         run: python3 tools/content_flow/build_private_manifest.py --root private-inbox --output private-artifact-manifest.json
+      - name: 生成公开产物清单
+        run: python3 tools/content_flow/build_manifest.py --output public-artifact-manifest.json
+      - name: 创建统一交接包
+        run: python3 tools/content_flow/create_handoff.py public-artifact-manifest.json private-artifact-manifest.json --output handoff.json
       - uses: actions/upload-artifact@v4
         with:
           name: private-content-artifact-manifest-${{ github.run_id }}
-          path: private-artifact-manifest.json
+          path: |
+            private-artifact-manifest.json
+            public-artifact-manifest.json
+            handoff.json
           retention-days: 30
