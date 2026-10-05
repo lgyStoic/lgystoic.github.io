@@ -58,19 +58,19 @@
 
 - [总览](https://lgystoic.github.io/radar/contributions/): 14 个 AI 推理 / kernel 仓库的五章分析（定位、架构、本地运行、社区、切入）与可认领任务卡
 - [sgl-project/sglang](https://lgystoic.github.io/radar/contributions/sgl-project--sglang/): SGLang（sgl-project/sglang，LMSYS 非营利组织托管）是高性能大模型与多模态模型推理服务框架，2024 年初以 RadixAttention 前缀缓存起家，README 自称支撑全球 40 万+ GPU、日产数万亿
-- [sgl-project/sglang-omni](https://lgystoic.github.io/radar/contributions/sgl-project--sglang-omni/): SGLang-Omni 是 sgl-project 下的多阶段（multi-stage）推理服务框架，专门面向 omni 模型、TTS 语音生成、ASR 语音转录以及统一多模态模型。它不是从零重写一个推理引擎，而是在 SGLang 高性能自
-- [vllm-project/vllm](https://lgystoic.github.io/radar/contributions/vllm-project--vllm/): vLLM 是目前开源大模型推理与服务领域的绝对标杆（De facto standard），由 UC Berkeley Sky Computing Lab 发起，现已拥有超 2000 名贡献者。它的核心价值在于通过 PagedAttentio
-- [flashinfer-ai/flashinfer](https://lgystoic.github.io/radar/contributions/flashinfer-ai--flashinfer/): FlashInfer 是一个专为 LLM 推理服务设计的高性能 GPU 算子库，提供 Attention、GEMM 和 MoE 的统一 API。对于你这样具备 CuTe/CUTLASS 和底层优化经验的资深 Kernel 工程师来说，这是一
-- [Dao-AILab/flash-attention](https://lgystoic.github.io/radar/contributions/dao-ailab--flash-attention/): FlashAttention 是目前深度学习领域事实上的标准注意力机制底层实现。它的核心价值在于通过 Tiling（分块）和 Recomputation（重计算）技术，将标准 Attention 的 O(N^2) 显存复杂度降为 O(N)，
+- [sgl-project/sglang-omni](https://lgystoic.github.io/radar/contributions/sgl-project--sglang-omni/): SGLang-Omni 是 sgl-project 下的多阶段（multi-stage）服务运行时，专门面向 omni 模型、TTS 语音合成、ASR 语音识别以及统一多模态模型。它解决的问题是：现代语音/多模态生成流水线天然由多个异构阶段
+- [vllm-project/vllm](https://lgystoic.github.io/radar/contributions/vllm-project--vllm/): vLLM 是目前最活跃的开源 LLM 推理与服务引擎之一，起源于 UC Berkeley Sky Computing Lab，由 2000+ 贡献者维护。它围绕 PagedAttention 这一核心内存管理技术构建，解决大语言模型推理中 
+- [flashinfer-ai/flashinfer](https://lgystoic.github.io/radar/contributions/flashinfer-ai--flashinfer/): FlashInfer 是一个面向 LLM serving 的高性能 GPU 内核库与内核生成器，核心卖点是在 attention、GEMM、MoE、采样、通信等推理热点路径上提供统一 API，并在 FlashAttention-2/3、cu
+- [Dao-AILab/flash-attention](https://lgystoic.github.io/radar/contributions/dao-ailab--flash-attention/): FlashAttention 是 Dao-AILab 维护的精确注意力（exact attention）加速库，核心卖点是 IO-aware 的 tiling 实现：在 HBM 与 SRAM 之间按 tile 搬运与计算，把标准 Atten
 - [tile-ai/tilelang](https://lgystoic.github.io/radar/contributions/tile-ai--tilelang/): TileLang (tile-lang) 是一个基于 Python 的领域特定语言（DSL），构建在 Apache TVM 编译器基础设施（TIRX）之上，专为简化高性能 GPU/CPU/加速器内核（如 GEMM、FlashAttentio
-- [huggingface/diffusers](https://lgystoic.github.io/radar/contributions/huggingface--diffusers/): Hugging Face `diffusers` 是目前 PyTorch 生态中图像、视频、音频扩散模型（Diffusion Models）的事实标准库。它的核心定位是连接前沿生成式 AI 研究与工业界落地的桥梁。项目明确奉行「可用性高于性
+- [huggingface/diffusers](https://lgystoic.github.io/radar/contributions/huggingface--diffusers/): 🤗 Diffusers 是 Hugging Face 维护的 PyTorch 扩散模型推理与训练库，定位为 image / video / audio / 3D 分子生成的「模块化工具箱」。README 明确把哲学写在最前面：usabili
 - [hao-ai-lab/FastVideo](https://lgystoic.github.io/radar/contributions/hao-ai-lab--fastvideo/): FastVideo 是一个面向视频生成大模型（如 Wan2.1/2.2, MiniMax-H3 等 DiT 架构）的端到端统一推理与后训练（Post-training）加速框架。它的核心价值在于打破了“训练”与“推理”的壁垒，通过算法层（D
 - [thu-ml/TurboDiffusion](https://lgystoic.github.io/radar/contributions/thu-ml--turbodiffusion/): TurboDiffusion 是清华大学机器学习组（THU-ML）开源的端到端视频扩散模型（DiT）推理加速框架。其核心目标是通过算法与系统协同设计，在单张消费级或数据中心 GPU 上实现 100-200 倍的生成加速，同时保持视频质量。项
-- [modelscope/DiffSynth-Engine](https://lgystoic.github.io/radar/contributions/modelscope--diffsynth-engine/): DiffSynth-Engine 是由 MuseAI 与 ModelScope 联合开发的高性能扩散模型（Diffusion Models）推理引擎。它的核心设计理念是摆脱传统生态（如 k-diffusion、ldm、sgm）的历史包袱，通
-- [JeffreyXiang/FlexGEMM](https://lgystoic.github.io/radar/contributions/jeffreyxiang--flexgemm/): FlexGEMM 是一个专为 3D 稀疏卷积（3D sparse convolutions）设计的高性能、基于 Triton 的 GEMM 后端。在 3D 深度学习（如体素化点云、3D 生成模型）中，数据通常具有高度不规则的稀疏性，传统的密
-- [NVIDIA-NeMo/labs-molt](https://lgystoic.github.io/radar/contributions/nvidia-nemo--labs-molt/): Molt 是 NVIDIA-NeMo 团队推出的一个以智能体为中心（Agentic-first）、原生 PyTorch 架构的强化学习研究框架。它的核心价值在于用极简的代码量（约 9.2K 行）串联起 Ray（异步调度）、vLLM（推理采样
+- [modelscope/DiffSynth-Engine](https://lgystoic.github.io/radar/contributions/modelscope--diffsynth-engine/): DiffSynth-Engine 是 ModelScope（阿里达摩院 MuseAI）团队维护的高性能扩散模型推理引擎，核心目标是为 DiT 类图像/视频生成模型（Flux、Wan、Qwen-Image、Z-Image 等）提供一套自研、可
+- [JeffreyXiang/FlexGEMM](https://lgystoic.github.io/radar/contributions/jeffreyxiang--flexgemm/): FlexGEMM 是一个基于 Triton 的 3D 稀疏卷积 GEMM 后端，核心目标是在 Submanifold Convolution 与体素稀疏卷积的训练/推理路径上，用 Triton 重写高性能稀疏 GEMM kernel，从而在
+- [NVIDIA-NeMo/labs-molt](https://lgystoic.github.io/radar/contributions/nvidia-nemo--labs-molt/): Molt 是 NVIDIA NeMo 实验室维护的一个 **agentic-first** 强化学习训练框架，定位是研究导向、PyTorch / HuggingFace 原生、面向 1T 级 MoE 规模的全异步 agentic RL。它把
 - [RightNow-AI/autokernel](https://lgystoic.github.io/radar/contributions/rightnow-ai--autokernel/): AutoKernel 是一个受 Karpathy `autoresearch` 启发的 GPU 算子自动优化 AI 代理框架。它的核心理念是：给定任意 PyTorch 模型，AI Agent 会自动分析瓶颈、提取算子，并在一个无限循环中（修
-- [THU-MIG/edge-dit.cpp](https://lgystoic.github.io/radar/contributions/thu-mig--edge-dit.cpp/): edge-dit.cpp 是 THU-MIG 实验室在 2026 年 5 月底启动的 C/C++ 原生 DiT 推理引擎，定位为「把 Diffusion Transformer 搬到本地和资源受限设备上」。它基于 ggml 张量/图运行时构
+- [THU-MIG/edge-dit.cpp](https://lgystoic.github.io/radar/contributions/thu-mig--edge-dit.cpp/): edge-dit.cpp 是清华大学 THU-MIG 实验室在 2026 年推出的一个**面向 Diffusion Transformer（DiT）的原生 C/C++ 推理引擎**，底层直接复用 ggml 的张量与图执行基础设施，目标是在本
 
 ## 公开数据（JSON）
 
