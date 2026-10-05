@@ -25,11 +25,32 @@ jobs:
           python3 tools/content_flow/build_manifest.py --output public-artifact-manifest.json
           python3 tools/content_flow/create_handoff.py public-artifact-manifest.json private-artifact-manifest.json --output handoff.json
           id=$(python3 -c 'import json; print(json.load(open("handoff.json"))["handoff_id"])')
+          mkdir -p private-inbox/posts/.pipeline/handoffs
+          persisted="private-inbox/posts/.pipeline/handoffs/${id}.json"
+          if [ -f "$persisted" ]; then
+            python3 - <<'PY'
+          import json
+          from pathlib import Path
+          current = json.loads(Path("handoff.json").read_text())
+          old = json.loads(Path("private-inbox/posts/.pipeline/handoffs/" + current["handoff_id"] + ".json").read_text())
+          current["created_at"] = old["created_at"]
+          Path("handoff.json").write_text(json.dumps(current, ensure_ascii=False, indent=2) + "\n")
+          PY
+          else
+            cp handoff.json "$persisted"
+          fi
+          if ! git -C private-inbox diff --quiet; then
+            git -C private-inbox config user.name "content-flow-bot"
+            git -C private-inbox config user.email "content-flow-bot@users.noreply.github.com"
+            git -C private-inbox add posts/.pipeline/handoffs
+            git -C private-inbox commit -m "记录内容交接状态 ${id}"
+            git -C private-inbox push origin HEAD:main
+          fi
           receipt="private-inbox/posts/.pipeline/handoffs/${id}.receipt.json"
           if [ -f "$receipt" ]; then
-            python3 tools/content_flow/receipt.py handoff.json --receipt "$receipt" --timeout-hours 24
+            python3 tools/content_flow/receipt.py "$persisted" --receipt "$receipt" --timeout-hours 24
           else
-            python3 tools/content_flow/receipt.py handoff.json --timeout-hours 24
+            python3 tools/content_flow/receipt.py "$persisted" --timeout-hours 24
           fi
       - name: 发送超时告警并验证 Gmail 收件
         if: ${{ failure() }}
