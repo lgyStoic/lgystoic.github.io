@@ -1,0 +1,56 @@
+name: 内容交接调度
+
+on:
+  schedule:
+    - cron: "30 10 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  dispatch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: 读取私有 inbox
+        env:
+          INBOX_TOKEN: ${{ secrets.INBOX_TOKEN }}
+          INBOX_REPO: ${{ vars.INBOX_REPO || 'lgyStoic/radar-inbox' }}
+        run: git clone --depth 1 "https://x-access-token:${INBOX_TOKEN}@github.com/${INBOX_REPO}.git" private-inbox
+      - name: 生成当前交接和检查回执
+        id: check
+        run: |
+          python3 tools/content_flow/build_private_manifest.py --root private-inbox --output private-artifact-manifest.json
+          python3 tools/content_flow/build_manifest.py --output public-artifact-manifest.json
+          python3 tools/content_flow/create_handoff.py public-artifact-manifest.json private-artifact-manifest.json --output handoff.json
+          id=$(python3 -c 'import json; print(json.load(open("handoff.json"))["handoff_id"])')
+          receipt="private-inbox/posts/.pipeline/handoffs/${id}.receipt.json"
+          if [ -f "$receipt" ]; then
+            python3 tools/content_flow/receipt.py handoff.json --receipt "$receipt" --timeout-hours 24
+          else
+            python3 tools/content_flow/receipt.py handoff.json --timeout-hours 24
+          fi
+      - name: 发送超时告警并验证 Gmail 收件
+        if: ${{ failure() }}
+        env:
+          RADAR_ALERT_SMTP_HOST: smtp.gmail.com
+          RADAR_ALERT_SMTP_USER: ${{ secrets.RADAR_ALERT_SMTP_USER }}
+          RADAR_ALERT_SMTP_PASSWORD: ${{ secrets.RADAR_ALERT_SMTP_PASSWORD }}
+          RADAR_ALERT_EMAIL_TO: ${{ secrets.RADAR_ALERT_EMAIL_TO }}
+          RADAR_ALERT_EMAIL_FROM: ${{ secrets.RADAR_ALERT_EMAIL_FROM }}
+        run: |
+          python3 - <<'PY'
+          import json
+          from tools.content_flow.handoff_alert import send
+          send({"handoff_id": json.load(open("handoff.json"))["handoff_id"], "status": "overdue_or_invalid_receipt"})
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: content-flow-dispatch-${{ github.run_id }}
+          path: |
+            handoff.json
+            public-artifact-manifest.json
+            private-artifact-manifest.json
+          retention-days: 30
