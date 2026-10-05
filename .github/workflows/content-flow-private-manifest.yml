@@ -1,0 +1,29 @@
+name: 私有小红书产物登记
+
+on:
+  workflow_run:
+    workflows: ["小红书学习文稿"]
+    types: [completed]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  register:
+    if: ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: 读取私有 inbox（只保留哈希）
+        env:
+          INBOX_TOKEN: ${{ secrets.INBOX_TOKEN }}
+          INBOX_REPO: ${{ vars.INBOX_REPO || 'lgyStoic/radar-inbox' }}
+        run: git clone --depth 1 "https://x-access-token:${INBOX_TOKEN}@github.com/${INBOX_REPO}.git" private-inbox
+      - name: 生成私有产物清单
+        run: python3 tools/content_flow/build_private_manifest.py --root private-inbox --output private-artifact-manifest.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: private-content-artifact-manifest-${{ github.run_id }}
+          path: private-artifact-manifest.json
+          retention-days: 30
