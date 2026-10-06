@@ -31,3 +31,7 @@ python3 -m unittest discover -s tools/content_flow -p 'test_*.py' -v
 ```
 
 后续阶段将接入 manifest 注册、GitHub Actions 定时调度和私有工作台；接口和字段先保持向后兼容。
+
+## 交接调度时间（2026-10-06）
+
+`content-flow-dispatch.yml` 每天北京时间 00:00（UTC 16:00）触发，单次 job 最长 60 分钟。运营截止目标为北京时间 05:00 前交付；GitHub schedule 和 runner 排队不提供准点保证，job 超时也只代表终止，不代表成功交付。该任务打包已落库素材，不更改上游采集调度。
