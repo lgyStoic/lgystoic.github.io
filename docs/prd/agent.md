@@ -111,3 +111,5 @@ AI 模型：`call_llm_json` 走 Claude（有 key）否则 Gemini；高频任务�
 - 不在页面 HTML 手改由 build 注入的块（会被覆盖）。
 - 不 rebase / force-push master；不把 key 写进仓库；不绕过 `valid_tasks` 让 GPU 任务上页面。
 - 不在指南页写「推广」「含推广链接」；不加地址生成器。
+
+内容交接调度：`content-flow-dispatch.yml` 每天北京时间 00:00，job 最长 60 分钟，05:00 前交付为运营目标，GitHub 定时排队不能保证准点；见 content-flow.md。
