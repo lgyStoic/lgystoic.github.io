@@ -2,8 +2,111 @@
  "id": "world",
  "name": "世界模型",
  "blurb": "可交互的生成式世界模拟：Genie、Cosmos、V-JEPA、Dreamer、GameNGen、Oasis、Matrix-Game、HunyuanWorld 等，以及动作条件视频生成、4D 生成与具身仿真。",
- "updated": "2026-10-05T02:04:48+00:00",
+ "updated": "2026-10-06T03:02:40+00:00",
  "entries": [
+  {
+   "id": "ca03e4eaa22a51aa",
+   "date": "2026-10-06",
+   "title": "Spatial Memory Intelligence: Endowing World Models with Understanding-Driven Long-Term Memory",
+   "link": "https://arxiv.org/abs/2610.02521",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "high",
+   "summary": "SMI：为世界模型赋予理解驱动的长程空间记忆。",
+   "why": "长视频生成的记忆管理，直接影响训练效率。",
+   "tags": [
+    "world model",
+    "long-term memory",
+    "spatial reasoning"
+   ],
+   "entity": "SMI",
+   "kind": "paper"
+  },
+  {
+   "id": "3dfba9140091fb73",
+   "date": "2026-10-06",
+   "title": "SpectralCache: Accelerating Diffusion-Based World Models via Spectral Feature Caching",
+   "link": "https://arxiv.org/abs/2610.02660",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "high",
+   "summary": "SpectralCache：通过频谱特征缓存加速扩散式世界模型。",
+   "why": "训练无关的扩散推理加速，直接优化 GPU 推理。",
+   "tags": [
+    "diffusion",
+    "caching",
+    "world model",
+    "acceleration"
+   ],
+   "entity": "SpectralCache",
+   "kind": "paper"
+  },
+  {
+   "id": "2448cf6f24f35795",
+   "date": "2026-10-06",
+   "title": "SymRegFlow: Symmetry-Regularized Flow Matching for Video World Models",
+   "link": "https://arxiv.org/abs/2610.02726",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "high",
+   "summary": "SymRegFlow：对称正则化 Flow Matching 用于多视角世界模型。",
+   "why": "Flow Matching 视频生成核心方法改进。",
+   "tags": [
+    "flow matching",
+    "multi-view",
+    "video generation"
+   ],
+   "entity": "SymRegFlow",
+   "kind": "paper"
+  },
+  {
+   "id": "3688654d9c411bbb",
+   "date": "2026-10-06",
+   "title": "Nvidia backs startup Reactor as buzz grows for world models - Fortune",
+   "link": "https://fortune.com/2026/10/05/nvidia-backs-startup-reactor-buzz-grows-world-models/",
+   "source": "新闻 · 世界模型（英文）",
+   "priority": "medium",
+   "summary": "NVIDIA 支持 Reactor，世界模型初创公司受关注。",
+   "why": "NVIDIA 投资方向反映行业趋势，值得关注。",
+   "tags": [
+    "NVIDIA",
+    "Reactor",
+    "world model"
+   ],
+   "entity": "Reactor",
+   "kind": "news"
+  },
+  {
+   "id": "9d0a0c5f771bdfa6",
+   "date": "2026-10-06",
+   "title": "AMD 82亿美元收购World Labs，芯片巨头争夺物理AI定义权 - 虎嗅网",
+   "link": "https://m.huxiu.com/article/4895450.html?type=text",
+   "source": "新闻 · 世界模型（中文）",
+   "priority": "medium",
+   "summary": "AMD 82 亿美元收购 World Labs，争夺物理 AI 定义权。",
+   "why": "芯片巨头布局物理 AI，行业格局变化。",
+   "tags": [
+    "AMD",
+    "World Labs",
+    "$8.2B"
+   ],
+   "entity": "World Labs",
+   "kind": "news"
+  },
+  {
+   "id": "7029a2dcc282fe56",
+   "date": "2026-10-06",
+   "title": "00后浙大博士把4D世界模型首次塞进手机 - 凤凰网科技",
+   "link": "https://tech.ifeng.com/c/8wyXe0vosRi",
+   "source": "新闻 · 世界模型（中文）",
+   "priority": "medium",
+   "summary": "浙大博士将 4D 世界模型部署到手机。",
+   "why": "端侧世界模型部署，工程参考价值高。",
+   "tags": [
+    "4D world model",
+    "mobile",
+    "deployment"
+   ],
+   "entity": "",
+   "kind": "news"
+  },
   {
    "id": "0a57c7778f5a8b60",
    "date": "2026-10-05",
@@ -2955,6 +3058,7 @@
  ],
  "threads": {
   "World Labs": [
+   "9d0a0c5f771bdfa6",
    "0a57c7778f5a8b60",
    "1258da1d6910a0a4",
    "35380a738bd4d910",
@@ -3064,6 +3168,18 @@
   "魔芯科技": [
    "fe9d33edf0701555",
    "92ea4301b3012f12"
+  ],
+  "SMI": [
+   "ca03e4eaa22a51aa"
+  ],
+  "SpectralCache": [
+   "3dfba9140091fb73"
+  ],
+  "SymRegFlow": [
+   "2448cf6f24f35795"
+  ],
+  "Reactor": [
+   "3688654d9c411bbb"
   ],
   "Luma": [
    "e7d28d955f2d38df"

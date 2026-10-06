@@ -2,8 +2,110 @@
  "id": "video",
  "name": "视频生成模型",
  "blurb": "文生视频、图生视频、视频 VAE 与 DiT 加速：Wan、Sora、Veo、可灵、海螺、Seedance、Vidu、LTX、HunyuanVideo 等的发布、论文、benchmark 与推理框架支持。",
- "updated": "2026-10-05T02:04:48+00:00",
+ "updated": "2026-10-06T03:02:40+00:00",
  "entries": [
+  {
+   "id": "ca03e4eaa22a51aa",
+   "date": "2026-10-06",
+   "title": "Spatial Memory Intelligence: Endowing World Models with Understanding-Driven Long-Term Memory",
+   "link": "https://arxiv.org/abs/2610.02521",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "high",
+   "summary": "SMI：为世界模型赋予理解驱动的长程空间记忆。",
+   "why": "长视频生成的记忆管理，直接影响训练效率。",
+   "tags": [
+    "world model",
+    "long-term memory",
+    "spatial reasoning"
+   ],
+   "entity": "SMI",
+   "kind": "paper"
+  },
+  {
+   "id": "2448cf6f24f35795",
+   "date": "2026-10-06",
+   "title": "SymRegFlow: Symmetry-Regularized Flow Matching for Video World Models",
+   "link": "https://arxiv.org/abs/2610.02726",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "high",
+   "summary": "SymRegFlow：对称正则化 Flow Matching 用于多视角世界模型。",
+   "why": "Flow Matching 视频生成核心方法改进。",
+   "tags": [
+    "flow matching",
+    "multi-view",
+    "video generation"
+   ],
+   "entity": "SymRegFlow",
+   "kind": "paper"
+  },
+  {
+   "id": "7637b43ef376711e",
+   "date": "2026-10-06",
+   "title": "TRAC: Trajectory-aware Reuse and Adaptive Correction for Efficient Autoregressive Video Generation",
+   "link": "https://arxiv.org/abs/2610.02779",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "high",
+   "summary": "TRAC：轨迹感知复用与自适应校正用于高效自回归视频生成。",
+   "why": "训练无关的 AR 视频生成加速框架。",
+   "tags": [
+    "autoregressive",
+    "video generation",
+    "acceleration"
+   ],
+   "entity": "TRAC",
+   "kind": "paper"
+  },
+  {
+   "id": "07c74fdb24e9af3c",
+   "date": "2026-10-06",
+   "title": "Custom Forcing: Training-Free Subject Customization for Autoregressive Video Generation",
+   "link": "https://arxiv.org/abs/2610.02914",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "high",
+   "summary": "Custom Forcing：训练无关的自回归视频生成主体定制。",
+   "why": "KV Cache 复用实现实时视频定制，工程价值高。",
+   "tags": [
+    "autoregressive",
+    "KV cache",
+    "customization"
+   ],
+   "entity": "Custom Forcing",
+   "kind": "paper"
+  },
+  {
+   "id": "3de9d2ab5d6233df",
+   "date": "2026-10-06",
+   "title": "A Simulation-Grounded Agentic VLM Framework for Wildfire Monitoring and Reporting",
+   "link": "https://arxiv.org/abs/2610.02451",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "medium",
+   "summary": "模拟驱动的 VLM 框架用于野火监测。",
+   "why": "VLM 应用研究，与视频生成关联较弱。",
+   "tags": [
+    "VLM",
+    "wildfire",
+    "simulation"
+   ],
+   "entity": "",
+   "kind": "paper"
+  },
+  {
+   "id": "40d25302ca4a7b92",
+   "date": "2026-10-06",
+   "title": "Imagine the Future, Internalize the Gist: Efficient VLA Reasoning via Internalized Spatiotemporal Imagination",
+   "link": "https://arxiv.org/abs/2610.02626",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "medium",
+   "summary": "IG-VLA：通过内化时空想象实现高效 VLA 推理。",
+   "why": "机器人方向，与视频生成关联有限。",
+   "tags": [
+    "VLA",
+    "spatiotemporal",
+    "reasoning"
+   ],
+   "entity": "IG-VLA",
+   "kind": "paper"
+  },
   {
    "id": "cc8be0e4e3332a19",
    "date": "2026-10-05",
@@ -2360,6 +2462,21 @@
   "字节跳动": [
    "3a06f956823425ca",
    "782c2b2a23d1da73"
+  ],
+  "SMI": [
+   "ca03e4eaa22a51aa"
+  ],
+  "SymRegFlow": [
+   "2448cf6f24f35795"
+  ],
+  "TRAC": [
+   "7637b43ef376711e"
+  ],
+  "Custom Forcing": [
+   "07c74fdb24e9af3c"
+  ],
+  "IG-VLA": [
+   "40d25302ca4a7b92"
   ],
   "Sora 2": [
    "53c8ffd18f3e8123"
