@@ -81,6 +81,8 @@ python3 -m http.server 8765       # 本地预览
 
 ## 7. 已知问题
 
+独立作品 `/shexian/`：歙县古城游记，直接托管预构建静态文件与本地模型，不增加主站构建依赖，不改主导航。细则见 `shexian.md`。
+
 1. giscus 评论区未启用：需要仓库开启 Discussions、安装 giscus App，把 `repo_id`（已知 `MDEwOlJlcG9zaXRvcnkyMzAwMzg5Njk=`）和 `category_id` 填进 `site.json`。
 2. 没有自定义域名；搜索权重与 CDN 受 github.io 限制。若买域名，优先 Cloudflare 托管 + Pages 自定义域。
 3. 部署环境（Claude Code 沙箱）访问不到多数国内站点和 Azure blob，涉及这些的问题只能靠 Actions 日志排查。
