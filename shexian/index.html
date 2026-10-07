@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#eee9df">
+  <link rel="icon" href="data:,">
+  <meta name="description" content="一段可以在浏览器里走读的徽州古城游记。沿城门、石坊、府衙与街巷，展开一座三维古城。">
+  <title>一城徽州 · 歙县古城游记</title>
+  <script type="module" crossorigin src="./assets/index-CJu0UjvI.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-DhWhIqyx.css">
+</head>
+<body>
+  <header class="masthead">
+    <a class="brand" href="#" aria-label="返回全城总览"><span class="seal">徽</span><span>一城徽州<small>SHEXIAN · A CITY JOURNAL</small></span></a>
+    <div class="header-right"><span class="location">安徽 · 歙县</span><button id="overview" class="text-button">全城总览 ↗</button></div>
+  </header>
+  <main class="experience">
+    <section class="reader" aria-label="古城游记">
+      <div class="reader-inner">
+        <div class="chapter-kicker"><span id="chapter-number">序 · INTRODUCTION</span><span class="fine-line"></span><span id="chapter-category">一段慢行</span></div>
+        <h1 id="chapter-title">把时间，<br>留在徽州。</h1>
+        <p id="chapter-lead" class="lead"></p>
+        <div class="journal-rule"><span class="red-dot"></span><span id="chapter-place"></span></div>
+        <div id="chapter-body" class="prose"></div>
+        <aside class="field-note"><span>走读札记</span><p id="chapter-note"></p></aside>
+        <button id="begin" class="begin-button">从阳和门开始 <span>→</span></button>
+        <div class="chapter-controls" id="chapter-controls" hidden><button id="previous" class="text-button">← 上一记</button><span id="chapter-count"></span><button id="next" class="text-button">下一记 →</button></div>
+      </div>
+      <footer class="reader-footer"><span>门 · 坊 · 楼 · 署 · 园 · 巷 · 馆</span><button id="about" class="text-button">关于这座古城</button></footer>
+    </section>
+    <section class="stage" aria-label="三维古城，可以拖动旋转、缩放">
+      <img id="fallback" src="./overview.png" alt="徽州古城外观模型总览">
+      <div id="scene"></div>
+      <div class="stage-caption"><span class="small-caps">A WALK THROUGH HUIZHOU</span><span id="view-name">府城核心 · 全城总览</span></div>
+      <div id="load-state" role="status"><span class="loading-dot"></span><span id="load-text">正在展开古城…</span><button id="retry" hidden>重试</button></div>
+      <div class="view-tools"><button id="reset-view" title="恢复当前章节视角">复位</button><button id="top-view" aria-pressed="false">俯瞰</button><button id="rotate" aria-pressed="false">慢巡</button><button id="fullscreen">全屏</button></div>
+      <div class="stage-bottom"><span id="interaction-hint">拖动旋转 · 滚轮缩放 · 右键平移</span><span class="north">↑ 北</span></div>
+    </section>
+  </main>
+  <nav class="route" aria-label="游记章节"><span class="route-label">城中八记 <small>选择一处，继续走读</small></span><div id="route-stops"></div><span class="route-end">慢慢看，不赶路。</span></nav>
+  <dialog id="about-dialog"><button id="close-about" aria-label="关闭说明">×</button><div class="chapter-kicker">ABOUT THIS JOURNAL</div><h2>用一座模型，<br>读一座古城。</h2><p>这里是一份三维走读游记，不是第一人称碰撞游戏。选择章节，镜头会来到对应景点；也可以拖动、缩放，自由看城。</p><p>场景以地图轮廓和参考图为基础，采用近似徽派外壳。地形表达宏观高差，普通民居细节、部分建筑体量与高度为近似；博物馆展示北入口及近似体量，不宣称实测整馆。</p><p>章节顺序是阅读引导，不代替实地导航。文字为本项目编写的走读叙述，不冒充实地采访或个人访问记录。</p><p class="credits">地图：© OpenStreetMap contributors（ODbL）。地形：Copernicus / Open-Meteo。三维资产：Meshy T2 与 Blender 修正。<a href="./sources.txt" target="_blank" rel="noopener">查看来源与使用边界 ↗</a></p></dialog>
+  <noscript><p>请启用 JavaScript 体验三维古城；静态总览仍可查看。</p></noscript>
+</body>
+</html>
