@@ -40,7 +40,7 @@ guides/{guides,links}.json 指南篇目、推荐链接注册表
 .github/workflows/gpu-docker.yml  手动准备 WSL 前置条件（不重启）或验证 Linux GPU 容器
 .github/workflows/gpu-image-edit.yml  手动复用服务编辑示例图、部署独立 Gradio 多图调试页、检查资源或部署本机四位图像编辑容器，启动时识别组件 GGUF，保存实际编辑验收图片与镜像 digest
 projects/                 外部 fork 的 submodule 控制面；源码与 Git 历史不进入 Pages
-shexian/                  歙县古城游记独立静态作品；沉浸式三维主屏、实景对比与合照准备，含已确认布局修正，仅预构建发布文件，规格见 shexian.md
+shexian/                  歙县古城游记独立静态作品；沉浸式三维主屏、实景对比与合照准备，布局与模型提前烘焙优化首屏，仅预构建发布文件，规格见 shexian.md
 .github/agents/daily-check.md  判断层手册（边界）
 docs/prd/*.md             本目录
 docs/tasks/*.md           进行中的任务说明（自包含，先读 agent.md 再读它）

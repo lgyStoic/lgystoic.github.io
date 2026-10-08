@@ -4,9 +4,10 @@
   <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#eee9df">
   <link rel="icon" href="data:,">
+  <link rel="preload" href="./city-fast.glb" as="fetch" crossorigin>
   <meta name="description" content="一段可以在浏览器里走读的徽州古城游记。沿城门、石坊、府衙与街巷，展开一座三维古城。">
   <title>一城徽州 · 歙县古城游记</title>
-  <script type="module" crossorigin src="./assets/index-C1rAlKXC.js"></script>
+  <script type="module" crossorigin src="./assets/index-DxnFH0Sk.js"></script>
   <link rel="stylesheet" crossorigin href="./assets/index-D9qrUcMn.css">
 </head>
 <body>
@@ -30,7 +31,7 @@
       <footer class="reader-footer"><span>门 · 坊 · 楼 · 署 · 园 · 巷 · 馆</span><button id="about" class="text-button">关于这座古城</button></footer>
     </section>
     <section class="stage" aria-label="三维古城，可以拖动旋转、缩放">
-      <img id="fallback" src="./overview.png" alt="徽州古城外观模型总览">
+      <img id="fallback" src="./overview.webp" fetchpriority="low" alt="徽州古城外观模型总览">
       <div id="scene"></div>
       <aside id="photo-panel" class="photo-panel" aria-label="当前景点实景照片">
         <div class="photo-heading"><span>此刻 · 实景对照</span><button id="close-photos" aria-label="关闭实景对比">×</button></div>
