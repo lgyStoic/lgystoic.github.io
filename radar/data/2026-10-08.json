@@ -1,0 +1,1013 @@
+{
+  "date": "2026-10-08",
+  "generated_at": "2026-10-08T02:42:17+00:00",
+  "ai": true,
+  "model": "LongCat-2.0",
+  "sources": [
+    {
+      "id": "openai",
+      "name": "OpenAI",
+      "ok": true,
+      "count": 3,
+      "total": 1255,
+      "error": ""
+    },
+    {
+      "id": "deepmind",
+      "name": "Google DeepMind",
+      "ok": true,
+      "count": 1,
+      "total": 100,
+      "error": ""
+    },
+    {
+      "id": "google-ai",
+      "name": "Google AI Blog",
+      "ok": true,
+      "count": 1,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "qwen",
+      "name": "Qwen",
+      "ok": true,
+      "count": 0,
+      "total": 44,
+      "error": ""
+    },
+    {
+      "id": "hf-blog",
+      "name": "Hugging Face Blog",
+      "ok": true,
+      "count": 2,
+      "total": 874,
+      "error": ""
+    },
+    {
+      "id": "nvidia-dev",
+      "name": "NVIDIA Technical Blog",
+      "ok": true,
+      "count": 0,
+      "total": 100,
+      "error": ""
+    },
+    {
+      "id": "hf-papers",
+      "name": "HF Papers 日榜",
+      "ok": true,
+      "count": 21,
+      "total": 26,
+      "error": ""
+    },
+    {
+      "id": "pytorch",
+      "name": "PyTorch Blog",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "simonw",
+      "name": "Simon Willison",
+      "ok": true,
+      "count": 2,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "lilianweng",
+      "name": "Lil'Log",
+      "ok": true,
+      "count": 0,
+      "total": 53,
+      "error": ""
+    },
+    {
+      "id": "interconnects",
+      "name": "Interconnects",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "raschka",
+      "name": "Sebastian Raschka",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "chiphuyen",
+      "name": "Chip Huyen",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-pytorch",
+      "name": "Release · PyTorch",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-triton",
+      "name": "Release · Triton",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-cutlass",
+      "name": "Release · CUTLASS",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-flash-attention",
+      "name": "Release · FlashAttention",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-vllm",
+      "name": "Release · vLLM",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-sglang",
+      "name": "Release · SGLang",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-tensorrt-llm",
+      "name": "Release · TensorRT-LLM",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-diffusers",
+      "name": "Release · Diffusers",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-cuda-python",
+      "name": "Release · cuda-python",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "gnews-labs-en",
+      "name": "新闻 · Anthropic / Mistral / xAI",
+      "ok": true,
+      "count": 21,
+      "total": 100,
+      "error": ""
+    },
+    {
+      "id": "gnews-labs-cn",
+      "name": "新闻 · 国内模型公司",
+      "ok": true,
+      "count": 4,
+      "total": 70,
+      "error": ""
+    },
+    {
+      "id": "qbitai",
+      "name": "量子位",
+      "ok": true,
+      "count": 2,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "infoq-cn",
+      "name": "InfoQ 中文",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "thonking",
+      "name": "Horace He (thonking)",
+      "ok": true,
+      "count": 0,
+      "total": 6,
+      "error": ""
+    },
+    {
+      "id": "hn-algolia",
+      "name": "Hacker News（100+ 分）",
+      "ok": true,
+      "count": 2,
+      "total": 60,
+      "error": ""
+    },
+    {
+      "id": "karpathy-blog",
+      "name": "Andrej Karpathy 博客",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "eugeneyan",
+      "name": "Eugene Yan",
+      "ok": true,
+      "count": 0,
+      "total": 212,
+      "error": ""
+    },
+    {
+      "id": "importai",
+      "name": "Import AI（Jack Clark）",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "latentspace",
+      "name": "Latent Space",
+      "ok": true,
+      "count": 1,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "semianalysis",
+      "name": "SemiAnalysis",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "meta-ai",
+      "name": "Meta Engineering",
+      "ok": true,
+      "count": 0,
+      "total": 9,
+      "error": ""
+    },
+    {
+      "id": "mistral-news",
+      "name": "Mistral AI",
+      "ok": true,
+      "count": 0,
+      "total": 89,
+      "error": ""
+    },
+    {
+      "id": "bsky-karpathy",
+      "name": "Bluesky · Andrej Karpathy",
+      "ok": true,
+      "count": 0,
+      "total": 15,
+      "error": ""
+    },
+    {
+      "id": "bsky-giffmana",
+      "name": "Bluesky · Lucas Beyer",
+      "ok": true,
+      "count": 0,
+      "total": 22,
+      "error": ""
+    },
+    {
+      "id": "bsky-hardmaru",
+      "name": "Bluesky · hardmaru",
+      "ok": true,
+      "count": 0,
+      "total": 14,
+      "error": ""
+    },
+    {
+      "id": "bsky-swyx",
+      "name": "Bluesky · swyx",
+      "ok": true,
+      "count": 0,
+      "total": 3,
+      "error": ""
+    },
+    {
+      "id": "bsky-pytorch",
+      "name": "Bluesky · PyTorch",
+      "ok": true,
+      "count": 1,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "bsky-clem",
+      "name": "Bluesky · Clem Delangue",
+      "ok": true,
+      "count": 0,
+      "total": 11,
+      "error": ""
+    },
+    {
+      "id": "bsky-natolambert",
+      "name": "Bluesky · Nathan Lambert",
+      "ok": true,
+      "count": 0,
+      "total": 29,
+      "error": ""
+    },
+    {
+      "id": "bsky-rasbt",
+      "name": "Bluesky · Sebastian Raschka",
+      "ok": true,
+      "count": 0,
+      "total": 27,
+      "error": ""
+    },
+    {
+      "id": "bsky-jeffdean",
+      "name": "Bluesky · Jeff Dean",
+      "ok": true,
+      "count": 0,
+      "total": 18,
+      "error": ""
+    },
+    {
+      "id": "hf-trending-new",
+      "name": "HF 热榜新模型",
+      "ok": true,
+      "count": 4,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "gh-new-stars",
+      "name": "GitHub 新星仓库",
+      "ok": true,
+      "count": 1,
+      "total": 15,
+      "error": ""
+    },
+    {
+      "id": "hf-t2v",
+      "name": "HF 热榜 · 文生视频",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "hf-i2v",
+      "name": "HF 热榜 · 图生视频",
+      "ok": true,
+      "count": 0,
+      "total": 18,
+      "error": ""
+    },
+    {
+      "id": "gnews-video-en",
+      "name": "新闻 · 视频生成（英文）",
+      "ok": true,
+      "count": 7,
+      "total": 23,
+      "error": ""
+    },
+    {
+      "id": "gnews-video-cn",
+      "name": "新闻 · 视频生成（中文）",
+      "ok": true,
+      "count": 10,
+      "total": 41,
+      "error": ""
+    },
+    {
+      "id": "gnews-world-en",
+      "name": "新闻 · 世界模型（英文）",
+      "ok": true,
+      "count": 4,
+      "total": 62,
+      "error": ""
+    },
+    {
+      "id": "gnews-world-cn",
+      "name": "新闻 · 世界模型（中文）",
+      "ok": true,
+      "count": 8,
+      "total": 37,
+      "error": ""
+    },
+    {
+      "id": "gh-new-video-world",
+      "name": "GitHub 新仓库 · 视频 / 世界模型",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "arxiv-cscv",
+      "name": "arXiv cs.CV（专题）",
+      "ok": true,
+      "count": 14,
+      "total": 247,
+      "error": ""
+    },
+    {
+      "id": "arxiv-csro",
+      "name": "arXiv cs.RO（专题）",
+      "ok": true,
+      "count": 7,
+      "total": 181,
+      "error": ""
+    }
+  ],
+  "counts": {
+    "high": 10,
+    "medium": 20,
+    "low": 0
+  },
+  "items": [
+    {
+      "id": "16c37550d1a14fdc",
+      "title": "Anthropic Releases Claude Haiku 5.5: A Small Model With 1M Context Priced at $0.10 per Million Input Tokens - MarkTechPost",
+      "link": "https://www.marktechpost.com/2026/10/07/anthropic-releases-claude-haiku-5-5-a-small-model-with-1m-context-priced-at-0-10-per-million-input-tokens/",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-10-07T20:38:30+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "Anthropic 发布 Claude Haiku 5.5，支持 1M 上下文，输入价格 $0.10/M tokens。",
+      "why": "小模型定价骤降，直接影响推理成本与部署策略。",
+      "tags": [
+        "Anthropic",
+        "Claude Haiku 5.5",
+        "小模型",
+        "定价"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "f3dbe9bf689e15ce",
+      "title": "Shengshu Technology Launches Vidu Q4 Preview, A Next-Generation AI Video Model Built for Lifelike Performances - GlobeNewswire",
+      "link": "https://www.globenewswire.com/news-release/2026/10/07/3376813/0/en/shengshu-technology-launches-vidu-q4-preview-a-next-generation-ai-video-model-built-for-lifelike-performances.html",
+      "source": "新闻 · 视频生成（英文）",
+      "source_id": "gnews-video-en",
+      "published": "2026-10-07T19:30:15+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "生数科技发布 Vidu Q4 Preview 新一代 AI 视频模型。",
+      "why": "国产头部视频生成模型新版本，直接影响工程师关注方向。",
+      "tags": [
+        "Vidu",
+        "视频生成",
+        "模型发布"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "26c0b05fd0b643ed",
+      "title": "Artemis: Geometry-Grounded Multi-Agent Driving World Models with Shared 3D State and Progressive Memory Update",
+      "link": "https://arxiv.org/abs/2610.07031",
+      "source": "arXiv cs.CV（专题）",
+      "source_id": "arxiv-cscv",
+      "published": "2026-10-07T04:00:00+00:00",
+      "category": "research",
+      "priority": "high",
+      "summary": "arXiv:2610.07031v1 Announce Type: new Abstract: Recent video world models have witnessed the paradigm shift from single-agent to multi-agent involvements,…",
+      "why": "",
+      "tags": [
+        "attention",
+        "agent",
+        "3D"
+      ],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "f92eabc38afea984",
+      "title": "GeoWM: Efficient Direct World Modeling in Explicit Geometry",
+      "link": "https://arxiv.org/abs/2610.07381",
+      "source": "arXiv cs.CV（专题）",
+      "source_id": "arxiv-cscv",
+      "published": "2026-10-07T04:00:00+00:00",
+      "category": "research",
+      "priority": "high",
+      "summary": "arXiv:2610.07381v1 Announce Type: new Abstract: Modeling 3D scene geometry and its evolution over time is essential for autonomous driving and robotics…",
+      "why": "",
+      "tags": [
+        "latent",
+        "3D"
+      ],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "c7a0172689925288",
+      "title": "CCDF: A Benchmark Dataset for Deepfake Detection in Real-World Surveillance Footage",
+      "link": "https://arxiv.org/abs/2610.07939",
+      "source": "arXiv cs.CV（专题）",
+      "source_id": "arxiv-cscv",
+      "published": "2026-10-07T04:00:00+00:00",
+      "category": "research",
+      "priority": "high",
+      "summary": "arXiv:2610.07939v1 Announce Type: new Abstract: Due to rapid advances in Generative AI, commercial video generation tools can be used to produce fabricated…",
+      "why": "",
+      "tags": [
+        "video generation"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "557afb81d93699ee",
+      "title": "Backend-Agnostic Sparse Attention for Fast High-Resolution Visual Generation",
+      "link": "https://arxiv.org/abs/2610.08772",
+      "source": "arXiv cs.CV（专题）",
+      "source_id": "arxiv-cscv",
+      "published": "2026-10-07T04:00:00+00:00",
+      "category": "research",
+      "priority": "high",
+      "summary": "arXiv:2610.08772v2 Announce Type: new Abstract: Diffusion Transformers (DiTs) have achieved strong performance in image and video generation, but the quadratic…",
+      "why": "",
+      "tags": [
+        "diffusion",
+        "video generation",
+        "attention",
+        "transformer"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "57828384ede25bea",
+      "title": "Rethinking Visual Provenance: Detection and Watermarking Across Direct Visual Generation and LLM-Driven Code Rendering",
+      "link": "https://arxiv.org/abs/2610.08137",
+      "source": "arXiv cs.CV（专题）",
+      "source_id": "arxiv-cscv",
+      "published": "2026-10-07T04:00:00+00:00",
+      "category": "research",
+      "priority": "high",
+      "summary": "arXiv:2610.08137v1 Announce Type: cross Abstract: AI systems create images and videos with image/video generation models or by writing code and graphics…",
+      "why": "",
+      "tags": [
+        "video generation",
+        "llm",
+        "inference"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "5e723962cace53e0",
+      "title": "Learning Visual Feature-Based World Models via Residual Latent Action",
+      "link": "https://arxiv.org/abs/2605.07079",
+      "source": "arXiv cs.CV（专题）",
+      "source_id": "arxiv-cscv",
+      "published": "2026-10-07T04:00:00+00:00",
+      "category": "research",
+      "priority": "high",
+      "summary": "arXiv:2605.07079v2 Announce Type: replace Abstract: World models predict future transitions from observations and actions…",
+      "why": "",
+      "tags": [
+        "image generation",
+        "latent"
+      ],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "d4957e5bfe8b0665",
+      "title": "ACG-WAM: World-Action Modeling via Action-Conditioned Geometric Latent Prediction",
+      "link": "https://arxiv.org/abs/2610.06965",
+      "source": "arXiv cs.RO（专题）",
+      "source_id": "arxiv-csro",
+      "published": "2026-10-07T04:00:00+00:00",
+      "category": "research",
+      "priority": "high",
+      "summary": "arXiv:2610.06965v1 Announce Type: new Abstract: World action models jointly learn visual predictionand robot actions, providing a way to use observations…",
+      "why": "",
+      "tags": [
+        "latent",
+        "attention"
+      ],
+      "tracks": [
+        "video",
+        "world"
+      ]
+    },
+    {
+      "id": "cc1eae7dd7e25b4f",
+      "title": "对标中国AI模型：英伟达投资的Reflection AI发布旗下首款开放权重模型Beam|Kimi|Qwen3.8|智谱|DeepSeek|Qwen 3 - 新浪财经",
+      "link": "https://finance.sina.cn/stock/jdts/2026-10-06/detail-iniufxcm3669838.d.html?oid=%E5%8D%A1%E5%9C%B0%E4%BA%9A%E6%BB%A1%E9%92%BB%E5%93%AA%E9%87%8C%E4%B9%B0%E4%BE%BF%E5%AE%9C%E7%82%B9%E2%96%B2%E5%BE%AE%E4%BF%A189486682%E2%96%BC9sQR&vt=4&cid=76993&node_id=76993",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-10-07T03:11:15+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "英伟达投资的 Reflection AI 发布首款开放权重模型 Beam，对标中国 AI 模型。",
+      "why": "新模型发布，可能影响开源生态与竞争格局。",
+      "tags": [
+        "Reflection AI",
+        "Beam",
+        "开放权重",
+        "英伟达"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "1a800b67cd6a272a",
+      "title": "港股大模型“双雄”走弱 MINIMAX-W一度跌超10% - 东方财富",
+      "link": "https://wap.eastmoney.com/a/202610083889347765.html",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-10-08T02:26:06+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "港股大模型双雄走弱，MINIMAX-W 一度跌超 10%。",
+      "why": "国内模型公司股价波动，关注市场情绪。",
+      "tags": [
+        "港股",
+        "MiniMax",
+        "股价"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "994fff95bf5ab7fa",
+      "title": "字节跳动前实习生田柯宇获近3000万美元融资，创办世界模型公司叫板李飞飞 - 凤凰网",
+      "link": "https://i.ifeng.com/c/8x34XyDShMB",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-10-08T00:39:51+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "字节跳动前实习生田柯宇获近3000万美元融资，创办世界模型公司叫板李飞飞 凤凰网",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "ced2e46a88bafce9",
+      "title": "DeepSeek新一轮融资或达千亿元；快手可灵AI计划最早明年赴港上市｜未来商业早参 - https://www.mrjjxw.com/",
+      "link": "https://www.mrjjxw.com/articles/2026-10-07/4597742.html",
+      "source": "新闻 · 视频生成（中文）",
+      "source_id": "gnews-video-cn",
+      "published": "2026-10-07T23:00:06+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "DeepSeek 新一轮融资或达千亿元；可灵 AI 计划明年赴港上市。",
+      "why": "头部模型公司融资与 IPO 动态，行业重要信息。",
+      "tags": [
+        "DeepSeek",
+        "可灵AI",
+        "融资",
+        "IPO"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "f6702e78f7f5cf56",
+      "title": "Mistral Just Revealed a 1-Trillion-Parameter AI Model. It Has a Very Funny Nickname - Inc.com",
+      "link": "https://www.inc.com/sage-swaby/mistral-just-revealed-a-1-trillion-parameter-ai-model-it-has-a-very-funny-nickname/91415474",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-10-07T19:16:05+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Mistral 发布 1 万亿参数模型，绰号 Le Chonk。",
+      "why": "欧洲主权大模型，规模与定位值得关注。",
+      "tags": [
+        "Mistral",
+        "Le Chonk",
+        "1万亿参数"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "3b7f39c246f045e4",
+      "title": "Docker Agent",
+      "link": "https://news.ycombinator.com/item?id=49996259",
+      "source": "Hacker News（100+ 分）",
+      "source_id": "hn-algolia",
+      "published": "2026-10-07T17:48:38+00:00",
+      "category": "trend",
+      "priority": "medium",
+      "summary": "Docker Agent 登上 Hacker News 热榜（100+ 分）。",
+      "why": "容器化 AI Agent 工具，工程实践参考。",
+      "tags": [
+        "Docker",
+        "Agent",
+        "HN"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "1bf70b71ed3f5f82",
+      "title": "Multimodal open d1 decision models for the edge",
+      "link": "https://huggingface.co/blog/LiquidAI/open-d1",
+      "source": "Hugging Face Blog",
+      "source_id": "hf-blog",
+      "published": "2026-10-07T16:54:33+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "Hugging Face 博客介绍面向边缘设备的开源多模态决策模型。",
+      "why": "边缘端多模态模型，对部署和推理优化有参考价值。",
+      "tags": [
+        "Hugging Face",
+        "边缘",
+        "多模态"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "cc60eb517113e464",
+      "title": "消息称DeepSeek接近完成至少800亿元融资，腾讯、宁德时代重金参与 - 新浪网",
+      "link": "https://k.sina.com.cn/article_1826017320_6cd6d02802001xgwk.html?from=tech",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-10-07T14:18:00+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "消息称 DeepSeek 接近完成至少 800 亿元融资，腾讯、宁德时代参与。",
+      "why": "巨额融资或改变国内大模型竞争格局。",
+      "tags": [
+        "DeepSeek",
+        "融资",
+        "800亿"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "f2c199a6dd88e539",
+      "title": "Can a Cloud-Native Harness Make Agents Reliable Beyond the Desktop?",
+      "link": "https://www.latent.space/p/stacklok",
+      "source": "Latent Space",
+      "source_id": "latentspace",
+      "published": "2026-10-07T14:10:45+00:00",
+      "category": "people",
+      "priority": "medium",
+      "summary": "Latent Space 讨论云原生 harness 能否让 Agent 在桌面外可靠运行。",
+      "why": "Kubernetes 联合创始人观点，Agent 基础设施方向。",
+      "tags": [
+        "Agent",
+        "云原生",
+        "Latent Space"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "5bdd694c62903534",
+      "title": "One Model Family, Two Gold-Level Results: Fine-Tuning Nemotron for IOI and IMO",
+      "link": "https://huggingface.co/blog/nvidia/nemotron-ioi-and-imo-2026",
+      "source": "Hugging Face Blog",
+      "source_id": "hf-blog",
+      "published": "2026-10-07T12:45:31+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "NVIDIA Nemotron 微调后在 IOI 和 IMO 获得金牌级成绩。",
+      "why": "展示模型微调在推理任务上的潜力，可作为训练方法参考。",
+      "tags": [
+        "NVIDIA",
+        "Nemotron",
+        "微调"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "cf8b8def1fd81efe",
+      "title": "《怪物史莱克》编剧也来了！这家AI影视公司，视频模型全球第二！",
+      "link": "https://www.qbitai.com/2026/10/501803.html",
+      "source": "量子位",
+      "source_id": "qbitai",
+      "published": "2026-10-07T11:34:47+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "某 AI 影视公司视频模型全球第二，聘请《怪物史莱克》编剧。",
+      "why": "视频生成赛道动态，与 3D/视频生成方向相关。",
+      "tags": [
+        "视频生成",
+        "AI影视"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "f00d3fef5e43e459",
+      "title": "对话影身智能创始人闵伟：AMD 82亿美元收购李飞飞World Labs背后，4D世界模型的拐点已现 - 搜狐网",
+      "link": "https://m.sohu.com/a/1084808214_114778?scm=10001.325_13-325_13.0.0-0-0-0-0.5_1334",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-10-07T10:56:51+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "对话影身智能创始人闵伟：AMD 82亿美元收购李飞飞World Labs背后，4D世界模型的拐点已现 搜狐网",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "f0bd9578033999e7",
+      "title": "Kimi's parent reportedly preparing for Hong Kong IPO at around $50 billion valuation! Kling AI is on its way too - Binance",
+      "link": "https://www.binance.com/en/square/post/374674159939025",
+      "source": "新闻 · 视频生成（英文）",
+      "source_id": "gnews-video-en",
+      "published": "2026-10-07T09:13:03+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "Kimi 母公司筹备港股 IPO，估值约 500 亿美元。",
+      "why": "头部 AI 公司 IPO 动态，行业关注度高。",
+      "tags": [
+        "Kimi",
+        "IPO",
+        "月之暗面"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "0e843ca534d26b94",
+      "title": "量化派的“物理AI”实景新突破：机器人“手打柠檬茶”12步验证 世界模型驱动下的精细操作 - 凤凰网科技",
+      "link": "https://tech.ifeng.com/c/8x1wW8IVQY8",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-10-07T07:49:34+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "量化派的“物理AI”实景新突破：机器人“手打柠檬茶”12步验证 世界模型驱动下的精细操作 凤凰网科技",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "4dc96a0f443cbf9f",
+      "title": "Meshy 跻身 a16z 消费级 AI 应用月收入 Top 50，为榜单唯一 AI 3D 公司",
+      "link": "https://www.qbitai.com/2026/10/501791.html",
+      "source": "量子位",
+      "source_id": "qbitai",
+      "published": "2026-10-07T06:39:36+00:00",
+      "category": "trend",
+      "priority": "medium",
+      "summary": "Meshy 跻身 a16z 消费级 AI 应用月收入 Top 50，唯一 AI 3D 公司。",
+      "why": "3D 生成商业化进展，与关注方向直接相关。",
+      "tags": [
+        "Meshy",
+        "3D生成",
+        "a16z"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "1409f81668f51e14",
+      "title": "4D世界模型的两条路：李飞飞先造虚拟世界，影身智能先进真实工厂 - 电子工程专辑",
+      "link": "https://www.eet-china.com/mp/a529085.html",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-10-07T05:30:00+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "对比李飞飞 World Labs 与影身智能两条 4D 世界模型路线。",
+      "why": "4D 世界模型技术路线分析，与 3D 生成方向相关。",
+      "tags": [
+        "4D世界模型",
+        "World Labs",
+        "影身智能"
+      ],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "d57ff59f9be2fe7c",
+      "title": "Claude、GPT“跨界”做视频，Seedance们的护城河还牢吗？ - 凤凰网科技",
+      "link": "https://tech.ifeng.com/c/8x1iEl3LBTt",
+      "source": "新闻 · 视频生成（中文）",
+      "source_id": "gnews-video-cn",
+      "published": "2026-10-07T04:35:00+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "Claude、GPT 跨界做视频，Seedance 等视频模型护城河受挑战。",
+      "why": "通用大模型进入视频生成赛道，影响竞争格局。",
+      "tags": [
+        "Claude",
+        "GPT",
+        "视频生成",
+        "竞争"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "82bea221399e93ea",
+      "title": "亚马逊云科技接入智谱GLM-5.3，港股“大模型双雄”齐涨|融信中国|英伟达|恒生指数|花旗|Minimax - 新浪财经",
+      "link": "https://finance.sina.cn/hkstock/gggd/2026-10-06/detail-iniufxci2082167.d.html?oid=%E4%B9%89%E4%B9%8C%E9%AB%98%E7%AB%AF%E5%A4%96%E5%9B%B4%EF%BC%88%E6%94%AF%E6%8C%81%E7%8E%B0%E9%87%91%EF%BC%89%E9%AD%8F%E8%8A%AF%E8%81%94%E7%B3%BB%EF%BC%88117909%E2%91%A0%E2%91%A0%EF%BC%89%E7%9C%9F%E5%AE%9E%E5%9C%A8%E7%BA%BF%E7%9C%9F%E4%BA%BA%E5%AE%89%E6%8E%92%E5%BD%93%E9%9D%A2%E7%BB%93%E7%AE%970LhRSOUl28v3QbkP0311&vt=4&cid=76526&node_id=76526",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-10-07T04:14:29+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "亚马逊云科技接入智谱 GLM-5.3，港股大模型双雄齐涨。",
+      "why": "国内模型加速出海，商业落地进展。",
+      "tags": [
+        "智谱",
+        "GLM-5.3",
+        "AWS"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "ad1d94994c9b41da",
+      "title": "Tracking Is Not Permanence: What Video World Models Keep of a Hidden Object",
+      "link": "https://arxiv.org/abs/2610.07355",
+      "source": "arXiv cs.CV（专题）",
+      "source_id": "arxiv-cscv",
+      "published": "2026-10-07T04:00:00+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "arXiv:2610.07355v1 Announce Type: new Abstract: Video world models track objects they can see; we ask what they keep of objects they cannot…",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "61e9bbbc68046c1c",
+      "title": "Diverse Motion Customization via Control-based Dynamic Optimization",
+      "link": "https://arxiv.org/abs/2610.07911",
+      "source": "arXiv cs.CV（专题）",
+      "source_id": "arxiv-cscv",
+      "published": "2026-10-07T04:00:00+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "arXiv:2610.07911v2 Announce Type: new Abstract: Despite recent advances in video generation, motion customization remains challenging due to content leakage,…",
+      "why": "",
+      "tags": [
+        "video generation"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "b8a1e2e3f7c59888",
+      "title": "MacJEPA: Missingness-Robust Audio-Visual Recognition from Untrimmed Egocentric Videos",
+      "link": "https://arxiv.org/abs/2610.08192",
+      "source": "arXiv cs.CV（专题）",
+      "source_id": "arxiv-cscv",
+      "published": "2026-10-07T04:00:00+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "arXiv:2610.08192v1 Announce Type: new Abstract: Audio-visual models improve egocentric action recognition by exploiting complementary cues, yet typically…",
+      "why": "",
+      "tags": [
+        "inference"
+      ],
+      "tracks": [
+        "world"
+      ]
+    }
+  ]
+}
