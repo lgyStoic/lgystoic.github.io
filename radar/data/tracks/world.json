@@ -2,8 +2,157 @@
  "id": "world",
  "name": "世界模型",
  "blurb": "可交互的生成式世界模拟：Genie、Cosmos、V-JEPA、Dreamer、GameNGen、Oasis、Matrix-Game、HunyuanWorld 等，以及动作条件视频生成、4D 生成与具身仿真。",
- "updated": "2026-10-07T02:30:16+00:00",
+ "updated": "2026-10-08T02:46:22+00:00",
  "entries": [
+  {
+   "id": "26c0b05fd0b643ed",
+   "date": "2026-10-08",
+   "title": "Artemis: Geometry-Grounded Multi-Agent Driving World Models with Shared 3D State and Progressive Memory Update",
+   "link": "https://arxiv.org/abs/2610.07031",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "high",
+   "summary": "arXiv:2610.07031v1 Announce Type: new Abstract: Recent video world models have witnessed the paradigm shift from single-agent to multi-agent involvements,…",
+   "why": "",
+   "tags": [
+    "attention",
+    "agent",
+    "3D"
+   ],
+   "entity": "Artemis",
+   "kind": "paper"
+  },
+  {
+   "id": "f92eabc38afea984",
+   "date": "2026-10-08",
+   "title": "GeoWM: Efficient Direct World Modeling in Explicit Geometry",
+   "link": "https://arxiv.org/abs/2610.07381",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "high",
+   "summary": "arXiv:2610.07381v1 Announce Type: new Abstract: Modeling 3D scene geometry and its evolution over time is essential for autonomous driving and robotics…",
+   "why": "",
+   "tags": [
+    "latent",
+    "3D"
+   ],
+   "entity": "GeoWM",
+   "kind": "paper"
+  },
+  {
+   "id": "5e723962cace53e0",
+   "date": "2026-10-08",
+   "title": "Learning Visual Feature-Based World Models via Residual Latent Action",
+   "link": "https://arxiv.org/abs/2605.07079",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "high",
+   "summary": "arXiv:2605.07079v2 Announce Type: replace Abstract: World models predict future transitions from observations and actions…",
+   "why": "",
+   "tags": [
+    "image generation",
+    "latent"
+   ],
+   "entity": "Learning Visual Feature-Based World Models via Residual Latent Action",
+   "kind": "paper"
+  },
+  {
+   "id": "d4957e5bfe8b0665",
+   "date": "2026-10-08",
+   "title": "ACG-WAM: World-Action Modeling via Action-Conditioned Geometric Latent Prediction",
+   "link": "https://arxiv.org/abs/2610.06965",
+   "source": "arXiv cs.RO（专题）",
+   "priority": "high",
+   "summary": "arXiv:2610.06965v1 Announce Type: new Abstract: World action models jointly learn visual predictionand robot actions, providing a way to use observations…",
+   "why": "",
+   "tags": [
+    "latent",
+    "attention"
+   ],
+   "entity": "ACG-WAM",
+   "kind": "paper"
+  },
+  {
+   "id": "994fff95bf5ab7fa",
+   "date": "2026-10-08",
+   "title": "字节跳动前实习生田柯宇获近3000万美元融资，创办世界模型公司叫板李飞飞 - 凤凰网",
+   "link": "https://i.ifeng.com/c/8x34XyDShMB",
+   "source": "新闻 · 世界模型（中文）",
+   "priority": "medium",
+   "summary": "字节跳动前实习生田柯宇获近3000万美元融资，创办世界模型公司叫板李飞飞 凤凰网",
+   "why": "",
+   "tags": [],
+   "entity": "田柯宇",
+   "kind": "news"
+  },
+  {
+   "id": "f00d3fef5e43e459",
+   "date": "2026-10-08",
+   "title": "对话影身智能创始人闵伟：AMD 82亿美元收购李飞飞World Labs背后，4D世界模型的拐点已现 - 搜狐网",
+   "link": "https://m.sohu.com/a/1084808214_114778?scm=10001.325_13-325_13.0.0-0-0-0-0.5_1334",
+   "source": "新闻 · 世界模型（中文）",
+   "priority": "medium",
+   "summary": "对话影身智能创始人闵伟：AMD 82亿美元收购李飞飞World Labs背后，4D世界模型的拐点已现 搜狐网",
+   "why": "",
+   "tags": [],
+   "entity": "影身智能",
+   "kind": "news"
+  },
+  {
+   "id": "0e843ca534d26b94",
+   "date": "2026-10-08",
+   "title": "量化派的“物理AI”实景新突破：机器人“手打柠檬茶”12步验证 世界模型驱动下的精细操作 - 凤凰网科技",
+   "link": "https://tech.ifeng.com/c/8x1wW8IVQY8",
+   "source": "新闻 · 世界模型（中文）",
+   "priority": "medium",
+   "summary": "量化派的“物理AI”实景新突破：机器人“手打柠檬茶”12步验证 世界模型驱动下的精细操作 凤凰网科技",
+   "why": "",
+   "tags": [],
+   "entity": "量化派",
+   "kind": "news"
+  },
+  {
+   "id": "1409f81668f51e14",
+   "date": "2026-10-08",
+   "title": "4D世界模型的两条路：李飞飞先造虚拟世界，影身智能先进真实工厂 - 电子工程专辑",
+   "link": "https://www.eet-china.com/mp/a529085.html",
+   "source": "新闻 · 世界模型（中文）",
+   "priority": "medium",
+   "summary": "对比李飞飞 World Labs 与影身智能两条 4D 世界模型路线。",
+   "why": "4D 世界模型技术路线分析，与 3D 生成方向相关。",
+   "tags": [
+    "4D世界模型",
+    "World Labs",
+    "影身智能"
+   ],
+   "entity": "影身智能",
+   "kind": "news"
+  },
+  {
+   "id": "ad1d94994c9b41da",
+   "date": "2026-10-08",
+   "title": "Tracking Is Not Permanence: What Video World Models Keep of a Hidden Object",
+   "link": "https://arxiv.org/abs/2610.07355",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "medium",
+   "summary": "arXiv:2610.07355v1 Announce Type: new Abstract: Video world models track objects they can see; we ask what they keep of objects they cannot…",
+   "why": "",
+   "tags": [],
+   "entity": "Tracking Is Not Permanence",
+   "kind": "paper"
+  },
+  {
+   "id": "b8a1e2e3f7c59888",
+   "date": "2026-10-08",
+   "title": "MacJEPA: Missingness-Robust Audio-Visual Recognition from Untrimmed Egocentric Videos",
+   "link": "https://arxiv.org/abs/2610.08192",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "medium",
+   "summary": "arXiv:2610.08192v1 Announce Type: new Abstract: Audio-visual models improve egocentric action recognition by exploiting complementary cues, yet typically…",
+   "why": "",
+   "tags": [
+    "inference"
+   ],
+   "entity": "MacJEPA",
+   "kind": "paper"
+  },
   {
    "id": "f35e6d0db83cb9f5",
    "date": "2026-10-07",
@@ -3220,6 +3369,10 @@
    "b7a54cf38a39b91f",
    "7159f77e0350e3bf"
   ],
+  "影身智能": [
+   "f00d3fef5e43e459",
+   "1409f81668f51e14"
+  ],
   "Mirror Particle": [
    "f35e6d0db83cb9f5",
    "67a9c6bdc4a486b4"
@@ -3279,6 +3432,30 @@
   "魔芯科技": [
    "fe9d33edf0701555",
    "92ea4301b3012f12"
+  ],
+  "Artemis": [
+   "26c0b05fd0b643ed"
+  ],
+  "GeoWM": [
+   "f92eabc38afea984"
+  ],
+  "Learning Visual Feature-Based World Models via Residual Latent Action": [
+   "5e723962cace53e0"
+  ],
+  "ACG-WAM": [
+   "d4957e5bfe8b0665"
+  ],
+  "田柯宇": [
+   "994fff95bf5ab7fa"
+  ],
+  "量化派": [
+   "0e843ca534d26b94"
+  ],
+  "Tracking Is Not Permanence": [
+   "ad1d94994c9b41da"
+  ],
+  "MacJEPA": [
+   "b8a1e2e3f7c59888"
   ],
   "RobCo": [
    "f577bcf936308741"
@@ -3564,16 +3741,16 @@
   ]
  },
  "digest": {
-  "text": "本周世界模型赛道的核心事件是AMD以82亿美元全股票收购李飞飞的World Labs，李飞飞将加入AMD任首席科学家，这是世界模型领域最大的一笔交易，标志着AI芯片竞争正式延伸到世界模型层面。与此同时，World Labs发布了其首款可商用世界模型Marble，支持任意模态生成3D世界。NVIDIA Cosmos 3上线AWS，面向Physical AI提供多模态世界模型能力。融资方面，General Intuition完成2.2亿美元融资用于物理AI世界模型。国内智驾世界模型密集落地：Momenta R7上车标致、Jeep并出海欧洲，蔚来NWM推送，零跑发布自研LWM。学术方面涌现大量新工作，包括LOCI的混合空间记忆架构、World-as-Graph的图结构关系建模、LongTake长视频两阶段训练管线、VR-JEPA对比态引导视频推理，以及阿里DAMO对世界模型交互可靠性短板的分析。整体看，本周产业侧的并购与量产落地是真正的进展，学术侧则集中在长时序一致性、记忆机制和物理合理性等核心瓶颈。",
+  "text": "本周世界模型赛道的核心事件是 AMD 以 82 亿美元全股票交易收购李飞飞的 World Labs，李飞飞将加入 AMD 任首席科学家，这是世界模型领域迄今最大单笔交易，直接把\"物理 AI\"定义权争夺从 GPU 层面拉到世界模型层面。与此同时，NVIDIA 继续推进 Cosmos 3 与 OmniDreams 的工业级部署，Momenta R7 世界模型出海欧洲并上车标致、Jeep，蔚来、乐道等落地泊车与掉头场景，显示智驾世界模型正进入量产兑现期。\n\n学术层面出现一批值得注意的工作：Artemis 用共享 3D 状态与渐进记忆更新做多智能体驾驶世界模型；GeoWM 在显式几何空间直接建模世界；SMI、LOCI、Honeycomb、Memorizon 集中解决世界模型的长程记忆与流式场景表示；SpectralCache 用频谱特征缓存加速扩散式世界模型，直接切中推理成本痛点；PhysicsLENS 则系统诊断视频生成模型的物理属性盲区。JEPA 路线被多个团队扩展到通用世界模型，LeCun 本人也公开背书。\n\n需要警惕的是，\"世界模型\"标签正在被大量消费级产品借用，PixVerse R2、Mirror Particle 等主打\"实时\"\"记忆\"但缺乏可验证的物理一致性证据，本质上更接近带状态的视频生成。商汤前实习生融资 3000 万美元、量化派\"手打柠檬茶\"演示等，噱头成分偏高。真正值得追踪的是有明确几何/物理状态表示、可闭环评测、能上车或上机器人的工作。",
   "highlights": [
-   "AMD 82亿美元收购World Labs，李飞飞加入任首席科学家",
-   "NVIDIA Cosmos 3上线AWS，多模态世界模型面向Physical AI",
-   "Momenta R7世界模型出海欧洲，上车标致Jeep",
-   "LOCI提出混合空间记忆架构用于流式世界模型",
-   "World Labs发布首款可商用3D世界模型Marble"
+   "AMD 82亿美元收购World Labs，李飞飞加入AMD任首席科学家",
+   "Artemis/GeoWM 用显式3D几何做驾驶世界模型，超越纯视频预测",
+   "SMI/LOCI/Memorizon 集中攻克世界模型长程记忆与流式表示",
+   "SpectralCache 用频谱缓存加速扩散世界模型推理",
+   "Momenta R7 世界模型出海欧洲，蔚来乐道加速泊车场景落地"
   ],
-  "week": "2026-09-25 ~ 2026-10-02",
-  "generated_at": "2026-10-02T02:19:39+00:00",
+  "week": "2026-10-01 ~ 2026-10-08",
+  "generated_at": "2026-10-08T02:46:22+00:00",
   "model": "LongCat-2.0"
  },
  "sota": [
@@ -3584,7 +3761,7 @@
    "open_weights": false,
    "spec": "任意模态生成3D世界，可商用世界模型",
    "link": "https://www.geekpark.net/news/371259",
-   "note": "李飞飞创业公司首款商用3D世界模型，已被AMD收购"
+   "note": "李飞飞首款商用3D世界模型，已被AMD收购"
   },
   {
    "model": "Cosmos 3",
@@ -3601,8 +3778,35 @@
    "date": "2026-09-26",
    "open_weights": false,
    "spec": "实时生成式世界模型，面向闭环自动驾驶仿真",
-   "link": "https://arxiv.org/abs/2606.03159",
+   "link": "",
    "note": "工业级实时闭环仿真系统"
+  },
+  {
+   "model": "Artemis",
+   "org": "—",
+   "date": "2026-10-08",
+   "open_weights": false,
+   "spec": "多智能体驾驶世界模型，共享3D状态与渐进记忆更新",
+   "link": "https://arxiv.org/abs/2610.07031",
+   "note": "用显式3D状态做多智能体驾驶推演"
+  },
+  {
+   "model": "GeoWM",
+   "org": "—",
+   "date": "2026-10-08",
+   "open_weights": false,
+   "spec": "在显式几何空间直接建模3D世界演化",
+   "link": "https://arxiv.org/abs/2610.07381",
+   "note": "显式几何世界建模，非纯视频预测"
+  },
+  {
+   "model": "Momenta R7",
+   "org": "Momenta",
+   "date": "2026-09-19",
+   "open_weights": false,
+   "spec": "—",
+   "link": "https://chejiahao.autohome.com.cn/info/26555692?reply=reply",
+   "note": "已上车奔驰、荣威、标致、Jeep，出海欧洲"
   },
   {
    "model": "PixVerse R2",
@@ -3619,53 +3823,35 @@
    "date": "2026-09-25",
    "open_weights": false,
    "spec": "实时视频/音频世界模型生成",
-   "link": "https://www.latent.space/p/runway",
+   "link": "",
    "note": "实时多模态世界生成"
   },
   {
-   "model": "Zing-0.5",
+   "model": "SMI",
    "org": "—",
-   "date": "2026-09-18",
+   "date": "2026-10-06",
    "open_weights": false,
-   "spec": "5B参数，自回归架构，键盘与文本实时交互控制",
-   "link": "https://huggingface.co/papers/2609.17909",
-   "note": "主打实时按键与文本联合控制的可玩世界模型"
+   "spec": "理解驱动的长程空间记忆世界模型",
+   "link": "https://arxiv.org/abs/2610.02521",
+   "note": "显式长程空间记忆增强"
   },
   {
-   "model": "ABot-Earth 0.7",
-   "org": "高德",
-   "date": "2026-09-19",
+   "model": "SpectralCache",
+   "org": "—",
+   "date": "2026-10-06",
    "open_weights": false,
-   "spec": "原生3D城市世界模型",
-   "link": "https://pandaily.com/amap-releases-abot-earth-0-7-3d-native-urban-world-model",
-   "note": "面向城市尺度的原生3D世界模型"
+   "spec": "频谱特征缓存加速扩散式世界模型",
+   "link": "https://arxiv.org/abs/2610.02660",
+   "note": "直接降低扩散世界模型推理成本"
   },
   {
-   "model": "Momenta R7",
-   "org": "Momenta",
-   "date": "2026-09-19",
+   "model": "Memorizon",
+   "org": "—",
+   "date": "2026-10-03",
    "open_weights": false,
-   "spec": "—",
-   "link": "https://chejiahao.autohome.com.cn/info/26555692?reply=reply",
-   "note": "已上车奔驰、荣威、标致、Jeep，出海欧洲"
-  },
-  {
-   "model": "LWM",
-   "org": "零跑",
-   "date": "2026-09-19",
-   "open_weights": false,
-   "spec": "—",
-   "link": "https://chejiahao.autohome.com.cn/",
-   "note": "零跑自研智驾世界模型，配套LEAP5.0架构"
-  },
-  {
-   "model": "NWM",
-   "org": "蔚来",
-   "date": "2026-09-19",
-   "open_weights": false,
-   "spec": "—",
-   "link": "https://chejiahao.autohome.com.cn/",
-   "note": "已落地乐道L90智驾泊车及掉头场景"
+   "spec": "训练世界模型超越上下文窗口",
+   "link": "https://arxiv.org/abs/2610.00544",
+   "note": "通过相机共视检索实现长跨度监督"
   },
   {
    "model": "PWM",
@@ -3675,15 +3861,6 @@
    "spec": "开源可编程世界模型，显式状态与生成式渲染",
    "link": "https://github.com/AlayaLab/PWM",
    "note": "结合显式物理状态与生成渲染的开源架构"
-  },
-  {
-   "model": "SolarWM",
-   "org": "—",
-   "date": "2026-09-19",
-   "open_weights": true,
-   "spec": "长视界视频世界模型",
-   "link": "https://github.com/Junchao-cs/SolarWM",
-   "note": "主打长时序视频推演的开源项目"
   }
  ]
 }
