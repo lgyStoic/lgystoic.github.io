@@ -2,8 +2,149 @@
  "id": "video",
  "name": "视频生成模型",
  "blurb": "文生视频、图生视频、视频 VAE 与 DiT 加速：Wan、Sora、Veo、可灵、海螺、Seedance、Vidu、LTX、HunyuanVideo 等的发布、论文、benchmark 与推理框架支持。",
- "updated": "2026-10-09T03:02:08+00:00",
+ "updated": "2026-10-10T02:25:14+00:00",
  "entries": [
+  {
+   "id": "fd6e7922c3ffbd70",
+   "date": "2026-10-10",
+   "title": "生数科技发布视频生成模型Vidu Q4 Preview预览版本 - 凤凰网科技",
+   "link": "https://tech.ifeng.com/c/8x6SY5Rm2xp",
+   "source": "新闻 · 视频生成（中文）",
+   "priority": "high",
+   "summary": "生数科技发布视频生成模型 Vidu Q4 Preview 预览版。",
+   "why": "国内头部视频生成模型新版本发布，直接影响竞品格局。",
+   "tags": [
+    "Vidu",
+    "视频生成",
+    "生数科技"
+   ],
+   "entity": "Vidu Q4 Preview",
+   "kind": "release"
+  },
+  {
+   "id": "3dbcf08217edf77f",
+   "date": "2026-10-10",
+   "title": "Fluid-Gen-Zero: Grounding Pretrained Video Generators in Physics without Training",
+   "link": "https://arxiv.org/abs/2610.10984",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "high",
+   "summary": "Fluid-Gen-Zero：无需训练即可将物理仿真注入预训练视频生成器。",
+   "why": "训练无关的物理感知视频生成，对 diffusion 优化有直接启发。",
+   "tags": [
+    "视频生成",
+    "物理仿真",
+    "training-free"
+   ],
+   "entity": "Fluid-Gen-Zero",
+   "kind": "paper"
+  },
+  {
+   "id": "ce3e1ac18d50de09",
+   "date": "2026-10-10",
+   "title": "iCATS: Fast Video Generation via Interaction-Aware Sparse Attention and Timestep-Adaptive Sparsity",
+   "link": "https://arxiv.org/abs/2610.11302",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "high",
+   "summary": "iCATS：通过交互感知稀疏注意力实现快速视频生成。",
+   "why": "DiT 稀疏注意力加速，对 GPU kernel 优化有直接参考价值。",
+   "tags": [
+    "视频生成",
+    "稀疏注意力",
+    "DiT",
+    "加速"
+   ],
+   "entity": "iCATS",
+   "kind": "paper"
+  },
+  {
+   "id": "b069ee1f1cfd12db",
+   "date": "2026-10-10",
+   "title": "Conditional Residual Prediction: Improving Autoregressive Video Diffusion without a Bidirectional Teacher",
+   "link": "https://arxiv.org/abs/2610.11479",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "high",
+   "summary": "提出 Conditional Residual Prediction，仅用图像模型初始化训练因果视频扩散模型，无需双向教师蒸馏。",
+   "why": "直接改进自回归视频生成质量，对 streaming/长视频扩散训练有参考价值。",
+   "tags": [
+    "video diffusion",
+    "causal",
+    "autoregressive",
+    "distillation-free"
+   ],
+   "entity": "Conditional Residual Prediction",
+   "kind": "paper"
+  },
+  {
+   "id": "f70fa90e2c7194fb",
+   "date": "2026-10-10",
+   "title": "Parametric Trajectory Distillation for Few-Step Video Generation",
+   "link": "https://arxiv.org/abs/2610.11498",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "high",
+   "summary": "提出 Parametric Trajectory Distillation (PTD)，用多项式参数化教师轨迹段以改善少步视频生成蒸馏。",
+   "why": "解决 few-step 蒸馏中轨迹曲率过高导致细节退化的问题，对加速扩散/Flow Matching 推理直接有用。",
+   "tags": [
+    "distillation",
+    "few-step",
+    "flow matching",
+    "video generation"
+   ],
+   "entity": "Parametric Trajectory Distillation",
+   "kind": "paper"
+  },
+  {
+   "id": "8ab32f5d87a7bd78",
+   "date": "2026-10-10",
+   "title": "Memory Forcing: Attendable Mid-Horizon History for Streaming Video Generation",
+   "link": "https://arxiv.org/abs/2610.11756",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "high",
+   "summary": "提出 Memory Forcing，通过 Archive & Working Banks 分区 KV 缓存解决流式视频生成的 mid-horizon 遗忘问题。",
+   "why": "在固定显存下保留中期历史，对长视频 streaming 系统有工程价值。",
+   "tags": [
+    "streaming video",
+    "KV cache",
+    "autoregressive",
+    "memory"
+   ],
+   "entity": "Memory Forcing",
+   "kind": "paper"
+  },
+  {
+   "id": "054bbbf4b382d6f3",
+   "date": "2026-10-10",
+   "title": "Phase-aware video generation for physics-grounded dynamics and interactions",
+   "link": "https://arxiv.org/abs/2610.11791",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "high",
+   "summary": "提出 PAVG，双分支 Phase-Aware Video Generator 分别建模固体/气体动力学并通过交叉注意力耦合。",
+   "why": "显式建模多相物理交互，对物理一致的视频生成和世界模型有启发。",
+   "tags": [
+    "physics",
+    "video generation",
+    "world model",
+    "multi-phase"
+   ],
+   "entity": "PAVG",
+   "kind": "paper"
+  },
+  {
+   "id": "c49505cdbad22831",
+   "date": "2026-10-10",
+   "title": "Enkio to Bring Next-Generation Kling 4.0 Video Generation Into Its AI Music Video Pipeline - openPR.com",
+   "link": "https://www.openpr.com/news/4656069/enkio-to-bring-next-generation-kling-4-0-video-generation-into",
+   "source": "新闻 · 视频生成（英文）",
+   "priority": "medium",
+   "summary": "Enkio 将 Kling 4.0 集成到其 AI 音乐视频流水线。",
+   "why": "Kling 4.0 被第三方采用，但非官方发布，信息价值有限。",
+   "tags": [
+    "Kling 4.0",
+    "音乐视频",
+    "集成"
+   ],
+   "entity": "Kling 4.0",
+   "kind": "news"
+  },
   {
    "id": "c19bf794d1662560",
    "date": "2026-10-09",
@@ -2772,12 +2913,14 @@
    "b3cd147d851410fb"
   ],
   "Vidu Q4 Preview": [
+   "fd6e7922c3ffbd70",
    "c19bf794d1662560",
    "af36382c25770a61",
    "d38e7087f7922865",
    "f3dbe9bf689e15ce"
   ],
   "Kling 4.0": [
+   "c49505cdbad22831",
    "0a213fb095944378",
    "f59a9fb4d0949977",
    "02c028f6c38bbf0e",
@@ -2840,6 +2983,24 @@
   "字节跳动": [
    "3a06f956823425ca",
    "782c2b2a23d1da73"
+  ],
+  "Fluid-Gen-Zero": [
+   "3dbcf08217edf77f"
+  ],
+  "iCATS": [
+   "ce3e1ac18d50de09"
+  ],
+  "Conditional Residual Prediction": [
+   "b069ee1f1cfd12db"
+  ],
+  "Parametric Trajectory Distillation": [
+   "f70fa90e2c7194fb"
+  ],
+  "Memory Forcing": [
+   "8ab32f5d87a7bd78"
+  ],
+  "PAVG": [
+   "054bbbf4b382d6f3"
   ],
   "Anthropic": [
    "c17b7f2f9156d2bf"
