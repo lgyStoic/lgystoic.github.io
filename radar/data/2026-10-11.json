@@ -1,0 +1,1019 @@
+{
+  "date": "2026-10-11",
+  "generated_at": "2026-10-11T01:54:55+00:00",
+  "ai": true,
+  "model": "LongCat-2.0",
+  "sources": [
+    {
+      "id": "openai",
+      "name": "OpenAI",
+      "ok": true,
+      "count": 0,
+      "total": 1287,
+      "error": ""
+    },
+    {
+      "id": "deepmind",
+      "name": "Google DeepMind",
+      "ok": false,
+      "count": 0,
+      "total": 0,
+      "error": "not well-formed (invalid token): line 1, column 0"
+    },
+    {
+      "id": "google-ai",
+      "name": "Google AI Blog",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "qwen",
+      "name": "Qwen",
+      "ok": true,
+      "count": 0,
+      "total": 44,
+      "error": ""
+    },
+    {
+      "id": "hf-blog",
+      "name": "Hugging Face Blog",
+      "ok": true,
+      "count": 0,
+      "total": 876,
+      "error": ""
+    },
+    {
+      "id": "nvidia-dev",
+      "name": "NVIDIA Technical Blog",
+      "ok": true,
+      "count": 0,
+      "total": 100,
+      "error": ""
+    },
+    {
+      "id": "hf-papers",
+      "name": "HF Papers 日榜",
+      "ok": true,
+      "count": 16,
+      "total": 47,
+      "error": ""
+    },
+    {
+      "id": "pytorch",
+      "name": "PyTorch Blog",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "simonw",
+      "name": "Simon Willison",
+      "ok": true,
+      "count": 0,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "lilianweng",
+      "name": "Lil'Log",
+      "ok": true,
+      "count": 0,
+      "total": 53,
+      "error": ""
+    },
+    {
+      "id": "interconnects",
+      "name": "Interconnects",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "raschka",
+      "name": "Sebastian Raschka",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "chiphuyen",
+      "name": "Chip Huyen",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-pytorch",
+      "name": "Release · PyTorch",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-triton",
+      "name": "Release · Triton",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-cutlass",
+      "name": "Release · CUTLASS",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-flash-attention",
+      "name": "Release · FlashAttention",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-vllm",
+      "name": "Release · vLLM",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-sglang",
+      "name": "Release · SGLang",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-tensorrt-llm",
+      "name": "Release · TensorRT-LLM",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-diffusers",
+      "name": "Release · Diffusers",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-cuda-python",
+      "name": "Release · cuda-python",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "gnews-labs-en",
+      "name": "新闻 · Anthropic / Mistral / xAI",
+      "ok": true,
+      "count": 26,
+      "total": 100,
+      "error": ""
+    },
+    {
+      "id": "gnews-labs-cn",
+      "name": "新闻 · 国内模型公司",
+      "ok": true,
+      "count": 7,
+      "total": 42,
+      "error": ""
+    },
+    {
+      "id": "qbitai",
+      "name": "量子位",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "infoq-cn",
+      "name": "InfoQ 中文",
+      "ok": true,
+      "count": 3,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "thonking",
+      "name": "Horace He (thonking)",
+      "ok": true,
+      "count": 0,
+      "total": 6,
+      "error": ""
+    },
+    {
+      "id": "hn-algolia",
+      "name": "Hacker News（100+ 分）",
+      "ok": true,
+      "count": 2,
+      "total": 60,
+      "error": ""
+    },
+    {
+      "id": "karpathy-blog",
+      "name": "Andrej Karpathy 博客",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "eugeneyan",
+      "name": "Eugene Yan",
+      "ok": true,
+      "count": 0,
+      "total": 212,
+      "error": ""
+    },
+    {
+      "id": "importai",
+      "name": "Import AI（Jack Clark）",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "latentspace",
+      "name": "Latent Space",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "semianalysis",
+      "name": "SemiAnalysis",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "meta-ai",
+      "name": "Meta Engineering",
+      "ok": true,
+      "count": 0,
+      "total": 9,
+      "error": ""
+    },
+    {
+      "id": "mistral-news",
+      "name": "Mistral AI",
+      "ok": true,
+      "count": 0,
+      "total": 89,
+      "error": ""
+    },
+    {
+      "id": "bsky-karpathy",
+      "name": "Bluesky · Andrej Karpathy",
+      "ok": true,
+      "count": 0,
+      "total": 15,
+      "error": ""
+    },
+    {
+      "id": "bsky-giffmana",
+      "name": "Bluesky · Lucas Beyer",
+      "ok": true,
+      "count": 0,
+      "total": 22,
+      "error": ""
+    },
+    {
+      "id": "bsky-hardmaru",
+      "name": "Bluesky · hardmaru",
+      "ok": true,
+      "count": 0,
+      "total": 14,
+      "error": ""
+    },
+    {
+      "id": "bsky-swyx",
+      "name": "Bluesky · swyx",
+      "ok": true,
+      "count": 0,
+      "total": 3,
+      "error": ""
+    },
+    {
+      "id": "bsky-pytorch",
+      "name": "Bluesky · PyTorch",
+      "ok": true,
+      "count": 1,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "bsky-clem",
+      "name": "Bluesky · Clem Delangue",
+      "ok": true,
+      "count": 0,
+      "total": 11,
+      "error": ""
+    },
+    {
+      "id": "bsky-natolambert",
+      "name": "Bluesky · Nathan Lambert",
+      "ok": true,
+      "count": 1,
+      "total": 29,
+      "error": ""
+    },
+    {
+      "id": "bsky-rasbt",
+      "name": "Bluesky · Sebastian Raschka",
+      "ok": true,
+      "count": 0,
+      "total": 27,
+      "error": ""
+    },
+    {
+      "id": "bsky-jeffdean",
+      "name": "Bluesky · Jeff Dean",
+      "ok": true,
+      "count": 0,
+      "total": 18,
+      "error": ""
+    },
+    {
+      "id": "hf-trending-new",
+      "name": "HF 热榜新模型",
+      "ok": true,
+      "count": 2,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "gh-new-stars",
+      "name": "GitHub 新星仓库",
+      "ok": true,
+      "count": 0,
+      "total": 15,
+      "error": ""
+    },
+    {
+      "id": "hf-t2v",
+      "name": "HF 热榜 · 文生视频",
+      "ok": true,
+      "count": 1,
+      "total": 18,
+      "error": ""
+    },
+    {
+      "id": "hf-i2v",
+      "name": "HF 热榜 · 图生视频",
+      "ok": true,
+      "count": 2,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "gnews-video-en",
+      "name": "新闻 · 视频生成（英文）",
+      "ok": true,
+      "count": 4,
+      "total": 14,
+      "error": ""
+    },
+    {
+      "id": "gnews-video-cn",
+      "name": "新闻 · 视频生成（中文）",
+      "ok": true,
+      "count": 5,
+      "total": 32,
+      "error": ""
+    },
+    {
+      "id": "gnews-world-en",
+      "name": "新闻 · 世界模型（英文）",
+      "ok": true,
+      "count": 0,
+      "total": 46,
+      "error": ""
+    },
+    {
+      "id": "gnews-world-cn",
+      "name": "新闻 · 世界模型（中文）",
+      "ok": true,
+      "count": 13,
+      "total": 54,
+      "error": ""
+    },
+    {
+      "id": "gh-new-video-world",
+      "name": "GitHub 新仓库 · 视频 / 世界模型",
+      "ok": true,
+      "count": 2,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "arxiv-cscv",
+      "name": "arXiv cs.CV（专题）",
+      "ok": true,
+      "count": 0,
+      "total": 0,
+      "error": ""
+    },
+    {
+      "id": "arxiv-csro",
+      "name": "arXiv cs.RO（专题）",
+      "ok": true,
+      "count": 0,
+      "total": 0,
+      "error": ""
+    }
+  ],
+  "counts": {
+    "high": 10,
+    "medium": 20,
+    "low": 0
+  },
+  "items": [
+    {
+      "id": "b855f0bf8bd522d2",
+      "title": "Running large Mixture-of-Experts models across pods creates two major challenges: expert traffic and KV-cache transfer.",
+      "link": "https://bsky.app/profile/pytorch.org/post/3mxjuce2o3z23",
+      "source": "Bluesky · PyTorch",
+      "source_id": "bsky-pytorch",
+      "published": "2026-10-10T16:00:00+00:00",
+      "category": "infra",
+      "priority": "high",
+      "summary": "PyTorchCon：MoRI + vLLM 解决跨 pod MoE 模型的专家流量与 KV-cache 传输。",
+      "why": "直接影响 MoE 训练/推理的 GPU 系统优化。",
+      "tags": [
+        "MoE",
+        "vLLM",
+        "KV-cache",
+        "PyTorch"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "88971d5a0e2f9682",
+      "title": "“视频大模型第一股”角逐：可灵AI拟赴港IPO，最快明年启动 - 新浪网",
+      "link": "https://k.sina.com.cn/article_6889319236_19aa2ab4400101jurw.html?from=finance",
+      "source": "新闻 · 视频生成（中文）",
+      "source_id": "gnews-video-cn",
+      "published": "2026-10-10T09:07:00+00:00",
+      "category": "industry",
+      "priority": "high",
+      "summary": "快手可灵 AI 拟赴港 IPO，最快 2027 年启动",
+      "why": "视频生成头部玩家资本化，影响行业格局",
+      "tags": [
+        "可灵",
+        "IPO",
+        "行业"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "5b702c13272544ae",
+      "title": "H-JEPA！LeCun世界模型创业交卷，代码权重全部开源 - 搜狐",
+      "link": "https://m.sohu.com/a/1085994631_610300?scm=10001.325_13-325_13.0.0-0-0-0-0.5_1334",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-10-10T07:42:00+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "LeCun 团队 H-JEPA 世界模型开源，代码权重全部公开",
+      "why": "权威团队开源世界模型，可直接复用",
+      "tags": [
+        "H-JEPA",
+        "LeCun",
+        "开源"
+      ],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "5e5373982cbbcd95",
+      "title": "Shengshu Technology Launches Vidu Q4 Preview Version with Support for 4K Output - AIBase",
+      "link": "https://news.aibase.com/news/31524",
+      "source": "新闻 · 视频生成（英文）",
+      "source_id": "gnews-video-en",
+      "published": "2026-10-10T07:04:22+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "生数科技发布 Vidu Q4 Preview，支持 4K 输出",
+      "why": "国产视频生成模型重要版本，直接影响行业对标",
+      "tags": [
+        "Vidu Q4",
+        "4K",
+        "视频生成"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "4e95cb8e433aafc0",
+      "title": "Odyssey发布Odyssey-3系列基础世界模型，Pro版刷新Physics-IQ Verified视频预测纪录 - SmartHey",
+      "link": "https://www.smarthey.com/detail/365115503424.html",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-10-10T03:30:00+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "Odyssey-3 Pro 刷新 Physics-IQ Verified 视频预测纪录",
+      "why": "世界模型权威榜单突破，值得对标",
+      "tags": [
+        "Odyssey-3",
+        "Physics-IQ",
+        "榜单"
+      ],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "3945b75e76b5b186",
+      "title": "DeepSeek联手华为开源全家桶，英伟达CUDA的墙被撬开了 - 手机网易网",
+      "link": "https://www.163.com/v/video/VE7U4RRHI.html",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-10-09T22:03:43+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "DeepSeek 联手华为开源全家桶，挑战英伟达 CUDA 生态。",
+      "why": "直接影响 GPU 训练/推理基础设施选型。",
+      "tags": [
+        "DeepSeek",
+        "华为",
+        "CUDA替代"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "0c0b6f0b1a7ff2cb",
+      "title": "Pumpire: Unified Benchmark for Metric Distance Estimation",
+      "link": "https://huggingface.co/papers/2610.12423",
+      "source": "HF Papers 日榜",
+      "source_id": "hf-papers",
+      "published": "2026-10-07T20:00:00+00:00",
+      "category": "research",
+      "priority": "high",
+      "summary": "Pumpire：面向 3D 基础模型的统一基准，直接评估点-点距离估计能力，含 100 个真实场景。",
+      "why": "3D 生成/重建评估方法直接相关，对 3D 生成模型工作有参考价值。",
+      "tags": [
+        "3D",
+        "benchmark",
+        "metric-distance",
+        "evaluation"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "164dc472a27d0bc8",
+      "title": "One Block, Multiple Depths: Recurrent Vision Transformers with Depth-Programmed Experts",
+      "link": "https://huggingface.co/papers/2610.12448",
+      "source": "HF Papers 日榜",
+      "source_id": "hf-papers",
+      "published": "2026-10-07T20:00:00+00:00",
+      "category": "research",
+      "priority": "high",
+      "summary": "reViT：单个 Transformer block 循环复用 + 深度编程专家混合，以低 FLOPs 匹配全深度 ViT 精度。",
+      "why": "高效 ViT 架构设计，对训练/推理性能优化有直接启发。",
+      "tags": [
+        "ViT",
+        "recurrent",
+        "MoE",
+        "efficiency"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "a6c15d36b2696c7f",
+      "title": "SpaceFlow: Locally Controllable 3D Generation",
+      "link": "https://huggingface.co/papers/2610.12399",
+      "source": "HF Papers 日榜",
+      "source_id": "hf-papers",
+      "published": "2026-10-07T20:00:00+00:00",
+      "category": "research",
+      "priority": "high",
+      "summary": "SpaceFlow：基于 flow 的免训练局部可控 3D 生成管线，通过几何 primitive 实现区域级控制。",
+      "why": "直接涉及 flow-based 3D 生成，与其工作高度相关。",
+      "tags": [
+        "3D-generation",
+        "flow-matching",
+        "local-control"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "d583c999b6984610",
+      "title": "WorldGuide: Goal-Directed Video World Model for Procedural Task Execution",
+      "link": "https://huggingface.co/papers/2610.12459",
+      "source": "HF Papers 日榜",
+      "source_id": "hf-papers",
+      "published": "2026-10-07T20:00:00+00:00",
+      "category": "research",
+      "priority": "high",
+      "summary": "WorldGuide：面向程序化任务执行的目标导向视频世界模型，闭环生成与执行。",
+      "why": "视频生成 + 世界模型 + 闭环控制，与其视频生成方向直接相关。",
+      "tags": [
+        "video-generation",
+        "world-model",
+        "closed-loop"
+      ],
+      "tracks": [
+        "video",
+        "world"
+      ]
+    },
+    {
+      "id": "a4f24a794032a0f3",
+      "title": "We've been monitoring a decline in HuggingFace downloads across the top open LLMs we track for interconnects. It looks l",
+      "link": "https://bsky.app/profile/natolambert.bsky.social/post/3mxjv24xzzo2z",
+      "source": "Bluesky · Nathan Lambert",
+      "source_id": "bsky-natolambert",
+      "published": "2026-10-10T16:13:00+00:00",
+      "category": "people",
+      "priority": "medium",
+      "summary": "Nathan Lambert 称 HuggingFace 热门模型下载量下降约 30%。",
+      "why": "开源模型生态动态，值得扫一眼。",
+      "tags": [
+        "HuggingFace",
+        "开源模型",
+        "下载量"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "26814b294380d19f",
+      "title": "Google's Gemini 4 \"Carbon\" model reportedly feels like Anthropic's Opus 5.5 coding performance - The Decoder",
+      "link": "https://the-decoder.com/googles-gemini-4-carbon-model-is-reportedly-matching-anthropics-opus-5-5-coding-performance/",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-10-10T10:04:14+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "Google Gemini 4 \"Carbon\" 模型据称编码能力接近 Anthropic Opus 5.5。",
+      "why": "竞品模型能力对比信息，值得关注但未经官方确认。",
+      "tags": [
+        "Google",
+        "Gemini",
+        "benchmark"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "a5d53539c8f7a21e",
+      "title": "物理世界模型的Scaling Law：真正稀缺的不是机器人 而是可规模化的物理数据 - 驱动之家",
+      "link": "https://news.mydrivers.com/1/1156/1156455.htm",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-10-10T10:03:00+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "物理世界模型 Scaling Law：稀缺的是可规模化物理数据",
+      "why": "对训练数据策略有参考价值",
+      "tags": [
+        "scaling law",
+        "物理数据"
+      ],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "6112b6d973d108f4",
+      "title": "Anthropic Cuts Live Internet Access for Internal AI Tests After Claude Exploits Injection Flaws - The Hacker News",
+      "link": "https://thehackernews.com/2026/10/anthropic-cuts-live-internet-access-for.html",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-10-10T09:18:00+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "Anthropic 在 Claude 利用注入漏洞后切断内部 AI 测试的实时互联网访问。",
+      "why": "AI 安全事件，反映 agent 风险，但非技术进展。",
+      "tags": [
+        "Anthropic",
+        "security",
+        "agent"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "21e9157de93d53c7",
+      "title": "Anthropic Launches Free OSS Scanner to Find AI-Detected Software Vulnerabilities - Konsulteer",
+      "link": "https://www.konsulteer.com/article/anthropic-launches-free-oss-scanner-to-find-ai-detected-software-vulnerabilities",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-10-10T08:36:31+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Anthropic 发布免费开源软件漏洞扫描工具。",
+      "why": "安全工具发布，但与 GPU/生成模型方向关联弱。",
+      "tags": [
+        "Anthropic",
+        "开源",
+        "漏洞扫描"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "8876c293d4473361",
+      "title": "Odyssey-3 基础世界模型登场 - DoNews",
+      "link": "https://www.donews.com/news/detail/1/6735893.html",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-10-10T03:30:50+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Odyssey-3 基础世界模型发布",
+      "why": "世界模型新基准，可关注其架构",
+      "tags": [
+        "Odyssey-3",
+        "世界模型"
+      ],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "9f7aedd0054fa814",
+      "title": "世界模型技术路径观察：四类方向与代表企业梳理 - CSDN",
+      "link": "https://www.csdn.net/article/2026-10-10/167474010",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-10-10T02:59:52+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "世界模型四类技术路径与代表企业梳理",
+      "why": "系统性综述，可快速了解格局",
+      "tags": [
+        "世界模型",
+        "综述"
+      ],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "cd0174c653760d3d",
+      "title": "让自然语言成为世界模型的表征，英伟达Physis-Lang这样增强视频物理真实性 - 搜狐网",
+      "link": "https://m.sohu.com/a/1085668123_129720?scm=10001.325_13-325_13.0.0-0-0-0-0.5_1334",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-10-10T02:34:25+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "英伟达 Physis-Lang：用自然语言表征增强视频物理真实性",
+      "why": "NVIDIA 官方研究，物理生成方向值得跟进",
+      "tags": [
+        "NVIDIA",
+        "Physis-Lang",
+        "物理"
+      ],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "683b02b652d72a28",
+      "title": "MiniMax跌掉80%、DeepSeek拟融资1000亿：大模型IPO潮谁来接盘？-36氪 - 36kr",
+      "link": "https://www.36kr.com/p/4019328250171529",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-10-10T01:33:00+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "MiniMax 跌 80%、DeepSeek 拟融资 1000 亿，大模型 IPO 潮引关注。",
+      "why": "国内模型公司动态，值得扫一眼。",
+      "tags": [
+        "MiniMax",
+        "DeepSeek",
+        "IPO"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "7f7b37044dc5591a",
+      "title": "Anthropic can't reliably control its AI agents. It's cutting off its internal evals from the live internet instead - TechCrunch",
+      "link": "https://techcrunch.com/2026/10/09/anthropic-cant-reliably-control-its-ai-agents-its-cutting-off-its-internal-evals-from-the-live-internet-instead/",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-10-10T00:18:32+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "Anthropic 因无法可靠控制 AI agent，切断内部评估与公网的连接。",
+      "why": "反映 agent 安全工程挑战，值得扫一眼。",
+      "tags": [
+        "Anthropic",
+        "AI agent",
+        "安全评估"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "b6bb989221fd9514",
+      "title": "微软、英伟达押注本地 AI：DeepSeek 进入新一代 Windows 电脑 - 雪球",
+      "link": "https://www.xueqiu.com/1298590952/411801680",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-10-09T20:38:00+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "微软、英伟达押注本地 AI，DeepSeek 进入新一代 Windows 电脑。",
+      "why": "本地推理部署趋势，与 GPU 优化方向相关。",
+      "tags": [
+        "DeepSeek",
+        "Windows",
+        "本地AI"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "d1d9b7284cff216a",
+      "title": "字节Seed实习生曝DeepSeek-V4技术缺陷：长文本检索陷入“周期性盲区” - 36Kr",
+      "link": "https://m.36kr.com/p/4019734224670851",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-10-09T20:03:00+00:00",
+      "category": "people",
+      "priority": "medium",
+      "summary": "字节 Seed 实习生称 DeepSeek-V4 长文本检索存在「周期性盲区」。",
+      "why": "涉及 DeepSeek 模型技术细节，值得扫一眼。",
+      "tags": [
+        "DeepSeek-V4",
+        "长文本",
+        "技术缺陷"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "6a56155f23199383",
+      "title": "AtomicChat/Qwen-Image-2.1-Turbo-Uncensored-GGUF",
+      "link": "https://huggingface.co/AtomicChat/Qwen-Image-2.1-Turbo-Uncensored-GGUF",
+      "source": "HF 热榜新模型",
+      "source_id": "hf-trending-new",
+      "published": "2026-10-09T16:30:48+00:00",
+      "category": "trend",
+      "priority": "medium",
+      "summary": "AtomicChat/Qwen-Image-2.1-Turbo-Uncensored-GGUF 登上 HF 热榜（👍 220）。",
+      "why": "Qwen 图像模型变体，值得扫一眼。",
+      "tags": [
+        "Qwen",
+        "图像生成",
+        "GGUF"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "e58b7b2509b03600",
+      "title": "Can you use autoregressive diffusion to generate market data?",
+      "link": "https://news.ycombinator.com/item?id=50021410",
+      "source": "Hacker News（100+ 分）",
+      "source_id": "hn-algolia",
+      "published": "2026-10-09T14:56:13+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "探讨用自回归扩散模型生成市场数据。",
+      "why": "扩散模型相关研究，值得扫一眼。",
+      "tags": [
+        "扩散模型",
+        "自回归",
+        "市场数据"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "d9dbebbed0d84e5e",
+      "title": "The Lattice of Transition Laws",
+      "link": "https://huggingface.co/papers/2610.11216",
+      "source": "HF Papers 日榜",
+      "source_id": "hf-papers",
+      "published": "2026-10-07T20:00:00+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "论文提出 diffusion 与 AR 的统一「corruption lattice」框架，分析不同解码 schedule 的理论代价。",
+      "why": "对扩散/AR 混合生成模型的理论分析有参考价值，但偏理论非直接可用。",
+      "tags": [
+        "diffusion",
+        "autoregressive",
+        "generative-model",
+        "theory"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "53890a51ad9c9091",
+      "title": "REMORY: Learning Residual Memory for Context Compaction",
+      "link": "https://huggingface.co/papers/2610.11287",
+      "source": "HF Papers 日榜",
+      "source_id": "hf-papers",
+      "published": "2026-10-07T20:00:00+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "REMORY：为长上下文 agent 学习残差软记忆 token，逼近全历史 LLM 的续写能力。",
+      "why": "长上下文记忆机制有参考价值，但非其核心方向。",
+      "tags": [
+        "long-context",
+        "memory",
+        "agent"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "d778257dd4c5223f",
+      "title": "Zihan-Su/Self_Gradient_Forcing_Plus",
+      "link": "https://github.com/Zihan-Su/Self_Gradient_Forcing_Plus",
+      "source": "GitHub 新仓库 · 视频 / 世界模型",
+      "source_id": "gh-new-video-world",
+      "published": "2026-10-07T15:58:40+00:00",
+      "category": "trend",
+      "priority": "medium",
+      "summary": "Zihan-Su/Self_Gradient_Forcing_Plus 登上 GitHub 热榜（⭐ 91）",
+      "why": "自回归视频生成，5s 训练窗口生成 24 小时视频",
+      "tags": [
+        "autoregressive",
+        "video generation",
+        "long video"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "ab66e7b2bcfe70bc",
+      "title": "Veda-Sparse/Minimax-H3-R2VA-Veda-Preview",
+      "link": "https://huggingface.co/Veda-Sparse/Minimax-H3-R2VA-Veda-Preview",
+      "source": "HF 热榜 · 文生视频",
+      "source_id": "hf-t2v",
+      "published": "2026-10-07T04:49:55+00:00",
+      "category": "trend",
+      "priority": "medium",
+      "summary": "Veda-Sparse/Minimax-H3-R2VA-Veda-Preview 登上 HF 热榜（👍 13）。",
+      "why": "文生视频模型，与生成模型方向相关。",
+      "tags": [
+        "Minimax",
+        "文生视频",
+        "热榜"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "5d0fd01fe4ac1cfb",
+      "title": "On-Policy Distillation Teaches New Skills but Not New Knowledge",
+      "link": "https://huggingface.co/papers/2610.09639",
+      "source": "HF Papers 日榜",
+      "source_id": "hf-papers",
+      "published": "2026-10-06T20:00:00+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "实验表明 on-policy 蒸馏（reverse KL）可迁移组合技能但几乎不迁移事实知识，forward KL 反之。",
+      "why": "蒸馏机制分析对训练优化有参考，但非直接可用。",
+      "tags": [
+        "distillation",
+        "knowledge-transfer",
+        "reasoning"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "8df9d0e1ffbcbda9",
+      "title": "nerkyor/Qwen3.8-27B-Coder390-EfficientThink-Opus5.5-GPT6Astra-Grok4.7-DSV4Pro-K3-SFT-RLOO-MTP-DFlash2",
+      "link": "https://huggingface.co/nerkyor/Qwen3.8-27B-Coder390-EfficientThink-Opus5.5-GPT6Astra-Grok4.7-DSV4Pro-K3-SFT-RLOO-MTP-DFlash2",
+      "source": "HF 热榜新模型",
+      "source_id": "hf-trending-new",
+      "published": "2026-10-04T10:44:11+00:00",
+      "category": "trend",
+      "priority": "medium",
+      "summary": "nerkyor/Qwen3.8-27B-Coder390-... 登上 HF 热榜（👍 200）。",
+      "why": "Qwen 衍生模型，值得扫一眼。",
+      "tags": [
+        "Qwen",
+        "热榜",
+        "衍生模型"
+      ],
+      "tracks": []
+    }
+  ]
+}
