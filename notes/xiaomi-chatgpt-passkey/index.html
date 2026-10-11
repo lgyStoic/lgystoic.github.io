@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>想降到 Plus，却先修了小米通行密钥登录 | Anaxagore</title>
+    <meta name="description" content="小米14指纹通过后，ChatGPT网页与App登录仍卡住。用日志、精确版本源码和恢复实验追查连接类型兼容问题，记录临时方法与证据边界。" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="想降到 Plus，却先修了小米通行密钥登录 | Anaxagore" />
+    <meta property="og:description" content="小米14指纹通过后，ChatGPT网页与App登录仍卡住。用日志、精确版本源码和恢复实验追查连接类型兼容问题，记录临时方法与证据边界。" />
+    <meta property="og:url" content="https://lgystoic.github.io/notes/xiaomi-chatgpt-passkey/" />
+    <meta property="og:image" content="https://lgystoic.github.io/assets/og/notes.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="canonical" href="https://lgystoic.github.io/notes/xiaomi-chatgpt-passkey/" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231b1b1a'/%3E%3Ctext x='32' y='43' text-anchor='middle' font-size='30' font-family='Helvetica,Arial' font-weight='700' fill='white'%3EA%3C/text%3E%3C/svg%3E"
+    />
+    <!-- 站点框架样式在前，本篇样式在后；颜色一律用 site.css 的变量，深浅色才会跟着切 -->
+    <link rel="stylesheet" href="../../site.css" />
+    <link rel="stylesheet" href="./styles.css" />
+    <script>
+      try {
+        var t = localStorage.getItem("theme");
+        if (t === "dark" || t === "light") document.documentElement.dataset.theme = t;
+      } catch (e) {}
+    </script>
+    <!-- build:jsonld -->
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "想降到 Plus，却先修了小米通行密钥登录", "description": "小米14指纹通过后，ChatGPT网页与App登录仍卡住。用日志、精确版本源码和恢复实验追查连接类型兼容问题，记录临时方法与证据边界。", "url": "https://lgystoic.github.io/notes/xiaomi-chatgpt-passkey/", "mainEntityOfPage": "https://lgystoic.github.io/notes/xiaomi-chatgpt-passkey/", "inLanguage": "zh-CN", "dateModified": "2026-10-11", "datePublished": "2026-10-11", "keywords": "Android, 小米, ChatGPT, Passkeys, WebAuthn", "isBasedOn": "真实设备排查 / Chromium / W3C WebAuthn", "author": {"@type": "Person", "name": "Anaxagore", "url": "https://lgystoic.github.io/about/"}, "publisher": {"@type": "Person", "name": "Anaxagore", "url": "https://lgystoic.github.io/"}, "image": "https://lgystoic.github.io/assets/og/notes.png"}</script>
+    <!-- /build:jsonld -->
+  </head>
+  <body>
+    <!-- 统一页头由 tools/build.py 注入，不要手写 -->
+    <!-- build:header -->
+    <header class="site-header">
+      <div class="wrap">
+        <a class="brand" href="../../" aria-label="首页">
+          <span class="brand-mark">A</span>
+          <span>Anaxagore</span>
+        </a>
+        <nav class="site-nav" aria-label="主导航">
+          <a href="../../notes/" aria-current="page">笔记</a>
+          <a href="../../radar/">雷达</a>
+          <a href="../../radar/tracks/">专题</a>
+          <a href="../../radar/events/">活动</a>
+          <a href="../../radar/jobs/">工作</a>
+          <a href="../../guides/">指南</a>
+          <a href="../../about/">关于</a>
+          <button class="theme-toggle" type="button" data-theme-toggle aria-label="切换深浅色">
+            <span data-theme-icon>◑</span>
+          </button>
+        </nav>
+      </div>
+    </header>
+    <!-- /build:header -->
+
+    <main class="wrap note">
+<section class="hero">
+<p class="eyebrow">真实设备排查 · Android / WebAuthn</p>
+<h1>想降到 Plus，却先修了小米通行密钥登录</h1>
+<p class="lead">小米14上，ChatGPT 登录的指纹已经通过，网页和 App 却停在原地。这篇记录从症状、日志、源码到恢复登录的证据，也说明哪些原因仍未证实。</p>
+<p class="meta">Anaxagore · 更新于 2026-10-11 · 含 AI 辅助整理与过程重建</p>
+<div class="tldr"><strong>先看结论</strong><ul><li>同一把本机密钥，在临时限定候选凭据的连接提示为 <code>internal</code> 后，网页和 App 均恢复登录。</li><li>强证据支持 Chrome 新连接类型与小米旧 FIDO 枚举解析之间的兼容问题；具体当次服务请求载荷和首次触发更新仍未直接验证。</li><li>这是单台设备的临时恢复实验，不能当作所有国内 Android 的通用修复。</li></ul></div>
+<div class="cards follow"><article><h3>看图解，关注后续实测</h3><p>小红书 Anaxagore：用多页卡片看懂指纹后卡住的原因。</p><p><a href="https://www.xiaohongshu.com/discovery/item/6acb2fa8000000001803a456?source=webshare&amp;xhsshare=pc_web&amp;xsec_token=YBrURBv9xXsoLvE4DpzSNyWcWNilDQ_OYdg_Y4sI4ryeI=&amp;xsec_source=pc_share">打开小红书图解 →</a></p></article><article><h3>公众号完整故事</h3><p>从准备调整订阅，到把登录故障查明并恢复使用。</p><p><a href="https://mp.weixin.qq.com/s/goNTG9Whq9HKzq2eliZg2g">阅读公众号文章 →</a></p></article></div>
+</section>
+<section class="section"><h2>1. 本来只是想调整订阅</h2><p>我原本准备在手机上把 ChatGPT 订阅降到 Plus。第一步登录就卡住了：选择小米密码管理器里以前一直能用的通行密钥，指纹验证通过，然后没有任何反应。换到 Chrome 网页也是同样的现象。本文记录恢复登录；并不把订阅降级写成已经完成。</p><p>密钥是在这台手机上创建的。重启手机、重启相关组件、升级系统后仍失败，说明这些尝试没有解决本案。网页和 App 同时失败，提示它们可能共用出了问题的认证链路。</p></section>
+<section class="section"><h2>2. 实测环境与排查结果</h2><div class="table-wrap"><table><thead><tr><th>项目</th><th>本案记录</th></tr></thead><tbody><tr><td>设备</td><td>小米14（23127PN0CC），Android 16 / SDK 36，中国大陆版 HyperOS</td></tr><tr><td>系统</td><td>OS3.0.306.0.WNCCNXM → OS3.0.307.0.WNCCNXM，升级后仍失败</td></tr><tr><td>Chrome</td><td>154.0.8037.126</td></tr><tr><td>ChatGPT App</td><td>1.2026.272</td></tr><tr><td>小米密码管理器 / FIDO</td><td>1.0.18 / 220260320</td></tr><tr><td>恢复对照</td><td>仅将既有 allowCredentials 的 transports 限定为 internal；用户确认网页与 App 登录成功</td></tr></tbody></table></div><p>记录显示 Chrome、ChatGPT 和 Google Play 服务在 10 月 9 日更新过，密码管理器在 8 月 21 日更新过。这些日期只是时间线，尚不能证明哪一次安装更新首次触发了故障。</p></section>
+<section class="section"><h2>3. 指纹成功后，真正失败在哪里？</h2><p>已保存的脱敏异常摘录指向小米 FIDO 请求处理。它说明认证流程中发生了空指针，而不是证明指纹失败或密钥丢失。现场完整日志未存档，下面不冒充完整原始日志：</p><pre><code>MiFido_fido2_CredentialRequest:
+java.lang.NullPointerException:
+Attempt to invoke virtual method java.lang.String d3.e.g()
+on a null object reference
+
+cr_ChromiumWebauthn:
+CredMan getCredential call failed with
+android.credentials.GetCredentialException.TYPE_UNKNOWN</code></pre><p>只读分析这台手机安装的 FIDO 组件后，发现其连接类型映射找不到枚举时会返回 null；调用方把结果放进列表，后续遍历却直接调用它的方法，没有跳过 null。这提供了能解释异常的方法级证据。</p></section>
+<section class="section"><h2>4. Chrome 新增的连接类型，为什么可能撞上旧组件？</h2><p>登录页面的候选凭据没有提供有效的 transports 列表。实际阅读手机精确 Chrome 版本的官方源码后，发现 Blink 会把缺省或空列表扩展为六种连接类型，包括 <code>smart-card</code>。请求经 Android CredMan 路径转换为 JSON。</p><p>这台设备的小米组件只识别五种对应类型，未识别的字符串会得到 null。由此形成目前最有证据支持的因果模型：</p><ol><li>站点未限定候选凭据的连接方式。</li><li>Chrome 扩展默认列表，其中包含 smart-card。</li><li>小米旧枚举解析可能把该类型映射为 null。</li><li>后续未检查 null，认证请求异常退出，页面无法完成登录。</li></ol><p>关键边界：没有直接捕获本案 Android 服务入口的原始 JSON，也没有升级前 Chrome 二进制对照，因此具体当次触发字符串仍是强证据支持的推断。另一个 Chromium 修补涉及传往 GmsCore 的 Parcel 路径，不能据此声称小米 CredMan JSON 路径已修好。</p></section>
+<section class="section"><h2>5. 怎样恢复了登录？</h2><p>本案使用临时浏览器调试处理，在认证页面发起请求之前，把已有候选凭据的连接提示改成 <code>internal</code>，让请求只寻找本机平台认证器。这个提示在 WebAuthn 中用于定位认证器。</p><p>下面是处理逻辑的可读摘录，需要在自己的认证页面、请求发出前由调试工具执行。本案还通过临时观察器处理新开的 App 登录页；只粘贴这段代码并不保证覆盖页面跳转或 App 新窗口。</p><pre><code>(() =&gt; {
+  if (location.hostname !== 'auth.openai.com' ||
+      window.__xiaomiTransportCompat) return;
+  const original = navigator.credentials.get.bind(navigator.credentials);
+  navigator.credentials.get = function(options) {
+    const pk = options?.publicKey;
+    if (pk?.rpId === 'openai.com' &amp;&amp; pk.allowCredentials?.length) {
+      options = {...options, publicKey: {...pk,
+        allowCredentials: pk.allowCredentials.map(c =&gt;
+          ({...c, transports: ['internal']}))}};
+    }
+    return original(options);
+  };
+  window.__xiaomiTransportCompat = true;
+})();</code></pre><p>处理保留了凭据 ID、challenge、RP 和用户验证要求，仍须指纹确认与服务器校验。同一份密钥随后在网页及 App 登录成功，所以实验支持请求兼容问题，而不是“必须重建密钥”。</p><p>这段处理只适用于本案的本机密钥；外置安全密钥和跨设备认证需要其他连接方式。刷新、新开认证窗口或下次登录可能失效。不要删除唯一可用密钥或把恢复密钥交给别人；临时恢复登录也不等于厂商组件已永久修复。</p></section>
+<section class="section"><h2>6. 官方反馈与其他机型复现</h2><p>脱敏报告已发给小米官方开发者反馈邮箱；目前没有确认官方已受理或修复。我们希望通过其他设备的对照，把影响范围查清，而不是从单台成功推广成所有 Android 的结论。</p><p>如果你遇到同样现象，请在评论或已有技术讨论中提供：机型、系统版本、Chrome 版本、密钥管理器名称、指纹后具体表现、网页与 App 是否一致。不要提供邮箱、凭据 ID、密钥、恢复码或带认证参数的登录链接。</p><p><a href="https://www.reddit.com/r/Passkeys/comments/1x32euq/xiaomi_14_passkey_login_stalls_after_fingerprint/">Reddit 通行密钥技术讨论</a> · <a href="https://www.v2ex.com/t/1247821">V2EX OpenAI 节点讨论</a> · <a href="https://x.com/GarryLing1/status/2109195160395673864">X 中文摘要</a> · <a href="https://x.com/GarryLing1/status/2109195738504917044">X 英文摘要</a></p></section>
+<section class="section"><h2>7. 可核验的技术来源</h2><ul><li><a href="https://chromium.googlesource.com/chromium/src/+/refs/tags/154.0.8037.126/third_party/blink/renderer/modules/credentialmanagement/credential_manager_type_converters.cc">Chrome 154.0.8037.126：Blink 候选凭据转换</a></li><li><a href="https://chromium.googlesource.com/chromium/src/+/refs/tags/154.0.8037.126/components/webauthn/android/java/src/org/chromium/components/webauthn/cred_man/CredManHelper.java">Android CredManHelper</a> · <a href="https://chromium.googlesource.com/chromium/src/+/refs/tags/154.0.8037.126/components/webauthn/json/value_conversions.cc">WebAuthn JSON 转换</a></li><li><a href="https://chromium.googlesource.com/chromium/src/+/162a1faebd0788373870eed5d004334e13314db7%5E!/">Chromium smart-card 支持提交</a> · <a href="https://chromium-review.googlesource.com/c/chromium/src/+/8385662">GmsCore Parcel 路径相关修补</a></li><li><a href="https://www.w3.org/TR/webauthn-3/#dictdef-publickeycredentialdescriptor">W3C WebAuthn：凭据连接提示</a></li><li><a href="https://dev.mi.com/xiaomihyperos/documentation/detail?pId=1939">小米通行密钥开发指南</a></li><li><a href="https://help.openai.com/en/articles/8194942-google-chrome-as-the-default-browser-for-the-chatgpt-android-app">OpenAI Android 登录浏览器说明</a></li></ul><p>设备异常、安装包只读分析与恢复实验是本案直接证据；源码提供机制解释。六项语义模型检查并非手机二进制重放。本页不公开账户数据、密钥或原始 APK。</p></section>
+<section class="section" lang="en"><h2>English summary</h2><p>On a Xiaomi 14 running mainland HyperOS and Chrome 154.0.8037.126, fingerprint verification completed but ChatGPT passkey login stalled in both the website and Android app. Saved error excerpts show a null-pointer exception in Xiaomi's FIDO component.</p><p>Version-matched Chromium source and read-only device component analysis support a compatibility hypothesis: omitted transports expand to a list including smart-card, while the older provider may map an unknown transport to null and dereference it. The exact Android service payload was not captured.</p><p>A temporary wrapper restricted existing credential transport hints to internal, preserving credential IDs, challenge, RP and user verification. The user confirmed successful web and app login with the same passkey. This was tested on one setup; it is not a permanent provider fix or a universal Android workaround.</p></section>
+<section class="section"><h2>继续看这个案例</h2><p>喜欢这种从真实故障查到源码的排查记录，可以在上方小红书图解关注 Anaxagore，或通过公众号文章关注作者；后续复现和官方修复进展会在有证据时补充。</p><p class="meta">本文为原创排查的 AI 辅助整理。请通过链接分享，未经许可请勿整篇复制转载。</p></section>
+
+<!-- build:comments -->
+
+    <!-- /build:comments -->
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap">
+        <span>© 2026 <!-- build:site-name -->
+Anaxagore
+    <!-- /build:site-name --></span>
+        <span><a href="../">笔记</a></span>
+      </div>
+    </footer>
+    <script src="../../site.js" defer></script>
+    <!-- build:analytics -->
+    <script data-goatcounter="https://anaxagore.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+    <script>(function(){
+  function gc(){return window.goatcounter&&window.goatcounter.count?window.goatcounter:null}
+  function send(path,title){var g=gc();if(g)g.count({path:path,title:title||path,event:true})}
+  document.addEventListener("click",function(e){
+    var a=e.target.closest&&e.target.closest("a");
+    if(!a)return;
+    var offer=a.closest(".offer");
+    if(a.hasAttribute("data-aff-link")||a.hasAttribute("data-aff")||(a.rel||"").indexOf("sponsored")>-1){
+      var key=(offer&&offer.getAttribute("data-aff"))||a.getAttribute("data-aff")||"link";
+      send("aff/"+key,"推荐位："+key+" @ "+location.pathname);return}
+    if(a.host&&a.host!==location.host){send("out/"+a.host,"外链："+a.host+" @ "+location.pathname)}
+  });
+  document.addEventListener("click",function(e){
+    var b=e.target.closest&&e.target.closest("[data-share-copy],[data-share-native]");
+    if(b)send("share/"+(b.hasAttribute("data-share-copy")?"copy":"native"),"分享 @ "+location.pathname)
+  });
+})();</script>
+    <!-- /build:analytics -->
+  </body>
+</html>
