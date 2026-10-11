@@ -1,56 +1,9 @@
-# 新笔记模板
+# 小米通行密钥登录排查笔记
 
-复制这个目录来创建新的静态笔记页：
+正文：index.html。排版：styles.css。索引：../notes.json。
 
-```bash
-cp -R templates/note notes/my-new-note
-```
+公开内容只含脱敏异常摘录、版本、源码链接和临时处理逻辑；不提交原始 APK、账户数据、凭据 ID 或认证载荷。
 
-然后修改：
+证据边界：单台小米14实测，未捕获 Android 服务入口 JSON，未做升级前后二进制对照。临时恢复不能代表厂商已永久修复。
 
-- `notes/my-new-note/index.html`：标题、description、og:url / canonical 里的 slug、正文
-- `notes/my-new-note/styles.css`：只补本篇需要的排版；颜色一律用 `site.css` 的变量
-- `notes/notes.json`：追加一项（`updated` 决定排序）
-
-`notes/notes.json` 示例：
-
-```json
-{
-  "title": "新笔记标题",
-  "slug": "my-new-note",
-  "url": "./notes/my-new-note/",
-  "absoluteUrl": "/notes/my-new-note/",
-  "source": "课程或论文来源",
-  "tags": ["tag-1", "tag-2"],
-  "summary": "一句话说明这篇笔记讲什么。",
-  "status": "已发布",
-  "featured": false,
-  "updated": "2026-05-30"
-}
-```
-
-## 不要删的东西
-
-模板里这几段是站点框架的接口，删掉就没有统一页头、深浅色开关和访问统计：
-
-- `<link rel="stylesheet" href="../../site.css" />` 和 `<head>` 里那段读 `localStorage.theme` 的脚本
-- `<!-- build:header -->` / `<!-- build:site-name -->` / `<!-- build:jsonld -->` / `<!-- build:comments -->` / `<!-- build:analytics -->`
-  五对标记，内容由 `tools/build.py` 注入（jsonld 的结构化数据来自 `notes.json`），标记之外随便改
-- `<script src="../../site.js" defer></script>`
-
-## 发布
-
-```bash
-python3 tools/build.py            # 重新生成列表、RSS、sitemap，并注入页头页脚
-python3 -m unittest discover -s tests
-git checkout -b notes/my-new-note
-git add -A && git commit -m "notes: 新增 xxx"
-git push -u origin notes/my-new-note   # 然后开 PR，squash 合到 master
-```
-
-改动走分支 + PR，不直接推 master（见 `docs/prd/site.md` §2）。
-
-## 手机端自检
-
-`docs/prd/site.md` 要求 340 / 360 / 390 / 430px 下 `document.documentElement.scrollWidth` 不超过视口。
-最常见的溢出来源是不换行的长代码行和宽表格：代码块本身已经 `overflow-x: auto`，表格请包在 `.table-wrap` 里。
+2026-10-11 校验：现有测试 44 个及 6 个子测试通过；全站构建通过；340/360/390/430px 无横向溢出。
