@@ -2,8 +2,93 @@
  "id": "video",
  "name": "视频生成模型",
  "blurb": "文生视频、图生视频、视频 VAE 与 DiT 加速：Wan、Sora、Veo、可灵、海螺、Seedance、Vidu、LTX、HunyuanVideo 等的发布、论文、benchmark 与推理框架支持。",
- "updated": "2026-10-10T02:25:14+00:00",
+ "updated": "2026-10-11T01:58:07+00:00",
  "entries": [
+  {
+   "id": "88971d5a0e2f9682",
+   "date": "2026-10-11",
+   "title": "“视频大模型第一股”角逐：可灵AI拟赴港IPO，最快明年启动 - 新浪网",
+   "link": "https://k.sina.com.cn/article_6889319236_19aa2ab4400101jurw.html?from=finance",
+   "source": "新闻 · 视频生成（中文）",
+   "priority": "high",
+   "summary": "快手可灵 AI 拟赴港 IPO，最快 2027 年启动",
+   "why": "视频生成头部玩家资本化，影响行业格局",
+   "tags": [
+    "可灵",
+    "IPO",
+    "行业"
+   ],
+   "entity": "可灵AI",
+   "kind": "news"
+  },
+  {
+   "id": "5e5373982cbbcd95",
+   "date": "2026-10-11",
+   "title": "Shengshu Technology Launches Vidu Q4 Preview Version with Support for 4K Output - AIBase",
+   "link": "https://news.aibase.com/news/31524",
+   "source": "新闻 · 视频生成（英文）",
+   "priority": "high",
+   "summary": "生数科技发布 Vidu Q4 Preview，支持 4K 输出",
+   "why": "国产视频生成模型重要版本，直接影响行业对标",
+   "tags": [
+    "Vidu Q4",
+    "4K",
+    "视频生成"
+   ],
+   "entity": "Vidu Q4 Preview",
+   "kind": "release"
+  },
+  {
+   "id": "d583c999b6984610",
+   "date": "2026-10-11",
+   "title": "WorldGuide: Goal-Directed Video World Model for Procedural Task Execution",
+   "link": "https://huggingface.co/papers/2610.12459",
+   "source": "HF Papers 日榜",
+   "priority": "high",
+   "summary": "WorldGuide：面向程序化任务执行的目标导向视频世界模型，闭环生成与执行。",
+   "why": "视频生成 + 世界模型 + 闭环控制，与其视频生成方向直接相关。",
+   "tags": [
+    "video-generation",
+    "world-model",
+    "closed-loop"
+   ],
+   "entity": "WorldGuide",
+   "kind": "paper"
+  },
+  {
+   "id": "d778257dd4c5223f",
+   "date": "2026-10-11",
+   "title": "Zihan-Su/Self_Gradient_Forcing_Plus",
+   "link": "https://github.com/Zihan-Su/Self_Gradient_Forcing_Plus",
+   "source": "GitHub 新仓库 · 视频 / 世界模型",
+   "priority": "medium",
+   "summary": "Zihan-Su/Self_Gradient_Forcing_Plus 登上 GitHub 热榜（⭐ 91）",
+   "why": "自回归视频生成，5s 训练窗口生成 24 小时视频",
+   "tags": [
+    "autoregressive",
+    "video generation",
+    "long video"
+   ],
+   "entity": "Zihan-Su/Self_Gradient_Forcing_Plus",
+   "kind": "tool"
+  },
+  {
+   "id": "ab66e7b2bcfe70bc",
+   "date": "2026-10-11",
+   "title": "Veda-Sparse/Minimax-H3-R2VA-Veda-Preview",
+   "link": "https://huggingface.co/Veda-Sparse/Minimax-H3-R2VA-Veda-Preview",
+   "source": "HF 热榜 · 文生视频",
+   "priority": "medium",
+   "summary": "Veda-Sparse/Minimax-H3-R2VA-Veda-Preview 登上 HF 热榜（👍 13）。",
+   "why": "文生视频模型，与生成模型方向相关。",
+   "tags": [
+    "Minimax",
+    "文生视频",
+    "热榜"
+   ],
+   "entity": "Veda-Sparse/Minimax-H3-R2VA-Veda-Preview",
+   "kind": "release"
+  },
   {
    "id": "fd6e7922c3ffbd70",
    "date": "2026-10-10",
@@ -2897,12 +2982,21 @@
  ],
  "threads": {
   "可灵AI": [
+   "88971d5a0e2f9682",
    "3ff35692fc60e75d",
    "c3bb4e02d643d341",
    "62a6a8db41446336",
    "7dc031a8fd573ee6",
    "e200e2fb1e1fb0b4",
    "52d35ef9f956cc3d"
+  ],
+  "Vidu Q4 Preview": [
+   "5e5373982cbbcd95",
+   "fd6e7922c3ffbd70",
+   "c19bf794d1662560",
+   "af36382c25770a61",
+   "d38e7087f7922865",
+   "f3dbe9bf689e15ce"
   ],
   "Seedance 2.5": [
    "5bd52350fdfb5b6e",
@@ -2911,13 +3005,6 @@
    "4ce3be4127e91b65",
    "e3e37d24c382772e",
    "b3cd147d851410fb"
-  ],
-  "Vidu Q4 Preview": [
-   "fd6e7922c3ffbd70",
-   "c19bf794d1662560",
-   "af36382c25770a61",
-   "d38e7087f7922865",
-   "f3dbe9bf689e15ce"
   ],
   "Kling 4.0": [
    "c49505cdbad22831",
@@ -2983,6 +3070,15 @@
   "字节跳动": [
    "3a06f956823425ca",
    "782c2b2a23d1da73"
+  ],
+  "WorldGuide": [
+   "d583c999b6984610"
+  ],
+  "Zihan-Su/Self_Gradient_Forcing_Plus": [
+   "d778257dd4c5223f"
+  ],
+  "Veda-Sparse/Minimax-H3-R2VA-Veda-Preview": [
+   "ab66e7b2bcfe70bc"
   ],
   "Fluid-Gen-Zero": [
    "3dbcf08217edf77f"
