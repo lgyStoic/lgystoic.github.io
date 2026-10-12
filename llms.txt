@@ -58,16 +58,16 @@
 ## 开源贡献路线
 
 - [总览](https://lgystoic.github.io/radar/contributions/): 14 个 AI 推理 / kernel 仓库的五章分析（定位、架构、本地运行、社区、切入）与可认领任务卡
-- [sgl-project/sglang](https://lgystoic.github.io/radar/contributions/sgl-project--sglang/): SGLang（sgl-project/sglang，LMSYS 非营利组织托管）是高性能大模型与多模态模型推理服务框架，2024 年初以 RadixAttention 前缀缓存起家，README 自称支撑全球 40 万+ GPU、日产数万亿
+- [sgl-project/sglang](https://lgystoic.github.io/radar/contributions/sgl-project--sglang/): SGLang 是由 LMSYS 维护的开源高性能推理/服务框架，面向大语言模型（LLM）、视觉语言模型（VLM），并已扩展到扩散模型（图像/视频生成）、音频 Omni 等模态。它把 RadixAttention 这类早期学术工作工程化为一个
 - [sgl-project/sglang-omni](https://lgystoic.github.io/radar/contributions/sgl-project--sglang-omni/): SGLang-Omni 是 sgl-project 下的多阶段（multi-stage）推理服务运行时，专门面向 omni 模型、语音 / TTS 模型以及统一多模态模型。它把一次生成拆成多个异构阶段——预处理、编码器、自回归引擎、talk
 - [vllm-project/vllm](https://lgystoic.github.io/radar/contributions/vllm-project--vllm/): vLLM 是目前最活跃的开源 LLM 推理与服务引擎之一，起源于 UC Berkeley Sky Computing Lab，由 2000+ 贡献者维护。它围绕 PagedAttention 这一核心内存管理技术构建，解决大语言模型推理中 
 - [flashinfer-ai/flashinfer](https://lgystoic.github.io/radar/contributions/flashinfer-ai--flashinfer/): FlashInfer 是一个面向 LLM serving 的高性能 GPU 内核库与内核生成器，核心卖点是在 attention、GEMM、MoE、采样、通信等推理热点路径上提供统一 API，并在 FlashAttention-2/3、cu
-- [Dao-AILab/flash-attention](https://lgystoic.github.io/radar/contributions/dao-ailab--flash-attention/): FlashAttention 是 Dao-AILab 维护的精确注意力（exact attention）加速库，核心卖点是 IO-aware 的 tiling 实现：在 HBM 与 SRAM 之间按 tile 搬运与计算，把标准 Atten
-- [tile-ai/tilelang](https://lgystoic.github.io/radar/contributions/tile-ai--tilelang/): TileLang (tile-lang) 是一个基于 Python 的领域特定语言（DSL），构建在 Apache TVM 编译器基础设施（TIRX）之上，专为简化高性能 GPU/CPU/加速器内核（如 GEMM、FlashAttentio
-- [huggingface/diffusers](https://lgystoic.github.io/radar/contributions/huggingface--diffusers/): 🤗 Diffusers 是 Hugging Face 维护的 PyTorch 扩散模型推理与训练库，定位为 image / video / audio / 3D 分子生成的「模块化工具箱」。README 明确把哲学写在最前面：usabili
+- [Dao-AILab/flash-attention](https://lgystoic.github.io/radar/contributions/dao-ailab--flash-attention/): FlashAttention 是 Dao-AILab 维护的高效精确注意力（exact attention）实现，围绕 Tri Dao 等人的 FlashAttention 系列论文演进：FA1（IO-aware exact attenti
+- [tile-ai/tilelang](https://lgystoic.github.io/radar/contributions/tile-ai--tilelang/): Tile Language（tile-lang）是由 Tile-AI 维护的 Pythonic DSL，目标是让高性能 GPU/CPU/NPU kernel 的开发更接近写 PyTorch，同时仍能做 tile 级别的底层优化。它构建在 A
+- [huggingface/diffusers](https://lgystoic.github.io/radar/contributions/huggingface--diffusers/): 🤗 Diffusers 是 Hugging Face 维护的扩散模型推理与训练工具库，定位是「state-of-the-art pretrained diffusion models for image, audio, and even 3
 - [hao-ai-lab/FastVideo](https://lgystoic.github.io/radar/contributions/hao-ai-lab--fastvideo/): FastVideo 是一个面向视频生成大模型（如 Wan2.1/2.2, MiniMax-H3 等 DiT 架构）的端到端统一推理与后训练（Post-training）加速框架。它的核心价值在于打破了“训练”与“推理”的壁垒，通过算法层（D
 - [thu-ml/TurboDiffusion](https://lgystoic.github.io/radar/contributions/thu-ml--turbodiffusion/): TurboDiffusion 是清华大学机器学习组（THU-ML）开源的端到端视频扩散模型（DiT）推理加速框架。其核心目标是通过算法与系统协同设计，在单张消费级或数据中心 GPU 上实现 100-200 倍的生成加速，同时保持视频质量。项
-- [modelscope/DiffSynth-Engine](https://lgystoic.github.io/radar/contributions/modelscope--diffsynth-engine/): DiffSynth-Engine 是 ModelScope（阿里达摩院 MuseAI）团队维护的高性能扩散模型推理引擎，核心目标是为 DiT 类图像/视频生成模型（Flux、Wan、Qwen-Image、Z-Image 等）提供一套自研、可
+- [modelscope/DiffSynth-Engine](https://lgystoic.github.io/radar/contributions/modelscope--diffsynth-engine/): DiffSynth-Engine 是阿里 ModelScope 团队维护的一个面向扩散模型（Diffusion）推理的高性能引擎，核心定位是把 DiT、Wan2.x 系列视频模型、Qwen-Image、Flux 等主流生成模型做成一套自研、
 - [JeffreyXiang/FlexGEMM](https://lgystoic.github.io/radar/contributions/jeffreyxiang--flexgemm/): FlexGEMM 是一个基于 Triton 的 3D 稀疏卷积 GEMM 后端，核心目标是在 Submanifold Convolution 与体素稀疏卷积的训练/推理路径上，用 Triton 重写高性能稀疏 GEMM kernel，从而在
 - [NVIDIA-NeMo/labs-molt](https://lgystoic.github.io/radar/contributions/nvidia-nemo--labs-molt/): Molt 是 NVIDIA NeMo 实验室维护的一个 **agentic-first** 强化学习训练框架，定位是研究导向、PyTorch / HuggingFace 原生、面向 1T 级 MoE 规模的全异步 agentic RL。它把
 - [RightNow-AI/autokernel](https://lgystoic.github.io/radar/contributions/rightnow-ai--autokernel/): AutoKernel 是一个受 Karpathy `autoresearch` 启发的 GPU 算子自动优化 AI 代理框架。它的核心理念是：给定任意 PyTorch 模型，AI Agent 会自动分析瓶颈、提取算子，并在一个无限循环中（修
