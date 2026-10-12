@@ -1,0 +1,863 @@
+{
+  "date": "2026-10-12",
+  "generated_at": "2026-10-12T02:25:04+00:00",
+  "ai": true,
+  "model": "LongCat-2.0",
+  "sources": [
+    {
+      "id": "openai",
+      "name": "OpenAI",
+      "ok": true,
+      "count": 0,
+      "total": 1287,
+      "error": ""
+    },
+    {
+      "id": "google-ai",
+      "name": "Google AI Blog",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "qwen",
+      "name": "Qwen",
+      "ok": true,
+      "count": 0,
+      "total": 44,
+      "error": ""
+    },
+    {
+      "id": "hf-blog",
+      "name": "Hugging Face Blog",
+      "ok": true,
+      "count": 0,
+      "total": 876,
+      "error": ""
+    },
+    {
+      "id": "nvidia-dev",
+      "name": "NVIDIA Technical Blog",
+      "ok": true,
+      "count": 0,
+      "total": 100,
+      "error": ""
+    },
+    {
+      "id": "hf-papers",
+      "name": "HF Papers 日榜",
+      "ok": true,
+      "count": 1,
+      "total": 41,
+      "error": ""
+    },
+    {
+      "id": "pytorch",
+      "name": "PyTorch Blog",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "simonw",
+      "name": "Simon Willison",
+      "ok": true,
+      "count": 0,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "lilianweng",
+      "name": "Lil'Log",
+      "ok": true,
+      "count": 0,
+      "total": 53,
+      "error": ""
+    },
+    {
+      "id": "interconnects",
+      "name": "Interconnects",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "raschka",
+      "name": "Sebastian Raschka",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "chiphuyen",
+      "name": "Chip Huyen",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-pytorch",
+      "name": "Release · PyTorch",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-triton",
+      "name": "Release · Triton",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-cutlass",
+      "name": "Release · CUTLASS",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-flash-attention",
+      "name": "Release · FlashAttention",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-vllm",
+      "name": "Release · vLLM",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-sglang",
+      "name": "Release · SGLang",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-tensorrt-llm",
+      "name": "Release · TensorRT-LLM",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-diffusers",
+      "name": "Release · Diffusers",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-cuda-python",
+      "name": "Release · cuda-python",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "gnews-labs-en",
+      "name": "新闻 · Anthropic / Mistral / xAI",
+      "ok": true,
+      "count": 19,
+      "total": 100,
+      "error": ""
+    },
+    {
+      "id": "gnews-labs-cn",
+      "name": "新闻 · 国内模型公司",
+      "ok": true,
+      "count": 4,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "qbitai",
+      "name": "量子位",
+      "ok": true,
+      "count": 1,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "infoq-cn",
+      "name": "InfoQ 中文",
+      "ok": true,
+      "count": 1,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "thonking",
+      "name": "Horace He (thonking)",
+      "ok": true,
+      "count": 0,
+      "total": 6,
+      "error": ""
+    },
+    {
+      "id": "hn-algolia",
+      "name": "Hacker News（100+ 分）",
+      "ok": true,
+      "count": 3,
+      "total": 60,
+      "error": ""
+    },
+    {
+      "id": "karpathy-blog",
+      "name": "Andrej Karpathy 博客",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "eugeneyan",
+      "name": "Eugene Yan",
+      "ok": true,
+      "count": 0,
+      "total": 212,
+      "error": ""
+    },
+    {
+      "id": "importai",
+      "name": "Import AI（Jack Clark）",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "latentspace",
+      "name": "Latent Space",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "semianalysis",
+      "name": "SemiAnalysis",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "meta-ai",
+      "name": "Meta Engineering",
+      "ok": true,
+      "count": 0,
+      "total": 9,
+      "error": ""
+    },
+    {
+      "id": "mistral-news",
+      "name": "Mistral AI",
+      "ok": true,
+      "count": 0,
+      "total": 89,
+      "error": ""
+    },
+    {
+      "id": "bsky-karpathy",
+      "name": "Bluesky · Andrej Karpathy",
+      "ok": true,
+      "count": 0,
+      "total": 15,
+      "error": ""
+    },
+    {
+      "id": "bsky-giffmana",
+      "name": "Bluesky · Lucas Beyer",
+      "ok": true,
+      "count": 0,
+      "total": 22,
+      "error": ""
+    },
+    {
+      "id": "bsky-hardmaru",
+      "name": "Bluesky · hardmaru",
+      "ok": true,
+      "count": 1,
+      "total": 14,
+      "error": ""
+    },
+    {
+      "id": "bsky-swyx",
+      "name": "Bluesky · swyx",
+      "ok": true,
+      "count": 0,
+      "total": 3,
+      "error": ""
+    },
+    {
+      "id": "bsky-pytorch",
+      "name": "Bluesky · PyTorch",
+      "ok": true,
+      "count": 0,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "bsky-clem",
+      "name": "Bluesky · Clem Delangue",
+      "ok": true,
+      "count": 0,
+      "total": 11,
+      "error": ""
+    },
+    {
+      "id": "bsky-natolambert",
+      "name": "Bluesky · Nathan Lambert",
+      "ok": true,
+      "count": 0,
+      "total": 29,
+      "error": ""
+    },
+    {
+      "id": "bsky-rasbt",
+      "name": "Bluesky · Sebastian Raschka",
+      "ok": true,
+      "count": 0,
+      "total": 27,
+      "error": ""
+    },
+    {
+      "id": "bsky-jeffdean",
+      "name": "Bluesky · Jeff Dean",
+      "ok": true,
+      "count": 0,
+      "total": 18,
+      "error": ""
+    },
+    {
+      "id": "hf-trending-new",
+      "name": "HF 热榜新模型",
+      "ok": true,
+      "count": 1,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "gh-new-stars",
+      "name": "GitHub 新星仓库",
+      "ok": true,
+      "count": 0,
+      "total": 15,
+      "error": ""
+    },
+    {
+      "id": "hf-t2v",
+      "name": "HF 热榜 · 文生视频",
+      "ok": true,
+      "count": 0,
+      "total": 17,
+      "error": ""
+    },
+    {
+      "id": "hf-i2v",
+      "name": "HF 热榜 · 图生视频",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "gnews-video-en",
+      "name": "新闻 · 视频生成（英文）",
+      "ok": true,
+      "count": 3,
+      "total": 14,
+      "error": ""
+    },
+    {
+      "id": "gnews-video-cn",
+      "name": "新闻 · 视频生成（中文）",
+      "ok": true,
+      "count": 2,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "gnews-world-en",
+      "name": "新闻 · 世界模型（英文）",
+      "ok": true,
+      "count": 4,
+      "total": 57,
+      "error": ""
+    },
+    {
+      "id": "gnews-world-cn",
+      "name": "新闻 · 世界模型（中文）",
+      "ok": true,
+      "count": 14,
+      "total": 43,
+      "error": ""
+    },
+    {
+      "id": "gh-new-video-world",
+      "name": "GitHub 新仓库 · 视频 / 世界模型",
+      "ok": true,
+      "count": 1,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "arxiv-cscv",
+      "name": "arXiv cs.CV（专题）",
+      "ok": true,
+      "count": 0,
+      "total": 0,
+      "error": ""
+    },
+    {
+      "id": "arxiv-csro",
+      "name": "arXiv cs.RO（专题）",
+      "ok": true,
+      "count": 0,
+      "total": 0,
+      "error": ""
+    }
+  ],
+  "counts": {
+    "high": 3,
+    "medium": 18,
+    "low": 0
+  },
+  "items": [
+    {
+      "id": "5fbdd8fd8309b600",
+      "title": "H-JEPA！LeCun世界模型创业交卷，代码权重全部开源 - 搜狐网",
+      "link": "https://m.sohu.com/a/1086379123_121207965?scm=10001.325_13-325_13.0.0-0-0-0-0.5_1334",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-10-11T09:10:00+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "搜狐：LeCun 世界模型创业公司开源 H-JEPA，代码与权重全部公开",
+      "why": "LeCun 团队开源世界模型，对研究和工程均有直接价值",
+      "tags": [
+        "H-JEPA",
+        "LeCun",
+        "开源",
+        "世界模型"
+      ],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "125cf899edb70b3d",
+      "title": "量化后画面闪烁？时序稳定的视频世界模型2-bit KV Cache压缩方案诞生 - 搜狐",
+      "link": "https://m.sohu.com/a/1084803886_129720?scm=10001.325_13-325_13.0.0-0-0-0-0.5_1334",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-10-11T06:09:26+00:00",
+      "category": "research",
+      "priority": "high",
+      "summary": "搜狐：时序稳定视频世界模型 2-bit KV Cache 压缩方案诞生",
+      "why": "直接解决视频世界模型量化闪烁问题，对推理优化有参考价值",
+      "tags": [
+        "KV Cache",
+        "2-bit量化",
+        "视频世界模型",
+        "推理优化"
+      ],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "eff01ef615787fb9",
+      "title": "中国科学院工业人工智能研究所PAIWorld将在2026物理AI与世界模型大会发布 - 新华网江苏频道",
+      "link": "http://js.news.cn/20261011/16e7dc16845a460cb69f7c74ecbfb715/c.html",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-10-11T03:19:30+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "新华网：中科院工业人工智能研究所 PAIWorld 将在世界模型大会发布",
+      "why": "国家级研究机构发布世界模型，权重高",
+      "tags": [
+        "PAIWorld",
+        "中科院",
+        "世界模型",
+        "发布"
+      ],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "227d826bb5a83c73",
+      "title": "综合Ⅱ行业点评报告：港股消费&应用：阜博集团收购Dreamesh完善AI视频生成版图，东方甄选重视自营产品建设 - 证券之星",
+      "link": "https://stock.stockstar.com/JC2026101200005655.shtml",
+      "source": "新闻 · 视频生成（中文）",
+      "source_id": "gnews-video-cn",
+      "published": "2026-10-12T01:52:00+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "证券之星：阜博集团收购 Dreamesh 完善 AI 视频生成版图",
+      "why": "视频生成行业并购动态，与方向相关",
+      "tags": [
+        "阜博集团",
+        "Dreamesh",
+        "视频生成",
+        "并购"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "3849bbd134482dcd",
+      "title": "综合行业周报：海外科技：AMD布局世界模型，模型能力升级与成本优化同步推进_行业研究_研报 - 证券之星",
+      "link": "https://stock.stockstar.com/JC2026101200005639.shtml",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-10-12T00:23:00+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "证券之星研报：AMD 布局世界模型，模型能力升级与成本优化并行",
+      "why": "芯片厂商入局世界模型，影响算力生态",
+      "tags": [
+        "AMD",
+        "世界模型",
+        "成本优化"
+      ],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "6c1515d7fabb050d",
+      "title": "Amazon is reportedly circling Decart after Nvidia and Anthropic both walked away - Startup Fortune",
+      "link": "https://startupfortune.com/amazon-is-reportedly-circling-decart-after-nvidia-and-anthropic-both-walked-away/",
+      "source": "新闻 · 世界模型（英文）",
+      "source_id": "gnews-world-en",
+      "published": "2026-10-11T23:19:54+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "Startup Fortune：Amazon 据报正接触 Decart，Nvidia 与 Anthropic 已退出",
+      "why": "世界模型/视频生成初创收购传闻，与方向相关",
+      "tags": [
+        "Amazon",
+        "Decart",
+        "收购",
+        "世界模型"
+      ],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "f4654008b16a488f",
+      "title": "Amazon in talks to acquire AI startup Decart for about $7 billion - Crypto Briefing",
+      "link": "https://cryptobriefing.com/amazon-talks-acquire-decart-ai-7-billion/",
+      "source": "新闻 · 世界模型（英文）",
+      "source_id": "gnews-world-en",
+      "published": "2026-10-11T22:04:47+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "Crypto Briefing：Amazon 洽谈以约 70 亿美元收购 Decart",
+      "why": "收购金额明确，与 6c1515d7 同事件更详细版",
+      "tags": [
+        "Amazon",
+        "Decart",
+        "收购",
+        "7B"
+      ],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "92914a614e046f5f",
+      "title": "New Sakana AI paper: Recursive Self-Improvement through Multi-Agent Self-Supervision (MASS). Blog: pub.sakana.ai/mass/ P",
+      "link": "https://bsky.app/profile/hardmaru.bsky.social/post/3mxmtyj2los2z",
+      "source": "Bluesky · hardmaru",
+      "source_id": "bsky-hardmaru",
+      "published": "2026-10-11T20:33:00+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "Sakana AI 发布 MASS 论文：通过多智能体自监督实现递归自我改进。",
+      "why": "自监督+自改进新思路，与生成模型训练有交叉。",
+      "tags": [
+        "Sakana AI",
+        "self-improvement",
+        "multi-agent"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "eff87a4cd235ebf8",
+      "title": "“L1相对成熟、L2已见曙光”：通用世界模型的发展卡在哪里？|清华大学|北京市|数据|实验室|芯片 - 新浪财经",
+      "link": "https://finance.sina.cn/stock/jdts/2026-10-11/detail-iniuwkfx5622956.d.html?oid=%E6%B7%98%E5%AE%9D%E9%AB%98%E4%BB%BF%E6%9D%9C%E5%98%89%E7%8F%AD%E7%BA%B3%E5%A5%B3%E8%A3%85%EF%BD%9B%E5%BE%AE%E4%BF%A1198099199%EF%BD%9D%E9%AB%98%E4%BB%BF%E6%9D%B0%E5%B0%BC%E4%BA%9A%E7%9A%AE%E5%B8%A6%E7%9C%9F%E7%9A%AE%E8%B4%A7%E6%BA%90%E2%97%86%E5%BE%AE%E4%BF%A1198099199%E2%97%86%E4%B8%80%E6%AF%94%E4%B8%80%E5%B7%B4%E5%AE%9D%E8%8E%89%E9%AB%98%E4%BB%BF%E5%8C%85%E5%A4%9A%E5%B0%91%E9%92%B1%EF%BC%88%E5%BE%AE%E4%BF%A1198099199%EF%BC%89?H10j&vt=4&cid=76993&node_id=76993",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-10-11T19:19:05+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "新浪财经：清华等讨论通用世界模型发展瓶颈，L1 成熟、L2 现曙光",
+      "why": "学术界对世界模型分层与卡点的深度讨论",
+      "tags": [
+        "世界模型",
+        "L1/L2",
+        "清华大学"
+      ],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "b6ef4f09adf8e947",
+      "title": "Anthropic Is Cutting AI Agents Off From the Live Internet - WeRSM",
+      "link": "https://wersm.com/anthropic-cutting-ai-agents-off-live-internet/",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-10-11T15:54:28+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "Anthropic 切断其 AI Agent 的实时互联网访问。",
+      "why": "头部模型公司 Agent 安全策略变化，值得扫一眼。",
+      "tags": [
+        "Anthropic",
+        "agent",
+        "safety"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "46ad99d384172b94",
+      "title": "《华盛顿邮报》：美国争夺AI主导权，却离不开中国模型和制造业供应链 - 加美财经",
+      "link": "https://www.caus.com/all-articles/news/431548/",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-10-11T13:10:33+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "华盛顿邮报：美国争夺 AI 主导权但依赖中国模型与制造业供应链。",
+      "why": "行业格局动态，值得扫一眼。",
+      "tags": [
+        "policy",
+        "China",
+        "supply chain"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "f6e5f29ce9eaba3c",
+      "title": "国内首个世界模型方向的省部级重点实验室在京揭牌，极佳视界为依托单位 - 新浪财经",
+      "link": "https://finance.sina.com.cn/stock/hkstock/hkzmt/2026-10-11/doc-iniuwcye0604307.shtml",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-10-11T12:05:00+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "新浪财经：国内首个世界模型省部级重点实验室揭牌，极佳视界为依托单位",
+      "why": "国内世界模型科研基础设施重要进展",
+      "tags": [
+        "极佳视界",
+        "重点实验室",
+        "世界模型"
+      ],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "32f444b8830d6497",
+      "title": "Odyssey-3 is a new generative world model that you can try for free - The Decoder",
+      "link": "https://the-decoder.com/odyssey-3-is-a-new-generative-world-model-that-you-can-try-for-free/",
+      "source": "新闻 · 世界模型（英文）",
+      "source_id": "gnews-world-en",
+      "published": "2026-10-11T07:54:16+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "The Decoder：Odyssey-3 新生成式世界模型开放免费试用",
+      "why": "新 world model 发布，可直接体验",
+      "tags": [
+        "Odyssey-3",
+        "世界模型",
+        "免费试用"
+      ],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "605e3c4c4f15ff25",
+      "title": "估值破千亿！可灵背靠BAT投资冲刺IPO，AI微短剧立大功了 - 凤凰网科技",
+      "link": "https://tech.ifeng.com/c/8x8Z9alZX21",
+      "source": "新闻 · 视频生成（中文）",
+      "source_id": "gnews-video-cn",
+      "published": "2026-10-11T06:48:56+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "凤凰网：可灵估值破千亿，背靠 BAT 冲刺 IPO，AI 微短剧贡献显著",
+      "why": "头部视频生成产品商业化进展，值得跟踪",
+      "tags": [
+        "可灵",
+        "估值",
+        "BAT",
+        "IPO"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "65ad374c7ec9c651",
+      "title": "中科大团队把会「倒推」的世界模型塞进了机器人，成立三个月拿下数千万融资！ - 搜狐",
+      "link": "https://m.sohu.com/a/1086328599_129720?scm=10001.325_13-325_13.0.0-0-0-0-0.5_1334",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-10-11T06:25:44+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "搜狐：中科大团队将可逆世界模型嵌入机器人，三月获数千万融资",
+      "why": "世界模型 + 机器人结合，新应用场景",
+      "tags": [
+        "中科大",
+        "世界模型",
+        "机器人",
+        "融资"
+      ],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "f31a070272e9c7e5",
+      "title": "被字节跳动开除的实习生创业做“世界模型”，项目完成近3000万美元投资 - 搜狐",
+      "link": "https://m.sohu.com/a/1086313713_116237?scm=10001.325_13-325_13.0.0-0-0-0-0.5_1334",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-10-11T05:28:30+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "搜狐：前字节实习生创立世界模型公司，完成近 3000 万美元融资",
+      "why": "视频/世界模型赛道持续获资本关注",
+      "tags": [
+        "创业",
+        "融资",
+        "世界模型"
+      ],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "c0918d0d4e2100d9",
+      "title": "硅谷AI现状：谁有算力谁是爹",
+      "link": "https://www.qbitai.com/2026/10/502585.html",
+      "source": "量子位",
+      "source_id": "qbitai",
+      "published": "2026-10-11T05:22:38+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "量子位：硅谷 AI 现状，马斯克连横 A 社，VC 囤 GPU。",
+      "why": "算力格局动态，与 GPU 工作相关。",
+      "tags": [
+        "GPU",
+        "Silicon Valley",
+        "investment"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "caefb1299bec7f8e",
+      "title": "White House demands transparency after Anthropic’s AI agents called in a false Philly homicide tip and applied for visas - The Spokesman-Review",
+      "link": "https://www.spokesman.com/stories/2026/oct/10/white-house-demands-transparency-after-anthropics-/",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-10-10T21:30:00+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "白宫在 Anthropic AI 虚假线索及签证申请事件后要求透明度。",
+      "why": "AI 监管政策信号，值得扫一眼。",
+      "tags": [
+        "Anthropic",
+        "policy",
+        "White House"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "5093d044c925491f",
+      "title": "RSI-Anything: Unlocking Recursive Self-Improvement with World Models",
+      "link": "https://huggingface.co/papers/2610.13912",
+      "source": "HF Papers 日榜",
+      "source_id": "hf-papers",
+      "published": "2026-10-08T20:00:00+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "RSI-Anything 提出基于 JEPA-Anything 预测世界模型的递归自我改进框架，跨领域有效。",
+      "why": "世界模型+自改进思路与生成模型训练有交叉，值得扫一眼。",
+      "tags": [
+        "world model",
+        "self-improvement",
+        "JEPA"
+      ],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "180bc601a5b80f1a",
+      "title": "speridlabs/iris-3b",
+      "link": "https://huggingface.co/speridlabs/iris-3b",
+      "source": "HF 热榜新模型",
+      "source_id": "hf-trending-new",
+      "published": "2026-10-05T14:51:15+00:00",
+      "category": "trend",
+      "priority": "medium",
+      "summary": "speridlabs/iris-3b 登上 HF 热榜（likes 153）",
+      "why": "小体量 text-to-image 模型，可快速浏览社区新动向",
+      "tags": [
+        "HF Trending",
+        "text-to-image",
+        "iris-3b"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "4c250b522d1e813a",
+      "title": "WorldPlay2/WorldPlay2",
+      "link": "https://github.com/WorldPlay2/WorldPlay2",
+      "source": "GitHub 新仓库 · 视频 / 世界模型",
+      "source_id": "gh-new-video-world",
+      "published": "2026-09-28T15:58:27+00:00",
+      "category": "trend",
+      "priority": "medium",
+      "summary": "WorldPlay2/WorldPlay2 登上 GitHub 热榜（⭐ 91）",
+      "why": "实时交互式世界模型仓库，与视频/世界模型方向相关",
+      "tags": [
+        "GitHub Trending",
+        "世界模型",
+        "WorldPlay2"
+      ],
+      "tracks": [
+        "world"
+      ]
+    }
+  ]
+}
