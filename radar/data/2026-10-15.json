@@ -1,0 +1,938 @@
+{
+  "date": "2026-10-15",
+  "generated_at": "2026-10-15T01:29:29+00:00",
+  "ai": false,
+  "model": "",
+  "sources": [
+    {
+      "id": "openai",
+      "name": "OpenAI",
+      "ok": true,
+      "count": 5,
+      "total": 1293,
+      "error": ""
+    },
+    {
+      "id": "google-ai",
+      "name": "Google AI Blog",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "qwen",
+      "name": "Qwen",
+      "ok": true,
+      "count": 0,
+      "total": 44,
+      "error": ""
+    },
+    {
+      "id": "hf-blog",
+      "name": "Hugging Face Blog",
+      "ok": true,
+      "count": 1,
+      "total": 876,
+      "error": ""
+    },
+    {
+      "id": "nvidia-dev",
+      "name": "NVIDIA Technical Blog",
+      "ok": true,
+      "count": 1,
+      "total": 100,
+      "error": ""
+    },
+    {
+      "id": "hf-papers",
+      "name": "HF Papers 日榜",
+      "ok": true,
+      "count": 17,
+      "total": 28,
+      "error": ""
+    },
+    {
+      "id": "pytorch",
+      "name": "PyTorch Blog",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "simonw",
+      "name": "Simon Willison",
+      "ok": true,
+      "count": 0,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "lilianweng",
+      "name": "Lil'Log",
+      "ok": true,
+      "count": 0,
+      "total": 53,
+      "error": ""
+    },
+    {
+      "id": "interconnects",
+      "name": "Interconnects",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "raschka",
+      "name": "Sebastian Raschka",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "chiphuyen",
+      "name": "Chip Huyen",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-pytorch",
+      "name": "Release · PyTorch",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-triton",
+      "name": "Release · Triton",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-cutlass",
+      "name": "Release · CUTLASS",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-flash-attention",
+      "name": "Release · FlashAttention",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-vllm",
+      "name": "Release · vLLM",
+      "ok": true,
+      "count": 1,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-sglang",
+      "name": "Release · SGLang",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-tensorrt-llm",
+      "name": "Release · TensorRT-LLM",
+      "ok": true,
+      "count": 1,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-diffusers",
+      "name": "Release · Diffusers",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-cuda-python",
+      "name": "Release · cuda-python",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "gnews-labs-en",
+      "name": "新闻 · Anthropic / Mistral / xAI",
+      "ok": true,
+      "count": 18,
+      "total": 100,
+      "error": ""
+    },
+    {
+      "id": "gnews-labs-cn",
+      "name": "新闻 · 国内模型公司",
+      "ok": true,
+      "count": 16,
+      "total": 100,
+      "error": ""
+    },
+    {
+      "id": "qbitai",
+      "name": "量子位",
+      "ok": true,
+      "count": 4,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "infoq-cn",
+      "name": "InfoQ 中文",
+      "ok": true,
+      "count": 5,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "thonking",
+      "name": "Horace He (thonking)",
+      "ok": true,
+      "count": 0,
+      "total": 6,
+      "error": ""
+    },
+    {
+      "id": "hn-algolia",
+      "name": "Hacker News（100+ 分）",
+      "ok": true,
+      "count": 4,
+      "total": 60,
+      "error": ""
+    },
+    {
+      "id": "karpathy-blog",
+      "name": "Andrej Karpathy 博客",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "eugeneyan",
+      "name": "Eugene Yan",
+      "ok": true,
+      "count": 0,
+      "total": 212,
+      "error": ""
+    },
+    {
+      "id": "importai",
+      "name": "Import AI（Jack Clark）",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "latentspace",
+      "name": "Latent Space",
+      "ok": true,
+      "count": 2,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "semianalysis",
+      "name": "SemiAnalysis",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "meta-ai",
+      "name": "Meta Engineering",
+      "ok": true,
+      "count": 0,
+      "total": 9,
+      "error": ""
+    },
+    {
+      "id": "mistral-news",
+      "name": "Mistral AI",
+      "ok": true,
+      "count": 0,
+      "total": 89,
+      "error": ""
+    },
+    {
+      "id": "bsky-karpathy",
+      "name": "Bluesky · Andrej Karpathy",
+      "ok": true,
+      "count": 0,
+      "total": 15,
+      "error": ""
+    },
+    {
+      "id": "bsky-giffmana",
+      "name": "Bluesky · Lucas Beyer",
+      "ok": true,
+      "count": 0,
+      "total": 22,
+      "error": ""
+    },
+    {
+      "id": "bsky-hardmaru",
+      "name": "Bluesky · hardmaru",
+      "ok": true,
+      "count": 0,
+      "total": 14,
+      "error": ""
+    },
+    {
+      "id": "bsky-swyx",
+      "name": "Bluesky · swyx",
+      "ok": true,
+      "count": 0,
+      "total": 3,
+      "error": ""
+    },
+    {
+      "id": "bsky-pytorch",
+      "name": "Bluesky · PyTorch",
+      "ok": true,
+      "count": 0,
+      "total": 29,
+      "error": ""
+    },
+    {
+      "id": "bsky-clem",
+      "name": "Bluesky · Clem Delangue",
+      "ok": true,
+      "count": 0,
+      "total": 11,
+      "error": ""
+    },
+    {
+      "id": "bsky-natolambert",
+      "name": "Bluesky · Nathan Lambert",
+      "ok": true,
+      "count": 1,
+      "total": 29,
+      "error": ""
+    },
+    {
+      "id": "bsky-rasbt",
+      "name": "Bluesky · Sebastian Raschka",
+      "ok": true,
+      "count": 0,
+      "total": 27,
+      "error": ""
+    },
+    {
+      "id": "bsky-jeffdean",
+      "name": "Bluesky · Jeff Dean",
+      "ok": true,
+      "count": 0,
+      "total": 18,
+      "error": ""
+    },
+    {
+      "id": "hf-trending-new",
+      "name": "HF 热榜新模型",
+      "ok": true,
+      "count": 2,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "gh-new-stars",
+      "name": "GitHub 新星仓库",
+      "ok": false,
+      "count": 0,
+      "total": 0,
+      "error": "HTTP Error 403: rate limit exceeded"
+    },
+    {
+      "id": "hf-t2v",
+      "name": "HF 热榜 · 文生视频",
+      "ok": true,
+      "count": 0,
+      "total": 19,
+      "error": ""
+    },
+    {
+      "id": "hf-i2v",
+      "name": "HF 热榜 · 图生视频",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "gnews-video-en",
+      "name": "新闻 · 视频生成（英文）",
+      "ok": true,
+      "count": 12,
+      "total": 35,
+      "error": ""
+    },
+    {
+      "id": "gnews-video-cn",
+      "name": "新闻 · 视频生成（中文）",
+      "ok": true,
+      "count": 7,
+      "total": 32,
+      "error": ""
+    },
+    {
+      "id": "gnews-world-en",
+      "name": "新闻 · 世界模型（英文）",
+      "ok": true,
+      "count": 1,
+      "total": 46,
+      "error": ""
+    },
+    {
+      "id": "gnews-world-cn",
+      "name": "新闻 · 世界模型（中文）",
+      "ok": true,
+      "count": 21,
+      "total": 100,
+      "error": ""
+    },
+    {
+      "id": "gh-new-video-world",
+      "name": "GitHub 新仓库 · 视频 / 世界模型",
+      "ok": false,
+      "count": 0,
+      "total": 0,
+      "error": "HTTP Error 403: rate limit exceeded"
+    },
+    {
+      "id": "arxiv-cscv",
+      "name": "arXiv cs.CV（专题）",
+      "ok": true,
+      "count": 72,
+      "total": 742,
+      "error": ""
+    },
+    {
+      "id": "arxiv-csro",
+      "name": "arXiv cs.RO（专题）",
+      "ok": true,
+      "count": 34,
+      "total": 479,
+      "error": ""
+    }
+  ],
+  "counts": {
+    "high": 10,
+    "medium": 20,
+    "low": 0
+  },
+  "items": [
+    {
+      "id": "ea9aead18ddd9e7f",
+      "title": "全球首款 ！中国团队把游戏世界模型塞进一张5090，还开源了 - 凤凰网科技",
+      "link": "https://tech.ifeng.com/c/8xEh0CoPzvj",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-10-15T00:00:00+00:00",
+      "category": "research",
+      "priority": "high",
+      "summary": "全球首款 ！中国团队把游戏世界模型塞进一张5090，还开源了 凤凰网科技",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "c50bc83caf29a07b",
+      "title": "Introducing Grok Voice 3.0 | SpaceXSI - xAI",
+      "link": "https://x.ai/news/grok-voice-3",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-10-14T16:41:49+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "Introducing Grok Voice 3.0 | SpaceXSI xAI",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "07d60cfe57785c99",
+      "title": "v1.4.0rc0",
+      "link": "https://github.com/NVIDIA/TensorRT-LLM/releases/tag/v1.4.0rc0",
+      "source": "Release · TensorRT-LLM",
+      "source_id": "rel-tensorrt-llm",
+      "published": "2026-10-14T16:35:44+00:00",
+      "category": "infra",
+      "priority": "high",
+      "summary": "Highlights Known Issues Multi-GPU (TP2) streaming or RPC executor workloads may hang during worker initialization when MPI worker pools are reused across LLM…",
+      "why": "",
+      "tags": [
+        "cuda",
+        "gpu",
+        "blackwell",
+        "h100"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "a0e0fec2c2b5f568",
+      "title": "Amp puts AI agents to work beyond code with OpenAI models",
+      "link": "https://openai.com/index/amp-beyond-coding",
+      "source": "OpenAI",
+      "source_id": "openai",
+      "published": "2026-10-14T12:00:00+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "See how Amp pushes the frontier of what agents can do with GPT-6 Astra, Ultrafast, GPT-Live-1, and Sign in with ChatGPT.",
+      "why": "",
+      "tags": [
+        "agent"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "79ded20ee931da91",
+      "title": "Choosing AI Image and Video Generation Tools for Adult - Universidad de Córdoba (UCO)",
+      "link": "https://www.uco.es/scai/visita_virtual/SCAI%20UCO.html?&xml=data:video/mp4;base64,PGtycGFubz48aW5jbHVkZSB1cmw9Ii9cL3ZyZmVlZHMuY29tL2Jvc3MvbmV3L2EueG1sIi8+PC9rcnBhbm8+&id=gds12he1ca474",
+      "source": "新闻 · 视频生成（英文）",
+      "source_id": "gnews-video-en",
+      "published": "2026-10-14T10:27:44+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "Choosing AI Image and Video Generation Tools for Adult Universidad de Córdoba (UCO)",
+      "why": "",
+      "tags": [
+        "video generation",
+        "3D"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "ae75f215518bc9a2",
+      "title": "京东工业发布工业世界模型，与AMD携手推动模型与硬件深度融合 - 搜狐",
+      "link": "https://m.sohu.com/a/1087698009_120285954?scm=10001.325_13-325_13.0.0-0-0-0-0.5_1334",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-10-14T08:45:57+00:00",
+      "category": "research",
+      "priority": "high",
+      "summary": "京东工业发布工业世界模型，与AMD携手推动模型与硬件深度融合 搜狐",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "9a886f5e7d3c3bec",
+      "title": "阶跃终端首款「Agent手机」STEPX Neo正式发布，创客先行",
+      "link": "https://www.qbitai.com/2026/10/503244.html",
+      "source": "量子位",
+      "source_id": "qbitai",
+      "published": "2026-10-14T08:01:18+00:00",
+      "category": "industry",
+      "priority": "high",
+      "summary": "这妥妥是个物理版Agent啊！",
+      "why": "",
+      "tags": [
+        "agent"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "d0ce35de2e84c4ef",
+      "title": "Seedance 3.0 Brings Feature-Length Control to AI Video Generation - Startup Fortune",
+      "link": "https://startupfortune.com/seedance-30-brings-feature-length-control-to-ai-video-generation/",
+      "source": "新闻 · 视频生成（英文）",
+      "source_id": "gnews-video-en",
+      "published": "2026-10-14T07:26:13+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "Seedance 3.0 Brings Feature-Length Control to AI Video Generation Startup Fortune",
+      "why": "",
+      "tags": [
+        "video generation",
+        "3D"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "e181547094b0a112",
+      "title": "How Third Moment Research runs 10,000 agents for 36+ hours",
+      "link": "https://openai.com/index/third-moment-research",
+      "source": "OpenAI",
+      "source_id": "openai",
+      "published": "2026-10-14T07:00:00+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "With GPT-6 Astra and GPT-6.1 Sol, Codex, and Daybreak for cybersecurity, this AI lab builds agents that focus for days and improve with use.",
+      "why": "",
+      "tags": [
+        "agent"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "c32369ba0c6edfa1",
+      "title": "STEPX首款大模型原生智能体手机STEPX Neo正式发布",
+      "link": "https://www.qbitai.com/2026/10/503201.html",
+      "source": "量子位",
+      "source_id": "qbitai",
+      "published": "2026-10-14T06:45:38+00:00",
+      "category": "industry",
+      "priority": "high",
+      "summary": "2026年10月13日，大模型原生AI终端品牌STEPX（阶跃终端）旗下首款大模型原生智能体手机STEPX Neo正式发布",
+      "why": "",
+      "tags": [
+        "大模型"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "78095fed0138226c",
+      "title": "v0.32.0rc1: [Dependency] Update Humming and remove NVFP4 scale workaround (#61556)",
+      "link": "https://github.com/vllm-project/vllm/releases/tag/v0.32.0rc1",
+      "source": "Release · vLLM",
+      "source_id": "rel-vllm",
+      "published": "2026-10-14T23:29:34+00:00",
+      "category": "infra",
+      "priority": "medium",
+      "summary": "Signed-off-by: jinzhen.ljz jinzhen.ljz@antgroup.com Co-authored-by: Codex codex@openai.com Co-authored-by: Misha Goin mgoin64@gmail.com Co-authored-by: Kevin…",
+      "why": "",
+      "tags": [
+        "fp4"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "d88b60e7c9d494bf",
+      "title": "苹果iPhone Duo国行备案新增大模型编号：Apple智能、通义万象、通义千问 - 新浪财经",
+      "link": "https://finance.sina.cn/stock/jdts/2026-10-14/detail-inivekps4458609.d.html?vt=4&cid=76993&node_id=76993",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-10-14T22:46:08+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "苹果iPhone Duo国行备案新增大模型编号：Apple智能、通义万象、通义千问 新浪财经",
+      "why": "",
+      "tags": [
+        "大模型"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "21d8ec1d21afc29e",
+      "title": "影响市场重大事件：2026物理AI与世界模型大会将于10月19日至22日在南京举行；美政府开始审理SpaceX星舰扩张提案；交通运输部印发《水运领域人工智能应用场景指引》 - https://www.mrjjxw.com/",
+      "link": "https://www.mrjjxw.com/articles/2026-10-14/4604165.html",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-10-14T22:24:25+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "影响市场重大事件：2026物理AI与世界模型大会将于10月19日至22日在南京举行；美政府开始审理SpaceX星舰扩张提案；交通运输部印发《水运领域人工智能应用场景指引》 https://www.mrjjxw.com/",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "5f0e4286e522ac24",
+      "title": "Crossing the Threshold: How OpenAI and Anthropic Approach Autonomy and Safety in Financial Agents",
+      "link": "https://www.latent.space/p/crossing-the-threshold",
+      "source": "Latent Space",
+      "source_id": "latentspace",
+      "published": "2026-10-14T21:40:52+00:00",
+      "category": "people",
+      "priority": "medium",
+      "summary": "At AI Engineer New York, frontier labs and financial firms explored how to give agents useful autonomy while keeping consequential decisions under control.",
+      "why": "",
+      "tags": [
+        "agent"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "ecfb2d56ace4033f",
+      "title": "Lab-in-the-Loop at Compute Speed — Ian Quigley, Leash Bio",
+      "link": "https://www.latent.space/p/lab-in-the-loop-at-compute-speed",
+      "source": "Latent Space",
+      "source_id": "latentspace",
+      "published": "2026-10-14T20:35:09+00:00",
+      "category": "people",
+      "priority": "medium",
+      "summary": "How Leash Bio tamed DELs, the assay that traumatizes everyone, and used the data to catch cheating models…",
+      "why": "",
+      "tags": [
+        "agent"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "d4d1049c272bc641",
+      "title": "Take a Look Under the Hood? The Nuts and Bolts of How Spacial’s Construction World Model Will Change Building - Mann Publications",
+      "link": "https://www.mannpublications.com/mannreport/2026/10/14/take-a-look-under-the-hood-the-nuts-and-bolts-of-how-spacials-construction-world-model-will-change-building/",
+      "source": "新闻 · 世界模型（英文）",
+      "source_id": "gnews-world-en",
+      "published": "2026-10-14T19:06:38+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "Take a Look Under the Hood? The Nuts and Bolts of How Spacial’s Construction World Model Will Change Building Mann Publications",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "dc17a3f3968a7ac1",
+      "title": "【网经社AI科普】阶跃星辰（跃问）：专注多模态研发 推理与视觉感知突出的大模型 - 搜狐",
+      "link": "https://m.sohu.com/a/1087634000_120491808?scm=10001.325_13-325_13.0.0-0-0-0-0.5_1334",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-10-14T19:04:57+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "【网经社AI科普】阶跃星辰（跃问）：专注多模态研发 推理与视觉感知突出的大模型 搜狐",
+      "why": "",
+      "tags": [
+        "大模型",
+        "多模态"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "83b5e89334b91d6c",
+      "title": "A Practical Guide to Seedance 2.5 API Access for Startups and Developer Teams - nerdbot",
+      "link": "https://nerdbot.com/2026/10/14/a-practical-guide-to-seedance-2-5-api-access-for-startups-and-developer-teams/",
+      "source": "新闻 · 视频生成（英文）",
+      "source_id": "gnews-video-en",
+      "published": "2026-10-14T18:39:55+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "A Practical Guide to Seedance 2.5 API Access for Startups and Developer Teams nerdbot",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "927eff6158e5410c",
+      "title": "Shaquille O’Neal Shows Off Shirtless Workout, Channels Arnold Schwarzenegger in Viral Video - Generation Iron",
+      "link": "https://generationiron.com/shaquille-oneal-workout-viral-video/",
+      "source": "新闻 · 视频生成（英文）",
+      "source_id": "gnews-video-en",
+      "published": "2026-10-14T18:39:34+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Shaquille O’Neal Shows Off Shirtless Workout, Channels Arnold Schwarzenegger in Viral Video Generation Iron",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "42732d71a070b9dd",
+      "title": "企业真正需要的，不是更聪明的 Agent ？",
+      "link": "https://www.infoq.cn/video/Wss036X3C6APXsS41HwC",
+      "source": "InfoQ 中文",
+      "source_id": "infoq-cn",
+      "published": "2026-10-14T18:36:53+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "点击查看原文>",
+      "why": "",
+      "tags": [
+        "agent"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "d0a999fc3997cb58",
+      "title": "千问办公杀入电商经营！3万开店成本压至几百元，一个Agent接管多平台生意",
+      "link": "https://www.infoq.cn/article/IAAteiFAzfescqFHIyQU",
+      "source": "InfoQ 中文",
+      "source_id": "infoq-cn",
+      "published": "2026-10-14T17:48:46+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "点击查看原文>",
+      "why": "",
+      "tags": [
+        "agent"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "24b1a77d77f4a0e8",
+      "title": "Anthropic Self-Replicating AI Research: Are Smart Homes at Risk? - Online Tech Tips",
+      "link": "https://www.online-tech-tips.com/anthropic-self-replicating-ai-smart-home-risk/",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-10-14T17:43:13+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Anthropic Self-Replicating AI Research: Are Smart Homes at Risk? Online Tech Tips",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "fa4420613a71491d",
+      "title": "xAI Introduces Grok Voice 3.0 Speech-to-Speech Model for Voice Agents - Unite.AI",
+      "link": "https://www.unite.ai/xai-introduces-grok-voice-3-0-speech-to-speech-model-for-voice-agents/",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-10-14T17:00:01+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "xAI Introduces Grok Voice 3.0 Speech-to-Speech Model for Voice Agents Unite.AI",
+      "why": "",
+      "tags": [
+        "agent"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "d6346f9abe813064",
+      "title": "Linus Torvalds's first LLM-assisted patch series",
+      "link": "https://news.ycombinator.com/item?id=50090842",
+      "source": "Hacker News（100+ 分）",
+      "source_id": "hn-algolia",
+      "published": "2026-10-14T16:55:07+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "",
+      "why": "",
+      "tags": [
+        "llm"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "f86f4517d131c0b1",
+      "title": "Why do LLM pelicans look like this?",
+      "link": "https://news.ycombinator.com/item?id=50090443",
+      "source": "Hacker News（100+ 分）",
+      "source_id": "hn-algolia",
+      "published": "2026-10-14T16:33:34+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "",
+      "why": "",
+      "tags": [
+        "llm"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "672ebf75c430cf70",
+      "title": "HiRO-ACEv2: Simulating extreme weather at 3 km resolution for a fraction of the cost",
+      "link": "https://huggingface.co/blog/allenai/hiro-acev2",
+      "source": "Hugging Face Blog",
+      "source_id": "hf-blog",
+      "published": "2026-10-14T16:12:42+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "",
+      "why": "",
+      "tags": [],
+      "tracks": []
+    },
+    {
+      "id": "9dd119a51b881273",
+      "title": "Optimizing Agent Reliability and Tool Calling Efficiency for Chip Design Using NVIDIA NeMo Gym",
+      "link": "https://developer.nvidia.com/blog/optimizing-agent-reliability-and-tool-calling-efficiency-for-chip-design-using-nvidia-nemo-gym",
+      "source": "NVIDIA Technical Blog",
+      "source_id": "nvidia-dev",
+      "published": "2026-10-14T16:10:48+00:00",
+      "category": "infra",
+      "priority": "medium",
+      "summary": "AI agents offer remarkable productivity gains in complex chip design workflows, but their tendency to generate plausible yet incorrect artifacts makes...",
+      "why": "",
+      "tags": [
+        "agent",
+        "agentic"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "21510efd9936acae",
+      "title": "从大模型到 Agent 落地，这场大会讲透 AI 全链路",
+      "link": "https://www.infoq.cn/article/PuGS7Qxy4AFOal4wVR22",
+      "source": "InfoQ 中文",
+      "source_id": "infoq-cn",
+      "published": "2026-10-14T14:52:06+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "点击查看原文>",
+      "why": "",
+      "tags": [
+        "agent",
+        "大模型"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "59a0fb3b61cc6376",
+      "title": "AI手机上新：苹果折叠屏手机完成大模型备案，搭载阿里通义 - 东方财富",
+      "link": "https://finance.eastmoney.com/a/202610143895566946.html",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-10-14T14:09:27+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "AI手机上新：苹果折叠屏手机完成大模型备案，搭载阿里通义 东方财富",
+      "why": "",
+      "tags": [
+        "大模型"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "d16cf71c4fe3165b",
+      "title": "DeepSeek、阿里接连“抢滩”，具身智能成大模型“新战场” - 搜狐",
+      "link": "https://m.sohu.com/a/1087799666_122014422?scm=10001.325_13-325_13.0.0-0-0-0-0.5_1334",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-10-14T14:07:27+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "DeepSeek、阿里接连“抢滩”，具身智能成大模型“新战场” 搜狐",
+      "why": "",
+      "tags": [
+        "大模型",
+        "3D"
+      ],
+      "tracks": []
+    }
+  ]
+}
