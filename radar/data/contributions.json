@@ -1,6 +1,6 @@
 {
-  "updated": "2026-10-12T07:39:10+00:00",
-  "model": "LongCat-2.0",
+  "updated": "2026-10-15T05:57:22+00:00",
+  "model": "LongCat-2.0（3 个仓库的 18 个阶段降级到 gemini-3.1-pro-preview）",
   "repos": [
     {
       "repo": "sgl-project/sglang",
@@ -35538,39 +35538,11 @@
   "failures": [
     {
       "repo": "sgl-project/sglang-omni",
-      "error": "RuntimeError: LLMChapterFailed:runbook"
-    },
-    {
-      "repo": "vllm-project/vllm",
-      "error": "RuntimeError: LLMChapterFailed:codemap"
-    },
-    {
-      "repo": "flashinfer-ai/flashinfer",
-      "error": "RuntimeError: LLMChapterFailed:runbook"
-    },
-    {
-      "repo": "hao-ai-lab/FastVideo",
-      "error": "RuntimeError: LLMChapterFailed:runbook"
-    },
-    {
-      "repo": "thu-ml/TurboDiffusion",
-      "error": "RuntimeError: LLMChapterFailed:codemap"
-    },
-    {
-      "repo": "JeffreyXiang/FlexGEMM",
-      "error": "RuntimeError: LLMChapterFailed:runbook"
-    },
-    {
-      "repo": "NVIDIA-NeMo/labs-molt",
-      "error": "RuntimeError: LLMChapterFailed:runbook"
-    },
-    {
-      "repo": "RightNow-AI/autokernel",
-      "error": "RuntimeError: LLMChapterFailed:codemap"
+      "error": "RuntimeError: LLMChapterFailed:positioning"
     },
     {
       "repo": "THU-MIG/edge-dit.cpp",
-      "error": "RuntimeError: LLMChapterFailed:entry"
+      "error": "RuntimeError: LLMChapterFailed:positioning"
     }
   ]
 }
