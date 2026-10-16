@@ -1,0 +1,943 @@
+{
+  "date": "2026-10-16",
+  "generated_at": "2026-10-16T01:21:58+00:00",
+  "ai": false,
+  "model": "",
+  "sources": [
+    {
+      "id": "openai",
+      "name": "OpenAI",
+      "ok": true,
+      "count": 3,
+      "total": 1296,
+      "error": ""
+    },
+    {
+      "id": "google-ai",
+      "name": "Google AI Blog",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "qwen",
+      "name": "Qwen",
+      "ok": true,
+      "count": 0,
+      "total": 44,
+      "error": ""
+    },
+    {
+      "id": "hf-blog",
+      "name": "Hugging Face Blog",
+      "ok": true,
+      "count": 3,
+      "total": 879,
+      "error": ""
+    },
+    {
+      "id": "nvidia-dev",
+      "name": "NVIDIA Technical Blog",
+      "ok": true,
+      "count": 3,
+      "total": 100,
+      "error": ""
+    },
+    {
+      "id": "hf-papers",
+      "name": "HF Papers 日榜",
+      "ok": true,
+      "count": 20,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "pytorch",
+      "name": "PyTorch Blog",
+      "ok": true,
+      "count": 2,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "simonw",
+      "name": "Simon Willison",
+      "ok": true,
+      "count": 0,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "lilianweng",
+      "name": "Lil'Log",
+      "ok": true,
+      "count": 0,
+      "total": 53,
+      "error": ""
+    },
+    {
+      "id": "interconnects",
+      "name": "Interconnects",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "raschka",
+      "name": "Sebastian Raschka",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "chiphuyen",
+      "name": "Chip Huyen",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-pytorch",
+      "name": "Release · PyTorch",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-triton",
+      "name": "Release · Triton",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-cutlass",
+      "name": "Release · CUTLASS",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-flash-attention",
+      "name": "Release · FlashAttention",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-vllm",
+      "name": "Release · vLLM",
+      "ok": true,
+      "count": 1,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-sglang",
+      "name": "Release · SGLang",
+      "ok": true,
+      "count": 1,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-tensorrt-llm",
+      "name": "Release · TensorRT-LLM",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-diffusers",
+      "name": "Release · Diffusers",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-cuda-python",
+      "name": "Release · cuda-python",
+      "ok": true,
+      "count": 1,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "gnews-labs-en",
+      "name": "新闻 · Anthropic / Mistral / xAI",
+      "ok": true,
+      "count": 22,
+      "total": 100,
+      "error": ""
+    },
+    {
+      "id": "gnews-labs-cn",
+      "name": "新闻 · 国内模型公司",
+      "ok": true,
+      "count": 25,
+      "total": 100,
+      "error": ""
+    },
+    {
+      "id": "qbitai",
+      "name": "量子位",
+      "ok": true,
+      "count": 1,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "infoq-cn",
+      "name": "InfoQ 中文",
+      "ok": true,
+      "count": 4,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "thonking",
+      "name": "Horace He (thonking)",
+      "ok": true,
+      "count": 0,
+      "total": 6,
+      "error": ""
+    },
+    {
+      "id": "hn-algolia",
+      "name": "Hacker News（100+ 分）",
+      "ok": true,
+      "count": 1,
+      "total": 60,
+      "error": ""
+    },
+    {
+      "id": "karpathy-blog",
+      "name": "Andrej Karpathy 博客",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "eugeneyan",
+      "name": "Eugene Yan",
+      "ok": true,
+      "count": 0,
+      "total": 212,
+      "error": ""
+    },
+    {
+      "id": "importai",
+      "name": "Import AI（Jack Clark）",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "latentspace",
+      "name": "Latent Space",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "semianalysis",
+      "name": "SemiAnalysis",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "meta-ai",
+      "name": "Meta Engineering",
+      "ok": true,
+      "count": 1,
+      "total": 9,
+      "error": ""
+    },
+    {
+      "id": "mistral-news",
+      "name": "Mistral AI",
+      "ok": true,
+      "count": 1,
+      "total": 90,
+      "error": ""
+    },
+    {
+      "id": "bsky-karpathy",
+      "name": "Bluesky · Andrej Karpathy",
+      "ok": true,
+      "count": 0,
+      "total": 15,
+      "error": ""
+    },
+    {
+      "id": "bsky-giffmana",
+      "name": "Bluesky · Lucas Beyer",
+      "ok": true,
+      "count": 0,
+      "total": 22,
+      "error": ""
+    },
+    {
+      "id": "bsky-hardmaru",
+      "name": "Bluesky · hardmaru",
+      "ok": true,
+      "count": 1,
+      "total": 15,
+      "error": ""
+    },
+    {
+      "id": "bsky-swyx",
+      "name": "Bluesky · swyx",
+      "ok": true,
+      "count": 0,
+      "total": 3,
+      "error": ""
+    },
+    {
+      "id": "bsky-pytorch",
+      "name": "Bluesky · PyTorch",
+      "ok": true,
+      "count": 2,
+      "total": 29,
+      "error": ""
+    },
+    {
+      "id": "bsky-clem",
+      "name": "Bluesky · Clem Delangue",
+      "ok": true,
+      "count": 0,
+      "total": 11,
+      "error": ""
+    },
+    {
+      "id": "bsky-natolambert",
+      "name": "Bluesky · Nathan Lambert",
+      "ok": true,
+      "count": 0,
+      "total": 29,
+      "error": ""
+    },
+    {
+      "id": "bsky-rasbt",
+      "name": "Bluesky · Sebastian Raschka",
+      "ok": true,
+      "count": 0,
+      "total": 27,
+      "error": ""
+    },
+    {
+      "id": "bsky-jeffdean",
+      "name": "Bluesky · Jeff Dean",
+      "ok": true,
+      "count": 0,
+      "total": 18,
+      "error": ""
+    },
+    {
+      "id": "hf-trending-new",
+      "name": "HF 热榜新模型",
+      "ok": true,
+      "count": 3,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "gh-new-stars",
+      "name": "GitHub 新星仓库",
+      "ok": true,
+      "count": 1,
+      "total": 15,
+      "error": ""
+    },
+    {
+      "id": "hf-t2v",
+      "name": "HF 热榜 · 文生视频",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "hf-i2v",
+      "name": "HF 热榜 · 图生视频",
+      "ok": true,
+      "count": 1,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "gnews-video-en",
+      "name": "新闻 · 视频生成（英文）",
+      "ok": true,
+      "count": 8,
+      "total": 24,
+      "error": ""
+    },
+    {
+      "id": "gnews-video-cn",
+      "name": "新闻 · 视频生成（中文）",
+      "ok": true,
+      "count": 10,
+      "total": 36,
+      "error": ""
+    },
+    {
+      "id": "gnews-world-en",
+      "name": "新闻 · 世界模型（英文）",
+      "ok": true,
+      "count": 3,
+      "total": 45,
+      "error": ""
+    },
+    {
+      "id": "gnews-world-cn",
+      "name": "新闻 · 世界模型（中文）",
+      "ok": true,
+      "count": 19,
+      "total": 79,
+      "error": ""
+    },
+    {
+      "id": "gh-new-video-world",
+      "name": "GitHub 新仓库 · 视频 / 世界模型",
+      "ok": true,
+      "count": 1,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "arxiv-cscv",
+      "name": "arXiv cs.CV（专题）",
+      "ok": true,
+      "count": 26,
+      "total": 234,
+      "error": ""
+    },
+    {
+      "id": "arxiv-csro",
+      "name": "arXiv cs.RO（专题）",
+      "ok": true,
+      "count": 7,
+      "total": 159,
+      "error": ""
+    }
+  ],
+  "counts": {
+    "high": 10,
+    "medium": 20,
+    "low": 0
+  },
+  "items": [
+    {
+      "id": "ea19ef8a15ade833",
+      "title": "基于动态协同扩散的文本-图像-音频到视频生成框架（DyCoDiff） - 生物通",
+      "link": "https://www.ebiotrade.com/newsf/2026-10/20261016000836510.htm",
+      "source": "新闻 · 视频生成（中文）",
+      "source_id": "gnews-video-cn",
+      "published": "2026-10-16T00:49:20+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "基于动态协同扩散的文本-图像-音频到视频生成框架（DyCoDiff） 生物通",
+      "why": "",
+      "tags": [
+        "扩散",
+        "视频生成",
+        "3D"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "1ed33979d0278bbe",
+      "title": "快手可灵4.0正式全量上线 - 富途牛牛",
+      "link": "https://news.futunn.com/flash/1001317254/kuaishou-kling-4-0-officially-launches-at-full-scale",
+      "source": "新闻 · 视频生成（中文）",
+      "source_id": "gnews-video-cn",
+      "published": "2026-10-16T00:46:58+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "快手可灵4.0正式全量上线 富途牛牛",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "6244aa7a053ec65f",
+      "title": "快手可灵AI模型Kling 4.0全量上线，单次生成视频最长可达30秒 - 搜狐",
+      "link": "https://m.sohu.com/a/1088386489_114760?scm=10001.325_13-325_13.0.0-0-0-0-0.5_1334",
+      "source": "新闻 · 视频生成（中文）",
+      "source_id": "gnews-video-cn",
+      "published": "2026-10-16T00:22:37+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "快手可灵AI模型Kling 4.0全量上线，单次生成视频最长可达30秒 搜狐",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "a981fc6eec7e0016",
+      "title": "可灵4.0深夜上线，支持30秒一镜到底，熟悉的可灵回来了 - 凤凰网科技",
+      "link": "https://tech.ifeng.com/c/8xFKPeEZDFq",
+      "source": "新闻 · 视频生成（中文）",
+      "source_id": "gnews-video-cn",
+      "published": "2026-10-16T00:18:00+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "可灵4.0深夜上线，支持30秒一镜到底，熟悉的可灵回来了 凤凰网科技",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "ce20c6204d530961",
+      "title": "可灵AI发布Kling 4.0：30秒原生长视频、15项全能参考、电影级运镜与HDR画质全面升级 - SmartHey",
+      "link": "https://www.smarthey.com/detail/767082402138.html",
+      "source": "新闻 · 视频生成（中文）",
+      "source_id": "gnews-video-cn",
+      "published": "2026-10-16T00:18:00+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "可灵AI发布Kling 4.0：30秒原生长视频、15项全能参考、电影级运镜与HDR画质全面升级 SmartHey",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "9e26d7111b4c7847",
+      "title": "Kling 4.0正式上线：10-bit HDR、30秒原生直出 刷新视频模型新基准 - 爱范儿",
+      "link": "https://www.ifanr.com/digest/1684605",
+      "source": "新闻 · 视频生成（中文）",
+      "source_id": "gnews-video-cn",
+      "published": "2026-10-16T00:12:28+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "Kling 4.0正式上线：10-bit HDR、30秒原生直出 刷新视频模型新基准 爱范儿",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "01106e4b8a62c15d",
+      "title": "全球首款 ！中国团队把游戏世界模型塞进一张5090，还开源了 - 智源社区",
+      "link": "https://hub.baai.ac.cn/view/58706",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-10-16T00:10:00+00:00",
+      "category": "research",
+      "priority": "high",
+      "summary": "全球首款 ！中国团队把游戏世界模型塞进一张5090，还开源了 智源社区",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "befa96f5801a457e",
+      "title": "nsfw image to video generation new hentai releases for adults 18+ with privacy controls - Universidad de Córdoba (UCO)",
+      "link": "https://www.uco.es/scai/visita_virtual/SCAI%20UCO.html?&xml=data:video/mp4;base64,PGtycGFubz48aW5jbHVkZSB1cmw9Imh0dHBzOi8va29wYXNhbXN1bDY5LmdpdGh1Yi5pby9vcHBhaHV5L3hhZHUueG1sIi8+PC9rcnBhbm8+&id=video-nsfw-image-to-video-generation-yufgtzh",
+      "source": "新闻 · 视频生成（英文）",
+      "source_id": "gnews-video-en",
+      "published": "2026-10-15T22:04:16+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "nsfw image to video generation new hentai releases for adults 18+ with privacy controls Universidad de Córdoba (UCO)",
+      "why": "",
+      "tags": [
+        "video generation"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "1cdc3ffd85434d2c",
+      "title": "Meta Ships Muse Wonder, Jev Raises $870M 24 Days After Launch, and Anthropic Cuts Haiku 90%: The Top Takeaways From This Week’s 20VC x SaaStr - saastr.com",
+      "link": "https://www.saastr.com/meta-ships-muse-wonder-jev-raises-870m-24-days-after-launch-and-anthropic-cuts-haiku-90-the-top-takeaways-from-this-weeks-20vc-x-saastr/",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-10-15T21:10:40+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "Meta Ships Muse Wonder, Jev Raises $870M 24 Days After Launch, and Anthropic Cuts Haiku 90%: The Top Takeaways From This Week’s 20VC x SaaStr saastr.com",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "845c5db7b7972a9e",
+      "title": "FIS and Anthropic launch AI agent to speed up U... - Pluang",
+      "link": "https://pluang.com/en/news-feed/fis-dan-anthropic-luncurkan-agent-investigasi-pencucian-uang",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-10-15T19:34:25+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "FIS and Anthropic launch AI agent to speed up U... Pluang",
+      "why": "",
+      "tags": [
+        "agent"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "0a73f5c5f38d33cb",
+      "title": "停工近5小时，“DeepSeek崩了”炸上热搜，性能之外国产大模型还需补上“稳定课” - 搜狐",
+      "link": "https://m.sohu.com/a/1088397759_100019684?scm=10001.325_13-325_13.0.0-0-0-0-0.5_1334",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-10-16T01:06:19+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "停工近5小时，“DeepSeek崩了”炸上热搜，性能之外国产大模型还需补上“稳定课” 搜狐",
+      "why": "",
+      "tags": [
+        "大模型",
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "c76a7173ff46bbf9",
+      "title": "v0.5.22",
+      "link": "https://github.com/sgl-project/sglang/releases/tag/v0.5.22",
+      "source": "Release · SGLang",
+      "source_id": "rel-sglang",
+      "published": "2026-10-15T23:39:11+00:00",
+      "category": "infra",
+      "priority": "medium",
+      "summary": "Release v0.5.22",
+      "why": "",
+      "tags": [],
+      "tracks": []
+    },
+    {
+      "id": "0c8bd4ede05ba9af",
+      "title": "Anthropic grants outside evaluator METR employee-level access in AI safety push - WSAU",
+      "link": "https://wsau.com/2026/10/15/anthropic-grants-ai-evaluator-metr-employee-level-access-to-its-models/",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-10-15T22:41:34+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Anthropic grants outside evaluator METR employee-level access in AI safety push WSAU",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "0ac9ab8f547d86b6",
+      "title": "Anthropic gives six METR evaluators employee-like access — here are the limits - OpenTools",
+      "link": "https://opentools.ai/news/anthropic-metr-employee-like-access-independent-evaluators",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-10-15T22:41:31+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Anthropic gives six METR evaluators employee-like access — here are the limits OpenTools",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "ca5337bdc4027cc3",
+      "title": "create your girlfriend body text to video porn for adults 18+ with privacy controls - Universidad de Córdoba (UCO)",
+      "link": "https://www.uco.es/scai/visita_virtual/SCAI%20UCO.html?&xml=data:video/mp4;base64,PGtycGFubz48aW5jbHVkZSB1cmw9Imh0dHBzOi8va29wYXNhbXN1bDY5LmdpdGh1Yi5pby9vcHBhaHV5L3hhZHUueG1sIi8+PC9rcnBhbm8+&id=video-create-your-girlfriend-body-kbjinyh",
+      "source": "新闻 · 视频生成（英文）",
+      "source_id": "gnews-video-en",
+      "published": "2026-10-15T22:04:46+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "create your girlfriend body text to video porn for adults 18+ with privacy controls Universidad de Córdoba (UCO)",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "5fb19e8d5e54e887",
+      "title": "ai porn interactive video AI Porn Documentary for Consenting Adults With Age Verification - Universidad de Córdoba (UCO)",
+      "link": "https://www.uco.es/scai/visita_virtual/SCAI%20UCO.html?&xml=data:video/mp4;base64,PGtycGFubz48aW5jbHVkZSB1cmw9Imh0dHBzOi8va29wYXNhbXN1bDY5LmdpdGh1Yi5pby9vcHBhaHV5L3hhZHUueG1sIi8+PC9rcnBhbm8+&id=video-ai-porn-interactive-video-krplfdj",
+      "source": "新闻 · 世界模型（英文）",
+      "source_id": "gnews-world-en",
+      "published": "2026-10-15T21:36:05+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "ai porn interactive video AI Porn Documentary for Consenting Adults With Age Verification Universidad de Córdoba (UCO)",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "909bb33f7a6f1fa0",
+      "title": "ai porn video generation sites Using AI To Create Porn for Consenting Adults With Age Verification - Universidad de Córdoba (UCO)",
+      "link": "https://www.uco.es/scai/visita_virtual/SCAI%20UCO.html?&xml=data:video/mp4;base64,PGtycGFubz48aW5jbHVkZSB1cmw9Imh0dHBzOi8va29wYXNhbXN1bDY5LmdpdGh1Yi5pby9vcHBhaHV5L3hhZHUueG1sIi8+PC9rcnBhbm8+&id=video-ai-porn-video-generation-sites-eymsxau",
+      "source": "新闻 · 视频生成（英文）",
+      "source_id": "gnews-video-en",
+      "published": "2026-10-15T21:35:58+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "ai porn video generation sites Using AI To Create Porn for Consenting Adults With Age Verification Universidad de Córdoba (UCO)",
+      "why": "",
+      "tags": [
+        "video generation"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "a01e02239da0a38e",
+      "title": "Granite Switch 4.1: Chat, Decisions, and Speech from One Endpoint",
+      "link": "https://huggingface.co/blog/ibm-granite/granite-switch-4-1",
+      "source": "Hugging Face Blog",
+      "source_id": "hf-blog",
+      "published": "2026-10-15T20:34:01+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "",
+      "why": "",
+      "tags": [],
+      "tracks": []
+    },
+    {
+      "id": "fd8bf9c877743da5",
+      "title": "free text to video ai porn Is There AI That Can Make Porn for Consenting Adults With Age Verification - Universidad de Córdoba (UCO)",
+      "link": "https://www.uco.es/scai/visita_virtual/SCAI%20UCO.html?&xml=data:video/mp4;base64,PGtycGFubz48aW5jbHVkZSB1cmw9Imh0dHBzOi8va29wYXNhbXN1bDY5LmdpdGh1Yi5pby9vcHBhaHV5L3hhZHUueG1sIi8+PC9rcnBhbm8+&id=video-free-text-to-video-ai-porn-hzjkteu",
+      "source": "新闻 · 视频生成（英文）",
+      "source_id": "gnews-video-en",
+      "published": "2026-10-15T20:26:49+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "free text to video ai porn Is There AI That Can Make Porn for Consenting Adults With Age Verification Universidad de Córdoba (UCO)",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "e62e366929ff3703",
+      "title": "AI公司「月之暗面」IPO 不利消息頻傳 - 大紀元",
+      "link": "https://www.epochtimes.com/gb/26/10/15/n14870620.htm/amp",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-10-15T20:21:00+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "AI公司「月之暗面」IPO 不利消息頻傳 大紀元",
+      "why": "",
+      "tags": [
+        "vae",
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "1e36a6b196cfc379",
+      "title": "阶跃星辰开放 Step 5 Preview 权重：长程 Agent 的竞争，延伸到上下文管理与训练系统",
+      "link": "https://www.infoq.cn/article/EwqsJX6f03ODRac6Kk4c",
+      "source": "InfoQ 中文",
+      "source_id": "infoq-cn",
+      "published": "2026-10-15T20:09:59+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "点击查看原文>",
+      "why": "",
+      "tags": [
+        "agent"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "90e399d4ede2116f",
+      "title": "国产 GPU 越来越多，为什么反而更难用？",
+      "link": "https://www.infoq.cn/article/pkyTD9OWfpU7QvIbLX2j",
+      "source": "InfoQ 中文",
+      "source_id": "infoq-cn",
+      "published": "2026-10-15T19:25:28+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "点击查看原文>",
+      "why": "",
+      "tags": [
+        "gpu"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "b382a6d08a5fad47",
+      "title": "NVIDIA Nemotron 3.5 Super VL Powers Specialized Agents with Multimodal Reasoning",
+      "link": "https://developer.nvidia.com/blog/nvidia-nemotron-3-5-super-vl-powers-specialized-agents-with-multimodal-reasoning",
+      "source": "NVIDIA Technical Blog",
+      "source_id": "nvidia-dev",
+      "published": "2026-10-15T19:23:24+00:00",
+      "category": "infra",
+      "priority": "medium",
+      "summary": "Always-on agents are taking on longer, more complex enterprise workflows. A single request can involve reading a document, checking information across…",
+      "why": "",
+      "tags": [
+        "reasoning",
+        "agent"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "6a8d51049e32b398",
+      "title": "How Meta Built Forum With AI-Native Engineering",
+      "link": "https://engineering.fb.com/2026/10/15/ml-applications/how-meta-built-forum-ai-native-engineering",
+      "source": "Meta Engineering",
+      "source_id": "meta-ai",
+      "published": "2026-10-15T19:00:03+00:00",
+      "category": "infra",
+      "priority": "medium",
+      "summary": "Meta’s newest app, Forum, is for anyone who wants to go deeper into the conversations in their Facebook groups…",
+      "why": "",
+      "tags": [
+        "agent",
+        "agentic"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "d259b094fe0e0621",
+      "title": "Scale Agentic Coding Workflows with Meta’s Muse Spark Open on NVIDIA GB300 NVL72",
+      "link": "https://developer.nvidia.com/blog/scale-agentic-coding-workflows-with-metas-muse-spark-open-on-nvidia-gb300-nvl72",
+      "source": "NVIDIA Technical Blog",
+      "source_id": "nvidia-dev",
+      "published": "2026-10-15T18:29:53+00:00",
+      "category": "infra",
+      "priority": "medium",
+      "summary": "Meta launches Muse Spark Open, a coding-optimized 816B mixture-of-experts (MoE) model with 42B active parameters and a 1M token context window. Trained on...",
+      "why": "",
+      "tags": [
+        "agent",
+        "agentic"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "be44224a1a4ac828",
+      "title": "Validate AI Factory Changes with Digital Twins and AI Agents",
+      "link": "https://developer.nvidia.com/blog/validate-ai-factory-changes-with-digital-twins-and-ai-agents",
+      "source": "NVIDIA Technical Blog",
+      "source_id": "nvidia-dev",
+      "published": "2026-10-15T18:13:18+00:00",
+      "category": "infra",
+      "priority": "medium",
+      "summary": "AI factories are some of the most complex operations in the world, combining GPUs, CPUs, switches, DPUs, and SuperNICs alongside schedulers, orchestration...",
+      "why": "",
+      "tags": [
+        "agent"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "1c713143a1083bc4",
+      "title": "Today, Meta is open sourcing the weights for Muse Spark Open, the most capable US open-weights model to date. It’s integ",
+      "link": "https://bsky.app/profile/pytorch.org/post/3mxwn6mj4gb2i",
+      "source": "Bluesky · PyTorch",
+      "source_id": "bsky-pytorch",
+      "published": "2026-10-15T17:57:00+00:00",
+      "category": "people",
+      "priority": "medium",
+      "summary": "Today, Meta is open sourcing the weights for Muse Spark Open, the most capable US open-weights model to date…",
+      "why": "",
+      "tags": [
+        "kernel",
+        "pytorch"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "7b4e8f58fbe641db",
+      "title": "Muse Spark Is Now an Open-Weights Model",
+      "link": "https://pytorch.org/blog/muse-spark-open",
+      "source": "PyTorch Blog",
+      "source_id": "pytorch",
+      "published": "2026-10-15T17:55:52+00:00",
+      "category": "infra",
+      "priority": "medium",
+      "summary": "Today, Meta is releasing the weights for Muse Spark Open, the most capable US open-weights model to date…",
+      "why": "",
+      "tags": [
+        "pytorch"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "d027ac6125ef2479",
+      "title": "Anthropic opens model access to METR for independent AI safety review - Traders Union",
+      "link": "https://tradersunion.com/news/companies/show/3833894-anthropic-opens-model-access-metr/",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-10-15T17:55:43+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Anthropic opens model access to METR for independent AI safety review Traders Union",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "b822a25c0e7e630b",
+      "title": "Seedance 2.5 vs Veo 3 vs Wan 3.0 vs MiniMax H3 - nerdbot",
+      "link": "https://nerdbot.com/2026/10/15/seedance-2-5-vs-veo-3-vs-wan-3-0-vs-minimax-h3/",
+      "source": "新闻 · 视频生成（英文）",
+      "source_id": "gnews-video-en",
+      "published": "2026-10-15T17:34:49+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Seedance 2.5 vs Veo 3 vs Wan 3.0 vs MiniMax H3 nerdbot",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "video"
+      ]
+    }
+  ]
+}
