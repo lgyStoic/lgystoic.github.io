@@ -1,0 +1,939 @@
+{
+  "date": "2026-10-17",
+  "generated_at": "2026-10-17T01:20:09+00:00",
+  "ai": false,
+  "model": "",
+  "sources": [
+    {
+      "id": "openai",
+      "name": "OpenAI",
+      "ok": true,
+      "count": 2,
+      "total": 1298,
+      "error": ""
+    },
+    {
+      "id": "google-ai",
+      "name": "Google AI Blog",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "qwen",
+      "name": "Qwen",
+      "ok": true,
+      "count": 0,
+      "total": 44,
+      "error": ""
+    },
+    {
+      "id": "hf-blog",
+      "name": "Hugging Face Blog",
+      "ok": true,
+      "count": 2,
+      "total": 880,
+      "error": ""
+    },
+    {
+      "id": "nvidia-dev",
+      "name": "NVIDIA Technical Blog",
+      "ok": true,
+      "count": 0,
+      "total": 100,
+      "error": ""
+    },
+    {
+      "id": "hf-papers",
+      "name": "HF Papers 日榜",
+      "ok": true,
+      "count": 25,
+      "total": 25,
+      "error": ""
+    },
+    {
+      "id": "pytorch",
+      "name": "PyTorch Blog",
+      "ok": true,
+      "count": 1,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "simonw",
+      "name": "Simon Willison",
+      "ok": true,
+      "count": 0,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "lilianweng",
+      "name": "Lil'Log",
+      "ok": true,
+      "count": 0,
+      "total": 53,
+      "error": ""
+    },
+    {
+      "id": "interconnects",
+      "name": "Interconnects",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "raschka",
+      "name": "Sebastian Raschka",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "chiphuyen",
+      "name": "Chip Huyen",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-pytorch",
+      "name": "Release · PyTorch",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-triton",
+      "name": "Release · Triton",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-cutlass",
+      "name": "Release · CUTLASS",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-flash-attention",
+      "name": "Release · FlashAttention",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-vllm",
+      "name": "Release · vLLM",
+      "ok": true,
+      "count": 1,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-sglang",
+      "name": "Release · SGLang",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-tensorrt-llm",
+      "name": "Release · TensorRT-LLM",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-diffusers",
+      "name": "Release · Diffusers",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-cuda-python",
+      "name": "Release · cuda-python",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "gnews-labs-en",
+      "name": "新闻 · Anthropic / Mistral / xAI",
+      "ok": true,
+      "count": 9,
+      "total": 85,
+      "error": ""
+    },
+    {
+      "id": "gnews-labs-cn",
+      "name": "新闻 · 国内模型公司",
+      "ok": true,
+      "count": 27,
+      "total": 100,
+      "error": ""
+    },
+    {
+      "id": "qbitai",
+      "name": "量子位",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "infoq-cn",
+      "name": "InfoQ 中文",
+      "ok": true,
+      "count": 2,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "thonking",
+      "name": "Horace He (thonking)",
+      "ok": true,
+      "count": 0,
+      "total": 6,
+      "error": ""
+    },
+    {
+      "id": "hn-algolia",
+      "name": "Hacker News（100+ 分）",
+      "ok": true,
+      "count": 3,
+      "total": 60,
+      "error": ""
+    },
+    {
+      "id": "karpathy-blog",
+      "name": "Andrej Karpathy 博客",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "eugeneyan",
+      "name": "Eugene Yan",
+      "ok": true,
+      "count": 0,
+      "total": 212,
+      "error": ""
+    },
+    {
+      "id": "importai",
+      "name": "Import AI（Jack Clark）",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "latentspace",
+      "name": "Latent Space",
+      "ok": true,
+      "count": 1,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "semianalysis",
+      "name": "SemiAnalysis",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "meta-ai",
+      "name": "Meta Engineering",
+      "ok": true,
+      "count": 0,
+      "total": 9,
+      "error": ""
+    },
+    {
+      "id": "mistral-news",
+      "name": "Mistral AI",
+      "ok": true,
+      "count": 0,
+      "total": 90,
+      "error": ""
+    },
+    {
+      "id": "bsky-karpathy",
+      "name": "Bluesky · Andrej Karpathy",
+      "ok": true,
+      "count": 0,
+      "total": 15,
+      "error": ""
+    },
+    {
+      "id": "bsky-giffmana",
+      "name": "Bluesky · Lucas Beyer",
+      "ok": true,
+      "count": 0,
+      "total": 22,
+      "error": ""
+    },
+    {
+      "id": "bsky-hardmaru",
+      "name": "Bluesky · hardmaru",
+      "ok": true,
+      "count": 0,
+      "total": 15,
+      "error": ""
+    },
+    {
+      "id": "bsky-swyx",
+      "name": "Bluesky · swyx",
+      "ok": true,
+      "count": 0,
+      "total": 3,
+      "error": ""
+    },
+    {
+      "id": "bsky-pytorch",
+      "name": "Bluesky · PyTorch",
+      "ok": true,
+      "count": 2,
+      "total": 29,
+      "error": ""
+    },
+    {
+      "id": "bsky-clem",
+      "name": "Bluesky · Clem Delangue",
+      "ok": true,
+      "count": 0,
+      "total": 11,
+      "error": ""
+    },
+    {
+      "id": "bsky-natolambert",
+      "name": "Bluesky · Nathan Lambert",
+      "ok": true,
+      "count": 0,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "bsky-rasbt",
+      "name": "Bluesky · Sebastian Raschka",
+      "ok": true,
+      "count": 0,
+      "total": 27,
+      "error": ""
+    },
+    {
+      "id": "bsky-jeffdean",
+      "name": "Bluesky · Jeff Dean",
+      "ok": true,
+      "count": 0,
+      "total": 18,
+      "error": ""
+    },
+    {
+      "id": "hf-trending-new",
+      "name": "HF 热榜新模型",
+      "ok": true,
+      "count": 0,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "gh-new-stars",
+      "name": "GitHub 新星仓库",
+      "ok": true,
+      "count": 1,
+      "total": 15,
+      "error": ""
+    },
+    {
+      "id": "hf-t2v",
+      "name": "HF 热榜 · 文生视频",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "hf-i2v",
+      "name": "HF 热榜 · 图生视频",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "gnews-video-en",
+      "name": "新闻 · 视频生成（英文）",
+      "ok": true,
+      "count": 14,
+      "total": 18,
+      "error": ""
+    },
+    {
+      "id": "gnews-video-cn",
+      "name": "新闻 · 视频生成（中文）",
+      "ok": true,
+      "count": 33,
+      "total": 46,
+      "error": ""
+    },
+    {
+      "id": "gnews-world-en",
+      "name": "新闻 · 世界模型（英文）",
+      "ok": true,
+      "count": 2,
+      "total": 34,
+      "error": ""
+    },
+    {
+      "id": "gnews-world-cn",
+      "name": "新闻 · 世界模型（中文）",
+      "ok": true,
+      "count": 28,
+      "total": 94,
+      "error": ""
+    },
+    {
+      "id": "gh-new-video-world",
+      "name": "GitHub 新仓库 · 视频 / 世界模型",
+      "ok": true,
+      "count": 1,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "arxiv-cscv",
+      "name": "arXiv cs.CV（专题）",
+      "ok": true,
+      "count": 17,
+      "total": 253,
+      "error": ""
+    },
+    {
+      "id": "arxiv-csro",
+      "name": "arXiv cs.RO（专题）",
+      "ok": true,
+      "count": 8,
+      "total": 149,
+      "error": ""
+    }
+  ],
+  "counts": {
+    "high": 10,
+    "medium": 20,
+    "low": 0
+  },
+  "items": [
+    {
+      "id": "5fb4ea0dd7c54aad",
+      "title": "Kling AI Officially Launches Next-Generation Kling 4.0, Raising the Bar for Professional-Grade Video Models - Yahoo Finance",
+      "link": "https://finance.yahoo.com/technology/ai/articles/kling-ai-officially-launches-next-185000472.html",
+      "source": "新闻 · 视频生成（英文）",
+      "source_id": "gnews-video-en",
+      "published": "2026-10-16T18:50:00+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "Kling AI Officially Launches Next-Generation Kling 4.0, Raising the Bar for Professional-Grade Video Models Yahoo Finance",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "aa830dffcde0e607",
+      "title": "Kling AI Launches Kling 4.0 Globally with Professional-Grade Output, Stable Motion and Multimodal Control - Yahoo Finance",
+      "link": "https://finance.yahoo.com/technology/ai/articles/kling-ai-launches-kling-4-161000016.html",
+      "source": "新闻 · 视频生成（英文）",
+      "source_id": "gnews-video-en",
+      "published": "2026-10-16T16:10:00+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "Kling AI Launches Kling 4.0 Globally with Professional-Grade Output, Stable Motion and Multimodal Control Yahoo Finance",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "17fdc5d0137fbc16",
+      "title": "全球首款 ！中国团队把游戏世界模型塞进一张5090，还开源了 - 风闻",
+      "link": "https://user.guancha.cn/main/content?id=1753448&s=fwzwyzzwzbt",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-10-16T15:57:27+00:00",
+      "category": "research",
+      "priority": "high",
+      "summary": "全球首款 ！中国团队把游戏世界模型塞进一张5090，还开源了 风闻",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "4620547fb9f47050",
+      "title": "Kling 4.0 Released: Why Has Kling AI's Valuation Surpassed Its Parent Company Kuaishou? - 36Kr",
+      "link": "https://eu.36kr.com/en/p/4028394336393095",
+      "source": "新闻 · 视频生成（英文）",
+      "source_id": "gnews-video-en",
+      "published": "2026-10-16T14:42:54+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "Kling 4.0 Released: Why Has Kling AI's Valuation Surpassed Its Parent Company Kuaishou? 36Kr",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "d2b385cc23f0bd87",
+      "title": "Kling AI Launches Kling 4.0 Globally with Professional-Grade Output, Stable Motion and Multimodal Control - The Manila Times",
+      "link": "https://www.manilatimes.net/2026/10/16/tmt-newswire/plentisoft/kling-ai-launches-kling-40-globally-with-professional-grade-output-stable-motion-and-multimodal-control/2447625/amp",
+      "source": "新闻 · 视频生成（英文）",
+      "source_id": "gnews-video-en",
+      "published": "2026-10-16T14:27:34+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "Kling AI Launches Kling 4.0 Globally with Professional-Grade Output, Stable Motion and Multimodal Control The Manila Times",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "b3d27eddf39ef8c8",
+      "title": "金溢科技携手北航发布路侧视角交通世界模型TWM - 观点网",
+      "link": "https://www.guandian.cn/article/20261016/614499.html",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-10-16T13:30:28+00:00",
+      "category": "research",
+      "priority": "high",
+      "summary": "金溢科技携手北航发布路侧视角交通世界模型TWM 观点网",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "de914a1b4aa2e28e",
+      "title": "黎阳之光发布首创VideoWorld实时世界模型|短视频|实景|仿真|工程|范式 - 手机新浪网",
+      "link": "https://tech.sina.cn/2026-10-16/detail-inivmprk1690434.d.html?vt=4&cid=79649&node_id=79649",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-10-16T12:51:49+00:00",
+      "category": "research",
+      "priority": "high",
+      "summary": "黎阳之光发布首创VideoWorld实时世界模型|短视频|实景|仿真|工程|范式 手机新浪网",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "78cad31f0ea4c249",
+      "title": "给AI视频生成器配一个懂事的助手：VideoGen-Agent是怎么把翻车现场变成及格线的 - 科技行者",
+      "link": "https://www.techwalker.com/2026/1016/3202539.shtml",
+      "source": "新闻 · 视频生成（中文）",
+      "source_id": "gnews-video-cn",
+      "published": "2026-10-16T11:28:00+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "给AI视频生成器配一个懂事的助手：VideoGen-Agent是怎么把翻车现场变成及格线的 科技行者",
+      "why": "",
+      "tags": [
+        "agent",
+        "视频生成"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "116740b86869dda6",
+      "title": "可灵AI全量上线Kling 4.0，单次可生成30秒视频 - 三易生活",
+      "link": "https://www.3elife.net/Art/internet/202610/16/110331.html",
+      "source": "新闻 · 视频生成（中文）",
+      "source_id": "gnews-video-cn",
+      "published": "2026-10-16T11:12:09+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "可灵AI全量上线Kling 4.0，单次可生成30秒视频 三易生活",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "9dc37a2479c7bdd3",
+      "title": "昆仑万维开源视频生成模型，单张消费级显卡可实时生成游戏画面 - 搜狐",
+      "link": "https://m.sohu.com/a/1088690550_350699?scm=10001.325_13-325_13.0.0-0-0-0-0.5_1334",
+      "source": "新闻 · 视频生成（中文）",
+      "source_id": "gnews-video-cn",
+      "published": "2026-10-16T10:36:28+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "昆仑万维开源视频生成模型，单张消费级显卡可实时生成游戏画面 搜狐",
+      "why": "",
+      "tags": [
+        "生成模型",
+        "视频生成",
+        "3D"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "a65b774e754deb82",
+      "title": "v0.32.0rc3: [Bugfix] Fix NaN output of the Mamba2 chunk scan kernel on sm90 (#61718)",
+      "link": "https://github.com/vllm-project/vllm/releases/tag/v0.32.0rc3",
+      "source": "Release · vLLM",
+      "source_id": "rel-vllm",
+      "published": "2026-10-17T00:25:45+00:00",
+      "category": "infra",
+      "priority": "medium",
+      "summary": "Signed-off-by: Vadim Gimpelson vadim.gimpelson@gmail.com Co-authored-by: Claude noreply@anthropic.com",
+      "why": "",
+      "tags": [
+        "kernel"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "55147ddfb049076a",
+      "title": "Anthropic quietly pitches its own AI safety bill to lawmakers, Politico reports - Reuters",
+      "link": "https://www.reuters.com/legal/litigation/anthropic-quietly-pitches-its-own-ai-safety-bill-lawmakers-politico-reports-2026-10-16/",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-10-16T23:23:52+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Anthropic quietly pitches its own AI safety bill to lawmakers, Politico reports Reuters",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "ee3730283d4c6f1a",
+      "title": "【热点聚焦】国内首个！通用世界模型北京市重点实验室在海淀揭牌 - 搜狐",
+      "link": "https://m.sohu.com/a/1088848475_122014422?scm=10001.325_13-325_13.0.0-0-0-0-0.5_1334",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-10-16T23:18:08+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "【热点聚焦】国内首个！通用世界模型北京市重点实验室在海淀揭牌 搜狐",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "9cd2f2ecd8f5a453",
+      "title": "Replit CEO Amjad Masad says company no longer working with Anthropic - Crypto Briefing",
+      "link": "https://cryptobriefing.com/replit-masad-anthropic-multi-model-disrupt/",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-10-16T21:26:37+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Replit CEO Amjad Masad says company no longer working with Anthropic Crypto Briefing",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "e14bc17485f614d1",
+      "title": "Claude Could Lead 80-90% of Anthropic’s Model Work in 2027 - FourWeekMBA",
+      "link": "https://fourweekmba.com/ai-claude-could-lead-80-90-of-anthropics-model-work-in-2027/",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-10-16T21:09:51+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Claude Could Lead 80-90% of Anthropic’s Model Work in 2027 FourWeekMBA",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "ce2d48d71deefc3a",
+      "title": "Claude Mythos 5 对比 DeepSeek V4 Pro：15 倍价格差距，而只有其中一个在自身擅长之处才称得上便宜 - OrcaRouter",
+      "link": "https://www.orcarouter.ai/zh-CN/blog/claude-mythos-5-vs-deepseek-v4-pro",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-10-16T20:49:18+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Claude Mythos 5 对比 DeepSeek V4 Pro：15 倍价格差距，而只有其中一个在自身擅长之处才称得上便宜 OrcaRouter",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "16262a2dc8eb533a",
+      "title": "xAI’s Grok Voice 3.0 Brings AI Phone Agents To $0.08 A Minute - Minonline",
+      "link": "https://www.selfemployed.com/news/xai-grok-voice-3-phone-agent-pricing-2026/",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-10-16T20:32:30+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "xAI’s Grok Voice 3.0 Brings AI Phone Agents To $0.08 A Minute Minonline",
+      "why": "",
+      "tags": [
+        "agent"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "c9fe9cae098bc36a",
+      "title": "征服“最魔鬼环岛”，奇瑞JAECOO与Momenta智驾无接管穿越凯旋门|巴黎车展|世界模型|sienna|车辆|通行 - finance.sina.com.cn",
+      "link": "https://finance.sina.cn/2026-10-16/detail-inivmtxi8350426.d.html?vt=4&wm=1029?q",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-10-16T19:18:54+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "征服“最魔鬼环岛”，奇瑞JAECOO与Momenta智驾无接管穿越凯旋门|巴黎车展|世界模型|sienna|车辆|通行 finance.sina.com.cn",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "a2a8b46ace14c50d",
+      "title": "You could have invented transformers from memory",
+      "link": "https://news.ycombinator.com/item?id=50122878",
+      "source": "Hacker News（100+ 分）",
+      "source_id": "hn-algolia",
+      "published": "2026-10-16T19:01:17+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "",
+      "why": "",
+      "tags": [
+        "transformer"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "65442e708214c10b",
+      "title": "How Itaú is building generative AI for its entire customer base",
+      "link": "https://openai.com/index/itau-generative-ai",
+      "source": "OpenAI",
+      "source_id": "openai",
+      "published": "2026-10-16T19:00:00+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "With ia.i, a conversational interface, and the IARA governance platform, Itaú is applying its AI First strategy to customers and employees — in one of Brazil’s…",
+      "why": "",
+      "tags": [],
+      "tracks": []
+    },
+    {
+      "id": "f5519188655b6b49",
+      "title": "生产级大模型平台工程实战手册",
+      "link": "https://www.infoq.cn/article/xQLd004RGWrzFhwqBOyC",
+      "source": "InfoQ 中文",
+      "source_id": "infoq-cn",
+      "published": "2026-10-16T17:00:00+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "点击查看原文>",
+      "why": "",
+      "tags": [
+        "大模型"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "32909e9bf8d61a76",
+      "title": "蔚来Cedar 1.5.8世界模型升级，全新ES8辅助驾驶能力提升 - 新浪网",
+      "link": "https://k.sina.com.cn/article_1736118150_m677b0f86033015w5q.html",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-10-16T16:56:09+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "蔚来Cedar 1.5.8世界模型升级，全新ES8辅助驾驶能力提升 新浪网",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "fe852f38045955e0",
+      "title": "Zephon’s TorchTitan integration preserved identical global batches when a 1B-parameter model resumed from a 16-GPU check",
+      "link": "https://bsky.app/profile/pytorch.org/post/3mxyzbmys2o2v",
+      "source": "Bluesky · PyTorch",
+      "source_id": "bsky-pytorch",
+      "published": "2026-10-16T16:39:00+00:00",
+      "category": "people",
+      "priority": "medium",
+      "summary": "Zephon’s TorchTitan integration preserved identical global batches when a 1B-parameter model resumed from a 16-GPU checkpoint on 8, 32, and 64 GPUs…",
+      "why": "",
+      "tags": [
+        "gpu",
+        "pytorch"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "a9d513a8f0e2cc39",
+      "title": "Bringing Elastically Deterministic Data Loading to TorchTitan with Zephon",
+      "link": "https://pytorch.org/blog/bringing-elastically-deterministic-data-loading-to-torchtitan-with-zephon",
+      "source": "PyTorch Blog",
+      "source_id": "pytorch",
+      "published": "2026-10-16T16:30:46+00:00",
+      "category": "infra",
+      "priority": "medium",
+      "summary": "Why Zephon? The data that a model sees during training is one of the most powerful levers we have for influencing how well it performs…",
+      "why": "",
+      "tags": [
+        "pytorch"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "1dd93289252a2997",
+      "title": "Anthropic’s Claude Opus 5.5 leads AI model standings, user satisfaction key - Crypto Briefing",
+      "link": "https://cryptobriefing.com/anthropics-claude-opus-55-leads-ai-model-standings-user-satisfaction-key/",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-10-16T16:30:08+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Anthropic’s Claude Opus 5.5 leads AI model standings, user satisfaction key Crypto Briefing",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "b8716374c8e5f6ac",
+      "title": "Hands-On Review: ASUS ProArt P14 with NVIDIA RTX Spark — Local AI Video Generation Completes 5 Seconds in About 82 Seconds - BigGo Finance",
+      "link": "https://finance.biggo.com/news/0344e339-6b91-42fb-ade3-b26fc2986a5a",
+      "source": "新闻 · 视频生成（英文）",
+      "source_id": "gnews-video-en",
+      "published": "2026-10-16T16:25:00+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Hands-On Review: ASUS ProArt P14 with NVIDIA RTX Spark — Local AI Video Generation Completes 5 Seconds in About 82 Seconds BigGo Finance",
+      "why": "",
+      "tags": [
+        "video generation"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "ecaf11101ff196d7",
+      "title": "Ray All the Way Down: A Heterogeneous, Elastic PyTorch Training Stack at LinkedIn Join Tommy Li and Tao Huang from Linke",
+      "link": "https://bsky.app/profile/pytorch.org/post/3mxyx5koths26",
+      "source": "Bluesky · PyTorch",
+      "source_id": "bsky-pytorch",
+      "published": "2026-10-16T16:01:00+00:00",
+      "category": "people",
+      "priority": "medium",
+      "summary": "Ray All the Way Down: A Heterogeneous, Elastic PyTorch Training Stack at LinkedIn Join Tommy Li and Tao Huang from LinkedIn at PyTorch Conference North America…",
+      "why": "",
+      "tags": [
+        "pytorch"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "84964a38a27a7700",
+      "title": "Claude Code could spend your credits on a summary by the model you were leaving, until 2.1.301 - MIXED Reality News",
+      "link": "https://mixed-news.com/en/claude-code-2-1-301-model-switch-summary-usage-credits/",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-10-16T15:18:50+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Claude Code could spend your credits on a summary by the model you were leaving, until 2.1.301 MIXED Reality News",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "7ad9717e33fc9cc7",
+      "title": "优必选Thinker-WM斩获三大具身世界模型基准第一名 - 搜狐网",
+      "link": "https://www.sohu.com/a/1088759655_120988576?scm=10001.325_13-325_13.0.0-0-0-0-0.5_1334",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-10-16T15:05:41+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "优必选Thinker-WM斩获三大具身世界模型基准第一名 搜狐网",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "30aafdac8b0ac994",
+      "title": "Big Fish: Exploiting a 37-Year-Old Kernel Bug in OpenBSD",
+      "link": "https://news.ycombinator.com/item?id=50118977",
+      "source": "Hacker News（100+ 分）",
+      "source_id": "hn-algolia",
+      "published": "2026-10-16T14:44:02+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "",
+      "why": "",
+      "tags": [
+        "kernel"
+      ],
+      "tracks": []
+    }
+  ]
+}
