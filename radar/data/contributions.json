@@ -1,6 +1,6 @@
 {
-  "updated": "2026-10-15T05:57:22+00:00",
-  "model": "LongCat-2.0（3 个仓库的 18 个阶段降级到 gemini-3.1-pro-preview）",
+  "updated": "2026-10-19T06:18:54+00:00",
+  "model": "",
   "repos": [
     {
       "repo": "sgl-project/sglang",
@@ -2974,7 +2974,8 @@
         "entry": "LongCat-2.0",
         "tasks": "LongCat-2.0"
       },
-      "model": "LongCat-2.0"
+      "model": "LongCat-2.0",
+      "stale": true
     },
     {
       "repo": "sgl-project/sglang-omni",
@@ -19300,7 +19301,8 @@
         "entry": "LongCat-2.0",
         "tasks": "LongCat-2.0"
       },
-      "model": "LongCat-2.0"
+      "model": "LongCat-2.0",
+      "stale": true
     },
     {
       "repo": "tile-ai/tilelang",
@@ -21984,7 +21986,8 @@
         "entry": "LongCat-2.0",
         "tasks": "LongCat-2.0"
       },
-      "model": "LongCat-2.0"
+      "model": "LongCat-2.0",
+      "stale": true
     },
     {
       "repo": "huggingface/diffusers",
@@ -24598,7 +24601,8 @@
         "entry": "LongCat-2.0",
         "tasks": "LongCat-2.0"
       },
-      "model": "LongCat-2.0"
+      "model": "LongCat-2.0",
+      "stale": true
     },
     {
       "repo": "hao-ai-lab/FastVideo",
@@ -29879,7 +29883,8 @@
         "entry": "LongCat-2.0",
         "tasks": "LongCat-2.0"
       },
-      "model": "LongCat-2.0"
+      "model": "LongCat-2.0",
+      "stale": true
     },
     {
       "repo": "JeffreyXiang/FlexGEMM",
@@ -35537,7 +35542,55 @@
   ],
   "failures": [
     {
+      "repo": "sgl-project/sglang",
+      "error": "RuntimeError: LLMChapterFailed:positioning"
+    },
+    {
       "repo": "sgl-project/sglang-omni",
+      "error": "RuntimeError: LLMChapterFailed:positioning"
+    },
+    {
+      "repo": "vllm-project/vllm",
+      "error": "RuntimeError: LLMChapterFailed:positioning"
+    },
+    {
+      "repo": "flashinfer-ai/flashinfer",
+      "error": "RuntimeError: LLMChapterFailed:positioning"
+    },
+    {
+      "repo": "Dao-AILab/flash-attention",
+      "error": "RuntimeError: LLMChapterFailed:positioning"
+    },
+    {
+      "repo": "tile-ai/tilelang",
+      "error": "RuntimeError: LLMChapterFailed:positioning"
+    },
+    {
+      "repo": "huggingface/diffusers",
+      "error": "RuntimeError: LLMChapterFailed:positioning"
+    },
+    {
+      "repo": "hao-ai-lab/FastVideo",
+      "error": "RuntimeError: LLMChapterFailed:positioning"
+    },
+    {
+      "repo": "thu-ml/TurboDiffusion",
+      "error": "RuntimeError: LLMChapterFailed:positioning"
+    },
+    {
+      "repo": "modelscope/DiffSynth-Engine",
+      "error": "RuntimeError: LLMChapterFailed:positioning"
+    },
+    {
+      "repo": "JeffreyXiang/FlexGEMM",
+      "error": "RuntimeError: LLMChapterFailed:positioning"
+    },
+    {
+      "repo": "NVIDIA-NeMo/labs-molt",
+      "error": "RuntimeError: LLMChapterFailed:positioning"
+    },
+    {
+      "repo": "RightNow-AI/autokernel",
       "error": "RuntimeError: LLMChapterFailed:positioning"
     },
     {
