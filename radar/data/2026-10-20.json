@@ -1,0 +1,954 @@
+{
+  "date": "2026-10-20",
+  "generated_at": "2026-10-20T01:50:44+00:00",
+  "ai": false,
+  "model": "",
+  "sources": [
+    {
+      "id": "openai",
+      "name": "OpenAI",
+      "ok": true,
+      "count": 1,
+      "total": 1300,
+      "error": ""
+    },
+    {
+      "id": "google-ai",
+      "name": "Google AI Blog",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "qwen",
+      "name": "Qwen",
+      "ok": true,
+      "count": 0,
+      "total": 44,
+      "error": ""
+    },
+    {
+      "id": "hf-blog",
+      "name": "Hugging Face Blog",
+      "ok": true,
+      "count": 1,
+      "total": 882,
+      "error": ""
+    },
+    {
+      "id": "nvidia-dev",
+      "name": "NVIDIA Technical Blog",
+      "ok": true,
+      "count": 1,
+      "total": 100,
+      "error": ""
+    },
+    {
+      "id": "hf-papers",
+      "name": "HF Papers 日榜",
+      "ok": true,
+      "count": 8,
+      "total": 32,
+      "error": ""
+    },
+    {
+      "id": "pytorch",
+      "name": "PyTorch Blog",
+      "ok": true,
+      "count": 2,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "simonw",
+      "name": "Simon Willison",
+      "ok": true,
+      "count": 1,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "lilianweng",
+      "name": "Lil'Log",
+      "ok": true,
+      "count": 0,
+      "total": 53,
+      "error": ""
+    },
+    {
+      "id": "interconnects",
+      "name": "Interconnects",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "raschka",
+      "name": "Sebastian Raschka",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "chiphuyen",
+      "name": "Chip Huyen",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-pytorch",
+      "name": "Release · PyTorch",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-triton",
+      "name": "Release · Triton",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-cutlass",
+      "name": "Release · CUTLASS",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-flash-attention",
+      "name": "Release · FlashAttention",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-vllm",
+      "name": "Release · vLLM",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-sglang",
+      "name": "Release · SGLang",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-tensorrt-llm",
+      "name": "Release · TensorRT-LLM",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-diffusers",
+      "name": "Release · Diffusers",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-cuda-python",
+      "name": "Release · cuda-python",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "gnews-labs-en",
+      "name": "新闻 · Anthropic / Mistral / xAI",
+      "ok": true,
+      "count": 16,
+      "total": 84,
+      "error": ""
+    },
+    {
+      "id": "gnews-labs-cn",
+      "name": "新闻 · 国内模型公司",
+      "ok": true,
+      "count": 34,
+      "total": 100,
+      "error": ""
+    },
+    {
+      "id": "qbitai",
+      "name": "量子位",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "infoq-cn",
+      "name": "InfoQ 中文",
+      "ok": true,
+      "count": 1,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "thonking",
+      "name": "Horace He (thonking)",
+      "ok": true,
+      "count": 0,
+      "total": 6,
+      "error": ""
+    },
+    {
+      "id": "hn-algolia",
+      "name": "Hacker News（100+ 分）",
+      "ok": true,
+      "count": 5,
+      "total": 60,
+      "error": ""
+    },
+    {
+      "id": "karpathy-blog",
+      "name": "Andrej Karpathy 博客",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "eugeneyan",
+      "name": "Eugene Yan",
+      "ok": true,
+      "count": 0,
+      "total": 212,
+      "error": ""
+    },
+    {
+      "id": "importai",
+      "name": "Import AI（Jack Clark）",
+      "ok": true,
+      "count": 1,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "latentspace",
+      "name": "Latent Space",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "semianalysis",
+      "name": "SemiAnalysis",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "meta-ai",
+      "name": "Meta Engineering",
+      "ok": true,
+      "count": 3,
+      "total": 9,
+      "error": ""
+    },
+    {
+      "id": "mistral-news",
+      "name": "Mistral AI",
+      "ok": true,
+      "count": 0,
+      "total": 90,
+      "error": ""
+    },
+    {
+      "id": "bsky-karpathy",
+      "name": "Bluesky · Andrej Karpathy",
+      "ok": true,
+      "count": 0,
+      "total": 15,
+      "error": ""
+    },
+    {
+      "id": "bsky-giffmana",
+      "name": "Bluesky · Lucas Beyer",
+      "ok": true,
+      "count": 0,
+      "total": 22,
+      "error": ""
+    },
+    {
+      "id": "bsky-hardmaru",
+      "name": "Bluesky · hardmaru",
+      "ok": true,
+      "count": 0,
+      "total": 15,
+      "error": ""
+    },
+    {
+      "id": "bsky-swyx",
+      "name": "Bluesky · swyx",
+      "ok": true,
+      "count": 0,
+      "total": 3,
+      "error": ""
+    },
+    {
+      "id": "bsky-pytorch",
+      "name": "Bluesky · PyTorch",
+      "ok": true,
+      "count": 3,
+      "total": 29,
+      "error": ""
+    },
+    {
+      "id": "bsky-clem",
+      "name": "Bluesky · Clem Delangue",
+      "ok": true,
+      "count": 0,
+      "total": 11,
+      "error": ""
+    },
+    {
+      "id": "bsky-natolambert",
+      "name": "Bluesky · Nathan Lambert",
+      "ok": true,
+      "count": 0,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "bsky-rasbt",
+      "name": "Bluesky · Sebastian Raschka",
+      "ok": true,
+      "count": 0,
+      "total": 27,
+      "error": ""
+    },
+    {
+      "id": "bsky-jeffdean",
+      "name": "Bluesky · Jeff Dean",
+      "ok": true,
+      "count": 0,
+      "total": 18,
+      "error": ""
+    },
+    {
+      "id": "hf-trending-new",
+      "name": "HF 热榜新模型",
+      "ok": true,
+      "count": 3,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "gh-new-stars",
+      "name": "GitHub 新星仓库",
+      "ok": true,
+      "count": 1,
+      "total": 15,
+      "error": ""
+    },
+    {
+      "id": "hf-t2v",
+      "name": "HF 热榜 · 文生视频",
+      "ok": true,
+      "count": 0,
+      "total": 18,
+      "error": ""
+    },
+    {
+      "id": "hf-i2v",
+      "name": "HF 热榜 · 图生视频",
+      "ok": true,
+      "count": 2,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "gnews-video-en",
+      "name": "新闻 · 视频生成（英文）",
+      "ok": true,
+      "count": 11,
+      "total": 21,
+      "error": ""
+    },
+    {
+      "id": "gnews-video-cn",
+      "name": "新闻 · 视频生成（中文）",
+      "ok": true,
+      "count": 38,
+      "total": 50,
+      "error": ""
+    },
+    {
+      "id": "gnews-world-en",
+      "name": "新闻 · 世界模型（英文）",
+      "ok": true,
+      "count": 5,
+      "total": 46,
+      "error": ""
+    },
+    {
+      "id": "gnews-world-cn",
+      "name": "新闻 · 世界模型（中文）",
+      "ok": true,
+      "count": 36,
+      "total": 76,
+      "error": ""
+    },
+    {
+      "id": "gh-new-video-world",
+      "name": "GitHub 新仓库 · 视频 / 世界模型",
+      "ok": true,
+      "count": 1,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "arxiv-cscv",
+      "name": "arXiv cs.CV（专题）",
+      "ok": true,
+      "count": 15,
+      "total": 201,
+      "error": ""
+    },
+    {
+      "id": "arxiv-csro",
+      "name": "arXiv cs.RO（专题）",
+      "ok": true,
+      "count": 8,
+      "total": 121,
+      "error": ""
+    }
+  ],
+  "counts": {
+    "high": 10,
+    "medium": 20,
+    "low": 0
+  },
+  "items": [
+    {
+      "id": "ceef95f7c58b9540",
+      "title": "当AI Agent学会自己修改自己的想法：一个关于\"世界模型\"的新答案 - 科技行者",
+      "link": "https://www.techwalker.com/2026/1020/3202789.shtml",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-10-20T01:24:00+00:00",
+      "category": "research",
+      "priority": "high",
+      "summary": "当AI Agent学会自己修改自己的想法：一个关于\"世界模型\"的新答案 科技行者",
+      "why": "",
+      "tags": [
+        "vae",
+        "agent"
+      ],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "5f2fc73f1773db87",
+      "title": "MiniMax发布M3.1 Flash模型：Agentic任务与编程能力跃升，推理提速3倍、成本降低70% - SmartHey",
+      "link": "https://www.smarthey.com/detail/188084303902.html",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-10-20T00:39:00+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "MiniMax发布M3.1 Flash模型：Agentic任务与编程能力跃升，推理提速3倍、成本降低70% SmartHey",
+      "why": "",
+      "tags": [
+        "agent",
+        "agentic"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "dc049827c4477d3e",
+      "title": "豆包刘星：“国内超一半算力在造爽剧”的说法不靠谱，字节只有约10%算力用于视频生成模型的训练和推理 - 新浪财经",
+      "link": "https://finance.sina.cn/stock/ggyj/2026-10-19/detail-inivtuep7606227.d.html?oid=%E9%AB%98%E4%BB%BF%E8%92%82%E8%8A%99%E5%B0%BC%E6%88%92%E6%8C%87%E2%95%90%E5%BE%AE%E4%BF%A1198099199%E2%95%90edb5&vt=4&cid=76524&node_id=76524",
+      "source": "新闻 · 视频生成（中文）",
+      "source_id": "gnews-video-cn",
+      "published": "2026-10-19T22:55:21+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "豆包刘星：“国内超一半算力在造爽剧”的说法不靠谱，字节只有约10%算力用于视频生成模型的训练和推理 新浪财经",
+      "why": "",
+      "tags": [
+        "生成模型",
+        "视频生成",
+        "3D"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "7e0fd41115029f61",
+      "title": "豆包刘星回应“国内超一半算力造爽剧”；MiniMax M3.1 Flash上线｜未来商业早参 - www.mrjjxw.com",
+      "link": "https://www.mrjjxw.com/articles/2026-10-19/4608758.html",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-10-19T22:30:03+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "豆包刘星回应“国内超一半算力造爽剧”；MiniMax M3.1 Flash上线｜未来商业早参 www.mrjjxw.com",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "b81d55ea3c655bd9",
+      "title": "fal launches FLUX 3 Max, claiming 22× faster AI video generation than Seedance 2.5 - VentureBeat",
+      "link": "https://venturebeat.com/technology/fal-launches-flux-3-max-claiming-22-faster-ai-video-generation-than-seedance-2-5",
+      "source": "新闻 · 视频生成（英文）",
+      "source_id": "gnews-video-en",
+      "published": "2026-10-19T22:29:58+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "fal launches FLUX 3 Max, claiming 22× faster AI video generation than Seedance 2.5 VentureBeat",
+      "why": "",
+      "tags": [
+        "video generation",
+        "3D"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "f002effbfcd6cde2",
+      "title": "影响市场重大事件：2026物理AI与世界模型大会将在南京举行；A股迎来首批18只主动ETF，本周五启动发行；潘功胜：将推出非银机构大额赎回流动性支持工具 - https://www.mrjjxw.com/",
+      "link": "https://www.mrjjxw.com/articles/2026-10-19/4608548.html",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-10-19T21:53:50+00:00",
+      "category": "research",
+      "priority": "high",
+      "summary": "影响市场重大事件：2026物理AI与世界模型大会将在南京举行；A股迎来首批18只主动ETF，本周五启动发行；潘功胜：将推出非银机构大额赎回流动性支持工具 https://www.mrjjxw.com/",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "0ebacd81f64e6047",
+      "title": "fal Launches FLUX 3 Max, Delivering #1-Tier Image-to-Video Quality at Industry-Leading Speeds - Morningstar",
+      "link": "https://www.morningstar.com/news/pr-newswire/20261019sf75635/fal-launches-flux-3-max-delivering-1-tier-image-to-video-quality-at-industry-leading-speeds",
+      "source": "新闻 · 视频生成（英文）",
+      "source_id": "gnews-video-en",
+      "published": "2026-10-19T19:46:00+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "fal Launches FLUX 3 Max, Delivering #1-Tier Image-to-Video Quality at Industry-Leading Speeds Morningstar",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "2174304fb5974de1",
+      "title": "MiniMax发布M3.1 Flash，智能体任务成本较前代降低70% - TradingView",
+      "link": "https://fr.tradingview.com/news/panews:4e359c4dce3f9:0/",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-10-19T17:01:17+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "MiniMax发布M3.1 Flash，智能体任务成本较前代降低70% TradingView",
+      "why": "",
+      "tags": [
+        "gpu"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "69508e5e42f53465",
+      "title": "Magai adds ElevenLabs audio and unlimited image and video generation - EIN Presswire",
+      "link": "https://www.einpresswire.com/article/950741652/magai-adds-elevenlabs-audio-and-unlimited-image-and-video-generation",
+      "source": "新闻 · 视频生成（英文）",
+      "source_id": "gnews-video-en",
+      "published": "2026-10-19T17:00:00+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "Magai adds ElevenLabs audio and unlimited image and video generation EIN Presswire",
+      "why": "",
+      "tags": [
+        "video generation",
+        "3D"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "5ef2d198fab01a4a",
+      "title": "News publishers launch copyright suit against AI company Anthropic in Ontario - Toronto Star",
+      "link": "https://www.thestar.com/business/news-publishers-launch-copyright-suit-against-ai-company-anthropic-in-ontario/article_57410e85-35b2-577c-92f8-7c3cb16dd32e.html",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-10-19T16:38:31+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "News publishers launch copyright suit against AI company Anthropic in Ontario Toronto Star",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "b544b778fb0d9cb9",
+      "title": "海外 AI 大佬集体盯上 PixVerse R2！实时世界模型凭什么「又快又强」？ - CSDN博客",
+      "link": "https://blog.csdn.net/weixin_40774379/article/details/168524817",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-10-20T00:57:56+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "海外 AI 大佬集体盯上 PixVerse R2！实时世界模型凭什么「又快又强」？ CSDN博客",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "0447d80d655ed385",
+      "title": "#PyTorchCon starts tomorrow in San Jose to accelerate open intelligence. Explore the program: https://events.linuxfounda",
+      "link": "https://bsky.app/profile/pytorch.org/post/3mybfpllbua2x",
+      "source": "Bluesky · PyTorch",
+      "source_id": "bsky-pytorch",
+      "published": "2026-10-20T00:43:00+00:00",
+      "category": "people",
+      "priority": "medium",
+      "summary": "#PyTorchCon starts tomorrow in San Jose to accelerate open intelligence. Explore the program: https://events.linuxfoundation.org/pytorch-conference-north-americ…",
+      "why": "",
+      "tags": [
+        "pytorch"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "a95b9635542336b1",
+      "title": "美国禁止联邦文职机构使用DeepSeek - 8world",
+      "link": "https://www.8world.com/world/us-banning-chinese-ai-deepseek-government-agency-it-systems-3314721",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-10-20T00:36:54+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "美国禁止联邦文职机构使用DeepSeek 8world",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "cc5e9bff2390b916",
+      "title": "Jeff Dean投的模拟果蝇+世界模型，估值破百亿 - 搜狐",
+      "link": "https://m.sohu.com/a/1089971045_610300?scm=10001.325_13-325_13.0.0-0-0-0-0.5_1334",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-10-20T00:08:03+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "Jeff Dean投的模拟果蝇+世界模型，估值破百亿 搜狐",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "5258937afd1b1f34",
+      "title": "中信建投：国产模型迭代推动需求增长关注企业级AI应用、算力服务等_券商最新研判 - 证券之星",
+      "link": "https://stock.stockstar.com/IG2026102000005350.shtml",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-10-20T00:07:47+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "中信建投：国产模型迭代推动需求增长关注企业级AI应用、算力服务等_券商最新研判 证券之星",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "7790f57bd5072437",
+      "title": "大模型竞逐智能体时代！MiniMax上新价格降七成 多只概念股Q3业绩“报喜”(名单) - 东方财富",
+      "link": "https://wap.eastmoney.com/a/202610203900485117.html",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-10-19T23:55:17+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "大模型竞逐智能体时代！MiniMax上新价格降七成 多只概念股Q3业绩“报喜”(名单) 东方财富",
+      "why": "",
+      "tags": [
+        "大模型"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "60019a881c2f0f97",
+      "title": "央行扩大常备借贷便利的适用机构范围等系列措施；英伟达GTC大会聚焦物理AI（Physical AI）、机器人等方向；2026物理AI与世界模型大会将在南京举行；特朗普“金穹”项目授出合同，SpaceX国防业务组合激增——《投资早参》 - https://www.mrjjxw.com/",
+      "link": "https://www.mrjjxw.com/articles/2026-10-20/4609045.html",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-10-19T23:42:06+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "央行扩大常备借贷便利的适用机构范围等系列措施；英伟达GTC大会聚焦物理AI（Physical AI）、机器人等方向；2026物理AI与世界模型大会将在南京举行；特朗普“金穹”项目授出合同，SpaceX国防业务组合激增——《投资早参》 https://www.mrjjxw.com/",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "2e848d2726bf6ad7",
+      "title": "Skyfall AI Unveils Frontier Engineering World Model SKY-001 - AI Insider",
+      "link": "https://theaiinsider.tech/2026/10/19/skyfall-ai-unveils-frontier-engineering-world-model-sky-001/",
+      "source": "新闻 · 世界模型（英文）",
+      "source_id": "gnews-world-en",
+      "published": "2026-10-19T21:14:06+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "Skyfall AI Unveils Frontier Engineering World Model SKY-001 AI Insider",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "f9fffd818c09593b",
+      "title": "Skyfall AI Unveils SKY-001: A Frontier Engineering World Model - WebWire",
+      "link": "https://www.webwire.com/ViewPressRel.asp?aId=363053",
+      "source": "新闻 · 世界模型（英文）",
+      "source_id": "gnews-world-en",
+      "published": "2026-10-19T20:37:04+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "Skyfall AI Unveils SKY-001: A Frontier Engineering World Model WebWire",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "8656ab601b29481f",
+      "title": "DeepSeek、MiniMax出手，国产AI大模型“新战场”来了 - 新浪财经",
+      "link": "https://finance.sina.cn/stock/jdts/2026-10-19/detail-inivurkc7761122.d.html?vt=4&cid=76993&node_id=76993",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-10-19T20:35:55+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "DeepSeek、MiniMax出手，国产AI大模型“新战场”来了 新浪财经",
+      "why": "",
+      "tags": [
+        "moe",
+        "llm",
+        "大模型"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "16db957204a8af52",
+      "title": "美国土安全部下令，禁止联邦机构采购使用中国深度求索产品 - 美国之音",
+      "link": "https://www.voachinese.com/amp/dhs-banning-chinese-ai-deepseek-from-government-agency-it-systems-20261019/8212963.html",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-10-19T20:14:39+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "美国土安全部下令，禁止联邦机构采购使用中国深度求索产品 美国之音",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "91b6d6f3322f12aa",
+      "title": "Skyfall AI Introduces SKY-001, a Frontier Engineering World Model - citybiz",
+      "link": "https://www.citybiz.co/article/920973/skyfall-ai-introduces-sky-001-a-frontier-engineering-world-model/",
+      "source": "新闻 · 世界模型（英文）",
+      "source_id": "gnews-world-en",
+      "published": "2026-10-19T19:50:59+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "Skyfall AI Introduces SKY-001, a Frontier Engineering World Model citybiz",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "14eb1e908da72839",
+      "title": "公司世界模型：AI 的下一站，从数字员工到“联合创始人” - https://www.80aj.com/",
+      "link": "https://www.80aj.com/2026/10/20/ai-company-model-next-step/",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-10-19T19:48:46+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "公司世界模型：AI 的下一站，从数字员工到“联合创始人” https://www.80aj.com/",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "5d44067f2d19c9de",
+      "title": "Accelerating Mamba-2 with High-Performance Forward Pass Kernels in NVIDIA CUDA Tile",
+      "link": "https://developer.nvidia.com/blog/accelerating-mamba-2-with-high-performance-forward-pass-kernels-in-nvidia-cuda-tile",
+      "source": "NVIDIA Technical Blog",
+      "source_id": "nvidia-dev",
+      "published": "2026-10-19T19:29:30+00:00",
+      "category": "infra",
+      "priority": "medium",
+      "summary": "NVIDIA CUDA Tile (cuTile) is a Python-based DSL and parallel programming model for NVIDIA GPUs that automatically leverages advanced hardware capabilities to...",
+      "why": "",
+      "tags": [
+        "cuda",
+        "kernel"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "88e4b5cb48c63972",
+      "title": "ZenMux Adds MiniMax H3 Fast for Short-Form Video Generation - Kitsap Sun",
+      "link": "https://www.kitsapsun.com/press-release/story/813918/zenmux-adds-minimax-h3-fast-for-short-form-video-generation/",
+      "source": "新闻 · 视频生成（英文）",
+      "source_id": "gnews-video-en",
+      "published": "2026-10-19T18:31:50+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "ZenMux Adds MiniMax H3 Fast for Short-Form Video Generation Kitsap Sun",
+      "why": "",
+      "tags": [
+        "video generation"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "062781d5ba654215",
+      "title": "前华为车BU世界模型基模负责人创业，杭州具身大脑公司获近亿元融资|具身智能|杭州市|浙江省|机器人|数据 - 新浪新闻",
+      "link": "https://news.sina.com.cn/sx/2026-10-19/detail-inivueuh0915536.shtml",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-10-19T18:04:00+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "前华为车BU世界模型基模负责人创业，杭州具身大脑公司获近亿元融资|具身智能|杭州市|浙江省|机器人|数据 新浪新闻",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "36474236ebef80e6",
+      "title": "AMD Ryzen AI Halo Review - Local-AI Powerhouse with 128 GB of Memory - Video Generation - TechPowerUp",
+      "link": "https://www.techpowerup.com/review/amd-ryzen-ai-max-395-strix-halo-mini-pc/11.html",
+      "source": "新闻 · 视频生成（英文）",
+      "source_id": "gnews-video-en",
+      "published": "2026-10-19T18:00:01+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "AMD Ryzen AI Halo Review - Local-AI Powerhouse with 128 GB of Memory - Video Generation TechPowerUp",
+      "why": "",
+      "tags": [
+        "video generation"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "fd4c11c1c0648cdf",
+      "title": "什么是物理 AI（Physical AI）及其工作原理，数据、世界模型与机器人 - Pasquale Pillitteri",
+      "link": "https://pasqualepillitteri.it/zh/news/25696/wuli-ai-physical-ai-shi-shenme",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-10-19T17:31:06+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "什么是物理 AI（Physical AI）及其工作原理，数据、世界模型与机器人 Pasquale Pillitteri",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "7f42649841d53617",
+      "title": "Seedance 2.5 API Setup: Generate AI Video, 13 Steps [2026] - https://tech-insider.org/",
+      "link": "https://tech-insider.org/seedance-2-5-api-setup-ai-video-2026/",
+      "source": "新闻 · 视频生成（英文）",
+      "source_id": "gnews-video-en",
+      "published": "2026-10-19T17:29:49+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Seedance 2.5 API Setup: Generate AI Video, 13 Steps [2026] https://tech-insider.org/",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "c84825c830d50370",
+      "title": "Mercury 3: Diffusion at scale",
+      "link": "https://news.ycombinator.com/item?id=50155245",
+      "source": "Hacker News（100+ 分）",
+      "source_id": "hn-algolia",
+      "published": "2026-10-19T17:27:11+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "",
+      "why": "",
+      "tags": [
+        "diffusion"
+      ],
+      "tracks": []
+    }
+  ]
+}
