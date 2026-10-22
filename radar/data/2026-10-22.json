@@ -1,0 +1,933 @@
+{
+  "date": "2026-10-22",
+  "generated_at": "2026-10-22T01:32:23+00:00",
+  "ai": false,
+  "model": "",
+  "sources": [
+    {
+      "id": "openai",
+      "name": "OpenAI",
+      "ok": true,
+      "count": 9,
+      "total": 1312,
+      "error": ""
+    },
+    {
+      "id": "google-ai",
+      "name": "Google AI Blog",
+      "ok": true,
+      "count": 1,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "qwen",
+      "name": "Qwen",
+      "ok": true,
+      "count": 0,
+      "total": 44,
+      "error": ""
+    },
+    {
+      "id": "hf-blog",
+      "name": "Hugging Face Blog",
+      "ok": true,
+      "count": 4,
+      "total": 888,
+      "error": ""
+    },
+    {
+      "id": "nvidia-dev",
+      "name": "NVIDIA Technical Blog",
+      "ok": true,
+      "count": 4,
+      "total": 100,
+      "error": ""
+    },
+    {
+      "id": "hf-papers",
+      "name": "HF Papers 日榜",
+      "ok": true,
+      "count": 25,
+      "total": 35,
+      "error": ""
+    },
+    {
+      "id": "pytorch",
+      "name": "PyTorch Blog",
+      "ok": true,
+      "count": 2,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "simonw",
+      "name": "Simon Willison",
+      "ok": true,
+      "count": 0,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "lilianweng",
+      "name": "Lil'Log",
+      "ok": true,
+      "count": 0,
+      "total": 53,
+      "error": ""
+    },
+    {
+      "id": "interconnects",
+      "name": "Interconnects",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "raschka",
+      "name": "Sebastian Raschka",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "chiphuyen",
+      "name": "Chip Huyen",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-pytorch",
+      "name": "Release · PyTorch",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-triton",
+      "name": "Release · Triton",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-cutlass",
+      "name": "Release · CUTLASS",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-flash-attention",
+      "name": "Release · FlashAttention",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-vllm",
+      "name": "Release · vLLM",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-sglang",
+      "name": "Release · SGLang",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-tensorrt-llm",
+      "name": "Release · TensorRT-LLM",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-diffusers",
+      "name": "Release · Diffusers",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-cuda-python",
+      "name": "Release · cuda-python",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "gnews-labs-en",
+      "name": "新闻 · Anthropic / Mistral / xAI",
+      "ok": true,
+      "count": 19,
+      "total": 77,
+      "error": ""
+    },
+    {
+      "id": "gnews-labs-cn",
+      "name": "新闻 · 国内模型公司",
+      "ok": true,
+      "count": 13,
+      "total": 90,
+      "error": ""
+    },
+    {
+      "id": "qbitai",
+      "name": "量子位",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "infoq-cn",
+      "name": "InfoQ 中文",
+      "ok": true,
+      "count": 3,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "thonking",
+      "name": "Horace He (thonking)",
+      "ok": true,
+      "count": 0,
+      "total": 6,
+      "error": ""
+    },
+    {
+      "id": "hn-algolia",
+      "name": "Hacker News（100+ 分）",
+      "ok": true,
+      "count": 3,
+      "total": 60,
+      "error": ""
+    },
+    {
+      "id": "karpathy-blog",
+      "name": "Andrej Karpathy 博客",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "eugeneyan",
+      "name": "Eugene Yan",
+      "ok": true,
+      "count": 0,
+      "total": 212,
+      "error": ""
+    },
+    {
+      "id": "importai",
+      "name": "Import AI（Jack Clark）",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "latentspace",
+      "name": "Latent Space",
+      "ok": true,
+      "count": 3,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "semianalysis",
+      "name": "SemiAnalysis",
+      "ok": false,
+      "count": 0,
+      "total": 0,
+      "error": "HTTP Error 403: Forbidden"
+    },
+    {
+      "id": "meta-ai",
+      "name": "Meta Engineering",
+      "ok": true,
+      "count": 0,
+      "total": 9,
+      "error": ""
+    },
+    {
+      "id": "mistral-news",
+      "name": "Mistral AI",
+      "ok": true,
+      "count": 1,
+      "total": 92,
+      "error": ""
+    },
+    {
+      "id": "bsky-karpathy",
+      "name": "Bluesky · Andrej Karpathy",
+      "ok": true,
+      "count": 0,
+      "total": 15,
+      "error": ""
+    },
+    {
+      "id": "bsky-giffmana",
+      "name": "Bluesky · Lucas Beyer",
+      "ok": true,
+      "count": 0,
+      "total": 22,
+      "error": ""
+    },
+    {
+      "id": "bsky-hardmaru",
+      "name": "Bluesky · hardmaru",
+      "ok": true,
+      "count": 0,
+      "total": 15,
+      "error": ""
+    },
+    {
+      "id": "bsky-swyx",
+      "name": "Bluesky · swyx",
+      "ok": true,
+      "count": 0,
+      "total": 3,
+      "error": ""
+    },
+    {
+      "id": "bsky-pytorch",
+      "name": "Bluesky · PyTorch",
+      "ok": true,
+      "count": 3,
+      "total": 29,
+      "error": ""
+    },
+    {
+      "id": "bsky-clem",
+      "name": "Bluesky · Clem Delangue",
+      "ok": true,
+      "count": 0,
+      "total": 11,
+      "error": ""
+    },
+    {
+      "id": "bsky-natolambert",
+      "name": "Bluesky · Nathan Lambert",
+      "ok": true,
+      "count": 0,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "bsky-rasbt",
+      "name": "Bluesky · Sebastian Raschka",
+      "ok": true,
+      "count": 0,
+      "total": 27,
+      "error": ""
+    },
+    {
+      "id": "bsky-jeffdean",
+      "name": "Bluesky · Jeff Dean",
+      "ok": true,
+      "count": 0,
+      "total": 18,
+      "error": ""
+    },
+    {
+      "id": "hf-trending-new",
+      "name": "HF 热榜新模型",
+      "ok": true,
+      "count": 2,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "gh-new-stars",
+      "name": "GitHub 新星仓库",
+      "ok": true,
+      "count": 0,
+      "total": 15,
+      "error": ""
+    },
+    {
+      "id": "hf-t2v",
+      "name": "HF 热榜 · 文生视频",
+      "ok": true,
+      "count": 1,
+      "total": 19,
+      "error": ""
+    },
+    {
+      "id": "hf-i2v",
+      "name": "HF 热榜 · 图生视频",
+      "ok": true,
+      "count": 1,
+      "total": 19,
+      "error": ""
+    },
+    {
+      "id": "gnews-video-en",
+      "name": "新闻 · 视频生成（英文）",
+      "ok": true,
+      "count": 3,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "gnews-video-cn",
+      "name": "新闻 · 视频生成（中文）",
+      "ok": true,
+      "count": 6,
+      "total": 35,
+      "error": ""
+    },
+    {
+      "id": "gnews-world-en",
+      "name": "新闻 · 世界模型（英文）",
+      "ok": true,
+      "count": 2,
+      "total": 39,
+      "error": ""
+    },
+    {
+      "id": "gnews-world-cn",
+      "name": "新闻 · 世界模型（中文）",
+      "ok": true,
+      "count": 42,
+      "total": 100,
+      "error": ""
+    },
+    {
+      "id": "gh-new-video-world",
+      "name": "GitHub 新仓库 · 视频 / 世界模型",
+      "ok": true,
+      "count": 2,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "arxiv-cscv",
+      "name": "arXiv cs.CV（专题）",
+      "ok": true,
+      "count": 26,
+      "total": 287,
+      "error": ""
+    },
+    {
+      "id": "arxiv-csro",
+      "name": "arXiv cs.RO（专题）",
+      "ok": true,
+      "count": 6,
+      "total": 126,
+      "error": ""
+    }
+  ],
+  "counts": {
+    "high": 10,
+    "medium": 20,
+    "low": 0
+  },
+  "items": [
+    {
+      "id": "e70a5eb44061a42f",
+      "title": "Meta首席财务官：广告主对我们视频生成功能的采用率环比增长25% - Moomoo",
+      "link": "https://www.moomoo.com/hans/news/flash/1001914439/meta-cfo-advertiser-adoption-of-our-video-generation-features-grew",
+      "source": "新闻 · 视频生成（中文）",
+      "source_id": "gnews-video-cn",
+      "published": "2026-10-21T21:55:02+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "Meta首席财务官：广告主对我们视频生成功能的采用率环比增长25% Moomoo",
+      "why": "",
+      "tags": [
+        "视频生成",
+        "3D"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "522f9d89f5bfb1bf",
+      "title": "Anthropic Launches Claude Duet, a Proactive AI Agent That Works in the Background - BigGo Finance",
+      "link": "https://finance.biggo.com/news/c638ccac-a928-4bc6-8999-8cfe7d334e28",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-10-21T21:05:00+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "Anthropic Launches Claude Duet, a Proactive AI Agent That Works in the Background BigGo Finance",
+      "why": "",
+      "tags": [
+        "agent"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "e3c3cc4af07e8364",
+      "title": "Anthropic launches Claude Duet, its answer to Meta and OpenAI's personal agents - Business Insider",
+      "link": "https://www.businessinsider.com/anthropic-answers-meta-openai-new-personal-agent-claude-duet-2026-10",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-10-21T20:29:00+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "Anthropic launches Claude Duet, its answer to Meta and OpenAI's personal agents Business Insider",
+      "why": "",
+      "tags": [
+        "agent",
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "aba7aba619820c00",
+      "title": "Anthropic Launches Claude Duet AI Agent to Take On Meta and OpenAI - The Tech Buzz",
+      "link": "https://www.techbuzz.ai/articles/anthropic-launches-claude-duet-ai-agent-to-take-on-meta-and-openai",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-10-21T20:08:00+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "Anthropic Launches Claude Duet AI Agent to Take On Meta and OpenAI The Tech Buzz",
+      "why": "",
+      "tags": [
+        "agent"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "bc5af1d4c35910a1",
+      "title": "TorchTitan Update: New SOTA Models, Performance at Scale, TitanRL",
+      "link": "https://pytorch.org/blog/torchtitan-update-new-sota-models-performance-at-scale-titanrl",
+      "source": "PyTorch Blog",
+      "source_id": "pytorch",
+      "published": "2026-10-21T19:45:44+00:00",
+      "category": "infra",
+      "priority": "high",
+      "summary": "TorchTitan is a PyTorch-native platform for rapid experimentation and large-scale pre- and post-training of generative AI models…",
+      "why": "",
+      "tags": [
+        "pytorch"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "306b57124ffdfcb8",
+      "title": "Anthropic May Release IPO Filing as Early as Friday, With Potential to Top SpaceX in Record Listing - bloomingbit",
+      "link": "https://en.bloomingbit.io/feed/news/122680",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-10-21T18:45:40+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "Anthropic May Release IPO Filing as Early as Friday, With Potential to Top SpaceX in Record Listing bloomingbit",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "49e2843d6821adc8",
+      "title": "FlyDSL, an open source Python kernel DSL, now plugs into PyTorch on AMD MI350-series GPUs via torch.compile and eager mo",
+      "link": "https://bsky.app/profile/pytorch.org/post/3myfq4pnd7k2h",
+      "source": "Bluesky · PyTorch",
+      "source_id": "bsky-pytorch",
+      "published": "2026-10-21T18:00:00+00:00",
+      "category": "people",
+      "priority": "high",
+      "summary": "FlyDSL, an open source Python kernel DSL, now plugs into PyTorch on AMD MI350-series GPUs via torch.compile and eager mode…",
+      "why": "",
+      "tags": [
+        "kernel",
+        "gpu",
+        "llm",
+        "pytorch"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "0c9b2b5ba6ce25b2",
+      "title": "Accelerating PyTorch on AMD GPUs with FlyDSL",
+      "link": "https://pytorch.org/blog/accelerating-pytorch-on-amd-gpus-with-flydsl",
+      "source": "PyTorch Blog",
+      "source_id": "pytorch",
+      "published": "2026-10-21T17:45:40+00:00",
+      "category": "infra",
+      "priority": "high",
+      "summary": "PyTorch users on AMD MI350-series GPUs can now use FlyDSL through existing operator APIs for dense and grouped GEMM, fused multi-head attention…",
+      "why": "",
+      "tags": [
+        "gpu",
+        "fp8",
+        "fp4",
+        "attention"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "dad03ddbcf4aead6",
+      "title": "多榜登顶，跨越仿真、真机与真实场景！无界动力发布并开源MWA-Phoenix隐空间世界模型基座 - 搜狐",
+      "link": "https://m.sohu.com/a/1090859097_122014422?scm=10001.325_13-325_13.0.0-0-0-0-0.5_1334",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-10-21T16:04:33+00:00",
+      "category": "research",
+      "priority": "high",
+      "summary": "多榜登顶，跨越仿真、真机与真实场景！无界动力发布并开源MWA-Phoenix隐空间世界模型基座 搜狐",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "adfb09b1c0905a37",
+      "title": "2026物理AI与世界模型大会|看机器人如何赋能多元场景 - 南京广播电视台",
+      "link": "https://www.nbs.cn/tv/21/2/202610/t20261021_798165.html",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-10-21T13:00:36+00:00",
+      "category": "research",
+      "priority": "high",
+      "summary": "2026物理AI与世界模型大会|看机器人如何赋能多元场景 南京广播电视台",
+      "why": "",
+      "tags": [
+        "llm",
+        "3D"
+      ],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "e654d88d4462c755",
+      "title": "The TorchTitan team landed massive improvements in the past year without losing its minimal, extensible ethos. Enhanceme",
+      "link": "https://bsky.app/profile/pytorch.org/post/3mygdtllt3c2i",
+      "source": "Bluesky · PyTorch",
+      "source_id": "bsky-pytorch",
+      "published": "2026-10-21T23:53:00+00:00",
+      "category": "people",
+      "priority": "medium",
+      "summary": "The TorchTitan team landed massive improvements in the past year without losing its minimal, extensible ethos…",
+      "why": "",
+      "tags": [
+        "pytorch"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "b473db93b5ba3dac",
+      "title": "MiniMax M3.1 Flash数据分析达95%，每题中位耗时3分钟 - quasa.io",
+      "link": "https://quasa.io/zh/media/minimax-m31-flashshu-ju-fen-xi-da-95dai-jie-shi-mei-ti-deng-3fen-zhong",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-10-21T21:31:00+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "MiniMax M3.1 Flash数据分析达95%，每题中位耗时3分钟 quasa.io",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "2ed22a61b2f19a0c",
+      "title": "Broad access through consistent standards",
+      "link": "https://openai.com/index/broad-access-through-consistent-standards",
+      "source": "OpenAI",
+      "source_id": "openai",
+      "published": "2026-10-21T21:00:00+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "How OpenAI works with distribution partners to uphold consistent safeguards, support responsible access, and clarify expectations in our Usage Policies.",
+      "why": "",
+      "tags": [],
+      "tracks": []
+    },
+    {
+      "id": "b01e3f1b07129982",
+      "title": "Anthropic’s answer to Muse is here: Claude Duet, a mobile and desktop AI agent that takes actions proactively - VentureBeat",
+      "link": "https://venturebeat.com/technology/anthropics-answer-to-muse-is-here-claude-duet-a-mobile-and-desktop-ai-agent-that-takes-actions-proactively",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-10-21T20:44:38+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Anthropic’s answer to Muse is here: Claude Duet, a mobile and desktop AI agent that takes actions proactively VentureBeat",
+      "why": "",
+      "tags": [
+        "agent",
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "5820d62dbb81f18c",
+      "title": "Anthropic unveils Claude Duet AI agent app - Reuters",
+      "link": "https://www.reuters.com/technology/anthropic-unveils-claude-duet-ai-agent-app-2026-10-21/",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-10-21T20:25:35+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Anthropic unveils Claude Duet AI agent app Reuters",
+      "why": "",
+      "tags": [
+        "agent"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "189b3441973432c6",
+      "title": "Claude Duet: Anthropic Agent Takes on Muse [2026] - shattered.io",
+      "link": "https://shattered.io/claude-duet-anthropic-ai-agent-opus-5-5-2026/",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-10-21T20:20:09+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Claude Duet: Anthropic Agent Takes on Muse [2026] shattered.io",
+      "why": "",
+      "tags": [
+        "agent"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "c1658bb865beea98",
+      "title": "Claude Duet: Anthropic’s Opus 5.5 Agent Rivals Muse [2026] - https://tech-insider.org/",
+      "link": "https://tech-insider.org/claude-duet-anthropic-opus-5-5-agent-vs-muse-2026/",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-10-21T20:06:59+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Claude Duet: Anthropic’s Opus 5.5 Agent Rivals Muse [2026] https://tech-insider.org/",
+      "why": "",
+      "tags": [
+        "agent"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "fbf52f8930e26211",
+      "title": "Today's Demo Theater at #PyTorchCon, Community Expo: 13 demos from AWS, Baseten, Verda, d-Matrix, Clockwork, Intel, Huaw",
+      "link": "https://bsky.app/profile/pytorch.org/post/3myfwv32fjs2f",
+      "source": "Bluesky · PyTorch",
+      "source_id": "bsky-pytorch",
+      "published": "2026-10-21T20:01:00+00:00",
+      "category": "people",
+      "priority": "medium",
+      "summary": "Today's Demo Theater at #PyTorchCon, Community Expo: 13 demos from AWS, Baseten, Verda, d-Matrix, Clockwork, Intel, Huawei, Lightning AI, Inferact, Lemurian…",
+      "why": "",
+      "tags": [
+        "pytorch"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "3a928764b3c4b0a3",
+      "title": "Developing an AI Factory Digital Twin with an Agent-Assisted Workflow",
+      "link": "https://developer.nvidia.com/blog/developing-an-ai-factory-digital-twin-with-an-agent-assisted-workflow",
+      "source": "NVIDIA Technical Blog",
+      "source_id": "nvidia-dev",
+      "published": "2026-10-21T19:49:30+00:00",
+      "category": "infra",
+      "priority": "medium",
+      "summary": "Building an AI factory digital twin requires developers to bring site plans, equipment assets, and engineering requirements into a consistent model that…",
+      "why": "",
+      "tags": [
+        "agent"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "1c942f1488f69b05",
+      "title": "Anthropic announces Claude Duet, a new proactive AI agent - Crypto Briefing",
+      "link": "https://cryptobriefing.com/anthropic-announces-claude-duet-a-new-proactive-ai-agent/",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-10-21T19:42:39+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Anthropic announces Claude Duet, a new proactive AI agent Crypto Briefing",
+      "why": "",
+      "tags": [
+        "agent"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "947e164980872157",
+      "title": "Anthropic takes on ChatGPT Dots and Meta Muse with Claude Duet - 9to5Mac",
+      "link": "https://9to5mac.com/2026/10/21/anthropic-takes-on-chatgpt-dots-and-meta-muse-with-claude-duet/",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-10-21T19:39:00+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Anthropic takes on ChatGPT Dots and Meta Muse with Claude Duet 9to5Mac",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "2933909e576822fb",
+      "title": "Anthropic unveils Claude Duet, a proactive AI agent for Pro and Max subscribers - Crypto Briefing",
+      "link": "https://cryptobriefing.com/anthropic-unveils-claude-duet-ai-agent/",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-10-21T19:18:26+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Anthropic unveils Claude Duet, a proactive AI agent for Pro and Max subscribers Crypto Briefing",
+      "why": "",
+      "tags": [
+        "agent"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "7104bc51c29585cc",
+      "title": "NVIDIA Kumo Relational Outperforms Supervised Machine Learning on Relational Data, No Training Required",
+      "link": "https://huggingface.co/blog/nvidia/kumo-relational",
+      "source": "Hugging Face Blog",
+      "source_id": "hf-blog",
+      "published": "2026-10-21T18:26:30+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "",
+      "why": "",
+      "tags": [],
+      "tracks": []
+    },
+    {
+      "id": "7ae52ff115b16e65",
+      "title": "Grok 4.7 Is Now in Viktor: What You Need to Know - BASENOR",
+      "link": "https://www.basenor.com/blogs/news/grok-4-7-is-now-in-viktor-what-you-need-to-know",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-10-21T18:08:42+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Grok 4.7 Is Now in Viktor: What You Need to Know BASENOR",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "fba0001a3de7fdb3",
+      "title": "How Specializing the Vocabulary of SLMs Can Cut Inference Cost by 77% in Real Applications",
+      "link": "https://huggingface.co/blog/Dharma-AI/vocabx-vocabulary-specialization",
+      "source": "Hugging Face Blog",
+      "source_id": "hf-blog",
+      "published": "2026-10-21T17:35:36+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "",
+      "why": "",
+      "tags": [
+        "inference"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "d37a12e0a1acfe2e",
+      "title": "李斌：基于世界模型架构+闭环强化学习的蔚来智能辅助驾驶系统，已部署超95万辆智能电动汽车 - 新浪网",
+      "link": "https://k.sina.com.cn/article_1826017320_6cd6d02802001xx90.html?from=tech",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-10-21T17:25:00+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "李斌：基于世界模型架构+闭环强化学习的蔚来智能辅助驾驶系统，已部署超95万辆智能电动汽车 新浪网",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "163db727590b0648",
+      "title": "Model Moats: The Vanishing Weight and the Price of the Watt - Forkast News",
+      "link": "https://forkast.news/model-moats-the-vanishing-weight-and-the-price-of-the-watt/",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-10-21T17:08:09+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Model Moats: The Vanishing Weight and the Price of the Watt Forkast News",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "4ab93569e260b2b0",
+      "title": "How AT&T is rethinking in-house legal work with OpenAI",
+      "link": "https://openai.com/index/att-legal",
+      "source": "OpenAI",
+      "source_id": "openai",
+      "published": "2026-10-21T17:00:00+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "AT&T is working with OpenAI to make legal knowledge easier to access. Learn how its LegalEdge team is rethinking intake and scaling legal judgment.",
+      "why": "",
+      "tags": [],
+      "tracks": []
+    },
+    {
+      "id": "eb836a535761fd3f",
+      "title": "Astrophysicist Christopher Stubbs joins Anthropic trust — Fortune - UA.NEWS",
+      "link": "https://ua.news/en/technologies/astrofizik-kristofer-stabbs-uviishov-do-trastu-anthropic-fortune",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-10-21T16:54:40+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Astrophysicist Christopher Stubbs joins Anthropic trust — Fortune UA.NEWS",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "f9b499debdda31c0",
+      "title": "Profiling TorchNeuron (Part 1): System-level profiling on AWS Trainium.",
+      "link": "https://huggingface.co/blog/amazon/profiling-torchneuron-part-1",
+      "source": "Hugging Face Blog",
+      "source_id": "hf-blog",
+      "published": "2026-10-21T16:04:43+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "",
+      "why": "",
+      "tags": [],
+      "tracks": []
+    }
+  ]
+}
