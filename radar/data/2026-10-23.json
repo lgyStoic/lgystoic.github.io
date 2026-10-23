@@ -1,0 +1,937 @@
+{
+  "date": "2026-10-23",
+  "generated_at": "2026-10-23T01:32:20+00:00",
+  "ai": false,
+  "model": "",
+  "sources": [
+    {
+      "id": "openai",
+      "name": "OpenAI",
+      "ok": true,
+      "count": 3,
+      "total": 1315,
+      "error": ""
+    },
+    {
+      "id": "google-ai",
+      "name": "Google AI Blog",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "qwen",
+      "name": "Qwen",
+      "ok": true,
+      "count": 0,
+      "total": 44,
+      "error": ""
+    },
+    {
+      "id": "hf-blog",
+      "name": "Hugging Face Blog",
+      "ok": true,
+      "count": 3,
+      "total": 889,
+      "error": ""
+    },
+    {
+      "id": "nvidia-dev",
+      "name": "NVIDIA Technical Blog",
+      "ok": true,
+      "count": 2,
+      "total": 100,
+      "error": ""
+    },
+    {
+      "id": "hf-papers",
+      "name": "HF Papers 日榜",
+      "ok": true,
+      "count": 32,
+      "total": 40,
+      "error": ""
+    },
+    {
+      "id": "pytorch",
+      "name": "PyTorch Blog",
+      "ok": true,
+      "count": 2,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "simonw",
+      "name": "Simon Willison",
+      "ok": true,
+      "count": 1,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "lilianweng",
+      "name": "Lil'Log",
+      "ok": true,
+      "count": 0,
+      "total": 53,
+      "error": ""
+    },
+    {
+      "id": "interconnects",
+      "name": "Interconnects",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "raschka",
+      "name": "Sebastian Raschka",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "chiphuyen",
+      "name": "Chip Huyen",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-pytorch",
+      "name": "Release · PyTorch",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-triton",
+      "name": "Release · Triton",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-cutlass",
+      "name": "Release · CUTLASS",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-flash-attention",
+      "name": "Release · FlashAttention",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-vllm",
+      "name": "Release · vLLM",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-sglang",
+      "name": "Release · SGLang",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-tensorrt-llm",
+      "name": "Release · TensorRT-LLM",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-diffusers",
+      "name": "Release · Diffusers",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-cuda-python",
+      "name": "Release · cuda-python",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "gnews-labs-en",
+      "name": "新闻 · Anthropic / Mistral / xAI",
+      "ok": true,
+      "count": 15,
+      "total": 70,
+      "error": ""
+    },
+    {
+      "id": "gnews-labs-cn",
+      "name": "新闻 · 国内模型公司",
+      "ok": true,
+      "count": 22,
+      "total": 100,
+      "error": ""
+    },
+    {
+      "id": "qbitai",
+      "name": "量子位",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "infoq-cn",
+      "name": "InfoQ 中文",
+      "ok": true,
+      "count": 1,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "thonking",
+      "name": "Horace He (thonking)",
+      "ok": true,
+      "count": 0,
+      "total": 6,
+      "error": ""
+    },
+    {
+      "id": "hn-algolia",
+      "name": "Hacker News（100+ 分）",
+      "ok": true,
+      "count": 6,
+      "total": 60,
+      "error": ""
+    },
+    {
+      "id": "karpathy-blog",
+      "name": "Andrej Karpathy 博客",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "eugeneyan",
+      "name": "Eugene Yan",
+      "ok": true,
+      "count": 0,
+      "total": 212,
+      "error": ""
+    },
+    {
+      "id": "importai",
+      "name": "Import AI（Jack Clark）",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "latentspace",
+      "name": "Latent Space",
+      "ok": true,
+      "count": 1,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "semianalysis",
+      "name": "SemiAnalysis",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "meta-ai",
+      "name": "Meta Engineering",
+      "ok": true,
+      "count": 0,
+      "total": 9,
+      "error": ""
+    },
+    {
+      "id": "mistral-news",
+      "name": "Mistral AI",
+      "ok": true,
+      "count": 0,
+      "total": 92,
+      "error": ""
+    },
+    {
+      "id": "bsky-karpathy",
+      "name": "Bluesky · Andrej Karpathy",
+      "ok": true,
+      "count": 0,
+      "total": 15,
+      "error": ""
+    },
+    {
+      "id": "bsky-giffmana",
+      "name": "Bluesky · Lucas Beyer",
+      "ok": true,
+      "count": 0,
+      "total": 22,
+      "error": ""
+    },
+    {
+      "id": "bsky-hardmaru",
+      "name": "Bluesky · hardmaru",
+      "ok": true,
+      "count": 0,
+      "total": 15,
+      "error": ""
+    },
+    {
+      "id": "bsky-swyx",
+      "name": "Bluesky · swyx",
+      "ok": true,
+      "count": 0,
+      "total": 3,
+      "error": ""
+    },
+    {
+      "id": "bsky-pytorch",
+      "name": "Bluesky · PyTorch",
+      "ok": true,
+      "count": 2,
+      "total": 29,
+      "error": ""
+    },
+    {
+      "id": "bsky-clem",
+      "name": "Bluesky · Clem Delangue",
+      "ok": true,
+      "count": 0,
+      "total": 11,
+      "error": ""
+    },
+    {
+      "id": "bsky-natolambert",
+      "name": "Bluesky · Nathan Lambert",
+      "ok": true,
+      "count": 0,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "bsky-rasbt",
+      "name": "Bluesky · Sebastian Raschka",
+      "ok": true,
+      "count": 0,
+      "total": 27,
+      "error": ""
+    },
+    {
+      "id": "bsky-jeffdean",
+      "name": "Bluesky · Jeff Dean",
+      "ok": true,
+      "count": 0,
+      "total": 18,
+      "error": ""
+    },
+    {
+      "id": "hf-trending-new",
+      "name": "HF 热榜新模型",
+      "ok": true,
+      "count": 3,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "gh-new-stars",
+      "name": "GitHub 新星仓库",
+      "ok": true,
+      "count": 2,
+      "total": 15,
+      "error": ""
+    },
+    {
+      "id": "hf-t2v",
+      "name": "HF 热榜 · 文生视频",
+      "ok": true,
+      "count": 0,
+      "total": 18,
+      "error": ""
+    },
+    {
+      "id": "hf-i2v",
+      "name": "HF 热榜 · 图生视频",
+      "ok": true,
+      "count": 2,
+      "total": 18,
+      "error": ""
+    },
+    {
+      "id": "gnews-video-en",
+      "name": "新闻 · 视频生成（英文）",
+      "ok": true,
+      "count": 5,
+      "total": 32,
+      "error": ""
+    },
+    {
+      "id": "gnews-video-cn",
+      "name": "新闻 · 视频生成（中文）",
+      "ok": true,
+      "count": 9,
+      "total": 36,
+      "error": ""
+    },
+    {
+      "id": "gnews-world-en",
+      "name": "新闻 · 世界模型（英文）",
+      "ok": true,
+      "count": 9,
+      "total": 45,
+      "error": ""
+    },
+    {
+      "id": "gnews-world-cn",
+      "name": "新闻 · 世界模型（中文）",
+      "ok": true,
+      "count": 36,
+      "total": 100,
+      "error": ""
+    },
+    {
+      "id": "gh-new-video-world",
+      "name": "GitHub 新仓库 · 视频 / 世界模型",
+      "ok": true,
+      "count": 1,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "arxiv-cscv",
+      "name": "arXiv cs.CV（专题）",
+      "ok": true,
+      "count": 19,
+      "total": 212,
+      "error": ""
+    },
+    {
+      "id": "arxiv-csro",
+      "name": "arXiv cs.RO（专题）",
+      "ok": true,
+      "count": 4,
+      "total": 120,
+      "error": ""
+    }
+  ],
+  "counts": {
+    "high": 10,
+    "medium": 20,
+    "low": 0
+  },
+  "items": [
+    {
+      "id": "d3c3f75b315c40ce",
+      "title": "MiniMax M3.1 Flash正式开源 - 搜狐",
+      "link": "https://m.sohu.com/a/1091478130_115060?scm=10001.325_13-325_13.0.0-0-0-0-0.5_1334",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-10-23T01:06:27+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "MiniMax M3.1 Flash正式开源 搜狐",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "b77d804b18da06b3",
+      "title": "NVIDIA Cosmos Adds Five Data Blueprints and Faster Model Inference - Technobezz",
+      "link": "https://www.technobezz.com/news/nvidia-cosmos-five-blueprints-faster-inference",
+      "source": "新闻 · 世界模型（英文）",
+      "source_id": "gnews-world-en",
+      "published": "2026-10-22T18:19:02+00:00",
+      "category": "research",
+      "priority": "high",
+      "summary": "NVIDIA Cosmos Adds Five Data Blueprints and Faster Model Inference Technobezz",
+      "why": "",
+      "tags": [
+        "inference",
+        "3D"
+      ],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "eaa0ebff7daf626e",
+      "title": "OlmoEarth v1.3: State-of-the-art embeddings for the whole planet",
+      "link": "https://huggingface.co/blog/allenai/olmoearth-v1-3",
+      "source": "Hugging Face Blog",
+      "source_id": "hf-blog",
+      "published": "2026-10-22T16:11:31+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "",
+      "why": "",
+      "tags": [
+        "moe"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "8e854d15b6c3ed5f",
+      "title": "机械臂会“演戏”人手是“盲区”，全球首个能“测谎”的世界模型评测平台发布 - 新浪网",
+      "link": "https://k.sina.com.cn/article_5952915720_162d24908067050uaw.html?from=science",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-10-22T16:02:00+00:00",
+      "category": "research",
+      "priority": "high",
+      "summary": "机械臂会“演戏”人手是“盲区”，全球首个能“测谎”的世界模型评测平台发布 新浪网",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "d00ce3d5a6a992c1",
+      "title": "Anthropic Launches Claude Duet, a 6,000-Connector Proactive Agent on Opus 5.5 - Techi",
+      "link": "https://www.techi.com/anthropic-claude-duet-proactive-agent-opus-55/",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-10-22T14:42:19+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "Anthropic Launches Claude Duet, a 6,000-Connector Proactive Agent on Opus 5.5 Techi",
+      "why": "",
+      "tags": [
+        "agent"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "99e6cffa949ec460",
+      "title": "Anthropic launches Claude Duet: A smart AI agent that works in the background - India Today",
+      "link": "https://www.indiatoday.in/amp/technology/news/story/anthropic-launches-claude-duet-a-smart-ai-agent-that-works-in-the-background-3022699-2026-10-22",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-10-22T10:36:42+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "Anthropic launches Claude Duet: A smart AI agent that works in the background India Today",
+      "why": "",
+      "tags": [
+        "agent"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "e532bbf7b154cd31",
+      "title": "面向生命世界模型的下一代算力与互连创新联合体发布 - 广东新闻",
+      "link": "http://www.gd.chinanews.com.cn/2026/2026-10-22/450163.shtml",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-10-22T10:01:00+00:00",
+      "category": "research",
+      "priority": "high",
+      "summary": "面向生命世界模型的下一代算力与互连创新联合体发布 广东新闻",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "bd463114fc026896",
+      "title": "DeepSeek 开源看家算子的同一周，AI 超过了它 - 新浪财经",
+      "link": "https://finance.sina.com.cn/tech/roll/2026-10-22/doc-iniwcaff5131324.shtml",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-10-22T09:58:00+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "DeepSeek 开源看家算子的同一周，AI 超过了它 新浪财经",
+      "why": "",
+      "tags": [
+        "算子"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "0c890cd4b4774219",
+      "title": "深蓝L06推送DEEPAL OS 4.2.1：智驾引入世界模型 - 搜狐",
+      "link": "https://m.sohu.com/a/1091257166_115831?scm=10001.325_13-325_13.0.0-0-0-0-0.5_1334",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-10-22T09:24:00+00:00",
+      "category": "research",
+      "priority": "high",
+      "summary": "深蓝L06推送DEEPAL OS 4.2.1：智驾引入世界模型 搜狐",
+      "why": "",
+      "tags": [
+        "llm",
+        "3D"
+      ],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "cf7f8bbceabe0053",
+      "title": "Anthropic launches Claude Duet: AI agent that works before you ask, price and availability - News9live",
+      "link": "https://www.news9live.com/technology/artificial-intelligence/anthropic-claude-duet-ai-agent-launch-price-availability-features-3017997",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-10-22T05:52:07+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "Anthropic launches Claude Duet: AI agent that works before you ask, price and availability News9live",
+      "why": "",
+      "tags": [
+        "agent"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "5ed879ddb92ca240",
+      "title": "GLM-5.5最新曝光，「降智」问题3张重置卡已到位 - 36Kr",
+      "link": "https://www.36kr.com/p/4037741762598025",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-10-23T01:11:59+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "GLM-5.5最新曝光，「降智」问题3张重置卡已到位 36Kr",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "3c97b8e4ac0b48b3",
+      "title": "3,500+ attendees came together to accelerate open intelligence at #PyTorchCon 2026. Catch up on new members, TorchTPU, T",
+      "link": "https://bsky.app/profile/pytorch.org/post/3myiulxqbjx2x",
+      "source": "Bluesky · PyTorch",
+      "source_id": "bsky-pytorch",
+      "published": "2026-10-22T23:58:00+00:00",
+      "category": "people",
+      "priority": "medium",
+      "summary": "3,500+ attendees came together to accelerate open intelligence at #PyTorchCon 2026. Catch up on new members, TorchTPU, TorchNeuron, TorchTitan, and community…",
+      "why": "",
+      "tags": [
+        "pytorch"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "34e9d01ea0b42266",
+      "title": "PyTorch Conference North America 2026: Accelerating Open Intelligence Together",
+      "link": "https://pytorch.org/blog/pytorch-conference-north-america-2026-accelerating-open-intelligence-together",
+      "source": "PyTorch Blog",
+      "source_id": "pytorch",
+      "published": "2026-10-22T23:52:11+00:00",
+      "category": "infra",
+      "priority": "medium",
+      "summary": "PyTorch Conference North America 2026 brought 3,500+ attendees to San Jose on October 20–21 for two days focused on accelerating open intelligence and…",
+      "why": "",
+      "tags": [
+        "pytorch"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "95eb6975ad245049",
+      "title": "Turning Database Grading into RL Rewards: Post-Training Agents with ThinkingBox",
+      "link": "https://huggingface.co/blog/microsoft/thinkingbox-training",
+      "source": "Hugging Face Blog",
+      "source_id": "hf-blog",
+      "published": "2026-10-22T22:24:34+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "",
+      "why": "",
+      "tags": [
+        "agent"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "4bddd44eb7b2b259",
+      "title": "Rivian buys world model startup to accelerate self-driving ambitions - TechCrunch",
+      "link": "https://techcrunch.com/2026/10/22/rivian-buys-world-model-startup-to-accelerate-self-driving-ambitions/",
+      "source": "新闻 · 世界模型（英文）",
+      "source_id": "gnews-world-en",
+      "published": "2026-10-22T21:05:05+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "Rivian buys world model startup to accelerate self-driving ambitions TechCrunch",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "27825e3003584012",
+      "title": "Build more responsive apps with the Decisions API",
+      "link": "https://openai.com/index/decisions-api",
+      "source": "OpenAI",
+      "source_id": "openai",
+      "published": "2026-10-22T19:00:00+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Fast, focused, low-cost decisions for any application.",
+      "why": "",
+      "tags": [],
+      "tracks": []
+    },
+    {
+      "id": "13d0bec026556b76",
+      "title": "Mullet Man Trolls Muscle Beach Bodybuilder Over Workout Form in Hilarious Viral Video - Generation Iron",
+      "link": "https://generationiron.com/mullet-man-trolls-muscle-beach-bodybuilder/",
+      "source": "新闻 · 视频生成（英文）",
+      "source_id": "gnews-video-en",
+      "published": "2026-10-22T18:51:22+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Mullet Man Trolls Muscle Beach Bodybuilder Over Workout Form in Hilarious Viral Video Generation Iron",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "4918936748ed3189",
+      "title": "Hedra is a 3D open world game I wrote from scratch while in highschool",
+      "link": "https://news.ycombinator.com/item?id=50199389",
+      "source": "Hacker News（100+ 分）",
+      "source_id": "hn-algolia",
+      "published": "2026-10-22T18:44:36+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "efa7bccbd324642f",
+      "title": "PyTorch Foundation welcomes its 2026 cohort of 24 ambassadors, creating more opportunities for people to discover open s",
+      "link": "https://bsky.app/profile/pytorch.org/post/3myicmy67622f",
+      "source": "Bluesky · PyTorch",
+      "source_id": "bsky-pytorch",
+      "published": "2026-10-22T18:36:00+00:00",
+      "category": "people",
+      "priority": "medium",
+      "summary": "PyTorch Foundation welcomes its 2026 cohort of 24 ambassadors, creating more opportunities for people to discover open source AI, develop practical skills, and…",
+      "why": "",
+      "tags": [
+        "pytorch"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "9e167b288e1b4940",
+      "title": "Donating Agent Skills to the Agentic AI Foundation",
+      "link": "https://simonwillison.net/2026/Oct/22/donating-agent-skills",
+      "source": "Simon Willison",
+      "source_id": "simonw",
+      "published": "2026-10-22T18:09:56+00:00",
+      "category": "people",
+      "priority": "medium",
+      "summary": "Donating Agent Skills to the Agentic AI Foundation News today from Anthropic: We’re committed to keeping Agent Skills open, community-driven, and…",
+      "why": "",
+      "tags": [
+        "agent",
+        "agentic"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "edd7632c90024d6b",
+      "title": "企业 AI 越用越复杂，如何用一个 Gateway 管好模型、Agent 和成本？｜ 技术趋势",
+      "link": "https://www.infoq.cn/article/v85ey09UlxhCDH4r3RS3",
+      "source": "InfoQ 中文",
+      "source_id": "infoq-cn",
+      "published": "2026-10-22T18:00:00+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "点击查看原文>",
+      "why": "",
+      "tags": [
+        "agent"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "be1a4eb11a23405b",
+      "title": "Meet the 2026 PyTorch Foundation Ambassadors",
+      "link": "https://pytorch.org/blog/meet-the-2026-pytorch-foundation-ambassadors",
+      "source": "PyTorch Blog",
+      "source_id": "pytorch",
+      "published": "2026-10-22T17:44:52+00:00",
+      "category": "infra",
+      "priority": "medium",
+      "summary": "Open source AI thrives when people come together to learn, build, share knowledge, and contribute…",
+      "why": "",
+      "tags": [
+        "pytorch"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "6589fc0fec707096",
+      "title": "OpenShell – A safe, private runtime for fleets of autonomous AI agents",
+      "link": "https://news.ycombinator.com/item?id=50198675",
+      "source": "Hacker News（100+ 分）",
+      "source_id": "hn-algolia",
+      "published": "2026-10-22T17:44:06+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "",
+      "why": "",
+      "tags": [
+        "agent"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "d636564ee5d912b3",
+      "title": "Why AI Compute Comes in Rectangles — Erik Bernhardsson, Modal CEO",
+      "link": "https://www.latent.space/p/modal-d",
+      "source": "Latent Space",
+      "source_id": "latentspace",
+      "published": "2026-10-22T17:40:57+00:00",
+      "category": "people",
+      "priority": "medium",
+      "summary": "Elastic GPUs, sandbox growth, and the economics of the agent cloud",
+      "why": "",
+      "tags": [
+        "gpu",
+        "agent"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "1feebea92286c303",
+      "title": "Anthropic rolls out Claude Duet, but enterprises aren’t ready - TechTarget",
+      "link": "https://www.techtarget.com/ai/news/366652530/Anthropic-rolls-out-Claude-Duet-but-enterprises-arent-ready",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-10-22T17:38:48+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Anthropic rolls out Claude Duet, but enterprises aren’t ready TechTarget",
+      "why": "",
+      "tags": [
+        "vae"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "40fef03a112b3345",
+      "title": "How to Read Data into GPU Memory in Python with NVIDIA GPUDirect Storage",
+      "link": "https://developer.nvidia.com/blog/how-to-read-data-into-gpu-memory-in-python-with-nvidia-gpudirect-storage",
+      "source": "NVIDIA Technical Blog",
+      "source_id": "nvidia-dev",
+      "published": "2026-10-22T16:39:12+00:00",
+      "category": "infra",
+      "priority": "medium",
+      "summary": "GPU applications are processing ever-growing datasets with increasingly powerful accelerators. According to the 2025 Stanford AI Index, compute for notable…",
+      "why": "",
+      "tags": [
+        "gpu"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "5c9d060f53be8499",
+      "title": "Rivian收购3D世界模型初创公司，推进自动驾驶技术 - Mezha.net",
+      "link": "https://mezha.net/ch/news/mezha-e12cae2a65e1231037d030e0_rivian-acquires-3d-world-model-startup/",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-10-22T16:37:00+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "Rivian收购3D世界模型初创公司，推进自动驾驶技术 Mezha.net",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "e06f0d01773a8f6c",
+      "title": "谭谈：“中国AI禁令”是怎么回事 - 华尔街见闻",
+      "link": "https://wallstreetcn.com/articles/3784243",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-10-22T15:49:09+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "谭谈：“中国AI禁令”是怎么回事 华尔街见闻",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "b6497ea23df55ba5",
+      "title": "Three New ETFs to Watch - Bloomberg.com",
+      "link": "https://www.bloomberg.com/news/articles/2026-10-22/new-etfs-to-watch-a-2-5-billion-launch-anthropic-and-s-p-10-000-anyone",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-10-22T15:43:54+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Three New ETFs to Watch Bloomberg.com",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "4632ccc8f41049ea",
+      "title": "MINIMAX-W，首次破发 - 新浪财经",
+      "link": "https://finance.sina.com.cn/roll/2026-10-22/doc-iniwcnuz5135582.shtml",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-10-22T15:20:16+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "MINIMAX-W，首次破发 新浪财经",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    }
+  ]
+}
