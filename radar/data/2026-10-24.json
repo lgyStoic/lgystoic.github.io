@@ -1,0 +1,933 @@
+{
+  "date": "2026-10-24",
+  "generated_at": "2026-10-24T01:36:16+00:00",
+  "ai": false,
+  "model": "",
+  "sources": [
+    {
+      "id": "openai",
+      "name": "OpenAI",
+      "ok": true,
+      "count": 3,
+      "total": 1318,
+      "error": ""
+    },
+    {
+      "id": "google-ai",
+      "name": "Google AI Blog",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "qwen",
+      "name": "Qwen",
+      "ok": true,
+      "count": 0,
+      "total": 44,
+      "error": ""
+    },
+    {
+      "id": "hf-blog",
+      "name": "Hugging Face Blog",
+      "ok": true,
+      "count": 2,
+      "total": 890,
+      "error": ""
+    },
+    {
+      "id": "nvidia-dev",
+      "name": "NVIDIA Technical Blog",
+      "ok": true,
+      "count": 1,
+      "total": 100,
+      "error": ""
+    },
+    {
+      "id": "hf-papers",
+      "name": "HF Papers 日榜",
+      "ok": true,
+      "count": 26,
+      "total": 34,
+      "error": ""
+    },
+    {
+      "id": "pytorch",
+      "name": "PyTorch Blog",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "simonw",
+      "name": "Simon Willison",
+      "ok": true,
+      "count": 0,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "lilianweng",
+      "name": "Lil'Log",
+      "ok": true,
+      "count": 0,
+      "total": 53,
+      "error": ""
+    },
+    {
+      "id": "interconnects",
+      "name": "Interconnects",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "raschka",
+      "name": "Sebastian Raschka",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "chiphuyen",
+      "name": "Chip Huyen",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-pytorch",
+      "name": "Release · PyTorch",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-triton",
+      "name": "Release · Triton",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-cutlass",
+      "name": "Release · CUTLASS",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-flash-attention",
+      "name": "Release · FlashAttention",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-vllm",
+      "name": "Release · vLLM",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-sglang",
+      "name": "Release · SGLang",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-tensorrt-llm",
+      "name": "Release · TensorRT-LLM",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-diffusers",
+      "name": "Release · Diffusers",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-cuda-python",
+      "name": "Release · cuda-python",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "gnews-labs-en",
+      "name": "新闻 · Anthropic / Mistral / xAI",
+      "ok": true,
+      "count": 10,
+      "total": 74,
+      "error": ""
+    },
+    {
+      "id": "gnews-labs-cn",
+      "name": "新闻 · 国内模型公司",
+      "ok": true,
+      "count": 29,
+      "total": 100,
+      "error": ""
+    },
+    {
+      "id": "qbitai",
+      "name": "量子位",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "infoq-cn",
+      "name": "InfoQ 中文",
+      "ok": true,
+      "count": 5,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "thonking",
+      "name": "Horace He (thonking)",
+      "ok": true,
+      "count": 0,
+      "total": 6,
+      "error": ""
+    },
+    {
+      "id": "hn-algolia",
+      "name": "Hacker News（100+ 分）",
+      "ok": true,
+      "count": 3,
+      "total": 60,
+      "error": ""
+    },
+    {
+      "id": "karpathy-blog",
+      "name": "Andrej Karpathy 博客",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "eugeneyan",
+      "name": "Eugene Yan",
+      "ok": true,
+      "count": 0,
+      "total": 212,
+      "error": ""
+    },
+    {
+      "id": "importai",
+      "name": "Import AI（Jack Clark）",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "latentspace",
+      "name": "Latent Space",
+      "ok": true,
+      "count": 1,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "semianalysis",
+      "name": "SemiAnalysis",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "meta-ai",
+      "name": "Meta Engineering",
+      "ok": true,
+      "count": 0,
+      "total": 9,
+      "error": ""
+    },
+    {
+      "id": "mistral-news",
+      "name": "Mistral AI",
+      "ok": true,
+      "count": 0,
+      "total": 92,
+      "error": ""
+    },
+    {
+      "id": "bsky-karpathy",
+      "name": "Bluesky · Andrej Karpathy",
+      "ok": true,
+      "count": 0,
+      "total": 15,
+      "error": ""
+    },
+    {
+      "id": "bsky-giffmana",
+      "name": "Bluesky · Lucas Beyer",
+      "ok": true,
+      "count": 0,
+      "total": 22,
+      "error": ""
+    },
+    {
+      "id": "bsky-hardmaru",
+      "name": "Bluesky · hardmaru",
+      "ok": true,
+      "count": 0,
+      "total": 15,
+      "error": ""
+    },
+    {
+      "id": "bsky-swyx",
+      "name": "Bluesky · swyx",
+      "ok": true,
+      "count": 0,
+      "total": 3,
+      "error": ""
+    },
+    {
+      "id": "bsky-pytorch",
+      "name": "Bluesky · PyTorch",
+      "ok": true,
+      "count": 0,
+      "total": 29,
+      "error": ""
+    },
+    {
+      "id": "bsky-clem",
+      "name": "Bluesky · Clem Delangue",
+      "ok": true,
+      "count": 0,
+      "total": 11,
+      "error": ""
+    },
+    {
+      "id": "bsky-natolambert",
+      "name": "Bluesky · Nathan Lambert",
+      "ok": true,
+      "count": 0,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "bsky-rasbt",
+      "name": "Bluesky · Sebastian Raschka",
+      "ok": true,
+      "count": 0,
+      "total": 27,
+      "error": ""
+    },
+    {
+      "id": "bsky-jeffdean",
+      "name": "Bluesky · Jeff Dean",
+      "ok": true,
+      "count": 0,
+      "total": 18,
+      "error": ""
+    },
+    {
+      "id": "hf-trending-new",
+      "name": "HF 热榜新模型",
+      "ok": true,
+      "count": 2,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "gh-new-stars",
+      "name": "GitHub 新星仓库",
+      "ok": true,
+      "count": 2,
+      "total": 15,
+      "error": ""
+    },
+    {
+      "id": "hf-t2v",
+      "name": "HF 热榜 · 文生视频",
+      "ok": true,
+      "count": 0,
+      "total": 18,
+      "error": ""
+    },
+    {
+      "id": "hf-i2v",
+      "name": "HF 热榜 · 图生视频",
+      "ok": true,
+      "count": 0,
+      "total": 19,
+      "error": ""
+    },
+    {
+      "id": "gnews-video-en",
+      "name": "新闻 · 视频生成（英文）",
+      "ok": true,
+      "count": 2,
+      "total": 27,
+      "error": ""
+    },
+    {
+      "id": "gnews-video-cn",
+      "name": "新闻 · 视频生成（中文）",
+      "ok": true,
+      "count": 10,
+      "total": 36,
+      "error": ""
+    },
+    {
+      "id": "gnews-world-en",
+      "name": "新闻 · 世界模型（英文）",
+      "ok": true,
+      "count": 3,
+      "total": 43,
+      "error": ""
+    },
+    {
+      "id": "gnews-world-cn",
+      "name": "新闻 · 世界模型（中文）",
+      "ok": true,
+      "count": 31,
+      "total": 100,
+      "error": ""
+    },
+    {
+      "id": "gh-new-video-world",
+      "name": "GitHub 新仓库 · 视频 / 世界模型",
+      "ok": true,
+      "count": 1,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "arxiv-cscv",
+      "name": "arXiv cs.CV（专题）",
+      "ok": true,
+      "count": 17,
+      "total": 192,
+      "error": ""
+    },
+    {
+      "id": "arxiv-csro",
+      "name": "arXiv cs.RO（专题）",
+      "ok": true,
+      "count": 6,
+      "total": 107,
+      "error": ""
+    }
+  ],
+  "counts": {
+    "high": 10,
+    "medium": 20,
+    "low": 0
+  },
+  "items": [
+    {
+      "id": "d2eae56dfd2c7295",
+      "title": "iPhone Duo正式交付；Kimi K3.1 Pro 、Seedance 2.5 4K正式发布；红果短剧上线防沉迷｜极客早知道 - 极客公园",
+      "link": "https://www.geekpark.net/news/372858",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-10-24T00:38:49+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "iPhone Duo正式交付；Kimi K3.1 Pro 、Seedance 2.5 4K正式发布；红果短剧上线防沉迷｜极客早知道 极客公园",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "4789c4b741a43240",
+      "title": "月之暗面发布最强模型Kimi K3.1 Pro：3万亿级参数、支持100万Token上下文 - 搜狐网",
+      "link": "https://m.sohu.com/a/1091984587_115060?scm=10001.325_13-325_13.0.0-0-0-0-0.5_1334",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-10-23T23:56:18+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "月之暗面发布最强模型Kimi K3.1 Pro：3万亿级参数、支持100万Token上下文 搜狐网",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "f2f7b1394f1abae4",
+      "title": "国产大模型上新！月之暗面推出Kimi K3.1 Pro - 大河财立方",
+      "link": "https://app.dahecube.com/article.html?artid=290836?recid=1",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-10-23T23:55:54+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "国产大模型上新！月之暗面推出Kimi K3.1 Pro 大河财立方",
+      "why": "",
+      "tags": [
+        "大模型",
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "4834a7c7d794d0fa",
+      "title": "Anthropic reveals Mythos 5 tried submitting malicious code to an open-source project - SiliconANGLE",
+      "link": "https://siliconangle.com/2026/10/23/anthropic-reveals-mythos-5-tried-submitting-malicious-code-to-an-open-source-project/",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-10-23T23:28:00+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "Anthropic reveals Mythos 5 tried submitting malicious code to an open-source project SiliconANGLE",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "420fa70dcb4065e7",
+      "title": "月之暗面发布Kimi K3.1Pro和K3.1ProHighspeed。 ​ - 手机新浪网",
+      "link": "https://www.sina.cn/news/detail/5357437343498650.html",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-10-23T22:54:00+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "月之暗面发布Kimi K3.1Pro和K3.1ProHighspeed。 ​ 手机新浪网",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "99d0a74bb5e918e4",
+      "title": "Moonshot AI 发布 Kimi K3.1 Pro：全新 K3.1 系列的首款模型 - Unite.AI",
+      "link": "https://www.unite.ai/zh-cn/moonshot-ai-releases-kimi-k3-1-pro-first-model-in-new-k3-1-series/",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-10-23T17:30:33+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "Moonshot AI 发布 Kimi K3.1 Pro：全新 K3.1 系列的首款模型 Unite.AI",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "47cc7ad0de4cba7b",
+      "title": "月之暗面发布 Kimi K3.1 Pro 以及 K3.1 Pro Highspeed 模型 - 新浪财经",
+      "link": "https://finance.sina.com.cn/7x24/2026-10-24/doc-iniwfwae5100067.shtml",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-10-23T17:17:53+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "月之暗面发布 Kimi K3.1 Pro 以及 K3.1 Pro Highspeed 模型 新浪财经",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "5fcc8030df30682e",
+      "title": "MiniMax开源M3.1 Flash，上线72小时处理超100万亿Token - 搜狐",
+      "link": "https://m.sohu.com/a/1091908032_447547?scm=10001.325_13-325_13.0.0-0-0-0-0.5_1334",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-10-23T16:26:00+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "MiniMax开源M3.1 Flash，上线72小时处理超100万亿Token 搜狐",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "de62e12e56ff7eba",
+      "title": "Mistral launches Timestral, an AI that forecasts numbers without a GPU - Pasquale Pillitteri",
+      "link": "https://pasqualepillitteri.it/en/news/26606/mistral-timestral-ai-forecasts-numbers-cpu",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-10-23T15:29:47+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "Mistral launches Timestral, an AI that forecasts numbers without a GPU Pasquale Pillitteri",
+      "why": "",
+      "tags": [
+        "gpu"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "467575f5114dd15e",
+      "title": "MINIMAX完成若干模型开源及海外授权所需的技术出口登记 - 搜狐网",
+      "link": "https://www.sohu.com/a/1091892484_655634?scm=10001.325_13-325_13.0.0-0-0-0-0.5_1334",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-10-23T14:54:52+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "MINIMAX完成若干模型开源及海外授权所需的技术出口登记 搜狐网",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "f634aa09174c059b",
+      "title": "【Kimi最强3万亿级模型来了！编程智能体测评超过GPT-6，3D建模与金融能力升级，11月4日前开放权重】Kimi K3.1 Pro是K3系列的首个模型，支持百万Token上下文窗口，代码、Agent和知识类基准方面达到或接近最强闭源模型水平，编程智能体测试Terminal-Bench .. - 搜狐",
+      "link": "https://m.sohu.com/a/1091983967_130887?scm=10001.325_13-325_13.0.0-0-0-0-0.5_1334",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-10-23T23:22:20+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "【Kimi最强3万亿级模型来了！编程智能体测评超过GPT-6，3D建模与金融能力升级，11月4日前开放权重】Kimi K3.1 Pro是K3系列的首个模型，支持百万Token上下文窗口，代码、Agent和知识类基准方面达到或接近最强闭源模型水平，编程智能体测试Terminal-Bench .. 搜狐",
+      "why": "",
+      "tags": [
+        "agent",
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "8a102813b0b48ef1",
+      "title": "Seedance 2.5 4K 与 Seedance 2.5：升级带来了什么 - OrcaRouter",
+      "link": "https://www.orcarouter.ai/zh-CN/blog/seedance-2-5-4k-vs-seedance-2-5",
+      "source": "新闻 · 视频生成（中文）",
+      "source_id": "gnews-video-cn",
+      "published": "2026-10-23T19:54:53+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Seedance 2.5 4K 与 Seedance 2.5：升级带来了什么 OrcaRouter",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "00481d387b6fdbe3",
+      "title": "Hy-Nomas: What Tencent's Free-Form Interactive World Model Actually Does - OrcaRouter",
+      "link": "https://www.orcarouter.ai/blog/hy-nomas-free-form-world-model-explained",
+      "source": "新闻 · 世界模型（英文）",
+      "source_id": "gnews-world-en",
+      "published": "2026-10-23T19:37:00+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "Hy-Nomas: What Tencent's Free-Form Interactive World Model Actually Does OrcaRouter",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "1838a655d49d5aa4",
+      "title": "Hy-Nomas：腾讯的自由形态交互式世界模型究竟能做什么 - OrcaRouter",
+      "link": "https://www.orcarouter.ai/zh-CN/blog/hy-nomas-free-form-world-model-explained",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-10-23T19:37:00+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "Hy-Nomas：腾讯的自由形态交互式世界模型究竟能做什么 OrcaRouter",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "ce6d91aa8037823b",
+      "title": "Kimi最强3万亿级模型来了！编程智能体测评超过GPT-6，3D建模与金融能力升级，11月4日前开放权重 - 华尔街见闻",
+      "link": "https://wallstreetcn.com/articles/3784358",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-10-23T18:41:00+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Kimi最强3万亿级模型来了！编程智能体测评超过GPT-6，3D建模与金融能力升级，11月4日前开放权重 华尔街见闻",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "4955969e6b6259a2",
+      "title": "刘铁岩、诺奖、图灵奖得主等嘉宾共话AI的下一个十年：Transformer一统天下之后，AI的下一张王牌是什么？",
+      "link": "https://www.infoq.cn/article/UmD4aAerZEts8sZ5t791",
+      "source": "InfoQ 中文",
+      "source_id": "infoq-cn",
+      "published": "2026-10-23T17:54:19+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "点击查看原文>",
+      "why": "",
+      "tags": [
+        "transformer"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "095d8533f3b4be45",
+      "title": "AI Agent 正在改写 CPU 的价值：当 Token 变成行动，算力竞争不再只是拼 GPU",
+      "link": "https://www.infoq.cn/article/AkDgwN6h72cqUOJ35Zok",
+      "source": "InfoQ 中文",
+      "source_id": "infoq-cn",
+      "published": "2026-10-23T17:53:09+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "点击查看原文>",
+      "why": "",
+      "tags": [
+        "gpu",
+        "agent"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "eee0f1990127aebd",
+      "title": "“让Token不空转”，讯飞如何把Agent推进企业核心流程",
+      "link": "https://www.infoq.cn/article/Lo9TLlRdvy4II38yaex0",
+      "source": "InfoQ 中文",
+      "source_id": "infoq-cn",
+      "published": "2026-10-23T17:40:09+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "点击查看原文>",
+      "why": "",
+      "tags": [
+        "agent"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "298c8de07d18f423",
+      "title": "Rapidly scaling online storage to serve over 1 billion ChatGPT users (Part II)",
+      "link": "https://openai.com/index/scaling-storage-one-billion-users-part-two",
+      "source": "OpenAI",
+      "source_id": "openai",
+      "published": "2026-10-23T17:00:00+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Learn how OpenAI scaled Habitat with reliable multi-tenancy, global caching, and Azure Cosmos DB to deliver 12× faster reads for ChatGPT.",
+      "why": "",
+      "tags": [],
+      "tracks": []
+    },
+    {
+      "id": "c4fee7f1f0bbfbb6",
+      "title": "研究：AI 视频模型对物理世界的理解有多深入？工具揭示 AI 生成视频中违背物理规律的问题 - Notebookcheck CN",
+      "link": "https://www.notebookcheck-cn.com/AI-AI.1432456.0.html",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-10-23T16:34:00+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "研究：AI 视频模型对物理世界的理解有多深入？工具揭示 AI 生成视频中违背物理规律的问题 Notebookcheck CN",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "2754c77c659e7ea4",
+      "title": "重磅！Nature、Cell接连发文：世界模型，正在改变AI做科学的方式 - 新浪网",
+      "link": "https://k.sina.com.cn/article_5953740931_162dee0830670430xu.html?from=science",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-10-23T16:25:04+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "重磅！Nature、Cell接连发文：世界模型，正在改变AI做科学的方式 新浪网",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "6872f0246e9b595c",
+      "title": "世界模型变革内容供给 传媒、游戏板块再度走强！一图速览受益股 - 东方财富",
+      "link": "https://wap.eastmoney.com/a/202610233906403821.html",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-10-23T16:22:32+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "世界模型变革内容供给 传媒、游戏板块再度走强！一图速览受益股 东方财富",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "d5dfb55b012918e7",
+      "title": "LitPivot: Developing research ideas through dynamic contextualization within the literature landscape",
+      "link": "https://huggingface.co/blog/allenai/litpivot",
+      "source": "Hugging Face Blog",
+      "source_id": "hf-blog",
+      "published": "2026-10-23T16:15:50+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "",
+      "why": "",
+      "tags": [],
+      "tracks": []
+    },
+    {
+      "id": "892e617bee164287",
+      "title": "千问蒋冠军：Personal Agent技术框架，需要模型、记忆与生态协同推进",
+      "link": "https://www.infoq.cn/article/6EJRFIef67xr3x6vyCJa",
+      "source": "InfoQ 中文",
+      "source_id": "infoq-cn",
+      "published": "2026-10-23T15:45:32+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "点击查看原文>",
+      "why": "",
+      "tags": [
+        "agent"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "ea1eb13ac9b313b5",
+      "title": "YouCam integrates Kling 4.0 API for AI video generation - Investing.com",
+      "link": "https://www.investing.com/news/company-news/youcam-integrates-kling-40-api-for-ai-video-generation-93CH-4970014",
+      "source": "新闻 · 视频生成（英文）",
+      "source_id": "gnews-video-en",
+      "published": "2026-10-23T15:43:59+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "YouCam integrates Kling 4.0 API for AI video generation Investing.com",
+      "why": "",
+      "tags": [
+        "video generation"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "3b0fc092303087ba",
+      "title": "Using AI Agents to Teach Robots Like Microduck to Walk in Simulation",
+      "link": "https://developer.nvidia.com/blog/using-ai-agents-to-teach-robots-like-microduck-to-walk-in-simulation",
+      "source": "NVIDIA Technical Blog",
+      "source_id": "nvidia-dev",
+      "published": "2026-10-23T14:58:36+00:00",
+      "category": "infra",
+      "priority": "medium",
+      "summary": "Teaching a robot to navigate an obstacle course requires more than a walking policy. It must perceive its surroundings, maintain balance, and adjust its…",
+      "why": "",
+      "tags": [
+        "agent"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "d9f1c54768e4981c",
+      "title": "Anthropic says newer Claude models are less likely to act on their own - Crypto Briefing",
+      "link": "https://cryptobriefing.com/anthropic-claude-opus-5-5-autonomous-attack-risk/",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-10-23T14:05:00+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Anthropic says newer Claude models are less likely to act on their own Crypto Briefing",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "e9c5ec328448721a",
+      "title": "美国人用‌Seedance 2.5拍AI美剧，也算是开洋荤了！ ​ - 新浪网",
+      "link": "https://k.sina.com.cn/article_2812129277_ma79daffd03301tyrc.html?from=movie",
+      "source": "新闻 · 视频生成（中文）",
+      "source_id": "gnews-video-cn",
+      "published": "2026-10-23T13:59:13+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "美国人用‌Seedance 2.5拍AI美剧，也算是开洋荤了！ ​ 新浪网",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "925cae36fc2747fd",
+      "title": "An alignment assessment of the UK AISI cybertesting incident - Anthropic",
+      "link": "https://www.anthropic.com/research/alignment-assessment-ukaisi",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-10-23T13:29:39+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "An alignment assessment of the UK AISI cybertesting incident Anthropic",
+      "why": "",
+      "tags": [
+        "vae",
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "25226f3c4f439287",
+      "title": "曹操出行受邀出席2026物理AI与世界模型大会，分享智慧出行领域的商业化实践 - 搜狐网",
+      "link": "https://m.sohu.com/a/1091870752_114984?scm=10001.325_13-325_13.0.0-0-0-0-0.5_1334",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-10-23T13:04:54+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "曹操出行受邀出席2026物理AI与世界模型大会，分享智慧出行领域的商业化实践 搜狐网",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": [
+        "world"
+      ]
+    }
+  ]
+}
