@@ -1,0 +1,938 @@
+{
+  "date": "2026-10-26",
+  "generated_at": "2026-10-26T01:11:33+00:00",
+  "ai": false,
+  "model": "",
+  "sources": [
+    {
+      "id": "openai",
+      "name": "OpenAI",
+      "ok": true,
+      "count": 0,
+      "total": 1318,
+      "error": ""
+    },
+    {
+      "id": "google-ai",
+      "name": "Google AI Blog",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "qwen",
+      "name": "Qwen",
+      "ok": true,
+      "count": 0,
+      "total": 44,
+      "error": ""
+    },
+    {
+      "id": "hf-blog",
+      "name": "Hugging Face Blog",
+      "ok": true,
+      "count": 0,
+      "total": 890,
+      "error": ""
+    },
+    {
+      "id": "nvidia-dev",
+      "name": "NVIDIA Technical Blog",
+      "ok": true,
+      "count": 0,
+      "total": 100,
+      "error": ""
+    },
+    {
+      "id": "hf-papers",
+      "name": "HF Papers 日榜",
+      "ok": true,
+      "count": 0,
+      "total": 49,
+      "error": ""
+    },
+    {
+      "id": "pytorch",
+      "name": "PyTorch Blog",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "simonw",
+      "name": "Simon Willison",
+      "ok": true,
+      "count": 0,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "lilianweng",
+      "name": "Lil'Log",
+      "ok": true,
+      "count": 0,
+      "total": 53,
+      "error": ""
+    },
+    {
+      "id": "interconnects",
+      "name": "Interconnects",
+      "ok": true,
+      "count": 1,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "raschka",
+      "name": "Sebastian Raschka",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "chiphuyen",
+      "name": "Chip Huyen",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-pytorch",
+      "name": "Release · PyTorch",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-triton",
+      "name": "Release · Triton",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-cutlass",
+      "name": "Release · CUTLASS",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-flash-attention",
+      "name": "Release · FlashAttention",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-vllm",
+      "name": "Release · vLLM",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-sglang",
+      "name": "Release · SGLang",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-tensorrt-llm",
+      "name": "Release · TensorRT-LLM",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-diffusers",
+      "name": "Release · Diffusers",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-cuda-python",
+      "name": "Release · cuda-python",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "gnews-labs-en",
+      "name": "新闻 · Anthropic / Mistral / xAI",
+      "ok": true,
+      "count": 9,
+      "total": 47,
+      "error": ""
+    },
+    {
+      "id": "gnews-labs-cn",
+      "name": "新闻 · 国内模型公司",
+      "ok": true,
+      "count": 16,
+      "total": 100,
+      "error": ""
+    },
+    {
+      "id": "qbitai",
+      "name": "量子位",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "infoq-cn",
+      "name": "InfoQ 中文",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "thonking",
+      "name": "Horace He (thonking)",
+      "ok": true,
+      "count": 0,
+      "total": 6,
+      "error": ""
+    },
+    {
+      "id": "hn-algolia",
+      "name": "Hacker News（100+ 分）",
+      "ok": true,
+      "count": 2,
+      "total": 60,
+      "error": ""
+    },
+    {
+      "id": "karpathy-blog",
+      "name": "Andrej Karpathy 博客",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "eugeneyan",
+      "name": "Eugene Yan",
+      "ok": true,
+      "count": 0,
+      "total": 212,
+      "error": ""
+    },
+    {
+      "id": "importai",
+      "name": "Import AI（Jack Clark）",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "latentspace",
+      "name": "Latent Space",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "semianalysis",
+      "name": "SemiAnalysis",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "meta-ai",
+      "name": "Meta Engineering",
+      "ok": true,
+      "count": 0,
+      "total": 9,
+      "error": ""
+    },
+    {
+      "id": "mistral-news",
+      "name": "Mistral AI",
+      "ok": true,
+      "count": 0,
+      "total": 92,
+      "error": ""
+    },
+    {
+      "id": "bsky-karpathy",
+      "name": "Bluesky · Andrej Karpathy",
+      "ok": true,
+      "count": 0,
+      "total": 15,
+      "error": ""
+    },
+    {
+      "id": "bsky-giffmana",
+      "name": "Bluesky · Lucas Beyer",
+      "ok": true,
+      "count": 0,
+      "total": 22,
+      "error": ""
+    },
+    {
+      "id": "bsky-hardmaru",
+      "name": "Bluesky · hardmaru",
+      "ok": true,
+      "count": 0,
+      "total": 15,
+      "error": ""
+    },
+    {
+      "id": "bsky-swyx",
+      "name": "Bluesky · swyx",
+      "ok": true,
+      "count": 0,
+      "total": 3,
+      "error": ""
+    },
+    {
+      "id": "bsky-pytorch",
+      "name": "Bluesky · PyTorch",
+      "ok": true,
+      "count": 0,
+      "total": 29,
+      "error": ""
+    },
+    {
+      "id": "bsky-clem",
+      "name": "Bluesky · Clem Delangue",
+      "ok": true,
+      "count": 0,
+      "total": 11,
+      "error": ""
+    },
+    {
+      "id": "bsky-natolambert",
+      "name": "Bluesky · Nathan Lambert",
+      "ok": true,
+      "count": 0,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "bsky-rasbt",
+      "name": "Bluesky · Sebastian Raschka",
+      "ok": true,
+      "count": 0,
+      "total": 27,
+      "error": ""
+    },
+    {
+      "id": "bsky-jeffdean",
+      "name": "Bluesky · Jeff Dean",
+      "ok": true,
+      "count": 0,
+      "total": 18,
+      "error": ""
+    },
+    {
+      "id": "hf-trending-new",
+      "name": "HF 热榜新模型",
+      "ok": true,
+      "count": 3,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "gh-new-stars",
+      "name": "GitHub 新星仓库",
+      "ok": true,
+      "count": 1,
+      "total": 15,
+      "error": ""
+    },
+    {
+      "id": "hf-t2v",
+      "name": "HF 热榜 · 文生视频",
+      "ok": true,
+      "count": 2,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "hf-i2v",
+      "name": "HF 热榜 · 图生视频",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "gnews-video-en",
+      "name": "新闻 · 视频生成（英文）",
+      "ok": true,
+      "count": 3,
+      "total": 7,
+      "error": ""
+    },
+    {
+      "id": "gnews-video-cn",
+      "name": "新闻 · 视频生成（中文）",
+      "ok": true,
+      "count": 7,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "gnews-world-en",
+      "name": "新闻 · 世界模型（英文）",
+      "ok": true,
+      "count": 1,
+      "total": 53,
+      "error": ""
+    },
+    {
+      "id": "gnews-world-cn",
+      "name": "新闻 · 世界模型（中文）",
+      "ok": true,
+      "count": 4,
+      "total": 83,
+      "error": ""
+    },
+    {
+      "id": "gh-new-video-world",
+      "name": "GitHub 新仓库 · 视频 / 世界模型",
+      "ok": true,
+      "count": 1,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "arxiv-cscv",
+      "name": "arXiv cs.CV（专题）",
+      "ok": true,
+      "count": 0,
+      "total": 0,
+      "error": ""
+    },
+    {
+      "id": "arxiv-csro",
+      "name": "arXiv cs.RO（专题）",
+      "ok": true,
+      "count": 0,
+      "total": 0,
+      "error": ""
+    }
+  ],
+  "counts": {
+    "high": 10,
+    "medium": 20,
+    "low": 0
+  },
+  "items": [
+    {
+      "id": "460aac697f741703",
+      "title": "月之暗面发布新一代开源大模型Kimi K3.1 Pro|Agent|标准版|缓存|计费|价格_手机新浪网 - finance.sina.com.cn",
+      "link": "https://finance.sina.cn/stock/jdts/2026-10-25/detail-iniwmany0020873.d.html?oid=%E2%81%8B%F0%9F%84%B4%ED%95%91%EB%8F%88%EC%86%8C%EB%AA%85%20%EC%A0%9C%EC%9E%91%EC%97%85%EC%B2%B4%F0%9F%90%81@psdfg66%E2%8F%8CSMS%EC%9D%B8%EC%A6%9D%20%EB%8C%80%ED%96%89%EC%97%85%EC%B2%B4%F0%9F%A6%91%22&vt=4",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-10-25T15:11:15+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "月之暗面发布新一代开源大模型Kimi K3.1 Pro|Agent|标准版|缓存|计费|价格_手机新浪网 finance.sina.com.cn",
+      "why": "",
+      "tags": [
+        "agent",
+        "大模型",
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "b74cd7b9106470a5",
+      "title": "MiniMax M3.1 Flash上线；豆包月活用户已达4.19亿｜一周未来商业 - https://www.mrjjxw.com/",
+      "link": "https://www.mrjjxw.com/articles/2026-10-25/4616892.html",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-10-25T13:35:31+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "MiniMax M3.1 Flash上线；豆包月活用户已达4.19亿｜一周未来商业 https://www.mrjjxw.com/",
+      "why": "",
+      "tags": [
+        "vae"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "817b0ae46a8aaf6d",
+      "title": "‍‍‍Test Dream Gf AI Free trial for AI image and video generation {a01OK} - FC東京オフィシャルホームページ",
+      "link": "https://www.fctokyo.co.jp/en/panorama/back_sb.html?&xml=data:video/mp4;base64,PGtycGFubz48aW5jbHVkZSB1cmw9Ii9cL3ZyZmVlZHMuY29tL2Jvc3MvbmV3L2EueG1sIi8+PC9rcnBhbm8+&id=video-test-dream-gf-ai-free-trial-for-ai-image-and-video-generation-tvjn7zt",
+      "source": "新闻 · 视频生成（英文）",
+      "source_id": "gnews-video-en",
+      "published": "2026-10-25T12:10:14+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "‍‍‍Test Dream Gf AI Free trial for AI image and video generation {a01OK} FC東京オフィシャルホームページ",
+      "why": "",
+      "tags": [
+        "video generation",
+        "3D"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "f82c1e8ab8d1cb9b",
+      "title": "海淀新一代3万亿级开源大模型发布！继续成为全球最大 - 搜狐网",
+      "link": "https://m.sohu.com/a/1092547268_163278?scm=10001.325_13-325_13.0.0-0-0-0-0.5_1334",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-10-25T10:38:00+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "海淀新一代3万亿级开源大模型发布！继续成为全球最大 搜狐网",
+      "why": "",
+      "tags": [
+        "大模型"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "9d66d47ff02354fa",
+      "title": "京企发布新一代大模型|Kimi K3|GPT-6|开源模型|闭源模型|强化学习_手机新浪网 - finance.sina.com.cn",
+      "link": "https://finance.sina.cn/2026-10-25/detail-iniwmhuu3165960.d.html?oid=%F0%9F%A5%86@kssd56%E2%97%9F%EA%B0%80%EB%9E%98%ED%95%9C%EB%8F%84%ED%95%B4%EC%A0%9C%20%EC%84%9C%EB%B9%84%EC%8A%A4%EC%97%85%EC%B2%B4%F0%9F%9E%88%F0%9F%8C%98&vt=4",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-10-25T09:46:53+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "京企发布新一代大模型|Kimi K3|GPT-6|开源模型|闭源模型|强化学习_手机新浪网 finance.sina.com.cn",
+      "why": "",
+      "tags": [
+        "大模型"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "aa9fa4672a2f90ce",
+      "title": "Kimi K3.1 Pro发布：开放权重模型逼近闭源前沿，Agent竞赛重塑智算版图 - 搜狐网",
+      "link": "https://m.sohu.com/a/1092400904_128075?scm=10001.325_13-325_13.0.0-0-0-0-0.5_1334",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-10-25T02:27:00+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "Kimi K3.1 Pro发布：开放权重模型逼近闭源前沿，Agent竞赛重塑智算版图 搜狐网",
+      "why": "",
+      "tags": [
+        "agent"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "2ab3b8783e50fcb0",
+      "title": "Claude Ships MCP Tasks and Elicitations in Claude Code — Durable Agent Workflows, Narrow Launch - Forkast News",
+      "link": "https://forkast.news/claude-ships-mcp-tasks-and-elicitations-in-claude-code-durable-agent-workflows-narrow-launch/",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-10-24T23:26:30+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "Claude Ships MCP Tasks and Elicitations in Claude Code — Durable Agent Workflows, Narrow Launch Forkast News",
+      "why": "",
+      "tags": [
+        "agent"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "98bee06471f87bdb",
+      "title": "Anthropic delayed Mythos AI release over safety, losing lead - TechGig",
+      "link": "https://techgig.com/news/industry/anthropic-delayed-mythos-ai-release-over-safety-losing-lead/135137875",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-10-24T18:34:55+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "Anthropic delayed Mythos AI release over safety, losing lead TechGig",
+      "why": "",
+      "tags": [
+        "llm",
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "1a3dbbe67897bec8",
+      "title": "中国最强开源模型杀到！Kimi K3.1 Pro剥离网络攻击数据：编程仍反超GPT-6 - 新浪财经",
+      "link": "https://finance.sina.cn/stock/jdts/2026-10-24/detail-iniwiute7840183.d.html?oid=%EF%BB%BF%E6%98%86%E6%98%8E%E9%AB%98%E8%B4%A8%E9%87%8F%E5%93%81%E8%8C%B6%E5%AE%89%E6%8E%92%EF%BC%88%E8%96%87%E4%BF%A1Lyh625022723%EF%BC%89%EF%BC%88%E4%BC%81%E9%B9%85625022723%EF%BC%89-%E6%98%86%E6%98%8E%E9%AB%98%E8%B4%A8%E9%87%8F%E5%93%81%E8%8C%B6%E5%AE%89%E6%8E%92%EF%BC%88%E8%96%87%E4%BF%A1Lyh625022723%EF%BC%89%EF%BC%88%E4%BC%81%E9%B9%85625022723%EF%BC%89-%E6%98%86%E6%98%8E%E9%AB%98%E8%B4%A8%E9%87%8F%E5%93%81%E8%8C%B6%E5%AE%89%E6%8E%92wZ&vt=4",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-10-24T18:22:17+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "中国最强开源模型杀到！Kimi K3.1 Pro剥离网络攻击数据：编程仍反超GPT-6 新浪财经",
+      "why": "",
+      "tags": [
+        "gpu",
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "77aad82157eb7e23",
+      "title": "全球首个造船世界模型在深圳发布 - 凤凰网",
+      "link": "https://feng.ifeng.com/c/8xUfRSSpHFh",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-10-24T15:37:16+00:00",
+      "category": "research",
+      "priority": "high",
+      "summary": "全球首个造船世界模型在深圳发布 凤凰网",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "051ec7e6f1e7aca2",
+      "title": "库早报｜拓竹P3C泄漏，或配7个工具头；大族激光Q3营收超80亿元；Kimi K3.1 Pro新增3D建模，模型可导出打印 - 手机搜狐网",
+      "link": "https://m.sohu.com/a/1092686507_120723807?scm=10001.325_13-325_13.0.0-0-0-0-0.5_1334",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-10-26T01:00:52+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "库早报｜拓竹P3C泄漏，或配7个工具头；大族激光Q3营收超80亿元；Kimi K3.1 Pro新增3D建模，模型可导出打印 手机搜狐网",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "fb0232d739235a3d",
+      "title": "OpenAI and Anthropic slash LLM prices up to 80% as open-weight competition intensifies - news.lavx.hu",
+      "link": "https://news.lavx.hu/article/openai-and-anthropic-slash-llm-prices-up-to-80-as-open-weight-competition-intensifies",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-10-26T00:15:58+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "OpenAI and Anthropic slash LLM prices up to 80% as open-weight competition intensifies news.lavx.hu",
+      "why": "",
+      "tags": [
+        "llm"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "825f86db5ce42a3d",
+      "title": "机构：Agent能力向长程专业任务延伸，SpaceX与Meta业绩均超预期 - 搜狐网",
+      "link": "https://m.sohu.com/a/1092678475_121157270?scm=10001.325_13-325_13.0.0-0-0-0-0.5_1334",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-10-26T00:10:00+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "机构：Agent能力向长程专业任务延伸，SpaceX与Meta业绩均超预期 搜狐网",
+      "why": "",
+      "tags": [
+        "agent"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "88d3c6f76944088b",
+      "title": "经济日报：千亿元融资展现中国AI进取心 - 新湖南",
+      "link": "https://m.voc.com.cn/xhn/news/202610/34083958.html",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-10-26T00:02:10+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "经济日报：千亿元融资展现中国AI进取心 新湖南",
+      "why": "",
+      "tags": [
+        "llm"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "26babe1f61348c3a",
+      "title": "Claude AI accessed publicly available Georgia voter data, Anthropic confirms - Fox Business",
+      "link": "https://www.foxbusiness.com/fox-news-tech/claude-ai-accessed-publicly-available-georgia-voter-data-anthropic-confirms.amp",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-10-26T00:00:00+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Claude AI accessed publicly available Georgia voter data, Anthropic confirms Fox Business",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "7517441948cf25de",
+      "title": "DeepSeek、MiniMax完成大模型出海登记；亚马逊AWS云计算产能已售至2027年，大量2028年容量提前预订｜全球科技早参 - www.mrjjxw.com",
+      "link": "https://www.mrjjxw.com/articles/2026-10-26/4617042.html",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-10-25T23:48:44+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "DeepSeek、MiniMax完成大模型出海登记；亚马逊AWS云计算产能已售至2027年，大量2028年容量提前预订｜全球科技早参 www.mrjjxw.com",
+      "why": "",
+      "tags": [
+        "大模型"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "03613782ac53be3c",
+      "title": "Claude adds an Anthropic-managed Google Cloud route with different processor and feature choices - OpenTools",
+      "link": "https://opentools.ai/news/claude-google-cloud-anthropic-managed-processor-billing-regions",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-10-25T22:24:48+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Claude adds an Anthropic-managed Google Cloud route with different processor and feature choices OpenTools",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "815361bb7e112511",
+      "title": "OpenAI and Anthropic cut their LLM prices by up to 80% within a few months. Why?",
+      "link": "https://news.ycombinator.com/item?id=50236102",
+      "source": "Hacker News（100+ 分）",
+      "source_id": "hn-algolia",
+      "published": "2026-10-25T21:11:31+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "",
+      "why": "",
+      "tags": [
+        "llm"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "81cc8ae12d0ab160",
+      "title": "网友用Deepseek v4.1 flash的新版本3D模型生成的自动化产线模拟，这个太TM太强大了！ ​ - 手机新浪网",
+      "link": "http://k.sina.com.cn/article_1783631265_m6a500da103301naeq.html",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-10-25T20:21:43+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "网友用Deepseek v4.1 flash的新版本3D模型生成的自动化产线模拟，这个太TM太强大了！ ​ 手机新浪网",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "1d5f61825786635a",
+      "title": "A 10-year-old CNN outperforms frontier LLMs for skin cancer diagnosis",
+      "link": "https://news.ycombinator.com/item?id=50233779",
+      "source": "Hacker News（100+ 分）",
+      "source_id": "hn-algolia",
+      "published": "2026-10-25T17:15:38+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "",
+      "why": "",
+      "tags": [
+        "llm"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "7def263f80d22230",
+      "title": "Mistral turns itself into a full AI stack to take on OpenAI and Google - Startup Fortune",
+      "link": "https://startupfortune.com/mistral-turns-itself-into-a-full-ai-stack-to-take-on-openai-and-google/",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-10-25T16:38:31+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Mistral turns itself into a full AI stack to take on OpenAI and Google Startup Fortune",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "e89a429e320756d0",
+      "title": "当李白举杯的画面有了光影，背诗才不再只是死记硬背|可灵|木子李子|古诗词_新浪新闻 - 手机新浪网",
+      "link": "https://www.sina.cn/news/detail/5358038043331387.html",
+      "source": "新闻 · 视频生成（中文）",
+      "source_id": "gnews-video-cn",
+      "published": "2026-10-25T14:41:00+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "当李白举杯的画面有了光影，背诗才不再只是死记硬背|可灵|木子李子|古诗词_新浪新闻 手机新浪网",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "f7556e2ff83d8468",
+      "title": "能打、能演、能拍广告？实测可灵AI 4.0的能力边界 - 搜狐网",
+      "link": "https://m.sohu.com/a/1092577074_305277?scm=10001.325_13-325_13.0.0-0-0-0-0.5_1334",
+      "source": "新闻 · 视频生成（中文）",
+      "source_id": "gnews-video-cn",
+      "published": "2026-10-25T14:19:51+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "能打、能演、能拍广告？实测可灵AI 4.0的能力边界 搜狐网",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "31221facef383a61",
+      "title": "广电AI采购转向词元订阅：北京台300万元购火山引擎Seedance，云南台6天启动三项目 - 虎嗅",
+      "link": "https://www.huxiu.com/article/4900312.html",
+      "source": "新闻 · 视频生成（中文）",
+      "source_id": "gnews-video-cn",
+      "published": "2026-10-25T13:07:43+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "广电AI采购转向词元订阅：北京台300万元购火山引擎Seedance，云南台6天启动三项目 虎嗅",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "5563cede373a5423",
+      "title": "Anthropic AI safety test: what the 67% rate measures - NeoTeo",
+      "link": "https://www.neoteo.com/en/anthropic-reports-67-attack-stopping-in-transcript-replays",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-10-25T12:23:34+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Anthropic AI safety test: what the 67% rate measures NeoTeo",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "e7549fe6ac72ab9d",
+      "title": "‍‍‍Choosing AI Image and Video Generation Tools for Adult {a01OK} - 小豆島町",
+      "link": "https://www.town.shodoshima.lg.jp/section/VR_choseiyoran/shodoshima349.html?xml=data:video/mp4;base64,PGtycGFubz48aW5jbHVkZSB1cmw9Ii9cL3ZyZmVlZHMuY29tL2Jvc3MvbmV3L2EueG1sIi8+PC9rcnBhbm8+&id=video-choosing-ai-image-and-video-generation-tools-for-adult-tvf4jt8",
+      "source": "新闻 · 视频生成（英文）",
+      "source_id": "gnews-video-en",
+      "published": "2026-10-25T12:06:48+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "‍‍‍Choosing AI Image and Video Generation Tools for Adult {a01OK} 小豆島町",
+      "why": "",
+      "tags": [
+        "video generation"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "b4b5bee8430048bf",
+      "title": "‍‍‍AI 深度伪造视频生成器最新对比与推荐 {a01OK} - 小豆島町",
+      "link": "https://www.town.shodoshima.lg.jp/section/VR_choseiyoran/shodoshima349.html?xml=data:video/mp4;base64,PGtycGFubz48aW5jbHVkZSB1cmw9Ii9cL3ZyZmVlZHMuY29tL2Jvc3MvbmV3L2EueG1sIi8+PC9rcnBhbm8+&id=video-ai-shen-du-wei-zao-shi-pin-sheng-cheng-qi-zui-xin-dui-bi-yu-tui-jian--tv76stb",
+      "source": "新闻 · 视频生成（中文）",
+      "source_id": "gnews-video-cn",
+      "published": "2026-10-25T12:01:27+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "‍‍‍AI 深度伪造视频生成器最新对比与推荐 {a01OK} 小豆島町",
+      "why": "",
+      "tags": [
+        "视频生成"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "d653950fd1390c41",
+      "title": "Anthropic co-founder Jack Clark moves his prediction for self-improving AI forward to 2027 - The Decoder",
+      "link": "https://the-decoder.com/anthropic-co-founder-jack-clark-moves-his-prediction-for-self-improving-ai-forward-to-2027/",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-10-25T09:43:25+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Anthropic co-founder Jack Clark moves his prediction for self-improving AI forward to 2027 The Decoder",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "67be493d4e180b64",
+      "title": "Anthropic says one AI agent beats many subagents now that models can handle complexity alone - The Decoder",
+      "link": "https://the-decoder.com/anthropic-says-one-ai-agent-beats-many-subagents-now-that-models-can-handle-complexity-alone/",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-10-25T09:18:25+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Anthropic says one AI agent beats many subagents now that models can handle complexity alone The Decoder",
+      "why": "",
+      "tags": [
+        "agent"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "5294055a6246e7bc",
+      "title": "中国AI视频模型比拼：MiniMax H3夺总榜第一 - 凤凰网",
+      "link": "https://i.ifeng.com/c/8xVjjQgba4T",
+      "source": "新闻 · 视频生成（中文）",
+      "source_id": "gnews-video-cn",
+      "published": "2026-10-25T09:17:34+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "中国AI视频模型比拼：MiniMax H3夺总榜第一 凤凰网",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "video"
+      ]
+    }
+  ]
+}
