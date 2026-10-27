@@ -1,0 +1,934 @@
+{
+  "date": "2026-10-27",
+  "generated_at": "2026-10-27T02:05:30+00:00",
+  "ai": false,
+  "model": "",
+  "sources": [
+    {
+      "id": "openai",
+      "name": "OpenAI",
+      "ok": true,
+      "count": 7,
+      "total": 1325,
+      "error": ""
+    },
+    {
+      "id": "google-ai",
+      "name": "Google AI Blog",
+      "ok": true,
+      "count": 1,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "qwen",
+      "name": "Qwen",
+      "ok": true,
+      "count": 0,
+      "total": 44,
+      "error": ""
+    },
+    {
+      "id": "hf-blog",
+      "name": "Hugging Face Blog",
+      "ok": true,
+      "count": 0,
+      "total": 890,
+      "error": ""
+    },
+    {
+      "id": "nvidia-dev",
+      "name": "NVIDIA Technical Blog",
+      "ok": true,
+      "count": 0,
+      "total": 100,
+      "error": ""
+    },
+    {
+      "id": "hf-papers",
+      "name": "HF Papers 日榜",
+      "ok": true,
+      "count": 5,
+      "total": 23,
+      "error": ""
+    },
+    {
+      "id": "pytorch",
+      "name": "PyTorch Blog",
+      "ok": true,
+      "count": 1,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "simonw",
+      "name": "Simon Willison",
+      "ok": true,
+      "count": 2,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "lilianweng",
+      "name": "Lil'Log",
+      "ok": true,
+      "count": 0,
+      "total": 53,
+      "error": ""
+    },
+    {
+      "id": "interconnects",
+      "name": "Interconnects",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "raschka",
+      "name": "Sebastian Raschka",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "chiphuyen",
+      "name": "Chip Huyen",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-pytorch",
+      "name": "Release · PyTorch",
+      "ok": true,
+      "count": 1,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-triton",
+      "name": "Release · Triton",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-cutlass",
+      "name": "Release · CUTLASS",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-flash-attention",
+      "name": "Release · FlashAttention",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-vllm",
+      "name": "Release · vLLM",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-sglang",
+      "name": "Release · SGLang",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-tensorrt-llm",
+      "name": "Release · TensorRT-LLM",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-diffusers",
+      "name": "Release · Diffusers",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-cuda-python",
+      "name": "Release · cuda-python",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "gnews-labs-en",
+      "name": "新闻 · Anthropic / Mistral / xAI",
+      "ok": true,
+      "count": 16,
+      "total": 57,
+      "error": ""
+    },
+    {
+      "id": "gnews-labs-cn",
+      "name": "新闻 · 国内模型公司",
+      "ok": true,
+      "count": 30,
+      "total": 100,
+      "error": ""
+    },
+    {
+      "id": "qbitai",
+      "name": "量子位",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "infoq-cn",
+      "name": "InfoQ 中文",
+      "ok": true,
+      "count": 3,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "thonking",
+      "name": "Horace He (thonking)",
+      "ok": true,
+      "count": 0,
+      "total": 6,
+      "error": ""
+    },
+    {
+      "id": "hn-algolia",
+      "name": "Hacker News（100+ 分）",
+      "ok": true,
+      "count": 4,
+      "total": 60,
+      "error": ""
+    },
+    {
+      "id": "karpathy-blog",
+      "name": "Andrej Karpathy 博客",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "eugeneyan",
+      "name": "Eugene Yan",
+      "ok": true,
+      "count": 0,
+      "total": 212,
+      "error": ""
+    },
+    {
+      "id": "importai",
+      "name": "Import AI（Jack Clark）",
+      "ok": true,
+      "count": 1,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "latentspace",
+      "name": "Latent Space",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "semianalysis",
+      "name": "SemiAnalysis",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "meta-ai",
+      "name": "Meta Engineering",
+      "ok": true,
+      "count": 0,
+      "total": 9,
+      "error": ""
+    },
+    {
+      "id": "mistral-news",
+      "name": "Mistral AI",
+      "ok": true,
+      "count": 0,
+      "total": 92,
+      "error": ""
+    },
+    {
+      "id": "bsky-karpathy",
+      "name": "Bluesky · Andrej Karpathy",
+      "ok": true,
+      "count": 0,
+      "total": 15,
+      "error": ""
+    },
+    {
+      "id": "bsky-giffmana",
+      "name": "Bluesky · Lucas Beyer",
+      "ok": true,
+      "count": 0,
+      "total": 22,
+      "error": ""
+    },
+    {
+      "id": "bsky-hardmaru",
+      "name": "Bluesky · hardmaru",
+      "ok": true,
+      "count": 0,
+      "total": 15,
+      "error": ""
+    },
+    {
+      "id": "bsky-swyx",
+      "name": "Bluesky · swyx",
+      "ok": true,
+      "count": 0,
+      "total": 3,
+      "error": ""
+    },
+    {
+      "id": "bsky-pytorch",
+      "name": "Bluesky · PyTorch",
+      "ok": true,
+      "count": 2,
+      "total": 29,
+      "error": ""
+    },
+    {
+      "id": "bsky-clem",
+      "name": "Bluesky · Clem Delangue",
+      "ok": true,
+      "count": 0,
+      "total": 11,
+      "error": ""
+    },
+    {
+      "id": "bsky-natolambert",
+      "name": "Bluesky · Nathan Lambert",
+      "ok": true,
+      "count": 0,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "bsky-rasbt",
+      "name": "Bluesky · Sebastian Raschka",
+      "ok": true,
+      "count": 0,
+      "total": 27,
+      "error": ""
+    },
+    {
+      "id": "bsky-jeffdean",
+      "name": "Bluesky · Jeff Dean",
+      "ok": true,
+      "count": 0,
+      "total": 18,
+      "error": ""
+    },
+    {
+      "id": "hf-trending-new",
+      "name": "HF 热榜新模型",
+      "ok": true,
+      "count": 2,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "gh-new-stars",
+      "name": "GitHub 新星仓库",
+      "ok": true,
+      "count": 0,
+      "total": 15,
+      "error": ""
+    },
+    {
+      "id": "hf-t2v",
+      "name": "HF 热榜 · 文生视频",
+      "ok": true,
+      "count": 0,
+      "total": 19,
+      "error": ""
+    },
+    {
+      "id": "hf-i2v",
+      "name": "HF 热榜 · 图生视频",
+      "ok": true,
+      "count": 0,
+      "total": 18,
+      "error": ""
+    },
+    {
+      "id": "gnews-video-en",
+      "name": "新闻 · 视频生成（英文）",
+      "ok": true,
+      "count": 9,
+      "total": 16,
+      "error": ""
+    },
+    {
+      "id": "gnews-video-cn",
+      "name": "新闻 · 视频生成（中文）",
+      "ok": true,
+      "count": 16,
+      "total": 23,
+      "error": ""
+    },
+    {
+      "id": "gnews-world-en",
+      "name": "新闻 · 世界模型（英文）",
+      "ok": true,
+      "count": 4,
+      "total": 32,
+      "error": ""
+    },
+    {
+      "id": "gnews-world-cn",
+      "name": "新闻 · 世界模型（中文）",
+      "ok": true,
+      "count": 13,
+      "total": 59,
+      "error": ""
+    },
+    {
+      "id": "gh-new-video-world",
+      "name": "GitHub 新仓库 · 视频 / 世界模型",
+      "ok": true,
+      "count": 1,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "arxiv-cscv",
+      "name": "arXiv cs.CV（专题）",
+      "ok": true,
+      "count": 17,
+      "total": 205,
+      "error": ""
+    },
+    {
+      "id": "arxiv-csro",
+      "name": "arXiv cs.RO（专题）",
+      "ok": true,
+      "count": 2,
+      "total": 107,
+      "error": ""
+    }
+  ],
+  "counts": {
+    "high": 10,
+    "medium": 20,
+    "low": 0
+  },
+  "items": [
+    {
+      "id": "d8b5510d001eee75",
+      "title": "全球最大开源模型“上新”，带来了什么 - 手机新浪网",
+      "link": "https://k.sina.com.cn/article_5952915720_162d24908067051z8i.html?from=tech",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-10-26T23:34:00+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "全球最大开源模型“上新”，带来了什么 手机新浪网",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "9828367e504b4a64",
+      "title": "单Token降价撞上Agent高消耗，Kimi K3.1 Pro上线48小时即致歉，补偿25%用量 - 华尔街见闻",
+      "link": "https://wallstreetcn.com/articles/3784506",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-10-26T22:33:39+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "单Token降价撞上Agent高消耗，Kimi K3.1 Pro上线48小时即致歉，补偿25%用量 华尔街见闻",
+      "why": "",
+      "tags": [
+        "agent"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "71c718df5c016582",
+      "title": "Anthropic IPO Filing Reveals AI Boom’s Next Test: 7 ETFs With Pre-Launch Exposure - Benzinga",
+      "link": "https://www.benzinga.com/etfs/specialty-etfs/26/10/62602063/anthropic-ipo-filing-reveals-ai-booms-next-test-7-etfs-with-pre-launch-exposure",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-10-26T19:07:51+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "Anthropic IPO Filing Reveals AI Boom’s Next Test: 7 ETFs With Pre-Launch Exposure Benzinga",
+      "why": "",
+      "tags": [
+        "moe",
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "4de01b144ce7f5ae",
+      "title": "DeepSpeed virtual office hours on October 27 cover features and benchmark results presented at PyTorch Conference and th",
+      "link": "https://bsky.app/profile/pytorch.org/post/3mys6jkjpoz22",
+      "source": "Bluesky · PyTorch",
+      "source_id": "bsky-pytorch",
+      "published": "2026-10-26T16:50:00+00:00",
+      "category": "people",
+      "priority": "high",
+      "summary": "DeepSpeed virtual office hours on October 27 cover features and benchmark results presented at PyTorch Conference and the proposed Q4 roadmap…",
+      "why": "",
+      "tags": [
+        "pytorch"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "1a1d4bf2fc111eb8",
+      "title": "GPT-6.1 Sol helps CodeRabbit strengthen security across complex codebases",
+      "link": "https://openai.com/index/gpt-6-1-sol-coderabbit-code-security",
+      "source": "OpenAI",
+      "source_id": "openai",
+      "published": "2026-10-26T13:45:00+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "CodeRabbit uses GPT-6.1 Sol to investigate security risks across complex codebases. Its security agent helps developers review findings and proposed fixes.",
+      "why": "",
+      "tags": [
+        "agent"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "af7aa3b7e1d2fbfe",
+      "title": "DeepSeek开源真香！vLLM/SGLang性能反超，推理速度卷出新高度 - 搜狐网",
+      "link": "https://m.sohu.com/a/1093030750_121207965?scm=10001.325_13-325_13.0.0-0-0-0-0.5_1334",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-10-26T13:31:00+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "DeepSeek开源真香！vLLM/SGLang性能反超，推理速度卷出新高度 搜狐网",
+      "why": "",
+      "tags": [
+        "llm"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "f1d37b1672d098ed",
+      "title": "best nsfw image to video generation with consent and age verification - 小豆島町",
+      "link": "https://www.town.shodoshima.lg.jp/section/VR_choseiyoran/shodoshima349.html?xml=data:video/mp4;base64,PGtycGFubz48aW5jbHVkZSB1cmw9Ii9cL3ZyZmVlZHMuY29tL2Jvc3MvbmV3L2EueG1sIi8+PC9rcnBhbm8+&id=0kewxghbmtpscqja",
+      "source": "新闻 · 视频生成（英文）",
+      "source_id": "gnews-video-en",
+      "published": "2026-10-26T12:07:42+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "best nsfw image to video generation with consent and age verification 小豆島町",
+      "why": "",
+      "tags": [
+        "video generation",
+        "3D"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "f71c69175f319b97",
+      "title": "DeepSeek开源真香，vLLM/SGLang连夜性能反超，推理速度卷出新高度-36氪 - www.36kr.com",
+      "link": "http://www.36kr.com/p/4042588576404358",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-10-26T11:42:59+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "DeepSeek开源真香，vLLM/SGLang连夜性能反超，推理速度卷出新高度-36氪 www.36kr.com",
+      "why": "",
+      "tags": [
+        "llm"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "2d4abb9840d19d01",
+      "title": "DeepSeek开源真香！vLLM/SGLang连夜性能反超，推理速度卷出新高度 - 搜狐网",
+      "link": "https://m.sohu.com/a/1092976489_610300?scm=10001.325_13-325_13.0.0-0-0-0-0.5_1334",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-10-26T10:30:00+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "DeepSeek开源真香！vLLM/SGLang连夜性能反超，推理速度卷出新高度 搜狐网",
+      "why": "",
+      "tags": [
+        "llm"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "c48e193b56e2561e",
+      "title": "Newborn Town and Viggle Launch AI-Powered 3D Interactive Game, Bringing World Models to Social Gaming - KIPOST",
+      "link": "https://www.kipost.net/news/articleViewAmp.html?idxno=342685",
+      "source": "新闻 · 世界模型（英文）",
+      "source_id": "gnews-world-en",
+      "published": "2026-10-26T07:42:28+00:00",
+      "category": "research",
+      "priority": "high",
+      "summary": "Newborn Town and Viggle Launch AI-Powered 3D Interactive Game, Bringing World Models to Social Gaming KIPOST",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "3f0e6dfa2f906591",
+      "title": "港股“大模型双雄”拉升 智谱涨超11% - 搜狐网",
+      "link": "https://m.sohu.com/a/1093208385_121443915?scm=10001.325_13-325_13.0.0-0-0-0-0.5_1334",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-10-27T01:56:26+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "港股“大模型双雄”拉升 智谱涨超11% 搜狐网",
+      "why": "",
+      "tags": [
+        "大模型"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "1198e79641bb8fbd",
+      "title": "Anthropic paused AI training for a month. What its IPO filing reveals about safety risks - Firstpost",
+      "link": "https://www.firstpost.com/business/anthropic-ai-models-security-risks-ipo-filing-14055553.html",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-10-27T01:25:16+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Anthropic paused AI training for a month. What its IPO filing reveals about safety risks Firstpost",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "13c27aad1ed82d39",
+      "title": "v2.15.0-rc9",
+      "link": "https://github.com/pytorch/pytorch/releases/tag/v2.15.0-rc9",
+      "source": "Release · PyTorch",
+      "source_id": "rel-pytorch",
+      "published": "2026-10-27T01:22:52+00:00",
+      "category": "infra",
+      "priority": "medium",
+      "summary": "[release/2.15] Revert \"[inductor] Prefetch Inductor cache keys at tor…",
+      "why": "",
+      "tags": [],
+      "tracks": []
+    },
+    {
+      "id": "cbac9ff097412566",
+      "title": "让JEPA真正理解世界背后的生成机制，DSReg让世界模型的每一维都有了真实含义 - 搜狐网",
+      "link": "https://m.sohu.com/a/1093009010_129720?scm=10001.325_13-325_13.0.0-0-0-0-0.5_1334",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-10-27T01:20:00+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "让JEPA真正理解世界背后的生成机制，DSReg让世界模型的每一维都有了真实含义 搜狐网",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "f35a1d5d17f220d9",
+      "title": "Anthropic IPO Push Sends KOSPI Surging 3%; SK Square Jumps 10% - BigGo Finance",
+      "link": "https://finance.biggo.com/news/3f85d75a-51a3-48ad-acbc-c6c53e8f391b",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-10-27T00:36:00+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Anthropic IPO Push Sends KOSPI Surging 3%; SK Square Jumps 10% BigGo Finance",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "5826c603c98cb694",
+      "title": "Is Seedance Core R&D Head Zhou Chang Resigning to Start a Business? ByteDance Insider Responds - eu.36kr.com",
+      "link": "https://eu.36kr.com/en/p/4042852429157505",
+      "source": "新闻 · 视频生成（英文）",
+      "source_id": "gnews-video-en",
+      "published": "2026-10-27T00:11:59+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Is Seedance Core R&D Head Zhou Chang Resigning to Start a Business? ByteDance Insider Responds eu.36kr.com",
+      "why": "",
+      "tags": [
+        "cuda"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "4048f92bf5a176d9",
+      "title": "GPT-6.1 Sol vs Kimi K3.1 Pro：价格相同，账单不同 - OrcaRouter",
+      "link": "https://www.orcarouter.ai/zh-CN/blog/gpt-6-1-sol-vs-kimi-k3-1-pro",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-10-26T23:37:04+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "GPT-6.1 Sol vs Kimi K3.1 Pro：价格相同，账单不同 OrcaRouter",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "7f0c9f33b7f59972",
+      "title": "Anthropic’s delay in reporting ‘rogue agent’ Georgia vote hack alarms government officials - New York Post",
+      "link": "https://nypost.com/2026/10/26/tech/government-officials-alarmed-by-anthropics-delay-in-reporting-rogue-agent-georgia-vote-hack/",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-10-26T23:32:00+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Anthropic’s delay in reporting ‘rogue agent’ Georgia vote hack alarms government officials New York Post",
+      "why": "",
+      "tags": [
+        "agent"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "5e3ad915fa985286",
+      "title": "可灵AI增资至约8744.7万元；圆通速递前三季度资本开支累计超49亿元｜未来商业早参 - https://www.mrjjxw.com/",
+      "link": "https://www.mrjjxw.com/articles/2026-10-26/4617942.html",
+      "source": "新闻 · 视频生成（中文）",
+      "source_id": "gnews-video-cn",
+      "published": "2026-10-26T22:30:07+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "可灵AI增资至约8744.7万元；圆通速递前三季度资本开支累计超49亿元｜未来商业早参 https://www.mrjjxw.com/",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "5e257c1a27732e21",
+      "title": "AI大模型聚合站：别急着充值，先看这3个隐藏坑 - CSDN",
+      "link": "https://www.csdn.net/article/2026-10-27/169212121",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-10-26T22:16:27+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "AI大模型聚合站：别急着充值，先看这3个隐藏坑 CSDN",
+      "why": "",
+      "tags": [
+        "大模型"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "250e5d8f302445e7",
+      "title": "Greptile takes bug detection beyond code review with GPT-6 Astra",
+      "link": "https://openai.com/index/greptile-code-review-codex-astra",
+      "source": "OpenAI",
+      "source_id": "openai",
+      "published": "2026-10-26T22:00:00+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "How Greptile uses GPT-6 Astra to test user workflows, Daybreak to strengthen security, and Codex to reduce rework.",
+      "why": "",
+      "tags": [],
+      "tracks": []
+    },
+    {
+      "id": "20bfe3698473a420",
+      "title": "【科创之声】千亿元融资展现中国AI进取心 - 新浪新闻_手机新浪网",
+      "link": "https://news.sina.com.cn/zx/gj/2026-10-26/doc-iniwpfnc2440169.shtml",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-10-26T21:05:00+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "【科创之声】千亿元融资展现中国AI进取心 新浪新闻_手机新浪网",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "a8c50fcead4c119b",
+      "title": "AI agents found paths into Anthropic’s business systems in under 12 hours, startup says - Crypto Briefing",
+      "link": "https://cryptobriefing.com/ai-agents-anthropic-systems-cathedral-test/",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-10-26T20:38:33+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "AI agents found paths into Anthropic’s business systems in under 12 hours, startup says Crypto Briefing",
+      "why": "",
+      "tags": [
+        "agent",
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "cb226f419b63ddea",
+      "title": "性能接近顶配，价格只要1/5，国产大模型更能打了 - 手机新浪网",
+      "link": "https://k.sina.com.cn/article_5953740931_162dee083067043598.html",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-10-26T20:35:29+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "性能接近顶配，价格只要1/5，国产大模型更能打了 手机新浪网",
+      "why": "",
+      "tags": [
+        "大模型"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "18c9bc269df55c38",
+      "title": "Seedance 2.0 video quality study: HKU's results - NeoTeo",
+      "link": "https://www.neoteo.com/en/hku-ranks-seedance-20-pro-first-for-generation",
+      "source": "新闻 · 视频生成（英文）",
+      "source_id": "gnews-video-en",
+      "published": "2026-10-26T19:30:27+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Seedance 2.0 video quality study: HKU's results NeoTeo",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "c12df7249c929d7e",
+      "title": "Faster streaming speech recognition on @Arm edge devices: see how ExecuTorch, SME2, FP16 and QC8W balance accuracy and l",
+      "link": "https://bsky.app/profile/pytorch.org/post/3myseldh3vc2b",
+      "source": "Bluesky · PyTorch",
+      "source_id": "bsky-pytorch",
+      "published": "2026-10-26T18:38:00+00:00",
+      "category": "people",
+      "priority": "medium",
+      "summary": "Faster streaming speech recognition on @Arm edge devices: see how ExecuTorch, SME2, FP16 and QC8W balance accuracy and latency—delivering up to 2.12× faster…",
+      "why": "",
+      "tags": [
+        "latency"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "698b41c6fa5388d6",
+      "title": "Optimizing Streaming Speech Recognition on Arm® Edge Devices with ExecuTorch",
+      "link": "https://pytorch.org/blog/optimizing-streaming-speech-recognition-on-arm-edge-devices-with-executorch",
+      "source": "PyTorch Blog",
+      "source_id": "pytorch",
+      "published": "2026-10-26T18:27:27+00:00",
+      "category": "infra",
+      "priority": "medium",
+      "summary": "When you’re speaking to a device, you expect text to appear as you talk. That makes streaming automatic speech recognition (ASR) a different challenge from…",
+      "why": "",
+      "tags": [
+        "pytorch"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "b86775669bf35df4",
+      "title": "World models: Request latency model serving with 42.5% more video at 5.5x the latency - Nebius",
+      "link": "https://nebius.com/blog/posts/serving-world-models-latency-node-throughput",
+      "source": "新闻 · 视频生成（英文）",
+      "source_id": "gnews-video-en",
+      "published": "2026-10-26T18:03:02+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "World models: Request latency model serving with 42.5% more video at 5.5x the latency Nebius",
+      "why": "",
+      "tags": [
+        "latency"
+      ],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "3f81bdca1eb92fd2",
+      "title": "Anthropic halted AI model training for more than a month — Channel NewsAsia - UA.NEWS",
+      "link": "https://ua.news/en/technologies/anthropic-zupinila-navchannia-shi-modeli-bilsh-nizh-na-misiats-channel-newsasia",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-10-26T16:54:53+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Anthropic halted AI model training for more than a month — Channel NewsAsia UA.NEWS",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "76bfd9d9710bd85f",
+      "title": "NVIDIA Cosmos adds data blueprints and simulation tools for physical AI - OpenTools",
+      "link": "https://opentools.ai/news/nvidia-cosmos-data-factory-blueprints-simulation-tools",
+      "source": "新闻 · 世界模型（英文）",
+      "source_id": "gnews-world-en",
+      "published": "2026-10-26T16:54:42+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "NVIDIA Cosmos adds data blueprints and simulation tools for physical AI OpenTools",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    }
+  ]
+}
