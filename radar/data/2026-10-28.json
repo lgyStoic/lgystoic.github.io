@@ -1,0 +1,938 @@
+{
+  "date": "2026-10-28",
+  "generated_at": "2026-10-28T02:16:22+00:00",
+  "ai": false,
+  "model": "",
+  "sources": [
+    {
+      "id": "openai",
+      "name": "OpenAI",
+      "ok": true,
+      "count": 3,
+      "total": 1331,
+      "error": ""
+    },
+    {
+      "id": "google-ai",
+      "name": "Google AI Blog",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "qwen",
+      "name": "Qwen",
+      "ok": true,
+      "count": 0,
+      "total": 44,
+      "error": ""
+    },
+    {
+      "id": "hf-blog",
+      "name": "Hugging Face Blog",
+      "ok": true,
+      "count": 2,
+      "total": 891,
+      "error": ""
+    },
+    {
+      "id": "nvidia-dev",
+      "name": "NVIDIA Technical Blog",
+      "ok": true,
+      "count": 3,
+      "total": 100,
+      "error": ""
+    },
+    {
+      "id": "hf-papers",
+      "name": "HF Papers 日榜",
+      "ok": true,
+      "count": 26,
+      "total": 38,
+      "error": ""
+    },
+    {
+      "id": "pytorch",
+      "name": "PyTorch Blog",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "simonw",
+      "name": "Simon Willison",
+      "ok": true,
+      "count": 1,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "lilianweng",
+      "name": "Lil'Log",
+      "ok": true,
+      "count": 0,
+      "total": 53,
+      "error": ""
+    },
+    {
+      "id": "interconnects",
+      "name": "Interconnects",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "raschka",
+      "name": "Sebastian Raschka",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "chiphuyen",
+      "name": "Chip Huyen",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-pytorch",
+      "name": "Release · PyTorch",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-triton",
+      "name": "Release · Triton",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-cutlass",
+      "name": "Release · CUTLASS",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-flash-attention",
+      "name": "Release · FlashAttention",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-vllm",
+      "name": "Release · vLLM",
+      "ok": true,
+      "count": 1,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-sglang",
+      "name": "Release · SGLang",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-tensorrt-llm",
+      "name": "Release · TensorRT-LLM",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-diffusers",
+      "name": "Release · Diffusers",
+      "ok": true,
+      "count": 1,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-cuda-python",
+      "name": "Release · cuda-python",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "gnews-labs-en",
+      "name": "新闻 · Anthropic / Mistral / xAI",
+      "ok": true,
+      "count": 23,
+      "total": 100,
+      "error": ""
+    },
+    {
+      "id": "gnews-labs-cn",
+      "name": "新闻 · 国内模型公司",
+      "ok": true,
+      "count": 19,
+      "total": 100,
+      "error": ""
+    },
+    {
+      "id": "qbitai",
+      "name": "量子位",
+      "ok": true,
+      "count": 1,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "infoq-cn",
+      "name": "InfoQ 中文",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "thonking",
+      "name": "Horace He (thonking)",
+      "ok": true,
+      "count": 0,
+      "total": 6,
+      "error": ""
+    },
+    {
+      "id": "hn-algolia",
+      "name": "Hacker News（100+ 分）",
+      "ok": true,
+      "count": 2,
+      "total": 60,
+      "error": ""
+    },
+    {
+      "id": "karpathy-blog",
+      "name": "Andrej Karpathy 博客",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "eugeneyan",
+      "name": "Eugene Yan",
+      "ok": true,
+      "count": 0,
+      "total": 212,
+      "error": ""
+    },
+    {
+      "id": "importai",
+      "name": "Import AI（Jack Clark）",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "latentspace",
+      "name": "Latent Space",
+      "ok": true,
+      "count": 3,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "semianalysis",
+      "name": "SemiAnalysis",
+      "ok": false,
+      "count": 0,
+      "total": 0,
+      "error": "HTTP Error 403: Forbidden"
+    },
+    {
+      "id": "meta-ai",
+      "name": "Meta Engineering",
+      "ok": true,
+      "count": 0,
+      "total": 9,
+      "error": ""
+    },
+    {
+      "id": "mistral-news",
+      "name": "Mistral AI",
+      "ok": true,
+      "count": 0,
+      "total": 92,
+      "error": ""
+    },
+    {
+      "id": "bsky-karpathy",
+      "name": "Bluesky · Andrej Karpathy",
+      "ok": true,
+      "count": 0,
+      "total": 15,
+      "error": ""
+    },
+    {
+      "id": "bsky-giffmana",
+      "name": "Bluesky · Lucas Beyer",
+      "ok": true,
+      "count": 0,
+      "total": 22,
+      "error": ""
+    },
+    {
+      "id": "bsky-hardmaru",
+      "name": "Bluesky · hardmaru",
+      "ok": true,
+      "count": 0,
+      "total": 15,
+      "error": ""
+    },
+    {
+      "id": "bsky-swyx",
+      "name": "Bluesky · swyx",
+      "ok": true,
+      "count": 0,
+      "total": 3,
+      "error": ""
+    },
+    {
+      "id": "bsky-pytorch",
+      "name": "Bluesky · PyTorch",
+      "ok": true,
+      "count": 1,
+      "total": 28,
+      "error": ""
+    },
+    {
+      "id": "bsky-clem",
+      "name": "Bluesky · Clem Delangue",
+      "ok": true,
+      "count": 0,
+      "total": 11,
+      "error": ""
+    },
+    {
+      "id": "bsky-natolambert",
+      "name": "Bluesky · Nathan Lambert",
+      "ok": true,
+      "count": 1,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "bsky-rasbt",
+      "name": "Bluesky · Sebastian Raschka",
+      "ok": true,
+      "count": 0,
+      "total": 27,
+      "error": ""
+    },
+    {
+      "id": "bsky-jeffdean",
+      "name": "Bluesky · Jeff Dean",
+      "ok": true,
+      "count": 0,
+      "total": 18,
+      "error": ""
+    },
+    {
+      "id": "hf-trending-new",
+      "name": "HF 热榜新模型",
+      "ok": true,
+      "count": 4,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "gh-new-stars",
+      "name": "GitHub 新星仓库",
+      "ok": true,
+      "count": 0,
+      "total": 15,
+      "error": ""
+    },
+    {
+      "id": "hf-t2v",
+      "name": "HF 热榜 · 文生视频",
+      "ok": true,
+      "count": 0,
+      "total": 17,
+      "error": ""
+    },
+    {
+      "id": "hf-i2v",
+      "name": "HF 热榜 · 图生视频",
+      "ok": true,
+      "count": 0,
+      "total": 18,
+      "error": ""
+    },
+    {
+      "id": "gnews-video-en",
+      "name": "新闻 · 视频生成（英文）",
+      "ok": true,
+      "count": 6,
+      "total": 22,
+      "error": ""
+    },
+    {
+      "id": "gnews-video-cn",
+      "name": "新闻 · 视频生成（中文）",
+      "ok": true,
+      "count": 10,
+      "total": 27,
+      "error": ""
+    },
+    {
+      "id": "gnews-world-en",
+      "name": "新闻 · 世界模型（英文）",
+      "ok": true,
+      "count": 17,
+      "total": 28,
+      "error": ""
+    },
+    {
+      "id": "gnews-world-cn",
+      "name": "新闻 · 世界模型（中文）",
+      "ok": true,
+      "count": 34,
+      "total": 43,
+      "error": ""
+    },
+    {
+      "id": "gh-new-video-world",
+      "name": "GitHub 新仓库 · 视频 / 世界模型",
+      "ok": true,
+      "count": 1,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "arxiv-cscv",
+      "name": "arXiv cs.CV（专题）",
+      "ok": true,
+      "count": 35,
+      "total": 483,
+      "error": ""
+    },
+    {
+      "id": "arxiv-csro",
+      "name": "arXiv cs.RO（专题）",
+      "ok": true,
+      "count": 9,
+      "total": 220,
+      "error": ""
+    }
+  ],
+  "counts": {
+    "high": 10,
+    "medium": 20,
+    "low": 0
+  },
+  "items": [
+    {
+      "id": "16e8f152a7744060",
+      "title": "谷歌推出新一代AI世界模型！游戏股快速拉升，电魂网络触及涨停 - 搜狐网",
+      "link": "https://m.sohu.com/a/1093712353_121157270?scm=10001.325_13-325_13.0.0-0-0-0-0.5_1334",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-10-28T01:50:00+00:00",
+      "category": "research",
+      "priority": "high",
+      "summary": "谷歌推出新一代AI世界模型！游戏股快速拉升，电魂网络触及涨停 搜狐网",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "676f7dde6d1b9b07",
+      "title": "刚刚，谷歌Genie 4发布！世界模型还得是谷歌|DeepMind|Google|Gemini|环境|人物_手机新浪网 - finance.sina.com.cn",
+      "link": "https://finance.sina.cn/tech/csj/2026-10-28/detail-iniwttsa6587688.d.html?vt=4&pos=108&his=0",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-10-28T01:33:59+00:00",
+      "category": "research",
+      "priority": "high",
+      "summary": "刚刚，谷歌Genie 4发布！世界模型还得是谷歌|DeepMind|Google|Gemini|环境|人物_手机新浪网 finance.sina.com.cn",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "735edce7d1f98f83",
+      "title": "谷歌发布新版人工智能世界模型Genie 4 - 新浪财经",
+      "link": "https://finance.sina.cn/2026-10-28/detail-iniwtpke6651936.d.html?vt=4&pos=108&his=0",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-10-28T01:16:47+00:00",
+      "category": "research",
+      "priority": "high",
+      "summary": "谷歌发布新版人工智能世界模型Genie 4 新浪财经",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "c34b8a63c7b96d7e",
+      "title": "刚刚，谷歌发布世界模型 Genie 4！会说话、懂物理，Gemini 亲自当导演 - CSDN博客",
+      "link": "https://blog.csdn.net/weixin_40774379/article/details/169330890",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-10-28T01:11:59+00:00",
+      "category": "research",
+      "priority": "high",
+      "summary": "刚刚，谷歌发布世界模型 Genie 4！会说话、懂物理，Gemini 亲自当导演 CSDN博客",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "acf562b4b925a027",
+      "title": "谷歌发布最强世界模型Genie 4，首次实现 音视频同步生成 - 搜狐网",
+      "link": "https://m.sohu.com/a/1093669818_115362?scm=10001.325_13-325_13.0.0-0-0-0-0.5_1334",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-10-28T00:57:50+00:00",
+      "category": "research",
+      "priority": "high",
+      "summary": "谷歌发布最强世界模型Genie 4，首次实现 音视频同步生成 搜狐网",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "4e0b7d491b28fd19",
+      "title": "昨夜今晨：谷歌发布世界模型Genie4 红米K100发布 张一鸣再次登顶胡润榜首 - 搜狐网",
+      "link": "https://m.sohu.com/a/1093674341_118778?scm=10001.325_13-325_13.0.0-0-0-0-0.5_1334",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-10-28T00:55:58+00:00",
+      "category": "research",
+      "priority": "high",
+      "summary": "昨夜今晨：谷歌发布世界模型Genie4 红米K100发布 张一鸣再次登顶胡润榜首 搜狐网",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "feaec7e2e8745350",
+      "title": "谷歌推出Genie 4世界模型，可实时生成交互式虚拟环境；SK海力士三季度营收超预期，称存储芯片供应短缺将持续至2030年 ｜全球科技早参 - https://www.mrjjxw.com/",
+      "link": "https://www.mrjjxw.com/articles/2026-10-28/4622854.html",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-10-28T00:09:24+00:00",
+      "category": "research",
+      "priority": "high",
+      "summary": "谷歌推出Genie 4世界模型，可实时生成交互式虚拟环境；SK海力士三季度营收超预期，称存储芯片供应短缺将持续至2030年 ｜全球科技早参 https://www.mrjjxw.com/",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "c892d8bd3d2c016f",
+      "title": "刚刚，谷歌重磅发布Genie 4：这才是真正的「世界模型」！ - 搜狐网",
+      "link": "https://m.sohu.com/a/1093653637_122014422?scm=10001.325_13-325_13.0.0-0-0-0-0.5_1334",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-10-27T23:51:30+00:00",
+      "category": "research",
+      "priority": "high",
+      "summary": "刚刚，谷歌重磅发布Genie 4：这才是真正的「世界模型」！ 搜狐网",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "621746306a861c61",
+      "title": "谷歌发布最强世界模型Genie 4：模拟时长翻倍至2分钟！首次原生音视频同步生成 - 驱动之家",
+      "link": "https://news.mydrivers.com/1/1161/1161121.htm",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-10-27T23:49:00+00:00",
+      "category": "research",
+      "priority": "high",
+      "summary": "谷歌发布最强世界模型Genie 4：模拟时长翻倍至2分钟！首次原生音视频同步生成 驱动之家",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "3b58c47b8b16054d",
+      "title": "【企业风采】海淀新一代3万亿级开源大模型发布！继续成为全球最大 - 搜狐网",
+      "link": "https://m.sohu.com/a/1093647043_122014422?scm=10001.325_13-325_13.0.0-0-0-0-0.5_1334",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-10-27T23:18:02+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "【企业风采】海淀新一代3万亿级开源大模型发布！继续成为全球最大 搜狐网",
+      "why": "",
+      "tags": [
+        "大模型"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "da41ab53fa9d776a",
+      "title": "天洑工业世界模型如何在虚拟世界里，为机器人积累真实经验？ - 搜狐网",
+      "link": "https://m.sohu.com/a/1093711129_702717?scm=10001.325_13-325_13.0.0-0-0-0-0.5_1334",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-10-28T02:01:04+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "天洑工业世界模型如何在虚拟世界里，为机器人积累真实经验？ 搜狐网",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "2272d0835ec92197",
+      "title": "DeepSeek与MiniMax获准在中国境外运营 - Foro3D",
+      "link": "https://foro3d.com/ch-cn/2026/octubre/deepseek-y-minimax-reciben-luz-verde-para-operar-fuera-de-china.html",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-10-28T01:12:33+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "DeepSeek与MiniMax获准在中国境外运营 Foro3D",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "d714846ada423920",
+      "title": "皮查伊称Genie 4是谷歌迄今最逼真、最具互动性的AI世界模型 - 搜狐网",
+      "link": "https://m.sohu.com/a/1093654139_114760?scm=10001.325_13-325_13.0.0-0-0-0-0.5_1334",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-10-27T23:42:02+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "皮查伊称Genie 4是谷歌迄今最逼真、最具互动性的AI世界模型 搜狐网",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "b919d321ad2f4d17",
+      "title": "对话Epic CEO：世界模型取代不了游戏引擎 - 21财经",
+      "link": "https://www.21jingji.com/article/20261028/b5f37e3fc7a03c9f7657144e0042e080.html",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-10-27T23:00:00+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "对话Epic CEO：世界模型取代不了游戏引擎 21财经",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "94d03ffcfb8e9e4a",
+      "title": "视频模型并发上限多少？官方通道这条“隐形红线”别踩坑 - CSDN",
+      "link": "https://www.csdn.net/article/2026-10-28/169315550",
+      "source": "新闻 · 视频生成（中文）",
+      "source_id": "gnews-video-cn",
+      "published": "2026-10-27T22:53:08+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "视频模型并发上限多少？官方通道这条“隐形红线”别踩坑 CSDN",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "acd9f35dd7a0048f",
+      "title": "AI大模型聚合站哪家强？实测5家靠谱厂家避坑指南 - CSDN",
+      "link": "https://www.csdn.net/article/2026-10-28/169309151",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-10-27T22:07:03+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "AI大模型聚合站哪家强？实测5家靠谱厂家避坑指南 CSDN",
+      "why": "",
+      "tags": [
+        "大模型"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "724447905e8c6bef",
+      "title": "Anthropic's SEC filing devotes 90 pages to risk as it prepares for IPO - ABC News - Breaking News, Latest News and Videos",
+      "link": "https://abcnews.com/Business/anthropics-sec-filing-devotes-90-pages-risk-prepares/story?id=137599041",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-10-27T21:56:58+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Anthropic's SEC filing devotes 90 pages to risk as it prepares for IPO ABC News - Breaking News, Latest News and Videos",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "ca6b727e3210e0a5",
+      "title": "Anthropic IPO warns its AI could blackmail people, become sentient, end humanity - Ars Technica",
+      "link": "https://arstechnica.com/ai/2026/10/anthropic-ipo-warns-its-ai-could-blackmail-people-become-sentient-end-humanity/",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-10-27T21:31:14+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Anthropic IPO warns its AI could blackmail people, become sentient, end humanity Ars Technica",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "9ed08d765a6e1222",
+      "title": "Airtree backs Aussie AI startup after its robotics model beat Alibaba, Mistral - Forbes Australia",
+      "link": "https://www.forbes.com.au/news/innovation/airtree-backs-aussie-ai-startup-after-its-robotics-model-beat-alibaba-mistral/",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-10-27T20:57:51+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Airtree backs Aussie AI startup after its robotics model beat Alibaba, Mistral Forbes Australia",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "c660494836a3b01f",
+      "title": "Memory-Enforced GPU Sharing in Kubernetes with NVIDIA CUDA 13.4",
+      "link": "https://developer.nvidia.com/blog/memory-enforced-gpu-sharing-in-kubernetes-with-nvidia-cuda-13-4",
+      "source": "NVIDIA Technical Blog",
+      "source_id": "nvidia-dev",
+      "published": "2026-10-27T20:50:45+00:00",
+      "category": "infra",
+      "priority": "medium",
+      "summary": "Many AI workloads need only a fraction of a GPU. Giving each one an entire device can leave capacity idle…",
+      "why": "",
+      "tags": [
+        "cuda",
+        "gpu"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "cc451b85f3be4663",
+      "title": "大模型API也分“早鸟票”和“夜猫场”？峰谷计价这波操作真香 - CSDN",
+      "link": "https://www.csdn.net/article/2026-10-28/169295848",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-10-27T20:48:54+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "大模型API也分“早鸟票”和“夜猫场”？峰谷计价这波操作真香 CSDN",
+      "why": "",
+      "tags": [
+        "大模型"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "e84751ebbf54315e",
+      "title": "Google’s New AI World Model Can Generate Human Voices, Not Just Video - Gizmodo",
+      "link": "https://gizmodo.com/googles-new-ai-world-model-can-generate-human-voices-not-just-video-2000831335",
+      "source": "新闻 · 世界模型（英文）",
+      "source_id": "gnews-world-en",
+      "published": "2026-10-27T20:45:14+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "Google’s New AI World Model Can Generate Human Voices, Not Just Video Gizmodo",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "ff59524fcbe4c103",
+      "title": "How Anthropic ships the #1 LLM in the World — with Katelyn Lesse and Angela Jiang｜Latent Space - finance.biggo.com",
+      "link": "https://finance.biggo.com/podcast/339af3dadd7ac1a9",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-10-27T20:16:56+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "How Anthropic ships the #1 LLM in the World — with Katelyn Lesse and Angela Jiang｜Latent Space finance.biggo.com",
+      "why": "",
+      "tags": [
+        "latent",
+        "llm"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "e19523ac33710e18",
+      "title": "Genie 4 对比 SKY-001：没有共同基准的世界模型 - OrcaRouter",
+      "link": "https://www.orcarouter.ai/zh-CN/blog/genie-4-vs-sky-001",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-10-27T20:08:07+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "Genie 4 对比 SKY-001：没有共同基准的世界模型 OrcaRouter",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "60d2958ec307e271",
+      "title": "Survival LLM: AI assistant and emergency library that runs on your own computer",
+      "link": "https://news.ycombinator.com/item?id=50264853",
+      "source": "Hacker News（100+ 分）",
+      "source_id": "hn-algolia",
+      "published": "2026-10-27T19:55:06+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "",
+      "why": "",
+      "tags": [
+        "llm"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "bd33f9dfd104b0e3",
+      "title": "Google Gains Over 2% After Unveiling World Model Genie 4 Ahead of Earnings, Poised to Expand Revenue Streams - TradingKey",
+      "link": "https://www.tradingkey.com/analysis/stocks/us-stocks/262243015-google-genie-4-world-models-deepmind-ai-tradingkey",
+      "source": "新闻 · 世界模型（英文）",
+      "source_id": "gnews-world-en",
+      "published": "2026-10-27T19:51:43+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "Google Gains Over 2% After Unveiling World Model Genie 4 Ahead of Earnings, Poised to Expand Revenue Streams TradingKey",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "80e5637a67e1a525",
+      "title": "How Anthropic ships Claude with Claude: Separating the Brain from the Hands",
+      "link": "https://latent.space/p/opus55",
+      "source": "Latent Space",
+      "source_id": "latentspace",
+      "published": "2026-10-27T18:53:10+00:00",
+      "category": "people",
+      "priority": "medium",
+      "summary": "Katelyn Lesse and Angela Jiang on Opus 5.5, the Claude Platform, and the engineering behind AI agents.",
+      "why": "",
+      "tags": [
+        "agent"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "beb92a3cbb63bc7e",
+      "title": "How Anthropic ships the #1 LLM in the World safely: Separating the Brain from the Hands",
+      "link": "https://latent.space/p/how_anthropic_ships_the_1_llm_in_the_world_safely_separating_the_brain_from_the_hands",
+      "source": "Latent Space",
+      "source_id": "latentspace",
+      "published": "2026-10-27T18:40:19+00:00",
+      "category": "people",
+      "priority": "medium",
+      "summary": "Katelyn Lesse and Angela Jiang join Latent Space to explain the engineering behind the Claude Platform: launching Opus 5.5, separating the model’s “brain” from…",
+      "why": "",
+      "tags": [
+        "latent",
+        "llm",
+        "agent"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "56045c2a2f01c902",
+      "title": "港股大模型双雄拉升，智谱涨超10% - 东方财富",
+      "link": "https://wap.eastmoney.com/a/202610273909398098.html",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-10-27T18:06:42+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "港股大模型双雄拉升，智谱涨超10% 东方财富",
+      "why": "",
+      "tags": [
+        "vae",
+        "大模型"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "8abd341bcb46fe72",
+      "title": "I think it's vastly underrated how important org chart and team functionality is to building a good LLM. Over 18 months",
+      "link": "https://bsky.app/profile/natolambert.bsky.social/post/3myut23venj2i",
+      "source": "Bluesky · Nathan Lambert",
+      "source_id": "bsky-natolambert",
+      "published": "2026-10-27T18:02:00+00:00",
+      "category": "people",
+      "priority": "medium",
+      "summary": "I think it's vastly underrated how important org chart and team functionality is to building a good LLM…",
+      "why": "",
+      "tags": [
+        "llm"
+      ],
+      "tracks": []
+    }
+  ]
+}
