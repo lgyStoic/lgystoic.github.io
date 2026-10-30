@@ -1,0 +1,935 @@
+{
+  "date": "2026-10-30",
+  "generated_at": "2026-10-30T02:37:12+00:00",
+  "ai": false,
+  "model": "",
+  "sources": [
+    {
+      "id": "openai",
+      "name": "OpenAI",
+      "ok": true,
+      "count": 3,
+      "total": 1337,
+      "error": ""
+    },
+    {
+      "id": "google-ai",
+      "name": "Google AI Blog",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "qwen",
+      "name": "Qwen",
+      "ok": true,
+      "count": 0,
+      "total": 44,
+      "error": ""
+    },
+    {
+      "id": "hf-blog",
+      "name": "Hugging Face Blog",
+      "ok": true,
+      "count": 4,
+      "total": 894,
+      "error": ""
+    },
+    {
+      "id": "nvidia-dev",
+      "name": "NVIDIA Technical Blog",
+      "ok": true,
+      "count": 2,
+      "total": 100,
+      "error": ""
+    },
+    {
+      "id": "hf-papers",
+      "name": "HF Papers 日榜",
+      "ok": true,
+      "count": 6,
+      "total": 31,
+      "error": ""
+    },
+    {
+      "id": "pytorch",
+      "name": "PyTorch Blog",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "simonw",
+      "name": "Simon Willison",
+      "ok": true,
+      "count": 2,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "lilianweng",
+      "name": "Lil'Log",
+      "ok": true,
+      "count": 0,
+      "total": 53,
+      "error": ""
+    },
+    {
+      "id": "interconnects",
+      "name": "Interconnects",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "raschka",
+      "name": "Sebastian Raschka",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "chiphuyen",
+      "name": "Chip Huyen",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-pytorch",
+      "name": "Release · PyTorch",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-triton",
+      "name": "Release · Triton",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-cutlass",
+      "name": "Release · CUTLASS",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-flash-attention",
+      "name": "Release · FlashAttention",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-vllm",
+      "name": "Release · vLLM",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-sglang",
+      "name": "Release · SGLang",
+      "ok": true,
+      "count": 1,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-tensorrt-llm",
+      "name": "Release · TensorRT-LLM",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-diffusers",
+      "name": "Release · Diffusers",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-cuda-python",
+      "name": "Release · cuda-python",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "gnews-labs-en",
+      "name": "新闻 · Anthropic / Mistral / xAI",
+      "ok": true,
+      "count": 28,
+      "total": 100,
+      "error": ""
+    },
+    {
+      "id": "gnews-labs-cn",
+      "name": "新闻 · 国内模型公司",
+      "ok": true,
+      "count": 10,
+      "total": 35,
+      "error": ""
+    },
+    {
+      "id": "qbitai",
+      "name": "量子位",
+      "ok": true,
+      "count": 1,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "infoq-cn",
+      "name": "InfoQ 中文",
+      "ok": true,
+      "count": 3,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "thonking",
+      "name": "Horace He (thonking)",
+      "ok": true,
+      "count": 0,
+      "total": 6,
+      "error": ""
+    },
+    {
+      "id": "hn-algolia",
+      "name": "Hacker News（100+ 分）",
+      "ok": true,
+      "count": 5,
+      "total": 60,
+      "error": ""
+    },
+    {
+      "id": "karpathy-blog",
+      "name": "Andrej Karpathy 博客",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "eugeneyan",
+      "name": "Eugene Yan",
+      "ok": true,
+      "count": 0,
+      "total": 212,
+      "error": ""
+    },
+    {
+      "id": "importai",
+      "name": "Import AI（Jack Clark）",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "latentspace",
+      "name": "Latent Space",
+      "ok": true,
+      "count": 1,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "semianalysis",
+      "name": "SemiAnalysis",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "meta-ai",
+      "name": "Meta Engineering",
+      "ok": true,
+      "count": 1,
+      "total": 9,
+      "error": ""
+    },
+    {
+      "id": "mistral-news",
+      "name": "Mistral AI",
+      "ok": true,
+      "count": 1,
+      "total": 93,
+      "error": ""
+    },
+    {
+      "id": "bsky-karpathy",
+      "name": "Bluesky · Andrej Karpathy",
+      "ok": true,
+      "count": 0,
+      "total": 15,
+      "error": ""
+    },
+    {
+      "id": "bsky-giffmana",
+      "name": "Bluesky · Lucas Beyer",
+      "ok": true,
+      "count": 0,
+      "total": 22,
+      "error": ""
+    },
+    {
+      "id": "bsky-hardmaru",
+      "name": "Bluesky · hardmaru",
+      "ok": true,
+      "count": 0,
+      "total": 15,
+      "error": ""
+    },
+    {
+      "id": "bsky-swyx",
+      "name": "Bluesky · swyx",
+      "ok": true,
+      "count": 0,
+      "total": 3,
+      "error": ""
+    },
+    {
+      "id": "bsky-pytorch",
+      "name": "Bluesky · PyTorch",
+      "ok": true,
+      "count": 0,
+      "total": 29,
+      "error": ""
+    },
+    {
+      "id": "bsky-clem",
+      "name": "Bluesky · Clem Delangue",
+      "ok": true,
+      "count": 0,
+      "total": 11,
+      "error": ""
+    },
+    {
+      "id": "bsky-natolambert",
+      "name": "Bluesky · Nathan Lambert",
+      "ok": true,
+      "count": 0,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "bsky-rasbt",
+      "name": "Bluesky · Sebastian Raschka",
+      "ok": true,
+      "count": 0,
+      "total": 27,
+      "error": ""
+    },
+    {
+      "id": "bsky-jeffdean",
+      "name": "Bluesky · Jeff Dean",
+      "ok": true,
+      "count": 0,
+      "total": 18,
+      "error": ""
+    },
+    {
+      "id": "hf-trending-new",
+      "name": "HF 热榜新模型",
+      "ok": true,
+      "count": 3,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "gh-new-stars",
+      "name": "GitHub 新星仓库",
+      "ok": true,
+      "count": 1,
+      "total": 15,
+      "error": ""
+    },
+    {
+      "id": "hf-t2v",
+      "name": "HF 热榜 · 文生视频",
+      "ok": true,
+      "count": 0,
+      "total": 19,
+      "error": ""
+    },
+    {
+      "id": "hf-i2v",
+      "name": "HF 热榜 · 图生视频",
+      "ok": true,
+      "count": 1,
+      "total": 19,
+      "error": ""
+    },
+    {
+      "id": "gnews-video-en",
+      "name": "新闻 · 视频生成（英文）",
+      "ok": true,
+      "count": 4,
+      "total": 28,
+      "error": ""
+    },
+    {
+      "id": "gnews-video-cn",
+      "name": "新闻 · 视频生成（中文）",
+      "ok": true,
+      "count": 10,
+      "total": 16,
+      "error": ""
+    },
+    {
+      "id": "gnews-world-en",
+      "name": "新闻 · 世界模型（英文）",
+      "ok": true,
+      "count": 6,
+      "total": 53,
+      "error": ""
+    },
+    {
+      "id": "gnews-world-cn",
+      "name": "新闻 · 世界模型（中文）",
+      "ok": true,
+      "count": 17,
+      "total": 65,
+      "error": ""
+    },
+    {
+      "id": "gh-new-video-world",
+      "name": "GitHub 新仓库 · 视频 / 世界模型",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "arxiv-cscv",
+      "name": "arXiv cs.CV（专题）",
+      "ok": true,
+      "count": 0,
+      "total": 0,
+      "error": ""
+    },
+    {
+      "id": "arxiv-csro",
+      "name": "arXiv cs.RO（专题）",
+      "ok": true,
+      "count": 0,
+      "total": 0,
+      "error": ""
+    }
+  ],
+  "counts": {
+    "high": 10,
+    "medium": 20,
+    "low": 0
+  },
+  "items": [
+    {
+      "id": "eb237598bfe555be",
+      "title": "Mistral Releases Large 4 Weights for Self-Hosted AI - FindArticles",
+      "link": "https://www.findarticles.com/mistral-large-4-open-weights-self-hosted-ai/",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-10-30T00:24:21+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "Mistral Releases Large 4 Weights for Self-Hosted AI FindArticles",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "b8d3be00c0096257",
+      "title": "当AI视频生成模型学会\"先想后做\"：ProAR如何让自回归生成拥有前瞻性思维 - 科技行者",
+      "link": "https://www.techwalker.com/2026/1030/3204120.shtml",
+      "source": "新闻 · 视频生成（中文）",
+      "source_id": "gnews-video-cn",
+      "published": "2026-10-29T23:04:00+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "当AI视频生成模型学会\"先想后做\"：ProAR如何让自回归生成拥有前瞻性思维 科技行者",
+      "why": "",
+      "tags": [
+        "生成模型",
+        "视频生成"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "84dc4ed8d220f4e7",
+      "title": "Pika Launches Pika H3 Flex, a Video Model Built for Professional Iteration - 01net",
+      "link": "https://www.01net.it/pika-launches-pika-h3-flex-a-video-model-built-for-professional-iteration/",
+      "source": "新闻 · 视频生成（英文）",
+      "source_id": "gnews-video-en",
+      "published": "2026-10-29T21:40:00+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "Pika Launches Pika H3 Flex, a Video Model Built for Professional Iteration 01net",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "97313527712c2e08",
+      "title": "Mistral Releases Large 4 Weights After Three More Weeks of Reinforcement Learning - TOKENPOST",
+      "link": "https://www.tokenpost.com/news/technology/43784",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-10-29T18:57:21+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "Mistral Releases Large 4 Weights After Three More Weeks of Reinforcement Learning TOKENPOST",
+      "why": "",
+      "tags": [
+        "reinforcement learning"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "1adb45512e35fdaa",
+      "title": "Mistral’s New ‘Le Chonk’ AI Model Is Big, Open and Now Available for Download - CNET",
+      "link": "https://www.cnet.com/tech/services-and-software/mistral-new-le-chonk-ai-model-open-source-available/",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-10-29T18:32:00+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "Mistral’s New ‘Le Chonk’ AI Model Is Big, Open and Now Available for Download CNET",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "11a285af739162ab",
+      "title": "Mistral Large 4 Open Weights: 51% Cyber Index [2026] - shattered.io",
+      "link": "https://shattered.io/mistral-large-4-open-weights-cybersecurity-51-percent-2026/",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-10-29T16:30:54+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "Mistral Large 4 Open Weights: 51% Cyber Index [2026] shattered.io",
+      "why": "",
+      "tags": [
+        "llm",
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "13fbc3bfb70aec2c",
+      "title": "Mistral says its new model, Large 4, is the best open model for agentic coding and cyber defense - Fortune",
+      "link": "https://fortune.com/2026/10/29/mistral-releases-new-model-large-4-and-claims-top-open-model-for-agentic-coding-and-cyber-defense/",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-10-29T15:00:00+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "Mistral says its new model, Large 4, is the best open model for agentic coding and cyber defense Fortune",
+      "why": "",
+      "tags": [
+        "agent",
+        "agentic"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "3cdf196fe8b80fa9",
+      "title": "Mistral’s Large 4 open weights arrive with a 1-point coding lead over GLM-5.3: \"There’s nothing you can’t do with this model that you can do with competitors.\" - The New Stack",
+      "link": "https://thenewstack.io/mistral-chonk-coding-model/",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-10-29T14:51:21+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "Mistral’s Large 4 open weights arrive with a 1-point coding lead over GLM-5.3: \"There’s nothing you can’t do with this model that you can do with competitors.\"…",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "b8846e48bbae7d1a",
+      "title": "Mistral releases latest AI model for download, giving companies more control over their cybersecurity - Euronews.com",
+      "link": "https://www.euronews.com/2026/10/29/mistral-releases-latest-ai-model-for-download-giving-companies-more-control-over-their-cyb",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-10-29T14:45:06+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "Mistral releases latest AI model for download, giving companies more control over their cybersecurity Euronews.com",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "da8f9778a636a7ea",
+      "title": "Momenta即将发布R7 Ultra世界模型，安全性能表现提升5倍 - 东方财富",
+      "link": "https://finance.eastmoney.com/a/202610293914568464.html",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-10-29T14:16:40+00:00",
+      "category": "research",
+      "priority": "high",
+      "summary": "Momenta即将发布R7 Ultra世界模型，安全性能表现提升5倍 东方财富",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "7548e8cccb54bd84",
+      "title": "Java 近期资讯：JDK 28 JEP、Azul Payara、Gatherers4j、Google ADK、Yupiik 与 Apache Camel CVE",
+      "link": "https://www.infoq.cn/article/dfj1fLfP8iVLKFtEfr69",
+      "source": "InfoQ 中文",
+      "source_id": "infoq-cn",
+      "published": "2026-10-30T08:00:00+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "点击查看原文>",
+      "why": "",
+      "tags": [
+        "fp8"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "38010ccf1a02fa48",
+      "title": "豆包工作开放第三方大模型：首批接入Kimi、GLM、DeepSeek，企业无需另行采购 - 中华网财经",
+      "link": "https://finance.china.com/TMT/13004688/20261030/49828188.html",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-10-30T02:27:34+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "豆包工作开放第三方大模型：首批接入Kimi、GLM、DeepSeek，企业无需另行采购 中华网财经",
+      "why": "",
+      "tags": [
+        "大模型"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "dcd4c6e057986fd3",
+      "title": "“大模型双雄”盘中同步走低 智谱盘中跌超10% - 新浪财经",
+      "link": "https://finance.sina.com.cn/stock/hkstock/2026-10-30/doc-iniwyncw5528532.shtml",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-10-30T02:12:52+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "“大模型双雄”盘中同步走低 智谱盘中跌超10% 新浪财经",
+      "why": "",
+      "tags": [
+        "大模型"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "0247869cbfaea777",
+      "title": "v0.5.23",
+      "link": "https://github.com/sgl-project/sglang/releases/tag/v0.5.23",
+      "source": "Release · SGLang",
+      "source_id": "rel-sglang",
+      "published": "2026-10-30T00:13:59+00:00",
+      "category": "infra",
+      "priority": "medium",
+      "summary": "Bump v0.5.23",
+      "why": "",
+      "tags": [],
+      "tracks": []
+    },
+    {
+      "id": "227b4e4d4ef56226",
+      "title": "文档世界模型：增强文档级关系抽取中的长距离证据整合 - 生物通",
+      "link": "https://www.ebiotrade.com/newsf/2026-10/20261030034641144.htm",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-10-29T23:59:14+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "文档世界模型：增强文档级关系抽取中的长距离证据整合 生物通",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "80f39bbd7748c959",
+      "title": "豆包工作开放第三方大模型：首批加入Deepseek、Kimi、GLM - 新浪财经",
+      "link": "https://finance.sina.com.cn/tech/roll/2026-10-29/doc-iniwxekr8724582.shtml",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-10-29T22:37:28+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "豆包工作开放第三方大模型：首批加入Deepseek、Kimi、GLM 新浪财经",
+      "why": "",
+      "tags": [
+        "大模型"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "471570496f3f5078",
+      "title": "Mistral Touts Cyber Capabilities of Its ‘Chonk’ AI Model - PYMNTS.com",
+      "link": "https://www.pymnts.com/news/artificial-intelligence/2026/mistral-touts-cyber-capabilities-chonk-ai-model/",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-10-29T22:04:51+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Mistral Touts Cyber Capabilities of Its ‘Chonk’ AI Model PYMNTS.com",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "e151cd7d567b65df",
+      "title": "Enterprise AI with a Consumer Funnel: What Anthropic’s S-1 Reveals About the AI IPO Era - NYU Stern Center for Business & Human Rights",
+      "link": "https://bhr.stern.nyu.edu/quick-take/enterprise-ai-with-a-consumer-funnel-what-anthropics-s-1-reveals-about-the-ai-ipo-era/",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-10-29T21:56:52+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Enterprise AI with a Consumer Funnel: What Anthropic’s S-1 Reveals About the AI IPO Era NYU Stern Center for Business & Human Rights",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "827c097368ab8314",
+      "title": "We ran AI agent swarms in Minecraft and Mindustry",
+      "link": "https://news.ycombinator.com/item?id=50296486",
+      "source": "Hacker News（100+ 分）",
+      "source_id": "hn-algolia",
+      "published": "2026-10-29T21:40:28+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "",
+      "why": "",
+      "tags": [
+        "agent"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "baa825bb399f55bd",
+      "title": "Tech Bytes: Big banks unite to back Anthropic’s compute buildout - CIO Dive",
+      "link": "https://www.ciodive.com/news/tech-bytes-big-banks-back-anthropic-compute-buildout/873245/",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-10-29T20:34:22+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Tech Bytes: Big banks unite to back Anthropic’s compute buildout CIO Dive",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "ee66aff9a0efdb5d",
+      "title": "A tiny world model running games on a Raspberry Pi Pico 2 W",
+      "link": "https://news.ycombinator.com/item?id=50295450",
+      "source": "Hacker News（100+ 分）",
+      "source_id": "hn-algolia",
+      "published": "2026-10-29T20:32:28+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "d73c2ff32abfb6b8",
+      "title": "NVIDIA Vera Rubin and Blackwell Set a New Standard for Agentic AI Performance per Watt",
+      "link": "https://developer.nvidia.com/blog/nvidia-vera-rubin-and-blackwell-set-a-new-standard-for-agentic-ai-performance-per-watt",
+      "source": "NVIDIA Technical Blog",
+      "source_id": "nvidia-dev",
+      "published": "2026-10-29T19:58:59+00:00",
+      "category": "infra",
+      "priority": "medium",
+      "summary": "AI agents have expanded inference from single-turn interactions into multi-step workflows that reason, invoke tools, coordinate subagents, and carry growing...",
+      "why": "",
+      "tags": [
+        "blackwell",
+        "agent",
+        "agentic"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "39384f306829d970",
+      "title": "Google Genie 4 World Model: Native Audio, Limited Preview - DigitBin",
+      "link": "https://www.digitbin.com/genie-4-world-model-native-audio/",
+      "source": "新闻 · 世界模型（英文）",
+      "source_id": "gnews-world-en",
+      "published": "2026-10-29T18:36:33+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "Google Genie 4 World Model: Native Audio, Limited Preview DigitBin",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "a847fcd98269943f",
+      "title": "Claude Model Builds Exploits Across Major Browsers & OSes - Dark Reading",
+      "link": "https://www.darkreading.com/application-security/claude-model-exploits-major-browsers-oses",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-10-29T18:24:12+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Claude Model Builds Exploits Across Major Browsers & OSes Dark Reading",
+      "why": "",
+      "tags": [
+        "llm"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "32fa2f56ec412c38",
+      "title": "XImagineAI Upgrades Its Multi-Model AI Video Generator for Image to Video and Text to Video - PRLog",
+      "link": "https://www.prlog.org/13179937-ximagineai-upgrades-its-multi-model-ai-video-generator-for-image-to-video-and-text-to-video.html",
+      "source": "新闻 · 视频生成（英文）",
+      "source_id": "gnews-video-en",
+      "published": "2026-10-29T17:50:38+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "XImagineAI Upgrades Its Multi-Model AI Video Generator for Image to Video and Text to Video PRLog",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "e24b72d085564f88",
+      "title": "Pika-Labs/Pika-H3-Flex",
+      "link": "https://huggingface.co/Pika-Labs/Pika-H3-Flex",
+      "source": "HF 热榜 · 图生视频",
+      "source_id": "hf-i2v",
+      "published": "2026-10-29T17:08:44+00:00",
+      "category": "trend",
+      "priority": "medium",
+      "summary": "image-to-video · likes 102 · trending 101",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "753550ac2d6f4dfc",
+      "title": "Anthropic raises bar with Claude for Legal artifacts' new interactive tools - ABA Journal",
+      "link": "https://www.abajournal.com/news/article/anthropic-raises-the-bar-with-claude-for-legal-artifacts-law-specific-interactive-tools",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-10-29T17:04:00+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Anthropic raises bar with Claude for Legal artifacts' new interactive tools ABA Journal",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "cdb15afccd2d9213",
+      "title": "Building a multiplayer game world with autonomous Fable-class models",
+      "link": "https://simonwillison.net/2026/Oct/29/how-i-built-the-most-ai-pilled-company-in-the-world",
+      "source": "Simon Willison",
+      "source_id": "simonw",
+      "published": "2026-10-29T17:00:26+00:00",
+      "category": "people",
+      "priority": "medium",
+      "summary": "How I Built the Most AI-Pilled Company in the World Don't be put off by the clickbait headline, this piece by Jacob Sansbury describing how they are building…",
+      "why": "",
+      "tags": [
+        "agent",
+        "agentic"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "7bf0065ceb1646f5",
+      "title": "An updated Model Spec for more capable and beneficial AI",
+      "link": "https://openai.com/index/updated-model-spec",
+      "source": "OpenAI",
+      "source_id": "openai",
+      "published": "2026-10-29T17:00:00+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "OpenAI’s updated Model Spec outlines five core values to guide more capable AI toward sound judgment, human agency, and faithfulness to human intent.",
+      "why": "",
+      "tags": [],
+      "tracks": []
+    },
+    {
+      "id": "cc5bb84f28a67b86",
+      "title": "ByteDance’s Seedance 2.5 generates 30-second AI videos with audio: what to know - The News International",
+      "link": "https://www.thenews.com.pk/latest/1421774-bytedances-seedance-25-generates-30-second-ai-videos-with-audio-what-to-know",
+      "source": "新闻 · 视频生成（英文）",
+      "source_id": "gnews-video-en",
+      "published": "2026-10-29T16:39:00+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "ByteDance’s Seedance 2.5 generates 30-second AI videos with audio: what to know The News International",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": [
+        "video"
+      ]
+    }
+  ]
+}
