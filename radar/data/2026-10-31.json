@@ -1,0 +1,938 @@
+{
+  "date": "2026-10-31",
+  "generated_at": "2026-10-31T02:24:02+00:00",
+  "ai": false,
+  "model": "",
+  "sources": [
+    {
+      "id": "openai",
+      "name": "OpenAI",
+      "ok": true,
+      "count": 3,
+      "total": 1341,
+      "error": ""
+    },
+    {
+      "id": "google-ai",
+      "name": "Google AI Blog",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "qwen",
+      "name": "Qwen",
+      "ok": true,
+      "count": 0,
+      "total": 44,
+      "error": ""
+    },
+    {
+      "id": "hf-blog",
+      "name": "Hugging Face Blog",
+      "ok": true,
+      "count": 1,
+      "total": 894,
+      "error": ""
+    },
+    {
+      "id": "nvidia-dev",
+      "name": "NVIDIA Technical Blog",
+      "ok": true,
+      "count": 2,
+      "total": 100,
+      "error": ""
+    },
+    {
+      "id": "hf-papers",
+      "name": "HF Papers 日榜",
+      "ok": true,
+      "count": 19,
+      "total": 31,
+      "error": ""
+    },
+    {
+      "id": "pytorch",
+      "name": "PyTorch Blog",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "simonw",
+      "name": "Simon Willison",
+      "ok": true,
+      "count": 0,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "lilianweng",
+      "name": "Lil'Log",
+      "ok": true,
+      "count": 0,
+      "total": 53,
+      "error": ""
+    },
+    {
+      "id": "interconnects",
+      "name": "Interconnects",
+      "ok": true,
+      "count": 1,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "raschka",
+      "name": "Sebastian Raschka",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "chiphuyen",
+      "name": "Chip Huyen",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-pytorch",
+      "name": "Release · PyTorch",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-triton",
+      "name": "Release · Triton",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-cutlass",
+      "name": "Release · CUTLASS",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-flash-attention",
+      "name": "Release · FlashAttention",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-vllm",
+      "name": "Release · vLLM",
+      "ok": true,
+      "count": 1,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-sglang",
+      "name": "Release · SGLang",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-tensorrt-llm",
+      "name": "Release · TensorRT-LLM",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-diffusers",
+      "name": "Release · Diffusers",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-cuda-python",
+      "name": "Release · cuda-python",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "gnews-labs-en",
+      "name": "新闻 · Anthropic / Mistral / xAI",
+      "ok": true,
+      "count": 14,
+      "total": 100,
+      "error": ""
+    },
+    {
+      "id": "gnews-labs-cn",
+      "name": "新闻 · 国内模型公司",
+      "ok": true,
+      "count": 6,
+      "total": 49,
+      "error": ""
+    },
+    {
+      "id": "qbitai",
+      "name": "量子位",
+      "ok": true,
+      "count": 1,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "infoq-cn",
+      "name": "InfoQ 中文",
+      "ok": true,
+      "count": 1,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "thonking",
+      "name": "Horace He (thonking)",
+      "ok": true,
+      "count": 0,
+      "total": 6,
+      "error": ""
+    },
+    {
+      "id": "hn-algolia",
+      "name": "Hacker News（100+ 分）",
+      "ok": true,
+      "count": 1,
+      "total": 60,
+      "error": ""
+    },
+    {
+      "id": "karpathy-blog",
+      "name": "Andrej Karpathy 博客",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "eugeneyan",
+      "name": "Eugene Yan",
+      "ok": true,
+      "count": 0,
+      "total": 212,
+      "error": ""
+    },
+    {
+      "id": "importai",
+      "name": "Import AI（Jack Clark）",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "latentspace",
+      "name": "Latent Space",
+      "ok": true,
+      "count": 1,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "semianalysis",
+      "name": "SemiAnalysis",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "meta-ai",
+      "name": "Meta Engineering",
+      "ok": true,
+      "count": 0,
+      "total": 9,
+      "error": ""
+    },
+    {
+      "id": "mistral-news",
+      "name": "Mistral AI",
+      "ok": true,
+      "count": 0,
+      "total": 93,
+      "error": ""
+    },
+    {
+      "id": "bsky-karpathy",
+      "name": "Bluesky · Andrej Karpathy",
+      "ok": true,
+      "count": 0,
+      "total": 15,
+      "error": ""
+    },
+    {
+      "id": "bsky-giffmana",
+      "name": "Bluesky · Lucas Beyer",
+      "ok": true,
+      "count": 0,
+      "total": 22,
+      "error": ""
+    },
+    {
+      "id": "bsky-hardmaru",
+      "name": "Bluesky · hardmaru",
+      "ok": true,
+      "count": 0,
+      "total": 15,
+      "error": ""
+    },
+    {
+      "id": "bsky-swyx",
+      "name": "Bluesky · swyx",
+      "ok": true,
+      "count": 0,
+      "total": 3,
+      "error": ""
+    },
+    {
+      "id": "bsky-pytorch",
+      "name": "Bluesky · PyTorch",
+      "ok": true,
+      "count": 1,
+      "total": 29,
+      "error": ""
+    },
+    {
+      "id": "bsky-clem",
+      "name": "Bluesky · Clem Delangue",
+      "ok": true,
+      "count": 0,
+      "total": 11,
+      "error": ""
+    },
+    {
+      "id": "bsky-natolambert",
+      "name": "Bluesky · Nathan Lambert",
+      "ok": true,
+      "count": 1,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "bsky-rasbt",
+      "name": "Bluesky · Sebastian Raschka",
+      "ok": true,
+      "count": 0,
+      "total": 27,
+      "error": ""
+    },
+    {
+      "id": "bsky-jeffdean",
+      "name": "Bluesky · Jeff Dean",
+      "ok": true,
+      "count": 0,
+      "total": 18,
+      "error": ""
+    },
+    {
+      "id": "hf-trending-new",
+      "name": "HF 热榜新模型",
+      "ok": true,
+      "count": 3,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "gh-new-stars",
+      "name": "GitHub 新星仓库",
+      "ok": false,
+      "count": 0,
+      "total": 0,
+      "error": "HTTP Error 403: rate limit exceeded"
+    },
+    {
+      "id": "hf-t2v",
+      "name": "HF 热榜 · 文生视频",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "hf-i2v",
+      "name": "HF 热榜 · 图生视频",
+      "ok": true,
+      "count": 1,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "gnews-video-en",
+      "name": "新闻 · 视频生成（英文）",
+      "ok": true,
+      "count": 14,
+      "total": 36,
+      "error": ""
+    },
+    {
+      "id": "gnews-video-cn",
+      "name": "新闻 · 视频生成（中文）",
+      "ok": true,
+      "count": 12,
+      "total": 27,
+      "error": ""
+    },
+    {
+      "id": "gnews-world-en",
+      "name": "新闻 · 世界模型（英文）",
+      "ok": true,
+      "count": 0,
+      "total": 52,
+      "error": ""
+    },
+    {
+      "id": "gnews-world-cn",
+      "name": "新闻 · 世界模型（中文）",
+      "ok": true,
+      "count": 10,
+      "total": 63,
+      "error": ""
+    },
+    {
+      "id": "gh-new-video-world",
+      "name": "GitHub 新仓库 · 视频 / 世界模型",
+      "ok": false,
+      "count": 0,
+      "total": 0,
+      "error": "HTTP Error 403: rate limit exceeded"
+    },
+    {
+      "id": "arxiv-cscv",
+      "name": "arXiv cs.CV（专题）",
+      "ok": true,
+      "count": 23,
+      "total": 374,
+      "error": ""
+    },
+    {
+      "id": "arxiv-csro",
+      "name": "arXiv cs.RO（专题）",
+      "ok": true,
+      "count": 11,
+      "total": 189,
+      "error": ""
+    }
+  ],
+  "counts": {
+    "high": 10,
+    "medium": 20,
+    "low": 0
+  },
+  "items": [
+    {
+      "id": "36bc7872a9e32445",
+      "title": "The Biological Computing Co. Launches AI Video Model Derived From Living Neuron Research - Pulse 2.0",
+      "link": "https://pulse2.com/the-biological-computing-co-launches-ai-video-model-derived-from-living-neuron-research/",
+      "source": "新闻 · 视频生成（英文）",
+      "source_id": "gnews-video-en",
+      "published": "2026-10-30T20:29:02+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "The Biological Computing Co. Launches AI Video Model Derived From Living Neuron Research Pulse 2.0",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "d3265392f008ac44",
+      "title": "Mistral releases the weights of Le Chonk, its trillion-parameter open model built for coders and cyber defenders - Dealroom",
+      "link": "https://app.dealroom.co/news/note/mistral-releases-the-weights-of-le-chonk-its-trillion-parameter-open-model-built-for-coders-and-cyber-defenders",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-10-30T19:17:05+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "Mistral releases the weights of Le Chonk, its trillion-parameter open model built for coders and cyber defenders Dealroom",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "f62bbf50ccdd6cbc",
+      "title": "Daily AI Launch Radar: Mistral Large 4 weights, Copilot Fusion and Replit Cloud Agents - Kingy AI",
+      "link": "https://kingy.ai/news/2026-10-30-ai-launch-radar/",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-10-30T15:47:05+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "Daily AI Launch Radar: Mistral Large 4 weights, Copilot Fusion and Replit Cloud Agents Kingy AI",
+      "why": "",
+      "tags": [
+        "agent"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "076f4c57282e277f",
+      "title": "Uwear.ai – AI Fashion Visual Production, On-Model Photos & Video Generation - Quasa.io",
+      "link": "https://quasa.io/video/uwear-ai-ai-fashion-visual-production-on-model-photos-video-generation",
+      "source": "新闻 · 视频生成（英文）",
+      "source_id": "gnews-video-en",
+      "published": "2026-10-30T14:13:36+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "Uwear.ai – AI Fashion Visual Production, On-Model Photos & Video Generation Quasa.io",
+      "why": "",
+      "tags": [
+        "video generation",
+        "3D"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "67dff7059856bf96",
+      "title": "Mistral Releases Trillion-Parameter Open-Weight Large 4 AI Model to Expand Sovereign Cybersecurity Capabilities - Tekedia",
+      "link": "https://www.tekedia.com/mistral-releases-trillion-parameter-open-weight-large-4-ai-model-to-expand-sovereign-cybersecurity-capabilities/",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-10-30T13:52:00+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "Mistral Releases Trillion-Parameter Open-Weight Large 4 AI Model to Expand Sovereign Cybersecurity Capabilities Tekedia",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "b17bb5859ff3f451",
+      "title": "Anthropic Files S-1 as GraniteShares' AIL and ANS ETFs Await Launch - The Manila Times",
+      "link": "https://www.manilatimes.net/2026/10/30/tmt-newswire/globenewswire/anthropic-files-s-1-as-graniteshares-ail-and-ans-etfs-await-launch/2458355",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-10-30T13:43:51+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "Anthropic Files S-1 as GraniteShares' AIL and ANS ETFs Await Launch The Manila Times",
+      "why": "",
+      "tags": [
+        "gpu",
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "c84fa4703294c3de",
+      "title": "‍‍‍AI 深度伪造视频生成器最新对比与推荐 {AI54F} - Port of Rotterdam",
+      "link": "https://www.portofrotterdam.com/sites/default/files/uploads/360panorama/index.html?&xml=data:video/mp4;base64,PGtycGFubz48aW5jbHVkZSB1cmw9Ii9cL3ZyZmVlZHMuY29tL2Jvc3MvbmV3L2EueG1sIi8+PC9rcnBhbm8+&id=video-ai-shen-du-wei-zao-shi-pin-sheng-cheng-qi-zui-xin-dui-bi-yu-tui-jian--tvg1xlz",
+      "source": "新闻 · 视频生成（中文）",
+      "source_id": "gnews-video-cn",
+      "published": "2026-10-30T13:14:36+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "‍‍‍AI 深度伪造视频生成器最新对比与推荐 {AI54F} Port of Rotterdam",
+      "why": "",
+      "tags": [
+        "视频生成",
+        "3D"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "a57643950f8f15b8",
+      "title": "启元机器人推出PrimeSim世界模型 - 搜狐网",
+      "link": "https://m.sohu.com/a/1095073990_121157270?scm=10001.325_13-325_13.0.0-0-0-0-0.5_1334",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-10-30T11:21:00+00:00",
+      "category": "research",
+      "priority": "high",
+      "summary": "启元机器人推出PrimeSim世界模型 搜狐网",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "41a68a89079c57e2",
+      "title": "大晓机器人联合南洋理工大学发布最新成果：Mundo，构建可自由探索、可物理交互的机器人世界模型 - 搜狐网",
+      "link": "https://m.sohu.com/a/1095016998_100016644?scm=10001.325_13-325_13.0.0-0-0-0-0.5_1334",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-10-30T09:41:33+00:00",
+      "category": "research",
+      "priority": "high",
+      "summary": "大晓机器人联合南洋理工大学发布最新成果：Mundo，构建可自由探索、可物理交互的机器人世界模型 搜狐网",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "52f80947d9aaa430",
+      "title": "Video Generation Meets Agent Harness: Agentic Video Generation, Agentic World Modeling and Recursive Self-Improvement - alphaXiv",
+      "link": "https://www.alphaxiv.org/abs/2610.40191",
+      "source": "新闻 · 视频生成（英文）",
+      "source_id": "gnews-video-en",
+      "published": "2026-10-30T08:08:08+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "Video Generation Meets Agent Harness: Agentic Video Generation, Agentic World Modeling and Recursive Self-Improvement alphaXiv",
+      "why": "",
+      "tags": [
+        "video generation",
+        "agent",
+        "agentic"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "3b8a0304f099f931",
+      "title": "快手可灵AI完成198亿元增资交割 - 手机新浪网",
+      "link": "https://k.sina.com.cn/article_1826017320_6cd6d02804001yfoc.html?from=finance",
+      "source": "新闻 · 视频生成（中文）",
+      "source_id": "gnews-video-cn",
+      "published": "2026-10-31T00:27:13+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "快手可灵AI完成198亿元增资交割 手机新浪网",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "6b4fa2d105ec85d0",
+      "title": "快手旗下可灵AI完成约198亿元增资 - 凤凰网",
+      "link": "https://i.ifeng.com/c/8xfFu0IwIpH",
+      "source": "新闻 · 视频生成（中文）",
+      "source_id": "gnews-video-cn",
+      "published": "2026-10-31T00:26:10+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "快手旗下可灵AI完成约198亿元增资 凤凰网",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "ae43d621e57118c0",
+      "title": "From Text To Video: How An AI Video Generator Simplifies Content Creation - KHTS Radio",
+      "link": "https://www.hometownstation.com/featured-stories/from-text-to-video-how-an-ai-video-generator-simplifies-content-creation-616777",
+      "source": "新闻 · 视频生成（英文）",
+      "source_id": "gnews-video-en",
+      "published": "2026-10-31T00:15:47+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "From Text To Video: How An AI Video Generator Simplifies Content Creation KHTS Radio",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "9c00a0df10cbc135",
+      "title": "可灵完成增资，完成198亿元融资 - 凤凰网科技",
+      "link": "https://tech.ifeng.com/c/8xfArxDy2ef",
+      "source": "新闻 · 视频生成（中文）",
+      "source_id": "gnews-video-cn",
+      "published": "2026-10-30T23:38:35+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "可灵完成增资，完成198亿元融资 凤凰网科技",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "01218bb569e846c2",
+      "title": "Was reading the score-centering RL paper to add some notes on it the my book, and they have a great table in the appendi",
+      "link": "https://bsky.app/profile/natolambert.bsky.social/post/3mz4nrcrwfz2f",
+      "source": "Bluesky · Nathan Lambert",
+      "source_id": "bsky-natolambert",
+      "published": "2026-10-30T20:49:00+00:00",
+      "category": "people",
+      "priority": "medium",
+      "summary": "Was reading the score-centering RL paper to add some notes on it the my book, and they have a great table in the appendix on the different importance sampling…",
+      "why": "",
+      "tags": [
+        "inference"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "6c71f90f3893683e",
+      "title": "Kling AI Raises $2.98 Billion To Rewrite the Video AI Rulebook - Ventureburn",
+      "link": "https://ventureburn.com/kling-ai-raises-2-98-billion-in-historic-funding-round/",
+      "source": "新闻 · 视频生成（英文）",
+      "source_id": "gnews-video-en",
+      "published": "2026-10-30T19:31:57+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Kling AI Raises $2.98 Billion To Rewrite the Video AI Rulebook Ventureburn",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "337d3df1df00c08c",
+      "title": "AI+垂类Agent：任务跑得久、工具用得熟，撑不起Agent公司长期竞争力｜贝联珠贯创始人兼CEO 毕玄分享",
+      "link": "https://www.infoq.cn/article/sCKczimP9lSEl0rgJ7VY",
+      "source": "InfoQ 中文",
+      "source_id": "infoq-cn",
+      "published": "2026-10-30T19:27:01+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "点击查看原文>",
+      "why": "",
+      "tags": [
+        "agent"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "b2263e9f84127c76",
+      "title": "nemotron-halloween",
+      "link": "https://huggingface.co/blog/nvidia/nemotron-halloween",
+      "source": "Hugging Face Blog",
+      "source_id": "hf-blog",
+      "published": "2026-10-30T17:57:24+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "",
+      "why": "",
+      "tags": [],
+      "tracks": []
+    },
+    {
+      "id": "77b8021d805e32e5",
+      "title": "Was I wrong about open models & cyber risks?",
+      "link": "https://www.interconnects.ai/p/was-i-wrong-about-open-models-and",
+      "source": "Interconnects",
+      "source_id": "interconnects",
+      "published": "2026-10-30T17:36:56+00:00",
+      "category": "people",
+      "priority": "medium",
+      "summary": "Last week coined the term “Black October“ after an onslaught of critical vulnerability disclosures, including PHP2Shell and GitLab, signified the moment when…",
+      "why": "",
+      "tags": [],
+      "tracks": []
+    },
+    {
+      "id": "245cd6e21b2e665d",
+      "title": "快手旗下可灵AI完成198亿增资交割 - 微博",
+      "link": "https://weibo.com/2/detail/5359883627269106",
+      "source": "新闻 · 视频生成（中文）",
+      "source_id": "gnews-video-cn",
+      "published": "2026-10-30T16:29:20+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "快手旗下可灵AI完成198亿增资交割 微博",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "fd255eec0a124694",
+      "title": "Uwear.ai – AI 时尚视觉内容制作、模特上身照与视频生成 - quasa.io",
+      "link": "https://quasa.io/zh/video/uwearai-ai-shi-shang-shi-jue-nei-rong-zhi-zuo-mo-te-shang-shen-zhao-yu-shi-pin-sheng-cheng",
+      "source": "新闻 · 视频生成（中文）",
+      "source_id": "gnews-video-cn",
+      "published": "2026-10-30T15:54:32+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Uwear.ai – AI 时尚视觉内容制作、模特上身照与视频生成 quasa.io",
+      "why": "",
+      "tags": [
+        "视频生成"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "4f5285a37594b852",
+      "title": "Kling AI Raises $2.98B at $18B Valuation [2026] - shattered.io",
+      "link": "https://shattered.io/kuaishou-kling-ai-2-98-billion-funding-round-18b-valuation-2026/",
+      "source": "新闻 · 视频生成（英文）",
+      "source_id": "gnews-video-en",
+      "published": "2026-10-30T15:46:10+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Kling AI Raises $2.98B at $18B Valuation [2026] shattered.io",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "b5bd2734bcbd8d3c",
+      "title": "Build Specialized Agents on a Stack You Control with NVIDIA NemoClaw",
+      "link": "https://developer.nvidia.com/blog/build-specialized-agents-on-a-stack-you-control-with-nvidia-nemoclaw",
+      "source": "NVIDIA Technical Blog",
+      "source_id": "nvidia-dev",
+      "published": "2026-10-30T15:11:46+00:00",
+      "category": "infra",
+      "priority": "medium",
+      "summary": "Building an autonomous agent requires a model, a harness, and domain-specific tools. To deploy an agent more securely, developers need a runtime that…",
+      "why": "",
+      "tags": [
+        "agent"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "a283ca869f875377",
+      "title": "How to Check and Configure NVIDIA GPUDirect Storage for Your Platform",
+      "link": "https://developer.nvidia.com/blog/how-to-check-and-configure-nvidia-gpudirect-storage-for-your-platform",
+      "source": "NVIDIA Technical Blog",
+      "source_id": "nvidia-dev",
+      "published": "2026-10-30T15:09:18+00:00",
+      "category": "infra",
+      "priority": "medium",
+      "summary": "NVIDIA GPUDirect Storage (GDS) accelerates GPU storage access in on-premises and cloud environments. It provides a robust, portable, and efficient data path...",
+      "why": "",
+      "tags": [
+        "gpu"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "d11a210c437c39a9",
+      "title": "用世界模型做AI药物研发，同济教授融资数千万元 - 新浪新闻_手机新浪网",
+      "link": "https://news.sina.cn/ai/2026-10-30/detail-iniwzprp8066747.d.html?oid=kimvip%E3%80%90PG66.CYOU%E3%80%91.xwns&vt=4",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-10-30T14:56:24+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "用世界模型做AI药物研发，同济教授融资数千万元 新浪新闻_手机新浪网",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "c4f01a8da96999f9",
+      "title": "Kuaishou's Kling AI unit completes a near 20 billion yuan funding round - The Standard (HK)",
+      "link": "https://www.thestandard.com.hk/innovation/article/347059/Kuaishous-Kling-AI-unit-completes-a-near-20-billion-yuan-funding-round",
+      "source": "新闻 · 视频生成（英文）",
+      "source_id": "gnews-video-en",
+      "published": "2026-10-30T14:38:21+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Kuaishou's Kling AI unit completes a near 20 billion yuan funding round The Standard (HK)",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "14b5df4b9442db83",
+      "title": "Kuaishou's Kling AI unit completes a near $3 billion funding round - Reuters",
+      "link": "https://www.reuters.com/business/retail-consumer/kuaishous-kling-ai-unit-completes-near-3-billion-funding-round-2026-10-30/",
+      "source": "新闻 · 视频生成（英文）",
+      "source_id": "gnews-video-en",
+      "published": "2026-10-30T14:11:43+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Kuaishou's Kling AI unit completes a near $3 billion funding round Reuters",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "ebccabf7fec0ef98",
+      "title": "L'unité Kling AI de Kuaishou clôture un tour de table de près de 3 milliards de dollars - TradingView",
+      "link": "https://www.tradingview.com/news/reuters.com,2026:newsml_L5N46G1RT:0/",
+      "source": "新闻 · 视频生成（英文）",
+      "source_id": "gnews-video-en",
+      "published": "2026-10-30T14:07:55+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "L'unité Kling AI de Kuaishou clôture un tour de table de près de 3 milliards de dollars TradingView",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "fa637b2836408eac",
+      "title": "Kuaishou's Kling AI unit completes a near $3 billion funding round - TradingView",
+      "link": "https://www.tradingview.com/news/reuters.com,2026:newsml_L3N46G1JF:0-kuaishou-s-kling-ai-unit-completes-a-near-3-billion-funding-round/",
+      "source": "新闻 · 视频生成（英文）",
+      "source_id": "gnews-video-en",
+      "published": "2026-10-30T14:07:27+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Kuaishou's Kling AI unit completes a near $3 billion funding round TradingView",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "0c916d819f141a4b",
+      "title": "Validate your real-world PyTorch skills with the PyTorch Certified Associate (PTCA) program. PTCA helps you demonstrate",
+      "link": "https://bsky.app/profile/pytorch.org/post/3mz3wwl2izq2z",
+      "source": "Bluesky · PyTorch",
+      "source_id": "bsky-pytorch",
+      "published": "2026-10-30T14:00:00+00:00",
+      "category": "people",
+      "priority": "medium",
+      "summary": "Validate your real-world PyTorch skills with the PyTorch Certified Associate (PTCA) program. PTCA helps you demonstrate foundational ability across model…",
+      "why": "",
+      "tags": [
+        "pytorch"
+      ],
+      "tracks": []
+    }
+  ]
+}
