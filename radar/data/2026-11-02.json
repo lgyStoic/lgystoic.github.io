@@ -1,0 +1,938 @@
+{
+  "date": "2026-11-02",
+  "generated_at": "2026-11-02T02:31:52+00:00",
+  "ai": false,
+  "model": "",
+  "sources": [
+    {
+      "id": "openai",
+      "name": "OpenAI",
+      "ok": true,
+      "count": 0,
+      "total": 1341,
+      "error": ""
+    },
+    {
+      "id": "google-ai",
+      "name": "Google AI Blog",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "qwen",
+      "name": "Qwen",
+      "ok": true,
+      "count": 0,
+      "total": 44,
+      "error": ""
+    },
+    {
+      "id": "hf-blog",
+      "name": "Hugging Face Blog",
+      "ok": true,
+      "count": 0,
+      "total": 894,
+      "error": ""
+    },
+    {
+      "id": "nvidia-dev",
+      "name": "NVIDIA Technical Blog",
+      "ok": true,
+      "count": 0,
+      "total": 100,
+      "error": ""
+    },
+    {
+      "id": "hf-papers",
+      "name": "HF Papers 日榜",
+      "ok": true,
+      "count": 0,
+      "total": 39,
+      "error": ""
+    },
+    {
+      "id": "pytorch",
+      "name": "PyTorch Blog",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "simonw",
+      "name": "Simon Willison",
+      "ok": true,
+      "count": 1,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "lilianweng",
+      "name": "Lil'Log",
+      "ok": true,
+      "count": 0,
+      "total": 53,
+      "error": ""
+    },
+    {
+      "id": "interconnects",
+      "name": "Interconnects",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "raschka",
+      "name": "Sebastian Raschka",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "chiphuyen",
+      "name": "Chip Huyen",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-pytorch",
+      "name": "Release · PyTorch",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-triton",
+      "name": "Release · Triton",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-cutlass",
+      "name": "Release · CUTLASS",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-flash-attention",
+      "name": "Release · FlashAttention",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-vllm",
+      "name": "Release · vLLM",
+      "ok": true,
+      "count": 1,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-sglang",
+      "name": "Release · SGLang",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-tensorrt-llm",
+      "name": "Release · TensorRT-LLM",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-diffusers",
+      "name": "Release · Diffusers",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-cuda-python",
+      "name": "Release · cuda-python",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "gnews-labs-en",
+      "name": "新闻 · Anthropic / Mistral / xAI",
+      "ok": true,
+      "count": 3,
+      "total": 26,
+      "error": ""
+    },
+    {
+      "id": "gnews-labs-cn",
+      "name": "新闻 · 国内模型公司",
+      "ok": true,
+      "count": 15,
+      "total": 38,
+      "error": ""
+    },
+    {
+      "id": "qbitai",
+      "name": "量子位",
+      "ok": true,
+      "count": 2,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "infoq-cn",
+      "name": "InfoQ 中文",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "thonking",
+      "name": "Horace He (thonking)",
+      "ok": true,
+      "count": 0,
+      "total": 6,
+      "error": ""
+    },
+    {
+      "id": "hn-algolia",
+      "name": "Hacker News（100+ 分）",
+      "ok": true,
+      "count": 1,
+      "total": 60,
+      "error": ""
+    },
+    {
+      "id": "karpathy-blog",
+      "name": "Andrej Karpathy 博客",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "eugeneyan",
+      "name": "Eugene Yan",
+      "ok": true,
+      "count": 0,
+      "total": 212,
+      "error": ""
+    },
+    {
+      "id": "importai",
+      "name": "Import AI（Jack Clark）",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "latentspace",
+      "name": "Latent Space",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "semianalysis",
+      "name": "SemiAnalysis",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "meta-ai",
+      "name": "Meta Engineering",
+      "ok": true,
+      "count": 0,
+      "total": 9,
+      "error": ""
+    },
+    {
+      "id": "mistral-news",
+      "name": "Mistral AI",
+      "ok": true,
+      "count": 0,
+      "total": 93,
+      "error": ""
+    },
+    {
+      "id": "bsky-karpathy",
+      "name": "Bluesky · Andrej Karpathy",
+      "ok": true,
+      "count": 0,
+      "total": 15,
+      "error": ""
+    },
+    {
+      "id": "bsky-giffmana",
+      "name": "Bluesky · Lucas Beyer",
+      "ok": true,
+      "count": 0,
+      "total": 22,
+      "error": ""
+    },
+    {
+      "id": "bsky-hardmaru",
+      "name": "Bluesky · hardmaru",
+      "ok": true,
+      "count": 0,
+      "total": 15,
+      "error": ""
+    },
+    {
+      "id": "bsky-swyx",
+      "name": "Bluesky · swyx",
+      "ok": true,
+      "count": 0,
+      "total": 3,
+      "error": ""
+    },
+    {
+      "id": "bsky-pytorch",
+      "name": "Bluesky · PyTorch",
+      "ok": true,
+      "count": 0,
+      "total": 29,
+      "error": ""
+    },
+    {
+      "id": "bsky-clem",
+      "name": "Bluesky · Clem Delangue",
+      "ok": true,
+      "count": 0,
+      "total": 11,
+      "error": ""
+    },
+    {
+      "id": "bsky-natolambert",
+      "name": "Bluesky · Nathan Lambert",
+      "ok": true,
+      "count": 0,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "bsky-rasbt",
+      "name": "Bluesky · Sebastian Raschka",
+      "ok": true,
+      "count": 0,
+      "total": 27,
+      "error": ""
+    },
+    {
+      "id": "bsky-jeffdean",
+      "name": "Bluesky · Jeff Dean",
+      "ok": true,
+      "count": 0,
+      "total": 18,
+      "error": ""
+    },
+    {
+      "id": "hf-trending-new",
+      "name": "HF 热榜新模型",
+      "ok": true,
+      "count": 3,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "gh-new-stars",
+      "name": "GitHub 新星仓库",
+      "ok": true,
+      "count": 1,
+      "total": 15,
+      "error": ""
+    },
+    {
+      "id": "hf-t2v",
+      "name": "HF 热榜 · 文生视频",
+      "ok": true,
+      "count": 0,
+      "total": 19,
+      "error": ""
+    },
+    {
+      "id": "hf-i2v",
+      "name": "HF 热榜 · 图生视频",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "gnews-video-en",
+      "name": "新闻 · 视频生成（英文）",
+      "ok": true,
+      "count": 2,
+      "total": 12,
+      "error": ""
+    },
+    {
+      "id": "gnews-video-cn",
+      "name": "新闻 · 视频生成（中文）",
+      "ok": true,
+      "count": 4,
+      "total": 12,
+      "error": ""
+    },
+    {
+      "id": "gnews-world-en",
+      "name": "新闻 · 世界模型（英文）",
+      "ok": true,
+      "count": 0,
+      "total": 29,
+      "error": ""
+    },
+    {
+      "id": "gnews-world-cn",
+      "name": "新闻 · 世界模型（中文）",
+      "ok": true,
+      "count": 11,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "gh-new-video-world",
+      "name": "GitHub 新仓库 · 视频 / 世界模型",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "arxiv-cscv",
+      "name": "arXiv cs.CV（专题）",
+      "ok": true,
+      "count": 0,
+      "total": 0,
+      "error": ""
+    },
+    {
+      "id": "arxiv-csro",
+      "name": "arXiv cs.RO（专题）",
+      "ok": true,
+      "count": 0,
+      "total": 0,
+      "error": ""
+    }
+  ],
+  "counts": {
+    "high": 10,
+    "medium": 20,
+    "low": 0
+  },
+  "items": [
+    {
+      "id": "4d8bb4e786e11198",
+      "title": "小K播早报|苹果和阿里巴巴达成合作 DeepSeek发布全新Agent架构 - Moomoo",
+      "link": "https://www.moomoo.com/hans/news/post/1003126122/xiao-k-morning-brief-apple-and-alibaba-reach-partnership-agreement",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-11-02T00:28:26+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "小K播早报|苹果和阿里巴巴达成合作 DeepSeek发布全新Agent架构 Moomoo",
+      "why": "",
+      "tags": [
+        "vae",
+        "agent"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "43a3e6fe75a6556e",
+      "title": "刚刚，DeepSeek重磅开源：Agent底座架构！ - 智源社区",
+      "link": "https://hub.baai.ac.cn/view/59263",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-11-01T15:00:00+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "刚刚，DeepSeek重磅开源：Agent底座架构！ 智源社区",
+      "why": "",
+      "tags": [
+        "agent"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "00d376669a1e3eb4",
+      "title": "Weeks Ahead Of Expected Anthropic IPO, DeepSeek Launches Autonomous Coding Agent To Take On Claude Code - Stocktwits",
+      "link": "https://stocktwits.com/news-articles/markets/equity/deepseek-autonomous-coding-agent-anthropic-ipo-claude-code/cNGekVdR9cy",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-11-01T12:58:00+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "Weeks Ahead Of Expected Anthropic IPO, DeepSeek Launches Autonomous Coding Agent To Take On Claude Code Stocktwits",
+      "why": "",
+      "tags": [
+        "llm",
+        "agent",
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "cd1f0c79b419e027",
+      "title": "DeepSeek开源Super-agent研究原型：让AI主动发现Bug并持续参与日常工作 - 虎嗅网",
+      "link": "https://www.huxiu.com/article/4902105.html",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-11-01T12:13:53+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "DeepSeek开源Super-agent研究原型：让AI主动发现Bug并持续参与日常工作 虎嗅网",
+      "why": "",
+      "tags": [
+        "agent"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "9e73da7b3b493b89",
+      "title": "机器人行业研究：谷歌升级Genie 4世界模型，智元大会发布新一代G2 Max - 证券之星",
+      "link": "https://stock.stockstar.com/JC2026110100009850.shtml",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-11-01T09:37:00+00:00",
+      "category": "research",
+      "priority": "high",
+      "summary": "机器人行业研究：谷歌升级Genie 4世界模型，智元大会发布新一代G2 Max 证券之星",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "7579b2022b35fd8b",
+      "title": "DeepSeek 发布 Super-agent 开源原型 - Pasquale Pillitteri",
+      "link": "https://pasqualepillitteri.it/zh/news/29035/deepseek-super-agent-kaiyuan-yuanxing",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-11-01T09:06:43+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "DeepSeek 发布 Super-agent 开源原型 Pasquale Pillitteri",
+      "why": "",
+      "tags": [
+        "agent",
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "0f53b94dbe12cec9",
+      "title": "DeepSeek发布全新Agent架构 - 观点网",
+      "link": "https://www.guandian.cn/m/show/621434",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-11-01T07:22:26+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "DeepSeek发布全新Agent架构 观点网",
+      "why": "",
+      "tags": [
+        "agent"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "7e367397ac2907d6",
+      "title": "【视频】XHEART发布大模型芯片X7 Ultra，Momenta预告R7 Ultra世界模型 - 车家号",
+      "link": "https://chejiahao.autohome.com.cn/info/26782348",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-11-01T06:52:47+00:00",
+      "category": "research",
+      "priority": "high",
+      "summary": "【视频】XHEART发布大模型芯片X7 Ultra，Momenta预告R7 Ultra世界模型 车家号",
+      "why": "",
+      "tags": [
+        "大模型"
+      ],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "b1d5ca4e087a5d80",
+      "title": "DeepSeek发布Super-agent设计探索 AI指挥AI 智能体 - 香港01",
+      "link": "https://global.hk01.com/%E5%8D%B3%E6%97%B6%E4%B8%AD%E5%9B%BD/60405817/deepseek%E5%8F%91%E5%B8%83super-agent%E8%AE%BE%E8%AE%A1%E6%8E%A2%E7%B4%A2-ai%E6%8C%87%E6%8C%A5ai-%E6%99%BA%E8%83%BD%E4%BD%93",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-11-01T05:15:00+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "DeepSeek发布Super-agent设计探索 AI指挥AI 智能体 香港01",
+      "why": "",
+      "tags": [
+        "agent"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "be56721e09fea344",
+      "title": "DeepSeek发布全新Agent架构 迈向更自主的AI系统 - 中华网",
+      "link": "https://news.china.com/socialgd/10000169/20261101/49831351.html",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-11-01T02:56:32+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "DeepSeek发布全新Agent架构 迈向更自主的AI系统 中华网",
+      "why": "",
+      "tags": [
+        "agent",
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "8465c96b3ef36320",
+      "title": "Kuaishou's Kling AI completes $2.9B financing - TNGlobal",
+      "link": "https://technode.global/2026/11/02/kuaishou-kling-ai-completes-2-9b-financing/",
+      "source": "新闻 · 视频生成（英文）",
+      "source_id": "gnews-video-en",
+      "published": "2026-11-02T00:27:12+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Kuaishou's Kling AI completes $2.9B financing TNGlobal",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "1aeabcfcba0aafca",
+      "title": "DeepSeek重构Agent！AI应用加速落地多股业绩倍增可期(名单)_股市聚焦_市场_中金在线 - 中金在线",
+      "link": "http://sc.stock.cnfol.com/gushijujiao/20261102/32412946.shtml",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-11-02T00:13:34+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "DeepSeek重构Agent！AI应用加速落地多股业绩倍增可期(名单)_股市聚焦_市场_中金在线 中金在线",
+      "why": "",
+      "tags": [
+        "agent"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "bd78c08265eb2f05",
+      "title": "DeepSeek大动作！Agent商业化有望提速这14股业绩逐季高增(名单) - 东方财富",
+      "link": "https://emwap.eastmoney.com/a/202611023917850052.html",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-11-01T23:49:51+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "DeepSeek大动作！Agent商业化有望提速这14股业绩逐季高增(名单) 东方财富",
+      "why": "",
+      "tags": [
+        "agent"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "bf44265517c5c58b",
+      "title": "机器人学会的世界模型，为什么到了新环境就\"失灵\"了？ - 科技行者",
+      "link": "https://www.techwalker.com/2026/1102/3204328.shtml",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-11-01T23:03:00+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "机器人学会的世界模型，为什么到了新环境就\"失灵\"了？ 科技行者",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "b5608fed568dfee4",
+      "title": "Anthropic says you can't be mean to Claude. It's not about feelings - KSL News",
+      "link": "https://ksltv.com/article/news/business/anthropic-says-you-cant-be-mean-to-claude-its-not-about-feelings/51642920",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-11-01T18:53:00+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Anthropic says you can't be mean to Claude. It's not about feelings KSL News",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "d7bd50100e128b52",
+      "title": "Quoting Kyle Kingsbury",
+      "link": "https://simonwillison.net/2026/Nov/1/kyle-kingsbury",
+      "source": "Simon Willison",
+      "source_id": "simonw",
+      "published": "2026-11-01T16:49:04+00:00",
+      "category": "people",
+      "priority": "medium",
+      "summary": "More broadly, the use of LLMs erodes trust in documentation, in software, and in the organizations which produce them…",
+      "why": "",
+      "tags": [
+        "llm"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "898b89091b8a48d3",
+      "title": "AI agent swarms in Minecraft fail to build civilization, drown in bureaucracy",
+      "link": "https://news.ycombinator.com/item?id=50325662",
+      "source": "Hacker News（100+ 分）",
+      "source_id": "hn-algolia",
+      "published": "2026-11-01T13:47:24+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "",
+      "why": "",
+      "tags": [
+        "agent"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "77cf6f6f7d482abe",
+      "title": "三年前布局，今年爆火丨西湖大学成立新中心",
+      "link": "https://www.qbitai.com/2026/11/507076.html",
+      "source": "量子位",
+      "source_id": "qbitai",
+      "published": "2026-11-01T13:28:10+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "西湖世界模型研究中心成立",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "056bf3d3d0101b08",
+      "title": "西湖大学成立世界模型研究中心 - 手机新浪网",
+      "link": "https://k.sina.com.cn/article_5044281310_12ca99fde02002lmyy.html?from=tech",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-11-01T13:15:00+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "西湖大学成立世界模型研究中心 手机新浪网",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "058fc161b998893d",
+      "title": "可灵AI完成198亿元增资交割！金蝶、沐曦等接棒入局 - 证券之星",
+      "link": "https://wap.stockstar.com/detail/IG2026110100009756",
+      "source": "新闻 · 视频生成（中文）",
+      "source_id": "gnews-video-cn",
+      "published": "2026-11-01T10:41:00+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "可灵AI完成198亿元增资交割！金蝶、沐曦等接棒入局 证券之星",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "a1271070a6b3c8f7",
+      "title": "快手方面确认，可灵AI已完成198亿元独立融资 - 三易生活",
+      "link": "https://www.3elife.net/Art/internet/202611/01/110586.html",
+      "source": "新闻 · 视频生成（中文）",
+      "source_id": "gnews-video-cn",
+      "published": "2026-11-01T10:16:04+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "快手方面确认，可灵AI已完成198亿元独立融资 三易生活",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "ce1e25ea927dceca",
+      "title": "v0.33.0",
+      "link": "https://github.com/vllm-project/vllm/releases/tag/v0.33.0",
+      "source": "Release · vLLM",
+      "source_id": "rel-vllm",
+      "published": "2026-11-01T09:21:10+00:00",
+      "category": "infra",
+      "priority": "medium",
+      "summary": "vLLM v0.33.0",
+      "why": "",
+      "tags": [
+        "llm"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "96603222f1ad2f3a",
+      "title": "清华姚期智团队新作：代数世界模型，让AI像牛顿一样思考",
+      "link": "https://www.qbitai.com/2026/11/507031.html",
+      "source": "量子位",
+      "source_id": "qbitai",
+      "published": "2026-11-01T08:02:37+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "让AI像牛顿一样思考",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "c883f77befd75cf4",
+      "title": "如何让AI像牛顿一样思考？代数世界模型：从探索走向证明 - 智源社区",
+      "link": "https://hub.baai.ac.cn/view/59255",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-11-01T07:50:00+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "如何让AI像牛顿一样思考？代数世界模型：从探索走向证明 智源社区",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "d3e964db0e694d49",
+      "title": "清华姚期智团队新作：代数世界模型，让AI像牛顿一样思考 - 搜狐网",
+      "link": "https://m.sohu.com/a/1095744039_610300?scm=10001.325_13-325_13.0.0-0-0-0-0.5_1334",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-11-01T07:30:00+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "清华姚期智团队新作：代数世界模型，让AI像牛顿一样思考 搜狐网",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "acdd35ec13677fd4",
+      "title": "世界模型首次指导设计芯片！超大核NPU700TOPS，99%算力可用 - 智源社区",
+      "link": "https://hub.baai.ac.cn/view/59249",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-11-01T06:00:00+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "世界模型首次指导设计芯片！超大核NPU700TOPS，99%算力可用 智源社区",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "e90edaa9417edffb",
+      "title": "世界模型火了，但最先改变的可能不是游戏 - 21财经",
+      "link": "https://www.21jingji.com/article/20261101/herald/657603c477893fbeb3cb674e89a9c75f.html",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-11-01T05:01:16+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "世界模型火了，但最先改变的可能不是游戏 21财经",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "48d9bf1422045a65",
+      "title": "DeepSeek drops enhanced coding agent with aim to rival Anthropic - The Straits Times",
+      "link": "https://www.straitstimes.com/asia/east-asia/deepseek-drops-enhanced-coding-agent-with-aim-to-rival-anthropic",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-11-01T04:55:00+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "DeepSeek drops enhanced coding agent with aim to rival Anthropic The Straits Times",
+      "why": "",
+      "tags": [
+        "agent"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "6555245afb002562",
+      "title": "未知机构:《浙商新兴产业吴婷婷钟凯锋团队世界模型与通用大模型加速演进｜研报｜投资分析》 - 发现报告",
+      "link": "https://www.fxbaogao.com/detail/5832739",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-11-01T03:41:09+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "未知机构:《浙商新兴产业吴婷婷钟凯锋团队世界模型与通用大模型加速演进｜研报｜投资分析》 发现报告",
+      "why": "",
+      "tags": [
+        "大模型"
+      ],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "4a4a1f5dd5edb967",
+      "title": "Text to Video AI Latest APK Version - Học viện Nông nghiệp Việt Nam",
+      "link": "https://vnua.edu.vn/content/110120514",
+      "source": "新闻 · 视频生成（英文）",
+      "source_id": "gnews-video-en",
+      "published": "2026-11-01T03:00:53+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Text to Video AI Latest APK Version Học viện Nông nghiệp Việt Nam",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "video"
+      ]
+    }
+  ]
+}
