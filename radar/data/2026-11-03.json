@@ -1,0 +1,920 @@
+{
+  "date": "2026-11-03",
+  "generated_at": "2026-11-03T03:56:20+00:00",
+  "ai": false,
+  "model": "",
+  "sources": [
+    {
+      "id": "openai",
+      "name": "OpenAI",
+      "ok": true,
+      "count": 7,
+      "total": 1348,
+      "error": ""
+    },
+    {
+      "id": "google-ai",
+      "name": "Google AI Blog",
+      "ok": true,
+      "count": 1,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "qwen",
+      "name": "Qwen",
+      "ok": true,
+      "count": 0,
+      "total": 44,
+      "error": ""
+    },
+    {
+      "id": "hf-blog",
+      "name": "Hugging Face Blog",
+      "ok": true,
+      "count": 0,
+      "total": 894,
+      "error": ""
+    },
+    {
+      "id": "nvidia-dev",
+      "name": "NVIDIA Technical Blog",
+      "ok": true,
+      "count": 3,
+      "total": 100,
+      "error": ""
+    },
+    {
+      "id": "hf-papers",
+      "name": "HF Papers 日榜",
+      "ok": true,
+      "count": 9,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "pytorch",
+      "name": "PyTorch Blog",
+      "ok": true,
+      "count": 1,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "simonw",
+      "name": "Simon Willison",
+      "ok": true,
+      "count": 1,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "lilianweng",
+      "name": "Lil'Log",
+      "ok": true,
+      "count": 0,
+      "total": 53,
+      "error": ""
+    },
+    {
+      "id": "interconnects",
+      "name": "Interconnects",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "raschka",
+      "name": "Sebastian Raschka",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "chiphuyen",
+      "name": "Chip Huyen",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-pytorch",
+      "name": "Release · PyTorch",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-triton",
+      "name": "Release · Triton",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-cutlass",
+      "name": "Release · CUTLASS",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-flash-attention",
+      "name": "Release · FlashAttention",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-vllm",
+      "name": "Release · vLLM",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-sglang",
+      "name": "Release · SGLang",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-tensorrt-llm",
+      "name": "Release · TensorRT-LLM",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-diffusers",
+      "name": "Release · Diffusers",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-cuda-python",
+      "name": "Release · cuda-python",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "gnews-labs-en",
+      "name": "新闻 · Anthropic / Mistral / xAI",
+      "ok": true,
+      "count": 14,
+      "total": 51,
+      "error": ""
+    },
+    {
+      "id": "gnews-labs-cn",
+      "name": "新闻 · 国内模型公司",
+      "ok": true,
+      "count": 13,
+      "total": 39,
+      "error": ""
+    },
+    {
+      "id": "qbitai",
+      "name": "量子位",
+      "ok": true,
+      "count": 3,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "infoq-cn",
+      "name": "InfoQ 中文",
+      "ok": true,
+      "count": 6,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "thonking",
+      "name": "Horace He (thonking)",
+      "ok": true,
+      "count": 0,
+      "total": 6,
+      "error": ""
+    },
+    {
+      "id": "hn-algolia",
+      "name": "Hacker News（100+ 分）",
+      "ok": true,
+      "count": 4,
+      "total": 60,
+      "error": ""
+    },
+    {
+      "id": "karpathy-blog",
+      "name": "Andrej Karpathy 博客",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "eugeneyan",
+      "name": "Eugene Yan",
+      "ok": true,
+      "count": 0,
+      "total": 212,
+      "error": ""
+    },
+    {
+      "id": "importai",
+      "name": "Import AI（Jack Clark）",
+      "ok": true,
+      "count": 1,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "latentspace",
+      "name": "Latent Space",
+      "ok": true,
+      "count": 1,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "semianalysis",
+      "name": "SemiAnalysis",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "meta-ai",
+      "name": "Meta Engineering",
+      "ok": true,
+      "count": 0,
+      "total": 9,
+      "error": ""
+    },
+    {
+      "id": "mistral-news",
+      "name": "Mistral AI",
+      "ok": true,
+      "count": 0,
+      "total": 93,
+      "error": ""
+    },
+    {
+      "id": "bsky-karpathy",
+      "name": "Bluesky · Andrej Karpathy",
+      "ok": true,
+      "count": 0,
+      "total": 15,
+      "error": ""
+    },
+    {
+      "id": "bsky-giffmana",
+      "name": "Bluesky · Lucas Beyer",
+      "ok": true,
+      "count": 0,
+      "total": 22,
+      "error": ""
+    },
+    {
+      "id": "bsky-hardmaru",
+      "name": "Bluesky · hardmaru",
+      "ok": true,
+      "count": 0,
+      "total": 15,
+      "error": ""
+    },
+    {
+      "id": "bsky-swyx",
+      "name": "Bluesky · swyx",
+      "ok": true,
+      "count": 0,
+      "total": 3,
+      "error": ""
+    },
+    {
+      "id": "bsky-pytorch",
+      "name": "Bluesky · PyTorch",
+      "ok": true,
+      "count": 2,
+      "total": 29,
+      "error": ""
+    },
+    {
+      "id": "bsky-clem",
+      "name": "Bluesky · Clem Delangue",
+      "ok": true,
+      "count": 0,
+      "total": 11,
+      "error": ""
+    },
+    {
+      "id": "bsky-natolambert",
+      "name": "Bluesky · Nathan Lambert",
+      "ok": true,
+      "count": 0,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "bsky-rasbt",
+      "name": "Bluesky · Sebastian Raschka",
+      "ok": true,
+      "count": 0,
+      "total": 27,
+      "error": ""
+    },
+    {
+      "id": "bsky-jeffdean",
+      "name": "Bluesky · Jeff Dean",
+      "ok": true,
+      "count": 0,
+      "total": 18,
+      "error": ""
+    },
+    {
+      "id": "hf-trending-new",
+      "name": "HF 热榜新模型",
+      "ok": true,
+      "count": 4,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "gh-new-stars",
+      "name": "GitHub 新星仓库",
+      "ok": true,
+      "count": 1,
+      "total": 15,
+      "error": ""
+    },
+    {
+      "id": "hf-t2v",
+      "name": "HF 热榜 · 文生视频",
+      "ok": true,
+      "count": 0,
+      "total": 19,
+      "error": ""
+    },
+    {
+      "id": "hf-i2v",
+      "name": "HF 热榜 · 图生视频",
+      "ok": true,
+      "count": 1,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "gnews-video-en",
+      "name": "新闻 · 视频生成（英文）",
+      "ok": true,
+      "count": 2,
+      "total": 17,
+      "error": ""
+    },
+    {
+      "id": "gnews-video-cn",
+      "name": "新闻 · 视频生成（中文）",
+      "ok": true,
+      "count": 11,
+      "total": 25,
+      "error": ""
+    },
+    {
+      "id": "gnews-world-en",
+      "name": "新闻 · 世界模型（英文）",
+      "ok": true,
+      "count": 8,
+      "total": 54,
+      "error": ""
+    },
+    {
+      "id": "gnews-world-cn",
+      "name": "新闻 · 世界模型（中文）",
+      "ok": true,
+      "count": 12,
+      "total": 36,
+      "error": ""
+    },
+    {
+      "id": "gh-new-video-world",
+      "name": "GitHub 新仓库 · 视频 / 世界模型",
+      "ok": true,
+      "count": 1,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "arxiv-cscv",
+      "name": "arXiv cs.CV（专题）",
+      "ok": true,
+      "count": 15,
+      "total": 165,
+      "error": ""
+    },
+    {
+      "id": "arxiv-csro",
+      "name": "arXiv cs.RO（专题）",
+      "ok": true,
+      "count": 3,
+      "total": 110,
+      "error": ""
+    }
+  ],
+  "counts": {
+    "high": 10,
+    "medium": 20,
+    "low": 0
+  },
+  "items": [
+    {
+      "id": "41c7bca45ee81d91",
+      "title": "DeepSeek发布Super-agent架构 推动智能体向自主管家型演进 - 品玩",
+      "link": "https://www.pingwest.com/w/319118",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-11-03T01:38:10+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "DeepSeek发布Super-agent架构 推动智能体向自主管家型演进 品玩",
+      "why": "",
+      "tags": [
+        "agent"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "4319141db10116ec",
+      "title": "【国际动态】刚刚，谷歌Genie 4发布！世界模型还得是谷歌 - 手机新浪网",
+      "link": "https://k.sina.com.cn/article_5952915705_162d248f906703sc4c.html?from=tech",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-11-02T23:18:00+00:00",
+      "category": "research",
+      "priority": "high",
+      "summary": "【国际动态】刚刚，谷歌Genie 4发布！世界模型还得是谷歌 手机新浪网",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "42d6e28b619b58a4",
+      "title": "PyTorch Foundation project Ray is today announcing the SIG for Ray on Accelerators: a vendor-neutral roadmap for running",
+      "link": "https://bsky.app/profile/pytorch.org/post/3mzdvpqsqwt2z",
+      "source": "Bluesky · PyTorch",
+      "source_id": "bsky-pytorch",
+      "published": "2026-11-02T18:00:00+00:00",
+      "category": "people",
+      "priority": "high",
+      "summary": "PyTorch Foundation project Ray is today announcing the SIG for Ray on Accelerators: a vendor-neutral roadmap for running Ray on NVIDIA, AMD, TPU, and custom…",
+      "why": "",
+      "tags": [
+        "pytorch"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "8665ce9438557563",
+      "title": "Announcing the Special Interest Group (SIG) for Ray on Accelerators",
+      "link": "https://pytorch.org/blog/announcing-the-special-interest-group-sig-for-ray-on-accelerators",
+      "source": "PyTorch Blog",
+      "source_id": "pytorch",
+      "published": "2026-11-02T17:45:32+00:00",
+      "category": "infra",
+      "priority": "high",
+      "summary": "Today, we are announcing the Special Interest Group (SIG) for Ray on hardware accelerators. When Ray was created in UC Berkeley over 10 years ago, the…",
+      "why": "",
+      "tags": [
+        "pytorch"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "4a093dcc6641bdcf",
+      "title": "42AI Launches a Behavioral World Model to Predict Human Decisions - Unite.AI",
+      "link": "https://www.unite.ai/42ai-behavioral-world-model-human-decisions/",
+      "source": "新闻 · 世界模型（英文）",
+      "source_id": "gnews-world-en",
+      "published": "2026-11-02T17:44:04+00:00",
+      "category": "research",
+      "priority": "high",
+      "summary": "42AI Launches a Behavioral World Model to Predict Human Decisions Unite.AI",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "19244c7aa2063fd3",
+      "title": "Introducing the Grid Protectors Program",
+      "link": "https://openai.com/index/grid-protectors-program",
+      "source": "OpenAI",
+      "source_id": "openai",
+      "published": "2026-11-02T15:00:00+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "OpenAI’s Grid Protectors Program will work with utilities to help future compute campuses support grid reliability and protect consumer electricity costs.",
+      "why": "",
+      "tags": [],
+      "tracks": []
+    },
+    {
+      "id": "e5f6124c68728d81",
+      "title": "Import AI 479: Spacewar; low-latency tasks versus LLMs; Genie 4",
+      "link": "https://jack-clark.net/2026/11/02/import-ai-479-spacewar-low-latency-tasks-versus-llms-genie-4",
+      "source": "Import AI（Jack Clark）",
+      "source_id": "importai",
+      "published": "2026-11-02T14:30:54+00:00",
+      "category": "people",
+      "priority": "high",
+      "summary": "Welcome to Import AI, a newsletter about AI research. Import AI runs on arXiv, cappuccinos, and feedback from readers…",
+      "why": "",
+      "tags": [
+        "llm",
+        "latency"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "b698f6a44d199f94",
+      "title": "Athenahealth launches tool to bring patient health records into Anthropic's Claude - Fierce Healthcare",
+      "link": "https://www.fiercehealthcare.com/ai-and-machine-learning/athenahealth-launches-tool-bring-patient-health-records-anthropics-claude",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-11-02T14:00:00+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "Athenahealth launches tool to bring patient health records into Anthropic's Claude Fierce Healthcare",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "29294c22a7fa2157",
+      "title": "Kimi发布游戏开发与创意工作解决方案，Agent操作专业引擎 - 凤凰网",
+      "link": "https://original.ifeng.com/c/8xjEIumK3ad",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-11-02T13:32:50+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "Kimi发布游戏开发与创意工作解决方案，Agent操作专业引擎 凤凰网",
+      "why": "",
+      "tags": [
+        "agent"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "b3f2cd5d4cf0f9a5",
+      "title": "DeepSeek发布智能体新架构：让AI管AI - 财联社",
+      "link": "https://www.cls.cn/detail/2522807",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-11-02T11:14:05+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "DeepSeek发布智能体新架构：让AI管AI 财联社",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "0cd5951b226d9168",
+      "title": "框架选不对，Claude 开发成本多一倍：前端十年框架膨胀，终于有人买单了",
+      "link": "https://www.infoq.cn/article/M6Q9I3DFrozJOREx9ztL",
+      "source": "InfoQ 中文",
+      "source_id": "infoq-cn",
+      "published": "2026-11-03T10:38:04+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "点击查看原文>",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "43fa8ceef8c57a95",
+      "title": "模拟计算进入矩阵时代！北大联手硅谷IBM，写下新定义",
+      "link": "https://www.qbitai.com/2026/11/507367.html",
+      "source": "量子位",
+      "source_id": "qbitai",
+      "published": "2026-11-03T03:16:23+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "GPU迭代一百次的事，它一步做完",
+      "why": "",
+      "tags": [
+        "gpu"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "e096a6b2c20c6c2b",
+      "title": "Anthropic Addresses Video Game Cloning With Minor Claude Update - CNET",
+      "link": "https://www.cnet.com/tech/gaming/anthropic-claude-update-video-game-cloning/",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-11-03T00:06:13+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Anthropic Addresses Video Game Cloning With Minor Claude Update CNET",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "b1c6459590d6ed7b",
+      "title": "Laura Shin: Anthropic research model found Linux kernel bug behind urgent Solana validator alert - Traders Union",
+      "link": "https://tradersunion.com/news/market-voices/show/4068868-solana-validator-bug-anthropic/",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-11-02T23:50:09+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Laura Shin: Anthropic research model found Linux kernel bug behind urgent Solana validator alert Traders Union",
+      "why": "",
+      "tags": [
+        "kernel"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "45e6464a45f70f80",
+      "title": "llm 0.37",
+      "link": "https://simonwillison.net/2026/Nov/2/llm",
+      "source": "Simon Willison",
+      "source_id": "simonw",
+      "published": "2026-11-02T23:49:30+00:00",
+      "category": "people",
+      "priority": "medium",
+      "summary": "Release: llm 0.37 There's a lot of stuff in this new release of my LLM CLI tool and Python library, representing around two months of accumulated features and…",
+      "why": "",
+      "tags": [
+        "llm"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "e33216d0e243d7ea",
+      "title": "Building Legal Agents When You Can't See the Data - Jacob Lauritzen, CTO of Legora",
+      "link": "https://latent.space/p/building_legal_agents_when_you_can_t_see_the_data_-_jacob_lauritzen_cto_of_legora",
+      "source": "Latent Space",
+      "source_id": "latentspace",
+      "published": "2026-11-02T22:54:03+00:00",
+      "category": "people",
+      "priority": "medium",
+      "summary": "Legora can’t read a single trace of what its agent does for a lawyer. The data belongs to the law firm’s clients…",
+      "why": "",
+      "tags": [
+        "agent"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "9f7e69613023002a",
+      "title": "Keep Distributed Training Running with Automated Workload Recovery",
+      "link": "https://developer.nvidia.com/blog/keep-distributed-training-running-with-automated-workload-recovery",
+      "source": "NVIDIA Technical Blog",
+      "source_id": "nvidia-dev",
+      "published": "2026-11-02T22:43:09+00:00",
+      "category": "infra",
+      "priority": "medium",
+      "summary": "As distributed AI training scales, failures across hardware and software dependencies increasingly disrupt training progress, making fast, reliable recovery...",
+      "why": "",
+      "tags": [
+        "distributed training"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "d38a5d5b3db29ab9",
+      "title": "11月3日电商早报：阿里千问接入苹果智能；快手可灵AI增资约198亿 - 亿邦动力网",
+      "link": "https://www.ebrun.com/20261103/718095.shtml",
+      "source": "新闻 · 视频生成（中文）",
+      "source_id": "gnews-video-cn",
+      "published": "2026-11-02T22:32:34+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "11月3日电商早报：阿里千问接入苹果智能；快手可灵AI增资约198亿 亿邦动力网",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "3e201e56f7c29339",
+      "title": "快手可灵AI完成约198亿元增资交割- 快讯 - 亿邦动力网",
+      "link": "https://www.ebrun.com/ebrungo/zb/718089.shtml",
+      "source": "新闻 · 视频生成（中文）",
+      "source_id": "gnews-video-cn",
+      "published": "2026-11-02T22:26:16+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "快手可灵AI完成约198亿元增资交割- 快讯 亿邦动力网",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "4a6afc4a0f1aff52",
+      "title": "Speedrun AI Labs, Builder of Cybersecurity and Compliance Agents, Accepted Into Anthropic's Claude Startups Program - USA Today",
+      "link": "https://www.usatoday.com/press-release/story/55072/speedrun-ai-labs-builder-of-cybersecurity-and-compliance-agents-accepted-into-anthropics-claude-startups-program/",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-11-02T22:20:35+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Speedrun AI Labs, Builder of Cybersecurity and Compliance Agents, Accepted Into Anthropic's Claude Startups Program USA Today",
+      "why": "",
+      "tags": [
+        "agent"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "c3390f1fe8d04d6e",
+      "title": "DeepSeek上新模式强化智能体能力：一句话定制AI插件，公开提示词搞定3D可视化到视频编辑 - 华尔街见闻",
+      "link": "https://wallstreetcn.com/articles/3785017",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-11-02T21:57:18+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "DeepSeek上新模式强化智能体能力：一句话定制AI插件，公开提示词搞定3D可视化到视频编辑 华尔街见闻",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "c807050a03b165ef",
+      "title": "Bring your PyTorch 2.15 questions to our live Q&A this Thursday, November 5, at 11 AM PT. Tristan Rice, Natalia Gimelshe",
+      "link": "https://bsky.app/profile/pytorch.org/post/3mzeapsmli72b",
+      "source": "Bluesky · PyTorch",
+      "source_id": "bsky-pytorch",
+      "published": "2026-11-02T21:17:00+00:00",
+      "category": "people",
+      "priority": "medium",
+      "summary": "Bring your PyTorch 2.15 questions to our live Q&A this Thursday, November 5, at 11 AM PT. Tristan Rice, Natalia Gimelshein, Huy Do and Jane Xu (Meta) will…",
+      "why": "",
+      "tags": [
+        "pytorch"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "8ac49ef79cba71e8",
+      "title": "NVIDIA details Cosmos Framework and NIM for world model deployment - Blockchain News",
+      "link": "https://blockchain.news/news/nvidia-details-cosmos-framework-and-nim-for-world-model-deployment",
+      "source": "新闻 · 世界模型（英文）",
+      "source_id": "gnews-world-en",
+      "published": "2026-11-02T19:39:28+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "NVIDIA details Cosmos Framework and NIM for world model deployment Blockchain News",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "0b5ed912412aeb94",
+      "title": "Google Genie 4 brings world models closer to robot and AI testing - TechTarget",
+      "link": "https://www.techtarget.com/news/google-genie-4-brings-world-models-closer-to-robot-and-ai-testing/873464/",
+      "source": "新闻 · 世界模型（英文）",
+      "source_id": "gnews-world-en",
+      "published": "2026-11-02T19:39:03+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "Google Genie 4 brings world models closer to robot and AI testing TechTarget",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "03c334d852b6aaa8",
+      "title": "NVIDIA PAIR Virtual Inference Router Expands Available Compute on Your Local Network",
+      "link": "https://developer.nvidia.com/blog/nvidia-pair-virtual-inference-router-expands-available-compute-on-your-local-network",
+      "source": "NVIDIA Technical Blog",
+      "source_id": "nvidia-dev",
+      "published": "2026-11-02T19:17:17+00:00",
+      "category": "infra",
+      "priority": "medium",
+      "summary": "AI agents are learning to do more by working together. A lead agent can break a complex task into smaller jobs and assign those jobs to specialized…",
+      "why": "",
+      "tags": [
+        "inference"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "105f2fd589ef1476",
+      "title": "AI+科研：Agent加速科研，论文写得快了，成果更难评了 ｜ 西湖大学工学院博导 王欢分享",
+      "link": "https://www.infoq.cn/article/MbwRCg4cKC2f3bwv0Cpb",
+      "source": "InfoQ 中文",
+      "source_id": "infoq-cn",
+      "published": "2026-11-02T18:33:55+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "点击查看原文>",
+      "why": "",
+      "tags": [
+        "agent"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "b7c6a708517b8deb",
+      "title": "AI+办公：Agent都有“工位”了，云电脑既让它接手业务、也管住权限 ｜ 阿里云智能集团研发副总裁 张献涛分享",
+      "link": "https://www.infoq.cn/article/Vryq1f3C0f5uZHOlmIp4",
+      "source": "InfoQ 中文",
+      "source_id": "infoq-cn",
+      "published": "2026-11-02T18:08:42+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "点击查看原文>",
+      "why": "",
+      "tags": [
+        "agent"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "6fd6ad7938fa5bc5",
+      "title": "Rewarding defenders with bigger bug bounties",
+      "link": "https://openai.com/index/rewarding-defenders-with-bigger-bug-bounties",
+      "source": "OpenAI",
+      "source_id": "openai",
+      "published": "2026-11-02T18:00:00+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "OpenAI is raising Security Bug Bounty rewards and introducing report quality, loyalty, and priority campaign bonuses for independent security researchers.",
+      "why": "",
+      "tags": [],
+      "tracks": []
+    },
+    {
+      "id": "262cfa35f4308cc0",
+      "title": "Preparing our next security sprint to harden OpenAI",
+      "link": "https://openai.com/index/preparing-our-next-security-sprint-to-harden-openai",
+      "source": "OpenAI",
+      "source_id": "openai",
+      "published": "2026-11-02T18:00:00+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "OpenAI is preparing its next internal security sprint with Cathedral Systems to test and strengthen its defenses using AI.",
+      "why": "",
+      "tags": [],
+      "tracks": []
+    },
+    {
+      "id": "1802721ebc5f02c3",
+      "title": "The latest AI news we announced in October 2026",
+      "link": "https://blog.google/innovation-and-ai/technology/ai/google-ai-updates-october-2026",
+      "source": "Google AI Blog",
+      "source_id": "google-ai",
+      "published": "2026-11-02T17:45:00+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Animated carousel of images from AI posts in October",
+      "why": "",
+      "tags": [],
+      "tracks": []
+    }
+  ]
+}
