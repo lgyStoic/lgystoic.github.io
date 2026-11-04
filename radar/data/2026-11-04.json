@@ -1,0 +1,938 @@
+{
+  "date": "2026-11-04",
+  "generated_at": "2026-11-04T03:00:36+00:00",
+  "ai": false,
+  "model": "",
+  "sources": [
+    {
+      "id": "openai",
+      "name": "OpenAI",
+      "ok": true,
+      "count": 4,
+      "total": 1354,
+      "error": ""
+    },
+    {
+      "id": "google-ai",
+      "name": "Google AI Blog",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "qwen",
+      "name": "Qwen",
+      "ok": true,
+      "count": 0,
+      "total": 44,
+      "error": ""
+    },
+    {
+      "id": "hf-blog",
+      "name": "Hugging Face Blog",
+      "ok": true,
+      "count": 4,
+      "total": 896,
+      "error": ""
+    },
+    {
+      "id": "nvidia-dev",
+      "name": "NVIDIA Technical Blog",
+      "ok": true,
+      "count": 0,
+      "total": 100,
+      "error": ""
+    },
+    {
+      "id": "hf-papers",
+      "name": "HF Papers 日榜",
+      "ok": true,
+      "count": 23,
+      "total": 38,
+      "error": ""
+    },
+    {
+      "id": "pytorch",
+      "name": "PyTorch Blog",
+      "ok": true,
+      "count": 1,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "simonw",
+      "name": "Simon Willison",
+      "ok": true,
+      "count": 2,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "lilianweng",
+      "name": "Lil'Log",
+      "ok": true,
+      "count": 0,
+      "total": 53,
+      "error": ""
+    },
+    {
+      "id": "interconnects",
+      "name": "Interconnects",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "raschka",
+      "name": "Sebastian Raschka",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "chiphuyen",
+      "name": "Chip Huyen",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-pytorch",
+      "name": "Release · PyTorch",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-triton",
+      "name": "Release · Triton",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-cutlass",
+      "name": "Release · CUTLASS",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-flash-attention",
+      "name": "Release · FlashAttention",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-vllm",
+      "name": "Release · vLLM",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-sglang",
+      "name": "Release · SGLang",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-tensorrt-llm",
+      "name": "Release · TensorRT-LLM",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-diffusers",
+      "name": "Release · Diffusers",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-cuda-python",
+      "name": "Release · cuda-python",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "gnews-labs-en",
+      "name": "新闻 · Anthropic / Mistral / xAI",
+      "ok": true,
+      "count": 28,
+      "total": 100,
+      "error": ""
+    },
+    {
+      "id": "gnews-labs-cn",
+      "name": "新闻 · 国内模型公司",
+      "ok": true,
+      "count": 22,
+      "total": 96,
+      "error": ""
+    },
+    {
+      "id": "qbitai",
+      "name": "量子位",
+      "ok": true,
+      "count": 1,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "infoq-cn",
+      "name": "InfoQ 中文",
+      "ok": true,
+      "count": 3,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "thonking",
+      "name": "Horace He (thonking)",
+      "ok": true,
+      "count": 0,
+      "total": 6,
+      "error": ""
+    },
+    {
+      "id": "hn-algolia",
+      "name": "Hacker News（100+ 分）",
+      "ok": true,
+      "count": 3,
+      "total": 60,
+      "error": ""
+    },
+    {
+      "id": "karpathy-blog",
+      "name": "Andrej Karpathy 博客",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "eugeneyan",
+      "name": "Eugene Yan",
+      "ok": true,
+      "count": 0,
+      "total": 212,
+      "error": ""
+    },
+    {
+      "id": "importai",
+      "name": "Import AI（Jack Clark）",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "latentspace",
+      "name": "Latent Space",
+      "ok": true,
+      "count": 1,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "semianalysis",
+      "name": "SemiAnalysis",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "meta-ai",
+      "name": "Meta Engineering",
+      "ok": true,
+      "count": 0,
+      "total": 9,
+      "error": ""
+    },
+    {
+      "id": "mistral-news",
+      "name": "Mistral AI",
+      "ok": true,
+      "count": 0,
+      "total": 93,
+      "error": ""
+    },
+    {
+      "id": "bsky-karpathy",
+      "name": "Bluesky · Andrej Karpathy",
+      "ok": true,
+      "count": 0,
+      "total": 15,
+      "error": ""
+    },
+    {
+      "id": "bsky-giffmana",
+      "name": "Bluesky · Lucas Beyer",
+      "ok": true,
+      "count": 0,
+      "total": 22,
+      "error": ""
+    },
+    {
+      "id": "bsky-hardmaru",
+      "name": "Bluesky · hardmaru",
+      "ok": true,
+      "count": 0,
+      "total": 15,
+      "error": ""
+    },
+    {
+      "id": "bsky-swyx",
+      "name": "Bluesky · swyx",
+      "ok": true,
+      "count": 0,
+      "total": 3,
+      "error": ""
+    },
+    {
+      "id": "bsky-pytorch",
+      "name": "Bluesky · PyTorch",
+      "ok": true,
+      "count": 2,
+      "total": 29,
+      "error": ""
+    },
+    {
+      "id": "bsky-clem",
+      "name": "Bluesky · Clem Delangue",
+      "ok": true,
+      "count": 0,
+      "total": 11,
+      "error": ""
+    },
+    {
+      "id": "bsky-natolambert",
+      "name": "Bluesky · Nathan Lambert",
+      "ok": true,
+      "count": 0,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "bsky-rasbt",
+      "name": "Bluesky · Sebastian Raschka",
+      "ok": true,
+      "count": 0,
+      "total": 27,
+      "error": ""
+    },
+    {
+      "id": "bsky-jeffdean",
+      "name": "Bluesky · Jeff Dean",
+      "ok": true,
+      "count": 0,
+      "total": 18,
+      "error": ""
+    },
+    {
+      "id": "hf-trending-new",
+      "name": "HF 热榜新模型",
+      "ok": true,
+      "count": 1,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "gh-new-stars",
+      "name": "GitHub 新星仓库",
+      "ok": true,
+      "count": 0,
+      "total": 15,
+      "error": ""
+    },
+    {
+      "id": "hf-t2v",
+      "name": "HF 热榜 · 文生视频",
+      "ok": true,
+      "count": 1,
+      "total": 19,
+      "error": ""
+    },
+    {
+      "id": "hf-i2v",
+      "name": "HF 热榜 · 图生视频",
+      "ok": true,
+      "count": 0,
+      "total": 19,
+      "error": ""
+    },
+    {
+      "id": "gnews-video-en",
+      "name": "新闻 · 视频生成（英文）",
+      "ok": true,
+      "count": 13,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "gnews-video-cn",
+      "name": "新闻 · 视频生成（中文）",
+      "ok": true,
+      "count": 20,
+      "total": 37,
+      "error": ""
+    },
+    {
+      "id": "gnews-world-en",
+      "name": "新闻 · 世界模型（英文）",
+      "ok": true,
+      "count": 1,
+      "total": 46,
+      "error": ""
+    },
+    {
+      "id": "gnews-world-cn",
+      "name": "新闻 · 世界模型（中文）",
+      "ok": true,
+      "count": 25,
+      "total": 86,
+      "error": ""
+    },
+    {
+      "id": "gh-new-video-world",
+      "name": "GitHub 新仓库 · 视频 / 世界模型",
+      "ok": true,
+      "count": 1,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "arxiv-cscv",
+      "name": "arXiv cs.CV（专题）",
+      "ok": true,
+      "count": 40,
+      "total": 569,
+      "error": ""
+    },
+    {
+      "id": "arxiv-csro",
+      "name": "arXiv cs.RO（专题）",
+      "ok": true,
+      "count": 8,
+      "total": 218,
+      "error": ""
+    }
+  ],
+  "counts": {
+    "high": 10,
+    "medium": 20,
+    "low": 0
+  },
+  "items": [
+    {
+      "id": "616076bd1ad8a9f6",
+      "title": "中国开源AI大模型持续“圈粉” - 手机新浪网",
+      "link": "https://k.sina.com.cn/article_5953190046_162d6789e06703wat2.html?from=tech",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-11-04T01:30:00+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "中国开源AI大模型持续“圈粉” 手机新浪网",
+      "why": "",
+      "tags": [
+        "大模型"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "f7f2826c9298fa3d",
+      "title": "腾讯混元Hy4即将发布：预览版位列Agent Arena全球第十，任务成本比Kimi低68% - 凤凰网",
+      "link": "https://original.ifeng.com/c/8xlmaYMhpHq",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-11-03T23:13:39+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "腾讯混元Hy4即将发布：预览版位列Agent Arena全球第十，任务成本比Kimi低68% 凤凰网",
+      "why": "",
+      "tags": [
+        "agent"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "b4335dfb7db76e60",
+      "title": "百度发布Apollo World世界模型，引爆物理 AI，数据服务商受益丨大咖星选 - 搜狐网",
+      "link": "https://m.sohu.com/a/1096795314_122014422?scm=10001.325_13-325_13.0.0-0-0-0-0.5_1334",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-11-03T18:04:22+00:00",
+      "category": "research",
+      "priority": "high",
+      "summary": "百度发布Apollo World世界模型，引爆物理 AI，数据服务商受益丨大咖星选 搜狐网",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "1396fb51878e8e92",
+      "title": "India’s CERT-In gets access to Anthropic’s unreleased Mythos AI model for cyber defence - CNBC TV18",
+      "link": "https://www.cnbctv18.com/technology/indias-cert-in-gets-access-to-anthropics-unreleased-mythos-ai-model-for-cyber-defence-20026355.htm",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-11-03T16:22:52+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "India’s CERT-In gets access to Anthropic’s unreleased Mythos AI model for cyber defence CNBC TV18",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "a6ee120efb21fa60",
+      "title": "视频生成模型Seedance过去半年海外市场收入增近5倍｜即时新闻｜产经｜on.cc东网 - on.cc東網",
+      "link": "https://hk.on.cc/hk/bkn/cnt/finance/20261103/mobile/bkn-20261103170257921-1103_00842_001_cn.html",
+      "source": "新闻 · 视频生成（中文）",
+      "source_id": "gnews-video-cn",
+      "published": "2026-11-03T15:57:09+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "视频生成模型Seedance过去半年海外市场收入增近5倍｜即时新闻｜产经｜on.cc东网 on.cc東網",
+      "why": "",
+      "tags": [
+        "生成模型",
+        "视频生成"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "3f77756f2382121d",
+      "title": "国内三大顶尖大模型负责人乌镇同台对话：开源后如何防范风险 - ThePaper.cn",
+      "link": "https://www.thepaper.cn/newsDetail_forward_34398138",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-11-03T14:25:48+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "国内三大顶尖大模型负责人乌镇同台对话：开源后如何防范风险 ThePaper.cn",
+      "why": "",
+      "tags": [
+        "大模型",
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "0ab73c3d35092b85",
+      "title": "中国蓝观察丨开源大模型为何成了浙江金名片？ - https://www.hzsc.com.cn/",
+      "link": "https://www.hzsc.com.cn/content/content_9941694.html",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-11-03T13:17:38+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "中国蓝观察丨开源大模型为何成了浙江金名片？ https://www.hzsc.com.cn/",
+      "why": "",
+      "tags": [
+        "大模型",
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "be5fbee9731dd3ee",
+      "title": "字节视频模型Seedance海外收入占比达50%字节跳动旗下视频生成模型Seedance的海外收入占… - 禁闻网",
+      "link": "https://www.bannedbook.org/bnews/itnews/20261103/2376804.html",
+      "source": "新闻 · 视频生成（中文）",
+      "source_id": "gnews-video-cn",
+      "published": "2026-11-03T13:00:00+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "字节视频模型Seedance海外收入占比达50%字节跳动旗下视频生成模型Seedance的海外收入占… 禁闻网",
+      "why": "",
+      "tags": [
+        "生成模型",
+        "视频生成"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "616b4af4250143c0",
+      "title": "百度Apollo在深圳发布ApolloWorld世界模型 - 观点网",
+      "link": "https://www.guandian.cn/article/20261103/622646.html",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-11-03T12:45:05+00:00",
+      "category": "research",
+      "priority": "high",
+      "summary": "百度Apollo在深圳发布ApolloWorld世界模型 观点网",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "3fe51c0abef4bbd0",
+      "title": "DeepSeek发布创作者模式，下一代大模型计划基于华为昇腾芯片预训练 - ThePaper.cn",
+      "link": "https://www.thepaper.cn/newsDetail_forward_34397117",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-11-03T12:34:19+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "DeepSeek发布创作者模式，下一代大模型计划基于华为昇腾芯片预训练 ThePaper.cn",
+      "why": "",
+      "tags": [
+        "大模型"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "4a56a98c1efaeff7",
+      "title": "百度披露Apollo World世界模型 无人车虚拟世界路测1天抵现实3年 - 香港01",
+      "link": "https://global.hk01.com/%E5%8D%B3%E6%97%B6%E4%B8%AD%E5%9B%BD/60406894/%E7%99%BE%E5%BA%A6%E6%8A%AB%E9%9C%B2apollo-world%E4%B8%96%E7%95%8C%E6%A8%A1%E5%9E%8B-%E6%97%A0%E4%BA%BA%E8%BD%A6%E8%99%9A%E6%8B%9F%E4%B8%96%E7%95%8C%E8%B7%AF%E6%B5%8B1%E5%A4%A9%E6%8A%B5%E7%8E%B0%E5%AE%9E3%E5%B9%B4",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-11-04T02:16:00+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "百度披露Apollo World世界模型 无人车虚拟世界路测1天抵现实3年 香港01",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "f624567332805d7d",
+      "title": "【视频】画得像只是世界模型最低门槛百度王亮：不能做生成炫酷视频的画师 - 汽车之家",
+      "link": "https://chejiahao.autohome.com.cn/info/26801542?reply=reply",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-11-04T01:54:05+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "【视频】画得像只是世界模型最低门槛百度王亮：不能做生成炫酷视频的画师 汽车之家",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "8edc4d27428e7012",
+      "title": "CERT-In gets Mythos access; to assess its use in measured manner - ET Telecom",
+      "link": "https://telecom.economictimes.indiatimes.com/news/policy/cert-in-gets-mythos-access-to-assess-its-use-in-measured-manner/135517780",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-11-04T01:36:24+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "CERT-In gets Mythos access; to assess its use in measured manner ET Telecom",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "0531ec311b79e384",
+      "title": "Seedance海外收入大增5倍 版权合作推动增长 - 中华网",
+      "link": "https://news.china.com/socialgd/10000169/20261104/49838065.html",
+      "source": "新闻 · 视频生成（中文）",
+      "source_id": "gnews-video-cn",
+      "published": "2026-11-04T01:30:16+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Seedance海外收入大增5倍 版权合作推动增长 中华网",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "b8d26a8c3a9e0ea7",
+      "title": "曝腾讯位列Seedance国内客户前三 头部企业采购趋势显现 - 中华网",
+      "link": "https://news.china.com/socialgd/10000169/20261104/49837648.html",
+      "source": "新闻 · 视频生成（中文）",
+      "source_id": "gnews-video-cn",
+      "published": "2026-11-04T00:27:01+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "曝腾讯位列Seedance国内客户前三 头部企业采购趋势显现 中华网",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "ab18d484eb728211",
+      "title": "After spending tens of billions on R&D, Anthropic sees reasons to slow its pursuit of self-improving AI - R&D World",
+      "link": "https://www.rdworldonline.com/after-spending-tens-of-billions-on-rd-anthropic-sees-reasons-to-slow-its-pursuit-of-self-improving-ai/",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-11-04T00:26:08+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "After spending tens of billions on R&D, Anthropic sees reasons to slow its pursuit of self-improving AI R&D World",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "f611061347932fb2",
+      "title": "世界模型的\"瘦身术\"：如何让AI用更少的信息做出更聪明的规划 - 科技行者",
+      "link": "https://www.techwalker.com/2026/1104/3204710.shtml",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-11-04T00:18:00+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "世界模型的\"瘦身术\"：如何让AI用更少的信息做出更聪明的规划 科技行者",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "048bc6de0cd2a50d",
+      "title": "【视频】AI教AI开车，百度世界模型打通无人驾驶不可能三角 - 汽车之家",
+      "link": "https://chejiahao.autohome.com.cn/info/26801032",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-11-04T00:15:29+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "【视频】AI教AI开车，百度世界模型打通无人驾驶不可能三角 汽车之家",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "09352783de84d30f",
+      "title": "Anthropic IPO Filing Shows 85.4% Margin vs Z.ai and MiniMax - News and Statistics - IndexBox",
+      "link": "https://www.indexbox.io/blog/anthropic-ipo-prospectus-reveals-profitability-gap-with-chinese-ai-rivals-zai-and-minimax/",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-11-03T23:21:05+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Anthropic IPO Filing Shows 85.4% Margin vs Z.ai and MiniMax - News and Statistics IndexBox",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "3f3a03781a1f49da",
+      "title": "字节跳动Seedance海外收入占比已达50%；苹果CEO回应iPhone Duo屏幕问题｜数智早参 - https://www.mrjjxw.com/",
+      "link": "https://www.mrjjxw.com/articles/2026-11-03/4636918.html",
+      "source": "新闻 · 视频生成（中文）",
+      "source_id": "gnews-video-cn",
+      "published": "2026-11-03T23:00:10+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "字节跳动Seedance海外收入占比已达50%；苹果CEO回应iPhone Duo屏幕问题｜数智早参 https://www.mrjjxw.com/",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "9228226aceef3eb1",
+      "title": "Anthropic develops FlashProve to verify AI responses — TechCrunch - UA.NEWS",
+      "link": "https://ua.news/en/technologies/anthropic-rozrobliaie-flashprove-dlia-perevirki-vidpovidei-shi-techcrunch",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-11-03T22:52:52+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Anthropic develops FlashProve to verify AI responses — TechCrunch UA.NEWS",
+      "why": "",
+      "tags": [
+        "gpu"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "bbb48dcf33cb9465",
+      "title": "百度Apollo World世界模型亮相- 快讯 - 亿邦动力网",
+      "link": "https://www.ebrun.com/ebrungo/zb/718175.shtml",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-11-03T22:23:08+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "百度Apollo World世界模型亮相- 快讯 亿邦动力网",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "62d5cdefa91e5777",
+      "title": "AI教AI开车！百度首次披露Apollo World世界模型，让无人驾驶突破“不可能三角”",
+      "link": "https://www.infoq.cn/article/tIt75FRqU2hwy4eWrOIu",
+      "source": "InfoQ 中文",
+      "source_id": "infoq-cn",
+      "published": "2026-11-03T21:26:32+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "点击查看原文>",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "1554ad8613612893",
+      "title": "Agents Hit 80% of Tokens After Anthropic Opus as Prices Fall - FourWeekMBA",
+      "link": "https://fourweekmba.com/ai-agents-hit-80-of-tokens-after-anthropic-opus-as-prices-fall/",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-11-03T19:21:47+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Agents Hit 80% of Tokens After Anthropic Opus as Prices Fall FourWeekMBA",
+      "why": "",
+      "tags": [
+        "agent"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "9b19760ffc578509",
+      "title": "Firm Tied to Some OpenAI, Anthropic AI Hacks Blames ‘Error’ - Livemint",
+      "link": "https://www.livemint.com/companies/firm-tied-to-some-openai-anthropic-ai-hacks-blames-error-11793732135131.html",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-11-03T18:55:34+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Firm Tied to Some OpenAI, Anthropic AI Hacks Blames ‘Error’ Livemint",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "df8e7a6ebc8329c1",
+      "title": "ZEC slides as Helius Labs CEO ties Anthropic’s FlashProve to Zcash - Cryptopolitan",
+      "link": "https://www.cryptopolitan.com/helius-labs-ceo-ties-anthropic-to-zcash/",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-11-03T18:20:06+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "ZEC slides as Helius Labs CEO ties Anthropic’s FlashProve to Zcash Cryptopolitan",
+      "why": "",
+      "tags": [
+        "llm"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "6283d927d9af3e93",
+      "title": "How do compiler choices impact end-to-end performance and accuracy when optimizing PyTorch models? This technical breakd",
+      "link": "https://bsky.app/profile/pytorch.org/post/3mzgg6ncy4y22",
+      "source": "Bluesky · PyTorch",
+      "source_id": "bsky-pytorch",
+      "published": "2026-11-03T18:00:00+00:00",
+      "category": "people",
+      "priority": "medium",
+      "summary": "How do compiler choices impact end-to-end performance and accuracy when optimizing PyTorch models? This technical breakdown from NVIDIA explores model tuning…",
+      "why": "",
+      "tags": [
+        "pytorch",
+        "compiler"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "0e4ba35624aea89b",
+      "title": "CERT-In Mythos AI access to support cautious cyber vulnerability testing, sources say - Goodreturns",
+      "link": "https://www.goodreturns.in/news/cert-in-access-to-anthropic-mythos-ai-for-cybersecurity-testing-011-1545081.html",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-11-03T17:21:01+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "CERT-In Mythos AI access to support cautious cyber vulnerability testing, sources say Goodreturns",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "a55665cf48953af7",
+      "title": "StateBench: Testing how language models track state changes over long documents",
+      "link": "https://huggingface.co/blog/allenai/statebench",
+      "source": "Hugging Face Blog",
+      "source_id": "hf-blog",
+      "published": "2026-11-03T17:15:21+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "",
+      "why": "",
+      "tags": [
+        "language model"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "ee9a9643897059a9",
+      "title": "Gitbook Breached",
+      "link": "https://news.ycombinator.com/item?id=50354336",
+      "source": "Hacker News（100+ 分）",
+      "source_id": "hn-algolia",
+      "published": "2026-11-03T16:45:49+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "We opened a ticket with support about Gitbook availability issues and got this in reply. We have yet to see any official customer communication or breach…",
+      "why": "",
+      "tags": [
+        "agent"
+      ],
+      "tracks": []
+    }
+  ]
+}
