@@ -1,0 +1,952 @@
+{
+  "date": "2026-11-06",
+  "generated_at": "2026-11-06T03:26:28+00:00",
+  "ai": false,
+  "model": "",
+  "sources": [
+    {
+      "id": "openai",
+      "name": "OpenAI",
+      "ok": true,
+      "count": 7,
+      "total": 1366,
+      "error": ""
+    },
+    {
+      "id": "google-ai",
+      "name": "Google AI Blog",
+      "ok": true,
+      "count": 1,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "qwen",
+      "name": "Qwen",
+      "ok": true,
+      "count": 0,
+      "total": 44,
+      "error": ""
+    },
+    {
+      "id": "hf-blog",
+      "name": "Hugging Face Blog",
+      "ok": true,
+      "count": 2,
+      "total": 898,
+      "error": ""
+    },
+    {
+      "id": "nvidia-dev",
+      "name": "NVIDIA Technical Blog",
+      "ok": true,
+      "count": 1,
+      "total": 100,
+      "error": ""
+    },
+    {
+      "id": "hf-papers",
+      "name": "HF Papers 日榜",
+      "ok": true,
+      "count": 23,
+      "total": 32,
+      "error": ""
+    },
+    {
+      "id": "pytorch",
+      "name": "PyTorch Blog",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "simonw",
+      "name": "Simon Willison",
+      "ok": true,
+      "count": 0,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "lilianweng",
+      "name": "Lil'Log",
+      "ok": true,
+      "count": 0,
+      "total": 53,
+      "error": ""
+    },
+    {
+      "id": "interconnects",
+      "name": "Interconnects",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "raschka",
+      "name": "Sebastian Raschka",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "chiphuyen",
+      "name": "Chip Huyen",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-pytorch",
+      "name": "Release · PyTorch",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-triton",
+      "name": "Release · Triton",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-cutlass",
+      "name": "Release · CUTLASS",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-flash-attention",
+      "name": "Release · FlashAttention",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-vllm",
+      "name": "Release · vLLM",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-sglang",
+      "name": "Release · SGLang",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-tensorrt-llm",
+      "name": "Release · TensorRT-LLM",
+      "ok": true,
+      "count": 1,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-diffusers",
+      "name": "Release · Diffusers",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-cuda-python",
+      "name": "Release · cuda-python",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "gnews-labs-en",
+      "name": "新闻 · Anthropic / Mistral / xAI",
+      "ok": true,
+      "count": 10,
+      "total": 62,
+      "error": ""
+    },
+    {
+      "id": "gnews-labs-cn",
+      "name": "新闻 · 国内模型公司",
+      "ok": true,
+      "count": 11,
+      "total": 48,
+      "error": ""
+    },
+    {
+      "id": "qbitai",
+      "name": "量子位",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "infoq-cn",
+      "name": "InfoQ 中文",
+      "ok": true,
+      "count": 4,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "thonking",
+      "name": "Horace He (thonking)",
+      "ok": true,
+      "count": 0,
+      "total": 6,
+      "error": ""
+    },
+    {
+      "id": "hn-algolia",
+      "name": "Hacker News（100+ 分）",
+      "ok": true,
+      "count": 4,
+      "total": 60,
+      "error": ""
+    },
+    {
+      "id": "karpathy-blog",
+      "name": "Andrej Karpathy 博客",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "eugeneyan",
+      "name": "Eugene Yan",
+      "ok": true,
+      "count": 0,
+      "total": 212,
+      "error": ""
+    },
+    {
+      "id": "importai",
+      "name": "Import AI（Jack Clark）",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "latentspace",
+      "name": "Latent Space",
+      "ok": true,
+      "count": 1,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "semianalysis",
+      "name": "SemiAnalysis",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "meta-ai",
+      "name": "Meta Engineering",
+      "ok": true,
+      "count": 0,
+      "total": 9,
+      "error": ""
+    },
+    {
+      "id": "mistral-news",
+      "name": "Mistral AI",
+      "ok": true,
+      "count": 1,
+      "total": 94,
+      "error": ""
+    },
+    {
+      "id": "bsky-karpathy",
+      "name": "Bluesky · Andrej Karpathy",
+      "ok": true,
+      "count": 0,
+      "total": 15,
+      "error": ""
+    },
+    {
+      "id": "bsky-giffmana",
+      "name": "Bluesky · Lucas Beyer",
+      "ok": true,
+      "count": 0,
+      "total": 22,
+      "error": ""
+    },
+    {
+      "id": "bsky-hardmaru",
+      "name": "Bluesky · hardmaru",
+      "ok": true,
+      "count": 0,
+      "total": 15,
+      "error": ""
+    },
+    {
+      "id": "bsky-swyx",
+      "name": "Bluesky · swyx",
+      "ok": true,
+      "count": 0,
+      "total": 3,
+      "error": ""
+    },
+    {
+      "id": "bsky-pytorch",
+      "name": "Bluesky · PyTorch",
+      "ok": true,
+      "count": 1,
+      "total": 28,
+      "error": ""
+    },
+    {
+      "id": "bsky-clem",
+      "name": "Bluesky · Clem Delangue",
+      "ok": true,
+      "count": 0,
+      "total": 11,
+      "error": ""
+    },
+    {
+      "id": "bsky-natolambert",
+      "name": "Bluesky · Nathan Lambert",
+      "ok": true,
+      "count": 1,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "bsky-rasbt",
+      "name": "Bluesky · Sebastian Raschka",
+      "ok": true,
+      "count": 0,
+      "total": 27,
+      "error": ""
+    },
+    {
+      "id": "bsky-jeffdean",
+      "name": "Bluesky · Jeff Dean",
+      "ok": true,
+      "count": 0,
+      "total": 18,
+      "error": ""
+    },
+    {
+      "id": "hf-trending-new",
+      "name": "HF 热榜新模型",
+      "ok": true,
+      "count": 2,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "gh-new-stars",
+      "name": "GitHub 新星仓库",
+      "ok": true,
+      "count": 0,
+      "total": 15,
+      "error": ""
+    },
+    {
+      "id": "hf-t2v",
+      "name": "HF 热榜 · 文生视频",
+      "ok": true,
+      "count": 1,
+      "total": 19,
+      "error": ""
+    },
+    {
+      "id": "hf-i2v",
+      "name": "HF 热榜 · 图生视频",
+      "ok": true,
+      "count": 0,
+      "total": 17,
+      "error": ""
+    },
+    {
+      "id": "gnews-video-en",
+      "name": "新闻 · 视频生成（英文）",
+      "ok": true,
+      "count": 8,
+      "total": 21,
+      "error": ""
+    },
+    {
+      "id": "gnews-video-cn",
+      "name": "新闻 · 视频生成（中文）",
+      "ok": true,
+      "count": 16,
+      "total": 33,
+      "error": ""
+    },
+    {
+      "id": "gnews-world-en",
+      "name": "新闻 · 世界模型（英文）",
+      "ok": true,
+      "count": 2,
+      "total": 25,
+      "error": ""
+    },
+    {
+      "id": "gnews-world-cn",
+      "name": "新闻 · 世界模型（中文）",
+      "ok": true,
+      "count": 19,
+      "total": 45,
+      "error": ""
+    },
+    {
+      "id": "gh-new-video-world",
+      "name": "GitHub 新仓库 · 视频 / 世界模型",
+      "ok": true,
+      "count": 3,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "arxiv-cscv",
+      "name": "arXiv cs.CV（专题）",
+      "ok": true,
+      "count": 20,
+      "total": 241,
+      "error": ""
+    },
+    {
+      "id": "arxiv-csro",
+      "name": "arXiv cs.RO（专题）",
+      "ok": true,
+      "count": 2,
+      "total": 102,
+      "error": ""
+    }
+  ],
+  "counts": {
+    "high": 10,
+    "medium": 20,
+    "low": 0
+  },
+  "items": [
+    {
+      "id": "912fb8894a641045",
+      "title": "2026 年 PyTorch 大会：谷歌和 Meta 开源 TorchTPU，在 TPU 上原生支持 PyTorch",
+      "link": "https://www.infoq.cn/article/5s2oa0BLlgR8fplkq2uK",
+      "source": "InfoQ 中文",
+      "source_id": "infoq-cn",
+      "published": "2026-11-06T11:17:26+00:00",
+      "category": "industry",
+      "priority": "high",
+      "summary": "点击查看原文>",
+      "why": "",
+      "tags": [
+        "pytorch"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "29e598ea6d67760a",
+      "title": "当 Coding Agent 走进研发团队：我们打造并开源了自进化研发平台 LoopForge",
+      "link": "https://www.infoq.cn/article/QGaIWSgd9uwx2WGw0yFv",
+      "source": "InfoQ 中文",
+      "source_id": "infoq-cn",
+      "published": "2026-11-06T07:14:48+00:00",
+      "category": "industry",
+      "priority": "high",
+      "summary": "点击查看原文>",
+      "why": "",
+      "tags": [
+        "agent"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "dc6fb95846258346",
+      "title": "突发：李飞飞最新AI成果发布，把世界模型装进复古掌机，单张图实时跑出15帧 - 凤凰网科技",
+      "link": "https://tech.ifeng.com/c/8xpGXsckMrC",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-11-06T02:12:42+00:00",
+      "category": "research",
+      "priority": "high",
+      "summary": "突发：李飞飞最新AI成果发布，把世界模型装进复古掌机，单张图实时跑出15帧 凤凰网科技",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "c02d44e6aa79c32b",
+      "title": "长视频生成模型为什么越跑越\"呆\"：LongTake如何让AI视频保持生命力 - 科技行者",
+      "link": "https://www.techwalker.com/2026/1106/3204945.shtml",
+      "source": "新闻 · 视频生成（中文）",
+      "source_id": "gnews-video-cn",
+      "published": "2026-11-06T01:52:00+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "长视频生成模型为什么越跑越\"呆\"：LongTake如何让AI视频保持生命力 科技行者",
+      "why": "",
+      "tags": [
+        "生成模型",
+        "视频生成"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "4953ac1f7cd0954f",
+      "title": "谷歌发布Gemini Omni 1.2 Flash视频生成模型 - 维度网",
+      "link": "https://www.wedoany.com/shortnews/506377.html",
+      "source": "新闻 · 视频生成（中文）",
+      "source_id": "gnews-video-cn",
+      "published": "2026-11-06T01:10:00+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "谷歌发布Gemini Omni 1.2 Flash视频生成模型 维度网",
+      "why": "",
+      "tags": [
+        "生成模型",
+        "视频生成"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "62c77b492f189d9e",
+      "title": "World Labs推出Frameboy：不用预设镜头，也能实时探索AI生成的三维世界 - 凤凰网",
+      "link": "https://original.ifeng.com/c/8xozKLkfue9",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-11-05T22:27:29+00:00",
+      "category": "research",
+      "priority": "high",
+      "summary": "World Labs推出Frameboy：不用预设镜头，也能实时探索AI生成的三维世界 凤凰网",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "8392aec76c4197d0",
+      "title": "Anthropic’s new AI model achieves over 50% on all benchmarks in METR analysis - Crypto Briefing",
+      "link": "https://cryptobriefing.com/anthropics-new-ai-model-achieves-over-50-on-all-benchmarks-in-metr-analysis/",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-11-05T20:03:16+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "Anthropic’s new AI model achieves over 50% on all benchmarks in METR analysis Crypto Briefing",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "1414a4d25251db86",
+      "title": "Hungary: Communist-era files released, up to 60k former agents revealed",
+      "link": "https://news.ycombinator.com/item?id=50383163",
+      "source": "Hacker News（100+ 分）",
+      "source_id": "hn-algolia",
+      "published": "2026-11-05T19:16:34+00:00",
+      "category": "industry",
+      "priority": "high",
+      "summary": "",
+      "why": "",
+      "tags": [
+        "agent"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "b146156a697c140a",
+      "title": "Zachary Perret: Anthropic and Claude partner to launch U.S. personal finance features - Traders Union",
+      "link": "https://tradersunion.com/news/market-voices/show/4119167-anthropic-claude-us-finance/",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-11-05T18:20:15+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "Zachary Perret: Anthropic and Claude partner to launch U.S. personal finance features Traders Union",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "75bc18a991c87d63",
+      "title": "Google Launches Gemini Omni 1.2 Flash with 15-Second Video Generation - Blockchain News",
+      "link": "https://blockchain.news/news/google-gemini-omni-1-2-flash-launch",
+      "source": "新闻 · 视频生成（英文）",
+      "source_id": "gnews-video-en",
+      "published": "2026-11-05T17:58:00+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "Google Launches Gemini Omni 1.2 Flash with 15-Second Video Generation Blockchain News",
+      "why": "",
+      "tags": [
+        "video generation",
+        "3D"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "4185446c477bfdc0",
+      "title": "Anthropic Warns AI Could Soon Accelerate Its Own Development - Cirebon Times",
+      "link": "https://www.cirebontimes.com/en/anthropic-ai-self-improvement-risk",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-11-06T02:56:33+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Anthropic Warns AI Could Soon Accelerate Its Own Development Cirebon Times",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "41fd6bec7a6406d6",
+      "title": "NVIDIA Cosmos 3 Simulation Models Add Interactive Control to Generated Worlds - remio",
+      "link": "https://www.remio.ai/post/nvidia-cosmos-3-simulation-models-add-interactive-control-to-generated-worlds",
+      "source": "新闻 · 世界模型（英文）",
+      "source_id": "gnews-world-en",
+      "published": "2026-11-06T02:49:10+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "NVIDIA Cosmos 3 Simulation Models Add Interactive Control to Generated Worlds remio",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "32ff6d2ae549e968",
+      "title": "Dreamina AI Announces Guide to AI Video Generation for Creative Projects - The Manila Times",
+      "link": "https://www.manilatimes.net/2026/11/06/tmt-newswire/plentisoft/dreamina-ai-announces-guide-to-ai-video-generation-for-creative-projects/2463731",
+      "source": "新闻 · 视频生成（英文）",
+      "source_id": "gnews-video-en",
+      "published": "2026-11-06T01:39:54+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Dreamina AI Announces Guide to AI Video Generation for Creative Projects The Manila Times",
+      "why": "",
+      "tags": [
+        "video generation"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "822ce3dd6d0e974e",
+      "title": "云端一天抵人间三年，拆解萝卜快跑的世界模型秘密 - 汽车之家",
+      "link": "https://chejiahao.autohome.com.cn/info/26815914",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-11-06T01:09:59+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "云端一天抵人间三年，拆解萝卜快跑的世界模型秘密 汽车之家",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "cce2702fae38031f",
+      "title": "都在做世界模型，自动驾驶的真实数据会不会越来越不值钱？ - 电子工程专辑EE Times China",
+      "link": "https://www.eet-china.com/mp/a537267.html",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-11-06T00:40:00+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "都在做世界模型，自动驾驶的真实数据会不会越来越不值钱？ 电子工程专辑EE Times China",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "8e2c837d58487bf4",
+      "title": "Open Models Crowd the Top as Kimi and Mistral Match the Frontier - PYMNTS.com",
+      "link": "https://www.pymnts.com/news/artificial-intelligence/2026/open-models-crowd-the-top-as-kimi-and-mistral-match-the-frontier/",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-11-05T22:17:02+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Open Models Crowd the Top as Kimi and Mistral Match the Frontier PYMNTS.com",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "7aa5baed5b48f4c5",
+      "title": "InVideo AI 评测：最适合创作者的 AI 视频生成器 - quasa.io",
+      "link": "https://quasa.io/zh/video/invideo-ai-ping-ce-zui-gua-he-chuang-zuo-zhe-de-ai-shi-pin-sheng-cheng-qi",
+      "source": "新闻 · 视频生成（中文）",
+      "source_id": "gnews-video-cn",
+      "published": "2026-11-05T21:45:04+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "InVideo AI 评测：最适合创作者的 AI 视频生成器 quasa.io",
+      "why": "",
+      "tags": [
+        "视频生成"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "d20bf6c6ed00a5a3",
+      "title": "【视频】大模型芯片+世界模型上车2027款风云T11将成软硬一体智驾首搭车型 - 汽车之家",
+      "link": "https://chejiahao.autohome.com.cn/info/26815002",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-11-05T21:10:21+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "【视频】大模型芯片+世界模型上车2027款风云T11将成软硬一体智驾首搭车型 汽车之家",
+      "why": "",
+      "tags": [
+        "大模型"
+      ],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "a9a153b94ab97a8f",
+      "title": "Google Officially Announces “Gemini Omni 1.2 Flash” Video Generation AI - jetstream.blog",
+      "link": "https://jetstream.blog/en/gemini-omni-1-2-flash/",
+      "source": "新闻 · 视频生成（英文）",
+      "source_id": "gnews-video-en",
+      "published": "2026-11-05T21:09:07+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Google Officially Announces “Gemini Omni 1.2 Flash” Video Generation AI jetstream.blog",
+      "why": "",
+      "tags": [
+        "video generation"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "c88b52d0b21039c7",
+      "title": "Cult.fit builds operational muscle with Codex",
+      "link": "https://openai.com/index/cultfit-builds-with-codex",
+      "source": "OpenAI",
+      "source_id": "openai",
+      "published": "2026-11-05T20:00:00+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Cult.fit is using Codex to help teams across functions build tools, move faster, and change how work gets done.",
+      "why": "",
+      "tags": [],
+      "tracks": []
+    },
+    {
+      "id": "622bc90413072f17",
+      "title": "Anthropic is rapidly accelerating AI development amid slowdown calls, outside research group says - ABC News - Breaking News, Latest News and Videos",
+      "link": "https://abcnews.com/Technology/wireStory/anthropic-rapidly-accelerating-ai-development-amid-slowdown-calls-137885082",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-11-05T19:44:08+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Anthropic is rapidly accelerating AI development amid slowdown calls, outside research group says ABC News - Breaking News, Latest News and Videos",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "e8690f74b67f5698",
+      "title": "New NVIDIA Cosmos 3 Open Models for Interactive World Simulation",
+      "link": "https://huggingface.co/blog/nvidia/cosmos-interactive-world-simulation",
+      "source": "Hugging Face Blog",
+      "source_id": "hf-blog",
+      "published": "2026-11-05T19:35:16+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "738c119c8ba0053f",
+      "title": "Anthropic AI development speed doubles, analysis finds, as CEO urges slower safety-focused pace - Goodreturns",
+      "link": "https://www.goodreturns.in/news/anthropic-ai-development-speed-doubles-amid-safety-review-ahead-ipo-011-1545607.html",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-11-05T18:51:01+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Anthropic AI development speed doubles, analysis finds, as CEO urges slower safety-focused pace Goodreturns",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "e2ceed2382028989",
+      "title": "METR Says Anthropic Model Capabilities Improving Nearly Twice Fast On Well-Defined Tasks - TradingView",
+      "link": "https://www.tradingview.com/news/reuters.com,2026:newsml_P8N40P09T:0-metr-says-anthropic-model-capabilities-improving-nearly-twice-fast-on-well-defined-tasks/",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-11-05T18:00:08+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "METR Says Anthropic Model Capabilities Improving Nearly Twice Fast On Well-Defined Tasks TradingView",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "347a5abfab516f98",
+      "title": "Predictions markets see virtually no Anthropic IPO before the end of November - TradingView",
+      "link": "https://www.tradingview.com/news/seekingalpha:780a6c7c1094b:0-predictions-markets-see-virtually-no-anthropic-ipo-before-the-end-of-november/",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-11-05T17:29:40+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Predictions markets see virtually no Anthropic IPO before the end of November TradingView",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "fc63dfd0dc8158e6",
+      "title": "谷歌(GOOG.O)：Gemini Omni 1.2 Flash视频生成定价为每秒钟720 - 富途牛牛",
+      "link": "https://news.futunn.com/flash/1003595379/google-googo-gemini-omni-1-2-flash-video-generation-is",
+      "source": "新闻 · 视频生成（中文）",
+      "source_id": "gnews-video-cn",
+      "published": "2026-11-05T17:12:55+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "谷歌(GOOG.O)：Gemini Omni 1.2 Flash视频生成定价为每秒钟720 富途牛牛",
+      "why": "",
+      "tags": [
+        "视频生成"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "24aafcd76a1d222e",
+      "title": "谷歌：Gemini Omni 1.2 Flash视频生成功能定价为每720P视频秒$0.0 - Moomoo",
+      "link": "https://www.moomoo.com/hans/news/flash/1003691954/google-gemini-omni-1-2-flash-video-generation-priced-at",
+      "source": "新闻 · 视频生成（中文）",
+      "source_id": "gnews-video-cn",
+      "published": "2026-11-05T17:11:26+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "谷歌：Gemini Omni 1.2 Flash视频生成功能定价为每720P视频秒$0.0 Moomoo",
+      "why": "",
+      "tags": [
+        "视频生成"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "706b24c9cb35192a",
+      "title": "Google rolls out Gemini Omni 1.2 Flash with 15-second AI video generation - Crypto Briefing",
+      "link": "https://cryptobriefing.com/google-gemini-omni-12-flash-video/",
+      "source": "新闻 · 视频生成（英文）",
+      "source_id": "gnews-video-en",
+      "published": "2026-11-05T17:09:09+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Google rolls out Gemini Omni 1.2 Flash with 15-second AI video generation Crypto Briefing",
+      "why": "",
+      "tags": [
+        "video generation"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "943f50829ccd4909",
+      "title": "Chinese AI video generation startup Sand.ai enters unicorn club after $200m round - DealStreetAsia",
+      "link": "https://www.dealstreetasia.com/stories/sand-ai-enters-unicorn-club-500283",
+      "source": "新闻 · 视频生成（英文）",
+      "source_id": "gnews-video-en",
+      "published": "2026-11-05T17:05:41+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Chinese AI video generation startup Sand.ai enters unicorn club after $200m round DealStreetAsia",
+      "why": "",
+      "tags": [
+        "video generation"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "b58fee4edbbb5f7a",
+      "title": "Australian universities are creating AI-native graduates",
+      "link": "https://openai.com/index/australian-universities-ai-native-graduates",
+      "source": "OpenAI",
+      "source_id": "openai",
+      "published": "2026-11-05T17:00:00+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Australian universities are expanding access to ChatGPT and bringing AI into teaching and learning to prepare students for an AI-enabled workforce.",
+      "why": "",
+      "tags": [],
+      "tracks": []
+    }
+  ]
+}
