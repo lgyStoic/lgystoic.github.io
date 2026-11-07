@@ -16,10 +16,12 @@
 | robots.txt | 明确允许 GPTBot、OAI-SearchBot、ChatGPT-User、ClaudeBot、PerplexityBot、Google-Extended、Applebot-Extended、Bytespider（豆包 / 头条）、DuckAssistBot、Amazonbot、CCBot、cohere、Mistral、YouBot、Meta 等；只禁 `/templates/` | `robots.txt` |
 | 首页 | `WebSite` + `Person`（@graph，sameAs GitHub，jobTitle，深圳，knowsAbout） | `index.html` |
 | 指南页 | `HowTo`（步骤取自 `<ol class="steps">`）+ `BreadcrumbList`，含 author / publisher / image / dateModified | `render_guide_jsonld` |
-| 笔记页 | `BlogPosting`（headline、description、keywords、dateModified、isBasedOn、author） | `render_note_jsonld` + 页面 `<!-- build:jsonld -->` 标记 |
+| 笔记页 | `BreadcrumbList` + `BlogPosting`（headline、description、keywords、dateModified、isBasedOn、author）；独立样式页自动补齐 canonical 与 OG | `render_note_jsonld` + 页面 `<!-- build:jsonld -->` 标记 |
 | 雷达每期页 | `Article` + 必看条目 `ItemList` | `render_radar_jsonld` |
 | 活动页 | 即将发生的活动 `ItemList<Event>`（startDate、endDate、线上 / 城市、organizer），最多 50 条 | `render_events_jsonld` |
-| 开源贡献仓库页 | `TechArticle` + `about: SoftwareSourceCode` | `contributions.detail_page` |
+| 岗位页 | 高匹配企业直招岗位 `ItemList<JobPosting>`（title、datePosted、hiringOrganization、jobLocation、description、directApply），最多 35 条 | `render_jobs_jsonld` + `radar/jobs/index.html` 的 `<!-- build:jobs-jsonld -->` |
+| 列表与关于页 | `about/` 为 `ProfilePage`；`notes/`、`guides/`、`radar/`、`radar/tracks/`、`radar/contributions/` 为 `CollectionPage` | 各页 head、`render_tracks_index_jsonld` |
+| 开源贡献仓库页 | `TechArticle` + `about: SoftwareSourceCode` + 完整 OG / canonical / analytics | `contributions.detail_page` |
 | 指南页 FAQ | 「不通时先查这四项」表格 → `FAQPage`（问题自动加「怎么办？」） | `render_guide_jsonld` |
 | 站长验证 | `site.json.seo.verification`（bing / google / baidu / sogou / shenma），非空即注入首页 head；拿到百度验证码只需填一行 | `render_verification` |
 | IndexNow | 每天雷达推送成功后，把 sitemap 里当天有变化的页面 + 首页 + llms.txt 推给 Bing（ChatGPT / Perplexity / Kimi 的召回来源）；密钥在 `site.json.seo.indexnow_key`，根目录同名 txt；手动触发 radar.yml 时 reason 填 `indexnow-all` 可全量提交 | `tools/indexnow.py` |
@@ -33,7 +35,7 @@
 - **首段给结论**：每页第一段用一两句把「这页解决什么、结论是什么」说完，数字带日期（「2026 年 9 月，芝麻租赁 MacBook Air M3 16G+512G 月租 299 元」）。
 - **可引用的定义句**：每个概念给一句「X 是 …」的独立句子，不夹在长句里。
 - **问答式小标题**：「不通时先查这四项」「订 Plus 就够了」这类标题正是模型抽答案的锚点；能改成问句的改成问句。
-- **实体一致**：作者名只用 Anaxagore（括注 lgyStoic），站名只用 lgystoic.github.io；不要再出现旧名字。
+- **实体一致**：作者名只用 Anaxagore（括注 lgyStoic / Garry Ling），主域名 `garryling.427795.xyz`（兼容原 `lgystoic.github.io` 301 跳转）；不要再出现旧名字。
 - **标日期**：每页显示更新日期（指南、笔记已有），模型偏爱新鲜内容。
 - **原始数据**：给出可核对的来源链接与 JSON 数据接口，「有数据的页面」比「有观点的页面」更常被引用。
 - **中文为主，关键术语保留英文原文**，方便中英文提问都命中。
@@ -54,10 +56,8 @@
 
 ## 6. 待办
 
-2. 每页生成 Markdown 副本（`index.md`）并在 `llms.txt` 链接，降低模型读取成本。
-3. 岗位页 `JobPosting` 结构化数据（需要保留 description 与 datePosted 字段）。
-4. 自定义域名 + Cloudflare：提升百度收录与国内访问速度。
-5. 把「站外清单」第 1–3 项做成每月一次的巡检提醒。
+1. 每页生成 Markdown 副本（`index.md`）并在 `llms.txt` 链接，降低模型读取成本。
+2. 把「站外清单」第 1–3 项做成每月一次的巡检提醒。
 
 ## 7. 常见改动去哪改
 

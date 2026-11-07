@@ -57,7 +57,7 @@
 1. 京东链接 `jd_main` 指向的商品未确认。
 2. 阿里云云大使、腾讯云 GPU 推广者、RunPod、AutoDL 等推荐链接空缺。
 3. 评论区未启用。
-4. 没有独立域名，AdSense 类广告暂不可行。
+4. 独立域名 `garryling.427795.xyz` 已启用 HTTPS，Google AdSense 接入框架（`site.json.ads`、`/ads.txt`、`<!-- build:ad -->`）已就绪，待填入 `ca-pub-xxx` 激活。
 
 ## 9. 待办
 

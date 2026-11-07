@@ -50,6 +50,7 @@
         <!-- build:status-run -->
     <p class="radar-stats">最近一次运行：#193 · 定时 · 11-07 10:48（北京时间） · <a href="https://github.com/lgyStoic/lgystoic.github.io/actions/runs/42331023948" rel="noreferrer">Actions 日志</a></p>
     <p class="radar-stats">访问统计：GoatCounter（仅站长可见） · <a href="https://anaxagore.goatcounter.com" rel="noreferrer">看板</a> · 记录来源站、UTM、每页访问和推荐位点击</p>
+    <p class="radar-stats">广告：Google AdSense 就绪（site.json → ads.client 填入 ca-pub-xxx 后自动生成 /ads.txt 与广告脚本）</p>
     <p class="radar-stats">今日简报：30 条 · 关键词规则</p>
     <p class="radar-stats">活动清单：2392 条 · 规则默认值</p>
     <p class="radar-stats">岗位：376 条 · 来源通 21/22 · 更新 11-07 14:15</p>
@@ -229,6 +230,8 @@ Anaxagore
   function gc(){return window.goatcounter&&window.goatcounter.count?window.goatcounter:null}
   function send(path,title){var g=gc();if(g)g.count({path:path,title:title||path,event:true})}
   document.addEventListener("click",function(e){
+    var ad=e.target.closest&&e.target.closest("[data-ad],.adsbygoogle");
+    if(ad){send("ad/"+(ad.getAttribute("data-ad")||"adsense"),"广告位 @ "+location.pathname);return}
     var a=e.target.closest&&e.target.closest("a");
     if(!a)return;
     var offer=a.closest(".offer");

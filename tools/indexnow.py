@@ -7,13 +7,13 @@
 
 密钥在 site.json → seo.indexnow_key，根目录同名 <key>.txt 供搜索引擎校验。任何失败只打印，不让工作流失败。
 """
-import json, os, re, sys, urllib.request
+import json, os, re, sys, urllib.parse, urllib.request
 from datetime import datetime
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
 ROOT = Path(__file__).resolve().parent.parent
-SITE = "https://lgystoic.github.io"
+SITE = json.loads((ROOT / "site.json").read_text(encoding="utf-8")).get("url", "https://garryling.427795.xyz").rstrip("/")
 
 
 def main() -> int:
@@ -28,7 +28,8 @@ def main() -> int:
         if loc and (os.environ.get("INDEXNOW_ALL") or (mod and mod.group(1) == today)):
             urls.append(loc.group(1))
     urls = list(dict.fromkeys(urls + [SITE + "/", SITE + "/llms.txt"]))[:10000]
-    body = json.dumps({"host": "lgystoic.github.io", "key": key, "keyLocation": f"{SITE}/{key}.txt", "urlList": urls}).encode()
+    host = urllib.parse.urlparse(SITE).netloc or "garryling.427795.xyz"
+    body = json.dumps({"host": host, "key": key, "keyLocation": f"{SITE}/{key}.txt", "urlList": urls}).encode()
     req = urllib.request.Request("https://api.indexnow.org/indexnow", data=body, headers={"Content-Type": "application/json; charset=utf-8"}, method="POST")
     try:
         with urllib.request.urlopen(req, timeout=30) as resp:

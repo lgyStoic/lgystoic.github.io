@@ -12,14 +12,14 @@
       name="description"
       content="Anaxagore（lgyStoic）的个人平台：GPU kernel 与训练性能笔记、每日 AI 雷达、深圳及周边的 AI 活动清单。跑在 GitHub 上，没有服务器。"
     />
-    <link rel="canonical" href="https://lgystoic.github.io/" />
+    <link rel="canonical" href="https://garryling.427795.xyz/" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Anaxagore" />
     <meta property="og:title" content="Anaxagore — GPU kernel · 生成模型 · 深圳" />
     <meta property="og:description" content="笔记、每日 AI 雷达、活动清单。一个跑在 GitHub 上的个人平台。" />
-    <meta property="og:url" content="https://lgystoic.github.io/" />
+    <meta property="og:url" content="https://garryling.427795.xyz/" />
     <meta property="og:locale" content="zh_CN" />
-    <meta property="og:image" content="https://lgystoic.github.io/assets/og/home.png" />
+    <meta property="og:image" content="https://garryling.427795.xyz/assets/og/home.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta name="twitter:card" content="summary_large_image" />
@@ -66,7 +66,7 @@
         <p class="kicker">Anaxagore · lgyStoic</p>
         <h1>GPU kernel · 生成模型 · 深圳</h1>
         <p class="bio">
-          这是一个跑在 GitHub 上的个人平台：<b>记</b>我写的和读的，<b>看</b>机器替我盯着的世界，<b>做</b>定时替我跑的小工具。没有服务器，没有域名，全靠 Actions 和 Pages。
+          这是一个跑在 GitHub 上的个人平台：<b>记</b>我写的和读的，<b>看</b>机器替我盯着的世界，<b>做</b>定时替我跑的小工具。没有服务器，全靠 Actions 和 Pages。
         </p>
         <ul class="links">
           <li><a href="./about/">关于这个站</a></li>
@@ -175,22 +175,22 @@ Anaxagore
         "@graph": [
           {
             "@type": "WebSite",
-            "@id": "https://lgystoic.github.io/#website",
+            "@id": "https://garryling.427795.xyz/#website",
             "name": "Anaxagore",
-            "alternateName": "lgystoic.github.io",
-            "url": "https://lgystoic.github.io/",
+            "alternateName": ["garryling.427795.xyz", "lgystoic.github.io"],
+            "url": "https://garryling.427795.xyz/",
             "description": "GPU kernel 与训练性能笔记、每日 AI 信息雷达、深圳及周边 AI 活动清单、AI Infra 岗位聚合、开源贡献路线。跑在 GitHub 上的纯静态个人平台。",
             "inLanguage": "zh-CN",
-            "author": {"@id": "https://lgystoic.github.io/#person"},
-            "publisher": {"@id": "https://lgystoic.github.io/#person"}
+            "author": {"@id": "https://garryling.427795.xyz/#person"},
+            "publisher": {"@id": "https://garryling.427795.xyz/#person"}
           },
           {
             "@type": "Person",
-            "@id": "https://lgystoic.github.io/#person",
+            "@id": "https://garryling.427795.xyz/#person",
             "name": "Anaxagore",
-            "alternateName": "lgyStoic",
-            "url": "https://lgystoic.github.io/about/",
-            "sameAs": ["https://github.com/lgyStoic"],
+            "alternateName": ["lgyStoic", "Garry Ling"],
+            "url": "https://garryling.427795.xyz/about/",
+            "sameAs": ["https://github.com/lgyStoic", "https://lgystoic.github.io/"],
             "jobTitle": "GPU kernel / 训练性能工程师",
             "address": {"@type": "PostalAddress", "addressLocality": "深圳", "addressCountry": "CN"},
             "knowsAbout": ["GPU kernel optimization", "CUDA", "Triton", "PyTorch", "Diffusion models", "DiT inference", "distributed training", "on-device deployment"]
@@ -205,6 +205,8 @@ Anaxagore
   function gc(){return window.goatcounter&&window.goatcounter.count?window.goatcounter:null}
   function send(path,title){var g=gc();if(g)g.count({path:path,title:title||path,event:true})}
   document.addEventListener("click",function(e){
+    var ad=e.target.closest&&e.target.closest("[data-ad],.adsbygoogle");
+    if(ad){send("ad/"+(ad.getAttribute("data-ad")||"adsense"),"广告位 @ "+location.pathname);return}
     var a=e.target.closest&&e.target.closest("a");
     if(!a)return;
     var offer=a.closest(".offer");

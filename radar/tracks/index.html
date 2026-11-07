@@ -5,14 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>专题追踪 | Anaxagore</title>
     <meta name="description" content="视频生成模型、世界模型等专题的累积时间线、线程、每周综述与现状表。" />
-    <link rel="canonical" href="https://lgystoic.github.io/radar/tracks/" />
+    <link rel="canonical" href="https://garryling.427795.xyz/radar/tracks/" />
     <meta property="og:type" content="article" />
     <meta property="og:title" content="专题追踪" />
     <meta property="og:description" content="视频生成模型、世界模型等专题的累积时间线、线程、每周综述与现状表。" />
-    <meta property="og:url" content="https://lgystoic.github.io/radar/tracks/" />
-    <meta property="og:image" content="https://lgystoic.github.io/assets/og/radar.png" />
+    <meta property="og:url" content="https://garryling.427795.xyz/radar/tracks/" />
+    <meta property="og:image" content="https://garryling.427795.xyz/assets/og/radar.png" />
     <meta name="twitter:card" content="summary_large_image" />
-
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "CollectionPage", "name": "专题追踪 | Anaxagore", "url": "https://garryling.427795.xyz/radar/tracks/", "description": "视频生成模型、世界模型等专题的累积时间线、线程、每周综述与现状表。", "inLanguage": "zh-CN", "isPartOf": {"@type": "WebSite", "@id": "https://garryling.427795.xyz/#website", "name": "Anaxagore", "url": "https://garryling.427795.xyz/"}, "mainEntity": {"@type": "ItemList", "numberOfItems": 2, "itemListElement": [{"@type": "ListItem", "position": 1, "name": "视频生成模型", "url": "https://garryling.427795.xyz/radar/tracks/video/"}, {"@type": "ListItem", "position": 2, "name": "世界模型", "url": "https://garryling.427795.xyz/radar/tracks/world/"}]}}</script>
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231b1b1a'/%3E%3Ctext x='32' y='43' text-anchor='middle' font-size='32' font-family='Helvetica,Arial' font-weight='700' fill='%23fbfaf8'%3EA%3C/text%3E%3C/svg%3E" />
     <link rel="stylesheet" href="../../site.css" />
     <script>
@@ -68,6 +68,8 @@
   function gc(){return window.goatcounter&&window.goatcounter.count?window.goatcounter:null}
   function send(path,title){var g=gc();if(g)g.count({path:path,title:title||path,event:true})}
   document.addEventListener("click",function(e){
+    var ad=e.target.closest&&e.target.closest("[data-ad],.adsbygoogle");
+    if(ad){send("ad/"+(ad.getAttribute("data-ad")||"adsense"),"广告位 @ "+location.pathname);return}
     var a=e.target.closest&&e.target.closest("a");
     if(!a)return;
     var offer=a.closest(".offer");

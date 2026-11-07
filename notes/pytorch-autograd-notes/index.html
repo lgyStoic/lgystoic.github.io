@@ -395,7 +395,16 @@
     }
   </style>
     <!-- build:jsonld -->
-    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "PyTorch Autograd 学习笔记", "description": "从 Tensor 底层结构到 grad_fn、saved tensors、version counter、no_grad、inference_mode 和自定义 Function 的 autograd 知识地图。", "url": "https://lgystoic.github.io/notes/pytorch-autograd-notes/", "mainEntityOfPage": "https://lgystoic.github.io/notes/pytorch-autograd-notes/", "inLanguage": "zh-CN", "dateModified": "2026-06-03", "datePublished": "2026-06-03", "keywords": "PyTorch, Autograd, Deep Learning, Notes", "isBasedOn": "PyTorch 官方文档与本地学习整理", "author": {"@type": "Person", "name": "Anaxagore", "url": "https://lgystoic.github.io/about/"}, "publisher": {"@type": "Person", "name": "Anaxagore", "url": "https://lgystoic.github.io/"}, "image": "https://lgystoic.github.io/assets/og/notes.png"}</script>
+    <meta name="description" content="从 Tensor 底层结构到 grad_fn、saved tensors、version counter、no_grad、inference_mode 和自定义 Function 的 autograd 知识地图。" />
+    <link rel="canonical" href="https://garryling.427795.xyz/notes/pytorch-autograd-notes/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="PyTorch Autograd 学习笔记 | Anaxagore" />
+    <meta property="og:description" content="从 Tensor 底层结构到 grad_fn、saved tensors、version counter、no_grad、inference_mode 和自定义 Function 的 autograd 知识地图。" />
+    <meta property="og:url" content="https://garryling.427795.xyz/notes/pytorch-autograd-notes/" />
+    <meta property="og:image" content="https://garryling.427795.xyz/assets/og/notes.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Anaxagore", "item": "https://garryling.427795.xyz/"}, {"@type": "ListItem", "position": 2, "name": "笔记", "item": "https://garryling.427795.xyz/notes/"}, {"@type": "ListItem", "position": 3, "name": "PyTorch Autograd 学习笔记", "item": "https://garryling.427795.xyz/notes/pytorch-autograd-notes/"}]}</script>
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "PyTorch Autograd 学习笔记", "description": "从 Tensor 底层结构到 grad_fn、saved tensors、version counter、no_grad、inference_mode 和自定义 Function 的 autograd 知识地图。", "url": "https://garryling.427795.xyz/notes/pytorch-autograd-notes/", "mainEntityOfPage": "https://garryling.427795.xyz/notes/pytorch-autograd-notes/", "inLanguage": "zh-CN", "dateModified": "2026-06-03", "datePublished": "2026-06-03", "keywords": "PyTorch, Autograd, Deep Learning, Notes", "isBasedOn": "PyTorch 官方文档与本地学习整理", "author": {"@type": "Person", "@id": "https://garryling.427795.xyz/#person", "name": "Anaxagore", "url": "https://garryling.427795.xyz/about/"}, "publisher": {"@type": "Person", "@id": "https://garryling.427795.xyz/#person", "name": "Anaxagore", "url": "https://garryling.427795.xyz/"}, "image": "https://garryling.427795.xyz/assets/og/notes.png"}</script>
     <!-- /build:jsonld -->
 </head>
 <body>
@@ -706,5 +715,27 @@ model.train()  # 如果后面继续训练，记得切回来</code></pre>
       整理日期：2026-06-03。图片由 gpt-image 生成，正文内容根据本次 autograd 学习 session 和 PyTorch 官方文档整理。
     </div>
   </footer>
+  <!-- build:analytics -->
+    <script data-goatcounter="https://anaxagore.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+    <script>(function(){
+  function gc(){return window.goatcounter&&window.goatcounter.count?window.goatcounter:null}
+  function send(path,title){var g=gc();if(g)g.count({path:path,title:title||path,event:true})}
+  document.addEventListener("click",function(e){
+    var ad=e.target.closest&&e.target.closest("[data-ad],.adsbygoogle");
+    if(ad){send("ad/"+(ad.getAttribute("data-ad")||"adsense"),"广告位 @ "+location.pathname);return}
+    var a=e.target.closest&&e.target.closest("a");
+    if(!a)return;
+    var offer=a.closest(".offer");
+    if(a.hasAttribute("data-aff-link")||a.hasAttribute("data-aff")||(a.rel||"").indexOf("sponsored")>-1){
+      var key=(offer&&offer.getAttribute("data-aff"))||a.getAttribute("data-aff")||"link";
+      send("aff/"+key,"推荐位："+key+" @ "+location.pathname);return}
+    if(a.host&&a.host!==location.host){send("out/"+a.host,"外链："+a.host+" @ "+location.pathname)}
+  });
+  document.addEventListener("click",function(e){
+    var b=e.target.closest&&e.target.closest("[data-share-copy],[data-share-native]");
+    if(b)send("share/"+(b.hasAttribute("data-share-copy")?"copy":"native"),"分享 @ "+location.pathname)
+  });
+})();</script>
+    <!-- /build:analytics -->
 </body>
 </html>
