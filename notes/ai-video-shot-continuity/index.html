@@ -8,10 +8,10 @@
     <meta property="og:type" content="article" />
     <meta property="og:title" content="AI 视频会拍镜头 为什么还拍不好故事 | Anaxagore" />
     <meta property="og:description" content="多镜头 AI 视频不只是记忆问题，而是状态控制问题：系统必须比较叙事意图与画面事实，在误差扩散前决定接受、修正还是重拍。" />
-    <meta property="og:url" content="https://lgystoic.github.io/notes/ai-video-shot-continuity/" />
-    <meta property="og:image" content="https://lgystoic.github.io/notes/ai-video-shot-continuity/hero.png" />
+    <meta property="og:url" content="https://garryling.427795.xyz/notes/ai-video-shot-continuity/" />
+    <meta property="og:image" content="https://garryling.427795.xyz/notes/ai-video-shot-continuity/hero.png" />
     <meta name="twitter:card" content="summary_large_image" />
-    <link rel="canonical" href="https://lgystoic.github.io/notes/ai-video-shot-continuity/" />
+    <link rel="canonical" href="https://garryling.427795.xyz/notes/ai-video-shot-continuity/" />
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231b1b1a'/%3E%3Ctext x='32' y='43' text-anchor='middle' font-size='30' font-family='Helvetica,Arial' font-weight='700' fill='white'%3EA%3C/text%3E%3C/svg%3E" />
     <link rel="stylesheet" href="../../site.css" />
     <link rel="stylesheet" href="./styles.css" />
@@ -22,7 +22,8 @@
       } catch (e) {}
     </script>
     <!-- build:jsonld -->
-    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "AI 视频会拍镜头 为什么还拍不好故事", "description": "AI 视频的难题正在从生成一个漂亮镜头，变成控制许多镜头的误差。用同一个案例拆解导演、分镜、生成、场记、审片和接戏六个 Agent 怎样维护叙事意图与画面事实。", "url": "https://lgystoic.github.io/notes/ai-video-shot-continuity/", "mainEntityOfPage": "https://lgystoic.github.io/notes/ai-video-shot-continuity/", "inLanguage": "zh-CN", "dateModified": "2026-09-29", "datePublished": "2026-09-29", "keywords": "AI Video, Multi-Agent, Video Generation, Continuity, System Design", "isBasedOn": "Google Research / Co-Director / CANVAS / A²RD / VQQA / MVAgent", "author": {"@type": "Person", "name": "Anaxagore", "url": "https://lgystoic.github.io/about/"}, "publisher": {"@type": "Person", "name": "Anaxagore", "url": "https://lgystoic.github.io/"}, "image": "https://lgystoic.github.io/assets/og/notes.png"}</script>
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Anaxagore", "item": "https://garryling.427795.xyz/"}, {"@type": "ListItem", "position": 2, "name": "笔记", "item": "https://garryling.427795.xyz/notes/"}, {"@type": "ListItem", "position": 3, "name": "AI 视频会拍镜头 为什么还拍不好故事", "item": "https://garryling.427795.xyz/notes/ai-video-shot-continuity/"}]}</script>
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "AI 视频会拍镜头 为什么还拍不好故事", "description": "AI 视频的难题正在从生成一个漂亮镜头，变成控制许多镜头的误差。用同一个案例拆解导演、分镜、生成、场记、审片和接戏六个 Agent 怎样维护叙事意图与画面事实。", "url": "https://garryling.427795.xyz/notes/ai-video-shot-continuity/", "mainEntityOfPage": "https://garryling.427795.xyz/notes/ai-video-shot-continuity/", "inLanguage": "zh-CN", "dateModified": "2026-09-29", "datePublished": "2026-09-29", "keywords": "AI Video, Multi-Agent, Video Generation, Continuity, System Design", "isBasedOn": "Google Research / Co-Director / CANVAS / A²RD / VQQA / MVAgent", "author": {"@type": "Person", "@id": "https://garryling.427795.xyz/#person", "name": "Anaxagore", "url": "https://garryling.427795.xyz/about/"}, "publisher": {"@type": "Person", "@id": "https://garryling.427795.xyz/#person", "name": "Anaxagore", "url": "https://garryling.427795.xyz/"}, "image": "https://garryling.427795.xyz/assets/og/notes.png"}</script>
     <!-- /build:jsonld -->
   </head>
   <body>
@@ -168,6 +169,10 @@
         <p>本站未对上述系统进行同输入复现。所有数字均为论文作者在各自任务、模型和指标下报告的结果，不用于横向排名。</p>
       </section>
 
+      <!-- build:ad -->
+
+    <!-- /build:ad -->
+
       <!-- build:comments -->
 
     <!-- /build:comments -->
@@ -183,6 +188,8 @@ Anaxagore
   function gc(){return window.goatcounter&&window.goatcounter.count?window.goatcounter:null}
   function send(path,title){var g=gc();if(g)g.count({path:path,title:title||path,event:true})}
   document.addEventListener("click",function(e){
+    var ad=e.target.closest&&e.target.closest("[data-ad],.adsbygoogle");
+    if(ad){send("ad/"+(ad.getAttribute("data-ad")||"adsense"),"广告位 @ "+location.pathname);return}
     var a=e.target.closest&&e.target.closest("a");
     if(!a)return;
     var offer=a.closest(".offer");

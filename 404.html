@@ -58,6 +58,8 @@
   function gc(){return window.goatcounter&&window.goatcounter.count?window.goatcounter:null}
   function send(path,title){var g=gc();if(g)g.count({path:path,title:title||path,event:true})}
   document.addEventListener("click",function(e){
+    var ad=e.target.closest&&e.target.closest("[data-ad],.adsbygoogle");
+    if(ad){send("ad/"+(ad.getAttribute("data-ad")||"adsense"),"广告位 @ "+location.pathname);return}
     var a=e.target.closest&&e.target.closest("a");
     if(!a)return;
     var offer=a.closest(".offer");

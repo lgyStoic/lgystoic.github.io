@@ -11,12 +11,12 @@
     <meta property="og:type" content="article" />
     <meta property="og:title" content="3D 打印的四十年：瓶颈换了四次位 | Anaxagore" />
     <meta property="og:description" content="从 1981 年到 2026 年，3D 打印这个行业经历了四次瓶颈的换位：工艺→成本→易用→内容。最后一个由 AI 接管。" />
-    <meta property="og:url" content="https://lgystoic.github.io/notes/3d-printing-40-years/" />
-    <meta property="og:image" content="https://lgystoic.github.io/assets/og/notes.png" />
+    <meta property="og:url" content="https://garryling.427795.xyz/notes/3d-printing-40-years/" />
+    <meta property="og:image" content="https://garryling.427795.xyz/assets/og/notes.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta name="twitter:card" content="summary_large_image" />
-    <link rel="canonical" href="https://lgystoic.github.io/notes/3d-printing-40-years/" />
+    <link rel="canonical" href="https://garryling.427795.xyz/notes/3d-printing-40-years/" />
     <link
       rel="icon"
       href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231b1b1a'/%3E%3Ctext x='32' y='43' text-anchor='middle' font-size='30' font-family='Helvetica,Arial' font-weight='700' fill='white'%3EA%3C/text%3E%3C/svg%3E"
@@ -30,7 +30,8 @@
       } catch (e) {}
     </script>
     <!-- build:jsonld -->
-    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "3D 打印的四十年：瓶颈换了四次位", "description": "从 1981 年到 2026 年，3D 打印这个行业经历了四次瓶颈的换位：能不能做出来、买不买得起、会不会用、打什么。前三个基本解决了，最后一个由 AI 接管。覆盖专利到期、价格崩盘、拓竹冲击波、FDM vs 光固化双产线、Tripo vs Meshy 路线对决。", "url": "https://lgystoic.github.io/notes/3d-printing-40-years/", "mainEntityOfPage": "https://lgystoic.github.io/notes/3d-printing-40-years/", "inLanguage": "zh-CN", "dateModified": "2026-09-25", "datePublished": "2026-09-25", "keywords": "3D Printing, FDM, SLA, Bambu Lab, Tripo, Meshy, Tech History", "isBasedOn": "3D 打印行业历史 / Tripo Meshy 产品资料 / Bambu Lab 公开信息", "author": {"@type": "Person", "name": "Anaxagore", "url": "https://lgystoic.github.io/about/"}, "publisher": {"@type": "Person", "name": "Anaxagore", "url": "https://lgystoic.github.io/"}, "image": "https://lgystoic.github.io/assets/og/notes.png"}</script>
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Anaxagore", "item": "https://garryling.427795.xyz/"}, {"@type": "ListItem", "position": 2, "name": "笔记", "item": "https://garryling.427795.xyz/notes/"}, {"@type": "ListItem", "position": 3, "name": "3D 打印的四十年：瓶颈换了四次位", "item": "https://garryling.427795.xyz/notes/3d-printing-40-years/"}]}</script>
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "3D 打印的四十年：瓶颈换了四次位", "description": "从 1981 年到 2026 年，3D 打印这个行业经历了四次瓶颈的换位：能不能做出来、买不买得起、会不会用、打什么。前三个基本解决了，最后一个由 AI 接管。覆盖专利到期、价格崩盘、拓竹冲击波、FDM vs 光固化双产线、Tripo vs Meshy 路线对决。", "url": "https://garryling.427795.xyz/notes/3d-printing-40-years/", "mainEntityOfPage": "https://garryling.427795.xyz/notes/3d-printing-40-years/", "inLanguage": "zh-CN", "dateModified": "2026-09-25", "datePublished": "2026-09-25", "keywords": "3D Printing, FDM, SLA, Bambu Lab, Tripo, Meshy, Tech History", "isBasedOn": "3D 打印行业历史 / Tripo Meshy 产品资料 / Bambu Lab 公开信息", "author": {"@type": "Person", "@id": "https://garryling.427795.xyz/#person", "name": "Anaxagore", "url": "https://garryling.427795.xyz/about/"}, "publisher": {"@type": "Person", "@id": "https://garryling.427795.xyz/#person", "name": "Anaxagore", "url": "https://garryling.427795.xyz/"}, "image": "https://garryling.427795.xyz/assets/og/notes.png"}</script>
     <!-- /build:jsonld -->
 </head>
 <body>
@@ -550,6 +551,10 @@
         </p>
       </section>
 
+      <!-- build:ad -->
+
+    <!-- /build:ad -->
+
       <!-- build:comments -->
 
     <!-- /build:comments -->
@@ -565,6 +570,8 @@ Anaxagore
   function gc(){return window.goatcounter&&window.goatcounter.count?window.goatcounter:null}
   function send(path,title){var g=gc();if(g)g.count({path:path,title:title||path,event:true})}
   document.addEventListener("click",function(e){
+    var ad=e.target.closest&&e.target.closest("[data-ad],.adsbygoogle");
+    if(ad){send("ad/"+(ad.getAttribute("data-ad")||"adsense"),"广告位 @ "+location.pathname);return}
     var a=e.target.closest&&e.target.closest("a");
     if(!a)return;
     var offer=a.closest(".offer");

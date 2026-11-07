@@ -14,12 +14,12 @@
       property="og:description"
       content="帧差闸门、单行输出格式、状态机为什么必须忽略 unknown、门口摄像头从轮询改成边沿触发——一个家庭视觉管线的设计取舍。"
     />
-    <meta property="og:url" content="https://lgystoic.github.io/notes/home-camera-vlm-pipeline/" />
-    <meta property="og:image" content="https://lgystoic.github.io/assets/og/notes.png" />
+    <meta property="og:url" content="https://garryling.427795.xyz/notes/home-camera-vlm-pipeline/" />
+    <meta property="og:image" content="https://garryling.427795.xyz/assets/og/notes.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta name="twitter:card" content="summary_large_image" />
-    <link rel="canonical" href="https://lgystoic.github.io/notes/home-camera-vlm-pipeline/" />
+    <link rel="canonical" href="https://garryling.427795.xyz/notes/home-camera-vlm-pipeline/" />
     <link
       rel="icon"
       href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231b1b1a'/%3E%3Ctext x='32' y='43' text-anchor='middle' font-size='30' font-family='Helvetica,Arial' font-weight='700' fill='white'%3EA%3C/text%3E%3C/svg%3E"
@@ -33,7 +33,8 @@
       } catch (e) {}
     </script>
       <!-- build:jsonld -->
-    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "用 VLM 把家庭摄像头压成状态序列：一个看护记录系统的设计", "description": "三个家用摄像头接一个视觉模型，把连续画面变成可查询的状态序列。记录其中的取舍：帧差闸门如何把模型调用压到接近零、输出格式为什么不用 JSON、状态机为什么必须忽略 unknown，以及门口那一路为什么从轮询改成边沿触发。", "url": "https://lgystoic.github.io/notes/home-camera-vlm-pipeline/", "mainEntityOfPage": "https://lgystoic.github.io/notes/home-camera-vlm-pipeline/", "inLanguage": "zh-CN", "dateModified": "2026-09-19", "datePublished": "2026-09-19", "keywords": "VLM, System Design, 成本优化, 状态机, 家庭自动化", "isBasedOn": "ruirui-tracker / 自建家庭视觉管线", "author": {"@type": "Person", "name": "Anaxagore", "url": "https://lgystoic.github.io/about/"}, "publisher": {"@type": "Person", "name": "Anaxagore", "url": "https://lgystoic.github.io/"}, "image": "https://lgystoic.github.io/assets/og/notes.png"}</script>
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Anaxagore", "item": "https://garryling.427795.xyz/"}, {"@type": "ListItem", "position": 2, "name": "笔记", "item": "https://garryling.427795.xyz/notes/"}, {"@type": "ListItem", "position": 3, "name": "用 VLM 把家庭摄像头压成状态序列：一个看护记录系统的设计", "item": "https://garryling.427795.xyz/notes/home-camera-vlm-pipeline/"}]}</script>
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "用 VLM 把家庭摄像头压成状态序列：一个看护记录系统的设计", "description": "三个家用摄像头接一个视觉模型，把连续画面变成可查询的状态序列。记录其中的取舍：帧差闸门如何把模型调用压到接近零、输出格式为什么不用 JSON、状态机为什么必须忽略 unknown，以及门口那一路为什么从轮询改成边沿触发。", "url": "https://garryling.427795.xyz/notes/home-camera-vlm-pipeline/", "mainEntityOfPage": "https://garryling.427795.xyz/notes/home-camera-vlm-pipeline/", "inLanguage": "zh-CN", "dateModified": "2026-09-19", "datePublished": "2026-09-19", "keywords": "VLM, System Design, 成本优化, 状态机, 家庭自动化", "isBasedOn": "ruirui-tracker / 自建家庭视觉管线", "author": {"@type": "Person", "@id": "https://garryling.427795.xyz/#person", "name": "Anaxagore", "url": "https://garryling.427795.xyz/about/"}, "publisher": {"@type": "Person", "@id": "https://garryling.427795.xyz/#person", "name": "Anaxagore", "url": "https://garryling.427795.xyz/"}, "image": "https://garryling.427795.xyz/assets/og/notes.png"}</script>
     <!-- /build:jsonld -->
 </head>
   <body>
@@ -473,6 +474,10 @@ elif not was_visible and visible:      # 重新出现
           它解决的是我上班时的信息缺口，不是看护本身。做这类东西的时候，把边界说清楚比把指标做高更重要。
         </p>
       </section>
+      <!-- build:ad -->
+
+    <!-- /build:ad -->
+
       <!-- build:comments -->
 
     <!-- /build:comments -->
@@ -493,6 +498,8 @@ Anaxagore
   function gc(){return window.goatcounter&&window.goatcounter.count?window.goatcounter:null}
   function send(path,title){var g=gc();if(g)g.count({path:path,title:title||path,event:true})}
   document.addEventListener("click",function(e){
+    var ad=e.target.closest&&e.target.closest("[data-ad],.adsbygoogle");
+    if(ad){send("ad/"+(ad.getAttribute("data-ad")||"adsense"),"广告位 @ "+location.pathname);return}
     var a=e.target.closest&&e.target.closest("a");
     if(!a)return;
     var offer=a.closest(".offer");

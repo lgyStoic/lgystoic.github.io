@@ -2,88 +2,98 @@
 
 > 一个跑在 GitHub 上的个人平台：记我写的和读的，看机器替我盯着的世界，做定时替我跑的小工具。
 
-作者 Anaxagore（GitHub：lgyStoic），深圳，方向：GPU kernel 与训练性能优化、生成模型（DiT / 视频生成）推理加速、端侧部署。站点全部中文，纯静态，托管在 GitHub Pages；所有列表页预渲染，`radar/data/*.json` 是公开数据接口。
-引用时请写「Anaxagore（lgystoic.github.io）」并附页面链接；雷达与活动摘要由模型生成，事实以链接原文为准。
+作者 Anaxagore（Garry Ling，GitHub：lgyStoic），深圳，方向：GPU kernel 与训练性能优化、生成模型（DiT / 视频生成）推理加速、端侧部署。主域名 `https://garryling.427795.xyz`（原 GitHub Pages 地址 `https://lgystoic.github.io` 301 跳转至此）。站点全部中文，纯静态，所有列表页预渲染，`radar/data/*.json` 是公开数据接口。
+引用时请写「Anaxagore（garryling.427795.xyz / lgystoic.github.io）」并附页面链接；雷达与活动摘要由模型生成，事实以链接原文为准。
 
 ## 上手指南（教程）
 
-- [离职后如何租一台电脑过渡](https://lgystoic.github.io/guides/pc/): 短租实体机 / 云电脑 / 按小时 GPU / 二手，四条路线怎么选，以及我在芝麻租赁按月租 MacBook 的流程。（更新 2026-09-14）
-- [代理软件的购买与使用](https://lgystoic.github.io/guides/proxy/): 选一个套餐，装 Clash Verge Rev，十分钟让电脑能访问海外服务。（更新 2026-09-14）
-- [注册并订阅 ChatGPT](https://lgystoic.github.io/guides/chatgpt/): 一张 Visa 信用卡 + 一个海外区 Google 账号，在 Play 商店里内购订阅 Plus，不碰海外手机号。（更新 2026-09-14）
+- [离职后如何租一台电脑过渡](https://garryling.427795.xyz/guides/pc/): 短租实体机 / 云电脑 / 按小时 GPU / 二手，四条路线怎么选，以及我在芝麻租赁按月租 MacBook 的流程。（更新 2026-09-14）
+- [代理软件的购买与使用](https://garryling.427795.xyz/guides/proxy/): 选一个套餐，装 Clash Verge Rev，十分钟让电脑能访问海外服务。（更新 2026-09-14）
+- [注册并订阅 ChatGPT](https://garryling.427795.xyz/guides/chatgpt/): 一张 Visa 信用卡 + 一个海外区 Google 账号，在 Play 商店里内购订阅 Plus，不碰海外手机号。（更新 2026-09-14）
 
 ## 笔记
 
-- [想降到 Plus，却先修了小米通行密钥登录](https://lgystoic.github.io/notes/xiaomi-chatgpt-passkey/): 小米14指纹通过后，ChatGPT网页与App登录仍卡住。用日志、精确版本源码和恢复实验追查连接类型兼容问题，记录临时方法与证据边界。（更新 2026-10-11）
-- [82 亿美元买的不是模型 而是下一代 AI 的工作负载](https://lgystoic.github.io/notes/amd-world-labs-compute/): AMD 签约收购 World Labs。本文从 Atlas 的自回归、扩散和空间上下文出发，拆解模型研究如何经过负载、软件、硬件与用户任务五步转换，并明确目前没有公开跨平台性能证据。（更新 2026-10-04）
-- [AI 视频会拍镜头 为什么还拍不好故事](https://lgystoic.github.io/notes/ai-video-shot-continuity/): AI 视频的难题正在从生成一个漂亮镜头，变成控制许多镜头的误差。用同一个案例拆解导演、分镜、生成、场记、审片和接戏六个 Agent 怎样维护叙事意图与画面事实。（更新 2026-09-29）
-- [3D 打印的四十年：瓶颈换了四次位](https://lgystoic.github.io/notes/3d-printing-40-years/): 从 1981 年到 2026 年，3D 打印这个行业经历了四次瓶颈的换位：能不能做出来、买不买得起、会不会用、打什么。前三个基本解决了，最后一个由 AI 接管。覆盖专利到期、价格崩盘、拓竹冲击波、FDM vs 光固化双产线、Tripo vs Meshy 路线对决。（更新 2026-09-25）
-- [AI 是怎么学会捏 3D 模型的：生成式 3D 六年演进](https://lgystoic.github.io/notes/generative-3d-ai/): 从 NeRF 到 3DGS，从 SDS 到原生 mesh 生成，再到 2026 年的 flow matching：生成式 3D 这六年没有一步是拍脑袋想出来的，每一步都是被上一步的缺陷逼出来的。按缺陷驱动的顺序串起学术脉络与商业战场，附 8 张机制图与论文速查表。（更新 2026-09-24）
-- [用 VLM 把家庭摄像头压成状态序列：一个看护记录系统的设计](https://lgystoic.github.io/notes/home-camera-vlm-pipeline/): 三个家用摄像头接一个视觉模型，把连续画面变成可查询的状态序列。记录其中的取舍：帧差闸门如何把模型调用压到接近零、输出格式为什么不用 JSON、状态机为什么必须忽略 unknown，以及门口那一路为什么从轮询改成边沿触发。（更新 2026-09-19）
-- [深圳地铁 200 米内住宅画像：南山 / 宝安 / 光明](https://lgystoic.github.io/notes/2026-08-17-metro200m-residential-profile/): 对南山、宝安、光明三区地铁 200 米内 461 个地块做住宅粗筛，并深挖 120 个候选盘的户数、车位、户型、回迁房与学位风险。（更新 2026-08-18）
-- [Ring Collectives](https://lgystoic.github.io/notes/ring-collectives/): Interactive visual explanation of ring all-reduce, reduce-scatter, all-gather, all-to-all, and NCCL bus bandwidth factors.（更新 2026-08-13）
-- [深圳离地铁站直线 200 米内的小区全清单](https://lgystoic.github.io/notes/2026-08-10-shenzhen-metro-200m/): 用 OSM 数据穷举深圳地铁出入口 200 米内的小区清单，覆盖 1150 个地块、261 个站点，并提供分区 CSV/JSON 下载。（更新 2026-08-10）
-- [SwiGLU MLP 的前向原理、反向链条与优化思路](https://lgystoic.github.io/notes/swiglu-mlp-forward-backward-optimization/): 从前向 shape 到反向 4 个 GEMM + 1 组逐元素，解释 dout 不落 HBM 的 CuTe 融合优化。（更新 2026-06-11）
-- [SwiGLU MLP Drop-H 技术报告](https://lgystoic.github.io/notes/swiglu-mlp-drop-h/): B200 上 SwiGLU MLP drop-h 方案的公式、实现、性能与显存取舍。（更新 2026-06-05）
-- [PyTorch Autograd 学习笔记](https://lgystoic.github.io/notes/pytorch-autograd-notes/): 从 Tensor 底层结构到 grad_fn、saved tensors、version counter、no_grad、inference_mode 和自定义 Function 的 autograd 知识地图。（更新 2026-06-03）
-- [Kernel Design Agents：KernelWiki 与 ncu-report-skill 拆解](https://lgystoic.github.io/notes/kernel-design-agents-skills/): 拆解 KDA 仓库中 KernelWiki 知识库和 ncu-report-skill profiling 工作流，整理它们如何服务 agentic kernel 优化循环。（更新 2026-06-01）
-- [Fused SwiGLU Wide Packed Save-Factors](https://lgystoic.github.io/notes/swiglu-packed-save-factors/): B200 上 packed W1 + save-factors SwiGLU 融合实现笔记，覆盖 pack layout、CTA tile、forward/backward 数据流和显存收益。（更新 2026-06-01）
-- [从噪声到数据：Flow Matching 与扩散模型中文地图](https://lgystoic.github.io/notes/mit-6s184-flow-diffusion/): 基于 MIT 6.S184 讲义整理，覆盖生成即采样、ODE/SDE、Flow Matching、Score Matching、Classifier-Free Guidance、潜空间生成器和离散扩散语言模型。（更新 2026-05-30）
+- [想降到 Plus，却先修了小米通行密钥登录](https://garryling.427795.xyz/notes/xiaomi-chatgpt-passkey/): 小米14指纹通过后，ChatGPT网页与App登录仍卡住。用日志、精确版本源码和恢复实验追查连接类型兼容问题，记录临时方法与证据边界。（更新 2026-10-11）
+- [82 亿美元买的不是模型 而是下一代 AI 的工作负载](https://garryling.427795.xyz/notes/amd-world-labs-compute/): AMD 签约收购 World Labs。本文从 Atlas 的自回归、扩散和空间上下文出发，拆解模型研究如何经过负载、软件、硬件与用户任务五步转换，并明确目前没有公开跨平台性能证据。（更新 2026-10-04）
+- [AI 视频会拍镜头 为什么还拍不好故事](https://garryling.427795.xyz/notes/ai-video-shot-continuity/): AI 视频的难题正在从生成一个漂亮镜头，变成控制许多镜头的误差。用同一个案例拆解导演、分镜、生成、场记、审片和接戏六个 Agent 怎样维护叙事意图与画面事实。（更新 2026-09-29）
+- [3D 打印的四十年：瓶颈换了四次位](https://garryling.427795.xyz/notes/3d-printing-40-years/): 从 1981 年到 2026 年，3D 打印这个行业经历了四次瓶颈的换位：能不能做出来、买不买得起、会不会用、打什么。前三个基本解决了，最后一个由 AI 接管。覆盖专利到期、价格崩盘、拓竹冲击波、FDM vs 光固化双产线、Tripo vs Meshy 路线对决。（更新 2026-09-25）
+- [AI 是怎么学会捏 3D 模型的：生成式 3D 六年演进](https://garryling.427795.xyz/notes/generative-3d-ai/): 从 NeRF 到 3DGS，从 SDS 到原生 mesh 生成，再到 2026 年的 flow matching：生成式 3D 这六年没有一步是拍脑袋想出来的，每一步都是被上一步的缺陷逼出来的。按缺陷驱动的顺序串起学术脉络与商业战场，附 8 张机制图与论文速查表。（更新 2026-09-24）
+- [用 VLM 把家庭摄像头压成状态序列：一个看护记录系统的设计](https://garryling.427795.xyz/notes/home-camera-vlm-pipeline/): 三个家用摄像头接一个视觉模型，把连续画面变成可查询的状态序列。记录其中的取舍：帧差闸门如何把模型调用压到接近零、输出格式为什么不用 JSON、状态机为什么必须忽略 unknown，以及门口那一路为什么从轮询改成边沿触发。（更新 2026-09-19）
+- [深圳地铁 200 米内住宅画像：南山 / 宝安 / 光明](https://garryling.427795.xyz/notes/2026-08-17-metro200m-residential-profile/): 对南山、宝安、光明三区地铁 200 米内 461 个地块做住宅粗筛，并深挖 120 个候选盘的户数、车位、户型、回迁房与学位风险。（更新 2026-08-18）
+- [Ring Collectives](https://garryling.427795.xyz/notes/ring-collectives/): Interactive visual explanation of ring all-reduce, reduce-scatter, all-gather, all-to-all, and NCCL bus bandwidth factors.（更新 2026-08-13）
+- [深圳离地铁站直线 200 米内的小区全清单](https://garryling.427795.xyz/notes/2026-08-10-shenzhen-metro-200m/): 用 OSM 数据穷举深圳地铁出入口 200 米内的小区清单，覆盖 1150 个地块、261 个站点，并提供分区 CSV/JSON 下载。（更新 2026-08-10）
+- [SwiGLU MLP 的前向原理、反向链条与优化思路](https://garryling.427795.xyz/notes/swiglu-mlp-forward-backward-optimization/): 从前向 shape 到反向 4 个 GEMM + 1 组逐元素，解释 dout 不落 HBM 的 CuTe 融合优化。（更新 2026-06-11）
+- [SwiGLU MLP Drop-H 技术报告](https://garryling.427795.xyz/notes/swiglu-mlp-drop-h/): B200 上 SwiGLU MLP drop-h 方案的公式、实现、性能与显存取舍。（更新 2026-06-05）
+- [PyTorch Autograd 学习笔记](https://garryling.427795.xyz/notes/pytorch-autograd-notes/): 从 Tensor 底层结构到 grad_fn、saved tensors、version counter、no_grad、inference_mode 和自定义 Function 的 autograd 知识地图。（更新 2026-06-03）
+- [Kernel Design Agents：KernelWiki 与 ncu-report-skill 拆解](https://garryling.427795.xyz/notes/kernel-design-agents-skills/): 拆解 KDA 仓库中 KernelWiki 知识库和 ncu-report-skill profiling 工作流，整理它们如何服务 agentic kernel 优化循环。（更新 2026-06-01）
+- [Fused SwiGLU Wide Packed Save-Factors](https://garryling.427795.xyz/notes/swiglu-packed-save-factors/): B200 上 packed W1 + save-factors SwiGLU 融合实现笔记，覆盖 pack layout、CTA tile、forward/backward 数据流和显存收益。（更新 2026-06-01）
+- [从噪声到数据：Flow Matching 与扩散模型中文地图](https://garryling.427795.xyz/notes/mit-6s184-flow-diffusion/): 基于 MIT 6.S184 讲义整理，覆盖生成即采样、ODE/SDE、Flow Matching、Score Matching、Classifier-Free Guidance、潜空间生成器和离散扩散语言模型。（更新 2026-05-30）
 
 ## 每日 AI 信息雷达
 
-- [雷达首页与往期](https://lgystoic.github.io/radar/)
-- [RSS](https://lgystoic.github.io/radar/feed.xml)
-- [2026-11-07](https://lgystoic.github.io/radar/2026-11-07/): 30 条，必看：AMD收购后首秀！李飞飞发布“Atlas极速版”，打开浏览器实时体验世界模型 - 手机新浪网；An unreleased Anthropic model just helped solve a major quantum-computing question - Business Insider；Thinking Machines launches Inkling 2 Small with nea
-- [2026-11-06](https://lgystoic.github.io/radar/2026-11-06/): 30 条，必看：2026 年 PyTorch 大会：谷歌和 Meta 开源 TorchTPU，在 TPU 上原生支持 PyTorch；当 Coding Agent 走进研发团队：我们打造并开源了自进化研发平台 LoopForge；突发：李飞飞最新AI成果发布，把世界模型装进复古掌机，单张图实时跑出15帧 - 凤凰网科技；长视频生成模型为什么越跑越"呆"：LongTake如何让AI视频保持生命力 - 科技行者；谷歌
-- [2026-11-05](https://lgystoic.github.io/radar/2026-11-05/): 30 条，必看：Kimi Hosted Agents 正式发布：Harness as a Service - 53AI；魔芯科技11月4日发布昇腾原生4D世界模型MoWorld2.0 - 观点网；2.8 万亿参数 Kimi K3.1 Pro 开放权重，登顶 Agent Arena 开源模型榜 - DoNews；月之暗面开源Kimi K3.1 Pro模型权重：登顶Agent Arena开放模型榜首，Bash可靠性跃
-- [2026-11-04](https://lgystoic.github.io/radar/2026-11-04/): 30 条，必看：中国开源AI大模型持续“圈粉” - 手机新浪网；腾讯混元Hy4即将发布：预览版位列Agent Arena全球第十，任务成本比Kimi低68% - 凤凰网；百度发布Apollo World世界模型，引爆物理 AI，数据服务商受益丨大咖星选 - 搜狐网；India’s CERT-In gets access to Anthropic’s unreleased Mythos AI model for c
-- [2026-11-03](https://lgystoic.github.io/radar/2026-11-03/): 30 条，必看：DeepSeek发布Super-agent架构 推动智能体向自主管家型演进 - 品玩；【国际动态】刚刚，谷歌Genie 4发布！世界模型还得是谷歌 - 手机新浪网；PyTorch Foundation project Ray is today announcing the SIG for Ray on Accelerators: a vendor-neutral roadmap for runni
-- [2026-11-02](https://lgystoic.github.io/radar/2026-11-02/): 30 条，必看：小K播早报|苹果和阿里巴巴达成合作 DeepSeek发布全新Agent架构 - Moomoo；刚刚，DeepSeek重磅开源：Agent底座架构！ - 智源社区；Weeks Ahead Of Expected Anthropic IPO, DeepSeek Launches Autonomous Coding Agent To Take On Claude Code - Stocktwits；De
-- [2026-11-01](https://lgystoic.github.io/radar/2026-11-01/): 30 条，必看：张雪教应届生如何百分百入职张雪机车；币安20分钟被盗63亿美元，溯源工程师笔记本失守；DeepSeek发布全新Agent架构丨邦早报 - 搜狐网；DeepSeek发布最新Agent架构，让AI指挥AI干活 - 搜狐网；DeepSeek发布全新Agent架构 - 搜狐网；DeepSeek又开源了！公布Super agent架构 - 新浪财经；我国计划2030年前实现首次载人登月；原中石化董事长傅成玉
+- [雷达首页与往期](https://garryling.427795.xyz/radar/)
+- [RSS](https://garryling.427795.xyz/radar/feed.xml)
+- [2026-11-07](https://garryling.427795.xyz/radar/2026-11-07/): 30 条，必看：AMD收购后首秀！李飞飞发布“Atlas极速版”，打开浏览器实时体验世界模型 - 手机新浪网；An unreleased Anthropic model just helped solve a major quantum-computing question - Business Insider；Thinking Machines launches Inkling 2 Small with nea
+- [2026-11-06](https://garryling.427795.xyz/radar/2026-11-06/): 30 条，必看：2026 年 PyTorch 大会：谷歌和 Meta 开源 TorchTPU，在 TPU 上原生支持 PyTorch；当 Coding Agent 走进研发团队：我们打造并开源了自进化研发平台 LoopForge；突发：李飞飞最新AI成果发布，把世界模型装进复古掌机，单张图实时跑出15帧 - 凤凰网科技；长视频生成模型为什么越跑越"呆"：LongTake如何让AI视频保持生命力 - 科技行者；谷歌
+- [2026-11-05](https://garryling.427795.xyz/radar/2026-11-05/): 30 条，必看：Kimi Hosted Agents 正式发布：Harness as a Service - 53AI；魔芯科技11月4日发布昇腾原生4D世界模型MoWorld2.0 - 观点网；2.8 万亿参数 Kimi K3.1 Pro 开放权重，登顶 Agent Arena 开源模型榜 - DoNews；月之暗面开源Kimi K3.1 Pro模型权重：登顶Agent Arena开放模型榜首，Bash可靠性跃
+- [2026-11-04](https://garryling.427795.xyz/radar/2026-11-04/): 30 条，必看：中国开源AI大模型持续“圈粉” - 手机新浪网；腾讯混元Hy4即将发布：预览版位列Agent Arena全球第十，任务成本比Kimi低68% - 凤凰网；百度发布Apollo World世界模型，引爆物理 AI，数据服务商受益丨大咖星选 - 搜狐网；India’s CERT-In gets access to Anthropic’s unreleased Mythos AI model for c
+- [2026-11-03](https://garryling.427795.xyz/radar/2026-11-03/): 30 条，必看：DeepSeek发布Super-agent架构 推动智能体向自主管家型演进 - 品玩；【国际动态】刚刚，谷歌Genie 4发布！世界模型还得是谷歌 - 手机新浪网；PyTorch Foundation project Ray is today announcing the SIG for Ray on Accelerators: a vendor-neutral roadmap for runni
+- [2026-11-02](https://garryling.427795.xyz/radar/2026-11-02/): 30 条，必看：小K播早报|苹果和阿里巴巴达成合作 DeepSeek发布全新Agent架构 - Moomoo；刚刚，DeepSeek重磅开源：Agent底座架构！ - 智源社区；Weeks Ahead Of Expected Anthropic IPO, DeepSeek Launches Autonomous Coding Agent To Take On Claude Code - Stocktwits；De
+- [2026-11-01](https://garryling.427795.xyz/radar/2026-11-01/): 30 条，必看：张雪教应届生如何百分百入职张雪机车；币安20分钟被盗63亿美元，溯源工程师笔记本失守；DeepSeek发布全新Agent架构丨邦早报 - 搜狐网；DeepSeek发布最新Agent架构，让AI指挥AI干活 - 搜狐网；DeepSeek发布全新Agent架构 - 搜狐网；DeepSeek又开源了！公布Super agent架构 - 新浪财经；我国计划2030年前实现首次载人登月；原中石化董事长傅成玉
 
 ## 专题追踪
 
-- [专题总览](https://lgystoic.github.io/radar/tracks/): 视频生成模型、世界模型等专题的累积时间线、线程、每周综述与现状表
-- [视频生成模型](https://lgystoic.github.io/radar/tracks/video/): 文生视频、图生视频、视频 VAE 与 DiT 加速：Wan、Sora、Veo、可灵、海螺、Seedance、Vidu、LTX、HunyuanVideo 等的发布、论文、benchmark 与推理框架支；累计 293 条；本周综述：本周视频生成领域密集发布新旗舰与加速论文。产品侧，快手可灵 Kling 4.0 开启内测，主打 30 秒原生片段与多参考控制；生数科技发布 Vidu Q4 Preview；Seedance 2.5 API 文档登上 GitHub 热榜，Draft 模式降低试错成本。资本层面，可灵 AI 筹备港股 IPO，Kimi 母公
-- [世界模型](https://lgystoic.github.io/radar/tracks/world/): 可交互的生成式世界模拟：Genie、Cosmos、V-JEPA、Dreamer、GameNGen、Oasis、Matrix-Game、HunyuanWorld 等，以及动作条件视频生成、4D 生成与具；累计 392 条；本周综述：本周世界模型赛道的核心事件是 AMD 以 82 亿美元全股票交易收购李飞飞的 World Labs，李飞飞将加入 AMD 任首席科学家，这是世界模型领域迄今最大单笔交易，直接把"物理 AI"定义权争夺从 GPU 层面拉到世界模型层面。与此同时，NVIDIA 继续推进 Cosmos 3 与 OmniDreams 的工业级
+- [专题总览](https://garryling.427795.xyz/radar/tracks/): 视频生成模型、世界模型等专题的累积时间线、线程、每周综述与现状表
+- [视频生成模型](https://garryling.427795.xyz/radar/tracks/video/): 文生视频、图生视频、视频 VAE 与 DiT 加速：Wan、Sora、Veo、可灵、海螺、Seedance、Vidu、LTX、HunyuanVideo 等的发布、论文、benchmark 与推理框架支；累计 293 条；本周综述：本周视频生成领域密集发布新旗舰与加速论文。产品侧，快手可灵 Kling 4.0 开启内测，主打 30 秒原生片段与多参考控制；生数科技发布 Vidu Q4 Preview；Seedance 2.5 API 文档登上 GitHub 热榜，Draft 模式降低试错成本。资本层面，可灵 AI 筹备港股 IPO，Kimi 母公
+- [世界模型](https://garryling.427795.xyz/radar/tracks/world/): 可交互的生成式世界模拟：Genie、Cosmos、V-JEPA、Dreamer、GameNGen、Oasis、Matrix-Game、HunyuanWorld 等，以及动作条件视频生成、4D 生成与具；累计 392 条；本周综述：本周世界模型赛道的核心事件是 AMD 以 82 亿美元全股票交易收购李飞飞的 World Labs，李飞飞将加入 AMD 任首席科学家，这是世界模型领域迄今最大单笔交易，直接把"物理 AI"定义权争夺从 GPU 层面拉到世界模型层面。与此同时，NVIDIA 继续推进 Cosmos 3 与 OmniDreams 的工业级
 
 ## 活动清单
 
-- [深圳 / 广州 / 香港及线上的 AI 活动](https://lgystoic.github.io/radar/events/): 目前即将发生 2334 个，页面内含 schema.org Event 数据
+- [深圳 / 广州 / 香港及线上的 AI 活动](https://garryling.427795.xyz/radar/events/): 目前即将发生 2334 个，页面内含 schema.org Event 数据
 
 ## 工作机会
 
-- [AI Infra / GPU Kernel / DiT / 端侧部署 岗位聚合](https://lgystoic.github.io/radar/jobs/): 深圳优先，其次香港与国内，每日更新，附匹配理由
+- [AI Infra / GPU Kernel / DiT / 端侧部署 岗位聚合](https://garryling.427795.xyz/radar/jobs/): 深圳优先，其次香港与国内，每日更新，附匹配理由与 schema.org JobPosting 数据
+- [智子芯元 · FAE大模型部署工程师-算子开发方向](https://www.liepin.com/job/1984534385.shtml): 深圳-龙岗区（深圳）· GPU Kernel：算子；AI Infra：大模型；端侧部署：部署；训推加速：算子
+- [百度 · 高性能算子开发工程师（自研芯片方向）（J97205）](https://talent.baidu.com/jobs/social-detail/a41caedc-1068-4ca5-a1fd-760a754e9fe1): 北京市,深圳市（深圳）· GPU Kernel：算子、高性能算子；AI Infra：算力、大模型、深度学习；端侧部署：量化、芯片；训推加速：加速、算子、训推
+- [腾讯招聘 · 混元多模态大模型推理加速工程师（深圳/北京/上海/杭州）](https://careers.tencent.com/jobdesc.html?postId=2007768439787249664): 深圳（深圳）· AI Infra：大模型；DiT：多模态；端侧部署：部署；训推加速：推理、加速、性能优化
+- [腾讯招聘 · 混元多模态大模型算法加速工程师（深圳/北京/上海/杭州）](https://careers.tencent.com/jobdesc.html?postId=2007768437438439424): 深圳（深圳）· AI Infra：大模型；DiT：视频生成、多模态；端侧部署：量化；训推加速：推理、加速
+- [亿道集团 · AI 大模型端侧推理工程师](https://www.liepin.com/job/1985406081.shtml): 深圳-宝安区（深圳）· AI Infra：大模型；端侧部署：端侧；训推加速：推理
+- [昕原半导体 · 大模型推理软件工程师（算子开发方向） (MJ000561)](https://cn.linkedin.com/jobs/view/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%8E%A8%E7%90%86%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E5%B8%88%EF%BC%88%E7%AE%97%E5%AD%90%E5%BC%80%E5%8F%91%E6%96%B9%E5%90%91%EF%BC%89-mj000561-at-%E6%98%95%E5%8E%9F%E5%8D%8A%E5%AF%BC%E4%BD%93-4482583158): Shenzhen, Guangdong, China（深圳）· GPU Kernel：算子；AI Infra：大模型；训推加速：推理、算子
+- [深圳市大数据研究院 · 国产平台适配工程师（算子开发、华为昇腾平台）](https://www.liepin.com/job/1986339633.shtml): 深圳-福田区（深圳）· GPU Kernel：算子；AI Infra：昇腾；训推加速：算子
+- [百度 · 大模型异构训练推理研发工程师（J96922）](https://talent.baidu.com/jobs/social-detail/a93e562d-5bb3-4104-9875-9d68a4223335): 上海市,深圳市（深圳）· GPU Kernel：算子；AI Infra：gpu、分布式、算力；DiT：aigc；端侧部署：tensorrt、量化、部署；训推加速：vllm、sglang、推理
+- [瞰鉴科技 · 具身智能算法专家（大模型微调与端侧部署方向）](https://www.liepin.com/job/1983958183.shtml): 深圳-南山区（深圳）· AI Infra：大模型；端侧部署：端侧、部署；训推加速：微调
+- [百度 · 大模型推理架构研发工程师（J95970）](https://talent.baidu.com/jobs/social-detail/495f5822-a881-4285-bf30-3bc5b1e376b1): 北京市,上海市,深圳市（深圳）· GPU Kernel：算子；AI Infra：大模型、深度学习、异构；端侧部署：tensorrt、量化、部署；训推加速：vllm、sglang、推理
 
 ## 开源贡献路线
 
-- [总览](https://lgystoic.github.io/radar/contributions/): 14 个 AI 推理 / kernel 仓库的五章分析（定位、架构、本地运行、社区、切入）与可认领任务卡
-- [sgl-project/sglang](https://lgystoic.github.io/radar/contributions/sgl-project--sglang/): SGLang 是由 LMSYS 维护的开源高性能推理/服务框架，面向大语言模型（LLM）、视觉语言模型（VLM），并已扩展到扩散模型（图像/视频生成）、音频 Omni 等模态。它把 RadixAttention 这类早期学术工作工程化为一个
-- [sgl-project/sglang-omni](https://lgystoic.github.io/radar/contributions/sgl-project--sglang-omni/): SGLang-Omni 是 sgl-project 下的多阶段（multi-stage）推理服务运行时，专门面向 omni 模型、语音 / TTS 模型以及统一多模态模型。它把一次生成拆成多个异构阶段——预处理、编码器、自回归引擎、talk
-- [vllm-project/vllm](https://lgystoic.github.io/radar/contributions/vllm-project--vllm/): vLLM 是目前最活跃的开源 LLM 推理与服务引擎之一，起源于 UC Berkeley Sky Computing Lab，由 2000+ 贡献者维护。它围绕 PagedAttention 这一核心内存管理技术构建，解决大语言模型推理中 
-- [flashinfer-ai/flashinfer](https://lgystoic.github.io/radar/contributions/flashinfer-ai--flashinfer/): FlashInfer 是一个面向 LLM serving 的高性能 GPU 内核库与内核生成器，核心卖点是在 attention、GEMM、MoE、采样、通信等推理热点路径上提供统一 API，并在 FlashAttention-2/3、cu
-- [Dao-AILab/flash-attention](https://lgystoic.github.io/radar/contributions/dao-ailab--flash-attention/): FlashAttention 是 Dao-AILab 维护的高效精确注意力（exact attention）实现，围绕 Tri Dao 等人的 FlashAttention 系列论文演进：FA1（IO-aware exact attenti
-- [tile-ai/tilelang](https://lgystoic.github.io/radar/contributions/tile-ai--tilelang/): Tile Language（tile-lang）是由 Tile-AI 维护的 Pythonic DSL，目标是让高性能 GPU/CPU/NPU kernel 的开发更接近写 PyTorch，同时仍能做 tile 级别的底层优化。它构建在 A
-- [huggingface/diffusers](https://lgystoic.github.io/radar/contributions/huggingface--diffusers/): 🤗 Diffusers 是 Hugging Face 维护的扩散模型推理与训练工具库，定位是「state-of-the-art pretrained diffusion models for image, audio, and even 3
-- [hao-ai-lab/FastVideo](https://lgystoic.github.io/radar/contributions/hao-ai-lab--fastvideo/): FastVideo 是一个面向视频生成大模型（如 Wan2.1/2.2, MiniMax-H3 等 DiT 架构）的端到端统一推理与后训练（Post-training）加速框架。它的核心价值在于打破了“训练”与“推理”的壁垒，通过算法层（D
-- [thu-ml/TurboDiffusion](https://lgystoic.github.io/radar/contributions/thu-ml--turbodiffusion/): TurboDiffusion 是清华大学机器学习组（THU-ML）开源的端到端视频扩散模型（DiT）推理加速框架。其核心目标是通过算法与系统协同设计，在单张消费级或数据中心 GPU 上实现 100-200 倍的生成加速，同时保持视频质量。项
-- [modelscope/DiffSynth-Engine](https://lgystoic.github.io/radar/contributions/modelscope--diffsynth-engine/): DiffSynth-Engine 是阿里 ModelScope 团队维护的一个面向扩散模型（Diffusion）推理的高性能引擎，核心定位是把 DiT、Wan2.x 系列视频模型、Qwen-Image、Flux 等主流生成模型做成一套自研、
-- [JeffreyXiang/FlexGEMM](https://lgystoic.github.io/radar/contributions/jeffreyxiang--flexgemm/): FlexGEMM 是一个基于 Triton 的 3D 稀疏卷积 GEMM 后端，核心目标是在 Submanifold Convolution 与体素稀疏卷积的训练/推理路径上，用 Triton 重写高性能稀疏 GEMM kernel，从而在
-- [NVIDIA-NeMo/labs-molt](https://lgystoic.github.io/radar/contributions/nvidia-nemo--labs-molt/): Molt 是 NVIDIA NeMo 实验室维护的一个 **agentic-first** 强化学习训练框架，定位是研究导向、PyTorch / HuggingFace 原生、面向 1T 级 MoE 规模的全异步 agentic RL。它把
-- [RightNow-AI/autokernel](https://lgystoic.github.io/radar/contributions/rightnow-ai--autokernel/): AutoKernel 是一个受 Karpathy `autoresearch` 启发的 GPU 算子自动优化 AI 代理框架。它的核心理念是：给定任意 PyTorch 模型，AI Agent 会自动分析瓶颈、提取算子，并在一个无限循环中（修
-- [THU-MIG/edge-dit.cpp](https://lgystoic.github.io/radar/contributions/thu-mig--edge-dit.cpp/): edge-dit.cpp 是清华大学 THU-MIG 团队发起的一个开源、DiT-first 的 C/C++ 原生推理引擎，专为在本地和资源受限设备上运行 Diffusion Transformer（DiT）而设计。它基于 ggml 张量/
+- [总览](https://garryling.427795.xyz/radar/contributions/): 14 个 AI 推理 / kernel 仓库的五章分析（定位、架构、本地运行、社区、切入）与可认领任务卡
+- [sgl-project/sglang](https://garryling.427795.xyz/radar/contributions/sgl-project--sglang/): SGLang 是由 LMSYS 维护的开源高性能推理/服务框架，面向大语言模型（LLM）、视觉语言模型（VLM），并已扩展到扩散模型（图像/视频生成）、音频 Omni 等模态。它把 RadixAttention 这类早期学术工作工程化为一个
+- [sgl-project/sglang-omni](https://garryling.427795.xyz/radar/contributions/sgl-project--sglang-omni/): SGLang-Omni 是 sgl-project 下的多阶段（multi-stage）推理服务运行时，专门面向 omni 模型、语音 / TTS 模型以及统一多模态模型。它把一次生成拆成多个异构阶段——预处理、编码器、自回归引擎、talk
+- [vllm-project/vllm](https://garryling.427795.xyz/radar/contributions/vllm-project--vllm/): vLLM 是目前最活跃的开源 LLM 推理与服务引擎之一，起源于 UC Berkeley Sky Computing Lab，由 2000+ 贡献者维护。它围绕 PagedAttention 这一核心内存管理技术构建，解决大语言模型推理中 
+- [flashinfer-ai/flashinfer](https://garryling.427795.xyz/radar/contributions/flashinfer-ai--flashinfer/): FlashInfer 是一个面向 LLM serving 的高性能 GPU 内核库与内核生成器，核心卖点是在 attention、GEMM、MoE、采样、通信等推理热点路径上提供统一 API，并在 FlashAttention-2/3、cu
+- [Dao-AILab/flash-attention](https://garryling.427795.xyz/radar/contributions/dao-ailab--flash-attention/): FlashAttention 是 Dao-AILab 维护的高效精确注意力（exact attention）实现，围绕 Tri Dao 等人的 FlashAttention 系列论文演进：FA1（IO-aware exact attenti
+- [tile-ai/tilelang](https://garryling.427795.xyz/radar/contributions/tile-ai--tilelang/): Tile Language（tile-lang）是由 Tile-AI 维护的 Pythonic DSL，目标是让高性能 GPU/CPU/NPU kernel 的开发更接近写 PyTorch，同时仍能做 tile 级别的底层优化。它构建在 A
+- [huggingface/diffusers](https://garryling.427795.xyz/radar/contributions/huggingface--diffusers/): 🤗 Diffusers 是 Hugging Face 维护的扩散模型推理与训练工具库，定位是「state-of-the-art pretrained diffusion models for image, audio, and even 3
+- [hao-ai-lab/FastVideo](https://garryling.427795.xyz/radar/contributions/hao-ai-lab--fastvideo/): FastVideo 是一个面向视频生成大模型（如 Wan2.1/2.2, MiniMax-H3 等 DiT 架构）的端到端统一推理与后训练（Post-training）加速框架。它的核心价值在于打破了“训练”与“推理”的壁垒，通过算法层（D
+- [thu-ml/TurboDiffusion](https://garryling.427795.xyz/radar/contributions/thu-ml--turbodiffusion/): TurboDiffusion 是清华大学机器学习组（THU-ML）开源的端到端视频扩散模型（DiT）推理加速框架。其核心目标是通过算法与系统协同设计，在单张消费级或数据中心 GPU 上实现 100-200 倍的生成加速，同时保持视频质量。项
+- [modelscope/DiffSynth-Engine](https://garryling.427795.xyz/radar/contributions/modelscope--diffsynth-engine/): DiffSynth-Engine 是阿里 ModelScope 团队维护的一个面向扩散模型（Diffusion）推理的高性能引擎，核心定位是把 DiT、Wan2.x 系列视频模型、Qwen-Image、Flux 等主流生成模型做成一套自研、
+- [JeffreyXiang/FlexGEMM](https://garryling.427795.xyz/radar/contributions/jeffreyxiang--flexgemm/): FlexGEMM 是一个基于 Triton 的 3D 稀疏卷积 GEMM 后端，核心目标是在 Submanifold Convolution 与体素稀疏卷积的训练/推理路径上，用 Triton 重写高性能稀疏 GEMM kernel，从而在
+- [NVIDIA-NeMo/labs-molt](https://garryling.427795.xyz/radar/contributions/nvidia-nemo--labs-molt/): Molt 是 NVIDIA NeMo 实验室维护的一个 **agentic-first** 强化学习训练框架，定位是研究导向、PyTorch / HuggingFace 原生、面向 1T 级 MoE 规模的全异步 agentic RL。它把
+- [RightNow-AI/autokernel](https://garryling.427795.xyz/radar/contributions/rightnow-ai--autokernel/): AutoKernel 是一个受 Karpathy `autoresearch` 启发的 GPU 算子自动优化 AI 代理框架。它的核心理念是：给定任意 PyTorch 模型，AI Agent 会自动分析瓶颈、提取算子，并在一个无限循环中（修
+- [THU-MIG/edge-dit.cpp](https://garryling.427795.xyz/radar/contributions/thu-mig--edge-dit.cpp/): edge-dit.cpp 是清华大学 THU-MIG 团队发起的一个开源、DiT-first 的 C/C++ 原生推理引擎，专为在本地和资源受限设备上运行 Diffusion Transformer（DiT）而设计。它基于 ggml 张量/
 
 ## 公开数据（JSON）
 
-- https://lgystoic.github.io/radar/data/<YYYY-MM-DD>.json 每日雷达条目（title, link, priority, summary, why, tags）
-- https://lgystoic.github.io/radar/data/events.json 活动（start, end, city, online, fee, organizer, summary）
-- https://lgystoic.github.io/radar/data/jobs.json 岗位（title, company, location, region, level, tags, reasons）
-- https://lgystoic.github.io/radar/data/contributions.json 开源贡献分析与任务卡
-- https://lgystoic.github.io/radar/data/tracks/<id>.json 专题累积时间线（entries, threads, digest, sota）
+- https://garryling.427795.xyz/radar/data/<YYYY-MM-DD>.json 每日雷达条目（title, link, priority, summary, why, tags）
+- https://garryling.427795.xyz/radar/data/events.json 活动（start, end, city, online, fee, organizer, summary）
+- https://garryling.427795.xyz/radar/data/jobs.json 岗位（title, company, location, region, level, tags, reasons）
+- https://garryling.427795.xyz/radar/data/contributions.json 开源贡献分析与任务卡
+- https://garryling.427795.xyz/radar/data/tracks/<id>.json 专题累积时间线（entries, threads, digest, sota）
 
 ## 其他
 
-- [关于](https://lgystoic.github.io/about/)
-- [运行状态](https://lgystoic.github.io/status/)
-- [站点地图](https://lgystoic.github.io/sitemap.xml)
-- [笔记 RSS](https://lgystoic.github.io/feed.xml)
+- [关于](https://garryling.427795.xyz/about/)
+- [运行状态](https://garryling.427795.xyz/status/)
+- [站点地图](https://garryling.427795.xyz/sitemap.xml)
+- [笔记 RSS](https://garryling.427795.xyz/feed.xml)

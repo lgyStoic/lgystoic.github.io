@@ -8,12 +8,12 @@
     <meta property="og:type" content="article" />
     <meta property="og:title" content="想降到 Plus，却先修了小米通行密钥登录 | Anaxagore" />
     <meta property="og:description" content="小米14指纹通过后，ChatGPT网页与App登录仍卡住。用日志、精确版本源码和恢复实验追查连接类型兼容问题，记录临时方法与证据边界。" />
-    <meta property="og:url" content="https://lgystoic.github.io/notes/xiaomi-chatgpt-passkey/" />
-    <meta property="og:image" content="https://lgystoic.github.io/assets/og/notes.png" />
+    <meta property="og:url" content="https://garryling.427795.xyz/notes/xiaomi-chatgpt-passkey/" />
+    <meta property="og:image" content="https://garryling.427795.xyz/assets/og/notes.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta name="twitter:card" content="summary_large_image" />
-    <link rel="canonical" href="https://lgystoic.github.io/notes/xiaomi-chatgpt-passkey/" />
+    <link rel="canonical" href="https://garryling.427795.xyz/notes/xiaomi-chatgpt-passkey/" />
     <link
       rel="icon"
       href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231b1b1a'/%3E%3Ctext x='32' y='43' text-anchor='middle' font-size='30' font-family='Helvetica,Arial' font-weight='700' fill='white'%3EA%3C/text%3E%3C/svg%3E"
@@ -28,7 +28,8 @@
       } catch (e) {}
     </script>
     <!-- build:jsonld -->
-    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "想降到 Plus，却先修了小米通行密钥登录", "description": "小米14指纹通过后，ChatGPT网页与App登录仍卡住。用日志、精确版本源码和恢复实验追查连接类型兼容问题，记录临时方法与证据边界。", "url": "https://lgystoic.github.io/notes/xiaomi-chatgpt-passkey/", "mainEntityOfPage": "https://lgystoic.github.io/notes/xiaomi-chatgpt-passkey/", "inLanguage": "zh-CN", "dateModified": "2026-10-11", "datePublished": "2026-10-11", "keywords": "Android, 小米, ChatGPT, Passkeys, WebAuthn", "isBasedOn": "真实设备排查 / Chromium / W3C WebAuthn", "author": {"@type": "Person", "name": "Anaxagore", "url": "https://lgystoic.github.io/about/"}, "publisher": {"@type": "Person", "name": "Anaxagore", "url": "https://lgystoic.github.io/"}, "image": "https://lgystoic.github.io/assets/og/notes.png"}</script>
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Anaxagore", "item": "https://garryling.427795.xyz/"}, {"@type": "ListItem", "position": 2, "name": "笔记", "item": "https://garryling.427795.xyz/notes/"}, {"@type": "ListItem", "position": 3, "name": "想降到 Plus，却先修了小米通行密钥登录", "item": "https://garryling.427795.xyz/notes/xiaomi-chatgpt-passkey/"}]}</script>
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "想降到 Plus，却先修了小米通行密钥登录", "description": "小米14指纹通过后，ChatGPT网页与App登录仍卡住。用日志、精确版本源码和恢复实验追查连接类型兼容问题，记录临时方法与证据边界。", "url": "https://garryling.427795.xyz/notes/xiaomi-chatgpt-passkey/", "mainEntityOfPage": "https://garryling.427795.xyz/notes/xiaomi-chatgpt-passkey/", "inLanguage": "zh-CN", "dateModified": "2026-10-11", "datePublished": "2026-10-11", "keywords": "Android, 小米, ChatGPT, Passkeys, WebAuthn", "isBasedOn": "真实设备排查 / Chromium / W3C WebAuthn", "author": {"@type": "Person", "@id": "https://garryling.427795.xyz/#person", "name": "Anaxagore", "url": "https://garryling.427795.xyz/about/"}, "publisher": {"@type": "Person", "@id": "https://garryling.427795.xyz/#person", "name": "Anaxagore", "url": "https://garryling.427795.xyz/"}, "image": "https://garryling.427795.xyz/assets/og/notes.png"}</script>
     <!-- /build:jsonld -->
   </head>
   <body>
@@ -97,7 +98,11 @@ android.credentials.GetCredentialException.TYPE_UNKNOWN</code></pre><p>只读分
 <section class="section"><h2>登录恢复后，继续配置与订阅</h2><div class="cards"><article><h3>注册并订阅 ChatGPT</h3><p>我整理的账号注册与订阅流程，方便按步骤核对准备事项。</p><p><a href="/guides/chatgpt/">阅读 ChatGPT 注册与订阅指南 →</a></p></article><article><h3>代理软件的购买与使用</h3><p>我整理的代理订阅与客户端配置流程，按你的使用场景继续阅读。</p><p><a href="/guides/proxy/">阅读代理订阅与使用指南 →</a></p></article></div><p>这两篇是独立的上手指南。本案登录故障的证据指向通行密钥组件兼容问题，换订阅或购买代理不构成本案修复方法。</p></section>
 <section class="section"><h2>继续看这个案例</h2><p>喜欢这种从真实故障查到源码的排查记录，可以在上方小红书图解关注 Anaxagore，或通过公众号文章关注作者；后续复现和官方修复进展会在有证据时补充。</p><p class="meta">本文为原创排查的 AI 辅助整理。请通过链接分享，未经许可请勿整篇复制转载。</p></section>
 
-<!-- build:comments -->
+<!-- build:ad -->
+
+    <!-- /build:ad -->
+
+      <!-- build:comments -->
 
     <!-- /build:comments -->
     </main>
@@ -117,6 +122,8 @@ Anaxagore
   function gc(){return window.goatcounter&&window.goatcounter.count?window.goatcounter:null}
   function send(path,title){var g=gc();if(g)g.count({path:path,title:title||path,event:true})}
   document.addEventListener("click",function(e){
+    var ad=e.target.closest&&e.target.closest("[data-ad],.adsbygoogle");
+    if(ad){send("ad/"+(ad.getAttribute("data-ad")||"adsense"),"广告位 @ "+location.pathname);return}
     var a=e.target.closest&&e.target.closest("a");
     if(!a)return;
     var offer=a.closest(".offer");

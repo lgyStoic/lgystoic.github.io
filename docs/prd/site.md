@@ -4,7 +4,7 @@
 
 ## 1. 目标与非目标
 
-**目标**：一个没有服务器、没有域名的个人平台。`lgystoic.github.io` 当域名，GitHub Actions 当后台，仓库里的 JSON 当数据库，GitHub Pages 当前端。三个角色：记（笔记、指南）、看（雷达、活动、岗位、开源贡献）、做（收件箱、巡检）。
+**目标**：一个没有服务器的个人平台。`garryling.427795.xyz`（`lgystoic.github.io` 301 跳转）当主域名，GitHub Actions 当后台，仓库里的 JSON 当数据库，GitHub Pages 当前端。三个角色：记（笔记、指南）、看（雷达、活动、岗位、开源贡献）、做（收件箱、巡检）。
 
 **非目标**：不用前端框架和构建工具链；不做登录、用户态、服务端渲染；不在浏览器里 fetch 数据（列表全部预渲染进 HTML，禁用 JS 也能读，搜索引擎能抓到）。
 
@@ -24,9 +24,10 @@
 | 统一页头页脚 | 品牌 A + 导航 + 深浅色开关，由 `site.json` 生成，注入所有带 `<!-- build:header -->` 的页面；当前模块高亮 | `render_site_header`、`current_module`、`inject_site_chrome` |
 | 注入机制 | `<!-- build:NAME --> … <!-- /build:NAME -->` 标记内的内容每次重建替换，幂等 | `inject` |
 | 深浅色 | CSS 变量在 `:root` 定义，`prefers-color-scheme` + `data-theme` 手动覆盖，记在 localStorage；同步 giscus 主题 | `site.js theme()` |
-| 访问统计 | GoatCounter（站点代号 `anaxagore`，看板仅站长可见）；额外事件：推荐位点击 `aff/*`、外链 `out/*`、分享 `share/copy|native` | `render_analytics` |
+| 访问统计 | GoatCounter（站点代号 `anaxagore`，看板仅站长可见）；额外事件：推荐位点击 `aff/*`、广告位 `ad/*`、外链 `out/*`、分享 `share/copy|native` | `render_analytics` |
+| 广告 | Google AdSense（`site.json.ads`）；`ads.client` 非空时自动生成 `/ads.txt`、注入 `<meta name="google-adsense-account">` 与异步脚本，`ads.slot` 非空时在 `<!-- build:ad -->` 渲染自适应广告位；为空时不发任何第三方请求 | `write_ads_txt`、`render_ad_slot`、`render_analytics` |
 | 评论 | giscus（GitHub Discussions）；`comments.repo_id / category_id` 为空时整个评论区不渲染 | `render_comments` |
-| SEO | Bing / Google 站长验证 meta、`robots.txt`（屏蔽 `/radar/data/`、`/templates/`）、`sitemap.xml`（排除模板和 noindex 的状态页）、每页 canonical、OG 1200×630 卡片 `assets/og/*.png`、指南页 HowTo + 面包屑 JSON-LD | `write_sitemap`、各页 head |
+| SEO / GEO | 主域名 `https://garryling.427795.xyz`（`CNAME` 与 `robots.txt` 自动同步）；Bing / Google 站长验证 meta、`robots.txt`、`sitemap.xml`、`llms.txt`、每页 canonical、OG 1200×630 卡片 `assets/og/*.png`、全站 JSON-LD 结构化数据 | `write_sitemap`、`write_llms_txt`、`inject_site_chrome` |
 | RSS | `feed.xml` 笔记、`radar/feed.xml` 雷达（每期一条） | `write_radar_feed` 等 |
 | 分享条 | 「复制链接 / 分享…」（Web Share API 可用时显示原生按钮） | `site.js share()` |
 | 归档搜索 | 笔记归档页关键词搜索 + 标签 chips + 年份分组隐藏，`/` 聚焦搜索框 | `site.js archive()` |

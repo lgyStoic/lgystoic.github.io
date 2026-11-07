@@ -1,4 +1,4 @@
-<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>开源贡献路线 | Anaxagore</title><meta name="description" content="面向 AI Infra、DiT 与训推加速项目的核心贡献者路线图。"><link rel="canonical" href="https://lgystoic.github.io/radar/contributions/"><link rel="stylesheet" href="../../site.css"><style>.contribution-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,26rem),1fr));gap:1rem}.contribution-card{padding:1.2rem;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface)}.contribution-card h2{margin:.3rem 0}.contribution-card li+li{margin-top:.35rem}</style></head><body>
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>开源贡献路线 | Anaxagore</title><meta name="description" content="面向 AI Infra、DiT 与训推加速项目的核心贡献者路线图：14 个重点仓库的五章分析与可认领任务卡。"><link rel="canonical" href="https://garryling.427795.xyz/radar/contributions/"><meta property="og:type" content="website"><meta property="og:title" content="开源贡献路线 | Anaxagore"><meta property="og:description" content="面向 AI Infra、DiT 与训推加速项目的核心贡献者路线图：14 个重点仓库的五章分析与可认领任务卡。"><meta property="og:url" content="https://garryling.427795.xyz/radar/contributions/"><meta property="og:image" content="https://garryling.427795.xyz/assets/og/home.png"><meta name="twitter:card" content="summary_large_image"><script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"开源贡献路线 | Anaxagore","url":"https://garryling.427795.xyz/radar/contributions/","description":"面向 AI Infra、DiT 与训推加速项目的核心贡献者路线图：14 个重点仓库的五章分析与可认领任务卡。","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","@id":"https://garryling.427795.xyz/#website","name":"Anaxagore","url":"https://garryling.427795.xyz/"}}</script><link rel="stylesheet" href="../../site.css"><style>.contribution-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,26rem),1fr));gap:1rem}.contribution-card{padding:1.2rem;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface)}.contribution-card h2{margin:.3rem 0}.contribution-card li+li{margin-top:.35rem}</style></head><body>
 <!-- build:header -->
     <header class="site-header">
       <div class="wrap">
@@ -46,4 +46,25 @@
 <article class="contribution-card"><p class="kicker">1 个候选任务</p><h2><a href="./thu-mig--edge-dit.cpp/">THU-MIG/edge-dit.cpp</a></h2><p>edge-dit.cpp 是清华大学 THU-MIG 团队发起的一个开源、DiT-first 的 C/C++ 原生推理引擎，专为在本地和资源受限设备上运行 Diffusion Transformer（DiT）而设计。它基于 ggml 张量/图运行时构建，目标是在没有 Python、没有 PyTorch 依赖的前提下，为 FLUX.1/FLUX.2、SD3/S…</p><p class="radar-stats">CPU / Metal 验证与工具链质量（覆盖 <code>src/core/runtime</code> CPU 路径、<code>src/core/parallel/backends/cpu</code>、`src/ut</p><p class="radar-stats">★ 51 · 最近推送 2026-09-01</p><ul><li>proposal: 为 LTX-2.3 补 CPU 路径回归测试与文档对齐（基于 #82 上线后）</li></ul><p><a href="./thu-mig--edge-dit.cpp/">查看任务卡与实施方案 →</a></p></article>
 </div>
     <!-- /build:contributions --></section></main>
-<footer class="site-footer"><div class="wrap"><span>© 2026 Anaxagore</span><span><a href="../../about/">关于</a></span></div></footer><script src="../../site.js" defer></script></body></html>
+<footer class="site-footer"><div class="wrap"><span>© 2026 Anaxagore</span><span><a href="../../about/">关于</a></span></div></footer><script src="../../site.js" defer></script><!-- build:analytics -->
+    <script data-goatcounter="https://anaxagore.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+    <script>(function(){
+  function gc(){return window.goatcounter&&window.goatcounter.count?window.goatcounter:null}
+  function send(path,title){var g=gc();if(g)g.count({path:path,title:title||path,event:true})}
+  document.addEventListener("click",function(e){
+    var ad=e.target.closest&&e.target.closest("[data-ad],.adsbygoogle");
+    if(ad){send("ad/"+(ad.getAttribute("data-ad")||"adsense"),"广告位 @ "+location.pathname);return}
+    var a=e.target.closest&&e.target.closest("a");
+    if(!a)return;
+    var offer=a.closest(".offer");
+    if(a.hasAttribute("data-aff-link")||a.hasAttribute("data-aff")||(a.rel||"").indexOf("sponsored")>-1){
+      var key=(offer&&offer.getAttribute("data-aff"))||a.getAttribute("data-aff")||"link";
+      send("aff/"+key,"推荐位："+key+" @ "+location.pathname);return}
+    if(a.host&&a.host!==location.host){send("out/"+a.host,"外链："+a.host+" @ "+location.pathname)}
+  });
+  document.addEventListener("click",function(e){
+    var b=e.target.closest&&e.target.closest("[data-share-copy],[data-share-native]");
+    if(b)send("share/"+(b.hasAttribute("data-share-copy")?"copy":"native"),"分享 @ "+location.pathname)
+  });
+})();</script>
+    <!-- /build:analytics --></body></html>

@@ -5,15 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>笔记归档 | Anaxagore</title>
     <meta name="description" content="Anaxagore 的全部笔记归档，支持关键词搜索与主题筛选。" />
-    <link rel="canonical" href="https://lgystoic.github.io/notes/" />
+    <link rel="canonical" href="https://garryling.427795.xyz/notes/" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content="笔记归档 | Anaxagore" />
     <meta property="og:description" content="Anaxagore 的全部笔记归档，支持关键词搜索与主题筛选。" />
-    <meta property="og:url" content="https://lgystoic.github.io/notes/" />
-    <meta property="og:image" content="https://lgystoic.github.io/assets/og/notes.png" />
+    <meta property="og:url" content="https://garryling.427795.xyz/notes/" />
+    <meta property="og:image" content="https://garryling.427795.xyz/assets/og/notes.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta name="twitter:card" content="summary_large_image" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"笔记归档 | Anaxagore","url":"https://garryling.427795.xyz/notes/","description":"Anaxagore 的全部笔记归档，支持关键词搜索与主题筛选。","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","@id":"https://garryling.427795.xyz/#website","name":"Anaxagore","url":"https://garryling.427795.xyz/"}}</script>
     <link rel="alternate" type="application/rss+xml" title="Anaxagore" href="../feed.xml" />
     <link
       rel="icon"
@@ -291,6 +292,8 @@ Anaxagore
   function gc(){return window.goatcounter&&window.goatcounter.count?window.goatcounter:null}
   function send(path,title){var g=gc();if(g)g.count({path:path,title:title||path,event:true})}
   document.addEventListener("click",function(e){
+    var ad=e.target.closest&&e.target.closest("[data-ad],.adsbygoogle");
+    if(ad){send("ad/"+(ad.getAttribute("data-ad")||"adsense"),"广告位 @ "+location.pathname);return}
     var a=e.target.closest&&e.target.closest("a");
     if(!a)return;
     var offer=a.closest(".offer");

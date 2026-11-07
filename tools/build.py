@@ -40,9 +40,10 @@ TRACKS_CONFIG = RADAR_DIR / "tracks.json"
 TRACKS_DATA = RADAR_DATA / "tracks"
 CHECKS_DIR = RADAR_DIR / "checks"
 LAST_RUN = RADAR_DATA / "last-run.json"
-SITE_URL = "https://lgystoic.github.io"
-SITE_TITLE = json.loads((ROOT / "site.json").read_text(encoding="utf-8")).get("name", "Anaxagore")
 SITE_JSON = ROOT / "site.json"
+_SITE_META = json.loads(SITE_JSON.read_text(encoding="utf-8")) if SITE_JSON.exists() else {}
+SITE_URL = (_SITE_META.get("url") or "https://garryling.427795.xyz").rstrip("/")
+SITE_TITLE = _SITE_META.get("name", "Anaxagore")
 SITE_DESC = "GPU kernel、训练性能、生成模型和城市数据的中文笔记存档。"
 LATEST_ON_HOME = 4
 GUIDES_DIR = ROOT / "guides"
@@ -623,16 +624,96 @@ def render_radar_jsonld(day: dict) -> str:
     return "\n".join(_ld(d) for d in data)
 
 
-def render_note_jsonld(note: dict) -> str:
-    """笔记页：BlogPosting，字段来自 notes.json。"""
+def render_jobs_jsonld(limit: int = 35) -> str:
+    """岗位页：把高匹配企业直招岗位做成 schema.org ItemList + JobPosting，方便搜索引擎和 AI 搜索直接提取岗位、公司、城市与匹配理由。"""
+    jobs_path = ROOT / "radar/data/jobs.json"
+    if not jobs_path.exists():
+        return ""
+    try:
+        payload = json.loads(jobs_path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return ""
+    jobs = [j for j in payload.get("jobs", []) if j.get("listing_type") != "headhunter" and j.get("url")]
+    if not jobs:
+        return ""
+    items = []
+    for i, j in enumerate(jobs[:limit], 1):
+        region = j.get("region", "")
+        country = "HK" if region == "香港" else ("CN" if region in ("深圳", "国内") else "US")
+        posting = {
+            "@type": "JobPosting",
+            "title": j.get("title", ""),
+            "url": j.get("url", ""),
+            "datePosted": (j.get("last_seen") or payload.get("updated") or "")[:10],
+            "employmentType": "FULL_TIME",
+            "directApply": True,
+            "description": "；".join(j.get("reasons") or []) or j.get("title", ""),
+            "hiringOrganization": {"@type": "Organization", "name": j.get("company", "未知公司")},
+            "jobLocation": {
+                "@type": "Place",
+                "address": {
+                    "@type": "PostalAddress",
+                    "addressLocality": j.get("location") or region or "深圳",
+                    "addressCountry": country,
+                },
+            },
+        }
+        if region == "远程" or "remote" in (j.get("location") or "").lower():
+            posting["jobLocationType"] = "TELECOMMUTE"
+        items.append({"@type": "ListItem", "position": i, "item": posting})
+    return _ld({
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "name": "深圳 / 香港 / 国内及远程 AI Infra、GPU Kernel、DiT、端侧部署岗位聚合",
+        "url": f"{SITE_URL}/radar/jobs/",
+        "numberOfItems": len(items),
+        "itemListElement": items,
+    })
+
+
+def render_note_jsonld(note: dict, *, include_meta: bool = False) -> str:
+    """笔记页：BreadcrumbList + BlogPosting，字段来自 notes.json。早期独立样式页缺少 canonical / OG 时一并补齐。"""
     url = SITE_URL + note.get("absoluteUrl", "/notes/" + note.get("slug", "") + "/")
-    return _ld({"@context": "https://schema.org", "@type": "BlogPosting", "headline": note.get("title", ""),
-                "description": note.get("summary", ""), "url": url, "mainEntityOfPage": url, "inLanguage": "zh-CN",
-                "dateModified": note.get("updated", ""), "datePublished": note.get("published") or note.get("updated", ""),
-                "keywords": ", ".join(note.get("tags", [])), "isBasedOn": note.get("source", ""),
-                "author": {"@type": "Person", "name": SITE_TITLE, "url": SITE_URL + "/about/"},
-                "publisher": {"@type": "Person", "name": SITE_TITLE, "url": SITE_URL + "/"},
-                "image": f"{SITE_URL}/assets/og/notes.png"})
+    title = note.get("title", "")
+    summary = note.get("summary", "")
+    meta_lines = []
+    if include_meta:
+        meta_lines = [
+            f'    <meta name="description" content="{esc(summary)}" />',
+            f'    <link rel="canonical" href="{esc(url)}" />',
+            '    <meta property="og:type" content="article" />',
+            f'    <meta property="og:title" content="{esc(title)} | {esc(SITE_TITLE)}" />',
+            f'    <meta property="og:description" content="{esc(summary)}" />',
+            f'    <meta property="og:url" content="{esc(url)}" />',
+            f'    <meta property="og:image" content="{SITE_URL}/assets/og/notes.png" />',
+            '    <meta name="twitter:card" content="summary_large_image" />',
+        ]
+    breadcrumbs = _ld({
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": SITE_TITLE, "item": f"{SITE_URL}/"},
+            {"@type": "ListItem", "position": 2, "name": "笔记", "item": f"{SITE_URL}/notes/"},
+            {"@type": "ListItem", "position": 3, "name": title, "item": url},
+        ],
+    })
+    posting = _ld({
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": title,
+        "description": summary,
+        "url": url,
+        "mainEntityOfPage": url,
+        "inLanguage": "zh-CN",
+        "dateModified": note.get("updated", ""),
+        "datePublished": note.get("published") or note.get("updated", ""),
+        "keywords": ", ".join(note.get("tags", [])),
+        "isBasedOn": note.get("source", ""),
+        "author": {"@type": "Person", "@id": f"{SITE_URL}/#person", "name": SITE_TITLE, "url": f"{SITE_URL}/about/"},
+        "publisher": {"@type": "Person", "@id": f"{SITE_URL}/#person", "name": SITE_TITLE, "url": f"{SITE_URL}/"},
+        "image": f"{SITE_URL}/assets/og/notes.png",
+    })
+    return "\n".join([*meta_lines, breadcrumbs, posting])
 
 
 def inject_note_jsonld(notes: list[dict]) -> int:
@@ -640,17 +721,22 @@ def inject_note_jsonld(notes: list[dict]) -> int:
     n = 0
     for note in notes:
         page = ROOT / note.get("absoluteUrl", "").strip("/") / "index.html"
-        if page.exists() and "<!-- build:jsonld -->" in page.read_text(encoding="utf-8"):
-            inject(page, {"jsonld": render_note_jsonld(note)}); n += 1
+        if page.exists():
+            raw = page.read_text(encoding="utf-8")
+            if "<!-- build:jsonld -->" in raw:
+                outside = re.sub(r"<!-- build:jsonld -->.*?<!-- /build:jsonld -->", "", raw, flags=re.DOTALL)
+                need_meta = 'rel="canonical"' not in outside
+                inject(page, {"jsonld": render_note_jsonld(note, include_meta=need_meta)})
+                n += 1
     return n
 
 
 def write_llms_txt(site: dict, notes: list[dict], guides: list[dict], days: list[dict], events_data: dict | None) -> None:
     """/llms.txt：给 AI 搜索与大模型爬虫的站点说明（llmstxt.org 约定）。所有列表由数据生成，和页面同步。"""
     lines = [f"# {SITE_TITLE}", "", f"> {site.get('description', SITE_DESC)}", "",
-             f"作者 {SITE_TITLE}（GitHub：lgyStoic），深圳，方向：GPU kernel 与训练性能优化、生成模型（DiT / 视频生成）推理加速、端侧部署。"
-             "站点全部中文，纯静态，托管在 GitHub Pages；所有列表页预渲染，`radar/data/*.json` 是公开数据接口。",
-             "引用时请写「Anaxagore（lgystoic.github.io）」并附页面链接；雷达与活动摘要由模型生成，事实以链接原文为准。", ""]
+             f"作者 {SITE_TITLE}（Garry Ling，GitHub：lgyStoic），深圳，方向：GPU kernel 与训练性能优化、生成模型（DiT / 视频生成）推理加速、端侧部署。"
+             f"主域名 `{SITE_URL}`（原 GitHub Pages 地址 `https://lgystoic.github.io` 301 跳转至此）。站点全部中文，纯静态，所有列表页预渲染，`radar/data/*.json` 是公开数据接口。",
+             "引用时请写「Anaxagore（garryling.427795.xyz / lgystoic.github.io）」并附页面链接；雷达与活动摘要由模型生成，事实以链接原文为准。", ""]
     lines += ["## 上手指南（教程）", ""]
     for g in guides or []:
         if g.get("status") == "published":
@@ -674,7 +760,17 @@ def write_llms_txt(site: dict, notes: list[dict], guides: list[dict], days: list
             dg = (d.get("digest") or {}).get("text", "")
             lines.append(f"- [{t['name']}]({SITE_URL}/radar/tracks/{t['id']}/): {t.get('blurb', '')[:100]}；累计 {len(d.get('entries', []))} 条" + (f"；本周综述：{dg[:160]}" if dg else ""))
     lines += ["", "## 活动清单", "", f"- [深圳 / 广州 / 香港及线上的 AI 活动]({SITE_URL}/radar/events/): 目前即将发生 {alive} 个，页面内含 schema.org Event 数据"]
-    lines += ["", "## 工作机会", "", f"- [AI Infra / GPU Kernel / DiT / 端侧部署 岗位聚合]({SITE_URL}/radar/jobs/): 深圳优先，其次香港与国内，每日更新，附匹配理由"]
+    lines += ["", "## 工作机会", "", f"- [AI Infra / GPU Kernel / DiT / 端侧部署 岗位聚合]({SITE_URL}/radar/jobs/): 深圳优先，其次香港与国内，每日更新，附匹配理由与 schema.org JobPosting 数据"]
+    jobs_file = ROOT / "radar/data/jobs.json"
+    if jobs_file.exists():
+        try:
+            jdata = json.loads(jobs_file.read_text(encoding="utf-8"))
+            direct_high = [j for j in jdata.get("jobs", []) if j.get("listing_type") != "headhunter" and j.get("level") == "高"][:10]
+            for j in direct_high:
+                reasons = "；".join(j.get("reasons") or [])
+                lines.append(f"- [{j.get('company', '')} · {j.get('title', '')}]({j.get('url', '')}): {j.get('location', '')}（{j.get('region', '')}）· {reasons}")
+        except Exception:
+            pass
     lines += ["", "## 开源贡献路线", "", f"- [总览]({SITE_URL}/radar/contributions/): 14 个 AI 推理 / kernel 仓库的五章分析（定位、架构、本地运行、社区、切入）与可认领任务卡"]
     contrib = ROOT / "radar/data/contributions.json"
     if contrib.exists():
@@ -700,9 +796,13 @@ VERIFICATION_META = {"bing": "msvalidate.01", "google": "google-site-verificatio
 
 
 def render_verification(site: dict) -> str:
-    """站长平台验证 meta：site.json.seo.verification 里非空的都输出。"""
+    """站长平台验证 meta + Google AdSense 站点归属验证 meta：非空才输出。"""
     codes = ((site.get("seo") or {}).get("verification") or {})
-    return "\n".join(f'    <meta name="{VERIFICATION_META[k]}" content="{esc(v)}" />' for k, v in codes.items() if k in VERIFICATION_META and v)
+    tags = [f'    <meta name="{VERIFICATION_META[k]}" content="{esc(v)}" />' for k, v in codes.items() if k in VERIFICATION_META and v]
+    ads_client = ((site.get("ads") or {}).get("client") or "").strip()
+    if ads_client:
+        tags.append(f'    <meta name="google-adsense-account" content="{esc(ads_client)}" />')
+    return "\n".join(tags)
 
 
 def render_home_events(data: dict | None, types: dict) -> str:
@@ -839,6 +939,13 @@ def render_status(days: list[dict], events_data: dict | None) -> dict[str, str]:
         run_html += f'\n    <p class="radar-stats">访问统计：GoatCounter（{vis}） · <a href="{esc(dash)}" rel="noreferrer">看板</a> · 记录来源站、UTM、每页访问和推荐位点击</p>'
     else:
         run_html += '\n    <p class="radar-stats">访问统计：未启用（site.json → analytics.code 为空）</p>'
+    ads_cfg = site.get("ads") or {}
+    ads_client = (ads_cfg.get("client") or "").strip()
+    if ads_client:
+        ads_slot = (ads_cfg.get("slot") or "").strip() or "自动广告"
+        run_html += f'\n    <p class="radar-stats">广告：Google AdSense（已启用 · {esc(ads_client)} · 广告位：{esc(ads_slot)} · 已生成 /ads.txt）</p>'
+    else:
+        run_html += '\n    <p class="radar-stats">广告：Google AdSense 就绪（site.json → ads.client 填入 ca-pub-xxx 后自动生成 /ads.txt 与广告脚本）</p>'
     return {"status-run": run_html + ("\n" + ai_line if ai_line else ""), "status-checks": checks_html, "status-sources": table}
 
 
@@ -1057,6 +1164,26 @@ def render_tracks_index_body(cfg: list[dict], data: dict[str, dict]) -> str:
             '      <ul class="card-grid">\n' + "\n".join(cards) + "\n      </ul>")
 
 
+def render_tracks_index_jsonld(cfg: list[dict], url: str) -> str:
+    return _ld({
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        "name": "专题追踪 | " + SITE_TITLE,
+        "url": url,
+        "description": "视频生成模型、世界模型等专题的累积时间线、线程、每周综述与现状表。",
+        "inLanguage": "zh-CN",
+        "isPartOf": {"@type": "WebSite", "@id": f"{SITE_URL}/#website", "name": SITE_TITLE, "url": f"{SITE_URL}/"},
+        "mainEntity": {
+            "@type": "ItemList",
+            "numberOfItems": len(cfg),
+            "itemListElement": [
+                {"@type": "ListItem", "position": i + 1, "name": t["name"], "url": f"{SITE_URL}/radar/tracks/{t['id']}/"}
+                for i, t in enumerate(cfg)
+            ],
+        },
+    })
+
+
 def write_track_pages(site: dict) -> list[str]:
     """生成 /radar/tracks/ 与 /radar/tracks/<id>/；返回生成的 URL 路径。"""
     cfg, data = load_tracks_data()
@@ -1066,9 +1193,10 @@ def write_track_pages(site: dict) -> list[str]:
     out_dir.mkdir(parents=True, exist_ok=True)
     urls = ["/radar/tracks/"]
     common = dict(site_url=SITE_URL, favicon=FAVICON, site_name=esc(SITE_TITLE), analytics=render_analytics(site))
+    index_url = f"{SITE_URL}/radar/tracks/"
     (out_dir / "index.html").write_text(TRACK_PAGE_TEMPLATE.format(
-        title="专题追踪", description="视频生成模型、世界模型等专题的累积时间线、线程、每周综述与现状表。", canonical=f"{SITE_URL}/radar/tracks/", prefix="../../",
-        header=render_site_header(site, "../../", "tracks"), jsonld="", body=render_tracks_index_body(cfg, data), **common), encoding="utf-8")
+        title="专题追踪", description="视频生成模型、世界模型等专题的累积时间线、线程、每周综述与现状表。", canonical=index_url, prefix="../../",
+        header=render_site_header(site, "../../", "tracks"), jsonld=render_tracks_index_jsonld(cfg, index_url), body=render_tracks_index_body(cfg, data), **common), encoding="utf-8")
     for t in cfg:
         d = data.get(t["id"])
         url = f"{SITE_URL}/radar/tracks/{t['id']}/"
@@ -1238,12 +1366,14 @@ def build_guides() -> list[dict]:
     return guides
 
 
-# ---------------------------------------------------------------- 访问统计（GoatCounter）
+# ---------------------------------------------------------------- 访问统计（GoatCounter）与广告（Google AdSense）
 
 ANALYTICS_EVENTS_JS = """(function(){
   function gc(){return window.goatcounter&&window.goatcounter.count?window.goatcounter:null}
   function send(path,title){var g=gc();if(g)g.count({path:path,title:title||path,event:true})}
   document.addEventListener("click",function(e){
+    var ad=e.target.closest&&e.target.closest("[data-ad],.adsbygoogle");
+    if(ad){send("ad/"+(ad.getAttribute("data-ad")||"adsense"),"广告位 @ "+location.pathname);return}
     var a=e.target.closest&&e.target.closest("a");
     if(!a)return;
     var offer=a.closest(".offer");
@@ -1260,15 +1390,63 @@ ANALYTICS_EVENTS_JS = """(function(){
 
 
 def render_analytics(site: dict) -> str:
-    """GoatCounter 计数脚本 + 推荐位 / 外链 / 分享事件埋点。code 为空则输出空字符串。"""
+    """GoatCounter 计数脚本 + 推荐位 / 广告位 / 外链 / 分享事件埋点 + 可选 Google AdSense 脚本。未配置项不发任何外部请求。"""
+    parts = []
     a = site.get("analytics") or {}
     code = (a.get("code") or "").strip()
-    if not code or a.get("provider", "goatcounter") != "goatcounter":
+    if code and a.get("provider", "goatcounter") == "goatcounter":
+        parts.append(f'    <script data-goatcounter="https://{esc(code)}.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>')
+        parts.append(f"    <script>{ANALYTICS_EVENTS_JS}</script>")
+    ads = site.get("ads") or {}
+    client = (ads.get("client") or "").strip()
+    if client and ads.get("provider", "adsense") == "adsense" and ads.get("auto_ads", True):
+        parts.append(
+            f'    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client={esc(client)}" crossorigin="anonymous"></script>'
+        )
+    return "\n".join(parts)
+
+
+def render_ad_slot(site: dict) -> str:
+    """文末或段落间广告位（<!-- build:ad -->）：仅当 site.json -> ads.client 与 ads.slot 同时非空时渲染，否则为空。"""
+    ads = site.get("ads") or {}
+    client = (ads.get("client") or "").strip()
+    slot = (ads.get("slot") or "").strip()
+    if not (client and slot) or ads.get("provider", "adsense") != "adsense":
         return ""
     return (
-        f'    <script data-goatcounter="https://{esc(code)}.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>\n'
-        f"    <script>{ANALYTICS_EVENTS_JS}</script>"
+        '    <aside class="ad-slot" data-ad="adsense" aria-label="赞助广告">\n'
+        '      <p class="ad-label">赞助内容</p>\n'
+        f'      <ins class="adsbygoogle" style="display:block" data-ad-client="{esc(client)}" '
+        f'data-ad-slot="{esc(slot)}" data-ad-format="auto" data-full-width-responsive="true"></ins>\n'
+        "      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>\n"
+        "    </aside>"
     )
+
+
+def write_ads_txt(site: dict) -> None:
+    """当 site.json -> ads.client 非空时，在站点根目录生成 /ads.txt 供 Google AdSense 抓取验证；为空时删除残留文件。"""
+    ads = site.get("ads") or {}
+    client = (ads.get("client") or "").strip()
+    ads_txt = ROOT / "ads.txt"
+    if client and ads.get("provider", "adsense") == "adsense":
+        pub_id = client[3:] if client.startswith("ca-pub-") else (client if client.startswith("pub-") else f"pub-{client}")
+        ads_txt.write_text(f"google.com, {pub_id}, DIRECT, f08c47fec0942fa0\n", encoding="utf-8")
+    elif ads_txt.exists():
+        ads_txt.unlink()
+
+
+def write_cname_and_robots() -> None:
+    """保持 CNAME 与 robots.txt 里的 Sitemap 指向 site.json.url 对应的主域名。"""
+    from urllib.parse import urlparse
+    host = urlparse(SITE_URL).netloc
+    if host and not host.endswith(".github.io"):
+        (ROOT / "CNAME").write_text(host + "\n", encoding="utf-8")
+    robots = ROOT / "robots.txt"
+    if robots.exists():
+        raw = robots.read_text(encoding="utf-8")
+        updated = re.sub(r"^Sitemap:\s*\S+", f"Sitemap: {SITE_URL}/sitemap.xml", raw, flags=re.MULTILINE)
+        if updated != raw:
+            robots.write_text(updated, encoding="utf-8")
 
 
 def analytics_dashboard(site: dict) -> str:
@@ -1359,13 +1537,22 @@ def render_site_header(site: dict, prefix: str, current: str | None) -> str:
 
 
 def inject_site_chrome(site: dict) -> int:
-    """给所有带 <!-- build:header --> 的页面生成头部；带 build:site-name 的位置填站名。"""
+    """给所有带 <!-- build:header --> 的页面生成头部；带 build:site-name 的位置填站名；统一 canonical 与 og:url/og:image 主域名。"""
     n = 0
     for page in sorted(ROOT.glob("**/*.html")):
         rel = page.relative_to(ROOT).as_posix()
         if rel.startswith(("radar/20", "node_modules/", "templates/")):
             continue
         text = page.read_text(encoding="utf-8")
+        # 统一将页面头部 canonical / og:url / og:image 的旧 github.io 域名替换为主域名 SITE_URL
+        rewritten = re.sub(
+            r'(<(?:link\s+rel="canonical"|meta\s+property="og:(?:url|image)")[^>]*\b(?:href|content)=")https://lgystoic\.github\.io(?=[/"])',
+            lambda m: m.group(1) + SITE_URL,
+            text,
+        )
+        if rewritten != text:
+            page.write_text(rewritten, encoding="utf-8")
+            text = rewritten
         blocks = {}
         if "<!-- build:header -->" in text:
             if rel == "404.html":
@@ -1379,6 +1566,8 @@ def inject_site_chrome(site: dict) -> int:
             blocks["site-name"] = esc(site.get("name", SITE_TITLE))
         if "<!-- build:analytics -->" in text:
             blocks["analytics"] = render_analytics(site)
+        if "<!-- build:ad -->" in text:
+            blocks["ad"] = render_ad_slot(site)
         if "<!-- build:comments -->" in text:
             blocks["comments"] = render_comments(site)
         if blocks:
@@ -1478,7 +1667,10 @@ def write_sitemap(notes: list[dict], days: list[dict], guides: list[dict] | None
 
 def main() -> None:
     from jobs import render as render_jobs
-    inject(ROOT / "radar/jobs/index.html", {"jobs": render_jobs()})
+    jobs_blocks = {"jobs": render_jobs()}
+    if "<!-- build:jobs-jsonld -->" in (ROOT / "radar/jobs/index.html").read_text(encoding="utf-8"):
+        jobs_blocks["jobs-jsonld"] = render_jobs_jsonld()
+    inject(ROOT / "radar/jobs/index.html", jobs_blocks)
     from contributions import render as render_contributions
     inject(ROOT / "radar/contributions/index.html", {"contributions": render_contributions()})
     notes = load_notes()
@@ -1488,6 +1680,8 @@ def main() -> None:
     event_types = events_config.get("types", {})
 
     site = load_site()
+    write_cname_and_robots()
+    write_ads_txt(site)
     inject_site_chrome(site)
     inject(
         ROOT / "index.html",
