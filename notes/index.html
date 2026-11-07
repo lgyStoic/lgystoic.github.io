@@ -70,23 +70,26 @@
     <ul class="tag-cloud">
       <li><button class="tag-chip" type="button" data-tag="" aria-pressed="true">全部</button></li>
       <li><button class="tag-chip" type="button" data-tag="CUDA" aria-pressed="false">CUDA <b>3</b></button></li>
+      <li><button class="tag-chip" type="button" data-tag="GPU" aria-pressed="false">GPU <b>3</b></button></li>
       <li><button class="tag-chip" type="button" data-tag="SwiGLU" aria-pressed="false">SwiGLU <b>3</b></button></li>
+      <li><button class="tag-chip" type="button" data-tag="System Design" aria-pressed="false">System Design <b>3</b></button></li>
       <li><button class="tag-chip" type="button" data-tag="B200" aria-pressed="false">B200 <b>2</b></button></li>
       <li><button class="tag-chip" type="button" data-tag="Blackwell" aria-pressed="false">Blackwell <b>2</b></button></li>
       <li><button class="tag-chip" type="button" data-tag="Flow Matching" aria-pressed="false">Flow Matching <b>2</b></button></li>
-      <li><button class="tag-chip" type="button" data-tag="GPU" aria-pressed="false">GPU <b>2</b></button></li>
       <li><button class="tag-chip" type="button" data-tag="MLP" aria-pressed="false">MLP <b>2</b></button></li>
-      <li><button class="tag-chip" type="button" data-tag="System Design" aria-pressed="false">System Design <b>2</b></button></li>
       <li><button class="tag-chip" type="button" data-tag="Triton" aria-pressed="false">Triton <b>2</b></button></li>
       <li><button class="tag-chip" type="button" data-tag="地铁" aria-pressed="false">地铁 <b>2</b></button></li>
     </ul>
     <details class="more-tags">
-      <summary>其余 48 个标签</summary>
+      <summary>其余 51 个标签</summary>
       <ul class="tag-cloud">
+      <li><button class="tag-chip" type="button" data-tag="成本优化" aria-pressed="false">成本优化 <b>2</b></button></li>
       <li><button class="tag-chip" type="button" data-tag="深圳" aria-pressed="false">深圳 <b>2</b></button></li>
       <li><button class="tag-chip" type="button" data-tag="3D Generation" aria-pressed="false">3D Generation <b>1</b></button></li>
       <li><button class="tag-chip" type="button" data-tag="3D Printing" aria-pressed="false">3D Printing <b>1</b></button></li>
       <li><button class="tag-chip" type="button" data-tag="3DGS" aria-pressed="false">3DGS <b>1</b></button></li>
+      <li><button class="tag-chip" type="button" data-tag="A100" aria-pressed="false">A100 <b>1</b></button></li>
+      <li><button class="tag-chip" type="button" data-tag="AI Agent" aria-pressed="false">AI Agent <b>1</b></button></li>
       <li><button class="tag-chip" type="button" data-tag="AI Compute" aria-pressed="false">AI Compute <b>1</b></button></li>
       <li><button class="tag-chip" type="button" data-tag="AI Video" aria-pressed="false">AI Video <b>1</b></button></li>
       <li><button class="tag-chip" type="button" data-tag="AMD" aria-pressed="false">AMD <b>1</b></button></li>
@@ -102,6 +105,7 @@
       <li><button class="tag-chip" type="button" data-tag="Diffusion" aria-pressed="false">Diffusion <b>1</b></button></li>
       <li><button class="tag-chip" type="button" data-tag="Distributed Training" aria-pressed="false">Distributed Training <b>1</b></button></li>
       <li><button class="tag-chip" type="button" data-tag="FDM" aria-pressed="false">FDM <b>1</b></button></li>
+      <li><button class="tag-chip" type="button" data-tag="Google Colab" aria-pressed="false">Google Colab <b>1</b></button></li>
       <li><button class="tag-chip" type="button" data-tag="KernelWiki" aria-pressed="false">KernelWiki <b>1</b></button></li>
       <li><button class="tag-chip" type="button" data-tag="Mesh" aria-pressed="false">Mesh <b>1</b></button></li>
       <li><button class="tag-chip" type="button" data-tag="Meshy" aria-pressed="false">Meshy <b>1</b></button></li>
@@ -128,14 +132,13 @@
       <li><button class="tag-chip" type="button" data-tag="住房" aria-pressed="false">住房 <b>1</b></button></li>
       <li><button class="tag-chip" type="button" data-tag="家庭自动化" aria-pressed="false">家庭自动化 <b>1</b></button></li>
       <li><button class="tag-chip" type="button" data-tag="小米" aria-pressed="false">小米 <b>1</b></button></li>
-      <li><button class="tag-chip" type="button" data-tag="成本优化" aria-pressed="false">成本优化 <b>1</b></button></li>
       <li><button class="tag-chip" type="button" data-tag="教育" aria-pressed="false">教育 <b>1</b></button></li>
       <li><button class="tag-chip" type="button" data-tag="状态机" aria-pressed="false">状态机 <b>1</b></button></li>
       </ul>
     </details>
     <!-- /build:tags -->
           <!-- build:count -->
-    <p class="result-count" data-result-count>15 篇</p>
+    <p class="result-count" data-result-count>16 篇</p>
     <!-- /build:count -->
         </div>
       </section>
@@ -145,6 +148,14 @@
     <section class="year-group" data-year="2026">
       <p class="year-label">2026</p>
       <ul class="post-list">
+      <li data-tags="Google Colab|AI Agent|GPU|A100|System Design|成本优化" data-search="开了 google one ai ultra，我把送的 a100 和 44 核大内存改造成了本地 ai agent 的自动算力后备箱 把 google one ai ultra 里的 colab 算力单元（cu）接进本地 ai agent：顺手给 google 官方 cli 修了个 260 倍的启动慢 bug（pr #218），再开源一套带显卡物理瓦数断路器、8 核 51gb 纯 cpu 集群与 44 核 172gb 大内存调度的 colab-ultra。 colab-ultra 开源实践 / google-colab-cli pr #218 google colab ai agent gpu a100 system design 成本优化">
+        <a class="post" href="/notes/colab-ultra/">
+          <p class="post-date">2026-11-07</p>
+          <h3 class="post-title">开了 Google One AI Ultra，我把送的 A100 和 44 核大内存改造成了本地 AI Agent 的自动算力后备箱</h3>
+          <p class="post-summary">把 Google One AI Ultra 里的 Colab 算力单元（CU）接进本地 AI Agent：顺手给 Google 官方 CLI 修了个 260 倍的启动慢 Bug（PR #218），再开源一套带显卡物理瓦数断路器、8 核 51GB 纯 CPU 集群与 44 核 172GB 大内存调度的 colab-ultra。</p>
+          <div class="post-tags"><span>Google Colab</span><span>AI Agent</span><span>GPU</span><span>A100</span><span>System Design</span><span>成本优化</span></div>
+        </a>
+      </li>
       <li data-tags="Android|小米|ChatGPT|Passkeys|WebAuthn" data-search="想降到 plus，却先修了小米通行密钥登录 小米14指纹通过后，chatgpt网页与app登录仍卡住。用日志、精确版本源码和恢复实验追查连接类型兼容问题，记录临时方法与证据边界。 真实设备排查 / chromium / w3c webauthn android 小米 chatgpt passkeys webauthn">
         <a class="post" href="/notes/xiaomi-chatgpt-passkey/">
           <p class="post-date">2026-10-11</p>

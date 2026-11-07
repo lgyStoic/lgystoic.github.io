@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>开了 Google One AI Ultra，我把送的 A100 和 44 核大内存改造成了本地 AI Agent 的自动算力后备箱 | Anaxagore</title>
+    <meta name="description" content="把 Google One AI Ultra 里的 Colab 算力单元（CU）接进本地 AI Agent：顺手给 Google 官方 CLI 修了个 260 倍的启动慢 Bug（PR #218），再开源一套带显卡物理瓦数断路器、8 核 51GB 纯 CPU 集群与 44 核 172GB 大内存调度的 colab-ultra。" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="开了 Google One AI Ultra，我把送的 A100 和 44 核大内存改造成了本地 AI Agent 的自动算力后备箱 | Anaxagore" />
+    <meta property="og:description" content="把 Google One AI Ultra 里的 Colab 算力单元（CU）接进本地 AI Agent：顺手给 Google 官方 CLI 修了个 260 倍的启动慢 Bug（PR #218），再开源一套带显卡物理瓦数断路器、8 核 51GB 纯 CPU 集群与 44 核 172GB 大内存调度的 colab-ultra。" />
+    <meta property="og:url" content="https://lgystoic.github.io/notes/colab-ultra/" />
+    <meta property="og:image" content="https://lgystoic.github.io/notes/colab-ultra/colab-ultra-overview.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="canonical" href="https://lgystoic.github.io/notes/colab-ultra/" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231b1b1a'/%3E%3Ctext x='32' y='43' text-anchor='middle' font-size='30' font-family='Helvetica,Arial' font-weight='700' fill='white'%3EA%3C/text%3E%3C/svg%3E"
+    />
+    <link rel="stylesheet" href="../../site.css" />
+    <link rel="stylesheet" href="./styles.css" />
+    <script>
+      try {
+        var t = localStorage.getItem("theme");
+        if (t === "dark" || t === "light") document.documentElement.dataset.theme = t;
+      } catch (e) {}
+    </script>
+    <!-- build:jsonld -->
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "开了 Google One AI Ultra，我把送的 A100 和 44 核大内存改造成了本地 AI Agent 的自动算力后备箱", "description": "把 Google One AI Ultra 里的 Colab 算力单元（CU）接进本地 AI Agent：顺手给 Google 官方 CLI 修了个 260 倍的启动慢 Bug（PR #218），再开源一套带显卡物理瓦数断路器、8 核 51GB 纯 CPU 集群与 44 核 172GB 大内存调度的 colab-ultra。", "url": "https://lgystoic.github.io/notes/colab-ultra/", "mainEntityOfPage": "https://lgystoic.github.io/notes/colab-ultra/", "inLanguage": "zh-CN", "dateModified": "2026-11-07", "datePublished": "2026-11-07", "keywords": "Google Colab, AI Agent, GPU, A100, System Design, 成本优化", "isBasedOn": "colab-ultra 开源实践 / google-colab-cli PR #218", "author": {"@type": "Person", "name": "Anaxagore", "url": "https://lgystoic.github.io/about/"}, "publisher": {"@type": "Person", "name": "Anaxagore", "url": "https://lgystoic.github.io/"}, "image": "https://lgystoic.github.io/assets/og/notes.png"}</script>
+    <!-- /build:jsonld -->
+  </head>
+  <body>
+    <!-- build:header -->
+    <header class="site-header">
+      <div class="wrap">
+        <a class="brand" href="../../" aria-label="首页">
+          <span class="brand-mark">A</span>
+          <span>Anaxagore</span>
+        </a>
+        <nav class="site-nav" aria-label="主导航">
+          <a href="../../notes/" aria-current="page">笔记</a>
+          <a href="../../radar/">雷达</a>
+          <a href="../../radar/tracks/">专题</a>
+          <a href="../../radar/events/">活动</a>
+          <a href="../../radar/jobs/">工作</a>
+          <a href="../../guides/">指南</a>
+          <a href="../../about/">关于</a>
+          <button class="theme-toggle" type="button" data-theme-toggle aria-label="切换深浅色">
+            <span data-theme-icon>◑</span>
+          </button>
+        </nav>
+      </div>
+    </header>
+    <!-- /build:header -->
+
+    <main class="wrap note">
+      <section class="hero">
+        <p class="eyebrow">AI Agent 算力工程 · Google Colab / GPU &amp; CPU 调度</p>
+        <h1>开了 Google One AI Ultra，我把送的 A100 和 44 核大内存改造成了本地 AI Agent 的自动算力后备箱</h1>
+        <p class="lead">很多人订阅 Google One AI Ultra 只用 Gemini 和生图生视频，却让账户里附赠的近千个 Colab 算力单元（CU）在后台吃灰，或者因为跑完实验忘关网页白白烧光。我顺手帮 Google 官方 CLI 修了个卡 13.2 秒的认证 Bug（提速 260 倍），并开源了带物理瓦数智能电闸与多核 CPU 数据集群调度的 <code>colab-ultra</code>。</p>
+        <p class="meta">Anaxagore · 更新于 2026-11-07</p>
+        <div class="tldr">
+          <strong>TL;DR（先看结论）</strong>
+          <ul>
+            <li><strong>修底座（上游 PR #218）</strong>：定位出 Google 官方 <code>google-colab-cli</code> 在 <code>ADC</code> 认证下每次拉起无用 <code>gcloud</code> 子进程查 <code>project_id</code> 导致卡顿 13.20 秒；补丁将其压到 <strong>0.05 秒（快 260 倍）</strong>。</li>
+            <li><strong>防爆仓（物理瓦数智能电闸）</strong>：直接采样远端显卡 <code>nvidia-smi</code> 物理功耗（A100/H100 <code>&lt; 75W</code>、T4/L4 <code>&lt; 28W</code> 判为空载），识破 NCCL 死锁 100% 假利用率；超时自动把成果备份回 20TB Google Drive 并断电关机。</li>
+            <li><strong>榨干 CPU 与大内存</strong>：实测单账号不仅能调 A100/H100，还能以 <code>0.26 CU/h</code> 开出 <strong>8 核 AMD EPYC + 51GB 内存</strong>节点，支持 <strong>5 节点并发组成 40 核 + 255GB 数据清洗集群（仅 1.30 CU/h）</strong>，或借道 <code>TPU v6e1</code> 宿主机单机拿到 <strong>44 核 Zen 4 + 172GB 内存</strong>。</li>
+          </ul>
+        </div>
+        <figure>
+          <img src="./colab-ultra-overview.jpg" alt="Colab Ultra 架构与功能全景图" loading="eager" />
+          <figcaption>图 1：Colab Ultra（Agent-First 算力调度中枢 × 显卡物理瓦数智能电闸 × 20TB 云盘永久工作区）架构全景。</figcaption>
+        </figure>
+        <div class="cards follow">
+          <article>
+            <h3>开源仓库：lgyStoic/colab-ultra</h3>
+            <p>内置 Agent 原生 <code>SKILL.md</code>、物理瓦数断路器、VPS 24h 离线哨兵与多核数据工作流。</p>
+            <p><a href="https://github.com/lgyStoic/colab-ultra">访问 GitHub 仓库 →</a></p>
+          </article>
+          <article>
+            <h3>上游贡献：google-colab-cli PR #218</h3>
+            <p>修复官方 CLI 在 ADC 认证模式下每次启动耗时 13.2 秒的性能问题。</p>
+            <p><a href="https://github.com/googlecolab/google-colab-cli/pull/218">查看官方仓库 PR #218 →</a></p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>1. 拿着 2026 年的顶级算力，却还在用 2019 年的姿势干活</h2>
+        <p>订阅 <strong>Google One AI Ultra</strong> 后，除了日常用 Gemini、Deep Research 和 NotebookLM，账号里还附带了 Colab 高级算力权益：直接躺着近 <code>1000 CU</code>（Compute Units，计算单元），并且拥有 <code>NVIDIA A100 80GB</code>、<code>H100</code> 以及多核高内存机器的优先分配通道。</p>
+        <p>但在实际工程里，我发现主力开发环境（Mac + 本地 Claude Code / Codex / Antigravity 等 AI Agent）和这笔云端算力之间存在三个非常难受的断层：</p>
+        <ol>
+          <li><strong>本地 Agent 调不动云端显卡与大内存</strong>：Mac 改代码、跑轻量测试很顺，但一遇到需要真实 NVIDIA CUDA 编译、TensorCore 吞吐压测、或者需要 50GB～170GB 内存清洗大型数据集时，还得人工打开浏览器、新建 Notebook、把代码粘过去点运行。</li>
+          <li><strong>算力刺客防不胜防</strong>：Colab 的计费规则是<strong>只要云端虚拟机还连着，不管显卡和 CPU 有没有干活，都在按秒扣 CU</strong>。一台 A100 每小时烧 <code>5.39 CU</code>，两台 A100 加一台 T4 同时开着就是 <code>13.66 CU/h</code>。晚上跑个 15 分钟的脚本忘了手动点断开，机器就以 <code>42W</code> 空载待机挂一整夜，一觉醒来几十个 CU 白白打水漂。</li>
+          <li><strong>NCCL 死锁“假忙”看不出来</strong>：多卡或复杂管线卡死时，<code>nvidia-smi</code> 的百分比利用率经常卡在 <code>100%</code>，但实际上显卡根本没在做矩阵运算，纯粹在空转烧钱。</li>
+        </ol>
+      </section>
+
+      <section class="section">
+        <h2>2. 给 Google 官方 CLI 捉了个虫：把 13.2 秒的卡顿压到 0.05 秒</h2>
+        <p>Google 前不久开源了官方命令行工具 <code>google-colab-cli</code>（<code>colab</code>）。我本以为可以直接把它交给本地 AI Agent 调算力，结果上手就撞上一堵墙：在无人值守的 <code>--auth=adc</code>（Application Default Credentials，应用默认凭据）模式下，哪怕跑一条最简单的命令，<strong>每次都要死死卡住 13.20 秒</strong>。</p>
+        <p>我用 <code>cProfile</code> 扒了一下官方 CLI 的源码，定位到了一个哭笑不得的原因。在官方仓库的 <code>src/colab_cli/auth.py</code> 里，读取凭据的代码只有一行：</p>
+        <pre><code>creds, _ = google.auth.default(scopes=COLAB_SCOPES)</code></pre>
+        <p>注意看那个下划线 <code>_</code>——<strong>Colab CLI 根本不需要 Google Cloud 的 <code>project_id</code>，它拿到返回值后直接就丢进了垃圾桶。</strong></p>
+        <p>然而，<code>google-auth</code> 库内部有一个默认逻辑：只要调用 <code>google.auth.default()</code>，它就非要去查出当前机器的 <code>project_id</code>。当本地环境变量没设这个值时，它会在后台偷偷拉起一个完整的 <code>gcloud config get-value project</code> 子进程去扫本地配置并探测元数据服务——<strong>整整 13.15 秒，全都浪费在查找一个立刻被丢弃的变量 <code>_</code> 上。</strong></p>
+        <p>定位清楚后，修法极其干净：在调用 <code>google.auth.default()</code> 前后用上下文管理器临时注入一个内存占位符，用完立刻还原环境变量：</p>
+        <pre><code>@contextlib.contextmanager
+def _suppress_adc_project_lookup():
+    env_keys = ("GOOGLE_CLOUD_PROJECT", "GCLOUD_PROJECT", "CLOUDSDK_CORE_PROJECT")
+    if any(os.environ.get(k) for k in env_keys):
+        yield
+        return
+    os.environ["GOOGLE_CLOUD_PROJECT"] = "colab-cli-adc"
+    try:
+        yield
+    finally:
+        os.environ.pop("GOOGLE_CLOUD_PROJECT", None)</code></pre>
+        <p>实测修改前后的耗时对比：</p>
+        <ul>
+          <li><strong>修改前</strong>：每次启动耗时 <code>13.20 秒</code></li>
+          <li><strong>修改后</strong>：每次启动耗时 <code>0.05 秒</code>（<strong>提速 260 倍</strong>）</li>
+        </ul>
+        <p>这个补丁我已经提交给 Google 官方仓库（<a href="https://github.com/googlecolab/google-colab-cli/pull/218">PR #218</a>），同时内置在 <code>colab-ultra init</code> 中自动生效。</p>
+      </section>
+
+      <section class="section">
+        <h2>3. 开源 colab-ultra：给 AI Agent 装上带“物理瓦数断路器”的算力中枢</h2>
+        <p>解决了底层 13 秒卡顿后，我把官方 CLI 缺失的<strong>硬件遥测、防爆仓断路器、20TB Google Drive 永久工作区自动挂载、多节点 CPU 数据集群</strong>封装成了开源项目 <a href="https://github.com/lgyStoic/colab-ultra"><code>colab-ultra</code></a>。</p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>能力维度</th>
+                <th>官方 google-colab-cli (v0.7.5)</th>
+                <th>colab-ultra (本项目)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>空载与死锁识别</td>
+                <td>无硬件监控，只能查账号总余额</td>
+                <td>实时读取显卡物理瓦数（W）与 CPU 负载：识破 NCCL 100% 假忙（A100/H100 <code>&lt; 75W</code>、T4/L4 <code>&lt; 28W</code> 判为空载）</td>
+              </tr>
+              <tr>
+                <td>防忘关机自动拉闸</td>
+                <td>无自动关机，合上电脑即持续扣费</td>
+                <td>5 分钟低负载语音/通知预警 + 10 分钟自动抢救成果至云盘并断电（支持本机 + VPS 24h 离线哨兵）</td>
+              </tr>
+              <tr>
+                <td>启动速度与云盘工作区</td>
+                <td>ADC 模式每次卡 13.2s，手动挂载繁琐</td>
+                <td><code>0.05s</code> 极速启动，开机默认挂载 Google Drive 并软链 <code>/content/workspace</code> 与 <code>/content/outputs</code></td>
+              </tr>
+              <tr>
+                <td>AI Agent 原生接入</td>
+                <td>面向人类终端表格，缺少执行后硬件反馈</td>
+                <td>全命令支持 <code>--json</code>（单次调用同时返回代码输出 + 显卡瓦数/显存/CPU 核数/剩余 CU），自带 <code>SKILL.md</code></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>为什么断路器要看“物理瓦数（Watts）”而不是百分比利用率？</h3>
+        <p>当 A100 真正在跑 FP16/BF16 矩阵乘或微调训练时，显卡主板供电功耗通常在 <code>250W ~ 400W</code>；而当脚本跑完退出、或者因为通信死锁卡住时，哪怕 <code>utilization.gpu</code> 还显示 100%，物理功耗也会立刻跌回 <code>22W ~ 44W</code> 的待机底噪。</p>
+        <p><code>colab-ultra</code> 会在每台云端实例里静默注入一个非阻塞探针（<code>/content/.colab_probe.py</code>），每 3 秒采样一次物理瓦数、显存、温度、CPU 负载与云盘剩余空间。一旦连续 10 分钟处于空载瓦数，本机守护进程或远端 Linux VPS 上的 24 小时哨兵（<code>vps_sentinel.py</code>）就会先把 <code>/content/outputs</code> 里的权重和产物备份回 Google Drive，随后强制断开实例，把燃烧率降回 <code>0.00 CU/h</code>。</p>
+      </section>
+
+      <section class="section">
+        <h2>4. 实测彩蛋：不止有 A100，还能白嫖“40 核 255GB 集群”与“44 核 172GB 大内存单机”</h2>
+        <p>做大模型数据清洗、Parquet/Arrow 转换、爬虫解析或全量去重时，其实根本不需要烧昂贵的 A100（<code>5.39 CU/h</code>），真正紧缺的是<strong>多核 CPU + 超大内存 + 高速云盘读写</strong>。</p>
+        <p>我用 <code>colab-ultra</code> 把账号底下所有非 GPU 档位实测了一遍，整理出下面这张性价比极高的 CPU 算力表，并把它们做成了 <code>colab-ultra up</code> 的原生参数：</p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>模式档位</th>
+                <th>一键启动命令</th>
+                <th>实测 CPU 型号与核数</th>
+                <th>实测内存 (RAM)</th>
+                <th>本地 SSD</th>
+                <th>每小时扣费</th>
+                <th>1000 CU 可跑时长</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1. 标准 CPU</td>
+                <td><code>colab-ultra up --cpu --std-mem</code></td>
+                <td>2 核 (Intel Xeon 2.20GHz)</td>
+                <td>12.7 GB</td>
+                <td>225.7 GB</td>
+                <td><code>0.08 CU/h</code></td>
+                <td>12,500 小时（约 520 天）</td>
+              </tr>
+              <tr>
+                <td>2. 高内存 CPU（默认）</td>
+                <td><code>colab-ultra up --cpu</code></td>
+                <td>8 核 (AMD EPYC 7B12)</td>
+                <td>51.0 GB</td>
+                <td>225.7 GB</td>
+                <td><code>0.26 CU/h</code></td>
+                <td>3,846 小时（比 A100 便宜 20 倍）</td>
+              </tr>
+              <tr>
+                <td>3. 5 节点 CPU 并发集群</td>
+                <td><code>colab-ultra up --cpu --workers 5 -s data</code></td>
+                <td>40 核（5 台 × 8 核并发）</td>
+                <td>255.0 GB（5 × 51G）</td>
+                <td>1.1 TB + 共享云盘</td>
+                <td><code>1.30 CU/h</code></td>
+                <td>769 小时（共享同一 Google Drive）</td>
+              </tr>
+              <tr>
+                <td>4. 44 核超大内存单机</td>
+                <td><code>colab-ultra up --tpu v6e1 -s bigmem</code></td>
+                <td>44 核 (AMD EPYC 9B14 Zen 4)</td>
+                <td>172.0 GB</td>
+                <td>225.3 GB</td>
+                <td><code>5.09 CU/h</code></td>
+                <td>196 小时（单机需 &gt;100GB 内存任务）</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p>这里有两个非常实用的工程技巧：</p>
+        <ul>
+          <li><strong>1.30 CU/h 组一套 40 核 + 255GB 内存的数据分片集群</strong>：单账号实测允许同时并发拉起 <strong>5 台</strong> 8 核 51GB 的高内存纯 CPU 节点（<code>data-1</code> 到 <code>data-5</code>）。因為每台机器开机都会默认挂载同一个 Google Drive，你可以让 5 台机器直接按分片 ID 并行清洗同一个云盘目录里的数据，总成本每小时仅 <code>1.30 CU</code>（不到一台 A100 的四分之一）。</li>
+          <li><strong>借道 TPU v6e1 宿主机拿 44 核 Zen 4 + 172GB 内存</strong>：当你在跑 DuckDB、Polars 全量去重或图构建，必须在<strong>单台机器</strong>内拥有超过 100GB 内存时，直接用 <code>colab-ultra up --tpu v6e1</code>，就能分到一台 44 核 AMD EPYC 9B14 + 172GB 内存的宿主机。</li>
+          <li><strong>纯 CPU 负载智能保护</strong>：断路器会自动识别无 GPU 的纯 CPU 节点。只要 CPU 利用率 <code>&gt;= 8%</code>（或 <code>load_1m &gt;= 0.4</code>）或内核处于 <code>BUSY</code>，就判定为数据处理活跃；一旦清洗任务结束、CPU 跌回空载满 10 分钟，同样自动备份成果并关机停费。</li>
+        </ul>
+      </section>
+
+      <section class="section">
+        <h2>5. 3 分钟快速上手</h2>
+        <p>整套工具零隐私硬编码，所有个人配置（如 VPS 地址、SSH 密钥、告警 Webhook）全部隔离保存在仓库外的 <code>~/.config/colab-ultra/config.json</code>（权限 <code>600</code>）。</p>
+        <pre><code># 1. 安装底层官方 CLI 与依赖
+uv tool install google-colab-cli
+uv tool run --from google-colab-cli pip install rich websocket-client requests
+
+# 2. 克隆仓库并创建全局命令
+git clone https://github.com/lgyStoic/colab-ultra.git
+cd colab-ultra
+chmod +x colab_ultra/breaker.py
+ln -sf "$(pwd)/colab_ultra/breaker.py" ~/.local/bin/colab-ultra
+
+# 3. 一键初始化（自动打上 0.05s 极速启动补丁 + 配置智能电闸）
+colab-ultra init
+
+# 4. 按任务类型随时拉起云端算力：
+colab-ultra up --cpu -s data                     # 8核 51GB 纯 CPU 数据节点 (0.26 CU/h)
+colab-ultra up --cpu --workers 5 -s data         # 5台并发 = 40核 255GB 数据集群 (1.30 CU/h)
+colab-ultra up --tpu v6e1 -s bigmem              # 44核 Zen4 + 172GB 超大内存单机 (5.09 CU/h)
+colab-ultra up --gpu A100 -s ultra               # A100 80GB 训练/推理节点
+
+# 5. 让 Agent 远程跑脚本并拿回包含硬件遥测的 JSON：
+colab-ultra exec -s data -f workflows/cpu_data_pipeline.py --json
+colab-ultra exec -s ultra -f workflows/a100_benchmark.py --json
+
+# 6. 任务完成，一键安全备份云盘并清空所有机器（立省 100% 算力）：
+colab-ultra down --all</code></pre>
+      </section>
+
+      <section class="section" lang="en">
+        <h2>English summary</h2>
+        <p><strong>Colab Ultra (<a href="https://github.com/lgyStoic/colab-ultra">lgyStoic/colab-ultra</a>)</strong> turns the Compute Units (CU) bundled with a Google One AI Ultra or Colab Pro+ subscription into an autonomous, Agent-First GPU and high-memory CPU backplane for local AI Agents (Claude Code, Codex, Antigravity, Cursor).</p>
+        <p>While building it, we profiled Google's official <code>google-colab-cli</code> and found that <code>--auth=adc</code> stalled for <strong>13.20 seconds</strong> on every invocation because <code>google.auth.default()</code> spawned a redundant <code>gcloud</code> subprocess to resolve a <code>project_id</code> that Colab immediately discarded. Our upstream fix (<a href="https://github.com/googlecolab/google-colab-cli/pull/218">PR #218</a>) cuts startup latency to <strong>0.05 seconds (a 260x speedup)</strong>.</p>
+        <p>On top of the patched CLI, <code>colab-ultra</code> adds an out-of-band physical GPU wattage circuit breaker (detecting idle runtimes and NCCL spin-wait deadlocks via <code>nvidia-smi</code> board power draw), automatic 20TB Google Drive workspace persistence, a 24/7 standalone VPS sentinel daemon, and first-class multi-core CPU / big-memory orchestration—supporting 8-vCPU / 51GB RAM nodes at <code>0.26 CU/h</code>, 5-node parallel clusters (40 vCPUs / 255GB RAM at <code>1.30 CU/h</code>), and 44-vCPU AMD EPYC Zen 4 / 172GB RAM single-node hosts via <code>--tpu v6e1</code>.</p>
+      </section>
+
+      <!-- build:comments -->
+
+    <!-- /build:comments -->
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap">
+        <span>© 2026 <!-- build:site-name -->
+Anaxagore
+    <!-- /build:site-name --></span>
+        <span><a href="../">笔记</a></span>
+      </div>
+    </footer>
+    <script src="../../site.js" defer></script>
+    <!-- build:analytics -->
+    <script data-goatcounter="https://anaxagore.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+    <script>(function(){
+  function gc(){return window.goatcounter&&window.goatcounter.count?window.goatcounter:null}
+  function send(path,title){var g=gc();if(g)g.count({path:path,title:title||path,event:true})}
+  document.addEventListener("click",function(e){
+    var a=e.target.closest&&e.target.closest("a");
+    if(!a)return;
+    var offer=a.closest(".offer");
+    if(a.hasAttribute("data-aff-link")||a.hasAttribute("data-aff")||(a.rel||"").indexOf("sponsored")>-1){
+      var key=(offer&&offer.getAttribute("data-aff"))||a.getAttribute("data-aff")||"link";
+      send("aff/"+key,"推荐位："+key+" @ "+location.pathname);return}
+    if(a.host&&a.host!==location.host){send("out/"+a.host,"外链："+a.host+" @ "+location.pathname)}
+  });
+  document.addEventListener("click",function(e){
+    var b=e.target.closest&&e.target.closest("[data-share-copy],[data-share-native]");
+    if(b)send("share/"+(b.hasAttribute("data-share-copy")?"copy":"native"),"分享 @ "+location.pathname)
+  });
+})();</script>
+    <!-- /build:analytics -->
+  </body>
+</html>
