@@ -13,6 +13,7 @@
 
 ## 笔记
 
+- [开了 Google One AI Ultra，我把送的 A100 和 44 核大内存改造成了本地 AI Agent 的自动算力后备箱](https://garryling.427795.xyz/notes/colab-ultra/): 把 Google One AI Ultra 里的 Colab 算力单元（CU）接进本地 AI Agent：顺手给 Google 官方 CLI 修了个 260 倍的启动慢 Bug（PR #218），再开源一套带显卡物理瓦数断路器、8 核 51GB 纯 CPU 集群与 44 核 172GB 大内存调度的 colab-ultra。（更新 2026-11-07）
 - [想降到 Plus，却先修了小米通行密钥登录](https://garryling.427795.xyz/notes/xiaomi-chatgpt-passkey/): 小米14指纹通过后，ChatGPT网页与App登录仍卡住。用日志、精确版本源码和恢复实验追查连接类型兼容问题，记录临时方法与证据边界。（更新 2026-10-11）
 - [82 亿美元买的不是模型 而是下一代 AI 的工作负载](https://garryling.427795.xyz/notes/amd-world-labs-compute/): AMD 签约收购 World Labs。本文从 Atlas 的自回归、扩散和空间上下文出发，拆解模型研究如何经过负载、软件、硬件与用户任务五步转换，并明确目前没有公开跨平台性能证据。（更新 2026-10-04）
 - [AI 视频会拍镜头 为什么还拍不好故事](https://garryling.427795.xyz/notes/ai-video-shot-continuity/): AI 视频的难题正在从生成一个漂亮镜头，变成控制许多镜头的误差。用同一个案例拆解导演、分镜、生成、场记、审片和接戏六个 Agent 怎样维护叙事意图与画面事实。（更新 2026-09-29）
