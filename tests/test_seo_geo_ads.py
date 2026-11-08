@@ -29,7 +29,7 @@ class SeoGeoAdsTests(unittest.TestCase):
         self.assertEqual(site_url, "https://garryling.427795.xyz")
         for page in sorted(ROOT.glob("**/*.html")):
             rel = page.relative_to(ROOT).as_posix()
-            if rel.startswith(("node_modules/", "templates/")) or rel in ("404.html", "docs/prd/index.html", "shexian/index.html"):
+            if rel.startswith(("node_modules/", "templates/")) or rel in ("404.html", "docs/prd/index.html", "shexian/index.html") or (rel.startswith("google") and rel.endswith(".html")):
                 continue
             html_text = page.read_text(encoding="utf-8")
             if 'content="noindex"' in html_text:
