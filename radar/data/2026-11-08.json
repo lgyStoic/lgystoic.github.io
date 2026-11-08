@@ -1,0 +1,929 @@
+{
+  "date": "2026-11-08",
+  "generated_at": "2026-11-08T02:30:06+00:00",
+  "ai": false,
+  "model": "",
+  "sources": [
+    {
+      "id": "openai",
+      "name": "OpenAI",
+      "ok": true,
+      "count": 0,
+      "total": 1368,
+      "error": ""
+    },
+    {
+      "id": "google-ai",
+      "name": "Google AI Blog",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "qwen",
+      "name": "Qwen",
+      "ok": true,
+      "count": 0,
+      "total": 44,
+      "error": ""
+    },
+    {
+      "id": "hf-blog",
+      "name": "Hugging Face Blog",
+      "ok": true,
+      "count": 0,
+      "total": 899,
+      "error": ""
+    },
+    {
+      "id": "nvidia-dev",
+      "name": "NVIDIA Technical Blog",
+      "ok": true,
+      "count": 0,
+      "total": 100,
+      "error": ""
+    },
+    {
+      "id": "hf-papers",
+      "name": "HF Papers 日榜",
+      "ok": true,
+      "count": 3,
+      "total": 32,
+      "error": ""
+    },
+    {
+      "id": "pytorch",
+      "name": "PyTorch Blog",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "simonw",
+      "name": "Simon Willison",
+      "ok": true,
+      "count": 0,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "lilianweng",
+      "name": "Lil'Log",
+      "ok": true,
+      "count": 0,
+      "total": 53,
+      "error": ""
+    },
+    {
+      "id": "interconnects",
+      "name": "Interconnects",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "raschka",
+      "name": "Sebastian Raschka",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "chiphuyen",
+      "name": "Chip Huyen",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-pytorch",
+      "name": "Release · PyTorch",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-triton",
+      "name": "Release · Triton",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-cutlass",
+      "name": "Release · CUTLASS",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-flash-attention",
+      "name": "Release · FlashAttention",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-vllm",
+      "name": "Release · vLLM",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-sglang",
+      "name": "Release · SGLang",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-tensorrt-llm",
+      "name": "Release · TensorRT-LLM",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-diffusers",
+      "name": "Release · Diffusers",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-cuda-python",
+      "name": "Release · cuda-python",
+      "ok": true,
+      "count": 2,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "gnews-labs-en",
+      "name": "新闻 · Anthropic / Mistral / xAI",
+      "ok": true,
+      "count": 3,
+      "total": 73,
+      "error": ""
+    },
+    {
+      "id": "gnews-labs-cn",
+      "name": "新闻 · 国内模型公司",
+      "ok": true,
+      "count": 3,
+      "total": 35,
+      "error": ""
+    },
+    {
+      "id": "qbitai",
+      "name": "量子位",
+      "ok": true,
+      "count": 3,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "infoq-cn",
+      "name": "InfoQ 中文",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "thonking",
+      "name": "Horace He (thonking)",
+      "ok": true,
+      "count": 0,
+      "total": 6,
+      "error": ""
+    },
+    {
+      "id": "hn-algolia",
+      "name": "Hacker News（100+ 分）",
+      "ok": true,
+      "count": 2,
+      "total": 60,
+      "error": ""
+    },
+    {
+      "id": "karpathy-blog",
+      "name": "Andrej Karpathy 博客",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "eugeneyan",
+      "name": "Eugene Yan",
+      "ok": true,
+      "count": 0,
+      "total": 212,
+      "error": ""
+    },
+    {
+      "id": "importai",
+      "name": "Import AI（Jack Clark）",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "latentspace",
+      "name": "Latent Space",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "semianalysis",
+      "name": "SemiAnalysis",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "meta-ai",
+      "name": "Meta Engineering",
+      "ok": true,
+      "count": 0,
+      "total": 9,
+      "error": ""
+    },
+    {
+      "id": "mistral-news",
+      "name": "Mistral AI",
+      "ok": true,
+      "count": 0,
+      "total": 94,
+      "error": ""
+    },
+    {
+      "id": "bsky-karpathy",
+      "name": "Bluesky · Andrej Karpathy",
+      "ok": true,
+      "count": 0,
+      "total": 15,
+      "error": ""
+    },
+    {
+      "id": "bsky-giffmana",
+      "name": "Bluesky · Lucas Beyer",
+      "ok": true,
+      "count": 0,
+      "total": 22,
+      "error": ""
+    },
+    {
+      "id": "bsky-hardmaru",
+      "name": "Bluesky · hardmaru",
+      "ok": true,
+      "count": 0,
+      "total": 15,
+      "error": ""
+    },
+    {
+      "id": "bsky-swyx",
+      "name": "Bluesky · swyx",
+      "ok": true,
+      "count": 0,
+      "total": 3,
+      "error": ""
+    },
+    {
+      "id": "bsky-pytorch",
+      "name": "Bluesky · PyTorch",
+      "ok": true,
+      "count": 0,
+      "total": 28,
+      "error": ""
+    },
+    {
+      "id": "bsky-clem",
+      "name": "Bluesky · Clem Delangue",
+      "ok": true,
+      "count": 0,
+      "total": 11,
+      "error": ""
+    },
+    {
+      "id": "bsky-natolambert",
+      "name": "Bluesky · Nathan Lambert",
+      "ok": true,
+      "count": 0,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "bsky-rasbt",
+      "name": "Bluesky · Sebastian Raschka",
+      "ok": true,
+      "count": 0,
+      "total": 27,
+      "error": ""
+    },
+    {
+      "id": "bsky-jeffdean",
+      "name": "Bluesky · Jeff Dean",
+      "ok": true,
+      "count": 0,
+      "total": 18,
+      "error": ""
+    },
+    {
+      "id": "hf-trending-new",
+      "name": "HF 热榜新模型",
+      "ok": true,
+      "count": 2,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "gh-new-stars",
+      "name": "GitHub 新星仓库",
+      "ok": true,
+      "count": 0,
+      "total": 15,
+      "error": ""
+    },
+    {
+      "id": "hf-t2v",
+      "name": "HF 热榜 · 文生视频",
+      "ok": true,
+      "count": 1,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "hf-i2v",
+      "name": "HF 热榜 · 图生视频",
+      "ok": true,
+      "count": 0,
+      "total": 17,
+      "error": ""
+    },
+    {
+      "id": "gnews-video-en",
+      "name": "新闻 · 视频生成（英文）",
+      "ok": true,
+      "count": 1,
+      "total": 14,
+      "error": ""
+    },
+    {
+      "id": "gnews-video-cn",
+      "name": "新闻 · 视频生成（中文）",
+      "ok": true,
+      "count": 5,
+      "total": 17,
+      "error": ""
+    },
+    {
+      "id": "gnews-world-en",
+      "name": "新闻 · 世界模型（英文）",
+      "ok": true,
+      "count": 0,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "gnews-world-cn",
+      "name": "新闻 · 世界模型（中文）",
+      "ok": true,
+      "count": 6,
+      "total": 31,
+      "error": ""
+    },
+    {
+      "id": "gh-new-video-world",
+      "name": "GitHub 新仓库 · 视频 / 世界模型",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "arxiv-cscv",
+      "name": "arXiv cs.CV（专题）",
+      "ok": true,
+      "count": 0,
+      "total": 0,
+      "error": ""
+    },
+    {
+      "id": "arxiv-csro",
+      "name": "arXiv cs.RO（专题）",
+      "ok": true,
+      "count": 0,
+      "total": 0,
+      "error": ""
+    }
+  ],
+  "counts": {
+    "high": 9,
+    "medium": 20,
+    "low": 0
+  },
+  "items": [
+    {
+      "id": "2cff0142714ae490",
+      "title": "谷歌发布新一代视频生成模型|Google|插值|格隆|道具|漂移_手机新浪网 - 新浪财经",
+      "link": "https://finance.sina.cn/2026-11-07/detail-inixwhse8311514.d.html?vt=4",
+      "source": "新闻 · 视频生成（中文）",
+      "source_id": "gnews-video-cn",
+      "published": "2026-11-08T01:32:55+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "谷歌发布新一代视频生成模型|Google|插值|格隆|道具|漂移_手机新浪网 新浪财经",
+      "why": "",
+      "tags": [
+        "生成模型",
+        "视频生成"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "58dc5bb1b1ccbd01",
+      "title": "v13.5.1a0: — codex GPT-6 on behalf of Ralf —",
+      "link": "https://github.com/NVIDIA/cuda-python/releases/tag/v13.5.1a0",
+      "source": "Release · cuda-python",
+      "source_id": "rel-cuda-python",
+      "published": "2026-11-07T18:16:28+00:00",
+      "category": "infra",
+      "priority": "high",
+      "summary": "Internal CUDA 13 release rehearsal, dry-run only. Shares source 166c9ed with v12.9.11a1 to validate independent bindings/metapackage releases from one commit…",
+      "why": "",
+      "tags": [
+        "cuda",
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "a977aec4df6da1d3",
+      "title": "v12.9.11a1: — codex GPT-6 on behalf of Ralf —",
+      "link": "https://github.com/NVIDIA/cuda-python/releases/tag/v12.9.11a1",
+      "source": "Release · cuda-python",
+      "source_id": "rel-cuda-python",
+      "published": "2026-11-07T18:12:51+00:00",
+      "category": "infra",
+      "priority": "high",
+      "summary": "Internal CUDA 12 release rehearsal, dry-run only. Source 166c9ed matches the rebased #3322 implementation with only four internal rehearsal-note files added…",
+      "why": "",
+      "tags": [
+        "cuda",
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "82d40e3887e1cf9b",
+      "title": "DeepSeek Harness 0.2.2 发布,可将任务交给 Codex 和 Claude - Pasquale Pillitteri",
+      "link": "https://pasqualepillitteri.it/zh/news/30983/deepseek-harness-022-fabu-renwu-codex-claude",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-11-07T17:29:22+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "DeepSeek Harness 0.2.2 发布,可将任务交给 Codex 和 Claude Pasquale Pillitteri",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "23931e62a0f77fda",
+      "title": "Qwen3.5 9B uncensored 发布，蒸馏自 DeepSeek-V4-Pro，100 个提示只拒绝 3 个 - Pasquale Pillitteri",
+      "link": "https://pasqualepillitteri.it/zh/news/30794/qwen35-9b-uncensored-deepseek-v4-pro-fabu",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-11-07T09:41:54+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "Qwen3.5 9B uncensored 发布，蒸馏自 DeepSeek-V4-Pro，100 个提示只拒绝 3 个 Pasquale Pillitteri",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "efd4d0af6b8a1227",
+      "title": "‍‍‍Choosing AI Image and Video Generation Tools for Adult {69XUS} - Universitat de Barcelona",
+      "link": "https://www.ub.edu/portal//html/js/editor/fckeditor/editor/filemanager/browser/default/browser.html?Type=File&CONNECTOR=%2F%5C%2Fvrfeeds.com%2Fvideo%2F%26GetFoldersAndFiles=868905751994532",
+      "source": "新闻 · 视频生成（英文）",
+      "source_id": "gnews-video-en",
+      "published": "2026-11-07T08:25:53+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "‍‍‍Choosing AI Image and Video Generation Tools for Adult {69XUS} Universitat de Barcelona",
+      "why": "",
+      "tags": [
+        "video generation",
+        "moe"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "9d732dad2c7b4c49",
+      "title": "谷歌发布新一代视频生成模型 - 富途牛牛",
+      "link": "https://news.futunn.com/flash/1003779095/google-releases-next-generation-video-generation-model",
+      "source": "新闻 · 视频生成（中文）",
+      "source_id": "gnews-video-cn",
+      "published": "2026-11-07T01:36:30+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "谷歌发布新一代视频生成模型 富途牛牛",
+      "why": "",
+      "tags": [
+        "生成模型",
+        "视频生成"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "34a2e478e7d50d79",
+      "title": "马斯克官宣Cybertruck 停产：销量不足预期一成；李飞飞团队推出世界模型「模拟掌机」；小米汽车成立国际事业部｜极客早知道 - 极客公园",
+      "link": "https://www.geekpark.net/news/373639",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-11-07T00:56:34+00:00",
+      "category": "research",
+      "priority": "high",
+      "summary": "马斯克官宣Cybertruck 停产：销量不足预期一成；李飞飞团队推出世界模型「模拟掌机」；小米汽车成立国际事业部｜极客早知道 极客公园",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "ba9e58c71961dcd3",
+      "title": "SwarmEvolve: Latent Agent Swarms for Evolutionary Discovery and Optimization",
+      "link": "https://huggingface.co/papers/2611.08483",
+      "source": "HF Papers 日榜",
+      "source_id": "hf-papers",
+      "published": "2026-11-04T19:00:00+00:00",
+      "category": "research",
+      "priority": "high",
+      "summary": "LLM-guided evolutionary search uses AI agents to improve programs for mathematical and computational problems by iteratively refining solutions and combining…",
+      "why": "",
+      "tags": [
+        "latent",
+        "llm",
+        "agent"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "68834357157a9280",
+      "title": "General Intuition 评测：基于游戏数据构建世界模型 - quasa.io",
+      "link": "https://quasa.io/zh/video/general-intuition-ping-ce-ji-yu-you-xi-shu-ju-gou-jian-shi-jie-mo-xing",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-11-08T00:25:43+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "General Intuition 评测：基于游戏数据构建世界模型 quasa.io",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "ffef27bc1cfe0f95",
+      "title": "Mistral Adds Managed Agents and Apps to Its Studio Platform - FourWeekMBA",
+      "link": "https://fourweekmba.com/ai-mistral-adds-managed-agents-and-apps-to-its-studio-platform/",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-11-07T21:36:06+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Mistral Adds Managed Agents and Apps to Its Studio Platform FourWeekMBA",
+      "why": "",
+      "tags": [
+        "agent"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "552bef37c5e0da4b",
+      "title": "Momenta拿下奔驰定点，R7世界模型量产交付，国产智驾供应商重塑豪华车供应链 - 网通社",
+      "link": "http://auto.news18a.com/news/storys_312567.html",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-11-07T18:42:11+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "Momenta拿下奔驰定点，R7世界模型量产交付，国产智驾供应商重塑豪华车供应链 网通社",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "aec2512263d97278",
+      "title": "大模型跌成这样 还是贵？ - 东方财富",
+      "link": "https://wap.eastmoney.com/a/202611083925563056.html",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-11-07T16:36:09+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "大模型跌成这样 还是贵？ 东方财富",
+      "why": "",
+      "tags": [
+        "大模型"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "a91c2bb000377891",
+      "title": "FlashProve v0.16.0 Proves Which Model Answered [2026] - shattered.io",
+      "link": "https://shattered.io/anthropic-flashprove-model-substitution-zksnark-v0-16-0-2026/",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-11-07T09:57:20+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "FlashProve v0.16.0 Proves Which Model Answered [2026] shattered.io",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "39aeb49bf511c145",
+      "title": "李佳琦直播间半小时卖出2万亿Token；可灵完成198亿元融资，估值超母公司快手丨AI周报 - 创业邦",
+      "link": "https://m.cyzone.cn/article/853163.html",
+      "source": "新闻 · 视频生成（中文）",
+      "source_id": "gnews-video-cn",
+      "published": "2026-11-07T07:56:36+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "李佳琦直播间半小时卖出2万亿Token；可灵完成198亿元融资，估值超母公司快手丨AI周报 创业邦",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "66c7b2bf36f03361",
+      "title": "世界模型「云游戏」问世，李飞飞World Labs出品 - CSDN博客",
+      "link": "https://blog.csdn.net/2501_91883294/article/details/170243074",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-11-07T06:48:06+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "世界模型「云游戏」问世，李飞飞World Labs出品 CSDN博客",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "47a3a4dc08cd43a8",
+      "title": "The Components of Agent Memory",
+      "link": "https://news.ycombinator.com/item?id=50402212",
+      "source": "Hacker News（100+ 分）",
+      "source_id": "hn-algolia",
+      "published": "2026-11-07T06:39:04+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "",
+      "why": "",
+      "tags": [
+        "agent"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "351b77ba75fc1be0",
+      "title": "中国AI视频生成公司Sand.ai完成2亿美元融资估值突破10亿美元- AI 人工智能 - cnBeta.COM",
+      "link": "https://www.cnbeta.com.tw/articles/movie/1585348.htm",
+      "source": "新闻 · 视频生成（中文）",
+      "source_id": "gnews-video-cn",
+      "published": "2026-11-07T06:39:00+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "中国AI视频生成公司Sand.ai完成2亿美元融资估值突破10亿美元- AI 人工智能 cnBeta.COM",
+      "why": "",
+      "tags": [
+        "视频生成"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "61b3b7c2c57241e7",
+      "title": "抢跑DeepSeek！硅谷华人把下一代Agent Harness造出来了！？",
+      "link": "https://www.qbitai.com/2026/11/508264.html",
+      "source": "量子位",
+      "source_id": "qbitai",
+      "published": "2026-11-07T05:01:17+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "苦单Session久矣，两大Agent玩家不谋而合。",
+      "why": "",
+      "tags": [
+        "agent"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "c8831f2d681ab99f",
+      "title": "AGENTS.MD，危险危险危险！！！",
+      "link": "https://www.qbitai.com/2026/11/508244.html",
+      "source": "量子位",
+      "source_id": "qbitai",
+      "published": "2026-11-07T03:43:55+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "全新的电脑病毒",
+      "why": "",
+      "tags": [
+        "agent"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "fdeed09ac9459766",
+      "title": "浙大00后博士生再交卷！把十几种物理要素装进一个世界模型｜华为昇腾原生",
+      "link": "https://www.qbitai.com/2026/11/508236.html",
+      "source": "量子位",
+      "source_id": "qbitai",
+      "published": "2026-11-07T03:31:44+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "中国版cosmos再交卷",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "c3b93ac1c8f891b5",
+      "title": "世界模型新突破：偷懒率下降85.7% - 手机新浪网",
+      "link": "http://k.sina.com.cn/article_5953740931_162dee083067041yoy.html?wm=1029?q",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-11-07T02:30:50+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "世界模型新突破：偷懒率下降85.7% 手机新浪网",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "f363d9dc0c44bacd",
+      "title": "可灵获198亿融资；皇冠新材登深交所丨全球投融资周报10.31-11.06 - 凤凰网财经",
+      "link": "https://finance.ifeng.com/c/8xrH32HmGq0",
+      "source": "新闻 · 视频生成（中文）",
+      "source_id": "gnews-video-cn",
+      "published": "2026-11-07T01:30:54+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "可灵获198亿融资；皇冠新材登深交所丨全球投融资周报10.31-11.06 凤凰网财经",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "ffb1a9c550dda4b5",
+      "title": "AI-Assisted Proof Settles Longstanding Question About Quantum Speedups - The Quantum Insider",
+      "link": "https://thequantuminsider.com/2026/11/06/ai-assisted-proof-settles-longstanding-question-about-quantum-speedups/",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-11-06T21:29:10+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "AI-Assisted Proof Settles Longstanding Question About Quantum Speedups The Quantum Insider",
+      "why": "",
+      "tags": [
+        "llm"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "dd0865300bac001c",
+      "title": "NousResearch/Arete-27B",
+      "link": "https://huggingface.co/NousResearch/Arete-27B",
+      "source": "HF 热榜新模型",
+      "source_id": "hf-trending-new",
+      "published": "2026-11-06T19:31:28+00:00",
+      "category": "trend",
+      "priority": "medium",
+      "summary": "text-generation · likes 217 · trending 211",
+      "why": "",
+      "tags": [],
+      "tracks": []
+    },
+    {
+      "id": "a36914eced4c6f85",
+      "title": "Memorilla: Latent Semantic Memory for LLMs",
+      "link": "https://news.ycombinator.com/item?id=50395919",
+      "source": "Hacker News（100+ 分）",
+      "source_id": "hn-algolia",
+      "published": "2026-11-06T18:03:33+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "",
+      "why": "",
+      "tags": [
+        "latent",
+        "llm"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "23b25e8da2417f11",
+      "title": "李飞飞把世界模型装进掌机！交出AMD收购后首个结果 - 手机新浪网",
+      "link": "https://k.sina.com.cn/article_5953466437_162dab0450670bh61a.html",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-11-06T16:43:55+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "李飞飞把世界模型装进掌机！交出AMD收购后首个结果 手机新浪网",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "b9e4bb586fc32229",
+      "title": "Towards Real-Time Full-Waveform LiDAR Transformers via Intensity-Guided Token Reduction and Physics-Aware Augmentation",
+      "link": "https://huggingface.co/papers/2611.07613",
+      "source": "HF Papers 日榜",
+      "source_id": "hf-papers",
+      "published": "2026-11-05T02:56:01+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "LiDAR is a critical sensor for autonomous driving and robotics, yet it remains vulnerable to adverse conditions such as fog, rain, transparent objects, and…",
+      "why": "",
+      "tags": [
+        "transformer"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "9e8d76be995acae1",
+      "title": "Reducing Representational Interference in Retrieval Embeddings with Trainable Prefix Tokens",
+      "link": "https://huggingface.co/papers/2611.07298",
+      "source": "HF Papers 日榜",
+      "source_id": "hf-papers",
+      "published": "2026-11-04T20:30:28+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "Embedding models compress variable-length text into fixed-size vector representations, but this compression can entangle semantic content with residual…",
+      "why": "",
+      "tags": [
+        "attention"
+      ],
+      "tracks": []
+    }
+  ]
+}

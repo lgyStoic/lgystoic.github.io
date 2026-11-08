@@ -10,7 +10,27 @@
 </head>
 <body>
 <!-- build:header -->
-<!-- /build:header -->
+    <header class="site-header">
+      <div class="wrap">
+        <a class="brand" href="../../" aria-label="首页">
+          <span class="brand-mark">A</span>
+          <span>Anaxagore</span>
+        </a>
+        <nav class="site-nav" aria-label="主导航">
+          <a href="../../notes/">笔记</a>
+          <a href="../../radar/">雷达</a>
+          <a href="../../radar/tracks/">专题</a>
+          <a href="../../radar/events/">活动</a>
+          <a href="../../radar/jobs/">工作</a>
+          <a href="../../guides/">指南</a>
+          <a href="../../about/">关于</a>
+          <button class="theme-toggle" type="button" data-theme-toggle aria-label="切换深浅色">
+            <span data-theme-icon>◑</span>
+          </button>
+        </nav>
+      </div>
+    </header>
+    <!-- /build:header -->
 <main class="wrap">
 <p class="kicker">PRD</p>
 <h1>站点产品说明（人读版）</h1>
@@ -48,7 +68,9 @@
 </ul>
 <p class="radar-stats">本页由 <code>tools/prd_index.py</code> 生成；改图或文字请改脚本后重新生成。</p>
 </main>
-<footer class="site-footer"><div class="wrap"><span>© 2026 <!-- build:site-name --><!-- /build:site-name --></span><span><a href="../../about/">关于</a></span></div></footer>
+<footer class="site-footer"><div class="wrap"><span>© 2026 <!-- build:site-name -->
+Anaxagore
+    <!-- /build:site-name --></span><span><a href="../../about/">关于</a></span></div></footer>
 <script src="../../site.js" defer></script>
 </body>
 </html>
