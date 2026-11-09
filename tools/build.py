@@ -1541,7 +1541,7 @@ def inject_site_chrome(site: dict) -> int:
     n = 0
     for page in sorted(ROOT.glob("**/*.html")):
         rel = page.relative_to(ROOT).as_posix()
-        if rel.startswith(("radar/20", "node_modules/", "templates/")):
+        if page.name.startswith("._") or rel.startswith(("radar/20", "node_modules/", "templates/")):
             continue
         text = page.read_text(encoding="utf-8")
         # 统一将页面头部 canonical / og:url / og:image 的旧 github.io 域名替换为主域名 SITE_URL

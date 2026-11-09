@@ -14,6 +14,8 @@ class SeoGeoAdsTests(unittest.TestCase):
     def test_all_jsonld_blocks_are_valid_and_use_primary_domain(self):
         blocks = 0
         for page in sorted(ROOT.glob("**/*.html")):
+            if page.name.startswith("._"):
+                continue
             rel = page.relative_to(ROOT).as_posix()
             if rel.startswith(("node_modules/", "templates/")):
                 continue
@@ -28,6 +30,8 @@ class SeoGeoAdsTests(unittest.TestCase):
         site_url = build.SITE_URL
         self.assertEqual(site_url, "https://garryling.427795.xyz")
         for page in sorted(ROOT.glob("**/*.html")):
+            if page.name.startswith("._"):
+                continue
             rel = page.relative_to(ROOT).as_posix()
             if rel.startswith(("node_modules/", "templates/")) or rel in ("404.html", "docs/prd/index.html", "shexian/index.html") or (rel.startswith("google") and rel.endswith(".html")):
                 continue
