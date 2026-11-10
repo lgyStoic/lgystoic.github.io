@@ -42,7 +42,7 @@ CHECKS_DIR = RADAR_DIR / "checks"
 LAST_RUN = RADAR_DATA / "last-run.json"
 SITE_JSON = ROOT / "site.json"
 _SITE_META = json.loads(SITE_JSON.read_text(encoding="utf-8")) if SITE_JSON.exists() else {}
-SITE_URL = (_SITE_META.get("url") or "https://garryling.427795.xyz").rstrip("/")
+SITE_URL = (_SITE_META.get("url") or "https://427795.xyz").rstrip("/")
 SITE_TITLE = _SITE_META.get("name", "Anaxagore")
 SITE_DESC = "GPU kernel、训练性能、生成模型和城市数据的中文笔记存档。"
 LATEST_ON_HOME = 4
@@ -1544,9 +1544,9 @@ def inject_site_chrome(site: dict) -> int:
         if page.name.startswith("._") or rel.startswith(("radar/20", "node_modules/", "templates/")):
             continue
         text = page.read_text(encoding="utf-8")
-        # 统一将页面头部 canonical / og:url / og:image 的旧 github.io 域名替换为主域名 SITE_URL
+        # 统一将页面头部 canonical / og:url / og:image 的旧域名替换为主域名 SITE_URL
         rewritten = re.sub(
-            r'(<(?:link\s+rel="canonical"|meta\s+property="og:(?:url|image)")[^>]*\b(?:href|content)=")https://lgystoic\.github\.io(?=[/"])',
+            r'(<(?:link\s+rel="canonical"|meta\s+property="og:(?:url|image)")[^>]*\b(?:href|content)=")(?:https://lgystoic\.github\.io|https://garryling\.427795\.xyz)(?=[/"])',
             lambda m: m.group(1) + SITE_URL,
             text,
         )

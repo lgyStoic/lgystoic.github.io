@@ -8,15 +8,15 @@
     <link rel="stylesheet" href="./styles.css" />
       <!-- build:jsonld -->
     <meta name="description" content="基于 MIT 6.S184 讲义整理，覆盖生成即采样、ODE/SDE、Flow Matching、Score Matching、Classifier-Free Guidance、潜空间生成器和离散扩散语言模型。" />
-    <link rel="canonical" href="https://garryling.427795.xyz/notes/mit-6s184-flow-diffusion/" />
+    <link rel="canonical" href="https://427795.xyz/notes/mit-6s184-flow-diffusion/" />
     <meta property="og:type" content="article" />
     <meta property="og:title" content="从噪声到数据：Flow Matching 与扩散模型中文地图 | Anaxagore" />
     <meta property="og:description" content="基于 MIT 6.S184 讲义整理，覆盖生成即采样、ODE/SDE、Flow Matching、Score Matching、Classifier-Free Guidance、潜空间生成器和离散扩散语言模型。" />
-    <meta property="og:url" content="https://garryling.427795.xyz/notes/mit-6s184-flow-diffusion/" />
-    <meta property="og:image" content="https://garryling.427795.xyz/assets/og/notes.png" />
+    <meta property="og:url" content="https://427795.xyz/notes/mit-6s184-flow-diffusion/" />
+    <meta property="og:image" content="https://427795.xyz/assets/og/notes.png" />
     <meta name="twitter:card" content="summary_large_image" />
-    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Anaxagore", "item": "https://garryling.427795.xyz/"}, {"@type": "ListItem", "position": 2, "name": "笔记", "item": "https://garryling.427795.xyz/notes/"}, {"@type": "ListItem", "position": 3, "name": "从噪声到数据：Flow Matching 与扩散模型中文地图", "item": "https://garryling.427795.xyz/notes/mit-6s184-flow-diffusion/"}]}</script>
-    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "从噪声到数据：Flow Matching 与扩散模型中文地图", "description": "基于 MIT 6.S184 讲义整理，覆盖生成即采样、ODE/SDE、Flow Matching、Score Matching、Classifier-Free Guidance、潜空间生成器和离散扩散语言模型。", "url": "https://garryling.427795.xyz/notes/mit-6s184-flow-diffusion/", "mainEntityOfPage": "https://garryling.427795.xyz/notes/mit-6s184-flow-diffusion/", "inLanguage": "zh-CN", "dateModified": "2026-05-30", "datePublished": "2026-05-30", "keywords": "Flow Matching, Diffusion, SDE, CFG", "isBasedOn": "MIT 6.S184", "author": {"@type": "Person", "@id": "https://garryling.427795.xyz/#person", "name": "Anaxagore", "url": "https://garryling.427795.xyz/about/"}, "publisher": {"@type": "Person", "@id": "https://garryling.427795.xyz/#person", "name": "Anaxagore", "url": "https://garryling.427795.xyz/"}, "image": "https://garryling.427795.xyz/assets/og/notes.png"}</script>
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Anaxagore", "item": "https://427795.xyz/"}, {"@type": "ListItem", "position": 2, "name": "笔记", "item": "https://427795.xyz/notes/"}, {"@type": "ListItem", "position": 3, "name": "从噪声到数据：Flow Matching 与扩散模型中文地图", "item": "https://427795.xyz/notes/mit-6s184-flow-diffusion/"}]}</script>
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "从噪声到数据：Flow Matching 与扩散模型中文地图", "description": "基于 MIT 6.S184 讲义整理，覆盖生成即采样、ODE/SDE、Flow Matching、Score Matching、Classifier-Free Guidance、潜空间生成器和离散扩散语言模型。", "url": "https://427795.xyz/notes/mit-6s184-flow-diffusion/", "mainEntityOfPage": "https://427795.xyz/notes/mit-6s184-flow-diffusion/", "inLanguage": "zh-CN", "dateModified": "2026-05-30", "datePublished": "2026-05-30", "keywords": "Flow Matching, Diffusion, SDE, CFG", "isBasedOn": "MIT 6.S184", "author": {"@type": "Person", "@id": "https://427795.xyz/#person", "name": "Anaxagore", "url": "https://427795.xyz/about/"}, "publisher": {"@type": "Person", "@id": "https://427795.xyz/#person", "name": "Anaxagore", "url": "https://427795.xyz/"}, "image": "https://427795.xyz/assets/og/notes.png"}</script>
     <!-- /build:jsonld -->
 </head>
   <body>

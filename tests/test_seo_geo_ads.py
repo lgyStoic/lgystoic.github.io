@@ -28,7 +28,7 @@ class SeoGeoAdsTests(unittest.TestCase):
 
     def test_canonicals_match_site_url(self):
         site_url = build.SITE_URL
-        self.assertEqual(site_url, "https://garryling.427795.xyz")
+        self.assertEqual(site_url, "https://427795.xyz")
         for page in sorted(ROOT.glob("**/*.html")):
             if page.name.startswith("._"):
                 continue
