@@ -1,0 +1,938 @@
+{
+  "date": "2026-11-10",
+  "generated_at": "2026-11-10T04:38:08+00:00",
+  "ai": false,
+  "model": "",
+  "sources": [
+    {
+      "id": "openai",
+      "name": "OpenAI",
+      "ok": true,
+      "count": 4,
+      "total": 1372,
+      "error": ""
+    },
+    {
+      "id": "google-ai",
+      "name": "Google AI Blog",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "qwen",
+      "name": "Qwen",
+      "ok": true,
+      "count": 0,
+      "total": 44,
+      "error": ""
+    },
+    {
+      "id": "hf-blog",
+      "name": "Hugging Face Blog",
+      "ok": true,
+      "count": 2,
+      "total": 900,
+      "error": ""
+    },
+    {
+      "id": "nvidia-dev",
+      "name": "NVIDIA Technical Blog",
+      "ok": true,
+      "count": 0,
+      "total": 100,
+      "error": ""
+    },
+    {
+      "id": "hf-papers",
+      "name": "HF Papers 日榜",
+      "ok": true,
+      "count": 11,
+      "total": 35,
+      "error": ""
+    },
+    {
+      "id": "pytorch",
+      "name": "PyTorch Blog",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "simonw",
+      "name": "Simon Willison",
+      "ok": true,
+      "count": 2,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "lilianweng",
+      "name": "Lil'Log",
+      "ok": true,
+      "count": 0,
+      "total": 53,
+      "error": ""
+    },
+    {
+      "id": "interconnects",
+      "name": "Interconnects",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "raschka",
+      "name": "Sebastian Raschka",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "chiphuyen",
+      "name": "Chip Huyen",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-pytorch",
+      "name": "Release · PyTorch",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-triton",
+      "name": "Release · Triton",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-cutlass",
+      "name": "Release · CUTLASS",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-flash-attention",
+      "name": "Release · FlashAttention",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-vllm",
+      "name": "Release · vLLM",
+      "ok": true,
+      "count": 1,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-sglang",
+      "name": "Release · SGLang",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-tensorrt-llm",
+      "name": "Release · TensorRT-LLM",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-diffusers",
+      "name": "Release · Diffusers",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-cuda-python",
+      "name": "Release · cuda-python",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "gnews-labs-en",
+      "name": "新闻 · Anthropic / Mistral / xAI",
+      "ok": true,
+      "count": 30,
+      "total": 100,
+      "error": ""
+    },
+    {
+      "id": "gnews-labs-cn",
+      "name": "新闻 · 国内模型公司",
+      "ok": true,
+      "count": 12,
+      "total": 37,
+      "error": ""
+    },
+    {
+      "id": "qbitai",
+      "name": "量子位",
+      "ok": true,
+      "count": 4,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "infoq-cn",
+      "name": "InfoQ 中文",
+      "ok": true,
+      "count": 6,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "thonking",
+      "name": "Horace He (thonking)",
+      "ok": true,
+      "count": 0,
+      "total": 6,
+      "error": ""
+    },
+    {
+      "id": "hn-algolia",
+      "name": "Hacker News（100+ 分）",
+      "ok": true,
+      "count": 6,
+      "total": 60,
+      "error": ""
+    },
+    {
+      "id": "karpathy-blog",
+      "name": "Andrej Karpathy 博客",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "eugeneyan",
+      "name": "Eugene Yan",
+      "ok": true,
+      "count": 0,
+      "total": 212,
+      "error": ""
+    },
+    {
+      "id": "importai",
+      "name": "Import AI（Jack Clark）",
+      "ok": true,
+      "count": 1,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "latentspace",
+      "name": "Latent Space",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "semianalysis",
+      "name": "SemiAnalysis",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "meta-ai",
+      "name": "Meta Engineering",
+      "ok": true,
+      "count": 1,
+      "total": 9,
+      "error": ""
+    },
+    {
+      "id": "mistral-news",
+      "name": "Mistral AI",
+      "ok": true,
+      "count": 0,
+      "total": 94,
+      "error": ""
+    },
+    {
+      "id": "bsky-karpathy",
+      "name": "Bluesky · Andrej Karpathy",
+      "ok": true,
+      "count": 0,
+      "total": 15,
+      "error": ""
+    },
+    {
+      "id": "bsky-giffmana",
+      "name": "Bluesky · Lucas Beyer",
+      "ok": true,
+      "count": 0,
+      "total": 22,
+      "error": ""
+    },
+    {
+      "id": "bsky-hardmaru",
+      "name": "Bluesky · hardmaru",
+      "ok": true,
+      "count": 0,
+      "total": 15,
+      "error": ""
+    },
+    {
+      "id": "bsky-swyx",
+      "name": "Bluesky · swyx",
+      "ok": true,
+      "count": 0,
+      "total": 3,
+      "error": ""
+    },
+    {
+      "id": "bsky-pytorch",
+      "name": "Bluesky · PyTorch",
+      "ok": true,
+      "count": 1,
+      "total": 27,
+      "error": ""
+    },
+    {
+      "id": "bsky-clem",
+      "name": "Bluesky · Clem Delangue",
+      "ok": true,
+      "count": 0,
+      "total": 11,
+      "error": ""
+    },
+    {
+      "id": "bsky-natolambert",
+      "name": "Bluesky · Nathan Lambert",
+      "ok": true,
+      "count": 0,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "bsky-rasbt",
+      "name": "Bluesky · Sebastian Raschka",
+      "ok": true,
+      "count": 0,
+      "total": 27,
+      "error": ""
+    },
+    {
+      "id": "bsky-jeffdean",
+      "name": "Bluesky · Jeff Dean",
+      "ok": true,
+      "count": 0,
+      "total": 18,
+      "error": ""
+    },
+    {
+      "id": "hf-trending-new",
+      "name": "HF 热榜新模型",
+      "ok": true,
+      "count": 1,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "gh-new-stars",
+      "name": "GitHub 新星仓库",
+      "ok": true,
+      "count": 2,
+      "total": 15,
+      "error": ""
+    },
+    {
+      "id": "hf-t2v",
+      "name": "HF 热榜 · 文生视频",
+      "ok": true,
+      "count": 0,
+      "total": 19,
+      "error": ""
+    },
+    {
+      "id": "hf-i2v",
+      "name": "HF 热榜 · 图生视频",
+      "ok": true,
+      "count": 0,
+      "total": 17,
+      "error": ""
+    },
+    {
+      "id": "gnews-video-en",
+      "name": "新闻 · 视频生成（英文）",
+      "ok": true,
+      "count": 4,
+      "total": 15,
+      "error": ""
+    },
+    {
+      "id": "gnews-video-cn",
+      "name": "新闻 · 视频生成（中文）",
+      "ok": true,
+      "count": 5,
+      "total": 12,
+      "error": ""
+    },
+    {
+      "id": "gnews-world-en",
+      "name": "新闻 · 世界模型（英文）",
+      "ok": true,
+      "count": 2,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "gnews-world-cn",
+      "name": "新闻 · 世界模型（中文）",
+      "ok": true,
+      "count": 9,
+      "total": 17,
+      "error": ""
+    },
+    {
+      "id": "gh-new-video-world",
+      "name": "GitHub 新仓库 · 视频 / 世界模型",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "arxiv-cscv",
+      "name": "arXiv cs.CV（专题）",
+      "ok": true,
+      "count": 13,
+      "total": 210,
+      "error": ""
+    },
+    {
+      "id": "arxiv-csro",
+      "name": "arXiv cs.RO（专题）",
+      "ok": true,
+      "count": 2,
+      "total": 103,
+      "error": ""
+    }
+  ],
+  "counts": {
+    "high": 10,
+    "medium": 20,
+    "low": 0
+  },
+  "items": [
+    {
+      "id": "4a48c990800c853f",
+      "title": "Anthropic launches Claude Fable 5.2, Mythos 5.2 with faster performance and stronger coding capabilities - The Times of India",
+      "link": "https://timesofindia.indiatimes.com/technology/tech-news/anthropic-launches-claude-fable-5-2-mythos-5-2-with-faster-performance-and-stronger-coding-capabilities/articleshow/135698029.cms",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-11-10T03:32:00+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "Anthropic launches Claude Fable 5.2, Mythos 5.2 with faster performance and stronger coding capabilities The Times of India",
+      "why": "",
+      "tags": [
+        "moe"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "d9bd1b877176163d",
+      "title": "Anthropic launches Claude Fable 5.2 and Mythos 5.2 for tough technical tasks - The News International",
+      "link": "https://www.thenews.com.pk/latest/1423081-anthropic-launches-claude-fable-52-and-mythos-52-for-tough-technical-tasks",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-11-10T00:58:00+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "Anthropic launches Claude Fable 5.2 and Mythos 5.2 for tough technical tasks The News International",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "db8d4b7ea217b1fa",
+      "title": "Anthropic launches Claude Fable 5.2 and Mythos 5.2 with a 20% price cut as its IPO nears - MLQ.ai",
+      "link": "https://mlq.ai/news/anthropic-launches-claude-fable-5-2-and-mythos-5-2-with-a-20-price-cut-as-its-ipo-nears/",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-11-10T00:15:35+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "Anthropic launches Claude Fable 5.2 and Mythos 5.2 with a 20% price cut as its IPO nears MLQ.ai",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "f2ac6ea9c191aead",
+      "title": "Anthropic to Launch Nasdaq IPO Tuesday, IFR Reports - The Defiant",
+      "link": "https://thedefiant.io/converge/tradfi-and-fintech/anthropic-to-launch-nasdaq-ipo-tuesday-ifr-reports",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-11-09T21:26:23+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "Anthropic to Launch Nasdaq IPO Tuesday, IFR Reports The Defiant",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "96725777d6c7141a",
+      "title": "Anthropic Releases Claude Fable 5.2 and Mythos 5.2 Ahead of Possible IPO - JournalArta",
+      "link": "https://journalarta.com/en/2026/11/10/fable-5-2-anthropic-claude-mythos-5-2-release/",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-11-09T20:44:38+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "Anthropic Releases Claude Fable 5.2 and Mythos 5.2 Ahead of Possible IPO JournalArta",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "227aa3f0b06b38f2",
+      "title": "Anthropic launches powerful new models ahead of Wall Street debut - Tech Xplore",
+      "link": "https://techxplore.com/news/2026-11-anthropic-powerful-wall-street-debut.html",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-11-09T20:40:06+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "Anthropic launches powerful new models ahead of Wall Street debut Tech Xplore",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "a1db7c5fa6decd70",
+      "title": "Anthropic Launches New Fable, Mythos Models Ahead of IPO: Up to 30% Speed Boost Poised to Support Offering Valuation - TradingKey",
+      "link": "https://www.tradingkey.com/analysis/stocks/us-stocks/262297022-anthropic-fable-mythos-5-2-upgrade-ipo-valuation-tradingkey",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-11-09T20:29:42+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "Anthropic Launches New Fable, Mythos Models Ahead of IPO: Up to 30% Speed Boost Poised to Support Offering Valuation TradingKey",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "13113cb1c30520d8",
+      "title": "AI Video Generation, Editing And Analysis Will Eat Our World - Forbes",
+      "link": "https://www.forbes.com/sites/johnwerner/2026/11/09/ai-video-generation-editing-and-analysis-will-eat-our-world/",
+      "source": "新闻 · 视频生成（英文）",
+      "source_id": "gnews-video-en",
+      "published": "2026-11-09T20:06:27+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "AI Video Generation, Editing And Analysis Will Eat Our World Forbes",
+      "why": "",
+      "tags": [
+        "video generation",
+        "3D"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "0bb1fe9da3c9815f",
+      "title": "Fable 5.2, Mythos 5.2: Anthropic Launches Powerful AI Models Ahead Of Wall Street Debut - News18",
+      "link": "https://www.news18.com/world/anthropic-launches-powerful-ai-models-ahead-of-wall-street-debut-ipo-launch-fable-5-2-mythos-5-2-10419320.html",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-11-09T19:47:41+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "Fable 5.2, Mythos 5.2: Anthropic Launches Powerful AI Models Ahead Of Wall Street Debut News18",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "302e979b6a209fb5",
+      "title": "Anthropic releases first frontier models since Amodei's call for slowdown as IPO buzz builds - CNBC",
+      "link": "https://www.cnbc.com/2026/11/09/anthropic-claude-fable-5-2-mythos-5-2.html",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-11-09T19:00:01+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "Anthropic releases first frontier models since Amodei's call for slowdown as IPO buzz builds CNBC",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "7ea2a2e1f749b723",
+      "title": "openJiuwen首发Agent Device Foundation，重新定义Agent与物理世界的交互方式",
+      "link": "https://www.infoq.cn/article/dLF01VxLUZpLX40Wmlv7",
+      "source": "InfoQ 中文",
+      "source_id": "infoq-cn",
+      "published": "2026-11-10T11:56:55+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "点击查看原文>",
+      "why": "",
+      "tags": [
+        "agent"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "9135d85a081f0a3c",
+      "title": "千里智驾联手阶跃星辰，打造原生基座模型 - 汽车之家",
+      "link": "https://chejiahao.autohome.com.cn/info/26844068",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-11-10T03:50:53+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "千里智驾联手阶跃星辰，打造原生基座模型 汽车之家",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "8fac520993bf3e76",
+      "title": "原方智能完成数千万元天使轮融资，推进世界模型研发与家庭场景落地 - 具身之家",
+      "link": "https://www.jushenhome.com/news_d.php?id=2333",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-11-10T03:50:43+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "原方智能完成数千万元天使轮融资，推进世界模型研发与家庭场景落地 具身之家",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "308c7eb7fbebfd93",
+      "title": "L4 的下一个“考场”，在世界模型里？ - 盖世汽车社区",
+      "link": "https://i.gasgoo.com/news/70477471.html",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-11-10T03:28:23+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "L4 的下一个“考场”，在世界模型里？ 盖世汽车社区",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "e0a489a2c2081e9a",
+      "title": "Anthropic rolls out faster, cheaper AI models ahead of US$100b Wall Street debut - Malay Mail",
+      "link": "https://www.malaymail.com/amp/news/money/2026/11/10/anthropic-rolls-out-faster-cheaper-ai-models-ahead-of-us100b-wall-street-debut/242666",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-11-10T03:22:02+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Anthropic rolls out faster, cheaper AI models ahead of US$100b Wall Street debut Malay Mail",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "2645e1fadf722cd3",
+      "title": "DeepSeek把战场搬到了“驾驭层”，大模型竞争的真正战场正在转移 - 中华网",
+      "link": "https://news.china.com/socialgd/10000169/20261110/49856671.html",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-11-10T03:05:41+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "DeepSeek把战场搬到了“驾驭层”，大模型竞争的真正战场正在转移 中华网",
+      "why": "",
+      "tags": [
+        "大模型"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "d3acaf6b17b2c3d5",
+      "title": "港股异动| 大模型双雄走强智谱(02513)盘中大涨超10% Anthropic将冲刺下周IPO 提供者智通财经 - 英为财情 Investing.com",
+      "link": "https://cn.investing.com/news/stock-market-news/article-3658346",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-11-10T02:59:00+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "港股异动| 大模型双雄走强智谱(02513)盘中大涨超10% Anthropic将冲刺下周IPO 提供者智通财经 英为财情 Investing.com",
+      "why": "",
+      "tags": [
+        "大模型"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "06faa2be7af2aeb8",
+      "title": "Claude Fable 5.2 Is Here: Anthropic Lowers the Price and Improves Coding Capabilities - Basic Tutorials",
+      "link": "https://basic-tutorials.com/news/claude-fable-5-2-is-here-anthropic-lowers-the-price-and-improves-coding-capabilities/",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-11-10T02:47:46+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Claude Fable 5.2 Is Here: Anthropic Lowers the Price and Improves Coding Capabilities Basic Tutorials",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "cc841c503a2b3161",
+      "title": "Anthropic unveils Claude Fable 5.2, Mythos 5.2 ahead of potential IPO - The Indian Express",
+      "link": "https://indianexpress.com/article/technology/artificial-intelligence/anthropic-unveils-claude-fable-5-2-mythos-5-2-ahead-of-potential-ipo-10957120/",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-11-10T02:39:57+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Anthropic unveils Claude Fable 5.2, Mythos 5.2 ahead of potential IPO The Indian Express",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "e328af054979fc43",
+      "title": "Major BotHub Telegram Bot Update: Video Generation, Automatic Model Selection, and More - BotHub",
+      "link": "https://bothub.chat/fr/blog/major-bothub-telegram-bot-update-video-generation-automatic-model-selection-and-more",
+      "source": "新闻 · 视频生成（英文）",
+      "source_id": "gnews-video-en",
+      "published": "2026-11-10T01:32:17+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Major BotHub Telegram Bot Update: Video Generation, Automatic Model Selection, and More BotHub",
+      "why": "",
+      "tags": [
+        "video generation"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "74ea30e0195019c7",
+      "title": "Anthropic Unveils AI Models Commanding 1,000 Agents - 조선일보",
+      "link": "https://www.chosun.com/english/industry-en/2026/11/10/JZUGSKIAJNDF5BSQTA5BH3NIMY/",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-11-10T01:25:37+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Anthropic Unveils AI Models Commanding 1,000 Agents 조선일보",
+      "why": "",
+      "tags": [
+        "agent"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "c53cdb5f7fb98780",
+      "title": "当世界模型不再是卖点，智驾行业开始进入技术兑现阶段？ - 电子工程专辑EE Times China",
+      "link": "https://www.eet-china.com/mp/a538061.html",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-11-10T00:40:00+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "当世界模型不再是卖点，智驾行业开始进入技术兑现阶段？ 电子工程专辑EE Times China",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "3745362e67c7da4b",
+      "title": "Cisco to add Anthropic Claude Mythos to harden AI agent security and operations - Chosunbiz",
+      "link": "https://biz.chosun.com/en/en-it/2026/11/10/WQYMVYFM7NEYBKRQUQMQC4NVVQ/",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-11-10T00:26:00+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Cisco to add Anthropic Claude Mythos to harden AI agent security and operations Chosunbiz",
+      "why": "",
+      "tags": [
+        "agent"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "8351a85e3e3912dd",
+      "title": "Anthropic's super bug-finding Mythos model is going into Cisco and IBM products - The Register",
+      "link": "https://www.theregister.com/ai-and-ml/2026/11/10/anthropics-super-bug-finding-mythos-model-is-going-into-cisco-and-ibm-products/5308616",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-11-10T00:00:20+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Anthropic's super bug-finding Mythos model is going into Cisco and IBM products The Register",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "b2ef9565ec76e6f2",
+      "title": "llm-anthropic 0.31",
+      "link": "https://simonwillison.net/2026/Nov/9/llm-anthropic",
+      "source": "Simon Willison",
+      "source_id": "simonw",
+      "published": "2026-11-09T23:58:46+00:00",
+      "category": "people",
+      "priority": "medium",
+      "summary": "Release: llm-anthropic 0.31 Anthropic released Fable 5.2 and Mythos 5.2 today. I've added them to llm-anthropic , so you can now run prompts through Fable 5.2…",
+      "why": "",
+      "tags": [
+        "llm",
+        "reasoning"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "ca783a71b42ed73c",
+      "title": "Adobe Firefly Text-to-Video Guide: How to Generate AI Video, Animate Still Images and Extend Clips in Premiere Pro - PCMag Australia",
+      "link": "https://au.pcmag.com/video-editing/120829/adobe-firefly-text-to-video-guide-how-to-generate-ai-video-animate-still-images-and-extend-clips-in",
+      "source": "新闻 · 视频生成（英文）",
+      "source_id": "gnews-video-en",
+      "published": "2026-11-09T23:53:27+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Adobe Firefly Text-to-Video Guide: How to Generate AI Video, Animate Still Images and Extend Clips in Premiere Pro PCMag Australia",
+      "why": "",
+      "tags": [
+        "llm"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "41196ebcbc44ffc9",
+      "title": "Claude Fable 5.2, Claude Mythos 5.2: Anthropic unveils new AI models, check features, speed, price, releas - The Economic Times",
+      "link": "https://m.economictimes.com/news/international/us/claude-fable-5-2-claude-mythos-5-2-anthropic-unveils-new-ai-models-check-features-speed-price-release-date/articleshow/135693127.cms",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-11-09T21:35:38+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Claude Fable 5.2, Claude Mythos 5.2: Anthropic unveils new AI models, check features, speed, price, releas The Economic Times",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "17dbac9f2d8831db",
+      "title": "Anthropic debuts Claude Fable, Mythos 5.2 models, priced 20% below OpenAI’s GPT-6 Astra - Fortune",
+      "link": "https://fortune.com/2026/11/09/anthropic-debuts-updated-claude-fable-and-mythos-models-undercutting-price-of-openais-gpt-6-astra-by-up-to-80/",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-11-09T21:02:00+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Anthropic debuts Claude Fable, Mythos 5.2 models, priced 20% below OpenAI’s GPT-6 Astra Fortune",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "13b88e831e598bcf",
+      "title": "Yann LeCun and Brown researchers unveil counterfactual world models for robots - Crypto Briefing",
+      "link": "https://cryptobriefing.com/lecun-counterfactual-world-models-robots/",
+      "source": "新闻 · 世界模型（英文）",
+      "source_id": "gnews-world-en",
+      "published": "2026-11-09T21:00:38+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "Yann LeCun and Brown researchers unveil counterfactual world models for robots Crypto Briefing",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "4e34936509732b15",
+      "title": "How does Shopify outperform frontier AI models at a fraction of the cost? During #PyTorchCon North America keynote, Cody",
+      "link": "https://bsky.app/profile/pytorch.org/post/3mzvroniayk2o",
+      "source": "Bluesky · PyTorch",
+      "source_id": "bsky-pytorch",
+      "published": "2026-11-09T20:36:00+00:00",
+      "category": "people",
+      "priority": "medium",
+      "summary": "How does Shopify outperform frontier AI models at a fraction of the cost? During #PyTorchCon North America keynote, Cody Mazza-Anthony explained Shopify's…",
+      "why": "",
+      "tags": [
+        "llm",
+        "pytorch"
+      ],
+      "tracks": []
+    }
+  ]
+}
