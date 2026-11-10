@@ -8,12 +8,12 @@
     <meta property="og:type" content="article" />
     <meta property="og:title" content="开了 Google One AI Ultra，我把送的 A100 和 44 核大内存改造成了本地 AI Agent 的自动算力后备箱 | Anaxagore" />
     <meta property="og:description" content="把 Google One AI Ultra 里的 Colab 算力单元（CU）接进本地 AI Agent：顺手给 Google 官方 CLI 修了个 260 倍的启动慢 Bug（PR #218），再开源一套带显卡物理瓦数断路器、8 核 51GB 纯 CPU 集群与 44 核 172GB 大内存调度的 colab-ultra。" />
-    <meta property="og:url" content="https://garryling.427795.xyz/notes/colab-ultra/" />
-    <meta property="og:image" content="https://garryling.427795.xyz/notes/colab-ultra/colab-ultra-overview.jpg" />
+    <meta property="og:url" content="https://427795.xyz/notes/colab-ultra/" />
+    <meta property="og:image" content="https://427795.xyz/notes/colab-ultra/colab-ultra-overview.jpg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta name="twitter:card" content="summary_large_image" />
-    <link rel="canonical" href="https://garryling.427795.xyz/notes/colab-ultra/" />
+    <link rel="canonical" href="https://427795.xyz/notes/colab-ultra/" />
     <link
       rel="icon"
       href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231b1b1a'/%3E%3Ctext x='32' y='43' text-anchor='middle' font-size='30' font-family='Helvetica,Arial' font-weight='700' fill='white'%3EA%3C/text%3E%3C/svg%3E"
@@ -27,8 +27,8 @@
       } catch (e) {}
     </script>
     <!-- build:jsonld -->
-    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Anaxagore", "item": "https://garryling.427795.xyz/"}, {"@type": "ListItem", "position": 2, "name": "笔记", "item": "https://garryling.427795.xyz/notes/"}, {"@type": "ListItem", "position": 3, "name": "开了 Google One AI Ultra，我把送的 A100 和 44 核大内存改造成了本地 AI Agent 的自动算力后备箱", "item": "https://garryling.427795.xyz/notes/colab-ultra/"}]}</script>
-    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "开了 Google One AI Ultra，我把送的 A100 和 44 核大内存改造成了本地 AI Agent 的自动算力后备箱", "description": "把 Google One AI Ultra 里的 Colab 算力单元（CU）接进本地 AI Agent：顺手给 Google 官方 CLI 修了个 260 倍的启动慢 Bug（PR #218），再开源一套带显卡物理瓦数断路器、8 核 51GB 纯 CPU 集群与 44 核 172GB 大内存调度的 colab-ultra。", "url": "https://garryling.427795.xyz/notes/colab-ultra/", "mainEntityOfPage": "https://garryling.427795.xyz/notes/colab-ultra/", "inLanguage": "zh-CN", "dateModified": "2026-11-07", "datePublished": "2026-11-07", "keywords": "Google Colab, AI Agent, GPU, A100, System Design, 成本优化", "isBasedOn": "colab-ultra 开源实践 / google-colab-cli PR #218", "author": {"@type": "Person", "@id": "https://garryling.427795.xyz/#person", "name": "Anaxagore", "url": "https://garryling.427795.xyz/about/"}, "publisher": {"@type": "Person", "@id": "https://garryling.427795.xyz/#person", "name": "Anaxagore", "url": "https://garryling.427795.xyz/"}, "image": "https://garryling.427795.xyz/assets/og/notes.png"}</script>
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Anaxagore", "item": "https://427795.xyz/"}, {"@type": "ListItem", "position": 2, "name": "笔记", "item": "https://427795.xyz/notes/"}, {"@type": "ListItem", "position": 3, "name": "开了 Google One AI Ultra，我把送的 A100 和 44 核大内存改造成了本地 AI Agent 的自动算力后备箱", "item": "https://427795.xyz/notes/colab-ultra/"}]}</script>
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "开了 Google One AI Ultra，我把送的 A100 和 44 核大内存改造成了本地 AI Agent 的自动算力后备箱", "description": "把 Google One AI Ultra 里的 Colab 算力单元（CU）接进本地 AI Agent：顺手给 Google 官方 CLI 修了个 260 倍的启动慢 Bug（PR #218），再开源一套带显卡物理瓦数断路器、8 核 51GB 纯 CPU 集群与 44 核 172GB 大内存调度的 colab-ultra。", "url": "https://427795.xyz/notes/colab-ultra/", "mainEntityOfPage": "https://427795.xyz/notes/colab-ultra/", "inLanguage": "zh-CN", "dateModified": "2026-11-07", "datePublished": "2026-11-07", "keywords": "Google Colab, AI Agent, GPU, A100, System Design, 成本优化", "isBasedOn": "colab-ultra 开源实践 / google-colab-cli PR #218", "author": {"@type": "Person", "@id": "https://427795.xyz/#person", "name": "Anaxagore", "url": "https://427795.xyz/about/"}, "publisher": {"@type": "Person", "@id": "https://427795.xyz/#person", "name": "Anaxagore", "url": "https://427795.xyz/"}, "image": "https://427795.xyz/assets/og/notes.png"}</script>
     <!-- /build:jsonld -->
   </head>
   <body>
