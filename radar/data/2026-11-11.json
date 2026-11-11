@@ -1,0 +1,939 @@
+{
+  "date": "2026-11-11",
+  "generated_at": "2026-11-11T02:47:40+00:00",
+  "ai": false,
+  "model": "",
+  "sources": [
+    {
+      "id": "openai",
+      "name": "OpenAI",
+      "ok": true,
+      "count": 5,
+      "total": 1377,
+      "error": ""
+    },
+    {
+      "id": "google-ai",
+      "name": "Google AI Blog",
+      "ok": true,
+      "count": 3,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "qwen",
+      "name": "Qwen",
+      "ok": true,
+      "count": 0,
+      "total": 44,
+      "error": ""
+    },
+    {
+      "id": "hf-blog",
+      "name": "Hugging Face Blog",
+      "ok": true,
+      "count": 2,
+      "total": 902,
+      "error": ""
+    },
+    {
+      "id": "nvidia-dev",
+      "name": "NVIDIA Technical Blog",
+      "ok": true,
+      "count": 4,
+      "total": 100,
+      "error": ""
+    },
+    {
+      "id": "hf-papers",
+      "name": "HF Papers 日榜",
+      "ok": true,
+      "count": 9,
+      "total": 27,
+      "error": ""
+    },
+    {
+      "id": "pytorch",
+      "name": "PyTorch Blog",
+      "ok": true,
+      "count": 2,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "simonw",
+      "name": "Simon Willison",
+      "ok": true,
+      "count": 3,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "lilianweng",
+      "name": "Lil'Log",
+      "ok": true,
+      "count": 0,
+      "total": 53,
+      "error": ""
+    },
+    {
+      "id": "interconnects",
+      "name": "Interconnects",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "raschka",
+      "name": "Sebastian Raschka",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "chiphuyen",
+      "name": "Chip Huyen",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-pytorch",
+      "name": "Release · PyTorch",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-triton",
+      "name": "Release · Triton",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-cutlass",
+      "name": "Release · CUTLASS",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-flash-attention",
+      "name": "Release · FlashAttention",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-vllm",
+      "name": "Release · vLLM",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-sglang",
+      "name": "Release · SGLang",
+      "ok": false,
+      "count": 0,
+      "total": 0,
+      "error": "HTTP Error 502: Bad Gateway or Proxy Error"
+    },
+    {
+      "id": "rel-tensorrt-llm",
+      "name": "Release · TensorRT-LLM",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-diffusers",
+      "name": "Release · Diffusers",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-cuda-python",
+      "name": "Release · cuda-python",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "gnews-labs-en",
+      "name": "新闻 · Anthropic / Mistral / xAI",
+      "ok": true,
+      "count": 18,
+      "total": 100,
+      "error": ""
+    },
+    {
+      "id": "gnews-labs-cn",
+      "name": "新闻 · 国内模型公司",
+      "ok": true,
+      "count": 10,
+      "total": 42,
+      "error": ""
+    },
+    {
+      "id": "qbitai",
+      "name": "量子位",
+      "ok": true,
+      "count": 3,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "infoq-cn",
+      "name": "InfoQ 中文",
+      "ok": true,
+      "count": 3,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "thonking",
+      "name": "Horace He (thonking)",
+      "ok": true,
+      "count": 0,
+      "total": 6,
+      "error": ""
+    },
+    {
+      "id": "hn-algolia",
+      "name": "Hacker News（100+ 分）",
+      "ok": true,
+      "count": 3,
+      "total": 60,
+      "error": ""
+    },
+    {
+      "id": "karpathy-blog",
+      "name": "Andrej Karpathy 博客",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "eugeneyan",
+      "name": "Eugene Yan",
+      "ok": true,
+      "count": 0,
+      "total": 212,
+      "error": ""
+    },
+    {
+      "id": "importai",
+      "name": "Import AI（Jack Clark）",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "latentspace",
+      "name": "Latent Space",
+      "ok": true,
+      "count": 2,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "semianalysis",
+      "name": "SemiAnalysis",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "meta-ai",
+      "name": "Meta Engineering",
+      "ok": true,
+      "count": 2,
+      "total": 9,
+      "error": ""
+    },
+    {
+      "id": "mistral-news",
+      "name": "Mistral AI",
+      "ok": true,
+      "count": 0,
+      "total": 94,
+      "error": ""
+    },
+    {
+      "id": "bsky-karpathy",
+      "name": "Bluesky · Andrej Karpathy",
+      "ok": true,
+      "count": 0,
+      "total": 15,
+      "error": ""
+    },
+    {
+      "id": "bsky-giffmana",
+      "name": "Bluesky · Lucas Beyer",
+      "ok": true,
+      "count": 0,
+      "total": 22,
+      "error": ""
+    },
+    {
+      "id": "bsky-hardmaru",
+      "name": "Bluesky · hardmaru",
+      "ok": true,
+      "count": 0,
+      "total": 15,
+      "error": ""
+    },
+    {
+      "id": "bsky-swyx",
+      "name": "Bluesky · swyx",
+      "ok": true,
+      "count": 0,
+      "total": 3,
+      "error": ""
+    },
+    {
+      "id": "bsky-pytorch",
+      "name": "Bluesky · PyTorch",
+      "ok": true,
+      "count": 3,
+      "total": 27,
+      "error": ""
+    },
+    {
+      "id": "bsky-clem",
+      "name": "Bluesky · Clem Delangue",
+      "ok": true,
+      "count": 0,
+      "total": 11,
+      "error": ""
+    },
+    {
+      "id": "bsky-natolambert",
+      "name": "Bluesky · Nathan Lambert",
+      "ok": true,
+      "count": 0,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "bsky-rasbt",
+      "name": "Bluesky · Sebastian Raschka",
+      "ok": true,
+      "count": 0,
+      "total": 27,
+      "error": ""
+    },
+    {
+      "id": "bsky-jeffdean",
+      "name": "Bluesky · Jeff Dean",
+      "ok": true,
+      "count": 0,
+      "total": 18,
+      "error": ""
+    },
+    {
+      "id": "hf-trending-new",
+      "name": "HF 热榜新模型",
+      "ok": true,
+      "count": 5,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "gh-new-stars",
+      "name": "GitHub 新星仓库",
+      "ok": true,
+      "count": 1,
+      "total": 15,
+      "error": ""
+    },
+    {
+      "id": "hf-t2v",
+      "name": "HF 热榜 · 文生视频",
+      "ok": true,
+      "count": 0,
+      "total": 18,
+      "error": ""
+    },
+    {
+      "id": "hf-i2v",
+      "name": "HF 热榜 · 图生视频",
+      "ok": true,
+      "count": 0,
+      "total": 18,
+      "error": ""
+    },
+    {
+      "id": "gnews-video-en",
+      "name": "新闻 · 视频生成（英文）",
+      "ok": true,
+      "count": 8,
+      "total": 22,
+      "error": ""
+    },
+    {
+      "id": "gnews-video-cn",
+      "name": "新闻 · 视频生成（中文）",
+      "ok": true,
+      "count": 4,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "gnews-world-en",
+      "name": "新闻 · 世界模型（英文）",
+      "ok": true,
+      "count": 0,
+      "total": 28,
+      "error": ""
+    },
+    {
+      "id": "gnews-world-cn",
+      "name": "新闻 · 世界模型（中文）",
+      "ok": true,
+      "count": 8,
+      "total": 29,
+      "error": ""
+    },
+    {
+      "id": "gh-new-video-world",
+      "name": "GitHub 新仓库 · 视频 / 世界模型",
+      "ok": true,
+      "count": 2,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "arxiv-cscv",
+      "name": "arXiv cs.CV（专题）",
+      "ok": true,
+      "count": 36,
+      "total": 517,
+      "error": ""
+    },
+    {
+      "id": "arxiv-csro",
+      "name": "arXiv cs.RO（专题）",
+      "ok": true,
+      "count": 13,
+      "total": 241,
+      "error": ""
+    }
+  ],
+  "counts": {
+    "high": 10,
+    "medium": 20,
+    "low": 0
+  },
+  "items": [
+    {
+      "id": "eb870d235116bdc3",
+      "title": "ExecuTorch WebGPU: PyTorch Models on the GPU, in the Browser",
+      "link": "https://pytorch.org/blog/executorch-webgpu-pytorch-models-on-the-gpu-in-the-browser",
+      "source": "PyTorch Blog",
+      "source_id": "pytorch",
+      "published": "2026-11-10T22:15:07+00:00",
+      "category": "infra",
+      "priority": "high",
+      "summary": "TL;DR PyTorch models now run in the web browser on the GPU through ExecuTorch, with no conversion to another framework’s format…",
+      "why": "",
+      "tags": [
+        "gpu",
+        "pytorch"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "b0fd091d78aedc29",
+      "title": "Anthropic launches new suits of AI office productivity tools in run up to IPO - Fortune",
+      "link": "https://fortune.com/2026/11/10/anthropic-launches-office-knowledge-worker-product-launch-ahead-of-ipo/",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-11-10T19:07:00+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "Anthropic launches new suits of AI office productivity tools in run up to IPO Fortune",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "560bd2f8ea74a379",
+      "title": "MiniMax开源H3 Image：4K图像生成仅10秒，支持多达16张参考图，首周五折优惠 - 华尔街见闻",
+      "link": "https://wallstreetcn.com/articles/3785667",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-11-10T18:15:19+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "MiniMax开源H3 Image：4K图像生成仅10秒，支持多达16张参考图，首周五折优惠 华尔街见闻",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "41072ed0f8ded511",
+      "title": "Bandicam Launches Text to Video Tool ‘Super Narrator’ for Long-Form Content - EIN Presswire",
+      "link": "https://www.einpresswire.com/article/955530913/bandicam-launches-text-to-video-tool-super-narrator-for-long-form-content",
+      "source": "新闻 · 视频生成（英文）",
+      "source_id": "gnews-video-en",
+      "published": "2026-11-10T18:00:00+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "Bandicam Launches Text to Video Tool ‘Super Narrator’ for Long-Form Content EIN Presswire",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "4820e4b25cde76c7",
+      "title": "Anthropic launches Claude Meetings to turn workplace discussions into plans and tasks - TechCrunch",
+      "link": "https://techcrunch.com/2026/11/10/anthropic-launches-claude-meetings-to-turn-workplace-discussions-into-plans-and-tasks/",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-11-10T17:30:00+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "Anthropic launches Claude Meetings to turn workplace discussions into plans and tasks TechCrunch",
+      "why": "",
+      "tags": [
+        "gpu"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "d2aa6514648f3efc",
+      "title": "Anthropic releases new, more powerful models – with a big warning - The Independent",
+      "link": "https://www.independent.co.uk/tech/anthropic-claude-fable-mythos-update-new-models-b3082583.html",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-11-10T16:08:00+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "Anthropic releases new, more powerful models – with a big warning The Independent",
+      "why": "",
+      "tags": [
+        "gpu",
+        "llm"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "e12e179e13de9bdf",
+      "title": "实测 MiniMax H3 Image：GPT 的效果加上 MJ 的审美，居然被它开源了 - 爱范儿",
+      "link": "https://www.ifanr.com/1688790",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-11-10T16:04:24+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "实测 MiniMax H3 Image：GPT 的效果加上 MJ 的审美，居然被它开源了 爱范儿",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "5dfb587379559049",
+      "title": "Avid's Ready to Play brings AI video generation directly into Media Composer by Scott Simmons - - ProVideo Coalition",
+      "link": "https://www.provideocoalition.com/avids-ready-to-play-brings-ai-video-generation-directly-into-media-composer/",
+      "source": "新闻 · 视频生成（英文）",
+      "source_id": "gnews-video-en",
+      "published": "2026-11-10T13:37:50+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "Avid's Ready to Play brings AI video generation directly into Media Composer by Scott Simmons - ProVideo Coalition",
+      "why": "",
+      "tags": [
+        "video generation",
+        "3D"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "0c40966ea7777b0c",
+      "title": "Gaxos.ai Launches ArtGen Muse, AI Video Model Designed to Lower Generation Costs - Quiver Quantitative",
+      "link": "https://www.quiverquant.com/news/Gaxos.ai+Launches+ArtGen+Muse%2C+AI+Video+Model+Designed+to+Lower+Generation+Costs",
+      "source": "新闻 · 视频生成（英文）",
+      "source_id": "gnews-video-en",
+      "published": "2026-11-10T13:21:00+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "Gaxos.ai Launches ArtGen Muse, AI Video Model Designed to Lower Generation Costs Quiver Quantitative",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "540581bf66b499f6",
+      "title": "Gaxos Launches ArtGen Muse AI Video Model as Company Scales - The Manila Times",
+      "link": "https://www.manilatimes.net/2026/11/10/tmt-newswire/globenewswire/gaxos-launches-artgen-muse-ai-video-model-as-company-scales/2466435/amp",
+      "source": "新闻 · 视频生成（英文）",
+      "source_id": "gnews-video-en",
+      "published": "2026-11-10T13:19:39+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "Gaxos Launches ArtGen Muse AI Video Model as Company Scales The Manila Times",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "f28f90d2895a812c",
+      "title": "Gilbert + Tobin rethinks the business of law with AI",
+      "link": "https://openai.com/index/gilbert-tobin-sam-nickless",
+      "source": "OpenAI",
+      "source_id": "openai",
+      "published": "2026-11-12T00:00:00+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "A conversation with Sam Nickless, Partner and Chief Executive Officer at Gilbert + Tobin.",
+      "why": "",
+      "tags": [],
+      "tracks": []
+    },
+    {
+      "id": "308c96ac7b05738b",
+      "title": "基于 AgentKit 重塑研发协作：从编码提效到组织效能跃迁｜AICon北京",
+      "link": "https://www.infoq.cn/article/I49cXCJFBpOW3PcgPTW3",
+      "source": "InfoQ 中文",
+      "source_id": "infoq-cn",
+      "published": "2026-11-11T10:00:00+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "点击查看原文>",
+      "why": "",
+      "tags": [
+        "agent"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "ad78e4a2d5b020f2",
+      "title": "港股大模型“双雄”转跌，MINIMAX-W跌超3% - Sohu",
+      "link": "https://m.sohu.com/a/1099986622_121157270?scm=10001.325_13-325_13.0.0-0-0-0-0.5_1334",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-11-11T02:20:00+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "港股大模型“双雄”转跌，MINIMAX-W跌超3% Sohu",
+      "why": "",
+      "tags": [
+        "大模型"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "d1c1afb52ed4c825",
+      "title": "大晓机器人双脑协同架构首次落地酒店洗衣场景，展现世界模型协同 - Sohu",
+      "link": "https://m.sohu.com/a/1099973373_120285954?scm=10001.325_13-325_13.0.0-0-0-0-0.5_1334",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-11-11T02:03:03+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "大晓机器人双脑协同架构首次落地酒店洗衣场景，展现世界模型协同 Sohu",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "57848b46660aa6a1",
+      "title": "Day-0支持：摩尔线程完成MiniMax H3-Image图像生成模型适配 - 凤凰网科技",
+      "link": "https://tech.ifeng.com/c/8xxcHlWWYHV",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-11-11T01:59:25+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Day-0支持：摩尔线程完成MiniMax H3-Image图像生成模型适配 凤凰网科技",
+      "why": "",
+      "tags": [
+        "生成模型"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "07e3221c7fb937b8",
+      "title": "谷歌更新安卓开发基准榜单：Kimi K3.1 Pro/DeepSeek V4.1 Flash成绩揭晓 - 凤凰网科技",
+      "link": "https://tech.ifeng.com/c/8xxYLm0kPv8",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-11-11T00:59:21+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "谷歌更新安卓开发基准榜单：Kimi K3.1 Pro/DeepSeek V4.1 Flash成绩揭晓 凤凰网科技",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "a27333ba80a99925",
+      "title": "摩尔线程率先完成MiniMax H3-Image图像生成模型适配 - 同花顺",
+      "link": "http://stock.10jqka.com.cn/20261111/c681678438.shtml",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-11-10T23:10:51+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "摩尔线程率先完成MiniMax H3-Image图像生成模型适配 同花顺",
+      "why": "",
+      "tags": [
+        "生成模型"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "4802d6a34e89a80d",
+      "title": "ExecuTorch’s new WebGPU backend runs PyTorch models locally on the GPU in the browser. Export once with torch.export and",
+      "link": "https://bsky.app/profile/pytorch.org/post/3mzyjbtfwgo2o",
+      "source": "Bluesky · PyTorch",
+      "source_id": "bsky-pytorch",
+      "published": "2026-11-10T22:43:00+00:00",
+      "category": "people",
+      "priority": "medium",
+      "summary": "ExecuTorch’s new WebGPU backend runs PyTorch models locally on the GPU in the browser. Export once with torch.export and run the same .pte file in WebGPU…",
+      "why": "",
+      "tags": [
+        "gpu",
+        "pytorch"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "f84813837de693ea",
+      "title": "Running AV Reasoning Models Within Onboard Compute and Latency Limits",
+      "link": "https://developer.nvidia.com/blog/running-av-reasoning-models-within-onboard-compute-and-latency-limits",
+      "source": "NVIDIA Technical Blog",
+      "source_id": "nvidia-dev",
+      "published": "2026-11-10T22:04:05+00:00",
+      "category": "infra",
+      "priority": "medium",
+      "summary": "Autonomous vehicle (AV) developers need reasoning models that can operate within the compute and latency constraints of an onboard system…",
+      "why": "",
+      "tags": [
+        "latency",
+        "reasoning"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "e2ae9cb6e0dd3709",
+      "title": "OpenAI, Anthropic face new oversight as New York’s AI safety law takes effect - TechCrunch",
+      "link": "https://techcrunch.com/2026/11/10/openai-anthropic-face-new-oversight-as-new-yorks-ai-safety-law-takes-effect/",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-11-10T20:52:13+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "OpenAI, Anthropic face new oversight as New York’s AI safety law takes effect TechCrunch",
+      "why": "",
+      "tags": [
+        "llm"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "49428084474df664",
+      "title": "ERNIE 5.5 Flash 对比 MiniMax M3.1 Flash：一项已公布的评分 - OrcaRouter",
+      "link": "https://www.orcarouter.ai/zh-CN/blog/ernie-5-5-flash-vs-minimax-m3-1-flash",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-11-10T20:44:30+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "ERNIE 5.5 Flash 对比 MiniMax M3.1 Flash：一项已公布的评分 OrcaRouter",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "a6e59c2280e2852f",
+      "title": "llm-gemini 0.36",
+      "link": "https://simonwillison.net/2026/Nov/10/llm-gemini",
+      "source": "Simon Willison",
+      "source_id": "simonw",
+      "published": "2026-11-10T20:09:44+00:00",
+      "category": "people",
+      "priority": "medium",
+      "summary": "Release: llm-gemini 0.36 Gemini 4 Carbon was announced two weeks ago for \"a subset of cyber defenders\", but today it's available to everyone else…",
+      "why": "",
+      "tags": [
+        "llm"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "2ec4f6ad3a8db2e8",
+      "title": "Designing for Agents — Zeno Rocha, Resend",
+      "link": "https://latent.space/p/resend",
+      "source": "Latent Space",
+      "source_id": "latentspace",
+      "published": "2026-11-10T20:05:17+00:00",
+      "category": "people",
+      "priority": "medium",
+      "summary": "Where does answer engine optimization (AEO) end and agent experience begin? Inside Resend, from the docs that help Claude Code pick an email API to the tools…",
+      "why": "",
+      "tags": [
+        "agent"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "5cb1badd4dd12df6",
+      "title": "What objective is reasoning solving?",
+      "link": "https://news.ycombinator.com/item?id=50445013",
+      "source": "Hacker News（100+ 分）",
+      "source_id": "hn-algolia",
+      "published": "2026-11-10T19:25:14+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "",
+      "why": "",
+      "tags": [
+        "reasoning"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "b73105fe4ec5f060",
+      "title": "Gemini Intelligence: New features, on more devices",
+      "link": "https://blog.google/products-and-platforms/platforms/android/gemini-intelligence-november-features-devices",
+      "source": "Google AI Blog",
+      "source_id": "google-ai",
+      "published": "2026-11-10T19:00:00+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "A man speaks into a phone. Text on the screen reads 'Gemini Intelligence'",
+      "why": "",
+      "tags": [],
+      "tracks": []
+    },
+    {
+      "id": "b9dca6395477c62b",
+      "title": "接大模型别再自己配 Key、搭代理了，火山引擎 IGA Pages 一步搞定",
+      "link": "https://www.infoq.cn/article/juu2R26yD8B6ABUEQuWB",
+      "source": "InfoQ 中文",
+      "source_id": "infoq-cn",
+      "published": "2026-11-10T18:58:56+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "点击查看原文>",
+      "why": "",
+      "tags": [
+        "大模型"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "aa8e9ffb2c83fea6",
+      "title": "Show HN: Get your coding agent off ~2019 JavaScript, onto modern web primitives",
+      "link": "https://news.ycombinator.com/item?id=50443812",
+      "source": "Hacker News（100+ 分）",
+      "source_id": "hn-algolia",
+      "published": "2026-11-10T18:01:15+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "Browsers natively handle a lot of what used to take 50 lines of JS (or a dependency): `CSS.highlights` for text range highlighting without <span>s everywhere,…",
+      "why": "",
+      "tags": [
+        "agent"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "a93eb8df02babe00",
+      "title": "Start and Restore GPU Workloads in Seconds with NVIDIA Snapshot",
+      "link": "https://developer.nvidia.com/blog/start-and-restore-gpu-workloads-in-seconds-with-nvidia-snapshot",
+      "source": "NVIDIA Technical Blog",
+      "source_id": "nvidia-dev",
+      "published": "2026-11-10T17:17:33+00:00",
+      "category": "infra",
+      "priority": "medium",
+      "summary": "NVIDIA Snapshot, a new open-source component of the NVIDIA DSX AI Factory Platform, makes initialized GPU workloads reusable across inference...",
+      "why": "",
+      "tags": [
+        "gpu"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "a162d031eccee838",
+      "title": "Your Algorithm: Giving People More Ways to Personalize Facebook Recommendations",
+      "link": "https://engineering.fb.com/2026/11/10/ml-applications/your-algorithm-giving-people-more-ways-to-personalize-facebook-recommendations",
+      "source": "Meta Engineering",
+      "source_id": "meta-ai",
+      "published": "2026-11-10T17:00:49+00:00",
+      "category": "infra",
+      "priority": "medium",
+      "summary": "Your algorithm is a suite of AI-powered tools that makes Facebook recommendations more transparent and steerable, with a single editable view of the interests…",
+      "why": "",
+      "tags": [
+        "llm"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "6cb073ef09638dcf",
+      "title": "PyTorch inference hits TPU v7: A megakernel for Muse Spark Open got 433 tok/s per user (up to 25.9K tok/s per chip) on A",
+      "link": "https://bsky.app/profile/pytorch.org/post/3mzxw4bfsr32d",
+      "source": "Bluesky · PyTorch",
+      "source_id": "bsky-pytorch",
+      "published": "2026-11-10T17:00:00+00:00",
+      "category": "people",
+      "priority": "medium",
+      "summary": "PyTorch inference hits TPU v7: A megakernel for Muse Spark Open got 433 tok/s per user (up to 25.9K tok/s per chip) on AgentX (1M context)…",
+      "why": "",
+      "tags": [
+        "kernel",
+        "moe",
+        "inference",
+        "pytorch"
+      ],
+      "tracks": []
+    }
+  ]
+}
