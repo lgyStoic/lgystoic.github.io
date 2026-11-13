@@ -1,0 +1,943 @@
+{
+  "date": "2026-11-13",
+  "generated_at": "2026-11-13T03:25:22+00:00",
+  "ai": false,
+  "model": "",
+  "sources": [
+    {
+      "id": "openai",
+      "name": "OpenAI",
+      "ok": true,
+      "count": 4,
+      "total": 1385,
+      "error": ""
+    },
+    {
+      "id": "google-ai",
+      "name": "Google AI Blog",
+      "ok": true,
+      "count": 1,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "qwen",
+      "name": "Qwen",
+      "ok": true,
+      "count": 0,
+      "total": 44,
+      "error": ""
+    },
+    {
+      "id": "hf-blog",
+      "name": "Hugging Face Blog",
+      "ok": true,
+      "count": 2,
+      "total": 906,
+      "error": ""
+    },
+    {
+      "id": "nvidia-dev",
+      "name": "NVIDIA Technical Blog",
+      "ok": true,
+      "count": 0,
+      "total": 100,
+      "error": ""
+    },
+    {
+      "id": "hf-papers",
+      "name": "HF Papers 日榜",
+      "ok": true,
+      "count": 6,
+      "total": 27,
+      "error": ""
+    },
+    {
+      "id": "pytorch",
+      "name": "PyTorch Blog",
+      "ok": true,
+      "count": 3,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "simonw",
+      "name": "Simon Willison",
+      "ok": true,
+      "count": 1,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "lilianweng",
+      "name": "Lil'Log",
+      "ok": true,
+      "count": 0,
+      "total": 53,
+      "error": ""
+    },
+    {
+      "id": "interconnects",
+      "name": "Interconnects",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "raschka",
+      "name": "Sebastian Raschka",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "chiphuyen",
+      "name": "Chip Huyen",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-pytorch",
+      "name": "Release · PyTorch",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-triton",
+      "name": "Release · Triton",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-cutlass",
+      "name": "Release · CUTLASS",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-flash-attention",
+      "name": "Release · FlashAttention",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-vllm",
+      "name": "Release · vLLM",
+      "ok": true,
+      "count": 1,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-sglang",
+      "name": "Release · SGLang",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-tensorrt-llm",
+      "name": "Release · TensorRT-LLM",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-diffusers",
+      "name": "Release · Diffusers",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-cuda-python",
+      "name": "Release · cuda-python",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "gnews-labs-en",
+      "name": "新闻 · Anthropic / Mistral / xAI",
+      "ok": true,
+      "count": 15,
+      "total": 85,
+      "error": ""
+    },
+    {
+      "id": "gnews-labs-cn",
+      "name": "新闻 · 国内模型公司",
+      "ok": true,
+      "count": 11,
+      "total": 54,
+      "error": ""
+    },
+    {
+      "id": "qbitai",
+      "name": "量子位",
+      "ok": true,
+      "count": 2,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "infoq-cn",
+      "name": "InfoQ 中文",
+      "ok": true,
+      "count": 2,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "thonking",
+      "name": "Horace He (thonking)",
+      "ok": true,
+      "count": 0,
+      "total": 6,
+      "error": ""
+    },
+    {
+      "id": "hn-algolia",
+      "name": "Hacker News（100+ 分）",
+      "ok": true,
+      "count": 5,
+      "total": 60,
+      "error": ""
+    },
+    {
+      "id": "karpathy-blog",
+      "name": "Andrej Karpathy 博客",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "eugeneyan",
+      "name": "Eugene Yan",
+      "ok": true,
+      "count": 0,
+      "total": 212,
+      "error": ""
+    },
+    {
+      "id": "importai",
+      "name": "Import AI（Jack Clark）",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "latentspace",
+      "name": "Latent Space",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "semianalysis",
+      "name": "SemiAnalysis",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "meta-ai",
+      "name": "Meta Engineering",
+      "ok": true,
+      "count": 0,
+      "total": 9,
+      "error": ""
+    },
+    {
+      "id": "mistral-news",
+      "name": "Mistral AI",
+      "ok": true,
+      "count": 0,
+      "total": 94,
+      "error": ""
+    },
+    {
+      "id": "bsky-karpathy",
+      "name": "Bluesky · Andrej Karpathy",
+      "ok": true,
+      "count": 0,
+      "total": 15,
+      "error": ""
+    },
+    {
+      "id": "bsky-giffmana",
+      "name": "Bluesky · Lucas Beyer",
+      "ok": true,
+      "count": 0,
+      "total": 22,
+      "error": ""
+    },
+    {
+      "id": "bsky-hardmaru",
+      "name": "Bluesky · hardmaru",
+      "ok": true,
+      "count": 0,
+      "total": 15,
+      "error": ""
+    },
+    {
+      "id": "bsky-swyx",
+      "name": "Bluesky · swyx",
+      "ok": true,
+      "count": 0,
+      "total": 3,
+      "error": ""
+    },
+    {
+      "id": "bsky-pytorch",
+      "name": "Bluesky · PyTorch",
+      "ok": true,
+      "count": 4,
+      "total": 27,
+      "error": ""
+    },
+    {
+      "id": "bsky-clem",
+      "name": "Bluesky · Clem Delangue",
+      "ok": true,
+      "count": 0,
+      "total": 11,
+      "error": ""
+    },
+    {
+      "id": "bsky-natolambert",
+      "name": "Bluesky · Nathan Lambert",
+      "ok": true,
+      "count": 0,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "bsky-rasbt",
+      "name": "Bluesky · Sebastian Raschka",
+      "ok": true,
+      "count": 0,
+      "total": 27,
+      "error": ""
+    },
+    {
+      "id": "bsky-jeffdean",
+      "name": "Bluesky · Jeff Dean",
+      "ok": true,
+      "count": 0,
+      "total": 18,
+      "error": ""
+    },
+    {
+      "id": "hf-trending-new",
+      "name": "HF 热榜新模型",
+      "ok": true,
+      "count": 0,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "gh-new-stars",
+      "name": "GitHub 新星仓库",
+      "ok": true,
+      "count": 0,
+      "total": 15,
+      "error": ""
+    },
+    {
+      "id": "hf-t2v",
+      "name": "HF 热榜 · 文生视频",
+      "ok": true,
+      "count": 0,
+      "total": 19,
+      "error": ""
+    },
+    {
+      "id": "hf-i2v",
+      "name": "HF 热榜 · 图生视频",
+      "ok": true,
+      "count": 1,
+      "total": 18,
+      "error": ""
+    },
+    {
+      "id": "gnews-video-en",
+      "name": "新闻 · 视频生成（英文）",
+      "ok": true,
+      "count": 3,
+      "total": 22,
+      "error": ""
+    },
+    {
+      "id": "gnews-video-cn",
+      "name": "新闻 · 视频生成（中文）",
+      "ok": true,
+      "count": 18,
+      "total": 23,
+      "error": ""
+    },
+    {
+      "id": "gnews-world-en",
+      "name": "新闻 · 世界模型（英文）",
+      "ok": true,
+      "count": 1,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "gnews-world-cn",
+      "name": "新闻 · 世界模型（中文）",
+      "ok": true,
+      "count": 18,
+      "total": 38,
+      "error": ""
+    },
+    {
+      "id": "gh-new-video-world",
+      "name": "GitHub 新仓库 · 视频 / 世界模型",
+      "ok": true,
+      "count": 1,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "arxiv-cscv",
+      "name": "arXiv cs.CV（专题）",
+      "ok": true,
+      "count": 0,
+      "total": 0,
+      "error": ""
+    },
+    {
+      "id": "arxiv-csro",
+      "name": "arXiv cs.RO（专题）",
+      "ok": true,
+      "count": 0,
+      "total": 0,
+      "error": ""
+    }
+  ],
+  "counts": {
+    "high": 10,
+    "medium": 20,
+    "low": 0
+  },
+  "items": [
+    {
+      "id": "7a6e454b2538a4d6",
+      "title": "华为云将发布具身世界模型！机构：物理AI行情有望延续 - 新浪财经_金融信息服务商",
+      "link": "https://finance.sina.cn/2026-11-13/detail-iniypzqk8121921.d.html?vt=4",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-11-13T03:00:19+00:00",
+      "category": "research",
+      "priority": "high",
+      "summary": "华为云将发布具身世界模型！机构：物理AI行情有望延续 新浪财经_金融信息服务商",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "35a92904ec659b4c",
+      "title": "2026 年 AI Hentai 视频生成器：移动与桌面访问 {EnZIBh9} - European Open Science",
+      "link": "https://eu-opensci.org/public/journals/19/submission_70946_15496_coverImage_en.html?yop=20506629",
+      "source": "新闻 · 视频生成（中文）",
+      "source_id": "gnews-video-cn",
+      "published": "2026-11-13T02:54:27+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "2026 年 AI Hentai 视频生成器：移动与桌面访问 {EnZIBh9} European Open Science",
+      "why": "",
+      "tags": [
+        "视频生成",
+        "3D"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "7b7ec224581bc084",
+      "title": "华为云定档11月16日发布CloudRobo-WM1.2，推出首款昇腾原生世界模型 - Sohu",
+      "link": "https://m.sohu.com/a/1100925049_121721205?scm=10001.325_13-325_13.0.0-0-0-0-0.5_1334",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-11-13T01:59:47+00:00",
+      "category": "research",
+      "priority": "high",
+      "summary": "华为云定档11月16日发布CloudRobo-WM1.2，推出首款昇腾原生世界模型 Sohu",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "505c8015130fc85d",
+      "title": "火山引擎发布Seedance 2.5 flash AI影视产业有望进一步降本增效 - 中金在线",
+      "link": "http://sc.stock.cnfol.com/shichangjuejin/20261113/32422533.shtml",
+      "source": "新闻 · 视频生成（中文）",
+      "source_id": "gnews-video-cn",
+      "published": "2026-11-13T00:28:33+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "火山引擎发布Seedance 2.5 flash AI影视产业有望进一步降本增效 中金在线",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "7ab0b21c1154ac9d",
+      "title": "10秒生成4K图：MiniMax再次拿出开源SOTA - 区块周刊BlockWeeks",
+      "link": "https://blockweeks.com/view/340247",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-11-13T00:16:37+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "10秒生成4K图：MiniMax再次拿出开源SOTA 区块周刊BlockWeeks",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "cc1c1a57c349bee6",
+      "title": "Anthropic’s new AI leads freelance benchmarks, yet fails 58% of the tasks - CryptoSlate",
+      "link": "https://cryptoslate.com/anthropics-new-ai-leads-freelance-benchmarks-yet-fails-58-of-the-tasks/",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-11-12T21:40:20+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "Anthropic’s new AI leads freelance benchmarks, yet fails 58% of the tasks CryptoSlate",
+      "why": "",
+      "tags": [
+        "llm"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "5b0f73df89a6e310",
+      "title": "How Amplitude ships product improvements in 1–2 days with OpenAI",
+      "link": "https://openai.com/business/customer-stories/amplitude",
+      "source": "OpenAI",
+      "source_id": "openai",
+      "published": "2026-11-12T20:00:00+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "Built primarily on OpenAI models, Amplitude’s proactive product agent, Wave, identifies what to build, helps teams ship changes with coding agents, and…",
+      "why": "",
+      "tags": [
+        "agent"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "b024e1b375f6d88e",
+      "title": "Fast by Default: Compile-Time Heuristics for Helion Kernels",
+      "link": "https://pytorch.org/blog/fast-by-default-compile-time-heuristics-for-helion-kernels",
+      "source": "PyTorch Blog",
+      "source_id": "pytorch",
+      "published": "2026-11-12T16:45:26+00:00",
+      "category": "infra",
+      "priority": "high",
+      "summary": "TL;DR Helion now uses compile-time heuristics that analyze a kernel’s IR and dataflow to pick fast settings without slow autotuning…",
+      "why": "",
+      "tags": [
+        "kernel",
+        "pytorch"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "fedbc52b189cb5c4",
+      "title": "谷歌DeepMind发布Genie 4世界模型，支持实时交互模拟 - Sohu",
+      "link": "https://m.sohu.com/a/1100786754_447547?scm=10001.325_13-325_13.0.0-0-0-0-0.5_1334",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-11-12T16:36:00+00:00",
+      "category": "research",
+      "priority": "high",
+      "summary": "谷歌DeepMind发布Genie 4世界模型，支持实时交互模拟 Sohu",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "34d6d7e218622de6",
+      "title": "Integrating SGLang into Spyre in Under a Week with AI",
+      "link": "https://pytorch.org/blog/integrating-sglang-into-spyre-in-under-a-week-with-ai",
+      "source": "PyTorch Blog",
+      "source_id": "pytorch",
+      "published": "2026-11-12T14:45:25+00:00",
+      "category": "infra",
+      "priority": "high",
+      "summary": "TL;DR With help from AI coding agents, our two-person team integrated SGLang with IBM Spyre in less than a week, building a plugin of roughly 1,500 lines…",
+      "why": "",
+      "tags": [
+        "pytorch",
+        "agent"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "ea9d32fca93f5be8",
+      "title": "GFlow：面向游戏设计的多 Agent 协作与验证实践｜AICon北京",
+      "link": "https://www.infoq.cn/article/dkQAAL0SSdhIq1h61eKx",
+      "source": "InfoQ 中文",
+      "source_id": "infoq-cn",
+      "published": "2026-11-13T10:00:00+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "点击查看原文>",
+      "why": "",
+      "tags": [
+        "agent"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "46d0cbe1b122a088",
+      "title": "Seedance视频模型调用渠道实测：这几条路最稳，别再踩坑了 - CSDN",
+      "link": "https://www.csdn.net/article/2026-11-13/170686747",
+      "source": "新闻 · 视频生成（中文）",
+      "source_id": "gnews-video-cn",
+      "published": "2026-11-12T22:59:28+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Seedance视频模型调用渠道实测：这几条路最稳，别再踩坑了 CSDN",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "72967ff05baddf8f",
+      "title": "llm-gemini 0.37",
+      "link": "https://simonwillison.net/2026/Nov/12/llm-gemini",
+      "source": "Simon Willison",
+      "source_id": "simonw",
+      "published": "2026-11-12T22:55:19+00:00",
+      "category": "people",
+      "priority": "medium",
+      "summary": "Release: llm-gemini 0.37 Google launched Gemini 4 Hydrogen today - the lowest cost member of the Gemini 4 family…",
+      "why": "",
+      "tags": [
+        "llm"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "fe58eb373a012735",
+      "title": "Chinese frontier AI models carry the fingerprint of export-controlled GPUs",
+      "link": "https://news.ycombinator.com/item?id=50474883",
+      "source": "Hacker News（100+ 分）",
+      "source_id": "hn-algolia",
+      "published": "2026-11-12T21:56:11+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "",
+      "why": "",
+      "tags": [
+        "gpu"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "882a2afe4b3bdaaf",
+      "title": "Anthropic’s IPO Is About Six Times Oversubscribed - Livemint",
+      "link": "https://www.livemint.com/market/anthropics-ipo-is-about-six-times-oversubscribed-11794519373423.html",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-11-12T21:36:12+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Anthropic’s IPO Is About Six Times Oversubscribed Livemint",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "a88bddb17214a029",
+      "title": "LLMON: An LLM-Native Markup Language, now in Granite 4.1 3B and 8B",
+      "link": "https://huggingface.co/blog/ibm-granite/llmon-an-llm-native-markup-language-now-in-granite",
+      "source": "Hugging Face Blog",
+      "source_id": "hf-blog",
+      "published": "2026-11-12T19:07:35+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "",
+      "why": "",
+      "tags": [
+        "llm"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "ee6be3b4110ef3f8",
+      "title": "All 146 session recordings from #PyTorchCon North America 2026 are on YouTube, from keynotes to technical talks on train",
+      "link": "https://bsky.app/profile/pytorch.org/post/3n253coz7vg2c",
+      "source": "Bluesky · PyTorch",
+      "source_id": "bsky-pytorch",
+      "published": "2026-11-12T18:16:00+00:00",
+      "category": "people",
+      "priority": "medium",
+      "summary": "All 146 session recordings from #PyTorchCon North America 2026 are on YouTube, from keynotes to technical talks on training, inference, and kernel engineering…",
+      "why": "",
+      "tags": [
+        "kernel",
+        "llm",
+        "inference",
+        "pytorch"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "6d94f042aabd8ae6",
+      "title": "Self-hosted Claude Managed Agents keeps agent credentials in your environment - Help Net Security",
+      "link": "https://www.helpnetsecurity.com/2026/11/12/anthropic-self-hosted-claude-managed-agents/",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-11-12T18:07:00+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Self-hosted Claude Managed Agents keeps agent credentials in your environment Help Net Security",
+      "why": "",
+      "tags": [
+        "agent"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "c9e6491f07c43666",
+      "title": "AMD and World Labs Share a Stage for the First Time Since Acquisition: Lisa Su and Fei-Fei Li Say Robots Will Become the Next Engine of Compute Growth - BigGo Finance",
+      "link": "https://finance.biggo.com/news/b3662d88-f92f-4a22-8452-c56395d37403",
+      "source": "新闻 · 世界模型（英文）",
+      "source_id": "gnews-world-en",
+      "published": "2026-11-12T18:05:00+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "AMD and World Labs Share a Stage for the First Time Since Acquisition: Lisa Su and Fei-Fei Li Say Robots Will Become the Next Engine of Compute Growth BigGo…",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "ad614f81e42f72e5",
+      "title": "Google Search gets a major upgrade with Gemini 4 Hydrogen",
+      "link": "https://blog.google/products-and-platforms/products/search/gemini-4-hydrogen-search-upgrade",
+      "source": "Google AI Blog",
+      "source_id": "google-ai",
+      "published": "2026-11-12T18:00:00+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Rotating carousel of cards with text \"Gemini 4 Hydrogen\" \"Now in Google Search\" and examples from the Google Search UI",
+      "why": "",
+      "tags": [],
+      "tracks": []
+    },
+    {
+      "id": "0da5d4eccb531c08",
+      "title": "百度世界模型给无人驾驶当考官，李彦宏的管培生接手了萝卜快跑 - 手机新浪网",
+      "link": "https://k.sina.com.cn/article_2587691232_9a3d08e002001ygtu.html?from=finance",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-11-12T17:49:37+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "百度世界模型给无人驾驶当考官，李彦宏的管培生接手了萝卜快跑 手机新浪网",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "a0a52390823c87a6",
+      "title": "Anthropic Lets Customers Self-Host Claude Managed Agents - Unite.AI",
+      "link": "https://www.unite.ai/anthropic-lets-customers-self-host-claude-managed-agents/",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-11-12T17:47:03+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Anthropic Lets Customers Self-Host Claude Managed Agents Unite.AI",
+      "why": "",
+      "tags": [
+        "agent",
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "b9b3af1868c8eb40",
+      "title": "Anthropic Nears Self-Improving AI Threshold: 2026 IPO News - ALM Corp",
+      "link": "https://almcorp.com/news/anthropic-says-it-may-soon-meet-its-own-threshold-for-self-improving-ai/",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-11-12T17:27:59+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Anthropic Nears Self-Improving AI Threshold: 2026 IPO News ALM Corp",
+      "why": "",
+      "tags": [
+        "gpu"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "101a67465438f156",
+      "title": "Fast kernels without the tuning wait: Helion's compile-time heuristics pick high-performance configs automatically, no a",
+      "link": "https://bsky.app/profile/pytorch.org/post/3n24x26kszw2x",
+      "source": "Bluesky · PyTorch",
+      "source_id": "bsky-pytorch",
+      "published": "2026-11-12T17:00:00+00:00",
+      "category": "people",
+      "priority": "medium",
+      "summary": "Fast kernels without the tuning wait: Helion's compile-time heuristics pick high-performance configs automatically, no autotuning needed…",
+      "why": "",
+      "tags": [
+        "cuda",
+        "triton",
+        "kernel",
+        "h100"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "b172bbcbf3bf31ee",
+      "title": "李飞飞最新 CoRL2026 演讲实录：从「橱柜模型」到世界模型，机器人需要什么样的 AI ？ - 新浪财经",
+      "link": "https://finance.sina.com.cn/roll/2026-11-13/doc-iniypekp1035165.shtml",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-11-12T16:00:00+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "李飞飞最新 CoRL2026 演讲实录：从「橱柜模型」到世界模型，机器人需要什么样的 AI ？ 新浪财经",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "2cc4f9f6e4a8e1fb",
+      "title": "Claude Fable 5.2: What’s New in Anthropic’s Flagship, and How to Build a 3D Model of a Pocket Gadget - Incrypted",
+      "link": "https://incrypted.com/en/claude-fable-5-2-whats-new-in-anthropics-flagship/",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-11-12T15:31:46+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Claude Fable 5.2: What’s New in Anthropic’s Flagship, and How to Build a 3D Model of a Pocket Gadget Incrypted",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "0afea49aa1bbc76e",
+      "title": "I'm making LLMs work on small and old devices",
+      "link": "https://news.ycombinator.com/item?id=50468888",
+      "source": "Hacker News（100+ 分）",
+      "source_id": "hn-algolia",
+      "published": "2026-11-12T15:23:10+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "",
+      "why": "",
+      "tags": [
+        "llm"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "5132d2703198e28f",
+      "title": "Anthropic Ports Model To AMD GPUs In Three Days, Challenging CUDA - Dataconomy",
+      "link": "https://dataconomy.com/2026/11/12/anthropic-ports-model-to-amd-gpus-in-three-days/",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-11-12T15:11:41+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Anthropic Ports Model To AMD GPUs In Three Days, Challenging CUDA Dataconomy",
+      "why": "",
+      "tags": [
+        "cuda",
+        "gpu"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "76c69a2be83fc240",
+      "title": "Google 终于让 PyTorch 原生跑上 TPU，开发者：“早该如此！”",
+      "link": "https://www.infoq.cn/article/Fikt82HLToqb6ZANB2xj",
+      "source": "InfoQ 中文",
+      "source_id": "infoq-cn",
+      "published": "2026-11-12T15:00:00+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "点击查看原文>",
+      "why": "",
+      "tags": [
+        "pytorch"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "1c20d83c21cb7561",
+      "title": "Using AI coding agents, SGLang integrated with IBM Spyre in under a week via a 1,500-line plugin. Reusing PyTorch Spyre",
+      "link": "https://bsky.app/profile/pytorch.org/post/3n24qdgz76a2f",
+      "source": "Bluesky · PyTorch",
+      "source_id": "bsky-pytorch",
+      "published": "2026-11-12T15:00:00+00:00",
+      "category": "people",
+      "priority": "medium",
+      "summary": "Using AI coding agents, SGLang integrated with IBM Spyre in under a week via a 1,500-line plugin. Reusing PyTorch Spyre support delivered ~3.6x throughput over…",
+      "why": "",
+      "tags": [
+        "llm",
+        "throughput",
+        "pytorch",
+        "agent"
+      ],
+      "tracks": []
+    }
+  ]
+}
