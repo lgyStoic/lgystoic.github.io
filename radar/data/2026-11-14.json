@@ -1,0 +1,940 @@
+{
+  "date": "2026-11-14",
+  "generated_at": "2026-11-14T03:17:12+00:00",
+  "ai": false,
+  "model": "",
+  "sources": [
+    {
+      "id": "openai",
+      "name": "OpenAI",
+      "ok": true,
+      "count": 2,
+      "total": 1387,
+      "error": ""
+    },
+    {
+      "id": "google-ai",
+      "name": "Google AI Blog",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "qwen",
+      "name": "Qwen",
+      "ok": true,
+      "count": 0,
+      "total": 44,
+      "error": ""
+    },
+    {
+      "id": "hf-blog",
+      "name": "Hugging Face Blog",
+      "ok": true,
+      "count": 3,
+      "total": 907,
+      "error": ""
+    },
+    {
+      "id": "nvidia-dev",
+      "name": "NVIDIA Technical Blog",
+      "ok": true,
+      "count": 3,
+      "total": 100,
+      "error": ""
+    },
+    {
+      "id": "hf-papers",
+      "name": "HF Papers 日榜",
+      "ok": true,
+      "count": 13,
+      "total": 23,
+      "error": ""
+    },
+    {
+      "id": "pytorch",
+      "name": "PyTorch Blog",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "simonw",
+      "name": "Simon Willison",
+      "ok": true,
+      "count": 0,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "lilianweng",
+      "name": "Lil'Log",
+      "ok": true,
+      "count": 0,
+      "total": 53,
+      "error": ""
+    },
+    {
+      "id": "interconnects",
+      "name": "Interconnects",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "raschka",
+      "name": "Sebastian Raschka",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "chiphuyen",
+      "name": "Chip Huyen",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-pytorch",
+      "name": "Release · PyTorch",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-triton",
+      "name": "Release · Triton",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-cutlass",
+      "name": "Release · CUTLASS",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-flash-attention",
+      "name": "Release · FlashAttention",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-vllm",
+      "name": "Release · vLLM",
+      "ok": true,
+      "count": 1,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-sglang",
+      "name": "Release · SGLang",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-tensorrt-llm",
+      "name": "Release · TensorRT-LLM",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-diffusers",
+      "name": "Release · Diffusers",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-cuda-python",
+      "name": "Release · cuda-python",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "gnews-labs-en",
+      "name": "新闻 · Anthropic / Mistral / xAI",
+      "ok": true,
+      "count": 11,
+      "total": 66,
+      "error": ""
+    },
+    {
+      "id": "gnews-labs-cn",
+      "name": "新闻 · 国内模型公司",
+      "ok": true,
+      "count": 14,
+      "total": 61,
+      "error": ""
+    },
+    {
+      "id": "qbitai",
+      "name": "量子位",
+      "ok": true,
+      "count": 1,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "infoq-cn",
+      "name": "InfoQ 中文",
+      "ok": true,
+      "count": 2,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "thonking",
+      "name": "Horace He (thonking)",
+      "ok": true,
+      "count": 0,
+      "total": 6,
+      "error": ""
+    },
+    {
+      "id": "hn-algolia",
+      "name": "Hacker News（100+ 分）",
+      "ok": true,
+      "count": 3,
+      "total": 60,
+      "error": ""
+    },
+    {
+      "id": "karpathy-blog",
+      "name": "Andrej Karpathy 博客",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "eugeneyan",
+      "name": "Eugene Yan",
+      "ok": true,
+      "count": 0,
+      "total": 212,
+      "error": ""
+    },
+    {
+      "id": "importai",
+      "name": "Import AI（Jack Clark）",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "latentspace",
+      "name": "Latent Space",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "semianalysis",
+      "name": "SemiAnalysis",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "meta-ai",
+      "name": "Meta Engineering",
+      "ok": true,
+      "count": 0,
+      "total": 9,
+      "error": ""
+    },
+    {
+      "id": "mistral-news",
+      "name": "Mistral AI",
+      "ok": true,
+      "count": 0,
+      "total": 94,
+      "error": ""
+    },
+    {
+      "id": "bsky-karpathy",
+      "name": "Bluesky · Andrej Karpathy",
+      "ok": true,
+      "count": 0,
+      "total": 15,
+      "error": ""
+    },
+    {
+      "id": "bsky-giffmana",
+      "name": "Bluesky · Lucas Beyer",
+      "ok": true,
+      "count": 0,
+      "total": 22,
+      "error": ""
+    },
+    {
+      "id": "bsky-hardmaru",
+      "name": "Bluesky · hardmaru",
+      "ok": true,
+      "count": 0,
+      "total": 15,
+      "error": ""
+    },
+    {
+      "id": "bsky-swyx",
+      "name": "Bluesky · swyx",
+      "ok": true,
+      "count": 0,
+      "total": 3,
+      "error": ""
+    },
+    {
+      "id": "bsky-pytorch",
+      "name": "Bluesky · PyTorch",
+      "ok": true,
+      "count": 0,
+      "total": 27,
+      "error": ""
+    },
+    {
+      "id": "bsky-clem",
+      "name": "Bluesky · Clem Delangue",
+      "ok": true,
+      "count": 0,
+      "total": 11,
+      "error": ""
+    },
+    {
+      "id": "bsky-natolambert",
+      "name": "Bluesky · Nathan Lambert",
+      "ok": true,
+      "count": 0,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "bsky-rasbt",
+      "name": "Bluesky · Sebastian Raschka",
+      "ok": true,
+      "count": 0,
+      "total": 27,
+      "error": ""
+    },
+    {
+      "id": "bsky-jeffdean",
+      "name": "Bluesky · Jeff Dean",
+      "ok": true,
+      "count": 0,
+      "total": 18,
+      "error": ""
+    },
+    {
+      "id": "hf-trending-new",
+      "name": "HF 热榜新模型",
+      "ok": true,
+      "count": 2,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "gh-new-stars",
+      "name": "GitHub 新星仓库",
+      "ok": true,
+      "count": 0,
+      "total": 15,
+      "error": ""
+    },
+    {
+      "id": "hf-t2v",
+      "name": "HF 热榜 · 文生视频",
+      "ok": true,
+      "count": 0,
+      "total": 18,
+      "error": ""
+    },
+    {
+      "id": "hf-i2v",
+      "name": "HF 热榜 · 图生视频",
+      "ok": true,
+      "count": 0,
+      "total": 19,
+      "error": ""
+    },
+    {
+      "id": "gnews-video-en",
+      "name": "新闻 · 视频生成（英文）",
+      "ok": true,
+      "count": 8,
+      "total": 15,
+      "error": ""
+    },
+    {
+      "id": "gnews-video-cn",
+      "name": "新闻 · 视频生成（中文）",
+      "ok": true,
+      "count": 15,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "gnews-world-en",
+      "name": "新闻 · 世界模型（英文）",
+      "ok": true,
+      "count": 2,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "gnews-world-cn",
+      "name": "新闻 · 世界模型（中文）",
+      "ok": true,
+      "count": 14,
+      "total": 45,
+      "error": ""
+    },
+    {
+      "id": "gh-new-video-world",
+      "name": "GitHub 新仓库 · 视频 / 世界模型",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "arxiv-cscv",
+      "name": "arXiv cs.CV（专题）",
+      "ok": true,
+      "count": 31,
+      "total": 326,
+      "error": ""
+    },
+    {
+      "id": "arxiv-csro",
+      "name": "arXiv cs.RO（专题）",
+      "ok": true,
+      "count": 9,
+      "total": 164,
+      "error": ""
+    }
+  ],
+  "counts": {
+    "high": 10,
+    "medium": 20,
+    "low": 0
+  },
+  "items": [
+    {
+      "id": "dc2a9f60f4352831",
+      "title": "Anthropic IPO May Overshadow Nvidia Earnings, Retail Results and SpaceX Starship Launch - SSBCrack",
+      "link": "https://news.ssbcrack.com/anthropic-ipo-may-overshadow-nvidia-earnings-retail-results-and-spacex-starship-launch/",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-11-14T02:24:14+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "Anthropic IPO May Overshadow Nvidia Earnings, Retail Results and SpaceX Starship Launch SSBCrack",
+      "why": "",
+      "tags": [
+        "llm"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "92b36718a0700a06",
+      "title": "Ninepoint to Launch Anthropic HighShares ETF, Combining AI Growth Potential and Twice-Monthly Distributions - The Manila Times",
+      "link": "https://www.manilatimes.net/2026/11/14/tmt-newswire/globenewswire/ninepoint-to-launch-anthropic-highshares-etf-combining-ai-growth-potential-and-twice-monthly-distributions/2469841",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-11-13T19:59:50+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "Ninepoint to Launch Anthropic HighShares ETF, Combining AI Growth Potential and Twice-Monthly Distributions The Manila Times",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "d9edd1f7c08db9da",
+      "title": "Injective launches Anthropic pre-IPO market for early Nasdaq listing bets - Pluang",
+      "link": "https://pluang.com/en/news-feed/pasar-pre-ipo-anthropic-hadir-di-injective-sebelum-listing-nasdaq",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-11-13T19:55:07+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "Injective launches Anthropic pre-IPO market for early Nasdaq listing bets Pluang",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "275c69b91706d5d4",
+      "title": "PhysLoop：用于自我改进视频生成模型的LLM引导物理学 - blockchain.news",
+      "link": "https://blockchain.news/news/physloop-llm-physics-video-generation-zh",
+      "source": "新闻 · 视频生成（中文）",
+      "source_id": "gnews-video-cn",
+      "published": "2026-11-13T18:29:00+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "PhysLoop：用于自我改进视频生成模型的LLM引导物理学 blockchain.news",
+      "why": "",
+      "tags": [
+        "llm",
+        "生成模型",
+        "视频生成"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "0471361a891789a0",
+      "title": "PhysLoop: LLM-Guided Physics for Self-Improving Video Generation Models - Blockchain News",
+      "link": "https://blockchain.news/news/physloop-llm-physics-video-generation",
+      "source": "新闻 · 视频生成（英文）",
+      "source_id": "gnews-video-en",
+      "published": "2026-11-13T18:14:00+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "PhysLoop: LLM-Guided Physics for Self-Improving Video Generation Models Blockchain News",
+      "why": "",
+      "tags": [
+        "video generation",
+        "llm"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "a5884cd11a05692b",
+      "title": "Best AI Video Generation Models in 2026: Elo, Price per Second, Open Weights - MarkTechPost",
+      "link": "https://www.marktechpost.com/2026/11/13/best-ai-video-generation-models-2026/",
+      "source": "新闻 · 视频生成（英文）",
+      "source_id": "gnews-video-en",
+      "published": "2026-11-13T17:23:51+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "Best AI Video Generation Models in 2026: Elo, Price per Second, Open Weights MarkTechPost",
+      "why": "",
+      "tags": [
+        "video generation"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "061afab64706362d",
+      "title": "PixVerse Launches Text to Video Tool That Turns Written Prompts Into Directed AI Clips - The Courier-Journal",
+      "link": "https://www.courier-journal.com/press-release/story/255638/pixverse-launches-text-to-video-tool-that-turns-written-prompts-into-directed-ai-clips/",
+      "source": "新闻 · 视频生成（英文）",
+      "source_id": "gnews-video-en",
+      "published": "2026-11-13T16:26:04+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "PixVerse Launches Text to Video Tool That Turns Written Prompts Into Directed AI Clips The Courier-Journal",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "5bf4951adbe9698d",
+      "title": "Introducing ChatGPT Wallet",
+      "link": "https://openai.com/index/introducing-chatgpt-wallet",
+      "source": "OpenAI",
+      "source_id": "openai",
+      "published": "2026-11-13T15:00:00+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "Introducing ChatGPT Wallet, a secure way for agents in ChatGPT Work, Codex, and dots to complete purchases with user approval and existing card protections.",
+      "why": "",
+      "tags": [
+        "agent"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "d8f1f437156292a7",
+      "title": "Spacex’s AI Group Laid Off Roughly 60 Employees From Its Grok Imagine Video Generation Team - The Information - TradingView",
+      "link": "https://www.tradingview.com/news/reuters.com,2026:newsml_FWN46U1C2:0-spacex-s-ai-group-laid-off-roughly-60-employees-from-its-grok-imagine-video-generation-team-the-information/",
+      "source": "新闻 · 视频生成（英文）",
+      "source_id": "gnews-video-en",
+      "published": "2026-11-13T14:05:37+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "Spacex’s AI Group Laid Off Roughly 60 Employees From Its Grok Imagine Video Generation Team - The Information TradingView",
+      "why": "",
+      "tags": [
+        "video generation",
+        "3D"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "055f74c2812b6557",
+      "title": "Elon Musk’s AI Group Guts Grok Video Generation Team - The Information",
+      "link": "https://www.theinformation.com/articles/elon-musks-ai-group-guts-grok-video-generation-team",
+      "source": "新闻 · 视频生成（英文）",
+      "source_id": "gnews-video-en",
+      "published": "2026-11-13T14:00:00+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "Elon Musk’s AI Group Guts Grok Video Generation Team The Information",
+      "why": "",
+      "tags": [
+        "video generation",
+        "3D"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "bd1186dee4b5a210",
+      "title": "MiniMax-H3-Image 与 HY-Image 3.5：两处星号，两种截然不同的风险 - OrcaRouter",
+      "link": "https://www.orcarouter.ai/zh-CN/blog/minimax-h3-image-vs-hy-image-3-5",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-11-14T02:37:27+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "MiniMax-H3-Image 与 HY-Image 3.5：两处星号，两种截然不同的风险 OrcaRouter",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "58e9b254ab7c38d6",
+      "title": "DeepSeek开放全家桶API：以后可以随心所欲构建APP了 - Sohu",
+      "link": "https://m.sohu.com/a/1101374628_122014422?scm=10001.325_13-325_13.0.0-0-0-0-0.5_1334",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-11-14T00:09:40+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "DeepSeek开放全家桶API：以后可以随心所欲构建APP了 Sohu",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "3ad739e51bb4bdbb",
+      "title": "v0.34.0rc3",
+      "link": "https://github.com/vllm-project/vllm/releases/tag/v0.34.0rc3",
+      "source": "Release · vLLM",
+      "source_id": "rel-vllm",
+      "published": "2026-11-13T22:52:29+00:00",
+      "category": "infra",
+      "priority": "medium",
+      "summary": "[KVConnector] Allocate the extensible KV cache exportable for EXPORTS…",
+      "why": "",
+      "tags": [],
+      "tracks": []
+    },
+    {
+      "id": "a35bf4da1730a0d6",
+      "title": "Run GPU-Powered Black Hole Interferometry with NVIDIA cuPhoton",
+      "link": "https://developer.nvidia.com/blog/run-gpu-powered-black-hole-interferometry-with-nvidia-cuphoton",
+      "source": "NVIDIA Technical Blog",
+      "source_id": "nvidia-dev",
+      "published": "2026-11-13T21:17:30+00:00",
+      "category": "infra",
+      "priority": "medium",
+      "summary": "Imaging black holes is challenging because they are distant and appear tiny in the sky—for example, M87*’s observed ring spans just 42 microarcseconds. The...",
+      "why": "",
+      "tags": [
+        "gpu"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "75ab51180194d260",
+      "title": "从快速部署到记忆共享，数据库如何支撑 Agent 应用？",
+      "link": "https://www.infoq.cn/video/FwbOyyfoAmkQPMTItMDN",
+      "source": "InfoQ 中文",
+      "source_id": "infoq-cn",
+      "published": "2026-11-13T20:54:12+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "点击查看原文>",
+      "why": "",
+      "tags": [
+        "agent"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "87826beec8db320a",
+      "title": "智能互动 Agent 在快手商业场景的落地实践",
+      "link": "https://www.infoq.cn/article/e0aglHW78pZuik3CWqdo",
+      "source": "InfoQ 中文",
+      "source_id": "infoq-cn",
+      "published": "2026-11-13T19:00:00+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "点击查看原文>",
+      "why": "",
+      "tags": [
+        "agent"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "408f1e399c8022f8",
+      "title": "Run Native DLA Inference in Python on NVIDIA Jetson AGX Orin Using cuDLA",
+      "link": "https://developer.nvidia.com/blog/run-native-dla-inference-in-python-on-nvidia-jetson-agx-orin-using-cudla",
+      "source": "NVIDIA Technical Blog",
+      "source_id": "nvidia-dev",
+      "published": "2026-11-13T18:57:35+00:00",
+      "category": "infra",
+      "priority": "medium",
+      "summary": "AI applications at the edge often need to run multiple neural networks within limited compute and power budgets. NVIDIA Deep Learning Accelerator (DLA)...",
+      "why": "",
+      "tags": [
+        "inference"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "7a2c88863034c896",
+      "title": "Wall Street Braces for Anthropic’s Spending - The New York Times",
+      "link": "https://www.nytimes.com/2026/11/13/technology/anthropic-ipo-spending-plans.html",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-11-13T18:52:43+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Wall Street Braces for Anthropic’s Spending The New York Times",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "2427bacb74a96b4b",
+      "title": "Build a Robot Pick-and-Place Simulation with SimReady Assets",
+      "link": "https://huggingface.co/blog/nvidia/simready-assets-robot-pick-and-place",
+      "source": "Hugging Face Blog",
+      "source_id": "hf-blog",
+      "published": "2026-11-13T18:00:39+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "",
+      "why": "",
+      "tags": [],
+      "tracks": []
+    },
+    {
+      "id": "2ade56aeff8bf958",
+      "title": "Show HN: Isometric SF – A pixel-art map of the SF Bay Area",
+      "link": "https://news.ycombinator.com/item?id=50487228",
+      "source": "Hacker News（100+ 分）",
+      "source_id": "hn-algolia",
+      "published": "2026-11-13T17:58:37+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "Technical Write-up: https://www.justinchavez.com/blog/isometric-sf-how/ Hi HN! Showcasing this fun project…",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "c50d7de7c1d52ecc",
+      "title": "After 600 experiments, here's what I discovered about JEPA world models",
+      "link": "https://news.ycombinator.com/item?id=50487185",
+      "source": "Hacker News（100+ 分）",
+      "source_id": "hn-algolia",
+      "published": "2026-11-13T17:55:28+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "bd9cceb19e564976",
+      "title": "中国AI模型被发现英伟达Blackwell芯片“指纹” 研究推算部分训练集群规模达3000至4500颗 - cnBeta.COM",
+      "link": "https://www.cnbeta.com.tw/articles/tech/1586310.htm",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-11-13T17:22:00+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "中国AI模型被发现英伟达Blackwell芯片“指纹” 研究推算部分训练集群规模达3000至4500颗 cnBeta.COM",
+      "why": "",
+      "tags": [
+        "blackwell"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "8400bdfe1e2afd49",
+      "title": "XYBench: Helping with the problem behind the question",
+      "link": "https://huggingface.co/blog/allenai/xybench",
+      "source": "Hugging Face Blog",
+      "source_id": "hf-blog",
+      "published": "2026-11-13T17:02:35+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "",
+      "why": "",
+      "tags": [],
+      "tracks": []
+    },
+    {
+      "id": "318a2b17490ced82",
+      "title": "Anthropic's Gross Margin Battle Begins, Claude's Enterprise Penetration Becomes Key Bargaining Chip - BigGo Finance",
+      "link": "https://finance.biggo.com/news/b601cd3d-8e05-45d8-bb6d-59f997c6d274",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-11-13T15:55:00+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Anthropic's Gross Margin Battle Begins, Claude's Enterprise Penetration Becomes Key Bargaining Chip BigGo Finance",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "2f852945a5f8f16b",
+      "title": "Luma AI 评测：Dream Machine 与电影级视频生成 - quasa.io",
+      "link": "https://quasa.io/zh/video/luma-ai-ping-ce-dream-machine-yu-dian-ying-ji-shi-pin-sheng-cheng",
+      "source": "新闻 · 视频生成（中文）",
+      "source_id": "gnews-video-cn",
+      "published": "2026-11-13T14:42:23+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Luma AI 评测：Dream Machine 与电影级视频生成 quasa.io",
+      "why": "",
+      "tags": [
+        "视频生成"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "c80b3494b216a918",
+      "title": "DeepSeek开放“全家桶”应用API，开发者可1:1复刻完整App - 凤凰网",
+      "link": "https://original.ifeng.com/c/8y1oEDGtTEh",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-11-13T14:41:15+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "DeepSeek开放“全家桶”应用API，开发者可1:1复刻完整App 凤凰网",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "538c21895123dba2",
+      "title": "市场传闻：SpaceX人工智能部门裁撤视频生成团队大部分成员 - Moomoo",
+      "link": "https://www.moomoo.com/hans/news/post/1004602282/market-chatter-spacex-s-ai-group-cuts-most-of-video",
+      "source": "新闻 · 视频生成（中文）",
+      "source_id": "gnews-video-cn",
+      "published": "2026-11-13T14:31:08+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "市场传闻：SpaceX人工智能部门裁撤视频生成团队大部分成员 Moomoo",
+      "why": "",
+      "tags": [
+        "视频生成"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "0604250b2f878314",
+      "title": "SpaceX's AI Group Cuts Most of Video Generation Team - www.marketscreener.com",
+      "link": "https://www.marketscreener.com/news/spacex-s-ai-group-cuts-most-of-video-generation-team-ce785ed9d18bfe2c",
+      "source": "新闻 · 视频生成（英文）",
+      "source_id": "gnews-video-en",
+      "published": "2026-11-13T14:26:47+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "SpaceX's AI Group Cuts Most of Video Generation Team www.marketscreener.com",
+      "why": "",
+      "tags": [
+        "video generation"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "a1f43555f3e12baf",
+      "title": "xAI prioritizes AI coding tools and its Grok Bot agent product - Crypto Briefing",
+      "link": "https://cryptobriefing.com/xai-prioritizes-ai-coding-grok-bot/",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-11-13T14:09:53+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "xAI prioritizes AI coding tools and its Grok Bot agent product Crypto Briefing",
+      "why": "",
+      "tags": [
+        "agent"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "40e78db6601d46e6",
+      "title": "llama.cpp v1.0.0 : A stronger foundation for the local AI ecosystem",
+      "link": "https://huggingface.co/blog/ggml-org/llama-cpp-v1",
+      "source": "Hugging Face Blog",
+      "source_id": "hf-blog",
+      "published": "2026-11-13T14:05:22+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "",
+      "why": "",
+      "tags": [],
+      "tracks": []
+    }
+  ]
+}
