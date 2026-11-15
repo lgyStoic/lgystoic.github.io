@@ -443,3 +443,42 @@ body {
     bottom: 66px;
   }
 }
+
+#card-3d-wrap {
+  position: relative;
+  width: 100%;
+  height: 196px;
+  margin: 10px 0 12px;
+  border-radius: 9px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: radial-gradient(circle at 50% 35%, rgba(44, 58, 66, 0.92), rgba(14, 20, 24, 0.96));
+}
+
+#card-3d-wrap.is-hidden,
+#btn-toggle-3d.is-hidden {
+  display: none;
+}
+
+#card-3d-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  cursor: grab;
+}
+
+#card-3d-canvas:active {
+  cursor: grabbing;
+}
+
+#card-3d-status {
+  position: absolute;
+  left: 8px;
+  bottom: 7px;
+  padding: 2px 7px;
+  border-radius: 5px;
+  background: rgba(12, 17, 20, 0.72);
+  color: var(--text-muted);
+  font-size: 11px;
+  pointer-events: none;
+}

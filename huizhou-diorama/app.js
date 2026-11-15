@@ -28,6 +28,13 @@
     xi_chengmen: { dx: -24, dy: -8 }
   };
 
+  const LANDMARK_MODELS = {
+    xuguo_paifang: "./assets/models/xuguo_paifang.glb",
+    dong_qiaolou: "./assets/models/dong_qiaolou.glb",
+    nan_qiaolou: "./assets/models/nan_qiaolou.glb",
+    huizhou_fuya: "./assets/models/fuya_zhengtang.glb"
+  };
+
   function mulberry32(seed) {
     let a = seed >>> 0;
     return function () {
@@ -834,6 +841,7 @@
       }
       if (!lm) {
         cardEl.classList.add("is-hidden");
+        hide3DViewer();
         return;
       }
       cardBadge.textContent = lm.badge || "历史地标";
@@ -841,12 +849,137 @@
       cardDesc.textContent = lm.desc;
       cardCoords.textContent = `4K (${Math.round(lm.x4)}, ${Math.round(lm.y4)})`;
       cardEl.classList.remove("is-hidden");
+      sync3DButtonForLandmark(lm);
 
       if (shouldFly && osdOpen) {
         viewer.viewport.panTo(new OpenSeadragon.Point(lm.x4 / MAP_SIZE, lm.y4 / MAP_SIZE));
         viewer.viewport.zoomTo(lm.zoom || 4.0);
       }
     }
+
+    const card3dWrap = document.getElementById("card-3d-wrap");
+    const card3dCanvas = document.getElementById("card-3d-canvas");
+    const card3dStatus = document.getElementById("card-3d-status");
+    const btnToggle3d = document.getElementById("btn-toggle-3d");
+    let threeCtx = null;
+    let threeOpen = false;
+    let loadedModelUrl = null;
+
+    function hide3DViewer() {
+      threeOpen = false;
+      card3dWrap.classList.add("is-hidden");
+      btnToggle3d.classList.remove("is-active");
+      btnToggle3d.textContent = "查看 3D 模型";
+    }
+
+    function sync3DButtonForLandmark(lm) {
+      hide3DViewer();
+      if (lm && LANDMARK_MODELS[lm.id] && window.THREE && THREE.GLTFLoader) {
+        btnToggle3d.classList.remove("is-hidden");
+      } else {
+        btnToggle3d.classList.add("is-hidden");
+      }
+    }
+
+    function ensureThreeCtx() {
+      if (threeCtx) return threeCtx;
+      const w = card3dWrap.clientWidth || 300;
+      const h = card3dWrap.clientHeight || 196;
+      const renderer = new THREE.WebGLRenderer({ canvas: card3dCanvas, antialias: true, alpha: true });
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+      renderer.setSize(w, h, false);
+      renderer.outputEncoding = THREE.sRGBEncoding;
+
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(38, w / h, 0.05, 100);
+      camera.position.set(2.2, 1.5, 2.2);
+
+      scene.add(new THREE.AmbientLight(0xfff5e4, 0.95));
+      const dir1 = new THREE.DirectionalLight(0xfff0d4, 1.15);
+      dir1.position.set(3, 5, 4);
+      scene.add(dir1);
+      const dir2 = new THREE.DirectionalLight(0x9ec5e8, 0.45);
+      dir2.position.set(-3, 2, -3);
+      scene.add(dir2);
+
+      const controls = new THREE.OrbitControls(camera, card3dCanvas);
+      controls.enableDamping = true;
+      controls.dampingFactor = 0.08;
+      controls.autoRotate = true;
+      controls.autoRotateSpeed = 1.4;
+
+      const loader = new THREE.GLTFLoader();
+      const modelGroup = new THREE.Group();
+      scene.add(modelGroup);
+
+      function renderLoop() {
+        requestAnimationFrame(renderLoop);
+        if (!threeOpen) return;
+        controls.update();
+        renderer.render(scene, camera);
+      }
+      renderLoop();
+
+      threeCtx = { renderer, scene, camera, controls, loader, modelGroup };
+      return threeCtx;
+    }
+
+    function open3DForLandmark(lm) {
+      const url = lm && LANDMARK_MODELS[lm.id];
+      if (!url) return;
+      threeOpen = true;
+      card3dWrap.classList.remove("is-hidden");
+      btnToggle3d.classList.add("is-active");
+      btnToggle3d.textContent = "收起 3D 模型";
+
+      const ctx = ensureThreeCtx();
+      const w = card3dWrap.clientWidth || 300;
+      const h = card3dWrap.clientHeight || 196;
+      ctx.renderer.setSize(w, h, false);
+      ctx.camera.aspect = w / h;
+      ctx.camera.updateProjectionMatrix();
+
+      if (loadedModelUrl === url) {
+        card3dStatus.textContent = "拖拽旋转 · 滚轮缩放";
+        return;
+      }
+      loadedModelUrl = url;
+      while (ctx.modelGroup.children.length > 0) {
+        ctx.modelGroup.remove(ctx.modelGroup.children[0]);
+      }
+      card3dStatus.textContent = "加载 3D 模型中…";
+      ctx.loader.load(
+        url,
+        (gltf) => {
+          if (loadedModelUrl !== url) return;
+          const root = gltf.scene;
+          const box = new THREE.Box3().setFromObject(root);
+          const size = box.getSize(new THREE.Vector3());
+          const center = box.getCenter(new THREE.Vector3());
+          const maxDim = Math.max(size.x, size.y, size.z, 0.001);
+          const scale = 1.85 / maxDim;
+          root.scale.setScalar(scale);
+          root.position.set(-center.x * scale, -center.y * scale, -center.z * scale);
+          ctx.modelGroup.add(root);
+          ctx.camera.position.set(2.1, 1.35, 2.1);
+          ctx.controls.target.set(0, 0, 0);
+          ctx.controls.update();
+          card3dStatus.textContent = "拖拽旋转 · 滚轮缩放";
+        },
+        undefined,
+        () => {
+          card3dStatus.textContent = "3D 模型加载失败";
+        }
+      );
+    }
+
+    btnToggle3d.addEventListener("click", () => {
+      if (threeOpen) {
+        hide3DViewer();
+      } else if (activeLandmark) {
+        open3DForLandmark(activeLandmark);
+      }
+    });
 
     for (const lm of landmarks) {
       const pin = document.createElement("button");

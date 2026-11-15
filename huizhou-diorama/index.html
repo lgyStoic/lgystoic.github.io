@@ -6,6 +6,9 @@
   <title>徽州古城 4K 等轴测像素动态沙盘</title>
   <link rel="stylesheet" href="./styles.css" />
   <script src="./vendor/openseadragon.min.js"></script>
+  <script src="./vendor/three.min.js"></script>
+  <script src="./vendor/GLTFLoader.js"></script>
+  <script src="./vendor/OrbitControls.js"></script>
 </head>
 <body>
   <div id="stage">
@@ -74,9 +77,16 @@
         <button id="btn-close-card" class="icon-btn" type="button" aria-label="关闭卡片">×</button>
       </div>
       <p id="card-desc" class="card-desc"></p>
+      <div id="card-3d-wrap" class="is-hidden">
+        <canvas id="card-3d-canvas"></canvas>
+        <div id="card-3d-status">加载 3D 模型中…</div>
+      </div>
       <div class="card-footer">
         <span id="card-coords" class="card-coords"></span>
-        <button id="btn-refocus-card" class="pill-btn is-active" type="button">聚焦近景</button>
+        <div class="btn-group">
+          <button id="btn-toggle-3d" class="pill-btn is-hidden" type="button">查看 3D 模型</button>
+          <button id="btn-refocus-card" class="pill-btn is-active" type="button">聚焦近景</button>
+        </div>
       </div>
     </section>
 
