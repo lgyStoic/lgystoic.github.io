@@ -33,7 +33,7 @@
     dong_qiaolou: "./assets/models/dong_qiaolou.glb",
     nan_qiaolou: "./assets/models/nan_qiaolou.glb",
     huizhou_fuya: "./assets/models/fuya_zhengtang.glb",
-    taiping_bridge: "./assets/models/taiping_bridge.glb",
+    taiping_bridge: "./assets/models/taiping_bridge.glb?v=2",
     zhonghe_clock: "./assets/models/zhonghe_clock.glb"
   };
 
