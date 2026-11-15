@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Google Cloud 免费 e2-micro 建站与隐身流量监控实战：Standard 200GB 流量 + Xray REALITY + 仅隧道可见看板 | Anaxagore</title>
+    <meta name="description" content="从零在 Google Cloud us-west1 部署免费层级 e2-micro（30GB pd-standard + STANDARD 网络 200GB/月出站），记录 Xray VLESS-REALITY 与 BBR 配置、Clash Verge/FlClash 接入、仅限加密隧道内部访问的静态流量监控看板，以及新号风控申诉复盘。" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Google Cloud 免费 e2-micro 建站与隐身流量监控实战：Standard 200GB 流量 + Xray REALITY + 仅隧道可见看板 | Anaxagore" />
+    <meta property="og:description" content="锁定 GCP Free Tier 免费规格与 200GB Standard 流量，部署 Xray VLESS-REALITY 与零公网暴露的纯静态流量监控看板，附客户端兼容踩坑与风控申诉实录。" />
+    <meta property="og:url" content="https://427795.xyz/notes/gcp-e2-micro-vps-monitoring/" />
+    <meta property="og:image" content="https://427795.xyz/assets/og/notes.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="canonical" href="https://427795.xyz/notes/gcp-e2-micro-vps-monitoring/" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231b1b1a'/%3E%3Ctext x='32' y='43' text-anchor='middle' font-size='30' font-family='Helvetica,Arial' font-weight='700' fill='white'%3EA%3C/text%3E%3C/svg%3E"
+    />
+    <link rel="stylesheet" href="../../site.css" />
+    <link rel="stylesheet" href="./styles.css" />
+    <script>
+      try {
+        var t = localStorage.getItem("theme");
+        if (t === "dark" || t === "light") document.documentElement.dataset.theme = t;
+      } catch (e) {}
+    </script>
+    <!-- build:jsonld -->
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Anaxagore", "item": "https://427795.xyz/"}, {"@type": "ListItem", "position": 2, "name": "笔记", "item": "https://427795.xyz/notes/"}, {"@type": "ListItem", "position": 3, "name": "Google Cloud 免费 e2-micro 建站与隐身流量监控实战", "item": "https://427795.xyz/notes/gcp-e2-micro-vps-monitoring/"}]}</script>
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "Google Cloud 免费 e2-micro 建站与隐身流量监控实战", "description": "从零在 Google Cloud us-west1 部署免费层级 e2-micro（30GB pd-standard + STANDARD 网络 200GB/月出站），记录 Xray VLESS-REALITY 与 BBR 配置、Clash Verge/FlClash 接入、仅限加密隧道内部访问的静态流量监控看板，以及新号风控申诉复盘。", "url": "https://427795.xyz/notes/gcp-e2-micro-vps-monitoring/", "mainEntityOfPage": "https://427795.xyz/notes/gcp-e2-micro-vps-monitoring/", "inLanguage": "zh-CN", "dateModified": "2026-11-15", "datePublished": "2026-11-15", "keywords": "Google Cloud, VPS, Xray, Clash Verge, 成本优化, 网络安全", "isBasedOn": "GCP Free Tier / Xray REALITY / Clash Verge / vnStat", "author": {"@type": "Person", "@id": "https://427795.xyz/#person", "name": "Anaxagore", "url": "https://427795.xyz/about/"}, "publisher": {"@type": "Person", "@id": "https://427795.xyz/#person", "name": "Anaxagore", "url": "https://427795.xyz/"}, "image": "https://427795.xyz/assets/og/notes.png"}</script>
+    <!-- /build:jsonld -->
+  </head>
+  <body>
+    <!-- build:header -->
+    <header class="site-header">
+      <div class="wrap">
+        <a class="brand" href="../../" aria-label="首页">
+          <span class="brand-mark">A</span>
+          <span>Anaxagore</span>
+        </a>
+        <nav class="site-nav" aria-label="主导航">
+          <a href="../../notes/" aria-current="page">笔记</a>
+          <a href="../../radar/">雷达</a>
+          <a href="../../radar/tracks/">专题</a>
+          <a href="../../radar/events/">活动</a>
+          <a href="../../radar/jobs/">工作</a>
+          <a href="../../guides/">指南</a>
+          <a href="../../about/">关于</a>
+          <button class="theme-toggle" type="button" data-theme-toggle aria-label="切换深浅色">
+            <span data-theme-icon>◑</span>
+          </button>
+        </nav>
+      </div>
+    </header>
+    <!-- /build:header -->
+
+    <main class="wrap note">
+      <section class="hero">
+        <p class="eyebrow">云原生运维 · Google Cloud Free Tier / Xray REALITY / 隐私监控</p>
+        <h1>Google Cloud 免费 e2-micro 建站与隐身流量监控实战</h1>
+        <p class="lead">很多人开 Google Cloud 的免费 <code>e2-micro</code>，一不留神就被默认的均衡盘（<code>pd-balanced</code>）和高级网络（<code>PREMIUM</code>）悄悄扣费；或者为了看流量，在公网裸奔一个 <code>80</code> 端口监控页。这篇指南记录一套可直接复现的零成本方案：锁定官方免费层级与每月 200 GB 标准出站流量，部署 Xray VLESS-REALITY，并把 Nginx 流量看板彻底藏进加密隧道内部——公网扫描器只看到一个关闭 80 端口的正常 443 服务。</p>
+        <p class="meta">Anaxagore · 更新于 2026-11-15</p>
+        <div class="tldr">
+          <strong>TL;DR（核心架构与避坑结论）</strong>
+          <ul>
+            <li><strong>锁死免费层级四要素</strong>：美西机房 <code>us-west1</code> + <code>e2-micro</code> + 启动盘显式指定 <code>--boot-disk-type=pd-standard --boot-disk-size=30GB</code> + 静态 IP 与网卡显式指定 <code>--network-tier=STANDARD</code>（每月免费 <strong>200 GB</strong> 出站，入站永久免费）。</li>
+            <li><strong>避开新版本握手坑</strong>：在部分 <code>verge-mihomo</code> 客户端上，Xray <code>v26.10.31</code> 与客户端 <code>X25519MLKEM768</code> 协商存在兼容报错，服务端锁定 <code>v25.8.3</code> + <code>iosapps.itunes.apple.com</code> SNI 实测稳定连通。</li>
+            <li><strong>零暴露隐身监控</strong>：关掉 GCP 公网 80 防火墙，Nginx 仅监听 <code>127.0.0.1:80</code>；利用 Xray 内部 <code>routing</code> 将隧道内发往 VPS IP <code>80</code> 端口的请求回环转发至本地看板，外网端口全关，只有自己连着隧道的设备能秒开。</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>1. 计费避坑：为什么默认命令还是会扣钱？</h2>
+        <p>Google Cloud 的 Always Free（永久免费）对 <code>e2-micro</code> 有非常严格的边界条件，用默认参数开出来的机器往往踩中两个隐形计费项：</p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>资源项</th>
+                <th><code>gcloud</code> 默认值（会扣费）</th>
+                <th>免费层级正确参数</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>可用区</strong></td>
+                <td>任意区</td>
+                <td>仅限 <code>us-west1</code>、<code>us-central1</code>、<code>us-east1</code></td>
+              </tr>
+              <tr>
+                <td><strong>系统盘类型</strong></td>
+                <td><code>pd-balanced</code>（均衡永久性磁盘）</td>
+                <td><code>--boot-disk-type=pd-standard --boot-disk-size=30GB</code></td>
+              </tr>
+              <tr>
+                <td><strong>网络层级</strong></td>
+                <td><code>PREMIUM</code>（高级层级，出站约 $0.12/GB）</td>
+                <td><code>--network-tier=STANDARD</code>（每月免费 <strong>200 GB</strong> 出站）</td>
+              </tr>
+              <tr>
+                <td><strong>静态公网 IP</strong></td>
+                <td>未绑定运行中实例会按小时计费</td>
+                <td>绑定在 <code>RUNNING</code> 实例上免费；换 IP 后记得删旧 IP</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p>如果你同时订阅了 <strong>Google One AI Ultra（5x）</strong>，Google Developer Program 还会每月赠送 <strong>$40 Google Cloud Credits</strong>。注意它不会自动出现在项目里，必须按顺序完成两步：</p>
+        <ol>
+          <li>先在 <a href="https://console.cloud.google.com/billing">Google Cloud 结算控制台</a> 绑定付款方式创建一个结算账户载体（新号同时会获得 $300 欢迎赠金，且试用期默认锁死不扣信用卡）；</li>
+          <li>打开 <a href="https://developers.google.com/program/my-benefits">Google Developer Program 权益页</a>，在 <strong>Google Cloud Credits ($40)</strong> 的下拉框里选中刚才建好的结算账户，额度才会正式入账。</li>
+        </ol>
+        <blockquote>注意：赠金只能抵扣云资源与 Gemini API 费用，<strong>不能用于 Cloud Domains 买域名</strong>；在免费试用保护模式下买域名会要求升级付费账户并直接刷卡。</blockquote>
+      </section>
+
+      <section class="section">
+        <h2>2. 一键开出标准层级免费机（Bash 脚本）</h2>
+        <p>下面这段脚本会自动检查当前 <code>gcloud</code> 项目与结算账户绑定状态，并在 <code>us-west1-b</code> 分配一个 <code>STANDARD</code> 静态 IP 创建 <code>e2-micro</code> 实例：</p>
+        <pre><code>#!/usr/bin/env bash
+set -euo pipefail
+
+PROJECT_ID=$(gcloud config get-value project)
+REGION="us-west1"
+ZONE="us-west1-b"
+IP_NAME="e2-micro-standard-ip"
+VM_NAME="e2-micro-instance"
+
+# 1. 开启 Compute Engine API（未关联结算账户会报 UREQ_PROJECT_BILLING_NOT_FOUND）
+gcloud services enable compute.googleapis.com
+
+# 2. 申请 STANDARD 标准层级静态 IP（200GB/月免费出站）
+if ! gcloud compute addresses describe "$IP_NAME" --region="$REGION" &amp;&gt;/dev/null; then
+  gcloud compute addresses create "$IP_NAME" --region="$REGION" --network-tier=STANDARD
+fi
+STATIC_IP=$(gcloud compute addresses describe "$IP_NAME" --region="$REGION" --format="value(address)")
+
+# 3. 创建 30GB pd-standard 磁盘的 e2-micro 实例
+if ! gcloud compute instances describe "$VM_NAME" --zone="$ZONE" &amp;&gt;/dev/null; then
+  gcloud compute instances create "$VM_NAME" \
+    --zone="$ZONE" \
+    --machine-type=e2-micro \
+    --network-tier=STANDARD \
+    --image-family=debian-12 \
+    --image-project=debian-cloud \
+    --boot-disk-type=pd-standard \
+    --boot-disk-size=30GB \
+    --address="$STATIC_IP" \
+    --tags=http-server,https-server
+fi
+
+# 4. 仅放行 443 端口（不开放公网 80）
+gcloud compute firewall-rules create allow-proxy-443 \
+  --allow=tcp:443,udp:443 \
+  --target-tags=https-server || true</code></pre>
+        <p>如果机器最初不小心用 <code>PREMIUM</code> 建好了，也不必删机重来：先申请一个 <code>STANDARD</code> 静态 IP，执行 <code>delete-access-config</code> 摘掉旧网卡配置，再用 <code>add-access-config --network-tier=STANDARD --address="&lt;NEW_IP&gt;"</code> 挂上新 IP，最后删掉旧静态 IP 即可原地无损切换。</p>
+      </section>
+
+      <section class="section">
+        <h2>3. 部署 Xray（VLESS + XTLS-Vision + REALITY）与 BBR 加速</h2>
+        <p>选 <code>REALITY</code> 的最大好处是<strong>不需要买域名和自签证书</strong>，直接借用目标站点（如 <code>iosapps.itunes.apple.com</code>）的官方 TLS 证书做握手伪装。</p>
+        <h3>实测踩坑：为什么服务端锁定 Xray <code>v25.8.3</code>？</h3>
+        <p>实际联调时发现：用最新版 Xray <code>v26.10.31</code> 部署后，本机回环自测 <code>HTTP 204</code> 正常，但 macOS 上的 Clash Verge（<code>verge-mihomo</code> 内核）连接始终报 <code>REALITY Authentication: false</code>（日志显示 <code>is using X25519MLKEM768 for TLS' communication: false</code>），服务端直接将其当成非法探针转发给了目标 SNI。将服务端显式安装为 <code>v25.8.3</code> 后，<code>mihomo</code> 客户端立刻握手成功，延迟稳定在 <code>180~230 ms</code>。</p>
+        <pre><code># 1. 开启 TCP BBR 拥塞控制
+echo -e "net.core.default_qdisc=fq\nnet.ipv4.tcp_congestion_control=bbr" | sudo tee -a /etc/sysctl.conf
+sudo sysctl -p
+
+# 2. 安装指定稳定版 Xray v25.8.3
+sudo bash -c "$(curl -fsSL https://github.com/XTLS/Xray-install/raw/main/install-release.sh)" @ install --version v25.8.3
+
+# 3. 生成凭据（记住输出的 PrivateKey / PublicKey）
+UUID=$(/usr/local/bin/xray uuid)
+/usr/local/bin/xray x25519
+SHORT_ID=$(openssl rand -hex 8)</code></pre>
+        <p>注意新版 <code>xray x25519</code> 输出的公钥字段名可能是 <code>Password (PublicKey):</code>，如果用脚本解析记得兼容匹配，不要只 <code>awk</code> 旧字段 <code>PublicKey:</code> 而漏空值。</p>
+      </section>
+
+      <section class="section">
+        <h2>4. 隐身流量看板：公网全关 80 端口，只走加密隧道访问</h2>
+        <p>很多人会在 VPS 上装一个 Web 面板看每月流量，但只要把 <code>80</code> 端口暴露在公网上，Shodan/Censys 爬虫每天都会来扫，页面标题一不小心就暴露了代理节点特征。更稳妥的做法是<strong>物理关闭公网 80 端口，把监控页藏进自己的 Xray 隧道里</strong>。</p>
+        <div class="cards">
+          <article>
+            <h3>采集端：<code>/proc/net/dev</code> + <code>vnstat</code></h3>
+            <p><code>cron</code> 每分钟跑一次轻量脚本，把网卡 <code>ens4</code> 的累计收发字节数、<code>vnstat --json</code> 按日明细、内存、磁盘、BBR 状态写入纯静态 <code>stats.json</code>，零常驻 Web 框架开销（1GB 内存占用不到 400MB）。</p>
+          </article>
+          <article>
+            <h3>访问端：<code>127.0.0.1:80</code> + Xray 内部路由</h3>
+            <p>删掉 GCP 的 <code>allow-http-80</code> 防火墙规则，让 Nginx 仅监听 <code>127.0.0.1:80</code>；在 Xray 的 <code>outbounds</code> 加一个 <code>redirect: "127.0.0.1:80"</code>，当客户端连上 443 隧道后访问 <code>http://&lt;VPS_IP&gt;/&lt;SECRET_PATH&gt;/</code>，直接内部直达看板。</p>
+          </article>
+        </div>
+        <h3>服务端 Xray 核心路由配置（<code>/usr/local/etc/xray/config.json</code>）</h3>
+        <pre><code>{
+  "log": { "loglevel": "warning" },
+  "inbounds": [
+    {
+      "listen": "0.0.0.0",
+      "port": 443,
+      "protocol": "vless",
+      "settings": {
+        "clients": [{ "id": "&lt;YOUR_UUID&gt;", "flow": "xtls-rprx-vision" }],
+        "decryption": "none"
+      },
+      "streamSettings": {
+        "network": "tcp",
+        "security": "reality",
+        "realitySettings": {
+          "show": false,
+          "dest": "iosapps.itunes.apple.com:443",
+          "xver": 0,
+          "serverNames": ["iosapps.itunes.apple.com"],
+          "privateKey": "&lt;YOUR_PRIVATE_KEY&gt;",
+          "shortIds": ["&lt;YOUR_SHORT_ID&gt;"]
+        }
+      },
+      "sniffing": { "enabled": true, "destOverride": ["http", "tls", "quic"] }
+    }
+  ],
+  "outbounds": [
+    { "protocol": "freedom", "tag": "direct" },
+    {
+      "protocol": "freedom",
+      "settings": { "redirect": "127.0.0.1:80" },
+      "tag": "local-dashboard"
+    },
+    { "protocol": "blackhole", "tag": "block" }
+  ],
+  "routing": {
+    "rules": [
+      {
+        "type": "field",
+        "ip": ["&lt;YOUR_VPS_IP&gt;", "10.138.0.2", "127.0.0.1"],
+        "port": "80",
+        "outboundTag": "local-dashboard"
+      }
+    ]
+  }
+}</code></pre>
+        <h3>统计脚本与流量数字校准</h3>
+        <p>看板上线时容易遇到两个疑惑，提前写进展示逻辑里最省心：</p>
+        <ul>
+          <li><strong>为什么 <code>TX</code> 和 <code>RX</code> 几乎 1:1？</strong> 代理服务器相当于“中转站”：你下载 1 GB 文件，VPS 先从远端拉取（入站 <code>RX</code> 1 GB，GCP 入站永久免费），再转发给你（出站 <code>TX</code> 1 GB）。<strong>真正计入 200 GB 免费额度的只有 <code>TX</code>（出站）</strong>，不是两者相加。</li>
+          <li><strong>为什么 <code>/proc/net/dev</code> 比 <code>vnstat</code> 大？</strong> 如果先跑了一段时间再装 <code>vnstat</code>，它只记录安装后的增量，而网卡底层计数器从开机起就在累计。前端计算 <code>max(0, boot_tx - vnstat_total_tx)</code> 补齐首日差额，两边数字就能严丝合缝。</li>
+        </ul>
+      </section>
+
+      <section class="section">
+        <h2>5. 客户端接入与持久化（Clash Verge / FlClash）</h2>
+        <ul>
+          <li><strong>Clash Verge（桌面端防覆盖）</strong>：如果直接改订阅 YAML，下次机场订阅自动更新就会把自建节点冲掉。正确做法是把节点和路由规则写进该订阅关联的 <strong>Profile Enhancement Script（<code>Script.js</code>）</strong>：把自建节点 <code>unshift</code> 到 <code>proxies</code> 与各 <code>proxy-groups</code> 顶部，同时注入 <code>IP-CIDR,&lt;YOUR_VPS_IP&gt;/32,&lt;NODE_NAME&gt;,no-resolve</code>，保证无论当前切到哪个节点，访问看板都自动走加密隧道。</li>
+          <li><strong>FlClash（手机端扫码踩坑）</strong>：FlClash 扫码只认 <code>http://...</code> 订阅配置文件链接，不认单条 <code>vless://</code> 节点二维码。可以临时起一个随机文件名的 YAML 放在本机或 Nginx 供手机扫一次，<strong>手机导入成功后立即删除订阅文件并关闭公网 80 端口</strong>，不要长期挂在公网上。</li>
+        </ul>
+      </section>
+
+      <section class="section">
+        <h2>6. 真实复盘：新号第 4 天被 Suspend 了怎么办？</h2>
+        <p>机器部署完第 4 天，突然发现整台服务器 <code>ping</code> 不通，<code>gcloud compute instances list</code> 报错：</p>
+        <pre><code>Permission denied: Consumer 'projects/&lt;PROJECT_NUMBER&gt;' has been suspended.</code></pre>
+        <p>有趣的是邮箱里并没有收到封号邮件，检查后发现结算账户依然是 <code>OPEN: True</code>，但打开 Google Cloud 控制台首页顶部出现了一条红字警告，提示“检测到项目可能违反了服务条款”，并附带了一个<strong>「提出申诉（Appeal）」</strong>表单。</p>
+        <h3>为什么会触发？</h3>
+        <p>新绑卡账号在开通后 3~7 天内会进入 Trust &amp; Safety 的离线复核期；如果刚绑卡就快速建机且连续跑出对称大流量，很容易被自动风控模型判定为可疑代理或高风险测试账户，先下发保护性暂停等待号主确认。</p>
+        <h3>怎么申诉才能快速恢复？</h3>
+        <ol>
+          <li>不要提及任何代理或绕过网络限制的表述，如实说明这是个人学习云原生部署与轻量监控工具的测试环境，并承诺检查防火墙与安全策略；</li>
+          <li>提交工单后，实测约 <strong>10 分钟</strong>就收到了 <code>reinstated</code> 恢复通知邮件，执行 <code>gcloud compute instances start e2-micro-instance --zone=us-west1-b</code> 后原有静态 IP 和磁盘数据原封不动恢复，且账号相当于完成了一次人工白名单校验。</li>
+          <li><strong>日常防复封红线</strong>：绝对不跑 BT/P2P 版权下载与恶意扫描爬虫；高流量的日常影音尽量走商业订阅分流，把这台纯净的美西节点留给开发测试、AI 工具登录与核心服务，既省 200 GB 额度也最稳。</li>
+        </ol>
+      </section>
+
+      <section class="section" lang="en">
+        <h2>English summary</h2>
+        <p>This note walks through provisioning a zero-cost Google Cloud <code>e2-micro</code> instance in <code>us-west1</code> without tripping hidden billing traps: explicitly setting <code>--boot-disk-type=pd-standard --boot-disk-size=30GB</code> and <code>--network-tier=STANDARD</code> (which includes <strong>200 GB/month</strong> of free egress traffic).</p>
+        <p>On top of the VM, we deploy <code>Xray</code> (pinned to <code>v25.8.3</code> for clean <code>verge-mihomo</code> compatibility) with <code>VLESS + XTLS-Vision + REALITY</code> and TCP BBR. Instead of exposing a traffic dashboard on public port <code>80</code>, we delete the public HTTP firewall rule, bind Nginx strictly to <code>127.0.0.1:80</code>, and route port <code>80</code> requests inside the encrypted <code>443</code> tunnel directly to the local dashboard—keeping the server invisible to public port scanners while giving real-time egress quota tracking across desktop and mobile clients.</p>
+      </section>
+
+      <!-- build:ad -->
+
+    <!-- /build:ad -->
+
+      <!-- build:comments -->
+
+    <!-- /build:comments -->
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap">
+        <span>© 2026 <!-- build:site-name -->
+Anaxagore
+    <!-- /build:site-name --></span>
+        <span><a href="../">笔记</a></span>
+      </div>
+    </footer>
+    <script src="../../site.js" defer></script>
+    <!-- build:analytics -->
+    <script data-goatcounter="https://anaxagore.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+    <script>(function(){
+  function gc(){return window.goatcounter&&window.goatcounter.count?window.goatcounter:null}
+  function send(path,title){var g=gc();if(g)g.count({path:path,title:title||path,event:true})}
+  document.addEventListener("click",function(e){
+    var ad=e.target.closest&&e.target.closest("[data-ad],.adsbygoogle");
+    if(ad){send("ad/"+(ad.getAttribute("data-ad")||"adsense"),"广告位 @ "+location.pathname);return}
+    var a=e.target.closest&&e.target.closest("a");
+    if(!a)return;
+    var offer=a.closest(".offer");
+    if(a.hasAttribute("data-aff-link")||a.hasAttribute("data-aff")||(a.rel||"").indexOf("sponsored")>-1){
+      var key=(offer&&offer.getAttribute("data-aff"))||a.getAttribute("data-aff")||"link";
+      send("aff/"+key,"推荐位："+key+" @ "+location.pathname);return}
+    if(a.host&&a.host!==location.host){send("out/"+a.host,"外链："+a.host+" @ "+location.pathname)}
+  });
+  document.addEventListener("click",function(e){
+    var b=e.target.closest&&e.target.closest("[data-share-copy],[data-share-native]");
+    if(b)send("share/"+(b.hasAttribute("data-share-copy")?"copy":"native"),"分享 @ "+location.pathname)
+  });
+})();</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8508935231095839" crossorigin="anonymous"></script>
+    <!-- /build:analytics -->
+  </body>
+</html>
