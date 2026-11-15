@@ -1,0 +1,61 @@
+.diorama-cta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 16px 18px;
+  margin: 20px 0 26px;
+  border: 1px solid var(--line, rgba(128, 128, 128, 0.25));
+  border-radius: 12px;
+  background: var(--surface, rgba(128, 128, 128, 0.06));
+}
+
+.diorama-cta-text strong {
+  display: block;
+  font-size: 15px;
+  margin-bottom: 4px;
+}
+
+.diorama-cta-text span {
+  font-size: 13px;
+  color: var(--muted, #666);
+}
+
+.diorama-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  background: var(--ink, #1b1b1a);
+  color: var(--bg, #fff);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.diorama-cta-btn:hover {
+  opacity: 0.88;
+}
+
+.pipeline-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 18px 0 24px;
+  font-size: 14px;
+}
+
+.pipeline-table th,
+.pipeline-table td {
+  text-align: left;
+  padding: 9px 10px;
+  border-bottom: 1px solid var(--line, rgba(128, 128, 128, 0.2));
+}
+
+.pipeline-table th {
+  font-weight: 600;
+  color: var(--muted, #666);
+  font-size: 12px;
+}

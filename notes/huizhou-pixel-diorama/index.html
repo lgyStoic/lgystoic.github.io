@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>从 OSM 到 4K 动态像素沙盘：徽州古城 3D 等轴测重建全流程 | Anaxagore</title>
+    <meta name="description" content="记录徽州古城 4K 等轴测像素动态沙盘的完整工程管线：OSM 路网与 Copernicus GLO-30 高程、Blender 5.2 五通道白模与地标精模融合、4K 像素重绘，以及基于 DZI 瓦片、WebGL2 水波、IDM 车流与 45° 高度遮挡的纯静态 Web 沙盘。" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="从 OSM 到 4K 动态像素沙盘：徽州古城 3D 等轴测重建全流程 | Anaxagore" />
+    <meta property="og:description" content="记录徽州古城 4K 等轴测像素动态沙盘的完整工程管线：OSM 路网与 Copernicus GLO-30 高程、Blender 5.2 五通道白模与地标精模融合、4K 像素重绘，以及基于 DZI 瓦片、WebGL2 水波、IDM 车流与 45° 高度遮挡的纯静态 Web 沙盘。" />
+    <meta property="og:url" content="https://427795.xyz/notes/huizhou-pixel-diorama/" />
+    <meta property="og:image" content="https://427795.xyz/assets/og/notes.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="canonical" href="https://427795.xyz/notes/huizhou-pixel-diorama/" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231b1b1a'/%3E%3Ctext x='32' y='43' text-anchor='middle' font-size='30' font-family='Helvetica,Arial' font-weight='700' fill='white'%3EA%3C/text%3E%3C/svg%3E"
+    />
+    <link rel="stylesheet" href="../../site.css" />
+    <link rel="stylesheet" href="./styles.css" />
+    <script>
+      try {
+        var t = localStorage.getItem("theme");
+        if (t === "dark" || t === "light") document.documentElement.dataset.theme = t;
+      } catch (e) {}
+    </script>
+    <!-- build:jsonld -->
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Anaxagore", "item": "https://427795.xyz/"}, {"@type": "ListItem", "position": 2, "name": "笔记", "item": "https://427795.xyz/notes/"}, {"@type": "ListItem", "position": 3, "name": "从 OSM 到 4K 动态像素沙盘：徽州古城 3D 等轴测重建全流程", "item": "https://427795.xyz/notes/huizhou-pixel-diorama/"}]}</script>
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "从 OSM 到 4K 动态像素沙盘：徽州古城 3D 等轴测重建全流程", "description": "记录徽州古城 4K 等轴测像素动态沙盘的完整工程管线：OSM 路网与 DEM 高程、Blender 五通道白模与精模融合、4K 像素重绘，以及 DZI 瓦片、WebGL2 水波、IDM 车流与 45° 高度遮挡的纯静态 Web 实现。", "url": "https://427795.xyz/notes/huizhou-pixel-diorama/", "mainEntityOfPage": "https://427795.xyz/notes/huizhou-pixel-diorama/", "inLanguage": "zh-CN", "dateModified": "2026-11-15", "datePublished": "2026-11-15", "keywords": "3D 重建, Blender, WebGL2, OpenSeadragon, 徽州古城", "isBasedOn": "OSM / Copernicus GLO-30 / Blender 5.2 / WebGL2", "author": {"@type": "Person", "@id": "https://427795.xyz/#person", "name": "Anaxagore", "url": "https://427795.xyz/about/"}, "publisher": {"@type": "Person", "@id": "https://427795.xyz/#person", "name": "Anaxagore", "url": "https://427795.xyz/"}, "image": "https://427795.xyz/assets/og/notes.png"}</script>
+    <!-- /build:jsonld -->
+  </head>
+  <body>
+    <!-- build:header -->
+    <header class="site-header">
+      <div class="wrap">
+        <a class="brand" href="../../" aria-label="首页">
+          <span class="brand-mark">A</span>
+          <span>Anaxagore</span>
+        </a>
+        <nav class="site-nav" aria-label="主导航">
+          <a href="../../notes/" aria-current="page">笔记</a>
+          <a href="../../radar/">雷达</a>
+          <a href="../../radar/tracks/">专题</a>
+          <a href="../../radar/events/">活动</a>
+          <a href="../../radar/jobs/">工作</a>
+          <a href="../../guides/">指南</a>
+          <a href="../../about/">关于</a>
+          <button class="theme-toggle" type="button" data-theme-toggle aria-label="切换深浅色">
+            <span data-theme-icon>◑</span>
+          </button>
+        </nav>
+      </div>
+    </header>
+    <!-- /build:header -->
+
+    <main class="wrap note">
+      <section class="hero">
+        <p class="eyebrow">技术复盘 · 空间计算与 Web 图形</p>
+        <h1>从 OSM 到 4K 动态像素沙盘：徽州古城 3D 等轴测重建全流程</h1>
+        <p class="lede">
+          如何把真实地理坐标下的安徽省歙县徽州古城（约 1.35 km × 1.44 km），从 OpenStreetMap 矢量与 30 米数字高程一步步重建为 4096×4096 等轴测像素底图，并在浏览器里跑出 60–160 FPS 的练江水波、干道车流、古巷行人与建筑高度遮挡。
+        </p>
+        <div class="meta">
+          <span>2026-11-15</span>
+          <span>·</span>
+          <span>OSM / Copernicus GLO-30 / Blender 5.2 / WebGL2 / OpenSeadragon</span>
+        </div>
+      </section>
+
+      <div class="diorama-cta">
+        <div class="diorama-cta-text">
+          <strong>在线交互体验：徽州古城 4K 像素动态沙盘</strong>
+          <span>支持 13 级 DZI 无级缩放、8 处历史地标导览、练江水波、车流/行人仿真与高度遮挡开关</span>
+        </div>
+        <a class="diorama-cta-btn" href="../../huizhou-diorama/">打开动态沙盘 →</a>
+      </div>
+
+      <article class="prose">
+        <h2>一、整体管线：为什么不直接“文生图”？</h2>
+        <p>
+          如果直接用图像模型生成古城鸟瞰图，最大的问题是<strong>空间拓扑失真</strong>：道路接不上、牌坊与城门比例失衡、桥面和河岸对不上真实地形，后续几乎无法叠加真实的车流、行人与遮挡关系。
+        </p>
+        <p>
+          因此整个工程拆成五个严格对齐像素坐标系的阶段，所有阶段共用同一套局部三维笛卡尔坐标系与 <code>45°</code> 正交等轴测投影矩阵：
+        </p>
+
+        <table class="pipeline-table">
+          <thead>
+            <tr>
+              <th>阶段</th>
+              <th>核心输入</th>
+              <th>关键产出</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1. 路网与高程</td>
+              <td>OSM Overpass + Copernicus GLO-30 (30m)</td>
+              <td>交叉口打断、≤3m 重采样 3D 路网与等轴测投影</td>
+            </tr>
+            <tr>
+              <td>2. 三维白模与精模</td>
+              <td>714 栋建筑（含天井）+ 5 座 Meshy 精模</td>
+              <td>Blender 5.2 渲染的 4K 五通道控制图（高程/深度/语义等）</td>
+            </tr>
+            <tr>
+              <td>3. 4K 像素底图合成</td>
+              <td>五通道控制图 + 地标局部精修</td>
+              <td><code>4096×4096</code> 正交像素底图（含许国石坊与钟楼校准）</td>
+            </tr>
+            <tr>
+              <td>4. Web 动态沙盘打包</td>
+              <td>4K 底图 + 16-bit 世界高程 + 语义掩模</td>
+              <td>7.5 MB 纯静态沙盘包（DZI 瓦片 + WebGL2 + IDM 路网）</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h2>二、地理底盘：OSM 拓扑打断与 GLO-30 高程贴合</h2>
+        <p>
+          研究区锁定在徽州古城核心区（<code>29.8600°N ~ 29.8730°N</code>，<code>118.4280°E ~ 118.4420°E</code>）。抓回 OSM 道路与水系后，先在同高程层完成交叉口拓扑打断，并以不超过 <code>3.0 m</code> 的步长均匀重采样；随后按需通过 HTTP Range 读取 AWS Open Data 上的 Copernicus GLO-30 COG GeoTIFF 瓦片，用单调钳制 Catmull-Rom 双三次插值为每个路网节点赋予高程。
+        </p>
+        <p>
+          针对跨练江的太平桥等桥梁，如果直接贴合 30m 粗粒度 DEM 会出现桥面下陷。管线对桥梁段做了独立的高程平滑与桥面防下陷处理，再统一投影到方位角 <code>45°</code>、倾角 <code>45°</code> 的正交等轴测画布上。
+        </p>
+
+        <h2>三、Blender 5.2 五通道渲染与核心地标校准</h2>
+        <p>
+          有了精确路网后，我们从 OSM 提取了 <code>714</code> 栋建筑轮廓（保留徽派民居特有的天井 <code>multipolygon</code> 内洞）与古城墙，并在 Blender 5.2 中融合 5 座核心历史地标（许国石坊、东谯楼、南谯楼、徽州府衙仪门与正堂）的带贴图 3D 精模，输出严格对齐 <code>4096×4096</code> 像素的五通道控制图：Clay、Depth Z、Height AGL、Normal 与 Semantic Mask。
+        </p>
+        <p>
+          在后续像素重绘与人工走查中，重点修正了两个影响观感的关键细节：一是将<strong>许国石坊（八脚牌坊）</strong>从原先偏小的比例放大并恢复八柱口字形结构；二是将位于 Y 字街口的<strong>中和街钟楼</strong>向右旋转对齐至面朝中和街（<code>+17° ENE</code>），确保地标朝向与真实街景一致。
+        </p>
+
+        <h2>四、Stage 5：把 4K 像素图变成可交互的动态沙盘</h2>
+        <p>
+          定稿的 4K 像素底图本身是一张静态画。为了让它在浏览器里“活”起来且不依赖任何后端服务，离线构建脚本 <code>build_web_diorama.py</code> 生成了四个互相咬合的图层：
+        </p>
+        <ul>
+          <li><strong>13 级 DZI WebP 瓦片金字塔</strong>：将 <code>4096×4096</code> 底图切分为 <code>94</code> 张 <code>512×512</code> WebP 瓦片（共约 5.0 MB），由本地化部署的 OpenSeadragon 4.1.0 驱动，兼顾秒开与 5 倍以上细节放大。</li>
+          <li><strong>练江 WebGL2 有机水波着色器</strong>：利用语义掩模提取 <code>2,991,787</code> 个水体像素并降采样为 2K 精确岸线掩模，配合各向异性二维值噪声（<code>hash21</code> + <code>vnoise</code>）在练江表面生成随 45° 视角拉伸的柔和波纹与岸边衰减，避免传统正余弦叠加产生的规则圆点阵列，同时确保太平桥十六孔石墩与草坡零溢出。</li>
+          <li><strong>干道车流与古巷行人分离</strong>：OSM 中古城内部分街巷（如中和街、斗山街、十字街）被标为 <code>motor_local</code>。我们在构建期将机动车严格限制在 <code>motor_arterial</code> 干道（生成 <code>200</code> 条分向靠右车道与 <code>11</code> 个 20m 逻辑信号路口，采用 IDM 跟驰模型 + 12 秒防死锁机制），而把古街巷与步行道（<code>171</code> 条）全部交给行人，杜绝汽车穿行牌坊和深巷的违和感。</li>
+          <li><strong>45° 等轴测高度前景遮挡层</strong>：这是最关键的立体感来源。沿着屏幕纵轴 <code>Y</code>，正交相机射线深度满足线性关系 <code>depth_key = ele + (√2 / PX_PER_M_4K) · Y</code>。只有当建筑像素（白墙、青瓦、马头墙、地标）同时满足视线深度与高程阈值高于周边路面时，才写入前景遮挡层（共 <code>115,117</code> px，其中许国石坊 <code>1,388</code> px、东谯楼 <code>1,068</code> px、南谯楼 <code>1,504</code> px、太平桥面中心 <code>0</code> px）。这样车辆与行人穿过牌坊和城门洞时会被屋檐自然遮挡，而走在北侧白墙前的行人不会被误切。</li>
+        </ul>
+
+        <h2>五、纯静态交付与性能表现</h2>
+        <p>
+          整套 Web 沙盘打包后总计 <strong>7.5 MB</strong>，不依赖外部 CDN 或后端接口，可直接托管在 GitHub Pages 上。在浏览器实机测试中（1.45× 全局概览与 3.53× 太平桥近景），<code>43</code> 辆车与 <code>108</code> 名行人同时运行，帧率稳定在 <code>60–160 FPS</code>，Console 与 WebGL 零报错。
+        </p>
+      </article>
+
+      <!-- build:comments -->
+
+    <!-- /build:comments -->
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap">
+        <span>© 2026 <!-- build:site-name -->
+Anaxagore
+    <!-- /build:site-name --></span>
+        <span><a href="../">笔记</a></span>
+      </div>
+    </footer>
+    <script src="../../site.js" defer></script>
+    <!-- build:analytics -->
+    <script data-goatcounter="https://anaxagore.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+    <script>(function(){
+  function gc(){return window.goatcounter&&window.goatcounter.count?window.goatcounter:null}
+  function send(path,title){var g=gc();if(g)g.count({path:path,title:title||path,event:true})}
+  document.addEventListener("click",function(e){
+    var ad=e.target.closest&&e.target.closest("[data-ad],.adsbygoogle");
+    if(ad){send("ad/"+(ad.getAttribute("data-ad")||"adsense"),"广告位 @ "+location.pathname);return}
+    var a=e.target.closest&&e.target.closest("a");
+    if(!a)return;
+    var offer=a.closest(".offer");
+    if(a.hasAttribute("data-aff-link")||a.hasAttribute("data-aff")||(a.rel||"").indexOf("sponsored")>-1){
+      var key=(offer&&offer.getAttribute("data-aff"))||a.getAttribute("data-aff")||"link";
+      send("aff/"+key,"推荐位："+key+" @ "+location.pathname);return}
+    if(a.host&&a.host!==location.host){send("out/"+a.host,"外链："+a.host+" @ "+location.pathname)}
+  });
+  document.addEventListener("click",function(e){
+    var b=e.target.closest&&e.target.closest("[data-share-copy],[data-share-native]");
+    if(b)send("share/"+(b.hasAttribute("data-share-copy")?"copy":"native"),"分享 @ "+location.pathname)
+  });
+})();</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8508935231095839" crossorigin="anonymous"></script>
+    <!-- /build:analytics -->
+  </body>
+</html>
