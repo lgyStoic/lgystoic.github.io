@@ -32,7 +32,9 @@
     xuguo_paifang: "./assets/models/xuguo_paifang.glb",
     dong_qiaolou: "./assets/models/dong_qiaolou.glb",
     nan_qiaolou: "./assets/models/nan_qiaolou.glb",
-    huizhou_fuya: "./assets/models/fuya_zhengtang.glb"
+    huizhou_fuya: "./assets/models/fuya_zhengtang.glb",
+    taiping_bridge: "./assets/models/taiping_bridge.glb",
+    zhonghe_clock: "./assets/models/zhonghe_clock.glb"
   };
 
   function mulberry32(seed) {
@@ -873,10 +875,11 @@
     }
 
     function sync3DButtonForLandmark(lm) {
-      hide3DViewer();
       if (lm && LANDMARK_MODELS[lm.id] && window.THREE && THREE.GLTFLoader) {
         btnToggle3d.classList.remove("is-hidden");
+        open3DForLandmark(lm);
       } else {
+        hide3DViewer();
         btnToggle3d.classList.add("is-hidden");
       }
     }
