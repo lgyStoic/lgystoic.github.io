@@ -1,0 +1,865 @@
+{
+  "date": "2026-11-15",
+  "generated_at": "2026-11-15T02:40:07+00:00",
+  "ai": false,
+  "model": "",
+  "sources": [
+    {
+      "id": "openai",
+      "name": "OpenAI",
+      "ok": true,
+      "count": 0,
+      "total": 1387,
+      "error": ""
+    },
+    {
+      "id": "google-ai",
+      "name": "Google AI Blog",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "qwen",
+      "name": "Qwen",
+      "ok": true,
+      "count": 0,
+      "total": 44,
+      "error": ""
+    },
+    {
+      "id": "hf-blog",
+      "name": "Hugging Face Blog",
+      "ok": true,
+      "count": 0,
+      "total": 907,
+      "error": ""
+    },
+    {
+      "id": "nvidia-dev",
+      "name": "NVIDIA Technical Blog",
+      "ok": true,
+      "count": 0,
+      "total": 100,
+      "error": ""
+    },
+    {
+      "id": "hf-papers",
+      "name": "HF Papers 日榜",
+      "ok": true,
+      "count": 1,
+      "total": 26,
+      "error": ""
+    },
+    {
+      "id": "pytorch",
+      "name": "PyTorch Blog",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "simonw",
+      "name": "Simon Willison",
+      "ok": true,
+      "count": 1,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "lilianweng",
+      "name": "Lil'Log",
+      "ok": true,
+      "count": 0,
+      "total": 53,
+      "error": ""
+    },
+    {
+      "id": "interconnects",
+      "name": "Interconnects",
+      "ok": true,
+      "count": 1,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "raschka",
+      "name": "Sebastian Raschka",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "chiphuyen",
+      "name": "Chip Huyen",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-pytorch",
+      "name": "Release · PyTorch",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-triton",
+      "name": "Release · Triton",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-cutlass",
+      "name": "Release · CUTLASS",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-flash-attention",
+      "name": "Release · FlashAttention",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-vllm",
+      "name": "Release · vLLM",
+      "ok": true,
+      "count": 1,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-sglang",
+      "name": "Release · SGLang",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-tensorrt-llm",
+      "name": "Release · TensorRT-LLM",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-diffusers",
+      "name": "Release · Diffusers",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-cuda-python",
+      "name": "Release · cuda-python",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "gnews-labs-en",
+      "name": "新闻 · Anthropic / Mistral / xAI",
+      "ok": true,
+      "count": 4,
+      "total": 53,
+      "error": ""
+    },
+    {
+      "id": "gnews-labs-cn",
+      "name": "新闻 · 国内模型公司",
+      "ok": true,
+      "count": 3,
+      "total": 44,
+      "error": ""
+    },
+    {
+      "id": "qbitai",
+      "name": "量子位",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "infoq-cn",
+      "name": "InfoQ 中文",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "thonking",
+      "name": "Horace He (thonking)",
+      "ok": true,
+      "count": 0,
+      "total": 6,
+      "error": ""
+    },
+    {
+      "id": "hn-algolia",
+      "name": "Hacker News（100+ 分）",
+      "ok": true,
+      "count": 6,
+      "total": 60,
+      "error": ""
+    },
+    {
+      "id": "karpathy-blog",
+      "name": "Andrej Karpathy 博客",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "eugeneyan",
+      "name": "Eugene Yan",
+      "ok": true,
+      "count": 0,
+      "total": 214,
+      "error": ""
+    },
+    {
+      "id": "importai",
+      "name": "Import AI（Jack Clark）",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "latentspace",
+      "name": "Latent Space",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "semianalysis",
+      "name": "SemiAnalysis",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "meta-ai",
+      "name": "Meta Engineering",
+      "ok": true,
+      "count": 0,
+      "total": 9,
+      "error": ""
+    },
+    {
+      "id": "mistral-news",
+      "name": "Mistral AI",
+      "ok": true,
+      "count": 0,
+      "total": 94,
+      "error": ""
+    },
+    {
+      "id": "bsky-karpathy",
+      "name": "Bluesky · Andrej Karpathy",
+      "ok": true,
+      "count": 0,
+      "total": 15,
+      "error": ""
+    },
+    {
+      "id": "bsky-giffmana",
+      "name": "Bluesky · Lucas Beyer",
+      "ok": true,
+      "count": 0,
+      "total": 22,
+      "error": ""
+    },
+    {
+      "id": "bsky-hardmaru",
+      "name": "Bluesky · hardmaru",
+      "ok": true,
+      "count": 0,
+      "total": 15,
+      "error": ""
+    },
+    {
+      "id": "bsky-swyx",
+      "name": "Bluesky · swyx",
+      "ok": true,
+      "count": 0,
+      "total": 3,
+      "error": ""
+    },
+    {
+      "id": "bsky-pytorch",
+      "name": "Bluesky · PyTorch",
+      "ok": true,
+      "count": 0,
+      "total": 27,
+      "error": ""
+    },
+    {
+      "id": "bsky-clem",
+      "name": "Bluesky · Clem Delangue",
+      "ok": true,
+      "count": 0,
+      "total": 11,
+      "error": ""
+    },
+    {
+      "id": "bsky-natolambert",
+      "name": "Bluesky · Nathan Lambert",
+      "ok": true,
+      "count": 0,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "bsky-rasbt",
+      "name": "Bluesky · Sebastian Raschka",
+      "ok": true,
+      "count": 0,
+      "total": 27,
+      "error": ""
+    },
+    {
+      "id": "bsky-jeffdean",
+      "name": "Bluesky · Jeff Dean",
+      "ok": true,
+      "count": 0,
+      "total": 18,
+      "error": ""
+    },
+    {
+      "id": "hf-trending-new",
+      "name": "HF 热榜新模型",
+      "ok": true,
+      "count": 5,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "gh-new-stars",
+      "name": "GitHub 新星仓库",
+      "ok": true,
+      "count": 0,
+      "total": 15,
+      "error": ""
+    },
+    {
+      "id": "hf-t2v",
+      "name": "HF 热榜 · 文生视频",
+      "ok": true,
+      "count": 1,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "hf-i2v",
+      "name": "HF 热榜 · 图生视频",
+      "ok": true,
+      "count": 0,
+      "total": 19,
+      "error": ""
+    },
+    {
+      "id": "gnews-video-en",
+      "name": "新闻 · 视频生成（英文）",
+      "ok": true,
+      "count": 4,
+      "total": 19,
+      "error": ""
+    },
+    {
+      "id": "gnews-video-cn",
+      "name": "新闻 · 视频生成（中文）",
+      "ok": true,
+      "count": 1,
+      "total": 15,
+      "error": ""
+    },
+    {
+      "id": "gnews-world-en",
+      "name": "新闻 · 世界模型（英文）",
+      "ok": true,
+      "count": 0,
+      "total": 31,
+      "error": ""
+    },
+    {
+      "id": "gnews-world-cn",
+      "name": "新闻 · 世界模型（中文）",
+      "ok": true,
+      "count": 17,
+      "total": 55,
+      "error": ""
+    },
+    {
+      "id": "gh-new-video-world",
+      "name": "GitHub 新仓库 · 视频 / 世界模型",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "arxiv-cscv",
+      "name": "arXiv cs.CV（专题）",
+      "ok": true,
+      "count": 0,
+      "total": 0,
+      "error": ""
+    },
+    {
+      "id": "arxiv-csro",
+      "name": "arXiv cs.RO（专题）",
+      "ok": true,
+      "count": 0,
+      "total": 0,
+      "error": ""
+    }
+  ],
+  "counts": {
+    "high": 6,
+    "medium": 20,
+    "low": 0
+  },
+  "items": [
+    {
+      "id": "6f89c6b96de4af41",
+      "title": "OriDynamics开源！全模态分子动态模拟世界模型 - 智源社区",
+      "link": "https://hub.baai.ac.cn/view/59679",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-11-14T17:10:00+00:00",
+      "category": "research",
+      "priority": "high",
+      "summary": "OriDynamics开源！全模态分子动态模拟世界模型 智源社区",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "068873f85715f0ea",
+      "title": "奥迪E7X特别版发布会值得等吗？900V+世界模型，3个维度说清+FAQ - 新浪财经",
+      "link": "https://cj.sina.cn/articles/view/7880068361/1d5b04d0906801y3pe?finpagefr=ttzz&froms=ttmp",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-11-14T12:46:49+00:00",
+      "category": "research",
+      "priority": "high",
+      "summary": "奥迪E7X特别版发布会值得等吗？900V+世界模型，3个维度说清+FAQ 新浪财经",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "8479f47633fa8f96",
+      "title": "Open-source AI without Jensen",
+      "link": "https://www.interconnects.ai/p/open-source-ai-without-jensen",
+      "source": "Interconnects",
+      "source_id": "interconnects",
+      "published": "2026-11-14T12:23:15+00:00",
+      "category": "people",
+      "priority": "high",
+      "summary": "A decapitation. It’s time to rebuild.",
+      "why": "",
+      "tags": [],
+      "tracks": []
+    },
+    {
+      "id": "7bd911284bc42103",
+      "title": "杀疯了，DeepSeek 又开源了全家桶应用 - 53AI",
+      "link": "https://www.53ai.com/news/OpenSourceLLM/2026111468742.html",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-11-14T12:19:20+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "杀疯了，DeepSeek 又开源了全家桶应用 53AI",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "9021dd86d38898f7",
+      "title": "12.99万起！日产NX7发布：AI座舱与世界模型上车，合资开始反击 - 雷科技",
+      "link": "https://www.leikeji.com/article/80559",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-11-14T04:52:54+00:00",
+      "category": "research",
+      "priority": "high",
+      "summary": "12.99万起！日产NX7发布：AI座舱与世界模型上车，合资开始反击 雷科技",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "bc5ff0a6a9512852",
+      "title": "Anthropic Launches Claude for Manufacturing With 17 Factory Skills - OpenTools",
+      "link": "https://opentools.ai/news/anthropic-claude-for-manufacturing-17-factory-skills",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-11-14T04:18:10+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "Anthropic Launches Claude for Manufacturing With 17 Factory Skills OpenTools",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "0fb57141897285e9",
+      "title": "【视频】13万内唯一世界模型智驾SUV？荣威家越07预售破5万 - 汽车之家",
+      "link": "https://chejiahao.autohome.com.cn/info/26879903",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-11-15T01:47:29+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "【视频】13万内唯一世界模型智驾SUV？荣威家越07预售破5万 汽车之家",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "b732f35caf1a6895",
+      "title": "【视频】Momenta R7世界模型登陆AUDI E7X意味着什么#MomentaR7世界模型 - 汽车之家",
+      "link": "https://chejiahao.autohome.com.cn/info/26883485",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-11-15T01:23:56+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "【视频】Momenta R7世界模型登陆AUDI E7X意味着什么#MomentaR7世界模型 汽车之家",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "744e3b0fec8fff6f",
+      "title": "东风日产NX7搭载Momenta R7世界模型，智驾全行业最好 - 手机新浪网",
+      "link": "https://k.sina.com.cn/article_7811098499_m1d193e78303301hus6.html",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-11-15T00:50:03+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "东风日产NX7搭载Momenta R7世界模型，智驾全行业最好 手机新浪网",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "28855a954b1ff6f8",
+      "title": "datasette-llm 0.1a11",
+      "link": "https://simonwillison.net/2026/Nov/14/datasette-llm",
+      "source": "Simon Willison",
+      "source_id": "simonw",
+      "published": "2026-11-14T23:59:28+00:00",
+      "category": "people",
+      "priority": "medium",
+      "summary": "Release: datasette-llm 0.1a11 datasette-llm is the intermediate plugin for Datasette that supports configuring LLMs for use with other Datasette plugins…",
+      "why": "",
+      "tags": [
+        "llm"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "aac1c17fd5768d96",
+      "title": "Veo 3.1 and Veo 3.1 Fast are now generally available in Gemini Enterprise - Foro3D",
+      "link": "https://foro3d.com/en/2026/noviembre/veo-31-y-veo-31-fast-ya-estan-disponibles-de-forma-general-en-gemini-e.html",
+      "source": "新闻 · 视频生成（英文）",
+      "source_id": "gnews-video-en",
+      "published": "2026-11-14T23:03:52+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Veo 3.1 and Veo 3.1 Fast are now generally available in Gemini Enterprise Foro3D",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "bf562bb238c64510",
+      "title": "Nvidia deliberately kept GPU prices high through circular financing deals",
+      "link": "https://news.ycombinator.com/item?id=50501631",
+      "source": "Hacker News（100+ 分）",
+      "source_id": "hn-algolia",
+      "published": "2026-11-14T22:26:30+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "",
+      "why": "",
+      "tags": [
+        "gpu"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "934d08487761747c",
+      "title": "Anthropic CEO Amodei admits \"there's a huge uncertainty in what's going to happen next year\" days before a record IPO - The Decoder",
+      "link": "https://the-decoder.com/anthropic-ceo-amodei-admits-theres-a-huge-uncertainty-in-whats-going-to-happen-next-year-days-before-a-record-ipo/",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-11-14T19:07:09+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Anthropic CEO Amodei admits \"there's a huge uncertainty in what's going to happen next year\" days before a record IPO The Decoder",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "21882cc3de9253fb",
+      "title": "SuperMimic 获 CoRL 2026 最佳会议论文奖：单个可微世界模型，自报单卡3 小时超越128 卡 7 天基线 - 智源社区",
+      "link": "https://hub.baai.ac.cn/view/59685",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-11-14T18:43:00+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "SuperMimic 获 CoRL 2026 最佳会议论文奖：单个可微世界模型，自报单卡3 小时超越128 卡 7 天基线 智源社区",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "d5d1e7c3e658dd99",
+      "title": "Veo 3.1 arrives at Flow: Google updates its AI filmmaking tool - Foro3D",
+      "link": "https://foro3d.com/en/2026/noviembre/veo-31-llega-a-flow-google-actualiza-su-herramienta-de-cine-con-ia.html",
+      "source": "新闻 · 视频生成（英文）",
+      "source_id": "gnews-video-en",
+      "published": "2026-11-14T18:34:21+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Veo 3.1 arrives at Flow: Google updates its AI filmmaking tool Foro3D",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "45cbc19f5e56cda0",
+      "title": "Planning Short Sci-Fi Clips with Dialogue in Veo 3 - Nerdbot",
+      "link": "https://nerdbot.com/2026/11/14/planning-short-sci-fi-clips-with-dialogue-in-veo-3/",
+      "source": "新闻 · 视频生成（英文）",
+      "source_id": "gnews-video-en",
+      "published": "2026-11-14T17:44:07+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Planning Short Sci-Fi Clips with Dialogue in Veo 3 Nerdbot",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "86a848ff5c795556",
+      "title": "小鹏注册X-World商标，世界模型先占坑 - 手机新浪网",
+      "link": "https://k.sina.com.cn/article_5922553867_16103000b001028lgi.html?from=tech&subch=otech",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-11-14T17:44:00+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "小鹏注册X-World商标，世界模型先占坑 手机新浪网",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "25f4b4b14f70af4a",
+      "title": "Serving GLM-5.3 at 607.8 tok/s across two Nvidia DGX stations with vLLM",
+      "link": "https://news.ycombinator.com/item?id=50497155",
+      "source": "Hacker News（100+ 分）",
+      "source_id": "hn-algolia",
+      "published": "2026-11-14T14:09:25+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "",
+      "why": "",
+      "tags": [
+        "llm"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "e402d5091ea866fd",
+      "title": "Show HN: A terminal-native idle factory game, written in Rust with ratatui",
+      "link": "https://news.ycombinator.com/item?id=50497132",
+      "source": "Hacker News（100+ 分）",
+      "source_id": "hn-algolia",
+      "published": "2026-11-14T14:05:54+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "Hey HN readers! I'm snipedbywifi ( https://gitlab.com/snipedbywifi ), and i've been working on terminactory…",
+      "why": "",
+      "tags": [
+        "agent"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "60f4628f5d2da8c8",
+      "title": "Seedance 2.5 on Seedance Bingo: A Hands-On Review - Luxury Travel Magazine",
+      "link": "https://www.luxurytravelmagazine.com/news-articles/seedance-25-on-seedance-bingo-a-hands-on-review",
+      "source": "新闻 · 视频生成（英文）",
+      "source_id": "gnews-video-en",
+      "published": "2026-11-14T13:37:45+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Seedance 2.5 on Seedance Bingo: A Hands-On Review Luxury Travel Magazine",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "9ec98e69c8403ab3",
+      "title": "A visual explanation of reinforcement learning",
+      "link": "https://news.ycombinator.com/item?id=50496885",
+      "source": "Hacker News（100+ 分）",
+      "source_id": "hn-algolia",
+      "published": "2026-11-14T13:31:06+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "",
+      "why": "",
+      "tags": [
+        "reinforcement learning"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "f794328726e6fabc",
+      "title": "【网通社快报】上汽奥迪AUDI E7X计划于12月OTA推送升级Momenta R7世界模型 - 凤凰网",
+      "link": "https://auto.ifeng.com/c/8y3IDG23FBM",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-11-14T11:21:13+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "【网通社快报】上汽奥迪AUDI E7X计划于12月OTA推送升级Momenta R7世界模型 凤凰网",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "36197b2b4de7bcc4",
+      "title": "上汽奥迪AUDI E7X计划于12月OTA推送升级Momenta R7世界模型 - 凤凰网科技",
+      "link": "https://tech.ifeng.com/c/8y3FwPwm0oV",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-11-14T11:15:19+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "上汽奥迪AUDI E7X计划于12月OTA推送升级Momenta R7世界模型 凤凰网科技",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "49c3957ced176e96",
+      "title": "上汽奥迪E7X计划12月OTA推送Momenta R7世界模型 - 手机新浪网",
+      "link": "https://k.sina.com.cn/article_1826017320_6cd6d02804001z99k.html?from=auto",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-11-14T11:14:00+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "上汽奥迪E7X计划12月OTA推送Momenta R7世界模型 手机新浪网",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "1c3019c9b4857107",
+      "title": "v0.34.0rc4",
+      "link": "https://github.com/vllm-project/vllm/releases/tag/v0.34.0rc4",
+      "source": "Release · vLLM",
+      "source_id": "rel-vllm",
+      "published": "2026-11-14T10:15:55+00:00",
+      "category": "infra",
+      "priority": "medium",
+      "summary": "[Release][Tests] Give the #67296 warmup-gate test runner num_speculat…",
+      "why": "",
+      "tags": [
+        "llm"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "1fe0054795952e7b",
+      "title": "Anthropic Faces Trademark Lawsuit Over Mythos AI Model Name - PhoneWorld",
+      "link": "https://www.phoneworld.com.pk/anthropic-faces-trademark-lawsuit-over-mythos-ai-model-name/",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-11-14T07:03:27+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Anthropic Faces Trademark Lawsuit Over Mythos AI Model Name PhoneWorld",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    }
+  ]
+}
