@@ -34,7 +34,8 @@
     nan_qiaolou: "./assets/models/nan_qiaolou.glb",
     huizhou_fuya: "./assets/models/fuya_zhengtang.glb",
     taiping_bridge: "./assets/models/taiping_bridge.glb?v=2",
-    zhonghe_clock: "./assets/models/zhonghe_clock.glb"
+    zhonghe_clock: "./assets/models/zhonghe_clock.glb",
+    xi_chengmen: "./assets/models/xi_chengmen.glb"
   };
 
   function mulberry32(seed) {
