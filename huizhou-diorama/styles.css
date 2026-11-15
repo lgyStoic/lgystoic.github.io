@@ -1,0 +1,445 @@
+:root {
+  --bg-stage: #0d1317;
+  --panel-bg: rgba(16, 23, 28, 0.78);
+  --panel-border: rgba(235, 224, 200, 0.18);
+  --text-main: #f4efe6;
+  --text-muted: #b6c0c7;
+  --accent-gold: #e6b86a;
+  --accent-teal: #5cb8b2;
+  --accent-clay: #d9825b;
+  --ts-blur: 5.0000px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: var(--bg-stage);
+  color: var(--text-main);
+  font-family: "PingFang SC", "Noto Sans SC", "Hiragino Sans GB", "Microsoft YaHei", system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  user-select: none;
+}
+
+#stage {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: var(--bg-stage);
+}
+
+#osd-viewer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+#water-gl-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+}
+
+#sim-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+  pointer-events: none;
+}
+
+/* 双层移轴微缩景深模糊（按指南第 7 节拆分为独立规则块，防止压缩或 WebKit 丢弃标准属性） */
+.tilt-shift-band {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 19vh;
+  z-index: 4;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+
+.tilt-shift-band {
+  -webkit-backdrop-filter: blur(var(--ts-blur, 5px));
+}
+
+.tilt-shift-band {
+  backdrop-filter: blur(var(--ts-blur, 5px));
+}
+
+.tilt-shift-band.is-hidden {
+  opacity: 0;
+}
+
+#tilt-shift-top {
+  top: 0;
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.92) 0%,
+    rgba(0, 0, 0, 0.45) 52%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.92) 0%,
+    rgba(0, 0, 0, 0.45) 52%,
+    rgba(0, 0, 0, 0) 100%
+  );
+}
+
+#tilt-shift-bottom {
+  bottom: 0;
+  -webkit-mask-image: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.92) 0%,
+    rgba(0, 0, 0, 0.45) 52%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  mask-image: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.92) 0%,
+    rgba(0, 0, 0, 0.45) 52%,
+    rgba(0, 0, 0, 0) 100%
+  );
+}
+
+#landmark-pins {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.lm-pin {
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: auto;
+  transform: translate3d(-9999px, -9999px, 0);
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 9px 3px 7px;
+  border-radius: 999px;
+  border: 1px solid rgba(244, 239, 230, 0.32);
+  background: rgba(18, 25, 30, 0.82);
+  color: var(--text-main);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  cursor: pointer;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.45);
+  margin-left: -14px;
+  margin-top: -32px;
+  transition: background-color 0.16s ease, border-color 0.16s ease;
+}
+
+.lm-pin::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent-gold);
+  box-shadow: 0 0 0 2px rgba(230, 184, 106, 0.25);
+  flex-shrink: 0;
+}
+
+.lm-pin:hover,
+.lm-pin.is-active {
+  background: rgba(34, 46, 52, 0.94);
+  border-color: var(--accent-gold);
+  color: #fff6e5;
+}
+
+.lm-pin.is-active::before {
+  background: #ffd479;
+  box-shadow: 0 0 0 3px rgba(255, 212, 121, 0.35);
+}
+
+.glass-panel {
+  background: var(--panel-bg);
+  border: 1px solid var(--panel-border);
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.38);
+}
+
+.glass-panel {
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.glass-panel {
+  backdrop-filter: blur(10px);
+}
+
+#hud-controls {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  z-index: 6;
+  width: 288px;
+  padding: 12px 14px;
+}
+
+.hud-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.hud-title {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  color: #f8f2e6;
+}
+
+.hud-sub {
+  margin: 3px 0 0;
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.icon-btn {
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text-main);
+  border-radius: 7px;
+  padding: 3px 8px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.icon-btn:hover {
+  background: rgba(230, 184, 106, 0.18);
+  border-color: rgba(230, 184, 106, 0.45);
+}
+
+#hud-body {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+#hud-controls.is-collapsed #hud-body {
+  display: none;
+}
+
+.toggle-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 7px 10px;
+  font-size: 12px;
+}
+
+.toggle-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  color: var(--text-main);
+}
+
+.toggle-item input {
+  accent-color: var(--accent-gold);
+  margin: 0;
+  cursor: pointer;
+}
+
+.control-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.control-label {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.btn-group {
+  display: inline-flex;
+  gap: 4px;
+}
+
+.pill-btn {
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text-main);
+  border-radius: 6px;
+  padding: 4px 8px;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.pill-btn:hover {
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.pill-btn.is-active {
+  background: rgba(230, 184, 106, 0.25);
+  border-color: var(--accent-gold);
+  color: #ffe8b8;
+}
+
+#hud-telemetry {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 6;
+  padding: 7px 12px;
+  font-size: 12px;
+  color: var(--text-main);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-variant-numeric: tabular-nums;
+}
+
+.tele-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #52d18e;
+  box-shadow: 0 0 8px rgba(82, 209, 142, 0.7);
+}
+
+#landmark-card {
+  position: absolute;
+  right: 14px;
+  top: 58px;
+  z-index: 7;
+  width: 290px;
+  padding: 14px 15px;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+#landmark-card.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-6px);
+}
+
+.card-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.card-badge {
+  display: inline-block;
+  font-size: 10px;
+  padding: 2px 7px;
+  border-radius: 999px;
+  background: rgba(230, 184, 106, 0.18);
+  border: 1px solid rgba(230, 184, 106, 0.42);
+  color: #f6d58f;
+  margin-bottom: 5px;
+}
+
+.card-title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff8ea;
+}
+
+.card-desc {
+  margin: 8px 0 12px;
+  font-size: 12.5px;
+  line-height: 1.55;
+  color: #dce2e6;
+}
+
+.card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.card-coords {
+  font-size: 11px;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+#landmark-dock {
+  position: absolute;
+  left: 50%;
+  bottom: 14px;
+  transform: translateX(-50%);
+  z-index: 6;
+  max-width: calc(100vw - 28px);
+  padding: 7px 10px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+#landmark-dock::-webkit-scrollbar {
+  display: none;
+}
+
+.dock-btn {
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text-main);
+  border-radius: 999px;
+  padding: 5px 11px;
+  font-size: 12px;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: all 0.16s ease;
+}
+
+.dock-btn:hover {
+  background: rgba(230, 184, 106, 0.18);
+  border-color: rgba(230, 184, 106, 0.5);
+}
+
+.dock-btn.is-active {
+  background: rgba(230, 184, 106, 0.28);
+  border-color: var(--accent-gold);
+  color: #fff6e0;
+}
+
+@media (max-width: 720px) {
+  #hud-controls {
+    width: 220px;
+    padding: 10px 12px;
+  }
+  #hud-telemetry {
+    font-size: 11px;
+    padding: 5px 9px;
+  }
+  #landmark-card {
+    left: 14px;
+    right: 14px;
+    width: auto;
+    top: auto;
+    bottom: 66px;
+  }
+}

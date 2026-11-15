@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>徽州古城 4K 等轴测像素动态沙盘</title>
+  <link rel="stylesheet" href="./styles.css" />
+  <script src="./vendor/openseadragon.min.js"></script>
+</head>
+<body>
+  <div id="stage">
+    <div id="osd-viewer" aria-label="徽州古城 4K 像素地图"></div>
+    <canvas id="water-gl-canvas"></canvas>
+    <canvas id="sim-canvas"></canvas>
+
+    <div id="tilt-shift-top" class="tilt-shift-band"></div>
+    <div id="tilt-shift-bottom" class="tilt-shift-band"></div>
+
+    <div id="landmark-pins"></div>
+
+    <aside id="hud-controls" class="glass-panel">
+      <div class="hud-header">
+        <div>
+          <h1 class="hud-title">徽州古城 · 像素沙盘</h1>
+          <p class="hud-sub">4K 等轴测正交 · DZI 瓦片 · 高度遮挡</p>
+        </div>
+        <button id="btn-collapse-hud" class="icon-btn" type="button" title="收起/展开">收起</button>
+      </div>
+      <div id="hud-body">
+        <div class="toggle-grid">
+          <label class="toggle-item"><input id="toggle-traffic" type="checkbox" checked />外围车流</label>
+          <label class="toggle-item"><input id="toggle-peds" type="checkbox" checked />古巷行人</label>
+          <label class="toggle-item"><input id="toggle-water" type="checkbox" checked />练江水波</label>
+          <label class="toggle-item"><input id="toggle-occlusion" type="checkbox" checked />高度遮挡</label>
+          <label class="toggle-item"><input id="toggle-tiltshift" type="checkbox" checked />移轴景深</label>
+          <label class="toggle-item"><input id="toggle-pins" type="checkbox" checked />地标标注</label>
+        </div>
+        <div class="control-row">
+          <span class="control-label">仿真倍速</span>
+          <div class="btn-group" id="speed-group">
+            <button class="pill-btn speed-btn" data-speed="0.5" type="button">0.5×</button>
+            <button class="pill-btn speed-btn is-active" data-speed="1" type="button">1×</button>
+            <button class="pill-btn speed-btn" data-speed="2" type="button">2×</button>
+          </div>
+        </div>
+        <div class="control-row">
+          <span class="control-label">视角缩放</span>
+          <div class="btn-group">
+            <button id="btn-zoom-in" class="pill-btn" type="button">放大</button>
+            <button id="btn-zoom-out" class="pill-btn" type="button">缩小</button>
+            <button id="btn-reset-view" class="pill-btn" type="button">复位</button>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <div id="hud-telemetry" class="glass-panel" aria-live="polite">
+      <span class="tele-dot"></span>
+      <span id="tele-fps">-- FPS</span>
+      <span>·</span>
+      <span id="tele-cars">车 --</span>
+      <span>·</span>
+      <span id="tele-peds">人 --</span>
+      <span>·</span>
+      <span id="tele-zoom">--×</span>
+    </div>
+
+    <section id="landmark-card" class="glass-panel is-hidden" aria-live="polite">
+      <div class="card-head">
+        <div>
+          <span id="card-badge" class="card-badge">历史地标</span>
+          <h2 id="card-title" class="card-title">--</h2>
+        </div>
+        <button id="btn-close-card" class="icon-btn" type="button" aria-label="关闭卡片">×</button>
+      </div>
+      <p id="card-desc" class="card-desc"></p>
+      <div class="card-footer">
+        <span id="card-coords" class="card-coords"></span>
+        <button id="btn-refocus-card" class="pill-btn is-active" type="button">聚焦近景</button>
+      </div>
+    </section>
+
+    <nav id="landmark-dock" class="glass-panel" aria-label="核心地标导览"></nav>
+  </div>
+
+  <script src="./app.js"></script>
+</body>
+</html>
