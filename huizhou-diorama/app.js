@@ -1,10 +1,11 @@
 (() => {
   "use strict";
 
+  const BUILD_ID = "16k_v3";
   const MAP_SIZE = 4096;
-  const INIT_CENTER_X4 = 2380.0;
-  const INIT_CENTER_Y4 = 2230.0;
-  const INIT_ZOOM = 1.45;
+  const INIT_CENTER_X4 = 2050.0;
+  const INIT_CENTER_Y4 = 1820.0;
+  const INIT_ZOOM = 1.15;
 
   const VEHICLE_PALETTES = [
     { body: "#d7d0c3", roof: "#ebe5d8", accent: "#394652", lenM: 4.1, widM: 1.75, v0: 8.0, kind: "car" },
@@ -21,22 +22,66 @@
   ];
 
   const PIN_SCREEN_OFFSETS = {
-    dong_qiaolou: { dx: -64, dy: -16 },
-    xuguo_paifang: { dx: 12, dy: -14 },
-    zhonghe_clock: { dx: 14, dy: -18 },
-    nan_qiaolou: { dx: 0, dy: -14 },
-    xi_chengmen: { dx: -24, dy: -8 }
+    dong_qiaolou: { dx: -56, dy: -10 },
+    xuguo_paifang: { dx: 14, dy: -10 },
+    xi_chengmen: { dx: -34, dy: -16 },
+    nan_qiaolou: { dx: -10, dy: -8 },
+    taoxingzhi: { dx: 12, dy: -10 }
   };
 
   const LANDMARK_MODELS = {
-    xuguo_paifang: "./assets/models/xuguo_paifang.glb",
-    dong_qiaolou: "./assets/models/dong_qiaolou.glb",
-    nan_qiaolou: "./assets/models/nan_qiaolou.glb",
-    huizhou_fuya: "./assets/models/fuya_zhengtang.glb",
-    taiping_bridge: "./assets/models/taiping_bridge.glb?v=2",
-    zhonghe_clock: "./assets/models/zhonghe_clock.glb?v=3",
-    xi_chengmen: "./assets/models/xi_chengmen.glb",
-    doushan_street: "./assets/models/doushan_street.glb"
+    xuguo_paifang: `./assets/models/xuguo_paifang.glb?v=${BUILD_ID}`,
+    dong_qiaolou: `./assets/models/dong_qiaolou.glb?v=${BUILD_ID}`,
+    nan_qiaolou: `./assets/models/nan_qiaolou.glb?v=${BUILD_ID}`,
+    huizhou_fuya: `./assets/models/fuya_zhengtang.glb?v=${BUILD_ID}`,
+    taiping_bridge: `./assets/models/taiping_bridge.glb?v=${BUILD_ID}`,
+    zhonghe_clock: `./assets/models/zhonghe_clock.glb?v=${BUILD_ID}`,
+    xi_chengmen: `./assets/models/xi_chengmen.glb?v=${BUILD_ID}`,
+    doushan_street: `./assets/models/doushan_street.glb?v=${BUILD_ID}`,
+    shexian_high_school: `./assets/models/shexian_high_school.glb?v=${BUILD_ID}`,
+    yuliang_dam: `./assets/models/yuliang_dam.glb?v=${BUILD_ID}`,
+    changqing_pagoda: `./assets/models/changqing_pagoda.glb?v=${BUILD_ID}`
+  };
+
+  const DRAWER_GROUPS = [
+    {
+      title: "古城核心",
+      ids: [
+        "huizhou_fuya", "xuguo_paifang", "dong_qiaolou", "nan_qiaolou",
+        "xi_chengmen", "zhonghe_clock", "doushan_street", "taoxingzhi", "huizhou_museum"
+      ]
+    },
+    {
+      title: "练江古桥",
+      ids: ["taiping_bridge", "xinan_stele"]
+    },
+    {
+      title: "名塔名校与古坝",
+      ids: ["changqing_pagoda", "shexian_high_school", "yuliang_dam"]
+    }
+  ];
+
+  const TOD_PRESETS = {
+    noon: {
+      filter: "",
+      waterTint: [1.0, 1.0, 1.0],
+      lanternAlpha: 0.0
+    },
+    dawn: {
+      filter: "brightness(0.96) contrast(0.96) saturate(0.92) hue-rotate(-6deg)",
+      waterTint: [0.88, 0.93, 1.05],
+      lanternAlpha: 0.14
+    },
+    dusk: {
+      filter: "brightness(0.92) contrast(1.06) saturate(1.18) sepia(0.18)",
+      waterTint: [1.12, 0.82, 0.68],
+      lanternAlpha: 0.42
+    },
+    night: {
+      filter: "brightness(0.46) contrast(1.15) saturate(0.82) hue-rotate(195deg)",
+      waterTint: [0.32, 0.45, 0.68],
+      lanternAlpha: 0.92
+    }
   };
 
   function mulberry32(seed) {
@@ -117,9 +162,9 @@
       this.ready = false;
       this.program = null;
       this.vao = null;
-      this.texBase = null;
       this.texMask = null;
       this.uLocs = null;
+      this.todTint = [1.0, 1.0, 1.0];
       this.cssW = 0;
       this.cssH = 0;
       this.dpr = 1;
@@ -127,6 +172,11 @@
       if (this.gl) {
         this._init();
       }
+    }
+
+    setTod(mode) {
+      const preset = TOD_PRESETS[mode] || TOD_PRESETS.noon;
+      this.todTint = preset.waterTint;
     }
 
     _compileShader(type, src) {
@@ -162,7 +212,7 @@
         uniform vec2 u_tl;
         uniform vec2 u_mapSize;
         uniform float u_time;
-        uniform sampler2D u_base;
+        uniform vec3 u_todTint;
         uniform sampler2D u_mask;
         out vec4 fragColor;
 
@@ -188,39 +238,35 @@
           if (uv.x < 0.0 || uv.x > 1.0 || uv.y < 0.0 || uv.y > 1.0) {
             discard;
           }
-          float mask = texture(u_mask, uv).r;
-          if (mask < 0.025) {
+          vec3 m = texture(u_mask, uv).rgb;
+          float water = m.r;
+          float shore = m.g;
+          float rapid = m.b;
+          if (max(water, rapid) < 0.02) {
             discard;
           }
 
-          float edgeFade = smoothstep(0.08, 0.55, mask);
-          float nLow = vnoise(uv * 42.0 + vec2(0.18 * u_time, -0.12 * u_time));
-          vec2 wave = edgeFade * 0.00085 * vec2(
-            sin(95.0 * uv.y + 4.2 * nLow + 1.35 * u_time),
-            0.55 * cos(82.0 * uv.x + 3.8 * nLow - 1.1 * u_time)
-          );
-          vec2 dispUv = clamp(uv + wave, vec2(0.0), vec2(1.0));
-          float maskDisp = texture(u_mask, dispUv).r;
-          vec2 safeUv = mix(uv, dispUv, smoothstep(0.22, 0.65, maskDisp));
-          vec3 col = texture(u_base, safeUv).rgb;
+          vec2 flowUv = uv * 190.0 + vec2(-0.42 * u_time, -0.58 * u_time);
+          float warp = vnoise(uv * 55.0 + vec2(0.15 * u_time, -0.10 * u_time));
+          float n1 = vnoise(flowUv + vec2(1.8 * warp, -1.4 * warp));
+          float n2 = vnoise(uv * 310.0 + vec2(0.32 * u_time, -0.75 * u_time));
+          float sparkle = smoothstep(0.72, 0.93, 0.55 * n1 + 0.45 * n2) * water;
 
-          vec2 rUv1 = vec2(uv.x * 86.0, uv.y * 290.0) + vec2(-0.55 * u_time, 0.32 * u_time);
-          vec2 rUv2 = vec2(uv.x * 128.0, uv.y * 410.0) + vec2(0.42 * u_time, 0.24 * u_time);
-          float warp1 = vnoise(rUv1 * 0.35);
-          float warp2 = vnoise(rUv2 * 0.35 + vec2(17.3, 9.1));
-          float rib1 = vnoise(rUv1 + 2.2 * vec2(warp1, warp2));
-          float rib2 = vnoise(rUv2 - 1.8 * vec2(warp2, warp1));
-          float swell = rib1 + rib2 - 1.0;
+          float shoreWave = 0.55 + 0.45 * sin(uv.x * 420.0 + uv.y * 380.0 - 2.6 * u_time + 3.5 * n1);
+          float shoreFoam = shore * smoothstep(0.46, 0.88, shoreWave);
 
-          float patchMask = smoothstep(0.54, 0.82, vnoise(uv * 26.0 + vec2(-0.08 * u_time, 0.06 * u_time)));
-          float crest = smoothstep(0.66, 0.90, 0.5 + 0.5 * swell) * patchMask * edgeFade;
+          float rapidStreak = vnoise(vec2(uv.x * 420.0 + 2.2 * u_time, uv.y * 260.0 - 3.4 * u_time));
+          float rapidFoam = rapid * smoothstep(0.26, 0.80, 0.45 + 0.55 * rapidStreak);
 
-          col = clamp(
-            col * (1.0 + 0.042 * swell * edgeFade) + vec3(0.09, 0.125, 0.12) * crest,
-            0.0,
-            1.0
-          );
-          fragColor = vec4(col * mask, mask);
+          vec3 baseWaterCol = vec3(0.16, 0.54, 0.58) * u_todTint;
+          vec3 sparkleCol = vec3(0.75, 0.94, 0.96) * u_todTint;
+          vec3 foamCol = vec3(0.95, 0.98, 1.00) * mix(u_todTint, vec3(1.0), 0.35);
+
+          float waterAlpha = water * (0.08 + 0.16 * sparkle);
+          float foamAlpha = clamp(shoreFoam * 0.48 + rapidFoam * 0.82, 0.0, 0.88);
+          float alpha = clamp(max(waterAlpha, foamAlpha), 0.0, 0.90);
+          vec3 col = mix(mix(baseWaterCol, sparkleCol, sparkle), foamCol, clamp(shoreFoam * 0.85 + rapidFoam, 0.0, 1.0));
+          fragColor = vec4(col * alpha, alpha);
         }
       `;
 
@@ -239,7 +285,7 @@
         tl: gl.getUniformLocation(prog, "u_tl"),
         mapSize: gl.getUniformLocation(prog, "u_mapSize"),
         time: gl.getUniformLocation(prog, "u_time"),
-        base: gl.getUniformLocation(prog, "u_base"),
+        todTint: gl.getUniformLocation(prog, "u_todTint"),
         mask: gl.getUniformLocation(prog, "u_mask")
       };
 
@@ -272,21 +318,14 @@
     }
 
     _loadTextures() {
-      const baseImg = new Image();
       const maskImg = new Image();
-      let doneCount = 0;
-      const checkReady = () => {
-        doneCount += 1;
-        if (doneCount === 2 && this.gl) {
-          this.texBase = this._createTexture(baseImg);
+      maskImg.onload = () => {
+        if (this.gl) {
           this.texMask = this._createTexture(maskImg);
           this.ready = true;
         }
       };
-      baseImg.onload = checkReady;
-      maskImg.onload = checkReady;
-      baseImg.src = "./assets/water_base_2048.webp";
-      maskImg.src = "./assets/water_mask_2048.png";
+      maskImg.src = `./assets/water_mask_4096.png?v=${BUILD_ID}`;
     }
 
     resize(cssW, cssH, dpr) {
@@ -314,17 +353,14 @@
       gl.bindVertexArray(this.vao);
 
       gl.activeTexture(gl.TEXTURE0);
-      gl.bindTexture(gl.TEXTURE_2D, this.texBase);
-      gl.uniform1i(this.uLocs.base, 0);
-
-      gl.activeTexture(gl.TEXTURE1);
       gl.bindTexture(gl.TEXTURE_2D, this.texMask);
-      gl.uniform1i(this.uLocs.mask, 1);
+      gl.uniform1i(this.uLocs.mask, 0);
 
       gl.uniform2f(this.uLocs.viewportSize, this.cssW, this.cssH);
       gl.uniform2f(this.uLocs.tl, tlX, tlY);
       gl.uniform2f(this.uLocs.mapSize, mapW, mapH);
       gl.uniform1f(this.uLocs.time, timeSec);
+      gl.uniform3f(this.uLocs.todTint, this.todTint[0], this.todTint[1], this.todTint[2]);
 
       gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
       gl.bindVertexArray(null);
@@ -791,22 +827,54 @@
       pinsContainer.style.display = togglePins.checked ? "block" : "none";
     });
 
-    const resp = await fetch("./assets/sim_network.json");
+    const resp = await fetch(`./assets/sim_network.json?v=${BUILD_ID}`);
     if (!resp.ok) {
       throw new Error(`无法加载 sim_network.json: HTTP ${resp.status}`);
     }
     const simData = await resp.json();
     const simulator = new CitySimulator(simData);
     const landmarks = simData.landmarks || [];
+    const osdViewerEl = document.getElementById("osd-viewer");
+    const todAtmosEl = document.getElementById("tod-atmosphere");
+    const urlParams = new URLSearchParams(window.location.search);
+
+    let currentTod = "noon";
+    function syncUrlState() {
+      if (!osdOpen || !window.history || !window.history.replaceState) return;
+      const center = viewer.viewport.getCenter(true);
+      const z = viewer.viewport.getZoom(true);
+      const nextQs = `?v=${center.x.toFixed(4)},${center.y.toFixed(4)},${z.toFixed(2)}&tod=${currentTod}`;
+      try {
+        window.history.replaceState(null, "", nextQs);
+      } catch (_) {}
+    }
 
     const fgImage = new Image();
     let fgReady = false;
     fgImage.onload = () => {
       fgReady = true;
     };
-    fgImage.src = "./assets/foreground_occlusion_4k.png";
+    fgImage.src = `./assets/foreground_occlusion_4k.png?v=${BUILD_ID}`;
 
     const waterRenderer = new WaterRenderer(waterCanvas);
+
+    function applyTod(mode, updateUrl = true) {
+      const m = TOD_PRESETS[mode] ? mode : "noon";
+      currentTod = m;
+      const preset = TOD_PRESETS[m];
+      if (osdViewerEl) osdViewerEl.style.filter = preset.filter;
+      if (todAtmosEl) todAtmosEl.dataset.tod = m;
+      waterRenderer.setTod(m);
+      for (const btn of document.querySelectorAll(".tod-btn")) {
+        btn.classList.toggle("is-active", btn.dataset.tod === m);
+      }
+      if (updateUrl) syncUrlState();
+    }
+
+    for (const btn of document.querySelectorAll(".tod-btn")) {
+      btn.addEventListener("click", () => applyTod(btn.dataset.tod || "noon", true));
+    }
+    applyTod(urlParams.get("tod") || "noon", false);
 
     if (typeof OpenSeadragon.setImageFormatsSupported === "function") {
       OpenSeadragon.setImageFormatsSupported({ webp: true });
@@ -814,13 +882,13 @@
 
     const viewer = OpenSeadragon({
       id: "osd-viewer",
-      tileSources: "./huizhou_dzi.dzi",
+      tileSources: `./huizhou_dzi_16k_v3.dzi?v=${BUILD_ID}`,
       showNavigationControl: false,
       showHomeControl: false,
       showZoomControl: false,
       showFullPageControl: false,
       minZoomImageRatio: 0.85,
-      maxZoomPixelRatio: 2.8,
+      maxZoomPixelRatio: 2.2,
       visibilityRatio: 0.9,
       animationTime: 0.85,
       constrainDuringPan: true,
@@ -834,6 +902,9 @@
     let activeLandmark = null;
     const pinEls = new Map();
     const dockEls = new Map();
+    const drawerEls = new Map();
+    const drawerEl = document.getElementById("explore-drawer");
+    const btnDrawer = document.getElementById("btn-explore-drawer");
 
     function selectLandmark(lm, shouldFly = true) {
       activeLandmark = lm;
@@ -841,6 +912,9 @@
         el.classList.toggle("is-active", lm && id === lm.id);
       }
       for (const [id, el] of dockEls.entries()) {
+        el.classList.toggle("is-active", lm && id === lm.id);
+      }
+      for (const [id, el] of drawerEls.entries()) {
         el.classList.toggle("is-active", lm && id === lm.id);
       }
       if (!lm) {
@@ -851,7 +925,7 @@
       cardBadge.textContent = lm.badge || "历史地标";
       cardTitle.textContent = lm.title;
       cardDesc.textContent = lm.desc;
-      cardCoords.textContent = `4K (${Math.round(lm.x4)}, ${Math.round(lm.y4)})`;
+      cardCoords.textContent = `16K (${Math.round(lm.x4 * 4)}, ${Math.round(lm.y4 * 4)})`;
       cardEl.classList.remove("is-hidden");
       sync3DButtonForLandmark(lm);
 
@@ -877,11 +951,10 @@
     }
 
     function sync3DButtonForLandmark(lm) {
+      hide3DViewer();
       if (lm && LANDMARK_MODELS[lm.id] && window.THREE && THREE.GLTFLoader) {
         btnToggle3d.classList.remove("is-hidden");
-        open3DForLandmark(lm);
       } else {
-        hide3DViewer();
         btnToggle3d.classList.add("is-hidden");
       }
     }
@@ -986,6 +1059,7 @@
       }
     });
 
+    const lmById = new Map(landmarks.map((lm) => [lm.id, lm]));
     for (const lm of landmarks) {
       const pin = document.createElement("button");
       pin.type = "button";
@@ -1005,6 +1079,45 @@
       dockBtn.addEventListener("click", () => selectLandmark(lm, true));
       dockContainer.appendChild(dockBtn);
       dockEls.set(lm.id, dockBtn);
+    }
+
+    if (drawerEl && btnDrawer) {
+      for (const grp of DRAWER_GROUPS) {
+        const sec = document.createElement("div");
+        const heading = document.createElement("h3");
+        heading.className = "drawer-group-title";
+        heading.textContent = grp.title;
+        sec.appendChild(heading);
+
+        const chipsWrap = document.createElement("div");
+        chipsWrap.className = "drawer-chips";
+        for (const id of grp.ids) {
+          const lm = lmById.get(id);
+          if (!lm) continue;
+          const chip = document.createElement("button");
+          chip.type = "button";
+          chip.className = "drawer-chip";
+          chip.textContent = lm.short_title || lm.title;
+          chip.addEventListener("click", () => {
+            selectLandmark(lm, true);
+            if (window.innerWidth <= 720) {
+              drawerEl.classList.add("is-hidden");
+              btnDrawer.classList.remove("is-active");
+              btnDrawer.setAttribute("aria-expanded", "false");
+            }
+          });
+          chipsWrap.appendChild(chip);
+          drawerEls.set(lm.id, chip);
+        }
+        sec.appendChild(chipsWrap);
+        drawerEl.appendChild(sec);
+      }
+
+      btnDrawer.addEventListener("click", () => {
+        const nowHidden = drawerEl.classList.toggle("is-hidden");
+        btnDrawer.classList.toggle("is-active", !nowHidden);
+        btnDrawer.setAttribute("aria-expanded", nowHidden ? "false" : "true");
+      });
     }
 
     document.getElementById("btn-close-card").addEventListener("click", () => selectLandmark(null, false));
@@ -1033,10 +1146,43 @@
       stage.style.setProperty("--ts-blur", blurToggle ? "5.0005px" : "5.0000px");
     });
 
+    let urlSyncTimer = null;
+    viewer.addHandler("animation-finish", () => {
+      if (!osdOpen) return;
+      if (urlSyncTimer) clearTimeout(urlSyncTimer);
+      urlSyncTimer = setTimeout(syncUrlState, 250);
+    });
+
     viewer.addHandler("open", () => {
       osdOpen = true;
-      viewer.viewport.panTo(new OpenSeadragon.Point(INIT_CENTER_X4 / MAP_SIZE, INIT_CENTER_Y4 / MAP_SIZE), true);
-      viewer.viewport.zoomTo(INIT_ZOOM, null, true);
+      let cx = INIT_CENTER_X4 / MAP_SIZE;
+      let cy = INIT_CENTER_Y4 / MAP_SIZE;
+      let z = INIT_ZOOM;
+      let hasVParam = false;
+      const vStr = urlParams.get("v");
+      if (vStr) {
+        const parts = vStr.split(",").map(Number);
+        if (
+          parts.length === 3 &&
+          parts.every((n) => Number.isFinite(n)) &&
+          parts[0] >= 0 && parts[0] <= 1 &&
+          parts[1] >= 0 && parts[1] <= 1 &&
+          parts[2] >= 0.5 && parts[2] <= 32
+        ) {
+          cx = parts[0];
+          cy = parts[1];
+          z = parts[2];
+          hasVParam = true;
+        }
+      }
+      viewer.viewport.panTo(new OpenSeadragon.Point(cx, cy), true);
+      viewer.viewport.zoomTo(z, null, true);
+
+      const lmId = urlParams.get("lm");
+      if (lmId && lmById.has(lmId)) {
+        selectLandmark(lmById.get(lmId), !hasVParam);
+      }
+      syncUrlState();
     });
 
     let lastNow = performance.now();
@@ -1140,11 +1286,45 @@
         }
       }
 
+      const lanternAlpha = (TOD_PRESETS[currentTod] || TOD_PRESETS.noon).lanternAlpha;
+      if (lanternAlpha > 0.01) {
+        simCtx.save();
+        simCtx.globalCompositeOperation = "lighter";
+        for (const lm of landmarks) {
+          const lx = tl.x + lm.x4 * scale;
+          const ly = tl.y + lm.y4 * scale;
+          if (lx < -80 || ly < -80 || lx > cssW + 80 || ly > cssH + 80) continue;
+          const r = clamp(24 * scale, 18, 72);
+          const grad = simCtx.createRadialGradient(lx, ly, 1, lx, ly, r);
+          grad.addColorStop(0, `rgba(255, 206, 118, ${(0.52 * lanternAlpha).toFixed(3)})`);
+          grad.addColorStop(0.45, `rgba(255, 162, 72, ${(0.22 * lanternAlpha).toFixed(3)})`);
+          grad.addColorStop(1, "rgba(255, 140, 40, 0)");
+          simCtx.fillStyle = grad;
+          simCtx.beginPath();
+          simCtx.arc(lx, ly, r, 0, Math.PI * 2);
+          simCtx.fill();
+        }
+        for (const sp of sprites) {
+          if (sp.kind !== "car") continue;
+          const hx = tl.x + (sp.x4 + sp.tx * 5.0) * scale;
+          const hy = tl.y + (sp.y4 + sp.ty * 5.0) * scale;
+          const hr = clamp(9 * scale, 5, 24);
+          const hGrad = simCtx.createRadialGradient(hx, hy, 0.5, hx, hy, hr);
+          hGrad.addColorStop(0, `rgba(255, 238, 175, ${(0.48 * lanternAlpha).toFixed(3)})`);
+          hGrad.addColorStop(1, "rgba(255, 220, 140, 0)");
+          simCtx.fillStyle = hGrad;
+          simCtx.beginPath();
+          simCtx.arc(hx, hy, hr, 0, Math.PI * 2);
+          simCtx.fill();
+        }
+        simCtx.restore();
+      }
+
       if (togglePins.checked) {
         for (const lm of landmarks) {
           const pin = pinEls.get(lm.id);
           if (!pin) continue;
-          const off = PIN_SCREEN_OFFSETS[lm.id] || { dx: 0, dy: 0 };
+          const off = PIN_SCREEN_OFFSETS[lm.id] || { dx: 0, dy: -10 };
           const px = tl.x + lm.x4 * scale + off.dx;
           const py = tl.y + lm.y4 * scale + off.dy;
           if (px < -40 || py < -20 || px > cssW + 40 || py > cssH + 40) {

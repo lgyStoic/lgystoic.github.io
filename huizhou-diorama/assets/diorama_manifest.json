@@ -1,28 +1,28 @@
 {
+  "build_id": "16k_v3_202611162346",
   "vendor_osd_bytes": 247016,
   "dzi": {
-    "levels": 13,
-    "tiles_count": 94,
-    "total_tiles_bytes": 5229414
+    "dzi_name": "huizhou_dzi_16k_v3",
+    "size": 16384,
+    "levels": 15,
+    "tiles_count": 1374,
+    "total_tiles_bytes": 59254796
   },
   "water": {
-    "water_raw_px": 3018090,
-    "water_clean_px": 2991787,
-    "water_2048_nonzero_px": 749012
+    "water_mask_4096_bytes": 459805,
+    "water_px": 1840472,
+    "shore_foam_px": 189034,
+    "rapid_foam_px": 8363
   },
   "simulation": {
-    "motor_lanes_count": 200,
-    "junction_boxes_count": 11,
-    "ped_walkways_count": 171,
-    "landmarks_count": 8,
-    "sim_json_bytes": 431710
+    "motor_lanes_count": 365,
+    "junction_boxes_count": 21,
+    "ped_walkways_count": 317,
+    "landmarks_count": 14,
+    "sim_json_bytes": 863648
   },
   "occlusion": {
-    "foreground_total_px": 115117,
-    "paifang_occlusion_px": 1388,
-    "dong_qiaolou_occlusion_px": 1068,
-    "nan_qiaolou_occlusion_px": 1504,
-    "taiping_road_center_occlusion_px": 0,
-    "occlusion_png_bytes": 502951
+    "foreground_total_px": 1729983,
+    "occlusion_png_bytes": 5570742
   }
 }
