@@ -1,7 +1,7 @@
 (() => {
   "use strict";
 
-  const BUILD_ID = "16k_v3";
+  const BUILD_ID = "16k_v5";
   const MAP_SIZE = 4096;
   const INIT_CENTER_X4 = 2050.0;
   const INIT_CENTER_Y4 = 1820.0;
@@ -882,7 +882,7 @@
 
     const viewer = OpenSeadragon({
       id: "osd-viewer",
-      tileSources: `./huizhou_dzi_16k_v3.dzi?v=${BUILD_ID}`,
+      tileSources: `./huizhou_dzi_16k_v5.dzi?v=${BUILD_ID}`,
       showNavigationControl: false,
       showHomeControl: false,
       showZoomControl: false,
