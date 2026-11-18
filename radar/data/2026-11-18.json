@@ -1,0 +1,932 @@
+{
+  "date": "2026-11-18",
+  "generated_at": "2026-11-18T04:22:13+00:00",
+  "ai": false,
+  "model": "",
+  "sources": [
+    {
+      "id": "openai",
+      "name": "OpenAI",
+      "ok": true,
+      "count": 5,
+      "total": 1406,
+      "error": ""
+    },
+    {
+      "id": "google-ai",
+      "name": "Google AI Blog",
+      "ok": true,
+      "count": 1,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "qwen",
+      "name": "Qwen",
+      "ok": true,
+      "count": 0,
+      "total": 44,
+      "error": ""
+    },
+    {
+      "id": "hf-blog",
+      "name": "Hugging Face Blog",
+      "ok": true,
+      "count": 0,
+      "total": 908,
+      "error": ""
+    },
+    {
+      "id": "nvidia-dev",
+      "name": "NVIDIA Technical Blog",
+      "ok": true,
+      "count": 1,
+      "total": 100,
+      "error": ""
+    },
+    {
+      "id": "hf-papers",
+      "name": "HF Papers 日榜",
+      "ok": true,
+      "count": 22,
+      "total": 31,
+      "error": ""
+    },
+    {
+      "id": "pytorch",
+      "name": "PyTorch Blog",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "simonw",
+      "name": "Simon Willison",
+      "ok": true,
+      "count": 2,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "lilianweng",
+      "name": "Lil'Log",
+      "ok": true,
+      "count": 0,
+      "total": 53,
+      "error": ""
+    },
+    {
+      "id": "interconnects",
+      "name": "Interconnects",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "raschka",
+      "name": "Sebastian Raschka",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "chiphuyen",
+      "name": "Chip Huyen",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-pytorch",
+      "name": "Release · PyTorch",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-triton",
+      "name": "Release · Triton",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-cutlass",
+      "name": "Release · CUTLASS",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-flash-attention",
+      "name": "Release · FlashAttention",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-vllm",
+      "name": "Release · vLLM",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-sglang",
+      "name": "Release · SGLang",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-tensorrt-llm",
+      "name": "Release · TensorRT-LLM",
+      "ok": true,
+      "count": 1,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-diffusers",
+      "name": "Release · Diffusers",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-cuda-python",
+      "name": "Release · cuda-python",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "gnews-labs-en",
+      "name": "新闻 · Anthropic / Mistral / xAI",
+      "ok": true,
+      "count": 19,
+      "total": 94,
+      "error": ""
+    },
+    {
+      "id": "gnews-labs-cn",
+      "name": "新闻 · 国内模型公司",
+      "ok": true,
+      "count": 13,
+      "total": 47,
+      "error": ""
+    },
+    {
+      "id": "qbitai",
+      "name": "量子位",
+      "ok": true,
+      "count": 2,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "infoq-cn",
+      "name": "InfoQ 中文",
+      "ok": true,
+      "count": 2,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "thonking",
+      "name": "Horace He (thonking)",
+      "ok": true,
+      "count": 0,
+      "total": 6,
+      "error": ""
+    },
+    {
+      "id": "hn-algolia",
+      "name": "Hacker News（100+ 分）",
+      "ok": true,
+      "count": 3,
+      "total": 60,
+      "error": ""
+    },
+    {
+      "id": "karpathy-blog",
+      "name": "Andrej Karpathy 博客",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "eugeneyan",
+      "name": "Eugene Yan",
+      "ok": true,
+      "count": 0,
+      "total": 214,
+      "error": ""
+    },
+    {
+      "id": "importai",
+      "name": "Import AI（Jack Clark）",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "latentspace",
+      "name": "Latent Space",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "semianalysis",
+      "name": "SemiAnalysis",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "meta-ai",
+      "name": "Meta Engineering",
+      "ok": true,
+      "count": 0,
+      "total": 9,
+      "error": ""
+    },
+    {
+      "id": "mistral-news",
+      "name": "Mistral AI",
+      "ok": true,
+      "count": 0,
+      "total": 94,
+      "error": ""
+    },
+    {
+      "id": "bsky-karpathy",
+      "name": "Bluesky · Andrej Karpathy",
+      "ok": true,
+      "count": 0,
+      "total": 15,
+      "error": ""
+    },
+    {
+      "id": "bsky-giffmana",
+      "name": "Bluesky · Lucas Beyer",
+      "ok": true,
+      "count": 0,
+      "total": 22,
+      "error": ""
+    },
+    {
+      "id": "bsky-hardmaru",
+      "name": "Bluesky · hardmaru",
+      "ok": true,
+      "count": 0,
+      "total": 15,
+      "error": ""
+    },
+    {
+      "id": "bsky-swyx",
+      "name": "Bluesky · swyx",
+      "ok": true,
+      "count": 0,
+      "total": 3,
+      "error": ""
+    },
+    {
+      "id": "bsky-pytorch",
+      "name": "Bluesky · PyTorch",
+      "ok": true,
+      "count": 2,
+      "total": 27,
+      "error": ""
+    },
+    {
+      "id": "bsky-clem",
+      "name": "Bluesky · Clem Delangue",
+      "ok": true,
+      "count": 0,
+      "total": 11,
+      "error": ""
+    },
+    {
+      "id": "bsky-natolambert",
+      "name": "Bluesky · Nathan Lambert",
+      "ok": true,
+      "count": 0,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "bsky-rasbt",
+      "name": "Bluesky · Sebastian Raschka",
+      "ok": true,
+      "count": 0,
+      "total": 27,
+      "error": ""
+    },
+    {
+      "id": "bsky-jeffdean",
+      "name": "Bluesky · Jeff Dean",
+      "ok": true,
+      "count": 0,
+      "total": 18,
+      "error": ""
+    },
+    {
+      "id": "hf-trending-new",
+      "name": "HF 热榜新模型",
+      "ok": true,
+      "count": 4,
+      "total": 29,
+      "error": ""
+    },
+    {
+      "id": "gh-new-stars",
+      "name": "GitHub 新星仓库",
+      "ok": true,
+      "count": 2,
+      "total": 15,
+      "error": ""
+    },
+    {
+      "id": "hf-t2v",
+      "name": "HF 热榜 · 文生视频",
+      "ok": true,
+      "count": 2,
+      "total": 19,
+      "error": ""
+    },
+    {
+      "id": "hf-i2v",
+      "name": "HF 热榜 · 图生视频",
+      "ok": true,
+      "count": 0,
+      "total": 18,
+      "error": ""
+    },
+    {
+      "id": "gnews-video-en",
+      "name": "新闻 · 视频生成（英文）",
+      "ok": true,
+      "count": 4,
+      "total": 5,
+      "error": ""
+    },
+    {
+      "id": "gnews-video-cn",
+      "name": "新闻 · 视频生成（中文）",
+      "ok": true,
+      "count": 16,
+      "total": 26,
+      "error": ""
+    },
+    {
+      "id": "gnews-world-en",
+      "name": "新闻 · 世界模型（英文）",
+      "ok": true,
+      "count": 1,
+      "total": 24,
+      "error": ""
+    },
+    {
+      "id": "gnews-world-cn",
+      "name": "新闻 · 世界模型（中文）",
+      "ok": true,
+      "count": 24,
+      "total": 71,
+      "error": ""
+    },
+    {
+      "id": "gh-new-video-world",
+      "name": "GitHub 新仓库 · 视频 / 世界模型",
+      "ok": true,
+      "count": 9,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "arxiv-cscv",
+      "name": "arXiv cs.CV（专题）",
+      "ok": true,
+      "count": 35,
+      "total": 511,
+      "error": ""
+    },
+    {
+      "id": "arxiv-csro",
+      "name": "arXiv cs.RO（专题）",
+      "ok": true,
+      "count": 10,
+      "total": 217,
+      "error": ""
+    }
+  ],
+  "counts": {
+    "high": 10,
+    "medium": 20,
+    "low": 0
+  },
+  "items": [
+    {
+      "id": "d5c84d1ef9d88087",
+      "title": "可灵AI上线Kling Image 4.0：首次支持原生8K图像生成 - 观点网",
+      "link": "https://www.guandian.cn/article/20261118/629231.html",
+      "source": "新闻 · 视频生成（中文）",
+      "source_id": "gnews-video-cn",
+      "published": "2026-11-18T02:36:54+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "可灵AI上线Kling Image 4.0：首次支持原生8K图像生成 观点网",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "1865f153e650971c",
+      "title": "可灵 AI 发布 Kling Image 4.0像模型11 月 17 日，可灵 AI - 禁闻网",
+      "link": "https://www.bannedbook.org/bnews/itnews/20261118/2382148.html",
+      "source": "新闻 · 视频生成（中文）",
+      "source_id": "gnews-video-cn",
+      "published": "2026-11-18T02:00:00+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "可灵 AI 发布 Kling Image 4.0像模型11 月 17 日，可灵 AI 禁闻网",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "54c36c2772970006",
+      "title": "Kuaishou's Kling AI Launches Kling Image 4.0, Supporting Native 8K Resolution and Up to 2,000 Characters Per Image - BigGo Finance",
+      "link": "https://finance.biggo.com/news/fd46ac14-6cec-4d4d-9def-134b02a084e9",
+      "source": "新闻 · 视频生成（英文）",
+      "source_id": "gnews-video-en",
+      "published": "2026-11-18T01:56:00+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "Kuaishou's Kling AI Launches Kling Image 4.0, Supporting Native 8K Resolution and Up to 2,000 Characters Per Image BigGo Finance",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "6b928a2fce833659",
+      "title": "可灵AI发布Kling Image 4.0：原生8K超高清、组图直出，刷新专业图像生成新高度 - 雷峰网",
+      "link": "https://m.leiphone.com/category/industrynews/XmEGfhNbrGY3WfbT.html",
+      "source": "新闻 · 视频生成（中文）",
+      "source_id": "gnews-video-cn",
+      "published": "2026-11-18T01:48:00+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "可灵AI发布Kling Image 4.0：原生8K超高清、组图直出，刷新专业图像生成新高度 雷峰网",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "67a93cd9a1610c66",
+      "title": "可灵AI全新一代图像创作模型Kling Image 4.0正式上线。真实、文字表现 - 金十数据",
+      "link": "https://flash.jin10.com/detail/20261118092714152800",
+      "source": "新闻 · 视频生成（中文）",
+      "source_id": "gnews-video-cn",
+      "published": "2026-11-18T01:36:49+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "可灵AI全新一代图像创作模型Kling Image 4.0正式上线。真实、文字表现 金十数据",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "c7903e4f5acfd13e",
+      "title": "可灵AI发布Kling Image 4.0：原生8K生成、单图2000字文字、10连组图导演级创作全面落地 - SmartHey",
+      "link": "https://www.smarthey.com/detail/956092202737.html",
+      "source": "新闻 · 视频生成（中文）",
+      "source_id": "gnews-video-cn",
+      "published": "2026-11-18T01:15:00+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "可灵AI发布Kling Image 4.0：原生8K生成、单图2000字文字、10连组图导演级创作全面落地 SmartHey",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "c7d6f9a96a64bf55",
+      "title": "Seedance 2.5 flash发布，“每秒0.99元”能救短剧利润吗？ - Sohu",
+      "link": "https://www.sohu.com/a/1102985006_114941?scm=10001.325_13-325_13.0.0-0-0-0-0.5_1334",
+      "source": "新闻 · 视频生成（中文）",
+      "source_id": "gnews-video-cn",
+      "published": "2026-11-17T23:56:16+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "Seedance 2.5 flash发布，“每秒0.99元”能救短剧利润吗？ Sohu",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "c3f0eb48f243fe51",
+      "title": "OpenAI's GPT 6.2 Astra Challenges Anthropic on Price, But Not Every Benchmark - Decrypt",
+      "link": "https://decrypt.co/383488/openai-gpt-6-2-astra-challenges-anthropic-price-but-not-every-benchmark",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-11-17T21:46:02+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "OpenAI's GPT 6.2 Astra Challenges Anthropic on Price, But Not Every Benchmark Decrypt",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "cc13719827730209",
+      "title": "Microsoft launches seven MAI models at Ignite, pitching its coding model at 5% of Claude Opus's price - MLQ.ai",
+      "link": "https://mlq.ai/news/microsoft-launches-seven-mai-models-at-ignite-pitching-its-coding-model-at-5-of-claude-opuss-price/",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-11-17T20:51:14+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "Microsoft launches seven MAI models at Ignite, pitching its coding model at 5% of Claude Opus's price MLQ.ai",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "549a77347d5e1e5f",
+      "title": "Introducing GPT-6.2 Astra and Sol",
+      "link": "https://openai.com/index/introducing-gpt-6-2-astra-sol",
+      "source": "OpenAI",
+      "source_id": "openai",
+      "published": "2026-11-17T17:45:00+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "Introducing GPT‑6.2 Astra and Sol, with better professional outputs, coding, computer use, and efficiency at lower cost across ChatGPT Work, Codex, and the API.",
+      "why": "",
+      "tags": [],
+      "tracks": []
+    },
+    {
+      "id": "7258e86c479ab361",
+      "title": "即梦 Seedance 2.5 大升级，AI 视频生成终于有了自己的 4K 生产线 - 爱范儿",
+      "link": "https://www.ifanr.com/1690033",
+      "source": "新闻 · 视频生成（中文）",
+      "source_id": "gnews-video-cn",
+      "published": "2026-11-18T04:00:43+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "即梦 Seedance 2.5 大升级，AI 视频生成终于有了自己的 4K 生产线 爱范儿",
+      "why": "",
+      "tags": [
+        "视频生成"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "a4865eb9abbc3645",
+      "title": "世界模型成为自动驾驶的圣杯？ - Sohu",
+      "link": "https://m.sohu.com/a/1103044197_122982?scm=10001.325_13-325_13.0.0-0-0-0-0.5_1334",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-11-18T02:06:48+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "世界模型成为自动驾驶的圣杯？ Sohu",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "df865e299d3b7e92",
+      "title": "Malaysia seeks details from Anthropic over AI influence campaign - The Straits Times",
+      "link": "https://www.straitstimes.com/asia/se-asia/malaysia-seeks-details-from-anthropic-over-ai-influence-campaign",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-11-18T01:53:00+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Malaysia seeks details from Anthropic over AI influence campaign The Straits Times",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "b56539317f120a05",
+      "title": "可灵AI高管李晗离职，曾负责快手基础大模型与推荐算法 - 凤凰网",
+      "link": "https://i.ifeng.com/c/8y9DKCO1jn3",
+      "source": "新闻 · 视频生成（中文）",
+      "source_id": "gnews-video-cn",
+      "published": "2026-11-18T01:48:56+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "可灵AI高管李晗离职，曾负责快手基础大模型与推荐算法 凤凰网",
+      "why": "",
+      "tags": [
+        "大模型"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "fc6e4b817a047168",
+      "title": "GPT-6.2 Astra和Sol王炸双发！3D又危了",
+      "link": "https://www.qbitai.com/2026/11/510707.html",
+      "source": "量子位",
+      "source_id": "qbitai",
+      "published": "2026-11-18T00:49:14+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "Sol逼近旗舰性能",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "54ddc90e3e9f5f8d",
+      "title": "How can a shared software stack help bring PyTorch support to new chips? At #PyTorchCon North America 2026, Chris Lattne",
+      "link": "https://bsky.app/profile/pytorch.org/post/3n2ka3vjaix2c",
+      "source": "Bluesky · PyTorch",
+      "source_id": "bsky-pytorch",
+      "published": "2026-11-17T23:47:00+00:00",
+      "category": "people",
+      "priority": "medium",
+      "summary": "How can a shared software stack help bring PyTorch support to new chips? At #PyTorchCon North America 2026, Chris Lattner (Qualcomm) explains the approach…",
+      "why": "",
+      "tags": [
+        "pytorch"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "a8f771cea26e5530",
+      "title": "External sandboxes for coding agents",
+      "link": "https://simonwillison.net/2026/Nov/17/external-sandboxes-for-coding-agents",
+      "source": "Simon Willison",
+      "source_id": "simonw",
+      "published": "2026-11-17T22:52:29+00:00",
+      "category": "people",
+      "priority": "medium",
+      "summary": "External sandboxes for coding agents I've been exploring new ways to sandbox code that is executed by agents, with a focus on making it safer to try out local…",
+      "why": "",
+      "tags": [
+        "cute",
+        "agent"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "546a748157c3496b",
+      "title": "GPT‑6.2 Astra and GPT‑6.2 Sol",
+      "link": "https://simonwillison.net/2026/Nov/17/gpt62-astra-and-sol",
+      "source": "Simon Willison",
+      "source_id": "simonw",
+      "published": "2026-11-17T22:38:52+00:00",
+      "category": "people",
+      "priority": "medium",
+      "summary": "GPT‑6.2 Astra and GPT‑6.2 Sol OpenAI: We’re introducing GPT‑6.2 Astra, our new frontier model for your hardest projects, and GPT‑6.2 Sol, our efficient,…",
+      "why": "",
+      "tags": [
+        "llm"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "31e594fe75b1bbbc",
+      "title": "Microsoft aims to challenge OpenAI, Anthropic with cheaper, specialized AI models - Axios",
+      "link": "https://www.axios.com/2026/11/17/microsoft-ai-models-openai-anthropic-ignite",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-11-17T22:14:57+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Microsoft aims to challenge OpenAI, Anthropic with cheaper, specialized AI models Axios",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "d5e817d260f3dbc6",
+      "title": "Inside AI researcher’s sadistic orgies where no means yes and ‘moderate beatings,’ ‘light electricity’ are on the menu - New York Post",
+      "link": "https://nypost.com/2026/11/17/business/anthropic-researcher-is-hosting-wild-silicon-valley-orgies-with-consensual-non-consent-as-the-theme-report/",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-11-17T21:35:00+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Inside AI researcher’s sadistic orgies where no means yes and ‘moderate beatings,’ ‘light electricity’ are on the menu New York Post",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "3fa9c5e618ad8c8d",
+      "title": "Anthropic’s IPO exposes Australia’s AI safety racket - The Australian",
+      "link": "https://www.theaustralian.com.au/commentary/anthropic-ipo-why-australias-ai-rules-may-kill-productivity-boom/news-story/0ddbb55811b3bbfcca3d86a38b86465e",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-11-17T21:32:05+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Anthropic’s IPO exposes Australia’s AI safety racket The Australian",
+      "why": "",
+      "tags": [
+        "llm"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "1c47e92bd89d99b4",
+      "title": "Binance Wallet Sets Eight-Hour Anthropic IPO Token Window - The Defiant",
+      "link": "https://thedefiant.io/converge/tradfi-and-fintech/binance-wallet-sets-eight-hour-anthropic-ipo-token-window",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-11-17T21:17:00+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Binance Wallet Sets Eight-Hour Anthropic IPO Token Window The Defiant",
+      "why": "",
+      "tags": [
+        "llm"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "c49cc29385956095",
+      "title": "OpenAI undercuts Claude by 95% with GPT-6.2 Astra in Anthropic's IPO week - Dealroom",
+      "link": "https://app.dealroom.co/news/note/openai-undercuts-claude-by-95-with-gpt-6-2-astra-in-anthropic-s-ipo-week",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-11-17T20:40:15+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "OpenAI undercuts Claude by 95% with GPT-6.2 Astra in Anthropic's IPO week Dealroom",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "92e94bcf64738bcd",
+      "title": "74% Of Anthropic's Compute Has Gone Towards Training In 2026, Only 26% To Inference: Brad Gerstner - OfficeChai",
+      "link": "https://officechai.com/ai/74-of-anthropics-compute-has-gone-towards-training-in-2026-only-26-to-inference-brad-gerstner/",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-11-17T20:12:43+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "74% Of Anthropic's Compute Has Gone Towards Training In 2026, Only 26% To Inference: Brad Gerstner OfficeChai",
+      "why": "",
+      "tags": [
+        "inference"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "3d92abf95c96d9de",
+      "title": "Anthropic IPO: How to buy a company’s stock when it IPOs - Yahoo Finance",
+      "link": "https://finance.yahoo.com/personal-finance/investing/article/anthropic-ipo-how-to-buy-a-companys-stock-when-it-ipos-201237173.html",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-11-17T20:12:37+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Anthropic IPO: How to buy a company’s stock when it IPOs Yahoo Finance",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "4fabfc1694e73f0c",
+      "title": "Microsoft Unveils New AI Models To Challenge OpenAI And Anthropic - tippinsights",
+      "link": "https://tippinsights.com/microsoft-unveils-new-ai-models-to-challenge-openai-and-anthropic/",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-11-17T19:56:11+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Microsoft Unveils New AI Models To Challenge OpenAI And Anthropic tippinsights",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "c113e947ad8c42d6",
+      "title": "Developers can post-train Meta’s Muse Spark Open with NVIDIA NeMo AutoModel, a PyTorch native library supporting full SF",
+      "link": "https://bsky.app/profile/pytorch.org/post/3n2jsbjcboz2c",
+      "source": "Bluesky · PyTorch",
+      "source_id": "bsky-pytorch",
+      "published": "2026-11-17T19:39:00+00:00",
+      "category": "people",
+      "priority": "medium",
+      "summary": "Developers can post-train Meta’s Muse Spark Open with NVIDIA NeMo AutoModel, a PyTorch native library supporting full SFT and LoRA fine tuning without model…",
+      "why": "",
+      "tags": [
+        "pytorch",
+        "agent",
+        "agentic"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "043be4128a14ae94",
+      "title": "面向多智能体应用的大模型推理调度与缓存优化｜AICon北京",
+      "link": "https://www.infoq.cn/article/X8xujm6xovp7z2YzWbpM",
+      "source": "InfoQ 中文",
+      "source_id": "infoq-cn",
+      "published": "2026-11-17T18:53:07+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "点击查看原文>",
+      "why": "",
+      "tags": [
+        "大模型"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "dbaa31867e4c2225",
+      "title": "AMD closes $8.2 billion World Labs deal and names Fei-Fei Li chief scientist - Startup Fortune",
+      "link": "https://startupfortune.com/amd-closes-82-billion-world-labs-deal-and-names-fei-fei-li-chief-scientist/",
+      "source": "新闻 · 世界模型（英文）",
+      "source_id": "gnews-world-en",
+      "published": "2026-11-17T18:27:06+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "AMD closes $8.2 billion World Labs deal and names Fei-Fei Li chief scientist Startup Fortune",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "5f7e2eb75edae469",
+      "title": "Not Everything Needs an LLM",
+      "link": "https://news.ycombinator.com/item?id=50535740",
+      "source": "Hacker News（100+ 分）",
+      "source_id": "hn-algolia",
+      "published": "2026-11-17T18:16:18+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "",
+      "why": "",
+      "tags": [
+        "llm"
+      ],
+      "tracks": []
+    }
+  ]
+}
