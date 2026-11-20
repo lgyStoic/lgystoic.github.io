@@ -1,0 +1,938 @@
+{
+  "date": "2026-11-20",
+  "generated_at": "2026-11-20T03:58:57+00:00",
+  "ai": false,
+  "model": "",
+  "sources": [
+    {
+      "id": "openai",
+      "name": "OpenAI",
+      "ok": true,
+      "count": 5,
+      "total": 1418,
+      "error": ""
+    },
+    {
+      "id": "google-ai",
+      "name": "Google AI Blog",
+      "ok": true,
+      "count": 2,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "qwen",
+      "name": "Qwen",
+      "ok": true,
+      "count": 0,
+      "total": 44,
+      "error": ""
+    },
+    {
+      "id": "hf-blog",
+      "name": "Hugging Face Blog",
+      "ok": true,
+      "count": 0,
+      "total": 913,
+      "error": ""
+    },
+    {
+      "id": "nvidia-dev",
+      "name": "NVIDIA Technical Blog",
+      "ok": true,
+      "count": 2,
+      "total": 100,
+      "error": ""
+    },
+    {
+      "id": "hf-papers",
+      "name": "HF Papers 日榜",
+      "ok": true,
+      "count": 18,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "pytorch",
+      "name": "PyTorch Blog",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "simonw",
+      "name": "Simon Willison",
+      "ok": true,
+      "count": 1,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "lilianweng",
+      "name": "Lil'Log",
+      "ok": true,
+      "count": 0,
+      "total": 53,
+      "error": ""
+    },
+    {
+      "id": "interconnects",
+      "name": "Interconnects",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "raschka",
+      "name": "Sebastian Raschka",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "chiphuyen",
+      "name": "Chip Huyen",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-pytorch",
+      "name": "Release · PyTorch",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-triton",
+      "name": "Release · Triton",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-cutlass",
+      "name": "Release · CUTLASS",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-flash-attention",
+      "name": "Release · FlashAttention",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-vllm",
+      "name": "Release · vLLM",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-sglang",
+      "name": "Release · SGLang",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-tensorrt-llm",
+      "name": "Release · TensorRT-LLM",
+      "ok": true,
+      "count": 1,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-diffusers",
+      "name": "Release · Diffusers",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-cuda-python",
+      "name": "Release · cuda-python",
+      "ok": true,
+      "count": 1,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "gnews-labs-en",
+      "name": "新闻 · Anthropic / Mistral / xAI",
+      "ok": true,
+      "count": 17,
+      "total": 95,
+      "error": ""
+    },
+    {
+      "id": "gnews-labs-cn",
+      "name": "新闻 · 国内模型公司",
+      "ok": true,
+      "count": 6,
+      "total": 33,
+      "error": ""
+    },
+    {
+      "id": "qbitai",
+      "name": "量子位",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "infoq-cn",
+      "name": "InfoQ 中文",
+      "ok": true,
+      "count": 3,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "thonking",
+      "name": "Horace He (thonking)",
+      "ok": true,
+      "count": 0,
+      "total": 6,
+      "error": ""
+    },
+    {
+      "id": "hn-algolia",
+      "name": "Hacker News（100+ 分）",
+      "ok": true,
+      "count": 2,
+      "total": 60,
+      "error": ""
+    },
+    {
+      "id": "karpathy-blog",
+      "name": "Andrej Karpathy 博客",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "eugeneyan",
+      "name": "Eugene Yan",
+      "ok": true,
+      "count": 0,
+      "total": 214,
+      "error": ""
+    },
+    {
+      "id": "importai",
+      "name": "Import AI（Jack Clark）",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "latentspace",
+      "name": "Latent Space",
+      "ok": true,
+      "count": 1,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "semianalysis",
+      "name": "SemiAnalysis",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "meta-ai",
+      "name": "Meta Engineering",
+      "ok": true,
+      "count": 0,
+      "total": 9,
+      "error": ""
+    },
+    {
+      "id": "mistral-news",
+      "name": "Mistral AI",
+      "ok": true,
+      "count": 0,
+      "total": 94,
+      "error": ""
+    },
+    {
+      "id": "bsky-karpathy",
+      "name": "Bluesky · Andrej Karpathy",
+      "ok": true,
+      "count": 0,
+      "total": 15,
+      "error": ""
+    },
+    {
+      "id": "bsky-giffmana",
+      "name": "Bluesky · Lucas Beyer",
+      "ok": true,
+      "count": 0,
+      "total": 22,
+      "error": ""
+    },
+    {
+      "id": "bsky-hardmaru",
+      "name": "Bluesky · hardmaru",
+      "ok": true,
+      "count": 0,
+      "total": 15,
+      "error": ""
+    },
+    {
+      "id": "bsky-swyx",
+      "name": "Bluesky · swyx",
+      "ok": true,
+      "count": 0,
+      "total": 3,
+      "error": ""
+    },
+    {
+      "id": "bsky-pytorch",
+      "name": "Bluesky · PyTorch",
+      "ok": true,
+      "count": 1,
+      "total": 27,
+      "error": ""
+    },
+    {
+      "id": "bsky-clem",
+      "name": "Bluesky · Clem Delangue",
+      "ok": true,
+      "count": 0,
+      "total": 11,
+      "error": ""
+    },
+    {
+      "id": "bsky-natolambert",
+      "name": "Bluesky · Nathan Lambert",
+      "ok": true,
+      "count": 0,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "bsky-rasbt",
+      "name": "Bluesky · Sebastian Raschka",
+      "ok": true,
+      "count": 0,
+      "total": 27,
+      "error": ""
+    },
+    {
+      "id": "bsky-jeffdean",
+      "name": "Bluesky · Jeff Dean",
+      "ok": true,
+      "count": 0,
+      "total": 18,
+      "error": ""
+    },
+    {
+      "id": "hf-trending-new",
+      "name": "HF 热榜新模型",
+      "ok": true,
+      "count": 2,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "gh-new-stars",
+      "name": "GitHub 新星仓库",
+      "ok": true,
+      "count": 1,
+      "total": 15,
+      "error": ""
+    },
+    {
+      "id": "hf-t2v",
+      "name": "HF 热榜 · 文生视频",
+      "ok": true,
+      "count": 1,
+      "total": 19,
+      "error": ""
+    },
+    {
+      "id": "hf-i2v",
+      "name": "HF 热榜 · 图生视频",
+      "ok": true,
+      "count": 1,
+      "total": 19,
+      "error": ""
+    },
+    {
+      "id": "gnews-video-en",
+      "name": "新闻 · 视频生成（英文）",
+      "ok": true,
+      "count": 5,
+      "total": 19,
+      "error": ""
+    },
+    {
+      "id": "gnews-video-cn",
+      "name": "新闻 · 视频生成（中文）",
+      "ok": true,
+      "count": 12,
+      "total": 31,
+      "error": ""
+    },
+    {
+      "id": "gnews-world-en",
+      "name": "新闻 · 世界模型（英文）",
+      "ok": true,
+      "count": 11,
+      "total": 21,
+      "error": ""
+    },
+    {
+      "id": "gnews-world-cn",
+      "name": "新闻 · 世界模型（中文）",
+      "ok": true,
+      "count": 7,
+      "total": 49,
+      "error": ""
+    },
+    {
+      "id": "gh-new-video-world",
+      "name": "GitHub 新仓库 · 视频 / 世界模型",
+      "ok": false,
+      "count": 0,
+      "total": 0,
+      "error": "HTTP Error 403: rate limit exceeded"
+    },
+    {
+      "id": "arxiv-cscv",
+      "name": "arXiv cs.CV（专题）",
+      "ok": true,
+      "count": 32,
+      "total": 340,
+      "error": ""
+    },
+    {
+      "id": "arxiv-csro",
+      "name": "arXiv cs.RO（专题）",
+      "ok": true,
+      "count": 9,
+      "total": 140,
+      "error": ""
+    }
+  ],
+  "counts": {
+    "high": 10,
+    "medium": 20,
+    "low": 0
+  },
+  "items": [
+    {
+      "id": "6d303ae17f4e5216",
+      "title": "v1.3.0",
+      "link": "https://github.com/NVIDIA/TensorRT-LLM/releases/tag/v1.3.0",
+      "source": "Release · TensorRT-LLM",
+      "source_id": "rel-tensorrt-llm",
+      "published": "2026-11-20T02:45:00+00:00",
+      "category": "infra",
+      "priority": "high",
+      "summary": "Key Features and Enhancements Rubin Support (Preview) Added preview support for NVIDIA Rubin (SM107), validated on Vera Rubin…",
+      "why": "",
+      "tags": [
+        "gpu",
+        "blackwell",
+        "hopper",
+        "attention"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "371bd10fdaf9589b",
+      "title": "华为云开源昇腾原生具身世界模型WM1.2 真视通4连板 - 观点网",
+      "link": "https://www.guandian.cn/article/20261120/630533.html",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-11-20T02:37:30+00:00",
+      "category": "research",
+      "priority": "high",
+      "summary": "华为云开源昇腾原生具身世界模型WM1.2 真视通4连板 观点网",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "d8918f087d0eb081",
+      "title": "刚刚，DeepSeek张博创业曝光：开源个人Agent - 凤凰网科技",
+      "link": "https://tech.ifeng.com/c/8yCTQIIQKNp",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-11-20T00:36:34+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "刚刚，DeepSeek张博创业曝光：开源个人Agent 凤凰网科技",
+      "why": "",
+      "tags": [
+        "agent"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "48b650953742dcaf",
+      "title": "v12.9.11: [no-ci] Fix 12.9.11 release note text (#3507)",
+      "link": "https://github.com/NVIDIA/cuda-python/releases/tag/v12.9.11",
+      "source": "Release · cuda-python",
+      "source_id": "rel-cuda-python",
+      "published": "2026-11-19T22:00:42+00:00",
+      "category": "infra",
+      "priority": "high",
+      "summary": "It's not unreleased by the time the user sees it.",
+      "why": "",
+      "tags": [],
+      "tracks": []
+    },
+    {
+      "id": "ad29eb1b9fca0c19",
+      "title": "Ondo Launches $1 Anthropic Stock Token as Nasdaq Debut Begins - Coin Edition",
+      "link": "https://coinedition.com/crypto-live-news/ondo-launches-1-anthropic-stock-token-as-nasdaq-debut/",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-11-19T18:35:16+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "Ondo Launches $1 Anthropic Stock Token as Nasdaq Debut Begins Coin Edition",
+      "why": "",
+      "tags": [
+        "moe"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "b00f82b6db94c2e5",
+      "title": "Introducing Tool Retrieval in the Gemini API",
+      "link": "https://blog.google/innovation-and-ai/technology/developers-tools/gemini-api-tool-retrieval",
+      "source": "Google AI Blog",
+      "source_id": "google-ai",
+      "published": "2026-11-19T18:00:00+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "Gemini spark on a space background",
+      "why": "",
+      "tags": [],
+      "tracks": []
+    },
+    {
+      "id": "ec3250dc44242417",
+      "title": "快手程一笑：Kling 4.0上线带动可灵AI流水提升 - 东方财富网",
+      "link": "https://wap.eastmoney.com/a/202611193935368497.html",
+      "source": "新闻 · 视频生成（中文）",
+      "source_id": "gnews-video-cn",
+      "published": "2026-11-19T14:32:23+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "快手程一笑：Kling 4.0上线带动可灵AI流水提升 东方财富网",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "a39be73eb74438e7",
+      "title": "Google Opens \"Genie 4\" World Model to AI Ultra Subscribers: Upgrades Project Genie Creative Agent and Community Remix Gallery - Mashdigi",
+      "link": "https://mashdigi.com/intl/en/google-genie-4-world-model-ai-ultra-launch/",
+      "source": "新闻 · 世界模型（英文）",
+      "source_id": "gnews-world-en",
+      "published": "2026-11-19T13:54:00+00:00",
+      "category": "research",
+      "priority": "high",
+      "summary": "Google Opens \"Genie 4\" World Model to AI Ultra Subscribers: Upgrades Project Genie Creative Agent and Community Remix Gallery Mashdigi",
+      "why": "",
+      "tags": [
+        "moe",
+        "agent"
+      ],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "c9456be0401e1b58",
+      "title": "Wall Street analysts launch bullish calls on Anthropic, Apple and software stocks - Traders Union",
+      "link": "https://tradersunion.com/news/stocks/show/4320248-bullish-analysts-anthropic-apple-software/",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-11-19T13:41:29+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "Wall Street analysts launch bullish calls on Anthropic, Apple and software stocks Traders Union",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "130a766bde7a6e8c",
+      "title": "Morning Minute: Google’s Newest AI Model Tops Benchmarks Ahead of Anthropic IPO - Decrypt",
+      "link": "https://decrypt.co/383609/morning-minute-googles-newest-ai-model-tops-benchmarks-ahead-of-anthropic-ipo",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-11-19T13:05:28+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "Morning Minute: Google’s Newest AI Model Tops Benchmarks Ahead of Anthropic IPO Decrypt",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "8635adb7d2b6e371",
+      "title": "火山引擎 Agent-Native 团队的上下文管理实践｜AICon北京",
+      "link": "https://www.infoq.cn/article/YTGHxcabs0RI3btLIUxm",
+      "source": "InfoQ 中文",
+      "source_id": "infoq-cn",
+      "published": "2026-11-20T10:00:00+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "点击查看原文>",
+      "why": "",
+      "tags": [
+        "agent"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "934b1ee7e3067fc3",
+      "title": "China's Large Language Model Pricing Explained: Insights from Anthropic's Listing Bell-Ringing Ceremony - 36Kr",
+      "link": "https://eu.36kr.com/en/p/4077391676773252",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-11-20T03:42:24+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "China's Large Language Model Pricing Explained: Insights from Anthropic's Listing Bell-Ringing Ceremony 36Kr",
+      "why": "",
+      "tags": [
+        "language model"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "e5badb04e81e4314",
+      "title": "机械臂 “摸” 着把 USB 插进去，这家世界模型公司把试验场搬到了相城 - 紫牛新闻",
+      "link": "https://www.yzwb.net/news/jiangsu/suzhou/202611/t20261120_414219.html",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-11-20T03:37:00+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "机械臂 “摸” 着把 USB 插进去，这家世界模型公司把试验场搬到了相城 紫牛新闻",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "09f832f0ad2827b4",
+      "title": "Anthropic shares rise in record IPO as profitability concerns persist - Chosunbiz",
+      "link": "https://biz.chosun.com/en/en-it/2026/11/20/WUF7C3UHCZENHC5I6BM565RQZ4/",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-11-20T03:07:00+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Anthropic shares rise in record IPO as profitability concerns persist Chosunbiz",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "0a3f514182aebc55",
+      "title": "Anthropic’s $1.5 Tn Valuation Sparks Debate Between Uday Kotak And Adani CFO - TradingView",
+      "link": "https://www.tradingview.com/news/moodys:24d8b328e6f4e:0-anthropic-s-1-5-tn-valuation-sparks-debate-between-uday-kotak-and-adani-cfo/",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-11-20T03:01:00+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Anthropic’s $1.5 Tn Valuation Sparks Debate Between Uday Kotak And Adani CFO TradingView",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "72158dc820c47446",
+      "title": "快手三季度亏损近10亿：广告直播双业务下降，持续加码可灵AI - 中华网财经",
+      "link": "https://finance.china.com/TMT/13004688/20261120/49890563.html",
+      "source": "新闻 · 视频生成（中文）",
+      "source_id": "gnews-video-cn",
+      "published": "2026-11-20T02:16:03+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "快手三季度亏损近10亿：广告直播双业务下降，持续加码可灵AI 中华网财经",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "1133d38d2bb16e1f",
+      "title": "Google Opens Genie4 World Model API, Supporting Real-Time Interaction and Native Audio Generation - AIBase",
+      "link": "https://news.aibase.com/news/32424",
+      "source": "新闻 · 世界模型（英文）",
+      "source_id": "gnews-world-en",
+      "published": "2026-11-20T01:58:23+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "Google Opens Genie4 World Model API, Supporting Real-Time Interaction and Native Audio Generation AIBase",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "3a75f1be5c0c37c4",
+      "title": "Who are the seven founders worth nearly $20b each after Anthropic’s IPO? - Gulf News",
+      "link": "https://gulfnews.com/business/markets/who-are-the-seven-founders-worth-nearly-20b-each-after-anthropics-ipo-1.500753714",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-11-20T01:55:00+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Who are the seven founders worth nearly $20b each after Anthropic’s IPO? Gulf News",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "9e2c803cf4c7f777",
+      "title": "港股大模型股下挫 MINIMAX跌10.45%智谱跌8.28% - 观点网",
+      "link": "https://www.guandian.cn/m/show/630488",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-11-20T01:48:19+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "港股大模型股下挫 MINIMAX跌10.45%智谱跌8.28% 观点网",
+      "why": "",
+      "tags": [
+        "大模型",
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "f9ee67ebe1ef7ab8",
+      "title": "Code World Model 2.0: Towards Infinite Controllable Video Generation - alphaXiv",
+      "link": "https://www.alphaxiv.org/pdf/2611.22925",
+      "source": "新闻 · 视频生成（英文）",
+      "source_id": "gnews-video-en",
+      "published": "2026-11-20T01:26:05+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Code World Model 2.0: Towards Infinite Controllable Video Generation alphaXiv",
+      "why": "",
+      "tags": [
+        "video generation"
+      ],
+      "tracks": [
+        "video",
+        "world"
+      ]
+    },
+    {
+      "id": "fa2d5fa69e55a367",
+      "title": "'It's an extraordinary morning': College student reacts to Anthropic and GTA's big day - NBC News",
+      "link": "https://www.nbcnews.com/video/college-student-reacts-to-anthropic-ipo-launch-and-grand-theft-auto-drop-on-the-same-day-273822277955",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-11-20T01:24:57+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "'It's an extraordinary morning': College student reacts to Anthropic and GTA's big day NBC News",
+      "why": "",
+      "tags": [
+        "llm"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "2369be54ce4ed5af",
+      "title": "Google 开放 Genie4世界模型 API，支持实时交互与原生音频生成 - AIBase",
+      "link": "https://news.aibase.com/zh/news/32424",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-11-20T01:11:00+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "Google 开放 Genie4世界模型 API，支持实时交互与原生音频生成 AIBase",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "0ab698dc68b1c173",
+      "title": "除AI外全线下滑，可灵真成“全村希望”？ - 36Kr",
+      "link": "http://www.36kr.com/p/4076736740676484",
+      "source": "新闻 · 视频生成（中文）",
+      "source_id": "gnews-video-cn",
+      "published": "2026-11-20T00:04:51+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "除AI外全线下滑，可灵真成“全村希望”？ 36Kr",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "8df30bb2054cf3dd",
+      "title": "谷歌向开发者开放世界模型Genie 4当地时间11月19日，谷歌正式向开发者开放世界模型Genie - 禁闻网",
+      "link": "https://www.bannedbook.org/bnews/itnews/20261120/2382929.html",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-11-20T00:00:00+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "谷歌向开发者开放世界模型Genie 4当地时间11月19日，谷歌正式向开发者开放世界模型Genie 禁闻网",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "222a3317cded8e05",
+      "title": "Scaling Linear’s GTM to $100M ARR — Cristina Cordova, COO",
+      "link": "https://latent.space/p/linear-scaling",
+      "source": "Latent Space",
+      "source_id": "latentspace",
+      "published": "2026-11-19T23:58:21+00:00",
+      "category": "people",
+      "priority": "medium",
+      "summary": ">50% of tickets written by agents, the AI budgets behind $100M-in-months ARR, and selling without SDRs or FDEs",
+      "why": "",
+      "tags": [
+        "agent"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "d05a1293fb427e26",
+      "title": "Wall Street prepares for Anthropic IPO frenzy - The Star",
+      "link": "https://www.thestar.com.my/business/business-news/2026/11/20/wall-street-prepares-for-anthropic-ipo-frenzy",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-11-19T23:39:28+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Wall Street prepares for Anthropic IPO frenzy The Star",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "fc06ac4176a458c1",
+      "title": "没收过钱的DeepSeek，限个流就成罪人了？ - 36Kr",
+      "link": "http://www.36kr.com/p/4077281732220034",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-11-19T23:34:18+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "没收过钱的DeepSeek，限个流就成罪人了？ 36Kr",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "dff24e4a8fa0fef3",
+      "title": "Google opens Genie 4 world model to developers in Gemini API - TestingCatalog AI News",
+      "link": "https://www.testingcatalog.com/google-opens-genie-4-world-model-to-developers-in-gemini-api/",
+      "source": "新闻 · 世界模型（英文）",
+      "source_id": "gnews-world-en",
+      "published": "2026-11-19T23:23:03+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "Google opens Genie 4 world model to developers in Gemini API TestingCatalog AI News",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "b990e5eebaa93cc0",
+      "title": "How does Anthropic make money? Inside the business of AI. - Yahoo Finance",
+      "link": "https://finance.yahoo.com/personal-finance/investing/article/how-does-anthropic-make-money-inside-the-business-of-ai-140000798.html",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-11-19T22:40:59+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "How does Anthropic make money? Inside the business of AI. Yahoo Finance",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "b8893d8ceac4d59f",
+      "title": "谷歌向开发者开放世界模型Genie 4：键盘操控延迟低至0.2秒，视频生成约6.05美元/分钟 - 凤凰网",
+      "link": "https://original.ifeng.com/c/8yC8QBjlWmE",
+      "source": "新闻 · 视频生成（中文）",
+      "source_id": "gnews-video-cn",
+      "published": "2026-11-19T22:17:37+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "谷歌向开发者开放世界模型Genie 4：键盘操控延迟低至0.2秒，视频生成约6.05美元/分钟 凤凰网",
+      "why": "",
+      "tags": [
+        "视频生成"
+      ],
+      "tracks": [
+        "video",
+        "world"
+      ]
+    }
+  ]
+}
