@@ -1,0 +1,934 @@
+{
+  "date": "2026-11-21",
+  "generated_at": "2026-11-21T03:59:14+00:00",
+  "ai": false,
+  "model": "",
+  "sources": [
+    {
+      "id": "openai",
+      "name": "OpenAI",
+      "ok": true,
+      "count": 3,
+      "total": 1421,
+      "error": ""
+    },
+    {
+      "id": "google-ai",
+      "name": "Google AI Blog",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "qwen",
+      "name": "Qwen",
+      "ok": true,
+      "count": 0,
+      "total": 44,
+      "error": ""
+    },
+    {
+      "id": "hf-blog",
+      "name": "Hugging Face Blog",
+      "ok": true,
+      "count": 2,
+      "total": 915,
+      "error": ""
+    },
+    {
+      "id": "nvidia-dev",
+      "name": "NVIDIA Technical Blog",
+      "ok": true,
+      "count": 0,
+      "total": 100,
+      "error": ""
+    },
+    {
+      "id": "hf-papers",
+      "name": "HF Papers 日榜",
+      "ok": true,
+      "count": 24,
+      "total": 29,
+      "error": ""
+    },
+    {
+      "id": "pytorch",
+      "name": "PyTorch Blog",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "simonw",
+      "name": "Simon Willison",
+      "ok": true,
+      "count": 0,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "lilianweng",
+      "name": "Lil'Log",
+      "ok": true,
+      "count": 0,
+      "total": 53,
+      "error": ""
+    },
+    {
+      "id": "interconnects",
+      "name": "Interconnects",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "raschka",
+      "name": "Sebastian Raschka",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "chiphuyen",
+      "name": "Chip Huyen",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-pytorch",
+      "name": "Release · PyTorch",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-triton",
+      "name": "Release · Triton",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-cutlass",
+      "name": "Release · CUTLASS",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-flash-attention",
+      "name": "Release · FlashAttention",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-vllm",
+      "name": "Release · vLLM",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-sglang",
+      "name": "Release · SGLang",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-tensorrt-llm",
+      "name": "Release · TensorRT-LLM",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-diffusers",
+      "name": "Release · Diffusers",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-cuda-python",
+      "name": "Release · cuda-python",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "gnews-labs-en",
+      "name": "新闻 · Anthropic / Mistral / xAI",
+      "ok": true,
+      "count": 21,
+      "total": 92,
+      "error": ""
+    },
+    {
+      "id": "gnews-labs-cn",
+      "name": "新闻 · 国内模型公司",
+      "ok": true,
+      "count": 6,
+      "total": 32,
+      "error": ""
+    },
+    {
+      "id": "qbitai",
+      "name": "量子位",
+      "ok": true,
+      "count": 2,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "infoq-cn",
+      "name": "InfoQ 中文",
+      "ok": true,
+      "count": 3,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "thonking",
+      "name": "Horace He (thonking)",
+      "ok": true,
+      "count": 0,
+      "total": 6,
+      "error": ""
+    },
+    {
+      "id": "hn-algolia",
+      "name": "Hacker News（100+ 分）",
+      "ok": true,
+      "count": 4,
+      "total": 60,
+      "error": ""
+    },
+    {
+      "id": "karpathy-blog",
+      "name": "Andrej Karpathy 博客",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "eugeneyan",
+      "name": "Eugene Yan",
+      "ok": true,
+      "count": 0,
+      "total": 214,
+      "error": ""
+    },
+    {
+      "id": "importai",
+      "name": "Import AI（Jack Clark）",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "latentspace",
+      "name": "Latent Space",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "semianalysis",
+      "name": "SemiAnalysis",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "meta-ai",
+      "name": "Meta Engineering",
+      "ok": true,
+      "count": 0,
+      "total": 9,
+      "error": ""
+    },
+    {
+      "id": "mistral-news",
+      "name": "Mistral AI",
+      "ok": true,
+      "count": 0,
+      "total": 94,
+      "error": ""
+    },
+    {
+      "id": "bsky-karpathy",
+      "name": "Bluesky · Andrej Karpathy",
+      "ok": true,
+      "count": 0,
+      "total": 15,
+      "error": ""
+    },
+    {
+      "id": "bsky-giffmana",
+      "name": "Bluesky · Lucas Beyer",
+      "ok": true,
+      "count": 0,
+      "total": 22,
+      "error": ""
+    },
+    {
+      "id": "bsky-hardmaru",
+      "name": "Bluesky · hardmaru",
+      "ok": true,
+      "count": 0,
+      "total": 15,
+      "error": ""
+    },
+    {
+      "id": "bsky-swyx",
+      "name": "Bluesky · swyx",
+      "ok": true,
+      "count": 0,
+      "total": 3,
+      "error": ""
+    },
+    {
+      "id": "bsky-pytorch",
+      "name": "Bluesky · PyTorch",
+      "ok": true,
+      "count": 0,
+      "total": 27,
+      "error": ""
+    },
+    {
+      "id": "bsky-clem",
+      "name": "Bluesky · Clem Delangue",
+      "ok": true,
+      "count": 0,
+      "total": 11,
+      "error": ""
+    },
+    {
+      "id": "bsky-natolambert",
+      "name": "Bluesky · Nathan Lambert",
+      "ok": true,
+      "count": 0,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "bsky-rasbt",
+      "name": "Bluesky · Sebastian Raschka",
+      "ok": true,
+      "count": 0,
+      "total": 27,
+      "error": ""
+    },
+    {
+      "id": "bsky-jeffdean",
+      "name": "Bluesky · Jeff Dean",
+      "ok": true,
+      "count": 0,
+      "total": 18,
+      "error": ""
+    },
+    {
+      "id": "hf-trending-new",
+      "name": "HF 热榜新模型",
+      "ok": true,
+      "count": 2,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "gh-new-stars",
+      "name": "GitHub 新星仓库",
+      "ok": false,
+      "count": 0,
+      "total": 0,
+      "error": "HTTP Error 403: rate limit exceeded"
+    },
+    {
+      "id": "hf-t2v",
+      "name": "HF 热榜 · 文生视频",
+      "ok": true,
+      "count": 0,
+      "total": 18,
+      "error": ""
+    },
+    {
+      "id": "hf-i2v",
+      "name": "HF 热榜 · 图生视频",
+      "ok": true,
+      "count": 0,
+      "total": 17,
+      "error": ""
+    },
+    {
+      "id": "gnews-video-en",
+      "name": "新闻 · 视频生成（英文）",
+      "ok": true,
+      "count": 2,
+      "total": 22,
+      "error": ""
+    },
+    {
+      "id": "gnews-video-cn",
+      "name": "新闻 · 视频生成（中文）",
+      "ok": true,
+      "count": 7,
+      "total": 25,
+      "error": ""
+    },
+    {
+      "id": "gnews-world-en",
+      "name": "新闻 · 世界模型（英文）",
+      "ok": true,
+      "count": 1,
+      "total": 23,
+      "error": ""
+    },
+    {
+      "id": "gnews-world-cn",
+      "name": "新闻 · 世界模型（中文）",
+      "ok": true,
+      "count": 11,
+      "total": 39,
+      "error": ""
+    },
+    {
+      "id": "gh-new-video-world",
+      "name": "GitHub 新仓库 · 视频 / 世界模型",
+      "ok": false,
+      "count": 0,
+      "total": 0,
+      "error": "HTTP Error 403: rate limit exceeded"
+    },
+    {
+      "id": "arxiv-cscv",
+      "name": "arXiv cs.CV（专题）",
+      "ok": true,
+      "count": 40,
+      "total": 337,
+      "error": ""
+    },
+    {
+      "id": "arxiv-csro",
+      "name": "arXiv cs.RO（专题）",
+      "ok": true,
+      "count": 7,
+      "total": 140,
+      "error": ""
+    }
+  ],
+  "counts": {
+    "high": 10,
+    "medium": 20,
+    "low": 0
+  },
+  "items": [
+    {
+      "id": "44845d0960741711",
+      "title": "我国AI开源大模型累计下载量突破100亿次 - www.itsdw.cn",
+      "link": "https://www.itsdw.cn/news/50767.html",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-11-21T01:37:39+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "我国AI开源大模型累计下载量突破100亿次 www.itsdw.cn",
+      "why": "",
+      "tags": [
+        "大模型",
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "8ccdce6288cdcdc5",
+      "title": "'Very successful launch': Trump reacts to Anthropic's IPO, praises AI company's market debut - The Economic Times",
+      "link": "https://m.economictimes.com/news/short-videos/very-successful-launch-trump-reacts-to-anthropics-ipo-praises-ai-companys-market-debut/videoshow/136042588.cms",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-11-21T01:31:19+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "'Very successful launch': Trump reacts to Anthropic's IPO, praises AI company's market debut The Economic Times",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "577467bf257fdfe0",
+      "title": "华为云开源昇腾原生具身世界模型CloudRobo-WM1.2，两项评测均列第一",
+      "link": "https://www.infoq.cn/article/LCqRiGDSeMBfXo4iktdA",
+      "source": "InfoQ 中文",
+      "source_id": "infoq-cn",
+      "published": "2026-11-20T18:19:11+00:00",
+      "category": "industry",
+      "priority": "high",
+      "summary": "点击查看原文>",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "dbc49333c03a4c15",
+      "title": "智谱被曝下月发布3万亿参数旗舰大模型 - www.itsdw.cn",
+      "link": "https://www.itsdw.cn/news/50519.html",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-11-20T12:18:38+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "智谱被曝下月发布3万亿参数旗舰大模型 www.itsdw.cn",
+      "why": "",
+      "tags": [
+        "大模型"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "caa11c6c2f5edd57",
+      "title": "华为云开源昇腾原生具身世界模型 CloudRobo-WM1.2，两项评测均列第一 - InfoQ.cn",
+      "link": "https://www.infoq.cn/news/LCqRiGDSeMBfXo4iktdA",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-11-20T10:24:04+00:00",
+      "category": "research",
+      "priority": "high",
+      "summary": "华为云开源昇腾原生具身世界模型 CloudRobo-WM1.2，两项评测均列第一 InfoQ.cn",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "c0781c529ae5c446",
+      "title": "StrideWorld Benchmark Evaluates Scene Rigidity in Interactive Video Models - Blockchain News",
+      "link": "https://blockchain.news/news/strideworld-benchmark-scene-rigidity",
+      "source": "新闻 · 世界模型（英文）",
+      "source_id": "gnews-world-en",
+      "published": "2026-11-20T08:35:34+00:00",
+      "category": "research",
+      "priority": "high",
+      "summary": "StrideWorld Benchmark Evaluates Scene Rigidity in Interactive Video Models Blockchain News",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "14415bee5786ec81",
+      "title": "快手业绩会释放多重信号：Kling 4.0上线后可灵AI流水提升，加码短剧生态建设 - Sohu",
+      "link": "https://m.sohu.com/a/1104164946_121434717?scm=10001.325_13-325_13.0.0-0-0-0-0.5_1334",
+      "source": "新闻 · 视频生成（中文）",
+      "source_id": "gnews-video-cn",
+      "published": "2026-11-20T08:14:35+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "快手业绩会释放多重信号：Kling 4.0上线后可灵AI流水提升，加码短剧生态建设 Sohu",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "b268c324f6e6fefc",
+      "title": "昇腾算力训出了双榜SOTA的具身世界模型，华为云这次想把整套底座开放出来",
+      "link": "https://www.qbitai.com/2026/11/511610.html",
+      "source": "量子位",
+      "source_id": "qbitai",
+      "published": "2026-11-20T08:04:58+00:00",
+      "category": "industry",
+      "priority": "high",
+      "summary": "国产算力的成熟，把具身竞争维度从「芯片有多强」，拉入了一个比拼训练效率、数据规模、部署成本和场景落地速度的多维战场。",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "70689d1a182dab7f",
+      "title": "【上观新闻】可编程的世界模型让具身世界生产规模化！同济大学空间智能团队发布最新成果 - 同济大学新闻网",
+      "link": "https://news.tongji.edu.cn/info/1006/96206.htm",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-11-20T07:52:43+00:00",
+      "category": "research",
+      "priority": "high",
+      "summary": "【上观新闻】可编程的世界模型让具身世界生产规模化！同济大学空间智能团队发布最新成果 同济大学新闻网",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "1ef2f3efd492e738",
+      "title": "昇腾算力训出了双榜SOTA的具身世界模型，华为云想把整套底座开放 - Sohu",
+      "link": "https://m.sohu.com/a/1104155813_121207965?scm=10001.325_13-325_13.0.0-0-0-0-0.5_1334",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-11-20T07:45:00+00:00",
+      "category": "research",
+      "priority": "high",
+      "summary": "昇腾算力训出了双榜SOTA的具身世界模型，华为云想把整套底座开放 Sohu",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "e91e61f21f9e04a3",
+      "title": "TaoDesign 的知识工程实践：从设计资产到 Agent 持续进化｜AICon北京",
+      "link": "https://www.infoq.cn/article/vhoobUFbLs2hUlTBA4HZ",
+      "source": "InfoQ 中文",
+      "source_id": "infoq-cn",
+      "published": "2026-11-21T10:00:00+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "点击查看原文>",
+      "why": "",
+      "tags": [
+        "agent"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "0f84f8285a99f2e1",
+      "title": "'Bigger Than Industrial Revolution': Trump Praises Anthropic's Record IPO - NDTV Profit",
+      "link": "https://www.ndtvprofit.com/world/anthropic-ipo-us-president-donald-trump-praises-dario-amodei-calls-record-ipo-bigger-than-industrial-revolution-12357093",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-11-21T02:49:27+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "'Bigger Than Industrial Revolution': Trump Praises Anthropic's Record IPO NDTV Profit",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "51ea6c053d65bc42",
+      "title": "DeepSeek限额，底气来自聊天框外 - Sohu",
+      "link": "https://m.sohu.com/a/1104429436_118622?scm=10001.325_13-325_13.0.0-0-0-0-0.5_1334",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-11-21T02:12:43+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "DeepSeek限额，底气来自聊天框外 Sohu",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "1304b352a2372c71",
+      "title": "IPO News - US IPO Weekly Recap: Anthropic seesaws in record debut - Renaissance Capital",
+      "link": "https://www.renaissancecapital.com/IPO-Center/News/122813/us-ipo-weekly-recap-anthropic-seesaws-in-record-debut",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-11-20T22:48:10+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "IPO News - US IPO Weekly Recap: Anthropic seesaws in record debut Renaissance Capital",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "9a56b172101f0972",
+      "title": "Zscaler Collaborates With Anthropic and Mistral to Advance Secure Enterprise AI Adoption - Quiver Quantitative",
+      "link": "https://www.quiverquant.com/news/Zscaler+Collaborates+With+Anthropic+and+Mistral+to+Advance+Secure+Enterprise+AI+Adoption",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-11-20T21:13:00+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Zscaler Collaborates With Anthropic and Mistral to Advance Secure Enterprise AI Adoption Quiver Quantitative",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "c84e34d47a5dc57a",
+      "title": "AI can show defenders where to break an attack chain. Zscaler plans a limited preview. - Stock Titan",
+      "link": "https://www.stocktitan.net/news/ZS/zscaler-partners-with-frontier-model-providers-to-help-enterprises-camrneukujuz.html",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-11-20T21:05:00+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "AI can show defenders where to break an attack chain. Zscaler plans a limited preview. Stock Titan",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "cc6133202e1d2891",
+      "title": "谷歌向开发者开放世界模型Genie 4 API调用 - www.itsdw.cn",
+      "link": "https://www.itsdw.cn/news/50639.html",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-11-20T18:36:11+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "谷歌向开发者开放世界模型Genie 4 API调用 www.itsdw.cn",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "ca15f7175a288351",
+      "title": "Barclays, Citadel and BNY Put Anthropic’s Claude to Work - PYMNTS.com",
+      "link": "https://www.pymnts.com/news/artificial-intelligence/2026/barclays-citadel-bny-put-anthropic-claude-work/",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-11-20T18:26:33+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Barclays, Citadel and BNY Put Anthropic’s Claude to Work PYMNTS.com",
+      "why": "",
+      "tags": [
+        "vae"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "7106d9d75f5b62b0",
+      "title": "Agent 上岗，你敢放手吗？",
+      "link": "https://www.infoq.cn/video/qafOtORWUX0eD0WfSlYi",
+      "source": "InfoQ 中文",
+      "source_id": "infoq-cn",
+      "published": "2026-11-20T18:25:42+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "点击查看原文>",
+      "why": "",
+      "tags": [
+        "agent"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "2c19fc8c28c386fb",
+      "title": "Vibecoding an inference chip",
+      "link": "https://news.ycombinator.com/item?id=50579297",
+      "source": "Hacker News（100+ 分）",
+      "source_id": "hn-algolia",
+      "published": "2026-11-20T18:15:16+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "",
+      "why": "",
+      "tags": [
+        "inference"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "da2980beb4736b39",
+      "title": "Anthropic Shares Surge After Nasdaq IPO Prices at $83, Valued Near $1.76 Trillion: 8 outlets compared - NewsCord",
+      "link": "https://newscord.org/article/anthropic-shares-surge-after-nasdaq-ipo-prices-at-83-valued-near-176-trillion--Story_20261120_RaoandPatilThetwodesec744866",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-11-20T17:29:17+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Anthropic Shares Surge After Nasdaq IPO Prices at $83, Valued Near $1.76 Trillion: 8 outlets compared NewsCord",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "430135701fe9f975",
+      "title": "Who is Levent Alpöge? The Anthropic mathematician who claims he solved the Riemann hypothesis with Claude - Clarin.com",
+      "link": "https://www.clarin.com/us-news/who-is-levent-alpoge-the-anthropic-mathematician-who-claims-solved-the-riemann-hypothesis-with-claude_0_2WdGvYKBVM.html",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-11-20T17:01:44+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Who is Levent Alpöge? The Anthropic mathematician who claims he solved the Riemann hypothesis with Claude Clarin.com",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "a773c1c75a2c70a5",
+      "title": "Anthropic faces rocky next 60 to 90 days – analyst (ANT:NASDAQ) - Seeking Alpha",
+      "link": "https://seekingalpha.com/news/4675235-anthropic-faces-rocky-next-60-to-90-days-analyst",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-11-20T16:38:16+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Anthropic faces rocky next 60 to 90 days – analyst (ANT:NASDAQ) Seeking Alpha",
+      "why": "",
+      "tags": [
+        "vae"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "504c1e9bd93053cf",
+      "title": "Language Models Can Rewrite Their Own Weights",
+      "link": "https://news.ycombinator.com/item?id=50577265",
+      "source": "Hacker News（100+ 分）",
+      "source_id": "hn-algolia",
+      "published": "2026-11-20T16:29:06+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "",
+      "why": "",
+      "tags": [
+        "language model"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "95671d51a612a702",
+      "title": "Has the Riemann hypothesis been solved? Anthropic mathematician Levent Alpöge claims Claude cracked math’s most famous problem - Clarin.com",
+      "link": "https://www.clarin.com/us-news/the-riemann-hypothesis-been-solved-anthropic-mathematician-levent-alpoge-claims-claude-cracked-maths-most-famous-problem_0_nQxBE3rUxX.html",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-11-20T16:03:31+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Has the Riemann hypothesis been solved? Anthropic mathematician Levent Alpöge claims Claude cracked math’s most famous problem Clarin.com",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "6206ffd0326f2548",
+      "title": "【视频】抢先体验奔驰标准+R7世界模型“车位到车位”辅助驾驶 - 汽车之家",
+      "link": "https://chejiahao.autohome.com.cn/info/26929284",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-11-20T15:42:25+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "【视频】抢先体验奔驰标准+R7世界模型“车位到车位”辅助驾驶 汽车之家",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "050a2241e9770f30",
+      "title": "【视频】Momenta R7世界模型，让AI学会“看时机” - 车家号",
+      "link": "https://chejiahao.m.autohome.com.cn/info/26924476",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-11-20T15:20:08+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "【视频】Momenta R7世界模型，让AI学会“看时机” 车家号",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "5c3f9616f814cfa0",
+      "title": "Seaport Research Says It Is Concerned About Anthropic's Revenue Growth as ANT Stock Falls Steeply on First Full Day of Trading - Startup Fortune",
+      "link": "https://startupfortune.com/seaport-research-says-it-is-concerned-about-anthropics-revenue-growth-as-ant-stock-falls-steeply-on-first-full-day-of-trading/",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-11-20T14:51:28+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Seaport Research Says It Is Concerned About Anthropic's Revenue Growth as ANT Stock Falls Steeply on First Full Day of Trading Startup Fortune",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "55ff5c0d4d9afca0",
+      "title": "【视频】双十一入手好时机，奥迪E7X 升级R7世界模型，领跑智能驾控时代 - 汽车之家",
+      "link": "https://chejiahao.autohome.com.cn/info/26929085?reply=reply",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-11-20T14:38:20+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "【视频】双十一入手好时机，奥迪E7X 升级R7世界模型，领跑智能驾控时代 汽车之家",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "37720508f3dd7912",
+      "title": "Anthropic Stock: Why Are Analysts Divided After Record IPO? - TipRanks",
+      "link": "https://www.tipranks.com/news/anthropic-stock-why-are-analysts-divided-after-record-ipo",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-11-20T13:42:41+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Anthropic Stock: Why Are Analysts Divided After Record IPO? TipRanks",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    }
+  ]
+}
