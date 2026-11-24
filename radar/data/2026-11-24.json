@@ -1,0 +1,934 @@
+{
+  "date": "2026-11-24",
+  "generated_at": "2026-11-24T06:57:57+00:00",
+  "ai": false,
+  "model": "",
+  "sources": [
+    {
+      "id": "openai",
+      "name": "OpenAI",
+      "ok": true,
+      "count": 3,
+      "total": 1425,
+      "error": ""
+    },
+    {
+      "id": "google-ai",
+      "name": "Google AI Blog",
+      "ok": true,
+      "count": 1,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "qwen",
+      "name": "Qwen",
+      "ok": true,
+      "count": 0,
+      "total": 44,
+      "error": ""
+    },
+    {
+      "id": "hf-blog",
+      "name": "Hugging Face Blog",
+      "ok": true,
+      "count": 2,
+      "total": 916,
+      "error": ""
+    },
+    {
+      "id": "nvidia-dev",
+      "name": "NVIDIA Technical Blog",
+      "ok": true,
+      "count": 1,
+      "total": 100,
+      "error": ""
+    },
+    {
+      "id": "hf-papers",
+      "name": "HF Papers 日榜",
+      "ok": true,
+      "count": 15,
+      "total": 26,
+      "error": ""
+    },
+    {
+      "id": "pytorch",
+      "name": "PyTorch Blog",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "simonw",
+      "name": "Simon Willison",
+      "ok": true,
+      "count": 3,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "lilianweng",
+      "name": "Lil'Log",
+      "ok": true,
+      "count": 0,
+      "total": 53,
+      "error": ""
+    },
+    {
+      "id": "interconnects",
+      "name": "Interconnects",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "raschka",
+      "name": "Sebastian Raschka",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "chiphuyen",
+      "name": "Chip Huyen",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-pytorch",
+      "name": "Release · PyTorch",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-triton",
+      "name": "Release · Triton",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-cutlass",
+      "name": "Release · CUTLASS",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-flash-attention",
+      "name": "Release · FlashAttention",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-vllm",
+      "name": "Release · vLLM",
+      "ok": true,
+      "count": 1,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-sglang",
+      "name": "Release · SGLang",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-tensorrt-llm",
+      "name": "Release · TensorRT-LLM",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-diffusers",
+      "name": "Release · Diffusers",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-cuda-python",
+      "name": "Release · cuda-python",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "gnews-labs-en",
+      "name": "新闻 · Anthropic / Mistral / xAI",
+      "ok": true,
+      "count": 20,
+      "total": 81,
+      "error": ""
+    },
+    {
+      "id": "gnews-labs-cn",
+      "name": "新闻 · 国内模型公司",
+      "ok": true,
+      "count": 26,
+      "total": 64,
+      "error": ""
+    },
+    {
+      "id": "qbitai",
+      "name": "量子位",
+      "ok": true,
+      "count": 2,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "infoq-cn",
+      "name": "InfoQ 中文",
+      "ok": true,
+      "count": 4,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "thonking",
+      "name": "Horace He (thonking)",
+      "ok": true,
+      "count": 0,
+      "total": 6,
+      "error": ""
+    },
+    {
+      "id": "hn-algolia",
+      "name": "Hacker News（100+ 分）",
+      "ok": true,
+      "count": 3,
+      "total": 60,
+      "error": ""
+    },
+    {
+      "id": "karpathy-blog",
+      "name": "Andrej Karpathy 博客",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "eugeneyan",
+      "name": "Eugene Yan",
+      "ok": true,
+      "count": 0,
+      "total": 215,
+      "error": ""
+    },
+    {
+      "id": "importai",
+      "name": "Import AI（Jack Clark）",
+      "ok": true,
+      "count": 1,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "latentspace",
+      "name": "Latent Space",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "semianalysis",
+      "name": "SemiAnalysis",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "meta-ai",
+      "name": "Meta Engineering",
+      "ok": true,
+      "count": 0,
+      "total": 9,
+      "error": ""
+    },
+    {
+      "id": "mistral-news",
+      "name": "Mistral AI",
+      "ok": true,
+      "count": 0,
+      "total": 94,
+      "error": ""
+    },
+    {
+      "id": "bsky-karpathy",
+      "name": "Bluesky · Andrej Karpathy",
+      "ok": true,
+      "count": 0,
+      "total": 15,
+      "error": ""
+    },
+    {
+      "id": "bsky-giffmana",
+      "name": "Bluesky · Lucas Beyer",
+      "ok": true,
+      "count": 0,
+      "total": 22,
+      "error": ""
+    },
+    {
+      "id": "bsky-hardmaru",
+      "name": "Bluesky · hardmaru",
+      "ok": true,
+      "count": 0,
+      "total": 15,
+      "error": ""
+    },
+    {
+      "id": "bsky-swyx",
+      "name": "Bluesky · swyx",
+      "ok": true,
+      "count": 0,
+      "total": 3,
+      "error": ""
+    },
+    {
+      "id": "bsky-pytorch",
+      "name": "Bluesky · PyTorch",
+      "ok": true,
+      "count": 1,
+      "total": 27,
+      "error": ""
+    },
+    {
+      "id": "bsky-clem",
+      "name": "Bluesky · Clem Delangue",
+      "ok": true,
+      "count": 0,
+      "total": 11,
+      "error": ""
+    },
+    {
+      "id": "bsky-natolambert",
+      "name": "Bluesky · Nathan Lambert",
+      "ok": true,
+      "count": 1,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "bsky-rasbt",
+      "name": "Bluesky · Sebastian Raschka",
+      "ok": true,
+      "count": 0,
+      "total": 27,
+      "error": ""
+    },
+    {
+      "id": "bsky-jeffdean",
+      "name": "Bluesky · Jeff Dean",
+      "ok": true,
+      "count": 0,
+      "total": 18,
+      "error": ""
+    },
+    {
+      "id": "hf-trending-new",
+      "name": "HF 热榜新模型",
+      "ok": true,
+      "count": 2,
+      "total": 29,
+      "error": ""
+    },
+    {
+      "id": "gh-new-stars",
+      "name": "GitHub 新星仓库",
+      "ok": true,
+      "count": 2,
+      "total": 15,
+      "error": ""
+    },
+    {
+      "id": "hf-t2v",
+      "name": "HF 热榜 · 文生视频",
+      "ok": true,
+      "count": 0,
+      "total": 19,
+      "error": ""
+    },
+    {
+      "id": "hf-i2v",
+      "name": "HF 热榜 · 图生视频",
+      "ok": true,
+      "count": 3,
+      "total": 19,
+      "error": ""
+    },
+    {
+      "id": "gnews-video-en",
+      "name": "新闻 · 视频生成（英文）",
+      "ok": true,
+      "count": 3,
+      "total": 23,
+      "error": ""
+    },
+    {
+      "id": "gnews-video-cn",
+      "name": "新闻 · 视频生成（中文）",
+      "ok": true,
+      "count": 10,
+      "total": 51,
+      "error": ""
+    },
+    {
+      "id": "gnews-world-en",
+      "name": "新闻 · 世界模型（英文）",
+      "ok": true,
+      "count": 3,
+      "total": 29,
+      "error": ""
+    },
+    {
+      "id": "gnews-world-cn",
+      "name": "新闻 · 世界模型（中文）",
+      "ok": true,
+      "count": 20,
+      "total": 40,
+      "error": ""
+    },
+    {
+      "id": "gh-new-video-world",
+      "name": "GitHub 新仓库 · 视频 / 世界模型",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "arxiv-cscv",
+      "name": "arXiv cs.CV（专题）",
+      "ok": true,
+      "count": 0,
+      "total": 0,
+      "error": ""
+    },
+    {
+      "id": "arxiv-csro",
+      "name": "arXiv cs.RO（专题）",
+      "ok": true,
+      "count": 0,
+      "total": 0,
+      "error": ""
+    }
+  ],
+  "counts": {
+    "high": 10,
+    "medium": 20,
+    "low": 0
+  },
+  "items": [
+    {
+      "id": "4887da3ef3825f0d",
+      "title": "v0.34.1rc0: [Perf][Qwen4Exp] Add SM100 TP=2 and TP=8 skinny GEMM plans (#69529)",
+      "link": "https://github.com/vllm-project/vllm/releases/tag/v0.34.1rc0",
+      "source": "Release · vLLM",
+      "source_id": "rel-vllm",
+      "published": "2026-11-24T06:01:41+00:00",
+      "category": "infra",
+      "priority": "high",
+      "summary": "Signed-off-by: Johnsonms lizhaofu@gmail.com Co-authored-by: vllm-agent claw@inferact.ai",
+      "why": "",
+      "tags": [
+        "llm",
+        "agent"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "29612d80447b45b6",
+      "title": "MiniMax H3 开源百日交卷：一个模型裂变成 1472 个，下载量突破 1.48 亿次 - AIBase",
+      "link": "https://news.aibase.com/zh/news/32493",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-11-24T03:41:00+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "MiniMax H3 开源百日交卷：一个模型裂变成 1472 个，下载量突破 1.48 亿次 AIBase",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "b937e7b4a58f13c6",
+      "title": "智谱发布GLM-5.4 首用Loop Transformer架构拓展泛Coding场景 - 品玩",
+      "link": "https://www.pingwest.com/w/319810",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-11-24T02:46:31+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "智谱发布GLM-5.4 首用Loop Transformer架构拓展泛Coding场景 品玩",
+      "why": "",
+      "tags": [
+        "transformer"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "15022fc6ac9fa4ca",
+      "title": "智谱新旗舰上线！Agent商业化按下快进键 机构本月聚焦这些股(名单) - 中金在线",
+      "link": "http://fund.cnfol.com/jijindongtai/20261124/32430479.shtml",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-11-24T00:47:10+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "智谱新旗舰上线！Agent商业化按下快进键 机构本月聚焦这些股(名单) 中金在线",
+      "why": "",
+      "tags": [
+        "agent"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "a7faaa632316059b",
+      "title": "智谱 GLM-5.4 模型上线 Coding Plan - DoNews",
+      "link": "https://www.donews.com/news/detail/8/6779440.html",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-11-23T23:36:07+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "智谱 GLM-5.4 模型上线 Coding Plan DoNews",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "678e8011723ca5bf",
+      "title": "智谱发布新一代大模型 - 东方财富",
+      "link": "https://emwap.eastmoney.com/a/202611243937791512.html",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-11-23T23:29:58+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "智谱发布新一代大模型 东方财富",
+      "why": "",
+      "tags": [
+        "大模型",
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "84830302a06995bc",
+      "title": "国泰海通：华为云发布具身世界模型WM1.2并开源 谷歌Gemini 4上线 提供者 智通财经 - 英为财情 Investing.com",
+      "link": "https://cn.investing.com/news/stock-market-news/article-3682599",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-11-23T22:25:00+00:00",
+      "category": "research",
+      "priority": "high",
+      "summary": "国泰海通：华为云发布具身世界模型WM1.2并开源 谷歌Gemini 4上线 提供者 智通财经 英为财情 Investing.com",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "d74cc6ed18796f95",
+      "title": "Anthropic launches Claude Ship, letting AI agents review, fix, and approve code changes - TechCrunch",
+      "link": "https://techcrunch.com/2026/11/23/anthropic-launches-claude-ship-letting-ai-agents-review-fix-and-approve-code-changes/",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-11-23T22:05:50+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "Anthropic launches Claude Ship, letting AI agents review, fix, and approve code changes TechCrunch",
+      "why": "",
+      "tags": [
+        "agent"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "085de44b877263f9",
+      "title": "Anthropic launches Claude Ship to automate code reviews and approvals - Crypto Briefing",
+      "link": "https://cryptobriefing.com/ai-code-review-automation/",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-11-23T21:31:51+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "Anthropic launches Claude Ship to automate code reviews and approvals Crypto Briefing",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "2afac65d0eb4733f",
+      "title": "智谱官宣GLM-5.4：采用 Loop Transformer 架构、开启“泛 Coding”能力 - OSCHINA - 开源 × AI · 开发者生态社区 - OSCHINA",
+      "link": "https://www.oschina.net/news/503756",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-11-23T18:30:11+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "智谱官宣GLM-5.4：采用 Loop Transformer 架构、开启“泛 Coding”能力 - OSCHINA - 开源 × AI · 开发者生态社区 OSCHINA",
+      "why": "",
+      "tags": [
+        "transformer"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "4e1f116438517e4a",
+      "title": "Pinterest 让大模型取代多阶段聚类，但最大的提速来自“少推理”",
+      "link": "https://www.infoq.cn/article/vaEUVvWD9AIaFXZhzSMH",
+      "source": "InfoQ 中文",
+      "source_id": "infoq-cn",
+      "published": "2026-11-24T11:00:00+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "点击查看原文>",
+      "why": "",
+      "tags": [
+        "vae",
+        "大模型"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "6fca522cc79b17c7",
+      "title": "可灵增速放缓、高管离职、母公司转亏：快手三季报的三重压力 - Sohu",
+      "link": "https://m.sohu.com/a/1105694933_250147?scm=10001.325_13-325_13.0.0-0-0-0-0.5_1334",
+      "source": "新闻 · 视频生成（中文）",
+      "source_id": "gnews-video-cn",
+      "published": "2026-11-24T06:20:03+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "可灵增速放缓、高管离职、母公司转亏：快手三季报的三重压力 Sohu",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "e343b0bb58f0be97",
+      "title": "【券商聚焦】长江证券维持快手-W买入评级 指可灵AI全面升级-证券之星 - 证券之星",
+      "link": "https://hk.stockstar.com/IG2026112400019496.shtml",
+      "source": "新闻 · 视频生成（中文）",
+      "source_id": "gnews-video-cn",
+      "published": "2026-11-24T05:29:24+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "【券商聚焦】长江证券维持快手-W买入评级 指可灵AI全面升级-证券之星 证券之星",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "7417a834a3011534",
+      "title": "datasette-charts 0.2a0",
+      "link": "https://simonwillison.net/2026/Nov/24/datasette-charts",
+      "source": "Simon Willison",
+      "source_id": "simonw",
+      "published": "2026-11-24T04:24:29+00:00",
+      "category": "people",
+      "priority": "medium",
+      "summary": "Release: datasette-charts 0.2a0 I introduced this new charting plugin for Datasette yesterday . Today it's gained integration with Datasette Agent , so now you…",
+      "why": "",
+      "tags": [
+        "agent"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "24f7de301b80eefb",
+      "title": "IOSF｜NVIDIA 免费开放模型，世界模型公司凭什么收费？ - 深潮TechFlow",
+      "link": "https://www.techflowpost.com/article/35631",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-11-24T04:04:58+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "IOSF｜NVIDIA 免费开放模型，世界模型公司凭什么收费？ 深潮TechFlow",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "a3f542e0b1f22601",
+      "title": "港股大模型股早盘高开低走 智谱一度涨15%后转跌3.17% - Sohu",
+      "link": "https://www.sohu.com/a/1105670471_655634?scm=10001.325_13-325_13.0.0-0-0-0-0.5_1334",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-11-24T04:02:46+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "港股大模型股早盘高开低走 智谱一度涨15%后转跌3.17% Sohu",
+      "why": "",
+      "tags": [
+        "大模型"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "7b069e0257bdb532",
+      "title": "datasette-agent 0.7a1",
+      "link": "https://simonwillison.net/2026/Nov/24/datasette-agent",
+      "source": "Simon Willison",
+      "source_id": "simonw",
+      "published": "2026-11-24T03:45:57+00:00",
+      "category": "people",
+      "priority": "medium",
+      "summary": "Release: datasette-agent 0.7a1 I small improvement to Datasette Agent : chat sessions can open an iframe side panel, and that panel can then navigate to…",
+      "why": "",
+      "tags": [
+        "agent"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "e9712ba204da95b2",
+      "title": "港股大模型股高开低走 智谱震幅近20% - 东方财富网",
+      "link": "https://wap.eastmoney.com/a/202611243938299249.html",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-11-24T03:27:07+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "港股大模型股高开低走 智谱震幅近20% 东方财富网",
+      "why": "",
+      "tags": [
+        "大模型"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "b9d2abddb8ba9d78",
+      "title": "11:16:40【港股大模型股高开低走 智谱震幅近20%】 - 财联社",
+      "link": "https://www.cls.cn/detail/2542640",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-11-24T03:16:40+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "11:16:40【港股大模型股高开低走 智谱震幅近20%】 财联社",
+      "why": "",
+      "tags": [
+        "大模型"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "66daef5c73517082",
+      "title": "“得Agent开发者，得天下”，70+技术大咖共探AI技术演进与生态变革，2026奇点智能技术大会圆满收官！",
+      "link": "https://www.qbitai.com/2026/11/512297.html",
+      "source": "量子位",
+      "source_id": "qbitai",
+      "published": "2026-11-24T02:36:08+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "「2026 奇点智能技术大会」与「2026 C++ 及系统软件技术大会」在北京万达文华酒店成功举办。",
+      "why": "",
+      "tags": [
+        "agent"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "ceb4f12a5c8d5cae",
+      "title": "【视频】奥迪E7X 升级搭载Momenta R7 世界模型，可实现门到门的辅助驾驶 - 汽车之家",
+      "link": "https://chejiahao.autohome.com.cn/info/26943123",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-11-24T02:29:47+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "【视频】奥迪E7X 升级搭载Momenta R7 世界模型，可实现门到门的辅助驾驶 汽车之家",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "17ea74a517ab401e",
+      "title": "DeepSeek创始人财富2264亿 成全球最富有AI模型创造者 - e南洋",
+      "link": "https://www.enanyang.my/news/20261124/International/1461180",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-11-24T02:26:50+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "DeepSeek创始人财富2264亿 成全球最富有AI模型创造者 e南洋",
+      "why": "",
+      "tags": [
+        "llm"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "a4c17f361d496928",
+      "title": "Anthropic’s Claude claims a proof of VP ≠ VNP - Kingy AI",
+      "link": "https://kingy.ai/blog/anthropic-claude-vp-vnp-proof/",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-11-24T02:24:04+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Anthropic’s Claude claims a proof of VP ≠ VNP Kingy AI",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "22cecb19c608c46e",
+      "title": "小鹏图灵世界模型X-World升级，能构建虚拟城市 - 汽车之家",
+      "link": "https://chejiahao.autohome.com.cn/info/26947721?reply=reply",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-11-24T02:09:36+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "小鹏图灵世界模型X-World升级，能构建虚拟城市 汽车之家",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "f7c0edcb527d90eb",
+      "title": "继Sora之后，马斯克也要放弃AI视频生成了！ - 加拿大省钱快报",
+      "link": "https://www.dealmoon.ca/post/3276786",
+      "source": "新闻 · 视频生成（中文）",
+      "source_id": "gnews-video-cn",
+      "published": "2026-11-24T01:53:40+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "继Sora之后，马斯克也要放弃AI视频生成了！ 加拿大省钱快报",
+      "why": "",
+      "tags": [
+        "视频生成"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "572de64699d2b9be",
+      "title": "小鹏图灵世界模型X-World完成重要升级：可构建虚拟城市！ - 驱动之家",
+      "link": "https://news.mydrivers.com/1/1168/1168053.htm",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-11-24T01:44:00+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "小鹏图灵世界模型X-World完成重要升级：可构建虚拟城市！ 驱动之家",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "d3de836ce4da53e9",
+      "title": "MiniMax：最新内部模型破解多个密码学前沿方案 - Sohu",
+      "link": "https://m.sohu.com/a/1105564968_100032554?scm=10001.325_13-325_13.0.0-0-0-0-0.5_1334",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-11-24T01:43:00+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "MiniMax：最新内部模型破解多个密码学前沿方案 Sohu",
+      "why": "",
+      "tags": [
+        "llm"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "d209f7a374413dd0",
+      "title": "小鹏图灵世界模型 X-World 完成重要升级 - 汽车之家",
+      "link": "https://chejiahao.autohome.com.cn/info/26947605?reply=reply",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-11-24T01:39:43+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "小鹏图灵世界模型 X-World 完成重要升级 汽车之家",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "7cf4d8e634e71b18",
+      "title": "Embo Raises $110M Seed Round to Develop World Models for Robots - AI Insider",
+      "link": "https://theaiinsider.tech/2026/11/24/embo-raises-110m-seed-round-to-develop-world-models-for-robots/",
+      "source": "新闻 · 世界模型（英文）",
+      "source_id": "gnews-world-en",
+      "published": "2026-11-24T01:34:10+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "Embo Raises $110M Seed Round to Develop World Models for Robots AI Insider",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "4bf347148dbd9643",
+      "title": "特斯拉FSD V15技术深拆：当世界模型被塞进车机，智驾的范式变了 - 电子工程专辑EE Times China",
+      "link": "https://www.eet-china.com/mp/a541466.html",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-11-24T01:03:00+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "特斯拉FSD V15技术深拆：当世界模型被塞进车机，智驾的范式变了 电子工程专辑EE Times China",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": [
+        "world"
+      ]
+    }
+  ]
+}
