@@ -2,8 +2,199 @@
  "id": "video",
  "name": "视频生成模型",
  "blurb": "文生视频、图生视频、视频 VAE 与 DiT 加速：Wan、Sora、Veo、可灵、海螺、Seedance、Vidu、LTX、HunyuanVideo 等的发布、论文、benchmark 与推理框架支持。",
- "updated": "2026-11-24T07:00:08+00:00",
+ "updated": "2026-11-25T05:27:59+00:00",
  "entries": [
+  {
+   "id": "fc3c75a380724e8a",
+   "date": "2026-11-25",
+   "title": "Seedance 2.5 级别，价格只要 1/10，我们实测了计划开源的 MAGI-2 - 爱范儿",
+   "link": "https://www.ifanr.com/1691445",
+   "source": "新闻 · 视频生成（中文）",
+   "priority": "high",
+   "summary": "Seedance 2.5 级别，价格只要 1/10，我们实测了计划开源的 MAGI-2 爱范儿",
+   "why": "",
+   "tags": [],
+   "entity": "Seedance 2.5",
+   "kind": "news"
+  },
+  {
+   "id": "1edc8729000e23c7",
+   "date": "2026-11-25",
+   "title": "AdProducer: Towards Agentic Advertising Video Generation",
+   "link": "https://arxiv.org/abs/2611.31466",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "high",
+   "summary": "arXiv:2611.31466v1 Announce Type: new Abstract: Recent advances in video generation have made automated advertising production increasingly feasible…",
+   "why": "",
+   "tags": [
+    "video generation",
+    "agent",
+    "agentic"
+   ],
+   "entity": "AdProducer",
+   "kind": "news"
+  },
+  {
+   "id": "1f0aa7aaca2c5286",
+   "date": "2026-11-25",
+   "title": "Anchoring VAE Fine-Tuning to Its Latent Diffusion Prior",
+   "link": "https://arxiv.org/abs/2611.31651",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "high",
+   "summary": "arXiv:2611.31651v1 Announce Type: new Abstract: Pretrained latent diffusion models are effective priors for transfer learning, from geometry estimation to…",
+   "why": "",
+   "tags": [
+    "diffusion",
+    "vae",
+    "latent"
+   ],
+   "entity": "Anchoring VAE Fine",
+   "kind": "news"
+  },
+  {
+   "id": "0440496792ba93e7",
+   "date": "2026-11-25",
+   "title": "GeoMVGen: Joint Appearance-Geometry Modeling for Multi-View Video Generation in Robotic Manipulation",
+   "link": "https://arxiv.org/abs/2611.31689",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "high",
+   "summary": "arXiv:2611.31689v1 Announce Type: new Abstract: Robotic manipulation requires predicting how robot-object interactions evolve over time, encompassing both…",
+   "why": "",
+   "tags": [
+    "video generation",
+    "3D"
+   ],
+   "entity": "GeoMVGen",
+   "kind": "news"
+  },
+  {
+   "id": "65d3675b8d1be2b0",
+   "date": "2026-11-25",
+   "title": "Loupe: Reinforcing Knowledge-Intensive Video Generation Agents",
+   "link": "https://arxiv.org/abs/2611.31895",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "high",
+   "summary": "arXiv:2611.31895v1 Announce Type: new Abstract: Knowledge-intensive video generation remains challenging because prompts often omit the facts, appearances, and…",
+   "why": "",
+   "tags": [
+    "video generation",
+    "agent"
+   ],
+   "entity": "Loupe",
+   "kind": "news"
+  },
+  {
+   "id": "a2ea639fbd381b48",
+   "date": "2026-11-25",
+   "title": "DraftKV: Protecting Persistent Worlds through Hierarchical Streaming Retrieval",
+   "link": "https://arxiv.org/abs/2611.31944",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "high",
+   "summary": "arXiv:2611.31944v1 Announce Type: new Abstract: Interactive video world models enable action- and camera-controlled exploration, yet struggle to maintain…",
+   "why": "",
+   "tags": [
+    "diffusion",
+    "attention",
+    "latency"
+   ],
+   "entity": "DraftKV",
+   "kind": "news"
+  },
+  {
+   "id": "ed9879eb9cfe9110",
+   "date": "2026-11-25",
+   "title": "SPAR: Self-Referenced World-Model Rewards for Physical Alignment in Video Generation",
+   "link": "https://arxiv.org/abs/2611.31958",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "high",
+   "summary": "arXiv:2611.31958v1 Announce Type: new Abstract: Generating videos with physically plausible dynamics remains challenging despite advances in visual quality…",
+   "why": "",
+   "tags": [
+    "video generation",
+    "latent",
+    "inference"
+   ],
+   "entity": "SPAR",
+   "kind": "news"
+  },
+  {
+   "id": "676546bc046d4fae",
+   "date": "2026-11-25",
+   "title": "DeCo-Attention: Decompose to Compensate for Low-Precision Attention",
+   "link": "https://arxiv.org/abs/2611.32035",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "high",
+   "summary": "arXiv:2611.32035v1 Announce Type: new Abstract: Self-attention over tens of thousands of tokens dominates the generation time of video diffusion transformers,…",
+   "why": "",
+   "tags": [
+    "diffusion",
+    "gpu",
+    "fp4",
+    "attention"
+   ],
+   "entity": "DeCo-Attention",
+   "kind": "news"
+  },
+  {
+   "id": "4d12bf4964a47f10",
+   "date": "2026-11-25",
+   "title": "Get the Next Moment Right: Short-Term Event Planning for Physically Plausible Video Generation",
+   "link": "https://arxiv.org/abs/2611.32337",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "medium",
+   "summary": "arXiv:2611.32337v1 Announce Type: new Abstract: Video generation models synthesize realistic imagery yet still struggle to produce physically plausible…",
+   "why": "",
+   "tags": [
+    "video generation"
+   ],
+   "entity": "Get the Next",
+   "kind": "news"
+  },
+  {
+   "id": "5f8c1ef41fea1bce",
+   "date": "2026-11-25",
+   "title": "Teaching Time Without Losing General Retrieval: Adapting Multimodal Embeddings for Time-Sensitive Video Retrieval",
+   "link": "https://arxiv.org/abs/2611.32971",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "medium",
+   "summary": "arXiv:2611.32971v1 Announce Type: new Abstract: In text-to-video retrieval, MLLM-based embedding models do well when the text describes the scene (general…",
+   "why": "",
+   "tags": [
+    "llm"
+   ],
+   "entity": "Teaching Time Without",
+   "kind": "news"
+  },
+  {
+   "id": "c5a180369a8a24cd",
+   "date": "2026-11-25",
+   "title": "Simulator-as-Proxy World Model for Robot Manipulation",
+   "link": "https://arxiv.org/abs/2611.32786",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "medium",
+   "summary": "arXiv:2611.32786v1 Announce Type: cross Abstract: Video world models for robots are increasingly conditioned on a simulated or rendered proxy of the scene, on…",
+   "why": "",
+   "tags": [
+    "3D"
+   ],
+   "entity": "Simulator-as-Proxy",
+   "kind": "news"
+  },
+  {
+   "id": "60513cd9f6058abf",
+   "date": "2026-11-25",
+   "title": "Residual Guidance for Real-Time Interactive Video Generation",
+   "link": "https://arxiv.org/abs/2611.32820",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "medium",
+   "summary": "arXiv:2611.32820v1 Announce Type: cross Abstract: Real-time interactive video generation allows users to change the prompt during generation to steer the…",
+   "why": "",
+   "tags": [
+    "video generation"
+   ],
+   "entity": "Residual Guidance for",
+   "kind": "news"
+  },
   {
    "id": "6fca522cc79b17c7",
    "date": "2026-11-24",
@@ -5652,6 +5843,7 @@
  ],
  "threads": {
   "Seedance 2.5": [
+   "fc3c75a380724e8a",
    "c7d6f9a96a64bf55",
    "7258e86c479ab361",
    "60f4628f5d2da8c8",
@@ -5858,6 +6050,39 @@
   "字节跳动": [
    "3a06f956823425ca",
    "782c2b2a23d1da73"
+  ],
+  "AdProducer": [
+   "1edc8729000e23c7"
+  ],
+  "Anchoring VAE Fine": [
+   "1f0aa7aaca2c5286"
+  ],
+  "GeoMVGen": [
+   "0440496792ba93e7"
+  ],
+  "Loupe": [
+   "65d3675b8d1be2b0"
+  ],
+  "DraftKV": [
+   "a2ea639fbd381b48"
+  ],
+  "SPAR": [
+   "ed9879eb9cfe9110"
+  ],
+  "DeCo-Attention": [
+   "676546bc046d4fae"
+  ],
+  "Get the Next": [
+   "4d12bf4964a47f10"
+  ],
+  "Teaching Time Without": [
+   "5f8c1ef41fea1bce"
+  ],
+  "Simulator-as-Proxy": [
+   "c5a180369a8a24cd"
+  ],
+  "Residual Guidance for": [
+   "60513cd9f6058abf"
   ],
   "Weekly Recap": [
    "e432a278853c73f6"

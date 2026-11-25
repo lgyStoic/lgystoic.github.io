@@ -2,8 +2,291 @@
  "id": "world",
  "name": "世界模型",
  "blurb": "可交互的生成式世界模拟：Genie、Cosmos、V-JEPA、Dreamer、GameNGen、Oasis、Matrix-Game、HunyuanWorld 等，以及动作条件视频生成、4D 生成与具身仿真。",
- "updated": "2026-11-24T07:00:08+00:00",
+ "updated": "2026-11-25T05:27:59+00:00",
  "entries": [
+  {
+   "id": "e1edc35673843d3a",
+   "date": "2026-11-25",
+   "title": "SceneMemBench: A Benchmark for Scene Memory in Interactive Video World Models",
+   "link": "https://arxiv.org/abs/2611.31803",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "high",
+   "summary": "arXiv:2611.31803v1 Announce Type: new Abstract: Interactive video world models generate navigable worlds frame by frame, but a persistent world requires…",
+   "why": "",
+   "tags": [],
+   "entity": "SceneMemBench",
+   "kind": "news"
+  },
+  {
+   "id": "a2ea639fbd381b48",
+   "date": "2026-11-25",
+   "title": "DraftKV: Protecting Persistent Worlds through Hierarchical Streaming Retrieval",
+   "link": "https://arxiv.org/abs/2611.31944",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "high",
+   "summary": "arXiv:2611.31944v1 Announce Type: new Abstract: Interactive video world models enable action- and camera-controlled exploration, yet struggle to maintain…",
+   "why": "",
+   "tags": [
+    "diffusion",
+    "attention",
+    "latency"
+   ],
+   "entity": "DraftKV",
+   "kind": "news"
+  },
+  {
+   "id": "ed9879eb9cfe9110",
+   "date": "2026-11-25",
+   "title": "SPAR: Self-Referenced World-Model Rewards for Physical Alignment in Video Generation",
+   "link": "https://arxiv.org/abs/2611.31958",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "high",
+   "summary": "arXiv:2611.31958v1 Announce Type: new Abstract: Generating videos with physically plausible dynamics remains challenging despite advances in visual quality…",
+   "why": "",
+   "tags": [
+    "video generation",
+    "latent",
+    "inference"
+   ],
+   "entity": "SPAR",
+   "kind": "news"
+  },
+  {
+   "id": "15737b9eaa6fd8d9",
+   "date": "2026-11-25",
+   "title": "Do Occupancy World Models Really Follow Actions?",
+   "link": "https://arxiv.org/abs/2611.32029",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "high",
+   "summary": "arXiv:2611.32029v1 Announce Type: new Abstract: Occupancy world models predict future 3D scenes conditioned on ego actions, yet their predictions may not…",
+   "why": "",
+   "tags": [
+    "transformer",
+    "3D"
+   ],
+   "entity": "Do Occupancy World",
+   "kind": "news"
+  },
+  {
+   "id": "89068ffb7073c6ae",
+   "date": "2026-11-25",
+   "title": "Tornado4D: Physics-Guided 4D Gaussian Reconstruction of a Laboratory Tornado from Sparse One-Sided Videos",
+   "link": "https://arxiv.org/abs/2611.31435",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "medium",
+   "summary": "arXiv:2611.31435v1 Announce Type: new Abstract: Characterizing how tornadoes evolve over space and time is critically important for understanding and preparing…",
+   "why": "",
+   "tags": [
+    "3D"
+   ],
+   "entity": "Tornado4D",
+   "kind": "news"
+  },
+  {
+   "id": "40f60e1520bd3b13",
+   "date": "2026-11-25",
+   "title": "Dreamcatcher: Remembering What Surprises a World Model in Video Streams",
+   "link": "https://arxiv.org/abs/2611.31765",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "medium",
+   "summary": "arXiv:2611.31765v1 Announce Type: new Abstract: As live video streams grow longer, repeatedly encoding and processing their full histories becomes increasingly…",
+   "why": "",
+   "tags": [],
+   "entity": "Dreamcatcher",
+   "kind": "news"
+  },
+  {
+   "id": "4bad0adb6ad68429",
+   "date": "2026-11-25",
+   "title": "Gaze World Model",
+   "link": "https://arxiv.org/abs/2611.31836",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "medium",
+   "summary": "arXiv:2611.31836v1 Announce Type: new Abstract: Where a person looks indicates their focus of attention, and how their gaze shifts between targets reveals how…",
+   "why": "",
+   "tags": [
+    "attention"
+   ],
+   "entity": "Gaze World Model",
+   "kind": "news"
+  },
+  {
+   "id": "4b3022abdff4ea10",
+   "date": "2026-11-25",
+   "title": "ST-SfM: Spatio-Temporal Structure-from-Motion for Initialising 4D Gaussian Splatting",
+   "link": "https://arxiv.org/abs/2611.32231",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "medium",
+   "summary": "arXiv:2611.32231v1 Announce Type: new Abstract: Dynamic Gaussian splatting is usually initialised either with random points or with a structure-from-motion…",
+   "why": "",
+   "tags": [],
+   "entity": "ST-SfM",
+   "kind": "news"
+  },
+  {
+   "id": "653e114329bec0cf",
+   "date": "2026-11-25",
+   "title": "MemAnchorWorld: A Sparse World Model with Horizon-Conditioned Memory Retrieval for Autonomous Driving",
+   "link": "https://arxiv.org/abs/2611.32745",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "medium",
+   "summary": "arXiv:2611.32745v1 Announce Type: new Abstract: Sparse world models for 4D semantic occupancy forecasting represent scenes with a small set of evolving queries…",
+   "why": "",
+   "tags": [],
+   "entity": "MemAnchorWorld",
+   "kind": "news"
+  },
+  {
+   "id": "7b782d7f4cf2db59",
+   "date": "2026-11-25",
+   "title": "EEG-World: Context-Conditioned Dynamics of the Watching Brain",
+   "link": "https://arxiv.org/abs/2611.32825",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "medium",
+   "summary": "arXiv:2611.32825v1 Announce Type: new Abstract: Brain encoding models predict neural responses from audiovisual input, but typically overlook how ongoing brain…",
+   "why": "",
+   "tags": [],
+   "entity": "EEG-World",
+   "kind": "news"
+  },
+  {
+   "id": "937a69c546a68d98",
+   "date": "2026-11-25",
+   "title": "Motion Conditioned World Modeling for Embodied Visual Tracking",
+   "link": "https://arxiv.org/abs/2611.32900",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "medium",
+   "summary": "arXiv:2611.32900v1 Announce Type: new Abstract: World models support embodied decision-making by predicting future environment states…",
+   "why": "",
+   "tags": [
+    "latent"
+   ],
+   "entity": "Motion Conditioned World",
+   "kind": "news"
+  },
+  {
+   "id": "d65865dbb6ebd66a",
+   "date": "2026-11-25",
+   "title": "RFW-W: Scaling Physical Asset Universes for Generative Embodied Simulation",
+   "link": "https://arxiv.org/abs/2611.33013",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "medium",
+   "summary": "arXiv:2611.33013v1 Announce Type: new Abstract: Scaling embodied simulation requires diverse objects with executable physical representations…",
+   "why": "",
+   "tags": [],
+   "entity": "RFW-W",
+   "kind": "news"
+  },
+  {
+   "id": "c5a180369a8a24cd",
+   "date": "2026-11-25",
+   "title": "Simulator-as-Proxy World Model for Robot Manipulation",
+   "link": "https://arxiv.org/abs/2611.32786",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "medium",
+   "summary": "arXiv:2611.32786v1 Announce Type: cross Abstract: Video world models for robots are increasingly conditioned on a simulated or rendered proxy of the scene, on…",
+   "why": "",
+   "tags": [
+    "3D"
+   ],
+   "entity": "Simulator-as-Proxy",
+   "kind": "news"
+  },
+  {
+   "id": "60513cd9f6058abf",
+   "date": "2026-11-25",
+   "title": "Residual Guidance for Real-Time Interactive Video Generation",
+   "link": "https://arxiv.org/abs/2611.32820",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "medium",
+   "summary": "arXiv:2611.32820v1 Announce Type: cross Abstract: Real-time interactive video generation allows users to change the prompt during generation to steer the…",
+   "why": "",
+   "tags": [
+    "video generation"
+   ],
+   "entity": "Residual Guidance for",
+   "kind": "news"
+  },
+  {
+   "id": "934e52c6a4146702",
+   "date": "2026-11-25",
+   "title": "iWAM: Efficient Action Prediction from World Models without Explicit Future Prediction",
+   "link": "https://arxiv.org/abs/2611.33141",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "medium",
+   "summary": "arXiv:2611.33141v1 Announce Type: cross Abstract: World-action models (WAMs) build policies on pretrained video-generation models, on the premise that…",
+   "why": "",
+   "tags": [],
+   "entity": "Efficient Action Prediction",
+   "kind": "news"
+  },
+  {
+   "id": "88b174ad9b2ce209",
+   "date": "2026-11-25",
+   "title": "Online Monitoring Framework for Automotive Time Series Data using JEPA Embeddings",
+   "link": "https://arxiv.org/abs/2602.09985",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "medium",
+   "summary": "arXiv:2602.09985v2 Announce Type: replace-cross Abstract: As autonomous vehicles are rolled out, measures must be taken to ensure their safe operation…",
+   "why": "",
+   "tags": [],
+   "entity": "Online Monitoring Framework",
+   "kind": "news"
+  },
+  {
+   "id": "c1efc35fc3ba4d96",
+   "date": "2026-11-25",
+   "title": "Co-DRIS: Physics-Informed Predictive Belief and Variable-Impedance Learning for Reactive Catching under Coupled Uncertainty",
+   "link": "https://arxiv.org/abs/2611.31843",
+   "source": "arXiv cs.RO（专题）",
+   "priority": "medium",
+   "summary": "arXiv:2611.31843v1 Announce Type: new Abstract: Reactive robotic manipulation is acutely sensitive to simultaneous sensing noise, measurement dropouts, joint…",
+   "why": "",
+   "tags": [
+    "cute"
+   ],
+   "entity": "Co-DRIS",
+   "kind": "news"
+  },
+  {
+   "id": "18394dd955f156c1",
+   "date": "2026-11-25",
+   "title": "CodeWAM: A Code World Action Model for End-to-End Autonomous Driving",
+   "link": "https://arxiv.org/abs/2611.32483",
+   "source": "arXiv cs.RO（专题）",
+   "priority": "medium",
+   "summary": "arXiv:2611.32483v1 Announce Type: new Abstract: Driving world models anticipate action consequences through representations of how the world evolves…",
+   "why": "",
+   "tags": [],
+   "entity": "CodeWAM",
+   "kind": "news"
+  },
+  {
+   "id": "8169ffe3f4517cdb",
+   "date": "2026-11-25",
+   "title": "DexWAC: A Unified World-Actor-Critic Model for Dexterous Robot Manipulation",
+   "link": "https://arxiv.org/abs/2611.32654",
+   "source": "arXiv cs.RO（专题）",
+   "priority": "medium",
+   "summary": "arXiv:2611.32654v1 Announce Type: new Abstract: Robot demonstrations provide more than actions to imitate: they reveal how actions change the world and how…",
+   "why": "",
+   "tags": [],
+   "entity": "DexWAC",
+   "kind": "news"
+  },
+  {
+   "id": "b6ae666f0a10fe87",
+   "date": "2026-11-25",
+   "title": "DiffGR00T: Execution-Aware Differentiable Training for Humanoid Whole-Body Vision-Language-Action Models",
+   "link": "https://arxiv.org/abs/2611.32665",
+   "source": "arXiv cs.RO（专题）",
+   "priority": "medium",
+   "summary": "arXiv:2611.32665v1 Announce Type: new Abstract: Vision-language-action (VLA) models have achieved strong results in arm-centric manipulation, yet humanoid…",
+   "why": "",
+   "tags": [],
+   "entity": "DiffGR00T",
+   "kind": "news"
+  },
   {
    "id": "84830302a06995bc",
    "date": "2026-11-24",
@@ -7985,6 +8268,66 @@
   "魔芯科技": [
    "fe9d33edf0701555",
    "92ea4301b3012f12"
+  ],
+  "SceneMemBench": [
+   "e1edc35673843d3a"
+  ],
+  "DraftKV": [
+   "a2ea639fbd381b48"
+  ],
+  "SPAR": [
+   "ed9879eb9cfe9110"
+  ],
+  "Do Occupancy World": [
+   "15737b9eaa6fd8d9"
+  ],
+  "Tornado4D": [
+   "89068ffb7073c6ae"
+  ],
+  "Dreamcatcher": [
+   "40f60e1520bd3b13"
+  ],
+  "Gaze World Model": [
+   "4bad0adb6ad68429"
+  ],
+  "ST-SfM": [
+   "4b3022abdff4ea10"
+  ],
+  "MemAnchorWorld": [
+   "653e114329bec0cf"
+  ],
+  "EEG-World": [
+   "7b782d7f4cf2db59"
+  ],
+  "Motion Conditioned World": [
+   "937a69c546a68d98"
+  ],
+  "RFW-W": [
+   "d65865dbb6ebd66a"
+  ],
+  "Simulator-as-Proxy": [
+   "c5a180369a8a24cd"
+  ],
+  "Residual Guidance for": [
+   "60513cd9f6058abf"
+  ],
+  "Efficient Action Prediction": [
+   "934e52c6a4146702"
+  ],
+  "Online Monitoring Framework": [
+   "88b174ad9b2ce209"
+  ],
+  "Co-DRIS": [
+   "c1efc35fc3ba4d96"
+  ],
+  "CodeWAM": [
+   "18394dd955f156c1"
+  ],
+  "DexWAC": [
+   "8169ffe3f4517cdb"
+  ],
+  "DiffGR00T": [
+   "b6ae666f0a10fe87"
   ],
   "Investing.com": [
    "84830302a06995bc"
