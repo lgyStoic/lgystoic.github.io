@@ -1,0 +1,977 @@
+{
+  "date": "2026-11-25",
+  "generated_at": "2026-11-25T05:26:56+00:00",
+  "ai": false,
+  "model": "",
+  "sources": [
+    {
+      "id": "openai",
+      "name": "OpenAI",
+      "ok": true,
+      "count": 5,
+      "total": 1430,
+      "error": ""
+    },
+    {
+      "id": "google-ai",
+      "name": "Google AI Blog",
+      "ok": true,
+      "count": 1,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "qwen",
+      "name": "Qwen",
+      "ok": true,
+      "count": 0,
+      "total": 44,
+      "error": ""
+    },
+    {
+      "id": "hf-blog",
+      "name": "Hugging Face Blog",
+      "ok": true,
+      "count": 1,
+      "total": 916,
+      "error": ""
+    },
+    {
+      "id": "nvidia-dev",
+      "name": "NVIDIA Technical Blog",
+      "ok": true,
+      "count": 2,
+      "total": 100,
+      "error": ""
+    },
+    {
+      "id": "hf-papers",
+      "name": "HF Papers 日榜",
+      "ok": true,
+      "count": 23,
+      "total": 27,
+      "error": ""
+    },
+    {
+      "id": "pytorch",
+      "name": "PyTorch Blog",
+      "ok": true,
+      "count": 1,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "simonw",
+      "name": "Simon Willison",
+      "ok": true,
+      "count": 1,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "lilianweng",
+      "name": "Lil'Log",
+      "ok": true,
+      "count": 0,
+      "total": 53,
+      "error": ""
+    },
+    {
+      "id": "interconnects",
+      "name": "Interconnects",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "raschka",
+      "name": "Sebastian Raschka",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "chiphuyen",
+      "name": "Chip Huyen",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-pytorch",
+      "name": "Release · PyTorch",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-triton",
+      "name": "Release · Triton",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-cutlass",
+      "name": "Release · CUTLASS",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-flash-attention",
+      "name": "Release · FlashAttention",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-vllm",
+      "name": "Release · vLLM",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-sglang",
+      "name": "Release · SGLang",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-tensorrt-llm",
+      "name": "Release · TensorRT-LLM",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-diffusers",
+      "name": "Release · Diffusers",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-cuda-python",
+      "name": "Release · cuda-python",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "gnews-labs-en",
+      "name": "新闻 · Anthropic / Mistral / xAI",
+      "ok": true,
+      "count": 21,
+      "total": 100,
+      "error": ""
+    },
+    {
+      "id": "gnews-labs-cn",
+      "name": "新闻 · 国内模型公司",
+      "ok": true,
+      "count": 26,
+      "total": 100,
+      "error": ""
+    },
+    {
+      "id": "qbitai",
+      "name": "量子位",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "infoq-cn",
+      "name": "InfoQ 中文",
+      "ok": true,
+      "count": 3,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "thonking",
+      "name": "Horace He (thonking)",
+      "ok": true,
+      "count": 0,
+      "total": 6,
+      "error": ""
+    },
+    {
+      "id": "hn-algolia",
+      "name": "Hacker News（100+ 分）",
+      "ok": true,
+      "count": 2,
+      "total": 60,
+      "error": ""
+    },
+    {
+      "id": "karpathy-blog",
+      "name": "Andrej Karpathy 博客",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "eugeneyan",
+      "name": "Eugene Yan",
+      "ok": true,
+      "count": 0,
+      "total": 215,
+      "error": ""
+    },
+    {
+      "id": "importai",
+      "name": "Import AI（Jack Clark）",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "latentspace",
+      "name": "Latent Space",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "semianalysis",
+      "name": "SemiAnalysis",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "meta-ai",
+      "name": "Meta Engineering",
+      "ok": true,
+      "count": 0,
+      "total": 9,
+      "error": ""
+    },
+    {
+      "id": "mistral-news",
+      "name": "Mistral AI",
+      "ok": true,
+      "count": 0,
+      "total": 94,
+      "error": ""
+    },
+    {
+      "id": "bsky-karpathy",
+      "name": "Bluesky · Andrej Karpathy",
+      "ok": true,
+      "count": 0,
+      "total": 15,
+      "error": ""
+    },
+    {
+      "id": "bsky-giffmana",
+      "name": "Bluesky · Lucas Beyer",
+      "ok": true,
+      "count": 0,
+      "total": 22,
+      "error": ""
+    },
+    {
+      "id": "bsky-hardmaru",
+      "name": "Bluesky · hardmaru",
+      "ok": true,
+      "count": 0,
+      "total": 15,
+      "error": ""
+    },
+    {
+      "id": "bsky-swyx",
+      "name": "Bluesky · swyx",
+      "ok": true,
+      "count": 0,
+      "total": 3,
+      "error": ""
+    },
+    {
+      "id": "bsky-pytorch",
+      "name": "Bluesky · PyTorch",
+      "ok": true,
+      "count": 2,
+      "total": 28,
+      "error": ""
+    },
+    {
+      "id": "bsky-clem",
+      "name": "Bluesky · Clem Delangue",
+      "ok": true,
+      "count": 0,
+      "total": 11,
+      "error": ""
+    },
+    {
+      "id": "bsky-natolambert",
+      "name": "Bluesky · Nathan Lambert",
+      "ok": true,
+      "count": 0,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "bsky-rasbt",
+      "name": "Bluesky · Sebastian Raschka",
+      "ok": true,
+      "count": 0,
+      "total": 27,
+      "error": ""
+    },
+    {
+      "id": "bsky-jeffdean",
+      "name": "Bluesky · Jeff Dean",
+      "ok": true,
+      "count": 0,
+      "total": 18,
+      "error": ""
+    },
+    {
+      "id": "hf-trending-new",
+      "name": "HF 热榜新模型",
+      "ok": true,
+      "count": 7,
+      "total": 29,
+      "error": ""
+    },
+    {
+      "id": "gh-new-stars",
+      "name": "GitHub 新星仓库",
+      "ok": true,
+      "count": 1,
+      "total": 15,
+      "error": ""
+    },
+    {
+      "id": "hf-t2v",
+      "name": "HF 热榜 · 文生视频",
+      "ok": true,
+      "count": 0,
+      "total": 16,
+      "error": ""
+    },
+    {
+      "id": "hf-i2v",
+      "name": "HF 热榜 · 图生视频",
+      "ok": true,
+      "count": 1,
+      "total": 18,
+      "error": ""
+    },
+    {
+      "id": "gnews-video-en",
+      "name": "新闻 · 视频生成（英文）",
+      "ok": true,
+      "count": 6,
+      "total": 22,
+      "error": ""
+    },
+    {
+      "id": "gnews-video-cn",
+      "name": "新闻 · 视频生成（中文）",
+      "ok": true,
+      "count": 7,
+      "total": 11,
+      "error": ""
+    },
+    {
+      "id": "gnews-world-en",
+      "name": "新闻 · 世界模型（英文）",
+      "ok": true,
+      "count": 5,
+      "total": 54,
+      "error": ""
+    },
+    {
+      "id": "gnews-world-cn",
+      "name": "新闻 · 世界模型（中文）",
+      "ok": true,
+      "count": 19,
+      "total": 75,
+      "error": ""
+    },
+    {
+      "id": "gh-new-video-world",
+      "name": "GitHub 新仓库 · 视频 / 世界模型",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "arxiv-cscv",
+      "name": "arXiv cs.CV（专题）",
+      "ok": true,
+      "count": 44,
+      "total": 459,
+      "error": ""
+    },
+    {
+      "id": "arxiv-csro",
+      "name": "arXiv cs.RO（专题）",
+      "ok": true,
+      "count": 7,
+      "total": 158,
+      "error": ""
+    }
+  ],
+  "counts": {
+    "high": 10,
+    "medium": 20,
+    "low": 0
+  },
+  "items": [
+    {
+      "id": "fc3c75a380724e8a",
+      "title": "Seedance 2.5 级别，价格只要 1/10，我们实测了计划开源的 MAGI-2 - 爱范儿",
+      "link": "https://www.ifanr.com/1691445",
+      "source": "新闻 · 视频生成（中文）",
+      "source_id": "gnews-video-cn",
+      "published": "2026-11-25T05:21:04+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "Seedance 2.5 级别，价格只要 1/10，我们实测了计划开源的 MAGI-2 爱范儿",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "1edc8729000e23c7",
+      "title": "AdProducer: Towards Agentic Advertising Video Generation",
+      "link": "https://arxiv.org/abs/2611.31466",
+      "source": "arXiv cs.CV（专题）",
+      "source_id": "arxiv-cscv",
+      "published": "2026-11-25T05:00:00+00:00",
+      "category": "research",
+      "priority": "high",
+      "summary": "arXiv:2611.31466v1 Announce Type: new Abstract: Recent advances in video generation have made automated advertising production increasingly feasible…",
+      "why": "",
+      "tags": [
+        "video generation",
+        "agent",
+        "agentic"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "1f0aa7aaca2c5286",
+      "title": "Anchoring VAE Fine-Tuning to Its Latent Diffusion Prior",
+      "link": "https://arxiv.org/abs/2611.31651",
+      "source": "arXiv cs.CV（专题）",
+      "source_id": "arxiv-cscv",
+      "published": "2026-11-25T05:00:00+00:00",
+      "category": "research",
+      "priority": "high",
+      "summary": "arXiv:2611.31651v1 Announce Type: new Abstract: Pretrained latent diffusion models are effective priors for transfer learning, from geometry estimation to…",
+      "why": "",
+      "tags": [
+        "diffusion",
+        "vae",
+        "latent"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "0440496792ba93e7",
+      "title": "GeoMVGen: Joint Appearance-Geometry Modeling for Multi-View Video Generation in Robotic Manipulation",
+      "link": "https://arxiv.org/abs/2611.31689",
+      "source": "arXiv cs.CV（专题）",
+      "source_id": "arxiv-cscv",
+      "published": "2026-11-25T05:00:00+00:00",
+      "category": "research",
+      "priority": "high",
+      "summary": "arXiv:2611.31689v1 Announce Type: new Abstract: Robotic manipulation requires predicting how robot-object interactions evolve over time, encompassing both…",
+      "why": "",
+      "tags": [
+        "video generation",
+        "3D"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "e1edc35673843d3a",
+      "title": "SceneMemBench: A Benchmark for Scene Memory in Interactive Video World Models",
+      "link": "https://arxiv.org/abs/2611.31803",
+      "source": "arXiv cs.CV（专题）",
+      "source_id": "arxiv-cscv",
+      "published": "2026-11-25T05:00:00+00:00",
+      "category": "research",
+      "priority": "high",
+      "summary": "arXiv:2611.31803v1 Announce Type: new Abstract: Interactive video world models generate navigable worlds frame by frame, but a persistent world requires…",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "65d3675b8d1be2b0",
+      "title": "Loupe: Reinforcing Knowledge-Intensive Video Generation Agents",
+      "link": "https://arxiv.org/abs/2611.31895",
+      "source": "arXiv cs.CV（专题）",
+      "source_id": "arxiv-cscv",
+      "published": "2026-11-25T05:00:00+00:00",
+      "category": "research",
+      "priority": "high",
+      "summary": "arXiv:2611.31895v1 Announce Type: new Abstract: Knowledge-intensive video generation remains challenging because prompts often omit the facts, appearances, and…",
+      "why": "",
+      "tags": [
+        "video generation",
+        "agent"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "a2ea639fbd381b48",
+      "title": "DraftKV: Protecting Persistent Worlds through Hierarchical Streaming Retrieval",
+      "link": "https://arxiv.org/abs/2611.31944",
+      "source": "arXiv cs.CV（专题）",
+      "source_id": "arxiv-cscv",
+      "published": "2026-11-25T05:00:00+00:00",
+      "category": "research",
+      "priority": "high",
+      "summary": "arXiv:2611.31944v1 Announce Type: new Abstract: Interactive video world models enable action- and camera-controlled exploration, yet struggle to maintain…",
+      "why": "",
+      "tags": [
+        "diffusion",
+        "attention",
+        "latency"
+      ],
+      "tracks": [
+        "video",
+        "world"
+      ]
+    },
+    {
+      "id": "ed9879eb9cfe9110",
+      "title": "SPAR: Self-Referenced World-Model Rewards for Physical Alignment in Video Generation",
+      "link": "https://arxiv.org/abs/2611.31958",
+      "source": "arXiv cs.CV（专题）",
+      "source_id": "arxiv-cscv",
+      "published": "2026-11-25T05:00:00+00:00",
+      "category": "research",
+      "priority": "high",
+      "summary": "arXiv:2611.31958v1 Announce Type: new Abstract: Generating videos with physically plausible dynamics remains challenging despite advances in visual quality…",
+      "why": "",
+      "tags": [
+        "video generation",
+        "latent",
+        "inference"
+      ],
+      "tracks": [
+        "video",
+        "world"
+      ]
+    },
+    {
+      "id": "15737b9eaa6fd8d9",
+      "title": "Do Occupancy World Models Really Follow Actions?",
+      "link": "https://arxiv.org/abs/2611.32029",
+      "source": "arXiv cs.CV（专题）",
+      "source_id": "arxiv-cscv",
+      "published": "2026-11-25T05:00:00+00:00",
+      "category": "research",
+      "priority": "high",
+      "summary": "arXiv:2611.32029v1 Announce Type: new Abstract: Occupancy world models predict future 3D scenes conditioned on ego actions, yet their predictions may not…",
+      "why": "",
+      "tags": [
+        "transformer",
+        "3D"
+      ],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "676546bc046d4fae",
+      "title": "DeCo-Attention: Decompose to Compensate for Low-Precision Attention",
+      "link": "https://arxiv.org/abs/2611.32035",
+      "source": "arXiv cs.CV（专题）",
+      "source_id": "arxiv-cscv",
+      "published": "2026-11-25T05:00:00+00:00",
+      "category": "research",
+      "priority": "high",
+      "summary": "arXiv:2611.32035v1 Announce Type: new Abstract: Self-attention over tens of thousands of tokens dominates the generation time of video diffusion transformers,…",
+      "why": "",
+      "tags": [
+        "diffusion",
+        "gpu",
+        "fp4",
+        "attention"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "72a806bf43f1453c",
+      "title": "用 Super-agent 的理念，拆解 Octop 团队模式",
+      "link": "https://www.infoq.cn/article/xJVcbBYI4m86a9TIA6HH",
+      "source": "InfoQ 中文",
+      "source_id": "infoq-cn",
+      "published": "2026-11-25T10:28:44+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "点击查看原文>",
+      "why": "",
+      "tags": [
+        "agent"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "54f66fbebc839263",
+      "title": "Clipto首席科学家韩玫已确认出席 AICon北京，分享Agent 的长上下文从哪里来",
+      "link": "https://www.infoq.cn/article/XpM5q7sE88iSlxNsRrVu",
+      "source": "InfoQ 中文",
+      "source_id": "infoq-cn",
+      "published": "2026-11-25T10:00:00+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "点击查看原文>",
+      "why": "",
+      "tags": [
+        "agent"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "89068ffb7073c6ae",
+      "title": "Tornado4D: Physics-Guided 4D Gaussian Reconstruction of a Laboratory Tornado from Sparse One-Sided Videos",
+      "link": "https://arxiv.org/abs/2611.31435",
+      "source": "arXiv cs.CV（专题）",
+      "source_id": "arxiv-cscv",
+      "published": "2026-11-25T05:00:00+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "arXiv:2611.31435v1 Announce Type: new Abstract: Characterizing how tornadoes evolve over space and time is critically important for understanding and preparing…",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "40f60e1520bd3b13",
+      "title": "Dreamcatcher: Remembering What Surprises a World Model in Video Streams",
+      "link": "https://arxiv.org/abs/2611.31765",
+      "source": "arXiv cs.CV（专题）",
+      "source_id": "arxiv-cscv",
+      "published": "2026-11-25T05:00:00+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "arXiv:2611.31765v1 Announce Type: new Abstract: As live video streams grow longer, repeatedly encoding and processing their full histories becomes increasingly…",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "4bad0adb6ad68429",
+      "title": "Gaze World Model",
+      "link": "https://arxiv.org/abs/2611.31836",
+      "source": "arXiv cs.CV（专题）",
+      "source_id": "arxiv-cscv",
+      "published": "2026-11-25T05:00:00+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "arXiv:2611.31836v1 Announce Type: new Abstract: Where a person looks indicates their focus of attention, and how their gaze shifts between targets reveals how…",
+      "why": "",
+      "tags": [
+        "attention"
+      ],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "4b3022abdff4ea10",
+      "title": "ST-SfM: Spatio-Temporal Structure-from-Motion for Initialising 4D Gaussian Splatting",
+      "link": "https://arxiv.org/abs/2611.32231",
+      "source": "arXiv cs.CV（专题）",
+      "source_id": "arxiv-cscv",
+      "published": "2026-11-25T05:00:00+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "arXiv:2611.32231v1 Announce Type: new Abstract: Dynamic Gaussian splatting is usually initialised either with random points or with a structure-from-motion…",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "4d12bf4964a47f10",
+      "title": "Get the Next Moment Right: Short-Term Event Planning for Physically Plausible Video Generation",
+      "link": "https://arxiv.org/abs/2611.32337",
+      "source": "arXiv cs.CV（专题）",
+      "source_id": "arxiv-cscv",
+      "published": "2026-11-25T05:00:00+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "arXiv:2611.32337v1 Announce Type: new Abstract: Video generation models synthesize realistic imagery yet still struggle to produce physically plausible…",
+      "why": "",
+      "tags": [
+        "video generation"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "653e114329bec0cf",
+      "title": "MemAnchorWorld: A Sparse World Model with Horizon-Conditioned Memory Retrieval for Autonomous Driving",
+      "link": "https://arxiv.org/abs/2611.32745",
+      "source": "arXiv cs.CV（专题）",
+      "source_id": "arxiv-cscv",
+      "published": "2026-11-25T05:00:00+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "arXiv:2611.32745v1 Announce Type: new Abstract: Sparse world models for 4D semantic occupancy forecasting represent scenes with a small set of evolving queries…",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "7b782d7f4cf2db59",
+      "title": "EEG-World: Context-Conditioned Dynamics of the Watching Brain",
+      "link": "https://arxiv.org/abs/2611.32825",
+      "source": "arXiv cs.CV（专题）",
+      "source_id": "arxiv-cscv",
+      "published": "2026-11-25T05:00:00+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "arXiv:2611.32825v1 Announce Type: new Abstract: Brain encoding models predict neural responses from audiovisual input, but typically overlook how ongoing brain…",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "937a69c546a68d98",
+      "title": "Motion Conditioned World Modeling for Embodied Visual Tracking",
+      "link": "https://arxiv.org/abs/2611.32900",
+      "source": "arXiv cs.CV（专题）",
+      "source_id": "arxiv-cscv",
+      "published": "2026-11-25T05:00:00+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "arXiv:2611.32900v1 Announce Type: new Abstract: World models support embodied decision-making by predicting future environment states…",
+      "why": "",
+      "tags": [
+        "latent"
+      ],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "5f8c1ef41fea1bce",
+      "title": "Teaching Time Without Losing General Retrieval: Adapting Multimodal Embeddings for Time-Sensitive Video Retrieval",
+      "link": "https://arxiv.org/abs/2611.32971",
+      "source": "arXiv cs.CV（专题）",
+      "source_id": "arxiv-cscv",
+      "published": "2026-11-25T05:00:00+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "arXiv:2611.32971v1 Announce Type: new Abstract: In text-to-video retrieval, MLLM-based embedding models do well when the text describes the scene (general…",
+      "why": "",
+      "tags": [
+        "llm"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "d65865dbb6ebd66a",
+      "title": "RFW-W: Scaling Physical Asset Universes for Generative Embodied Simulation",
+      "link": "https://arxiv.org/abs/2611.33013",
+      "source": "arXiv cs.CV（专题）",
+      "source_id": "arxiv-cscv",
+      "published": "2026-11-25T05:00:00+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "arXiv:2611.33013v1 Announce Type: new Abstract: Scaling embodied simulation requires diverse objects with executable physical representations…",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "c5a180369a8a24cd",
+      "title": "Simulator-as-Proxy World Model for Robot Manipulation",
+      "link": "https://arxiv.org/abs/2611.32786",
+      "source": "arXiv cs.CV（专题）",
+      "source_id": "arxiv-cscv",
+      "published": "2026-11-25T05:00:00+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "arXiv:2611.32786v1 Announce Type: cross Abstract: Video world models for robots are increasingly conditioned on a simulated or rendered proxy of the scene, on…",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": [
+        "video",
+        "world"
+      ]
+    },
+    {
+      "id": "60513cd9f6058abf",
+      "title": "Residual Guidance for Real-Time Interactive Video Generation",
+      "link": "https://arxiv.org/abs/2611.32820",
+      "source": "arXiv cs.CV（专题）",
+      "source_id": "arxiv-cscv",
+      "published": "2026-11-25T05:00:00+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "arXiv:2611.32820v1 Announce Type: cross Abstract: Real-time interactive video generation allows users to change the prompt during generation to steer the…",
+      "why": "",
+      "tags": [
+        "video generation"
+      ],
+      "tracks": [
+        "video",
+        "world"
+      ]
+    },
+    {
+      "id": "934e52c6a4146702",
+      "title": "iWAM: Efficient Action Prediction from World Models without Explicit Future Prediction",
+      "link": "https://arxiv.org/abs/2611.33141",
+      "source": "arXiv cs.CV（专题）",
+      "source_id": "arxiv-cscv",
+      "published": "2026-11-25T05:00:00+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "arXiv:2611.33141v1 Announce Type: cross Abstract: World-action models (WAMs) build policies on pretrained video-generation models, on the premise that…",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "88b174ad9b2ce209",
+      "title": "Online Monitoring Framework for Automotive Time Series Data using JEPA Embeddings",
+      "link": "https://arxiv.org/abs/2602.09985",
+      "source": "arXiv cs.CV（专题）",
+      "source_id": "arxiv-cscv",
+      "published": "2026-11-25T05:00:00+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "arXiv:2602.09985v2 Announce Type: replace-cross Abstract: As autonomous vehicles are rolled out, measures must be taken to ensure their safe operation…",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "c1efc35fc3ba4d96",
+      "title": "Co-DRIS: Physics-Informed Predictive Belief and Variable-Impedance Learning for Reactive Catching under Coupled Uncertainty",
+      "link": "https://arxiv.org/abs/2611.31843",
+      "source": "arXiv cs.RO（专题）",
+      "source_id": "arxiv-csro",
+      "published": "2026-11-25T05:00:00+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "arXiv:2611.31843v1 Announce Type: new Abstract: Reactive robotic manipulation is acutely sensitive to simultaneous sensing noise, measurement dropouts, joint…",
+      "why": "",
+      "tags": [
+        "cute"
+      ],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "18394dd955f156c1",
+      "title": "CodeWAM: A Code World Action Model for End-to-End Autonomous Driving",
+      "link": "https://arxiv.org/abs/2611.32483",
+      "source": "arXiv cs.RO（专题）",
+      "source_id": "arxiv-csro",
+      "published": "2026-11-25T05:00:00+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "arXiv:2611.32483v1 Announce Type: new Abstract: Driving world models anticipate action consequences through representations of how the world evolves…",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "8169ffe3f4517cdb",
+      "title": "DexWAC: A Unified World-Actor-Critic Model for Dexterous Robot Manipulation",
+      "link": "https://arxiv.org/abs/2611.32654",
+      "source": "arXiv cs.RO（专题）",
+      "source_id": "arxiv-csro",
+      "published": "2026-11-25T05:00:00+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "arXiv:2611.32654v1 Announce Type: new Abstract: Robot demonstrations provide more than actions to imitate: they reveal how actions change the world and how…",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "b6ae666f0a10fe87",
+      "title": "DiffGR00T: Execution-Aware Differentiable Training for Humanoid Whole-Body Vision-Language-Action Models",
+      "link": "https://arxiv.org/abs/2611.32665",
+      "source": "arXiv cs.RO（专题）",
+      "source_id": "arxiv-csro",
+      "published": "2026-11-25T05:00:00+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "arXiv:2611.32665v1 Announce Type: new Abstract: Vision-language-action (VLA) models have achieved strong results in arm-centric manipulation, yet humanoid…",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    }
+  ]
+}
