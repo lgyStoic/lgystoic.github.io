@@ -2,8 +2,243 @@
  "id": "world",
  "name": "世界模型",
  "blurb": "可交互的生成式世界模拟：Genie、Cosmos、V-JEPA、Dreamer、GameNGen、Oasis、Matrix-Game、HunyuanWorld 等，以及动作条件视频生成、4D 生成与具身仿真。",
- "updated": "2026-11-25T05:27:59+00:00",
+ "updated": "2026-11-26T05:06:50+00:00",
  "entries": [
+  {
+   "id": "27479bed89941940",
+   "date": "2026-11-26",
+   "title": "SplatWAM: Splatting World Action Models for Real-Time 3D Imagination",
+   "link": "https://arxiv.org/abs/2611.33467",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "high",
+   "summary": "arXiv:2611.33467v1 Announce Type: new Abstract: World models typically predict future observations in pixel or latent space, limiting their ability to directly…",
+   "why": "",
+   "tags": [
+    "latent",
+    "3D"
+   ],
+   "entity": "SplatWAM",
+   "kind": "news"
+  },
+  {
+   "id": "8e442a2bd98b5dc2",
+   "date": "2026-11-26",
+   "title": "VivaWorld: Long-Horizon Video World Model With Compositional 3D Priors",
+   "link": "https://arxiv.org/abs/2611.33591",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "high",
+   "summary": "arXiv:2611.33591v1 Announce Type: new Abstract: Long-horizon video generation is key to interactive world modeling, physical intelligence, and spatial…",
+   "why": "",
+   "tags": [
+    "video generation",
+    "reasoning",
+    "3D"
+   ],
+   "entity": "VivaWorld",
+   "kind": "news"
+  },
+  {
+   "id": "90d3b832c54faf13",
+   "date": "2026-11-26",
+   "title": "GeoTex: Geometry-as-Texture Encoding and History-Grounded 4D Occupancy Forecasting",
+   "link": "https://arxiv.org/abs/2611.33693",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "high",
+   "summary": "arXiv:2611.33693v1 Announce Type: new Abstract: 4D occupancy forecasting models 3D scene evolution to support future prediction and scenario generation in…",
+   "why": "",
+   "tags": [
+    "latent",
+    "3D"
+   ],
+   "entity": "GeoTex",
+   "kind": "news"
+  },
+  {
+   "id": "f77fb1d47e36b8e9",
+   "date": "2026-11-26",
+   "title": "DualCast: Dual-Image Conditioned Diffusion Transformers for Digital Human E-Commerce Video Generation",
+   "link": "https://arxiv.org/abs/2611.33734",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "high",
+   "summary": "arXiv:2611.33734v1 Announce Type: new Abstract: Recent advances in world models for game interaction and control have increased the demand for large-scale…",
+   "why": "",
+   "tags": [
+    "diffusion",
+    "video generation",
+    "transformer"
+   ],
+   "entity": "DualCast",
+   "kind": "news"
+  },
+  {
+   "id": "487c35911fde445f",
+   "date": "2026-11-26",
+   "title": "A Simple Yet Effective Agent for Open-World Aerial Object Search",
+   "link": "https://arxiv.org/abs/2611.34115",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "high",
+   "summary": "arXiv:2611.34115v1 Announce Type: new Abstract: Open-world aerial object search methods often rely on persistent spatial maps, learned world models, or…",
+   "why": "",
+   "tags": [
+    "language model",
+    "agent"
+   ],
+   "entity": "Simple Yet Effective",
+   "kind": "news"
+  },
+  {
+   "id": "383eee6616cfa0f8",
+   "date": "2026-11-26",
+   "title": "DreamTour: Layout Steering for Training-Free World Exploration",
+   "link": "https://arxiv.org/abs/2611.33378",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "medium",
+   "summary": "arXiv:2611.33378v1 Announce Type: new Abstract: Video diffusion and world models generate plausible videos but do not reliably match the requested camera…",
+   "why": "",
+   "tags": [
+    "diffusion"
+   ],
+   "entity": "DreamTour",
+   "kind": "news"
+  },
+  {
+   "id": "4d8ef9f8fcb9de64",
+   "date": "2026-11-26",
+   "title": "WorldUAV: Scaling UAV Data Synthesis via World Models",
+   "link": "https://arxiv.org/abs/2611.33682",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "medium",
+   "summary": "arXiv:2611.33682v1 Announce Type: new Abstract: UAV detection and tracking remain constrained by the scarcity of high-quality training data…",
+   "why": "",
+   "tags": [],
+   "entity": "WorldUAV",
+   "kind": "news"
+  },
+  {
+   "id": "b85c4fc7707bfc48",
+   "date": "2026-11-26",
+   "title": "DuoWM:Integrating Dual 6-DoF Visual Flows into Action-Conditioned Drone World Model",
+   "link": "https://arxiv.org/abs/2611.33779",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "medium",
+   "summary": "arXiv:2611.33779v1 Announce Type: new Abstract: Action-conditioned video world models generate future observations from an initial frame and a camera…",
+   "why": "",
+   "tags": [],
+   "entity": "DuoWM",
+   "kind": "news"
+  },
+  {
+   "id": "517492340e80ff0a",
+   "date": "2026-11-26",
+   "title": "AnyCam4D: Ray-Based 4D Gaussian Rendering for Arbitrary Camera Models",
+   "link": "https://arxiv.org/abs/2611.34223",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "medium",
+   "summary": "arXiv:2611.34223v1 Announce Type: new Abstract: Real cameras are not pinholes, yet most dynamic Gaussian splatting assumes they are…",
+   "why": "",
+   "tags": [],
+   "entity": "AnyCam4D",
+   "kind": "news"
+  },
+  {
+   "id": "845485e508db5bba",
+   "date": "2026-11-26",
+   "title": "Can Visual World Models See Force?",
+   "link": "https://arxiv.org/abs/2611.34422",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "medium",
+   "summary": "arXiv:2611.34422v1 Announce Type: new Abstract: World models and vision-language-action policy models are increasingly proposed as foundations for robot…",
+   "why": "",
+   "tags": [],
+   "entity": "Can Visual World",
+   "kind": "news"
+  },
+  {
+   "id": "741fe5fe41ebe463",
+   "date": "2026-11-26",
+   "title": "Most of the Way There: Turning a Strong Video Prior into an Action-Conditioned World Model",
+   "link": "https://arxiv.org/abs/2611.34435",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "medium",
+   "summary": "arXiv:2611.34435v1 Announce Type: new Abstract: Modern video generators excel at producing visually plausible futures guided by text and image prompts…",
+   "why": "",
+   "tags": [],
+   "entity": "Most of the",
+   "kind": "news"
+  },
+  {
+   "id": "cb68c14d08e0484a",
+   "date": "2026-11-26",
+   "title": "WorldInteract: Controllable Streaming Video Generation for Multi-Material Interactions",
+   "link": "https://arxiv.org/abs/2611.34730",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "medium",
+   "summary": "arXiv:2611.34730v1 Announce Type: new Abstract: Video world models aim to create interactive physical worlds that capture how diverse materials move and…",
+   "why": "",
+   "tags": [
+    "video generation"
+   ],
+   "entity": "WorldInteract",
+   "kind": "news"
+  },
+  {
+   "id": "b006d84a1a9f3ff9",
+   "date": "2026-11-26",
+   "title": "Was the Model Given the Right Action? Auditing and Repairing Action Interfaces in Navigation World Models",
+   "link": "https://arxiv.org/abs/2611.34739",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "medium",
+   "summary": "arXiv:2611.34739v1 Announce Type: new Abstract: World models are evaluated by predicting future observations from actions…",
+   "why": "",
+   "tags": [],
+   "entity": "Was the Model",
+   "kind": "news"
+  },
+  {
+   "id": "ece4d98c361dbe06",
+   "date": "2026-11-26",
+   "title": "Rehearse in 3D, Render in 2D: Physically Consistent and Editable Robot World Models",
+   "link": "https://arxiv.org/abs/2611.34288",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "medium",
+   "summary": "arXiv:2611.34288v1 Announce Type: cross Abstract: Embodied world models aim to predict future interactions that are both visually realistic and physically…",
+   "why": "",
+   "tags": [
+    "3D"
+   ],
+   "entity": "Rehearse in 3D",
+   "kind": "news"
+  },
+  {
+   "id": "3dcc35405bf347d0",
+   "date": "2026-11-26",
+   "title": "Long-Horizon Planning with Latent World Models via Graph Anchors",
+   "link": "https://arxiv.org/abs/2611.34509",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "medium",
+   "summary": "arXiv:2611.34509v1 Announce Type: cross Abstract: Latent world models plan in a compact latent space by predicting the outcomes of actions…",
+   "why": "",
+   "tags": [
+    "latent"
+   ],
+   "entity": "Long-Horizon Planning",
+   "kind": "news"
+  },
+  {
+   "id": "dd43a15f56817bb1",
+   "date": "2026-11-26",
+   "title": "$\\mu$MPC: Microsecond-Scale Nonlinear and World Model Control from Edge to GPU via Koopman-Linearized Precompilation",
+   "link": "https://arxiv.org/abs/2611.34597",
+   "source": "arXiv cs.CV（专题）",
+   "priority": "medium",
+   "summary": "arXiv:2611.34597v1 Announce Type: cross Abstract: We present $\\mu$MPC, a fast model predictive control (MPC) framework that reduces online computation using…",
+   "why": "",
+   "tags": [
+    "gpu"
+   ],
+   "entity": "MPC",
+   "kind": "news"
+  },
   {
    "id": "e1edc35673843d3a",
    "date": "2026-11-25",
@@ -8268,6 +8503,54 @@
   "魔芯科技": [
    "fe9d33edf0701555",
    "92ea4301b3012f12"
+  ],
+  "SplatWAM": [
+   "27479bed89941940"
+  ],
+  "VivaWorld": [
+   "8e442a2bd98b5dc2"
+  ],
+  "GeoTex": [
+   "90d3b832c54faf13"
+  ],
+  "DualCast": [
+   "f77fb1d47e36b8e9"
+  ],
+  "Simple Yet Effective": [
+   "487c35911fde445f"
+  ],
+  "DreamTour": [
+   "383eee6616cfa0f8"
+  ],
+  "WorldUAV": [
+   "4d8ef9f8fcb9de64"
+  ],
+  "DuoWM": [
+   "b85c4fc7707bfc48"
+  ],
+  "AnyCam4D": [
+   "517492340e80ff0a"
+  ],
+  "Can Visual World": [
+   "845485e508db5bba"
+  ],
+  "Most of the": [
+   "741fe5fe41ebe463"
+  ],
+  "WorldInteract": [
+   "cb68c14d08e0484a"
+  ],
+  "Was the Model": [
+   "b006d84a1a9f3ff9"
+  ],
+  "Rehearse in 3D": [
+   "ece4d98c361dbe06"
+  ],
+  "Long-Horizon Planning": [
+   "3dcc35405bf347d0"
+  ],
+  "MPC": [
+   "dd43a15f56817bb1"
   ],
   "SceneMemBench": [
    "e1edc35673843d3a"
