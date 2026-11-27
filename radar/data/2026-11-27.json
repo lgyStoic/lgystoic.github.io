@@ -1,0 +1,941 @@
+{
+  "date": "2026-11-27",
+  "generated_at": "2026-11-27T05:03:48+00:00",
+  "ai": false,
+  "model": "",
+  "sources": [
+    {
+      "id": "openai",
+      "name": "OpenAI",
+      "ok": true,
+      "count": 0,
+      "total": 1430,
+      "error": ""
+    },
+    {
+      "id": "google-ai",
+      "name": "Google AI Blog",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "qwen",
+      "name": "Qwen",
+      "ok": true,
+      "count": 0,
+      "total": 44,
+      "error": ""
+    },
+    {
+      "id": "hf-blog",
+      "name": "Hugging Face Blog",
+      "ok": true,
+      "count": 2,
+      "total": 918,
+      "error": ""
+    },
+    {
+      "id": "nvidia-dev",
+      "name": "NVIDIA Technical Blog",
+      "ok": true,
+      "count": 0,
+      "total": 100,
+      "error": ""
+    },
+    {
+      "id": "hf-papers",
+      "name": "HF Papers 日榜",
+      "ok": true,
+      "count": 20,
+      "total": 22,
+      "error": ""
+    },
+    {
+      "id": "pytorch",
+      "name": "PyTorch Blog",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "simonw",
+      "name": "Simon Willison",
+      "ok": true,
+      "count": 0,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "lilianweng",
+      "name": "Lil'Log",
+      "ok": true,
+      "count": 0,
+      "total": 53,
+      "error": ""
+    },
+    {
+      "id": "interconnects",
+      "name": "Interconnects",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "raschka",
+      "name": "Sebastian Raschka",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "chiphuyen",
+      "name": "Chip Huyen",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-pytorch",
+      "name": "Release · PyTorch",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-triton",
+      "name": "Release · Triton",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-cutlass",
+      "name": "Release · CUTLASS",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-flash-attention",
+      "name": "Release · FlashAttention",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-vllm",
+      "name": "Release · vLLM",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-sglang",
+      "name": "Release · SGLang",
+      "ok": false,
+      "count": 0,
+      "total": 0,
+      "error": "HTTP Error 504: Gateway Time-out"
+    },
+    {
+      "id": "rel-tensorrt-llm",
+      "name": "Release · TensorRT-LLM",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-diffusers",
+      "name": "Release · Diffusers",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "rel-cuda-python",
+      "name": "Release · cuda-python",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "gnews-labs-en",
+      "name": "新闻 · Anthropic / Mistral / xAI",
+      "ok": true,
+      "count": 15,
+      "total": 100,
+      "error": ""
+    },
+    {
+      "id": "gnews-labs-cn",
+      "name": "新闻 · 国内模型公司",
+      "ok": true,
+      "count": 12,
+      "total": 45,
+      "error": ""
+    },
+    {
+      "id": "qbitai",
+      "name": "量子位",
+      "ok": true,
+      "count": 4,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "infoq-cn",
+      "name": "InfoQ 中文",
+      "ok": true,
+      "count": 1,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "thonking",
+      "name": "Horace He (thonking)",
+      "ok": true,
+      "count": 0,
+      "total": 6,
+      "error": ""
+    },
+    {
+      "id": "hn-algolia",
+      "name": "Hacker News（100+ 分）",
+      "ok": true,
+      "count": 2,
+      "total": 60,
+      "error": ""
+    },
+    {
+      "id": "karpathy-blog",
+      "name": "Andrej Karpathy 博客",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "eugeneyan",
+      "name": "Eugene Yan",
+      "ok": true,
+      "count": 0,
+      "total": 215,
+      "error": ""
+    },
+    {
+      "id": "importai",
+      "name": "Import AI（Jack Clark）",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "latentspace",
+      "name": "Latent Space",
+      "ok": true,
+      "count": 1,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "semianalysis",
+      "name": "SemiAnalysis",
+      "ok": true,
+      "count": 0,
+      "total": 10,
+      "error": ""
+    },
+    {
+      "id": "meta-ai",
+      "name": "Meta Engineering",
+      "ok": true,
+      "count": 0,
+      "total": 9,
+      "error": ""
+    },
+    {
+      "id": "mistral-news",
+      "name": "Mistral AI",
+      "ok": true,
+      "count": 0,
+      "total": 94,
+      "error": ""
+    },
+    {
+      "id": "bsky-karpathy",
+      "name": "Bluesky · Andrej Karpathy",
+      "ok": true,
+      "count": 0,
+      "total": 15,
+      "error": ""
+    },
+    {
+      "id": "bsky-giffmana",
+      "name": "Bluesky · Lucas Beyer",
+      "ok": true,
+      "count": 0,
+      "total": 22,
+      "error": ""
+    },
+    {
+      "id": "bsky-hardmaru",
+      "name": "Bluesky · hardmaru",
+      "ok": true,
+      "count": 0,
+      "total": 15,
+      "error": ""
+    },
+    {
+      "id": "bsky-swyx",
+      "name": "Bluesky · swyx",
+      "ok": true,
+      "count": 0,
+      "total": 3,
+      "error": ""
+    },
+    {
+      "id": "bsky-pytorch",
+      "name": "Bluesky · PyTorch",
+      "ok": true,
+      "count": 0,
+      "total": 28,
+      "error": ""
+    },
+    {
+      "id": "bsky-clem",
+      "name": "Bluesky · Clem Delangue",
+      "ok": true,
+      "count": 0,
+      "total": 11,
+      "error": ""
+    },
+    {
+      "id": "bsky-natolambert",
+      "name": "Bluesky · Nathan Lambert",
+      "ok": true,
+      "count": 0,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "bsky-rasbt",
+      "name": "Bluesky · Sebastian Raschka",
+      "ok": true,
+      "count": 0,
+      "total": 27,
+      "error": ""
+    },
+    {
+      "id": "bsky-jeffdean",
+      "name": "Bluesky · Jeff Dean",
+      "ok": true,
+      "count": 0,
+      "total": 18,
+      "error": ""
+    },
+    {
+      "id": "hf-trending-new",
+      "name": "HF 热榜新模型",
+      "ok": true,
+      "count": 2,
+      "total": 30,
+      "error": ""
+    },
+    {
+      "id": "gh-new-stars",
+      "name": "GitHub 新星仓库",
+      "ok": true,
+      "count": 1,
+      "total": 15,
+      "error": ""
+    },
+    {
+      "id": "hf-t2v",
+      "name": "HF 热榜 · 文生视频",
+      "ok": true,
+      "count": 1,
+      "total": 18,
+      "error": ""
+    },
+    {
+      "id": "hf-i2v",
+      "name": "HF 热榜 · 图生视频",
+      "ok": true,
+      "count": 0,
+      "total": 19,
+      "error": ""
+    },
+    {
+      "id": "gnews-video-en",
+      "name": "新闻 · 视频生成（英文）",
+      "ok": true,
+      "count": 5,
+      "total": 37,
+      "error": ""
+    },
+    {
+      "id": "gnews-video-cn",
+      "name": "新闻 · 视频生成（中文）",
+      "ok": true,
+      "count": 6,
+      "total": 23,
+      "error": ""
+    },
+    {
+      "id": "gnews-world-en",
+      "name": "新闻 · 世界模型（英文）",
+      "ok": true,
+      "count": 1,
+      "total": 54,
+      "error": ""
+    },
+    {
+      "id": "gnews-world-cn",
+      "name": "新闻 · 世界模型（中文）",
+      "ok": true,
+      "count": 28,
+      "total": 100,
+      "error": ""
+    },
+    {
+      "id": "gh-new-video-world",
+      "name": "GitHub 新仓库 · 视频 / 世界模型",
+      "ok": true,
+      "count": 0,
+      "total": 20,
+      "error": ""
+    },
+    {
+      "id": "arxiv-cscv",
+      "name": "arXiv cs.CV（专题）",
+      "ok": true,
+      "count": 0,
+      "total": 0,
+      "error": ""
+    },
+    {
+      "id": "arxiv-csro",
+      "name": "arXiv cs.RO（专题）",
+      "ok": true,
+      "count": 0,
+      "total": 0,
+      "error": ""
+    }
+  ],
+  "counts": {
+    "high": 10,
+    "medium": 20,
+    "low": 0
+  },
+  "items": [
+    {
+      "id": "6e09c36db44d5d81",
+      "title": "腾讯混元推出3D大模型Hy3D 3.6，面数升至200万、贴图分辨率升级至8K - 金融界",
+      "link": "https://finance.jrj.com.cn/2026/11/27114659293607.shtml",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-11-27T03:46:54+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "腾讯混元推出3D大模型Hy3D 3.6，面数升至200万、贴图分辨率升级至8K 金融界",
+      "why": "",
+      "tags": [
+        "大模型",
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "d7cdc5508c8081b0",
+      "title": "腾讯混元发布 Hy3D 3.6：高模表面更整洁、结构更清晰、刻画更细腻",
+      "link": "https://www.qbitai.com/2026/11/513155.html",
+      "source": "量子位",
+      "source_id": "qbitai",
+      "published": "2026-11-27T03:45:19+00:00",
+      "category": "industry",
+      "priority": "high",
+      "summary": "3D生成的竞争重点正在从“能看”转向“能用”",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "ca0007a5fbc4b559",
+      "title": "小米澎程N70亮相广州车展：智能可变大五座SUV发布，HAD辅助驾驶升级因果链与车端世界模型 - SmartHey",
+      "link": "https://www.smarthey.com/detail/943105303660.html",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-11-27T02:43:00+00:00",
+      "category": "research",
+      "priority": "high",
+      "summary": "小米澎程N70亮相广州车展：智能可变大五座SUV发布，HAD辅助驾驶升级因果链与车端世界模型 SmartHey",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "5d79d80bedd41286",
+      "title": "小米HAD发布最新版本：引入因果链和车端世界模型，澎程全系即日开启全量推送 - 新浪财经",
+      "link": "https://finance.sina.com.cn/tech/shenji/2026-11-27/doc-inkacqys5658585.shtml",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-11-27T01:24:55+00:00",
+      "category": "research",
+      "priority": "high",
+      "summary": "小米HAD发布最新版本：引入因果链和车端世界模型，澎程全系即日开启全量推送 新浪财经",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "c6d907d14e3c811f",
+      "title": "MAGI-2 Preview: 114B Open Video Model, 8 GPUs, Apache 2.0 - explainx.ai",
+      "link": "https://explainx.ai/blog/sand-ai-magi-2-preview-114b-open-weight-audio-video-moe-apache-2-2026",
+      "source": "新闻 · 视频生成（英文）",
+      "source_id": "gnews-video-en",
+      "published": "2026-11-27T00:00:00+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "MAGI-2 Preview: 114B Open Video Model, 8 GPUs, Apache 2.0 explainx.ai",
+      "why": "",
+      "tags": [
+        "gpu",
+        "3D"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "ac884642e91d2837",
+      "title": "小鹏发布图灵世界模型 WorldGPT，打开物理 AI 的跨本体想象空间 - 具身之家",
+      "link": "https://www.jushenhome.com/news/2604",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-11-26T13:46:44+00:00",
+      "category": "research",
+      "priority": "high",
+      "summary": "小鹏发布图灵世界模型 WorldGPT，打开物理 AI 的跨本体想象空间 具身之家",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "8c88e6a723b30c04",
+      "title": "Unsafe unreleased AI models: reported concerns - NeoTeo",
+      "link": "https://www.neoteo.com/en/why-employees-reportedly-worry-about-unreleased-openai-and-anthropic-models",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-11-26T13:09:50+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "Unsafe unreleased AI models: reported concerns NeoTeo",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "02a088434703556c",
+      "title": "Introducing the llama.cpp benchmark dashboard for AMD Ryzen and Radeon",
+      "link": "https://huggingface.co/blog/ggml-org/llamacpp-amd-bench",
+      "source": "Hugging Face Blog",
+      "source_id": "hf-blog",
+      "published": "2026-11-26T11:37:17+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "",
+      "why": "",
+      "tags": [],
+      "tracks": []
+    },
+    {
+      "id": "ce973f1ded5b8234",
+      "title": "浙江大学求是特聘教授 「大模型不会取代原生3D世界模型，恰恰相反，大模型越强，越需要原生3D世界模型的能力」 在与创业邦的对话中谈具身智能时表示 - Sohu",
+      "link": "https://m.sohu.com/a/1106795347_128075?scm=10001.325_13-325_13.0.0-0-0-0-0.5_1334",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-11-26T10:12:48+00:00",
+      "category": "research",
+      "priority": "high",
+      "summary": "浙江大学求是特聘教授 「大模型不会取代原生3D世界模型，恰恰相反，大模型越强，越需要原生3D世界模型的能力」 在与创业邦的对话中谈具身智能时表示 Sohu",
+      "why": "",
+      "tags": [
+        "大模型",
+        "3D"
+      ],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "da225bea933727e3",
+      "title": "Sand.ai发布视频模型MAGI-2，三家A股公司参与产业布局 - 华尔街见闻",
+      "link": "https://wallstreetcn.com/articles/3786773",
+      "source": "新闻 · 视频生成（中文）",
+      "source_id": "gnews-video-cn",
+      "published": "2026-11-26T09:59:42+00:00",
+      "category": "release",
+      "priority": "high",
+      "summary": "Sand.ai发布视频模型MAGI-2，三家A股公司参与产业布局 华尔街见闻",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "e01a04001d16d572",
+      "title": "20个AI Agents组队，4天狂跑350次实验，超越ClickBench最佳公开成绩",
+      "link": "https://www.qbitai.com/2026/11/513163.html",
+      "source": "量子位",
+      "source_id": "qbitai",
+      "published": "2026-11-27T03:53:49+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "Quickwit查询总耗时降31%，最高降87%",
+      "why": "",
+      "tags": [
+        "agent"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "4e6fb0ec623674ce",
+      "title": "具身公司抱团回应：通用大模型跨维打击？没那么简单",
+      "link": "https://www.qbitai.com/2026/11/513125.html",
+      "source": "量子位",
+      "source_id": "qbitai",
+      "published": "2026-11-27T03:33:11+00:00",
+      "category": "industry",
+      "priority": "medium",
+      "summary": "",
+      "why": "",
+      "tags": [
+        "大模型"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "db18ab00cb946596",
+      "title": "小米 HAD 1.20 版：不再只躲障碍，而是预判未来|小米澎程|小米 HAD|车端世界模型|因果链_新浪新闻 - 新浪网",
+      "link": "https://www.sina.cn/news/detail/5369828053353006.html",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-11-27T03:30:00+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "小米 HAD 1.20 版：不再只躲障碍，而是预判未来|小米澎程|小米 HAD|车端世界模型|因果链_新浪新闻 新浪网",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "5d03a9b65574ac3d",
+      "title": "电子后视镜配上世界模型智驾，这台混动冠道有点东西|Momenta|广汽本田|混动冠道|Momenta R7|广州车展_新浪新闻 - 新浪网",
+      "link": "https://www.sina.cn/news/detail/5369820832859808.html",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-11-27T03:01:00+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "电子后视镜配上世界模型智驾，这台混动冠道有点东西|Momenta|广汽本田|混动冠道|Momenta R7|广州车展_新浪新闻 新浪网",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "7bb49735b0f3dcb5",
+      "title": "港股“大模型双雄”走强，智谱涨超14% - 手机新浪网",
+      "link": "https://k.sina.com.cn/article_7501277582_1bf1c698e01901y3e4.html?from=finance",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-11-27T03:00:30+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "港股“大模型双雄”走强，智谱涨超14% 手机新浪网",
+      "why": "",
+      "tags": [
+        "大模型",
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "a8293a99d26ea974",
+      "title": "何小鹏评特斯拉FSDV15，何小鹏称世界模型实现不难 - 手机新浪网",
+      "link": "https://k.sina.com.cn/article_6042507679_m16829599f03301ju4p.html?from=tech",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-11-27T02:53:03+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "何小鹏评特斯拉FSDV15，何小鹏称世界模型实现不难 手机新浪网",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "bf3e53df9ab6eecc",
+      "title": "时空智子完成数千万元B轮融资，加速全链路闭环世界模型落地 - 投资界",
+      "link": "https://news.pedaily.cn/202611/572480.shtml",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-11-27T02:41:00+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "时空智子完成数千万元B轮融资，加速全链路闭环世界模型落地 投资界",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "ff95d0349ce933e4",
+      "title": "Japan’s JERA enters talks with Anthropic, Meta to build data centres, Nikkei reports - The Straits Times",
+      "link": "https://www.straitstimes.com/asia/east-asia/japans-jera-enters-talks-with-anthropic-meta-to-build-data-centres-nikkei-reports",
+      "source": "新闻 · Anthropic / Mistral / xAI",
+      "source_id": "gnews-labs-en",
+      "published": "2026-11-27T02:37:00+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Japan’s JERA enters talks with Anthropic, Meta to build data centres, Nikkei reports The Straits Times",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "d51aaab1a3e7df3f",
+      "title": "世界模型：让人工智能从“读万卷书”走向“行万里路” - 信息化观察网",
+      "link": "https://www.infoobs.com/article/20261127/72256.html",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-11-27T02:33:12+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "世界模型：让人工智能从“读万卷书”走向“行万里路” 信息化观察网",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "591026a53022db7f",
+      "title": "小米智驾不再只认物体，开始像老司机一样预判未来几秒|小米 HAD|澎程|HyperOS 1.20|车端世界模型|因果链_新浪新闻 - 新浪网",
+      "link": "https://www.sina.cn/news/detail/5369809279654587.html",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-11-27T02:16:00+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "小米智驾不再只认物体，开始像老司机一样预判未来几秒|小米 HAD|澎程|HyperOS 1.20|车端世界模型|因果链_新浪新闻 新浪网",
+      "why": "",
+      "tags": [
+        "3D"
+      ],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "04e6fff9bd043616",
+      "title": "550亿美元！ 梁文锋登顶全球大模型首富 - 雷达财经",
+      "link": "https://www.leidacj.com/article/186125",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-11-27T02:13:00+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "550亿美元！ 梁文锋登顶全球大模型首富 雷达财经",
+      "why": "",
+      "tags": [
+        "大模型"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "fe002fe801a72dd7",
+      "title": "小米澎湃OS 1.20 推送，车端世界模型让驾驶更懂路况|小米澎湃|小米 HAD|Xiaomi HyperOS 1.20|SU7_新浪新闻 - 新浪网",
+      "link": "https://www.sina.cn/news/detail/5369803004969009.html",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-11-27T01:51:00+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "小米澎湃OS 1.20 推送，车端世界模型让驾驶更懂路况|小米澎湃|小米 HAD|Xiaomi HyperOS 1.20|SU7_新浪新闻 新浪网",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "5b9ab851ec1ca592",
+      "title": "小米辅助驾驶像人一样思考，记忆过去20 秒预测未来6 秒|小米汽车|小米 HAD|车端世界模型|因果链|辅助驾驶_新浪新闻 - 新浪网",
+      "link": "https://www.sina.cn/news/detail/5369802451321853.html",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-11-27T01:48:00+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "小米辅助驾驶像人一样思考，记忆过去20 秒预测未来6 秒|小米汽车|小米 HAD|车端世界模型|因果链|辅助驾驶_新浪新闻 新浪网",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "18eb78ccce767c33",
+      "title": "小米HAD 1.2.0今日开始推送 引入因果链和车端世界模型 - Sohu",
+      "link": "https://m.sohu.com/a/1106993236_115831?scm=10001.325_13-325_13.0.0-0-0-0-0.5_1334",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-11-27T01:26:11+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "小米HAD 1.2.0今日开始推送 引入因果链和车端世界模型 Sohu",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "63b377b40a39fe38",
+      "title": "DeepSeek APP收费信号？大模型商业化叠加生态协同 国产算力或迎放量窗口 - 财联社",
+      "link": "https://www.cls.cn/detail/2546211",
+      "source": "新闻 · 国内模型公司",
+      "source_id": "gnews-labs-cn",
+      "published": "2026-11-27T00:43:00+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "DeepSeek APP收费信号？大模型商业化叠加生态协同 国产算力或迎放量窗口 财联社",
+      "why": "",
+      "tags": [
+        "大模型"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "1b2ad8a23dd060f9",
+      "title": "彩讯股份杨安培：降低试错与验真成本，探索世界模型的商业化价值 - 东方财富",
+      "link": "https://emwap.eastmoney.com/a/202611263940965159.html",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-11-27T00:01:25+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "彩讯股份杨安培：降低试错与验真成本，探索世界模型的商业化价值 东方财富",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    },
+    {
+      "id": "69ed890d19a5342a",
+      "title": "用代码拓展视频生成的能力边界，可灵联合北大南大提出Coda-DaVinci，重新思考 AI 视频生成中的控制与创造 - 手机新浪网",
+      "link": "https://k.sina.com.cn/article_5953189932_162d6782c067055839.html?from=tech",
+      "source": "新闻 · 视频生成（中文）",
+      "source_id": "gnews-video-cn",
+      "published": "2026-11-26T23:09:51+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "用代码拓展视频生成的能力边界，可灵联合北大南大提出Coda-DaVinci，重新思考 AI 视频生成中的控制与创造 手机新浪网",
+      "why": "",
+      "tags": [
+        "视频生成"
+      ],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "00bb51c293be1538",
+      "title": "How Clay Builds GTM Agents — Jeff Barg, Head of AI",
+      "link": "https://latent.space/p/how-clay-builds-gtm-agents-jeff-barg-head-of-ai",
+      "source": "Latent Space",
+      "source_id": "latentspace",
+      "published": "2026-11-26T23:02:48+00:00",
+      "category": "people",
+      "priority": "medium",
+      "summary": "How $1,500 could qualify every company in the world, why customers hate the model selector, and how Clay is building go-to-market infrastructure for every agent",
+      "why": "",
+      "tags": [
+        "agent"
+      ],
+      "tracks": []
+    },
+    {
+      "id": "9e311a07a3d8dfe9",
+      "title": "Best Text-to-Video AI Generators: Quality, Control and Commercial Use Compared - Guiding Tech",
+      "link": "https://www.guidingtech.com/best-text-to-video-ai-generators/",
+      "source": "新闻 · 视频生成（英文）",
+      "source_id": "gnews-video-en",
+      "published": "2026-11-26T22:39:17+00:00",
+      "category": "release",
+      "priority": "medium",
+      "summary": "Best Text-to-Video AI Generators: Quality, Control and Commercial Use Compared Guiding Tech",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "video"
+      ]
+    },
+    {
+      "id": "b8dae021594606ea",
+      "title": "任少卿带世界模型3.0来了！蔚来智驾训练提效5倍，座舱也用上强化学习 - 手机新浪网",
+      "link": "https://k.sina.com.cn/article_6105753431_16bee675700101f4qb.html?from=tech&subch=otech",
+      "source": "新闻 · 世界模型（中文）",
+      "source_id": "gnews-world-cn",
+      "published": "2026-11-26T22:09:41+00:00",
+      "category": "research",
+      "priority": "medium",
+      "summary": "任少卿带世界模型3.0来了！蔚来智驾训练提效5倍，座舱也用上强化学习 手机新浪网",
+      "why": "",
+      "tags": [],
+      "tracks": [
+        "world"
+      ]
+    }
+  ]
+}
